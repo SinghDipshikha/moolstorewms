@@ -4,10 +4,10 @@ import 'dart:math' as math;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 bool isShowing = false;
 
 enum DialogTransitionType {
-
   fade,
   slideFromTop,
   slideFromTopFade,
@@ -226,7 +226,8 @@ Future<T?> showAnimatedDialog<T extends Object?>({
               opacity: Tween<double>(begin: 0.0, end: 1.0).animate(
                   CurvedAnimation(
                       parent: animation,
-                      curve: const Interval(0.5, 1.0, curve: Curves.elasticOut))),
+                      curve:
+                          const Interval(0.5, 1.0, curve: Curves.elasticOut))),
               child: child,
             ),
           );
@@ -262,7 +263,16 @@ Future<T?> showAnimatedDialog<T extends Object?>({
         case DialogTransitionType.none:
           return child;
         default:
-          return FadeTransition(opacity: animation, child: child);
+          return SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(-1.0, 0.0),
+              end: Offset.zero,
+            ).chain(CurveTween(curve: curve)).animate(animation),
+            child: FadeTransition(
+              opacity: animation,
+              child: child,
+            ),
+          );
       }
     },
   );
@@ -411,8 +421,8 @@ class CustomDialogWidget extends StatelessWidget {
         child: dialogChild);
   }
 }
-class CustomDialog extends StatelessWidget {
 
+class CustomDialog extends StatelessWidget {
   const CustomDialog({
     Key? key,
     this.backgroundColor,
@@ -436,17 +446,15 @@ class CustomDialog extends StatelessWidget {
   final Widget? child;
 
   static const RoundedRectangleBorder _defaultDialogShape =
-  RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(2.0)));
+      RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(2.0)));
   static const double _defaultElevation = 24.0;
 
   @override
   Widget build(BuildContext context) {
     final DialogTheme dialogTheme = DialogTheme.of(context);
     return AnimatedPadding(
-      padding: MediaQuery
-          .of(context)
-          .viewInsets +
+      padding: MediaQuery.of(context).viewInsets +
           const EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
       duration: insetAnimationDuration!,
       curve: insetAnimationCurve!,
@@ -462,11 +470,9 @@ class CustomDialog extends StatelessWidget {
             child: Material(
               color: backgroundColor ??
                   dialogTheme.backgroundColor ??
-                  Theme
-                      .of(context)
-                      .dialogBackgroundColor,
+                  Theme.of(context).dialogBackgroundColor,
               elevation:
-              elevation ?? dialogTheme.elevation ?? _defaultElevation,
+                  elevation ?? dialogTheme.elevation ?? _defaultElevation,
               shape: shape ?? dialogTheme.shape ?? _defaultDialogShape,
               type: MaterialType.card,
               child: child,

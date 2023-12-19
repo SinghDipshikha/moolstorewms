@@ -18,6 +18,9 @@ dependencies:
   flutter_svg: ^2.0.9
   smooth_page_indicator: ^1.1.0
   gap:
+  fl_country_code_picker: ^0.1.9+1
+  flutter_localization: ^0.2.0
+  logger: ^2.0.2+1
 
 dev_dependencies:
   flutter_test:

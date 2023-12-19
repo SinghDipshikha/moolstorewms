@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Walkthrough/walkThrough.dart';
+import 'package:moolwmsstore/View/auth/login.dart';
 import 'package:moolwmsstore/View/base/animated_dialog.dart';
 import 'package:platform_detector/platform_detector.dart';
 
@@ -14,7 +15,17 @@ class RouteHelper {
   static getHomeRoute(String name) => '$home?name=$name';
 
   static List<GetPage> routes = [
-    GetPage(name: initial, page: () => Container(child: const WalkThrough())),
+    GetPage(
+        name: initial,
+        page: () => isMobile()
+            ? const WalkThrough()
+            : Container(
+                child: const Row(
+                children: [
+                  Expanded(flex: 2, child: WalkThrough()),
+                  Expanded(flex: 1, child: Login()),
+                ],
+              ))),
     // GetPage(name: splash, page: () => const WalkThrough()),
     GetPage(
       name: home,
