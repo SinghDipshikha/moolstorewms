@@ -4,17 +4,23 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Controller/language_controller.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
+import 'package:moolwmsstore/Controller/userController.dart';
 import 'package:moolwmsstore/Model/LanaguageModel.dart';
 import 'package:moolwmsstore/appConstants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<Map<String, Map<String, String>>> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
+  Get.put(UserController());
   Get.lazyPut(() => sharedPreferences);
   // Get.lazyPut(() => ApiClient(
   //     appBaseUrl: AppConstants.baseUrl, sharedPreferences: Get.find()));
-  Get.lazyPut(() => LanguageController(sharedPreferences: Get.find()));
-    Get.lazyPut(() => LocalizationController(sharedPreferences: Get.find()));
+  Get.lazyPut(
+    () => LanguageController(sharedPreferences: Get.find()),
+  );
+  Get.lazyPut(
+    () => LocalizationController(sharedPreferences: Get.find()),
+  );
   // Repository
   // Get.lazyPut(
   //     () => SplashRepo(sharedPreferences: Get.find(), apiClient: Get.find()));

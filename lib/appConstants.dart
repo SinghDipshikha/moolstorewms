@@ -14,7 +14,31 @@ class AppConstants {
     LanguageModel(languageCode: 'te', languageName: 'తెలుగు'),
   ];
 }
+
 class ColorConstants {
+  static List<BoxShadow>? boxShadow(BuildContext context) {
+    return MediaQuery.of(context).platformBrightness != Brightness.dark
+        ? [
+            const BoxShadow(
+              color: Color.fromARGB(255, 229, 229, 229),
+              blurRadius: 20,
+              offset: Offset(1, 1),
+              spreadRadius: 0,
+            )
+          ]
+        : null;
+  }
+  static List<BoxShadow>? colouredboxShadow({required Color color}) {
+    return [
+            BoxShadow(
+              color: color,
+              blurRadius: 20,
+              offset: const Offset(0, 5),
+              spreadRadius: 0,
+            )
+          ];
+  }
+
   static const Color BACKGROUND = Color(0xFFF5F5F5);
   static const Color PRIMARY = Color(0xFF028FFF);
   static const Color PRIMARY_DARK = Color(0xFF1B54D9);

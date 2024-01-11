@@ -1,16 +1,16 @@
 import 'dart:ui';
 
-import 'package:fl_country_code_picker/fl_country_code_picker.dart' as flc;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
 import 'package:moolwmsstore/appConstants.dart';
 import 'package:moolwmsstore/helper/messages.dart';
-import 'package:moolwmsstore/helper/route_helper.dart';
+import 'package:moolwmsstore/routes/approutes.dart';
+import 'package:platform_detector/platform_detector.dart';
 
 import 'helper/get_di.dart' as di;
-
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Map<String, Map<String, String>> languages = await di.init();
@@ -22,8 +22,9 @@ Future<void> main() async {
 init() async {}
 
 class MyApp extends StatelessWidget {
+  final _router = AppRouter();
   final Map<String, Map<String, String>> languages;
-  const MyApp({
+  MyApp({
     super.key,
     required this.languages,
   });
@@ -36,21 +37,28 @@ class MyApp extends StatelessWidget {
         MediaQuery.of(context).platformBrightness == Brightness.dark;
 
     return GetBuilder<LocalizationController>(builder: (localizeController) {
-      return GetMaterialApp(
-        supportedLocales:
-            flc.CountryLocalizations.supportedLocales.map(Locale.new),
-        localizationsDelegates: const [
-          flc.CountryLocalizations.delegate,
-          // GlobalWidgetsLocalizations.delegate,
-          // GlobalMaterialLocalizations.delegate,
-          // GlobalCupertinoLocalizations.delegate,
-        ],
+      return GetMaterialApp.router(
+        
+        //routeInformationParser: _,
+        routerDelegate: _router.delegate(),
+        routeInformationProvider: _router.routeInfoProvider(),
+    routeInformationParser: _router.defaultRouteParser(),
+        debugShowCheckedModeBanner: false,
+        // supportedLocales:
+        //     flc.CountryLocalizations.supportedLocales.map(Locale.new),
+        // localizationsDelegates: const [
+        //   flc.CountryLocalizations.delegate,
+        //   // GlobalWidgetsLocalizations.delegate,
+        //   // GlobalMaterialLocalizations.delegate,
+        //   // GlobalCupertinoLocalizations.delegate,
+        // ],
         locale: localizeController.locale,
         fallbackLocale: Locale(
           AppConstants.LANGUAGE_LIST[0].languageCode,
         ),
-        initialRoute: RouteHelper.initial,
-        getPages: RouteHelper.routes,
+        // home: const GMSDashboard(),
+        // initialRoute: RouteHelper.initial,
+        // getPages: RouteHelper.routes,
         translations: Messages(languages: languages),
         defaultTransition: Transition.topLevel,
         transitionDuration: const Duration(milliseconds: 500),
@@ -59,6 +67,18 @@ class MyApp extends StatelessWidget {
         ),
         theme: isDarkMode
             ? ThemeData(
+                iconTheme: const IconThemeData(color: Colors.white),
+                iconButtonTheme: const IconButtonThemeData(
+                    style: ButtonStyle(
+                        iconColor: MaterialStatePropertyAll(Colors.white))),
+                actionIconTheme: ActionIconThemeData(
+                  backButtonIconBuilder: (context) {
+                    return const Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.white,
+                    );
+                  },
+                ),
                 // buttonTheme: ButtonThemeData(),
                 textTheme: GoogleFonts.outfitTextTheme(textTheme)
                     .copyWith(
@@ -117,26 +137,48 @@ class MyApp extends StatelessWidget {
                       //  displayColor: Colors.white,
                       bodyColor: Colors.white,
                     ),
+                scaffoldBackgroundColor: Colors.black,
+                dialogTheme: DialogTheme(
+                    backgroundColor: const Color(0xFF9022FF).withOpacity(0.04)),
                 // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
                 useMaterial3: true,
-                primaryColor: const Color(0xFFBBFF1A),
+                primaryColor: const Color(0xFF9022FF),
                 secondaryHeaderColor: const Color(0xFFbfdeff),
                 disabledColor: const Color(0xffa2a7ad),
                 brightness: Brightness.dark,
                 hintColor: const Color(0xFFbebebe),
-                shadowColor: Colors.black.withOpacity(0.4),
+                shadowColor: const Color(0xFF1B1B25),
                 cardColor: Colors.black,
                 textButtonTheme: TextButtonThemeData(
                     style: TextButton.styleFrom(
                         foregroundColor: const Color(0xFFcda335))),
                 appBarTheme:
                     const AppBarTheme(backgroundColor: Color(0x4D334257)),
+                visualDensity: VisualDensity.comfortable,
                 colorScheme: const ColorScheme.dark(
                         primary: Color(0xFFcda335),
                         secondary: Color(0xFFcda335))
-                    .copyWith(background: const Color(0xFF212326))
+                    .copyWith(background: Colors.black)
                     .copyWith(error: const Color(0xFFdd3135)))
             : ThemeData(
+                iconTheme: const IconThemeData(color: Colors.black),
+                iconButtonTheme: const IconButtonThemeData(
+                    style: ButtonStyle(
+                        iconColor: MaterialStatePropertyAll(Colors.black))),
+                actionIconTheme: ActionIconThemeData(
+                  backButtonIconBuilder: (context) {
+                    return const Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.black,
+                    );
+                  },
+                ),
+                // buttonTheme: const ButtonThemeData(buttonColor: Colors.black),
+                // iconButtonTheme: const IconButtonThemeData(
+                //     style: ButtonStyle(
+                //         foregroundColor: MaterialStatePropertyAll(Colors.black),
+                //         iconColor: MaterialStatePropertyAll(Colors.black))),
+                // iconTheme: const IconThemeData(color: Colors.black),
                 textTheme: GoogleFonts.outfitTextTheme(textTheme)
                     .copyWith(
                       labelMedium: GoogleFonts.outfit(
@@ -162,7 +204,8 @@ class MyApp extends StatelessWidget {
                           fontWeight: FontWeight.w500),
                       titleMedium: GoogleFonts.outfit(
                           textStyle: textTheme.titleMedium,
-                          fontWeight: FontWeight.w400),
+                          fontWeight:
+                              isMobile() ? FontWeight.w200 : FontWeight.w400),
                       bodyLarge: GoogleFonts.outfit(
                           textStyle: textTheme.bodyLarge,
                           fontWeight: FontWeight.w500),
@@ -183,23 +226,27 @@ class MyApp extends StatelessWidget {
                           fontWeight: FontWeight.w400),
                     )
                     .apply(bodyColor: Colors.black),
+                dialogTheme: const DialogTheme(backgroundColor: null),
+                scaffoldBackgroundColor: const Color(0xFFFCFCFC),
                 // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
                 primaryColor: const Color(0xFF028FFF),
                 secondaryHeaderColor: const Color(0xFF4794FF),
                 disabledColor: const Color(0xFFBABFC4),
                 brightness: Brightness.light,
-                shadowColor: Colors.grey[300],
+                shadowColor: const Color.fromARGB(255, 248, 248, 248),
                 hintColor: const Color(0xFF9F9F9F),
                 cardColor: Colors.white,
                 textButtonTheme: TextButtonThemeData(
                     style: TextButton.styleFrom(
                         foregroundColor: const Color(0xFFdcb247))),
                 appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
+                visualDensity: VisualDensity.compact,
                 colorScheme: const ColorScheme.light(
                         primary: Color(0xFFdcb247),
                         secondary: Color(0xFFdcb247))
                     .copyWith(background: const Color(0xFFFCFCFC))
-                    .copyWith(error: const Color(0xFFE84D4F))),
+                    .copyWith(error: const Color(0xFFE84D4F))
+                    .copyWith()),
       );
     });
   }

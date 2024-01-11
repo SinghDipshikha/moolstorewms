@@ -1,14 +1,17 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/View/auth/login.dart';
 import 'package:moolwmsstore/View/base/customButton.dart';
+import 'package:moolwmsstore/routes/approutes.gr.dart';
 import 'package:platform_detector/platform_detector.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+@RoutePage()
 class WalkThrough extends StatefulWidget {
   const WalkThrough({Key? key}) : super(key: key);
 
@@ -97,7 +100,13 @@ class _WalkThroughState extends State<WalkThrough> {
               const Gap(20),
               if (isMobile())
                 CustomButton(
-                  onTap: () => Get.to(const Login()),
+                  title: 'get_started'.tr,
+                  onTap: () {
+                       context.pushRoute(const LoginRoute());
+                    // context.router.pushNamed(
+                    //     '${LoginWebBodyRoute.name}/${LoginRoute.name}');
+                  //  Get.to(const Login());
+                  },
                 ),
               const Gap(20),
             ],
