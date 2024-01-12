@@ -6,20 +6,31 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:moolwmsstore/View/base/mobileAppBar.dart';
 import 'package:moolwmsstore/appConstants.dart';
-import 'package:moolwmsstore/helper/route_helper.dart';
+import 'package:moolwmsstore/routes/approutes.gr.dart';
 import 'package:platform_detector/platform_detector.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 @RoutePage()
-class GMSDashboard extends StatefulWidget {
+class GMSDashboard extends StatelessWidget {
   const GMSDashboard({Key? key}) : super(key: key);
 
   @override
-  State<GMSDashboard> createState() => _GMSDashboardState();
+  Widget build(BuildContext context) {
+    return const AutoRouter();
+  }
 }
 
-class _GMSDashboardState extends State<GMSDashboard> {
+@RoutePage()
+class GMSDashboardBody extends StatefulWidget {
+  const GMSDashboardBody({Key? key}) : super(key: key);
+
+  @override
+  State<GMSDashboardBody> createState() => _GMSDashboardBodyState();
+}
+
+class _GMSDashboardBodyState extends State<GMSDashboardBody> {
   CarouselController? controller = CarouselController();
   CarouselController? controller1 = CarouselController();
 
@@ -79,84 +90,89 @@ class _GMSDashboardState extends State<GMSDashboard> {
   Widget build(BuildContext context) {
     final double height = MediaQuery.sizeOf(context).height;
     final double width = MediaQuery.sizeOf(context).width;
-    return ListView(
-      children: [
-        const Gap(10),
-        mobile
-            ? SizedBox(
-                width: MediaQuery.sizeOf(context).width,
-                height: isMobile() ? 220 : height * 0.3,
-                child: FlutterCarousel(
-                  options: CarouselOptions(
-                      onPageChanged: (index, reason) {
-                        controller1!.animateToPage(index);
-                        if (index == 0) {
-                          setState(() {
-                            summary = true;
-                          });
-                        } else {
-                          setState(() {
-                            summary = false;
-                          });
-                        }
-                      },
-                      controller: controller,
-                      showIndicator: false,
-                      //enableInfiniteScroll: true,
-                      // pauseAutoPlayInFiniteScroll: true,
-                      autoPlay: false,
-                      autoPlayInterval: const Duration(seconds: 10),
-                      viewportFraction: isMobile() ? 0.64 : 0.3,
-                      enlargeCenterPage: true,
-                      slideIndicator: CircularWaveSlideIndicator(),
-                      floatingIndicator: false,
-                      indicatorMargin: 0),
-                  items: sliders,
+    return Scaffold(
+      appBar: isMobile() ? appBarMobile(context) : null,
+      body: ListView(
+        children: [
+          const Gap(10),
+          mobile
+              ? SizedBox(
+                  width: width,
+                  height: 220,
+                  child: FlutterCarousel(
+                    options: CarouselOptions(
+                        onPageChanged: (index, reason) {
+                          controller1!.animateToPage(index);
+                          if (index == 0) {
+                            setState(() {
+                              summary = true;
+                            });
+                          } else {
+                            setState(() {
+                              summary = false;
+                            });
+                          }
+                        },
+                        controller: controller,
+                        showIndicator: false,
+                        //enableInfiniteScroll: true,
+                        // pauseAutoPlayInFiniteScroll: true,
+                        autoPlay: false,
+                        autoPlayInterval: const Duration(seconds: 10),
+                        viewportFraction: isMobile() ? 0.84 : 0.3,
+                        enlargeCenterPage: true,
+                        slideIndicator: CircularWaveSlideIndicator(),
+                        floatingIndicator: false,
+                        indicatorMargin: 0),
+                    items: sliders,
+                  ),
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(
+                      sliders.length,
+                      (index) => SizedBox(
+                          // padding: const EdgeInsets.symmetric(horizontal: 16),
+                          height: 260,
+                          width: (width - 230) / sliders.length,
+                          child: sliders[index])),
                 ),
-              )
-            : Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: List.generate(
-                    sliders.length,
-                    (index) => SizedBox(
-                        // padding: const EdgeInsets.symmetric(horizontal: 16),
-                        height: 280,
-                        width: (width - 35) / sliders.length,
-                        child: sliders[index])),
-              ),
-        mobile
-            ? SizedBox(
-                width: MediaQuery.sizeOf(context).width,
-                child: FlutterCarousel(
-                  options: CarouselOptions(
-                      height: summary ? height * 10 : height * 0.6,
-                      onPageChanged: (index, reason) {
-                        controller!.animateToPage(index);
-                      },
-                      controller: controller1,
-                      autoPlay: false,
-                      viewportFraction: 1,
-                      enlargeCenterPage: false,
-                      showIndicator: false,
-                      indicatorMargin: 0),
-                  items: bodies,
-                ),
-              )
-            : Wrap(
-                children: List.generate(
-                    sliders.length,
-                    (index) => Padding(
-                          //  padding: EdgeInsets.zero,
-                          padding: const EdgeInsets.all(10.0)
-                              .copyWith(top: 0, right: 10, bottom: 20),
-                          child: SizedBox(
-                            height: 440,
-                            width: (width - 60) / 2,
-                            child: bodies[index],
-                          ),
-                        )),
-              )
-      ],
+          mobile
+              ? SizedBox(
+                  width: MediaQuery.sizeOf(context).width,
+                  child: FlutterCarousel(
+                    
+                    options: CarouselOptions(
+                      
+                        height: summary ? height * 10 : (height - 320),
+                        onPageChanged: (index, reason) {
+                          controller!.animateToPage(index);
+                        },
+                        controller: controller1,
+                        autoPlay: false,
+                        viewportFraction: 1,
+                        enlargeCenterPage: false,
+                        showIndicator: false,
+                        indicatorMargin: 0),
+                    items: bodies,
+                  ),
+                )
+              : Wrap(
+                  children: List.generate(
+                      sliders.length,
+                      (index) => Padding(
+                            //  padding: EdgeInsets.zero,
+                            padding: const EdgeInsets.all(10.0)
+                                .copyWith(top: 0, right: 0, bottom: 10),
+                            child: SizedBox(
+                              height: 440,
+                              width: (width - 260) / 2,
+                              child: bodies[index],
+                            ),
+                          )),
+                )
+        ],
+      ),
     );
   }
 }
@@ -167,7 +183,7 @@ class GMSmaterial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0).copyWith(top: 0, bottom: 30),
+      padding: const EdgeInsets.all(8.0).copyWith(top: 0, bottom: 20),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
@@ -229,7 +245,9 @@ class GMSmaterial extends StatelessWidget {
                         icon: SvgPicture.asset("assets/images/menu.svg",
                             color: Colors.white),
                         onPressed: () {
-                          Get.toNamed(RouteHelper.material);
+                          AutoRouter.of(context)
+                              .navigate(const MaterialPageBodyRoute());
+                          //context.p(const MaterialPageBodyRoute());
                         })),
               ],
             )
@@ -430,7 +448,7 @@ class GMSsummmary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0).copyWith(top: 0, bottom: 30),
+      padding: const EdgeInsets.all(8.0).copyWith(top: 0, bottom: 20),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
@@ -515,466 +533,452 @@ class GMSsummmaryBody extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0).copyWith(top: 0, bottom: 0),
-      child: Container(
-        //  height: 800,
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(14)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+    return Container(
+      //  height: 800,
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(14)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(("summary".tr),
+                  style: Theme.of(context).textTheme.headlineSmall),
+              Expanded(child: Container()),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.filter_alt),
+              ),
+              // const Gap(10),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+            ],
+          ),
+          Container(
+            //color: Colors.white,
+            color: HexColor('#0000001A'),
+            child: TextField(
+              onTapOutside: (event) {
+                FocusScope.of(context).unfocus();
+              },
+              decoration: InputDecoration(
+                  hintText: "Search Person",
+                  //focusColor: ColorConstants.VEHICLE_DARK,
+                  isDense: true,
+                  contentPadding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 10),
+                  border: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: HexColor('#0000001A'), width: 0.3),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(26)))),
+            ),
+          ),
+          const Gap(30),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 22),
+            alignment: Alignment.center,
+            height: 114,
+            decoration: BoxDecoration(
+                boxShadow: ColorConstants.boxShadow(context),
+                color: Theme.of(context).cardColor,
+                borderRadius: BorderRadius.circular(10)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(("summary".tr),
-                    style: Theme.of(context).textTheme.headlineSmall),
-                Expanded(child: Container()),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.filter_alt),
+                Row(
+                  children: [
+                    Text(
+                      "Person (23)",
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: HexColor('#3D9ADE'),
+                          ),
+                    ),
+                  ],
                 ),
-                // const Gap(10),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+                const Gap(6),
+                Row(
+                  children: [
+                    Expanded(
+                        flex: 1,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Employees",
+                                style: Theme.of(context).textTheme.titleMedium),
+                            Text("10",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(fontSize: 18)),
+                          ],
+                        )),
+                    Expanded(
+                        flex: 1,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Labours",
+                                style: Theme.of(context).textTheme.titleMedium),
+                            Text("10",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(fontSize: 18)),
+                          ],
+                        )),
+                    Expanded(
+                        flex: 1,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Visitors",
+                                style: Theme.of(context).textTheme.titleMedium),
+                            Text("10",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(fontSize: 18)),
+                          ],
+                        )),
+                  ],
+                )
               ],
             ),
-            Container(
-              //color: Colors.white,
-              color: HexColor('#0000001A'),
-              child: TextField(
-                onTapOutside: (event) {
-                  FocusScope.of(context).unfocus();
-                },
-                decoration: InputDecoration(
-                    hintText: "Search Person",
-                    //focusColor: ColorConstants.VEHICLE_DARK,
-                    isDense: true,
-                    contentPadding: const EdgeInsets.symmetric(
-                        vertical: 10.0, horizontal: 10),
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: HexColor('#0000001A'), width: 0.3),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(26)))),
-              ),
-            ),
-            const Gap(30),
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 22),
-              alignment: Alignment.center,
-              height: 114,
-              decoration: BoxDecoration(
-                  boxShadow: ColorConstants.boxShadow(context),
-                  color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.circular(10)),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        "Person (23)",
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                              color: HexColor('#3D9ADE'),
-                            ),
-                      ),
-                    ],
-                  ),
-                  const Gap(6),
-                  Row(
-                    children: [
-                      Expanded(
-                          flex: 1,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Employees",
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium),
-                              Text("10",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(fontSize: 18)),
-                            ],
-                          )),
-                      Expanded(
-                          flex: 1,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Labours",
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium),
-                              Text("10",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(fontSize: 18)),
-                            ],
-                          )),
-                      Expanded(
-                          flex: 1,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Visitors",
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium),
-                              Text("10",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(fontSize: 18)),
-                            ],
-                          )),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            const Gap(20),
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 22),
-              alignment: Alignment.center,
-              height: 118,
-              decoration: BoxDecoration(
-                  boxShadow: ColorConstants.boxShadow(context),
-                  color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.circular(10)),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        "Vehicle (13)",
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                              color: HexColor('#3D9ADE'),
-                            ),
-                      ),
-                    ],
-                  ),
-                  const Gap(6),
-                  Row(
-                    children: [
-                      Expanded(
-                          flex: 1,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Two-wheels",
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium),
-                              Text("10",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(fontSize: 18)),
-                            ],
-                          )),
-                      Expanded(
-                          flex: 1,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Four-wheels",
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium),
-                              Text("10",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(fontSize: 18)),
-                            ],
-                          )),
-                      Expanded(
-                          flex: 1,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Truck",
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium),
-                              Text("10",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(fontSize: 18)),
-                            ],
-                          )),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            const Gap(30),
-            Text(
-              "Temperature Sensor ( IN Chamber)",
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const Gap(20),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
-              decoration: BoxDecoration(
-                  boxShadow: ColorConstants.boxShadow(context),
-                  color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.circular(8)),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
+          ),
+          const Gap(20),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 22),
+            alignment: Alignment.center,
+            height: 118,
+            decoration: BoxDecoration(
+                boxShadow: ColorConstants.boxShadow(context),
+                color: Theme.of(context).cardColor,
+                borderRadius: BorderRadius.circular(10)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      "Vehicle (13)",
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: HexColor('#3D9ADE'),
+                          ),
+                    ),
+                  ],
+                ),
+                const Gap(6),
+                Row(
+                  children: [
+                    Expanded(
                         flex: 1,
-                        child: Text.rich(TextSpan(children: [
-                          const TextSpan(text: "Total: ", style: TextStyle()),
-                          TextSpan(
-                              text: "10",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.copyWith(fontSize: 15))
-                        ])),
-                      ),
-                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Two-wheels",
+                                style: Theme.of(context).textTheme.titleMedium),
+                            Text("10",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(fontSize: 18)),
+                          ],
+                        )),
+                    Expanded(
                         flex: 1,
-                        child: Text.rich(TextSpan(children: [
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Four-wheels",
+                                style: Theme.of(context).textTheme.titleMedium),
+                            Text("10",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(fontSize: 18)),
+                          ],
+                        )),
+                    Expanded(
+                        flex: 1,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Truck",
+                                style: Theme.of(context).textTheme.titleMedium),
+                            Text("10",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(fontSize: 18)),
+                          ],
+                        )),
+                  ],
+                )
+              ],
+            ),
+          ),
+          const Gap(30),
+          Text(
+            "Temperature Sensor ( IN Chamber)",
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          const Gap(20),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
+            decoration: BoxDecoration(
+                boxShadow: ColorConstants.boxShadow(context),
+                color: Theme.of(context).cardColor,
+                borderRadius: BorderRadius.circular(8)),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Text.rich(TextSpan(children: [
+                        const TextSpan(text: "Total: ", style: TextStyle()),
+                        TextSpan(
+                            text: "10",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(fontSize: 15))
+                      ])),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Text.rich(TextSpan(children: [
+                        TextSpan(
+                            text: "Proper Temp. : ",
+                            style: TextStyle(color: HexColor('#1CA517'))),
+                        TextSpan(
+                            text: "10",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                    fontSize: 15, color: HexColor('#1CA517')))
+                      ])),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Text.rich(
+                        TextSpan(children: [
                           TextSpan(
-                              text: "Proper Temp. : ",
-                              style: TextStyle(color: HexColor('#1CA517'))),
+                              text: "Risk Zone: ",
+                              style: TextStyle(color: HexColor('#FF0000'))),
                           TextSpan(
                               text: "10",
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
                                   ?.copyWith(
-                                      fontSize: 15, color: HexColor('#1CA517')))
-                        ])),
+                                      fontSize: 15, color: HexColor('#FF0000')))
+                        ]),
                       ),
-                      Expanded(
-                        flex: 1,
-                        child: Text.rich(
-                          TextSpan(children: [
-                            TextSpan(
-                                text: "Risk Zone: ",
-                                style: TextStyle(color: HexColor('#FF0000'))),
-                            TextSpan(
-                                text: "10",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium
-                                    ?.copyWith(
-                                        fontSize: 15,
-                                        color: HexColor('#FF0000')))
-                          ]),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Accordion(children: [
-                    AccordionSection(
-                      contentHorizontalPadding: 0,
-                      headerPadding: EdgeInsets.zero,
-                      rightIcon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      isOpen: true,
-                      headerBackgroundColor: Theme.of(context).cardColor,
-                      headerBackgroundColorOpened: Theme.of(context).cardColor,
-
-                      contentBackgroundColor: Theme.of(context).cardColor,
-                      // headerPadding: const EdgeInsets.all(10),
-                      contentBorderWidth: 0,
-                      contentVerticalPadding: 0,
-                      header: Text('Graph'.tr,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(color: Theme.of(context).primaryColor)),
-                      content: SfCartesianChart(
-                          primaryXAxis: const NumericAxis(
-                            majorGridLines: MajorGridLines(width: 0),
-                            axisLine: AxisLine(width: 0),
-                          ),
-                          primaryYAxis: const NumericAxis(
-                              majorGridLines: MajorGridLines(width: 0),
-                              axisLine: AxisLine(width: 0)),
-                          title: ChartTitle(
-                              text: "Temperature",
-                              textStyle:
-                                  Theme.of(context).textTheme.labelSmall),
-
-                          // primaryXAxis: const In(),
-                          series: <CartesianSeries>[
-                            // Renders line chart
-                            SplineAreaSeries<SalesData, int>(
-                                markerSettings: MarkerSettings(
-                                    isVisible: true,
-                                    color: Theme.of(context).primaryColor),
-                                gradient: LinearGradient(
-                                    begin: Alignment.topRight,
-                                    end: Alignment.bottomLeft,
-                                    colors: [
-                                      Theme.of(context)
-                                          .primaryColor
-                                          .withOpacity(0.6),
-                                      Theme.of(context)
-                                          .primaryColor
-                                          .withOpacity(0.4),
-                                      Theme.of(context)
-                                          .primaryColor
-                                          .withOpacity(0.2),
-                                    ]),
-                                splineType: SplineType.clamped,
-                                dataSource: chartData,
-                                xValueMapper: (SalesData sales, _) =>
-                                    sales.year,
-                                yValueMapper: (SalesData sales, _) =>
-                                    sales.sales)
-                          ]),
                     ),
-                  ])
-                ],
-              ),
-            ),
-            const Gap(30),
-            Text(
-              "assigned_task".tr,
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const Gap(10),
-            Row(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          width: 0.2,
-                          color: Theme.of(context).textTheme.bodyLarge!.color ??
-                              Colors.black),
-                      borderRadius: BorderRadius.circular(18)),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 8, horizontal: 14),
-                    child: Text(
-                      "Moolcode",
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                  ),
+                  ],
                 ),
-                const Gap(10),
-                Container(
-                  decoration: BoxDecoration(
+                Accordion(children: [
+                  AccordionSection(
+                    contentHorizontalPadding: 0,
+                    headerPadding: EdgeInsets.zero,
+                    rightIcon: Icon(
+                      Icons.arrow_drop_down,
                       color: Theme.of(context).primaryColor,
-                      border: Border.all(
-                          width: 0.2,
-                          color: Theme.of(context).textTheme.bodyLarge!.color ??
-                              Colors.black),
-                      borderRadius: BorderRadius.circular(18)),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                    child: Text(
-                      "Indicold",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge!
-                          .copyWith(color: Colors.white),
                     ),
+                    isOpen: true,
+                    headerBackgroundColor: Theme.of(context).cardColor,
+                    headerBackgroundColorOpened: Theme.of(context).cardColor,
+
+                    contentBackgroundColor: Theme.of(context).cardColor,
+                    // headerPadding: const EdgeInsets.all(10),
+                    contentBorderWidth: 0,
+                    contentVerticalPadding: 0,
+                    header: Text('Graph'.tr,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge!
+                            .copyWith(color: Theme.of(context).primaryColor)),
+                    content: SfCartesianChart(
+                        primaryXAxis: const NumericAxis(
+                          majorGridLines: MajorGridLines(width: 0),
+                          axisLine: AxisLine(width: 0),
+                        ),
+                        primaryYAxis: const NumericAxis(
+                            majorGridLines: MajorGridLines(width: 0),
+                            axisLine: AxisLine(width: 0)),
+                        title: ChartTitle(
+                            text: "Temperature",
+                            textStyle: Theme.of(context).textTheme.labelSmall),
+
+                        // primaryXAxis: const In(),
+                        series: <CartesianSeries>[
+                          // Renders line chart
+                          SplineAreaSeries<SalesData, int>(
+                              markerSettings: MarkerSettings(
+                                  isVisible: true,
+                                  color: Theme.of(context).primaryColor),
+                              gradient: LinearGradient(
+                                  begin: Alignment.topRight,
+                                  end: Alignment.bottomLeft,
+                                  colors: [
+                                    Theme.of(context)
+                                        .primaryColor
+                                        .withOpacity(0.6),
+                                    Theme.of(context)
+                                        .primaryColor
+                                        .withOpacity(0.4),
+                                    Theme.of(context)
+                                        .primaryColor
+                                        .withOpacity(0.2),
+                                  ]),
+                              splineType: SplineType.clamped,
+                              dataSource: chartData,
+                              xValueMapper: (SalesData sales, _) => sales.year,
+                              yValueMapper: (SalesData sales, _) => sales.sales)
+                        ]),
                   ),
-                ),
+                ])
               ],
             ),
-            const Gap(10),
-            Column(
-              children: List.generate(
-                  10,
-                  (index) => Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 14, vertical: 20),
-                          decoration: BoxDecoration(
-                              boxShadow: ColorConstants.boxShadow(context),
-                              color: Theme.of(context).cardColor,
-                              borderRadius: BorderRadius.circular(8)),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Row(
-                                children: [
-                                  Text('Task Name',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              color: Theme.of(context)
-                                                  .primaryColor)),
-                                ],
-                              ),
-                              const Gap(4),
-                              Text("Description display here",
-                                  style:
-                                      Theme.of(context).textTheme.titleSmall),
-                              const Gap(8),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    flex: 1,
-                                    child: Text.rich(TextSpan(children: [
-                                      TextSpan(
-                                          text: "Priority\n",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge),
-                                      TextSpan(
-                                          text: "Medium",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium
-                                              ?.copyWith(fontSize: 15))
-                                    ])),
-                                  ),
-                                  Expanded(
-                                    flex: 1,
-                                    child: Text.rich(TextSpan(children: [
-                                      TextSpan(
-                                          text: "Completed Task\n",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge),
-                                      TextSpan(
-                                          text: "10",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium
-                                              ?.copyWith(
-                                                fontSize: 15,
-                                              ))
-                                    ])),
-                                  ),
-                                ],
-                              ),
-                              const Gap(8),
-                              Text(
-                                "Sub Task",
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                              Text(
-                                "- Sub Tasks Display here",
-                                style: Theme.of(context).textTheme.titleSmall,
-                              )
-                            ],
-                          ),
+          ),
+          const Gap(30),
+          Text(
+            "assigned_task".tr,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          const Gap(10),
+          Row(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    border: Border.all(
+                        width: 0.2,
+                        color: Theme.of(context).textTheme.bodyLarge!.color ??
+                            Colors.black),
+                    borderRadius: BorderRadius.circular(18)),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 14),
+                  child: Text(
+                    "Moolcode",
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                ),
+              ),
+              const Gap(10),
+              Container(
+                decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    border: Border.all(
+                        width: 0.2,
+                        color: Theme.of(context).textTheme.bodyLarge!.color ??
+                            Colors.black),
+                    borderRadius: BorderRadius.circular(18)),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  child: Text(
+                    "Indicold",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge!
+                        .copyWith(color: Colors.white),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const Gap(10),
+          Column(
+            children: List.generate(
+                10,
+                (index) => Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 14, vertical: 20),
+                        decoration: BoxDecoration(
+                            boxShadow: ColorConstants.boxShadow(context),
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Row(
+                              children: [
+                                Text('Task Name',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge!
+                                        .copyWith(
+                                            color: Theme.of(context)
+                                                .primaryColor)),
+                              ],
+                            ),
+                            const Gap(4),
+                            Text("Description display here",
+                                style: Theme.of(context).textTheme.titleSmall),
+                            const Gap(8),
+                            Row(
+                              children: [
+                                Expanded(
+                                  flex: 1,
+                                  child: Text.rich(TextSpan(children: [
+                                    TextSpan(
+                                        text: "Priority\n",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge),
+                                    TextSpan(
+                                        text: "Medium",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium
+                                            ?.copyWith(fontSize: 15))
+                                  ])),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Text.rich(TextSpan(children: [
+                                    TextSpan(
+                                        text: "Completed Task\n",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge),
+                                    TextSpan(
+                                        text: "10",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium
+                                            ?.copyWith(
+                                              fontSize: 15,
+                                            ))
+                                  ])),
+                                ),
+                              ],
+                            ),
+                            const Gap(8),
+                            Text(
+                              "Sub Task",
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            Text(
+                              "- Sub Tasks Display here",
+                              style: Theme.of(context).textTheme.titleSmall,
+                            )
+                          ],
                         ),
-                      )),
-            ),
-          ],
-        ),
+                      ),
+                    )),
+          ),
+        ],
       ),
     );
   }
@@ -986,7 +990,7 @@ class GMSperson extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0).copyWith(top: 0, bottom: 30),
+      padding: const EdgeInsets.all(8.0).copyWith(top: 0, bottom: 20),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
@@ -1262,7 +1266,7 @@ class GMSvehicle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0).copyWith(top: 0, bottom: 30),
+      padding: const EdgeInsets.all(8.0).copyWith(top: 0, bottom: 20),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
@@ -1627,7 +1631,7 @@ class GMSqueue extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0).copyWith(top: 0, bottom: 30),
+      padding: const EdgeInsets.all(8.0).copyWith(top: 0, bottom: 20),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),

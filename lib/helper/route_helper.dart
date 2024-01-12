@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Admin/GMSDashboard.dart';
-import 'package:moolwmsstore/View/GMS/Material/MaterialInward.dart';
+import 'package:moolwmsstore/View/DMS/MaterialInward.dart';
 import 'package:moolwmsstore/View/GMS/Material/MaterialPage.dart';
 import 'package:moolwmsstore/View/Walkthrough/walkThrough.dart';
 import 'package:moolwmsstore/View/auth/login.dart';
@@ -63,18 +63,18 @@ class RouteHelper {
       transition: Transition.leftToRight,
       transitionDuration: const Duration(milliseconds: 300),
     ),
-    GetPage(
-      name: material,
-      page: () => const MaterialPageInOut(),
-      transition: Transition.leftToRight,
-      transitionDuration: const Duration(milliseconds: 300),
-      children: [
-         GetPage(
-          name: materialInward,
-          page: () => MaterialInward(),
-        ),
-      ]
-    ),
+    // GetPage(
+    //   name: material,
+    //   page: () => const MaterialPageInOut(),
+    //   transition: Transition.leftToRight,
+    //   transitionDuration: const Duration(milliseconds: 300),
+    //   children: [
+    //      GetPage(
+    //       name: materialInward,
+    //       page: () => MaterialInward(),
+    //     ),
+    //   ]
+    // ),
   ];
 
   static void openDialog(BuildContext context, Widget child,

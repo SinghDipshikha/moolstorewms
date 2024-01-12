@@ -108,7 +108,7 @@ class _SelectUsageState extends State<SelectUsage> {
           const Gap(20),
           CustomButton(
             onTap: () {
-              context.pushRoute(MobileWebBodyRoute(body: [Container()]));
+              context.pushRoute(MobileWebBodyRoute());
             },
             width: isMobile() ? null : 400,
             title: "get_started".tr,

@@ -1,9 +1,11 @@
 import 'package:accordion/accordion.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/View/base/VisibilityExtended.dart';
+import 'package:moolwmsstore/routes/approutes.gr.dart';
 import 'package:moolwmsstore/utils/AppIcons.dart';
 import 'package:platform_detector/platform_detector.dart';
 
@@ -39,109 +41,116 @@ class _MyNavigationDrawerState extends State<MyNavigationDrawer> {
         .copyWith(fontWeight: FontWeight.w600, color: Colors.black);
 
     return Container(
-        width: isMobile()
-            ? MediaQuery.of(context).size.width * 0.7
-            : MediaQuery.of(context).size.width * 0.3,
+        width: isMobile() ? MediaQuery.of(context).size.width * 0.7 : 220,
         height: double.infinity,
-        decoration: BoxDecoration(
-            color: isDarkMode
-                ? const Color(0xFF1B1B25)
-                : Theme.of(context).primaryColor
-          
-            ),
+        decoration: isMobile()
+            ? BoxDecoration(
+                color: isDarkMode
+                    ? const Color(0xFF1B1B25)
+                    : Theme.of(context).primaryColor)
+            : BoxDecoration(color: Theme.of(context).cardColor),
         padding: const EdgeInsets.symmetric(
           horizontal: 10,
-        ).copyWith(top: 0),
+        ).copyWith(top: 0, left: 4),
         child: Column(
           // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: MediaQuery.of(context).size.height * 0.07),
+            isMobile() ? const SizedBox(height: kToolbarHeight) : const Gap(20),
+
             Align(
-              alignment: Alignment.centerLeft,
+              alignment: Alignment.center,
               child: Text("moolcode".tr,
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                      fontWeight: FontWeight.bold, color: Colors.white)),
+                      fontWeight: FontWeight.bold,
+                      color: isMobile()
+                          ? Colors.white
+                          : Theme.of(context).textTheme.bodyLarge!.color)),
             ),
             Expanded(
               child: Accordion(
                 maxOpenSections: 13,
                 children: [
-                  if (true)
-                    AccordionSection(
-                      rightIcon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      isOpen: false,
-                      leftIcon:
-                          navigationDrawerIcon(NavigationDrawerIcons.dashboard),
-                      headerBackgroundColor: Theme.of(context).cardColor,
-                      headerBackgroundColorOpened: Theme.of(context).cardColor,
-                      headerBorderWidth: 1,
-                      contentBackgroundColor: Colors.white,
-                      headerPadding: const EdgeInsets.all(10),
-                      contentBorderWidth: 0,
-                      contentVerticalPadding: 10,
-                      header: Text('dashboard'.tr,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(color: Theme.of(context).primaryColor)),
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          VisibilityExtended(
-                            visible: true,
-                            // visible: GlobalData().isViewAccessPresent(
-                            //     ModuleConstants.GMS_DASHBOARD),
-                            child: InkWell(
-                              onTap: () {
-                                if (ModalRoute.of(context)!.settings.name !=
-                                    "/admin/gms/dashboard") {
-                                  Navigator.of(context).pushNamedAndRemoveUntil(
-                                      '/admin/gms/dashboard', (route) => false);
-                                }
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 8),
-                                child: Row(
-                                  children: [
-                                    Text(("gms_dashboard".tr),
-                                        style: itemSubHeadingStyle),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          VisibilityExtended(
-                            visible: true,
-                            // visible: GlobalData().isViewAccessPresent(
-                            //     ModuleConstants.DMS_DASHBOARD),
-                            child: InkWell(
-                              onTap: () {
-                                if (ModalRoute.of(context)!.settings.name !=
-                                    "/admin/dms/dashboard") {
-                                  Navigator.of(context).pushNamedAndRemoveUntil(
-                                      '/admin/dms/dashboard', (route) => false);
-                                }
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 8),
-                                child: Row(
-                                  children: [
-                                    Text(("dms_dashboard".tr),
-                                        style: itemSubHeadingStyle),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                  AccordionSection(
+                    rightIcon: Icon(
+                      Icons.arrow_drop_down,
+                      color: Theme.of(context).primaryColor,
                     ),
+                    isOpen: false,
+                    leftIcon:
+                        navigationDrawerIcon(NavigationDrawerIcons.dashboard),
+                    headerBackgroundColor: Theme.of(context).cardColor,
+                    headerBackgroundColorOpened: Theme.of(context).cardColor,
+                    headerBorderWidth: 1,
+                    contentBackgroundColor: Colors.white,
+                    headerPadding: const EdgeInsets.all(10),
+                    contentBorderWidth: 0,
+                    contentVerticalPadding: 10,
+                    header: Text('dashboard'.tr,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge!
+                            .copyWith(color: Theme.of(context).primaryColor)),
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        VisibilityExtended(
+                          visible: true,
+                          // visible: GlobalData().isViewAccessPresent(
+                          //     ModuleConstants.GMS_DASHBOARD),
+                          child: InkWell(
+                            onTap: () {
+                              context.pushRoute(const GMSDashboardRoute());
+
+                              if (isMobile()) Navigator.pop(context);
+                              // if (ModalRoute.of(context)!.settings.name !=
+                              //     "/admin/gms/dashboard") {
+                              //   Navigator.of(context).pushNamedAndRemoveUntil(
+                              //       '/admin/gms/dashboard', (route) => false);
+                              // }
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8.0, vertical: 8),
+                              child: Row(
+                                children: [
+                                  Text(("gms_dashboard".tr),
+                                      style: itemSubHeadingStyle),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        VisibilityExtended(
+                          visible: true,
+                          // visible: GlobalData().isViewAccessPresent(
+                          //     ModuleConstants.DMS_DASHBOARD),
+                          child: InkWell(
+                            onTap: () {
+                              context.pushRoute(const DmsDashboardRoute());
+
+                              if (isMobile()) Navigator.pop(context);
+                              // if (ModalRoute.of(context)!.settings.name !=
+                              //     "/admin/dms/dashboard") {
+                              //   Navigator.of(context).pushNamedAndRemoveUntil(
+                              //       '/admin/dms/dashboard', (route) => false);
+                              // }
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8.0, vertical: 8),
+                              child: Row(
+                                children: [
+                                  Text(("dms_dashboard".tr),
+                                      style: itemSubHeadingStyle),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   if (true)
                     AccordionSection(
                       rightIcon: Icon(

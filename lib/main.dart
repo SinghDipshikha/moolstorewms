@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
 import 'package:moolwmsstore/appConstants.dart';
 import 'package:moolwmsstore/helper/messages.dart';
@@ -10,6 +11,7 @@ import 'package:moolwmsstore/routes/approutes.dart';
 import 'package:platform_detector/platform_detector.dart';
 
 import 'helper/get_di.dart' as di;
+
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,11 +40,10 @@ class MyApp extends StatelessWidget {
 
     return GetBuilder<LocalizationController>(builder: (localizeController) {
       return GetMaterialApp.router(
-        
         //routeInformationParser: _,
         routerDelegate: _router.delegate(),
         routeInformationProvider: _router.routeInfoProvider(),
-    routeInformationParser: _router.defaultRouteParser(),
+        routeInformationParser: _router.defaultRouteParser(),
         debugShowCheckedModeBanner: false,
         // supportedLocales:
         //     flc.CountryLocalizations.supportedLocales.map(Locale.new),
@@ -71,14 +72,17 @@ class MyApp extends StatelessWidget {
                 iconButtonTheme: const IconButtonThemeData(
                     style: ButtonStyle(
                         iconColor: MaterialStatePropertyAll(Colors.white))),
-                actionIconTheme: ActionIconThemeData(
-                  backButtonIconBuilder: (context) {
-                    return const Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.white,
-                    );
-                  },
-                ),
+                actionIconTheme: isMobile()
+                    ? ActionIconThemeData(
+                        backButtonIconBuilder: (context) {
+                          return const Icon(
+                            Icons.arrow_back_ios,
+                            color: Colors.white,
+                          );
+                        },
+                      )
+                    : null,
+
                 // buttonTheme: ButtonThemeData(),
                 textTheme: GoogleFonts.outfitTextTheme(textTheme)
                     .copyWith(
@@ -137,13 +141,13 @@ class MyApp extends StatelessWidget {
                       //  displayColor: Colors.white,
                       bodyColor: Colors.white,
                     ),
-                scaffoldBackgroundColor: Colors.black,
+                scaffoldBackgroundColor: const Color(0xff282834),
                 dialogTheme: DialogTheme(
                     backgroundColor: const Color(0xFF9022FF).withOpacity(0.04)),
                 // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
                 useMaterial3: true,
-                primaryColor: const Color(0xFF9022FF),
-                secondaryHeaderColor: const Color(0xFFbfdeff),
+                primaryColor: HexColor("#FEB20F"),
+                secondaryHeaderColor: HexColor("#1AAD64"),
                 disabledColor: const Color(0xffa2a7ad),
                 brightness: Brightness.dark,
                 hintColor: const Color(0xFFbebebe),
@@ -152,8 +156,10 @@ class MyApp extends StatelessWidget {
                 textButtonTheme: TextButtonThemeData(
                     style: TextButton.styleFrom(
                         foregroundColor: const Color(0xFFcda335))),
-                appBarTheme:
-                    const AppBarTheme(backgroundColor: Color(0x4D334257)),
+                appBarTheme: const AppBarTheme(
+                    backgroundColor: Colors.black,
+                    //  Color(0xff282834),
+                    foregroundColor: Colors.white),
                 visualDensity: VisualDensity.comfortable,
                 colorScheme: const ColorScheme.dark(
                         primary: Color(0xFFcda335),
@@ -227,9 +233,10 @@ class MyApp extends StatelessWidget {
                     )
                     .apply(bodyColor: Colors.black),
                 dialogTheme: const DialogTheme(backgroundColor: null),
-                scaffoldBackgroundColor: const Color(0xFFFCFCFC),
+                scaffoldBackgroundColor:
+                    const Color.fromARGB(255, 251, 251, 251),
                 // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-                primaryColor: const Color(0xFF028FFF),
+                primaryColor: HexColor("#053092"),
                 secondaryHeaderColor: const Color(0xFF4794FF),
                 disabledColor: const Color(0xFFBABFC4),
                 brightness: Brightness.light,

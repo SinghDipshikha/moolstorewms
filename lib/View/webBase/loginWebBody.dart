@@ -17,12 +17,12 @@ class _LoginWebBodyState extends State<LoginWebBody> {
     return Scaffold(
       body: isMobile()
           ? const AutoRouter()
-          : const Row(
+          : Row(
               children: [
-                Expanded(flex: 2, child: WalkThrough()),
+                const Expanded(flex: 2, child: WalkThrough()),
                 Expanded(
                   flex: 1,
-                  child: AutoRouter(),
+                  child: const AutoRouter(),
                 )
               ],
             ),
