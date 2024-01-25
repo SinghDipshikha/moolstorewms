@@ -29,6 +29,8 @@ class AppRouter extends $AppRouter {
                 AutoRoute(page: DmsDashboardBodyRoute.page, initial: true),
                 AutoRoute(page: MaterialPageBodyRoute.page, path: "Material"),
                 AutoRoute(page: MaterialInwardRoute.page, path: "MaterialInward"),
+                AutoRoute(page: AssignDockRoute.page, path: "AssignDock"),
+                AutoRoute(page: UnloadingRoute.page, path: "Unloading"),
               ]),
         ]),
         AutoRoute(page: LoginWebBodyRoute.page, children: [

@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/View/base/customButton.dart';
 import 'package:moolwmsstore/appConstants.dart';
+import 'package:moolwmsstore/routes/approutes.gr.dart';
 
 @RoutePage()
 class MaterialInward extends StatelessWidget {
@@ -52,24 +53,25 @@ class MaterialInward extends StatelessWidget {
                         Expanded(child: Container()),
                         InkWell(
                           onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return Dialog(
-                                    elevation: 10,
-                                    shape: const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(12))),
-                                    child: SizedBox(
-                                        height:
-                                            MediaQuery.sizeOf(context).height *
-                                                0.6,
-                                        width: MediaQuery.sizeOf(context).width,
-                                        child: const AssignDockDialog()));
-                              },
-                              barrierColor:
-                                  Theme.of(context).dialogTheme.backgroundColor,
-                            );
+                            context.pushRoute(AssignDockRoute());
+                            // showDialog(
+                            //   context: context,
+                            //   builder: (context) {
+                            //     return Dialog(
+                            //         elevation: 10,
+                            //         shape: const RoundedRectangleBorder(
+                            //             borderRadius: BorderRadius.all(
+                            //                 Radius.circular(12))),
+                            //         child: SizedBox(
+                            //             height:
+                            //                 MediaQuery.sizeOf(context).height *
+                            //                     0.6,
+                            //             width: MediaQuery.sizeOf(context).width,
+                            //             child: const AssignDockDialog()));
+                            //   },
+                            //   barrierColor:
+                            //       Theme.of(context).dialogTheme.backgroundColor,
+                            // );
                           },
                           child: Container(
                             padding: const EdgeInsets.symmetric(
@@ -244,6 +246,9 @@ class MaterialInward extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         CustomButton(
+                          onTap: () {
+                            context.pushRoute(const UnloadingRoute());
+                          },
                           title: "Start Unloading",
                           width: 200,
                         )
@@ -255,190 +260,6 @@ class MaterialInward extends StatelessWidget {
               )
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class AssignDockDialog extends StatefulWidget {
-  const AssignDockDialog({Key? key}) : super(key: key);
-
-  @override
-  _AssignDockDialogState createState() => _AssignDockDialogState();
-}
-
-class _AssignDockDialogState extends State<AssignDockDialog> {
-  List uiData = [
-    {"title": "vehicle_number".tr, "Value": "GJ34323"},
-    {"title": "customer_name".tr, "Value": "Mother Dairy"},
-    {"title": "driver_name".tr, "Value": "Paresh"},
-    {"title": "driver_phone_no".tr, "Value": "234334343434"},
-    {"title": "date_of_movement".tr, "Value": "12-3-2023"},
-    {"title": "direction_of_movement".tr, "Value": "inward".tr},
-    {"title": "direction_of_movement".tr, "Value": "inward".tr},
-  ];
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: Theme.of(context).cardColor),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          // mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              child: Text(
-                "assign_dock".tr,
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-            ),
-            Divider(
-              color: Theme.of(context).hintColor,
-            ),
-            Wrap(
-              children: List.generate(
-                  uiData.length,
-                  (index) => Padding(
-                        padding: const EdgeInsets.symmetric(
-                                vertical: 16, horizontal: 40)
-                            .copyWith(left: 0, right: 80),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              uiData[index]["title"],
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.copyWith(
-                                      color: Theme.of(context).hintColor),
-                            ),
-                            Text(
-                              uiData[index]["Value"],
-                              style: Theme.of(context).textTheme.titleLarge,
-                            ),
-                          ],
-                        ),
-                      )),
-            ),
-            const Gap(16),
-            Row(
-              children: [
-                Expanded(
-                    child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text("Dock Selection",
-                        style: Theme.of(context).textTheme.titleMedium),
-                    const Gap(14),
-                    Container(
-                      alignment: Alignment.center,
-                      height: 46,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          border: Border.all(
-                              width: 0.8, color: Theme.of(context).hintColor)),
-                      child: const Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Icon(
-                            Icons.arrow_drop_down,
-                            size: 38,
-                          ),
-                          Gap(16),
-                        ],
-                      ),
-                    )
-                  ],
-                )),
-                const Gap(40),
-                Expanded(
-                    child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text("Dock Selection",
-                        style: Theme.of(context).textTheme.titleMedium),
-                    const Gap(14),
-                    Container(
-                      alignment: Alignment.center,
-                      height: 46,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          border: Border.all(
-                              width: 0.8, color: Theme.of(context).hintColor)),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.arrow_drop_down,
-                            size: 38,
-                          ),
-                          Gap(16),
-                        ],
-                      ),
-                    )
-                  ],
-                )),
-              ],
-            ),
-            const Gap(16),
-            Row(
-              children: [
-                Expanded(
-                    flex: 1,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text("Dock Selection",
-                            style: Theme.of(context).textTheme.titleMedium),
-                        const Gap(14),
-                        Container(
-                          alignment: Alignment.center,
-                          height: 46,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              border: Border.all(
-                                  width: 0.8,
-                                  color: Theme.of(context).hintColor)),
-                        )
-                      ],
-                    )),
-                const Gap(40),
-                Expanded(flex: 1, child: Container()),
-              ],
-            ),
-            Expanded(child: Container()),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                CustomButton(
-                  radius: 10,
-                  title: "Assign",
-                  width: 160,
-                ),
-                CustomButton(
-                  radius: 10,
-                  glow: false,
-                  title: "Cancel",
-                  width: 160,
-                ),
-              ],
-            )
-          ],
         ),
       ),
     );

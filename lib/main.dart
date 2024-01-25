@@ -142,8 +142,8 @@ class MyApp extends StatelessWidget {
                       bodyColor: Colors.white,
                     ),
                 scaffoldBackgroundColor: const Color(0xff282834),
-                dialogTheme: DialogTheme(
-                    backgroundColor: const Color(0xFF9022FF).withOpacity(0.04)),
+                dialogBackgroundColor: Colors.white.withOpacity(0.3),
+              //  dialogTheme: const DialogTheme(backgroundColor: Colors.white),
                 // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
                 useMaterial3: true,
                 primaryColor: HexColor("#FEB20F"),
@@ -165,7 +165,7 @@ class MyApp extends StatelessWidget {
                         primary: Color(0xFFcda335),
                         secondary: Color(0xFFcda335))
                     .copyWith(background: Colors.black)
-                    .copyWith(error: const Color(0xFFdd3135)))
+                    .copyWith(error: const Color(0xFFdd3135) ,))
             : ThemeData(
                 iconTheme: const IconThemeData(color: Colors.black),
                 iconButtonTheme: const IconButtonThemeData(
@@ -232,7 +232,7 @@ class MyApp extends StatelessWidget {
                           fontWeight: FontWeight.w400),
                     )
                     .apply(bodyColor: Colors.black),
-                dialogTheme: const DialogTheme(backgroundColor: null),
+   dialogBackgroundColor: Colors.black.withOpacity(0.3),
                 scaffoldBackgroundColor:
                     const Color.fromARGB(255, 251, 251, 251),
                 // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

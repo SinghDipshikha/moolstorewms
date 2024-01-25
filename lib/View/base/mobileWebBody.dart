@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
+import 'package:lottie/lottie.dart';
 import 'package:moolwmsstore/Controller/userController.dart';
 import 'package:moolwmsstore/View/Admin/NavigationDrawer.dart';
 import 'package:moolwmsstore/View/base/mydropdown.dart';
@@ -37,18 +38,29 @@ class _MobileWebBodyState extends State<MobileWebBody> {
     return GetBuilder<UserController>(builder: (userController) {
       return Scaffold(
         body: isMobile()
-            ? const Stack(
+            ? Stack(
                 children: [
-                  AutoRouter(),
-                  // SizedBox(
-                  //   width: MediaQuery.sizeOf(context).width,
-                  //   height: MediaQuery.sizeOf(context).height,
-                  //   child: Padding(
-                  //     padding: const EdgeInsets.all(8.0),
-                  //     child: Lottie.asset('assets/images/party1.json',
-                  //         fit: BoxFit.cover),
-                  //   ),
-                  // ),
+                  const AutoRouter(),
+                  if (userController.celebrate)
+                    SizedBox(
+                      width: MediaQuery.sizeOf(context).width,
+                      height: MediaQuery.sizeOf(context).height,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Lottie.asset('assets/images/party3.json',
+                            fit: BoxFit.cover),
+                      ),
+                    ),
+                  if (userController.celebrate)
+                    SizedBox(
+                      width: MediaQuery.sizeOf(context).width,
+                      height: MediaQuery.sizeOf(context).height,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Lottie.asset('assets/images/party1.json',
+                            fit: BoxFit.contain),
+                      ),
+                    ),
                 ],
               )
             : Stack(
@@ -139,24 +151,26 @@ class _MobileWebBodyState extends State<MobileWebBody> {
                               )))
                     ],
                   ),
-                  // SizedBox(
-                  //   width: MediaQuery.sizeOf(context).width,
-                  //   height: MediaQuery.sizeOf(context).height,
-                  //   child: Padding(
-                  //     padding: const EdgeInsets.all(8.0),
-                  //     child: Lottie.asset('assets/images/party1.json',
-                  //         fit: BoxFit.cover),
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   width: MediaQuery.sizeOf(context).width,
-                  //   height: MediaQuery.sizeOf(context).height,
-                  //   child: Padding(
-                  //     padding: const EdgeInsets.all(8.0),
-                  //     child: Lottie.asset('assets/images/party1.json',
-                  //         fit: BoxFit.cover),
-                  //   ),
-                  // ),
+                  if (userController.celebrate)
+                    SizedBox(
+                      width: MediaQuery.sizeOf(context).width,
+                      height: MediaQuery.sizeOf(context).height,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Lottie.asset('assets/images/party3.json',
+                            fit: BoxFit.cover),
+                      ),
+                    ),
+                  if (userController.celebrate)
+                    SizedBox(
+                      width: MediaQuery.sizeOf(context).width,
+                      height: MediaQuery.sizeOf(context).height,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Lottie.asset('assets/images/party1.json',
+                            fit: BoxFit.cover),
+                      ),
+                    ),
                   // SizedBox(
                   //   width: MediaQuery.sizeOf(context).width,
                   //   height: MediaQuery.sizeOf(context).height,

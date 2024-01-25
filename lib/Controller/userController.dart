@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 class UserController extends GetxController {
+  bool celebrate = false;
   List roles = [
     "Head of Operations",
     "Regional Manager",
@@ -20,7 +21,16 @@ class UserController extends GetxController {
     "Super Admin",
     "Corporate / Owner",
   ];
+  void startCelebrate() {
+    celebrate = true;
+    update();
+    Future.delayed(const Duration(seconds: 4)).whenComplete(() {
+      celebrate = false;
+      update();
+    });
+  }
 }
+
 /*
 Plant Helper
 Senior Plant Operator

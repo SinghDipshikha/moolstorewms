@@ -181,7 +181,7 @@ class _DmsDashboardBodyState extends State<DmsDashboardBody> {
           child: Container(
             padding: isMobile()
                 ? const EdgeInsets.symmetric(vertical: 12, horizontal: 20)
-                : const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+                : const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
             decoration: BoxDecoration(
                 border: Border(
                     bottom: BorderSide(
@@ -359,18 +359,18 @@ class _DmsDashboardBodyState extends State<DmsDashboardBody> {
             ? EdgeInsets.zero
             : const EdgeInsets.symmetric(horizontal: 10, vertical: 0)
                 .copyWith(top: 10),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(12),
-          child: Container(
-            padding: mobile
-                ? EdgeInsets.zero
-                : const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-            height: mobile ? null : MediaQuery.sizeOf(context).height - 300,
-            width:
-                mobile ? width : (MediaQuery.sizeOf(context).width - 260) / 2,
-            decoration: BoxDecoration(
-                color: Theme.of(context).cardColor,
-                boxShadow: ColorConstants.boxShadow(context)),
+        child: Container(
+          padding: mobile
+              ? EdgeInsets.zero
+              : const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+          height: mobile ? null : MediaQuery.sizeOf(context).height - 330,
+          width: mobile ? width : (MediaQuery.sizeOf(context).width - 260) / 2,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: Theme.of(context).cardColor,
+              boxShadow: ColorConstants.boxShadow(context)),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(12),
             child: Column(
               children: [
                 mobile
@@ -523,7 +523,7 @@ class _DmsDashboardBodyState extends State<DmsDashboardBody> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [inward, const Gap(30), outward],
                   ),
-            Gap(mobile ? 0 : 20),
+            Gap(mobile ? 0 : 10),
             mobile
                 ? SizedBox(
                     width: MediaQuery.sizeOf(context).width,
