@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:moolwmsstore/View/auth/addWarehouse.dart';
 import 'package:platform_detector/platform_detector.dart';
 
 import 'approutes.gr.dart';
@@ -28,7 +29,8 @@ class AppRouter extends $AppRouter {
               children: [
                 AutoRoute(page: DmsDashboardBodyRoute.page, initial: true),
                 AutoRoute(page: MaterialPageBodyRoute.page, path: "Material"),
-                AutoRoute(page: MaterialInwardRoute.page, path: "MaterialInward"),
+                AutoRoute(
+                    page: MaterialInwardRoute.page, path: "MaterialInward"),
                 AutoRoute(page: AssignDockRoute.page, path: "AssignDock"),
                 AutoRoute(page: UnloadingRoute.page, path: "Unloading"),
               ]),
@@ -40,6 +42,15 @@ class AppRouter extends $AppRouter {
             initial: !isMobile(),
           )
         ]),
+        AutoRoute(
+          page: SignUpRoute.page,
+        ),
+        AutoRoute(
+          page: AddWarehouseRoute.page,
+        ),
+        AutoRoute(
+          page: RefervehicleRoute.page,
+        ),
         AutoRoute(
           page: SelectUsageRoute.page,
         ),

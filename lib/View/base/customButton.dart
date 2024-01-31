@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:platform_detector/platform_detector.dart';
 
 class CustomButton extends StatelessWidget {
   bool glow;
@@ -33,7 +34,7 @@ class CustomButton extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(radius ?? 60)),
         onTap: onTap,
         child: Container(
-          width: width,
+          width: width ?? (isMobile() ? width : 400),
           alignment: Alignment.center,
           height: 60,
           decoration: BoxDecoration(

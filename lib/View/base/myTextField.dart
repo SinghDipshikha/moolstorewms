@@ -17,7 +17,10 @@ class MyTextField extends StatelessWidget {
       this.obscureText,
       this.suffixIcon,
       this.controller,
-      this.maxLength,this.inputFormatters,this.keyboardType,this.padding,
+      this.maxLength,
+      this.inputFormatters,
+      this.keyboardType,
+      this.padding,
       this.validator})
       : super(key: key);
 
@@ -26,6 +29,9 @@ class MyTextField extends StatelessWidget {
     return Padding(
       padding: padding ?? const EdgeInsets.symmetric(vertical: 10),
       child: TextFormField(
+        onFieldSubmitted: (value) {
+          //   FocusScope.of(context).nextFocus();
+        },
         controller: controller,
         //   key: _mobNoKey,
         validator: validator,
@@ -37,13 +43,13 @@ class MyTextField extends StatelessWidget {
         maxLength: maxLength,
         decoration: InputDecoration(
             labelText: labelText,
-            labelStyle: Theme.of(context)
-                .textTheme
-                .titleMedium
-                ?.copyWith(fontWeight: FontWeight.w700),
+            labelStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.w700,
+                color: Theme.of(context).hintColor),
             suffixIcon: suffixIcon,
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Theme.of(context).primaryColor),
+              borderSide: BorderSide(
+                  color: Theme.of(context).primaryColor.withOpacity(0.8)),
               borderRadius: const BorderRadius.all(Radius.circular(12)),
             ),
             border: const OutlineInputBorder(

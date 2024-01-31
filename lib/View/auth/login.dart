@@ -6,12 +6,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
-import 'package:moolwmsstore/View/auth/signUp.dart';
 import 'package:moolwmsstore/View/auth/verifyOtp.dart';
 import 'package:moolwmsstore/View/base/animated_dialog.dart';
 import 'package:moolwmsstore/View/base/customButton.dart';
 import 'package:moolwmsstore/View/base/myTextField.dart';
 import 'package:moolwmsstore/appConstants.dart';
+import 'package:moolwmsstore/routes/approutes.gr.dart';
 import 'package:platform_detector/platform_detector.dart';
 
 @RoutePage()
@@ -375,15 +375,9 @@ class _LoginState extends State<Login> {
                                                   const BorderRadius.all(
                                                       Radius.circular(8)),
                                               onTap: () {
-                                                Get.to(const SignUp());
-                                                // Navigator.of(context).pop();
-                                                // Navigator.of(context)
-                                                //     .pushNamed('/signup')
-                                                //     .then((value) {
-                                                //   if (value is bool && value) {
-                                                //     //  showSuccessfulSignupDialog();
-                                                //   }
-                                                // });
+                                                context.pushRoute(
+                                                    const SelectUsageRoute());
+                                                // Get.to(const SignUp());
                                               },
                                               child: Container(
                                                 margin: const EdgeInsets.all(4),

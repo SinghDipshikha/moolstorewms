@@ -15,6 +15,23 @@ class SelectUsage extends StatefulWidget {
 }
 
 class _SelectUsageState extends State<SelectUsage> {
+  Map data = {
+    0: {
+      "title": "warehouse".tr,
+      "subtitle": "add_warehouse_details".tr,
+      "image": "assets/images/warehouse-clipart-md.png"
+    },
+    1: {
+      "title": "Refer Vehicle",
+      "subtitle": "Add vehicle details",
+      "image": "assets/images/vehicle.png"
+    },
+    // 2: {
+    //   "title": "Customer",
+    //   "subtitle": "Authorize Detail",
+    //   "image": "assets/images/warehouse.png"
+    // },
+  };
   int? selectedIndex;
   @override
   Widget build(BuildContext context) {
@@ -32,7 +49,7 @@ class _SelectUsageState extends State<SelectUsage> {
           const Gap(20),
           Wrap(
             children: List.generate(
-                3,
+                data.length,
                 (index) => InkWell(
                       onTap: () {
                         setState(() {
@@ -43,7 +60,7 @@ class _SelectUsageState extends State<SelectUsage> {
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
                           height: isMobile() ? 130 : 200,
-                          width: isMobile() ? 120 : 200,
+                          width: isMobile() ? double.infinity : 200,
                           decoration: BoxDecoration(
                               color: selectedIndex == index
                                   ? Theme.of(context).primaryColor
@@ -68,16 +85,16 @@ class _SelectUsageState extends State<SelectUsage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                "assets/images/warehouse.png",
-                                height: isMobile() ? null : 60,
-                                fit: isMobile() ? null : BoxFit.fitHeight,
-                                color: selectedIndex == index
-                                    ? Colors.white
-                                    : null,
+                                data[index]["image"],
+                                height: 60,
+                                fit: BoxFit.cover,
+                                // color: selectedIndex == index
+                                //     ? Colors.white
+                                //     : null,
                               ),
                               const Gap(5),
                               Text(
-                                "warehouse".tr,
+                                data[index]["title"],
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleMedium!
@@ -88,7 +105,7 @@ class _SelectUsageState extends State<SelectUsage> {
                                     ),
                               ),
                               Text(
-                                "add_warehouse_details".tr,
+                                data[index]["subtitle"],
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleSmall!
@@ -108,7 +125,12 @@ class _SelectUsageState extends State<SelectUsage> {
           const Gap(20),
           CustomButton(
             onTap: () {
-              context.pushRoute(MobileWebBodyRoute());
+              //   context.pushRoute(MobileWebBodyRoute());
+              if (selectedIndex == 0) {
+                context.pushRoute(const AddWarehouseRoute());
+              } else {
+                context.pushRoute(const RefervehicleRoute());
+              }
             },
             width: isMobile() ? null : 400,
             title: "get_started".tr,
