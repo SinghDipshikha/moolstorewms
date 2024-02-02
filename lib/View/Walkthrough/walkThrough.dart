@@ -28,7 +28,7 @@ class _WalkThroughState extends State<WalkThrough> {
   ];
   @override
   void initState() {
-    Timer.periodic(const Duration(seconds: 4), (time) async {
+    Timer.periodic(const Duration(seconds: 3), (time) async {
       int nexPage = (controller.page?.toInt() ?? 0) + 1;
       if (nexPage == sliderImages.length) {
         nexPage = 0;
@@ -51,7 +51,7 @@ class _WalkThroughState extends State<WalkThrough> {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Gap(20),
               Text(
@@ -59,56 +59,51 @@ class _WalkThroughState extends State<WalkThrough> {
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
-              Expanded(
-                  flex: 1,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 380,
-                        child: Expanded(
-                            child: PageView.builder(
-                                controller: controller,
-                                scrollDirection: Axis.horizontal,
-                                itemCount: sliderImages.length,
-                                itemBuilder: (context, i) {
-                                  return SvgPicture.asset(
-                                    height: 150,
-                                    sliderImages[i],
-                                    semanticsLabel: 'Acme Logo',
-                                    fit: BoxFit.contain,
-                                  );
-                                })),
-                      ),
-                      Text('splash_screen_message'.tr),
-                      const Gap(20),
-                      SmoothPageIndicator(
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 380,
+                    // width: d,
+                    child: PageView.builder(
                         controller: controller,
-                        count: sliderImages.length,
-                        effect: WormEffect(
-                          activeDotColor: Theme.of(context).primaryColor,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: sliderImages.length,
+                        itemBuilder: (context, i) {
+                          return SvgPicture.asset(
+                            height: 150,
+                            sliderImages[i],
+                            semanticsLabel: 'Acme Logo',
+                            fit: BoxFit.contain,
+                          );
+                        }),
+                  ),
+                  Text('splash_screen_message'.tr),
+                  SmoothPageIndicator(
+                    controller: controller,
+                    count: sliderImages.length,
+                    effect: WormEffect(
+                      activeDotColor: Theme.of(context).primaryColor,
 
-                          spacing: 6.0,
-                          // activeColorOverride: (i) => colors[i],
-                          // inActiveColorOverride: ,
-                        ),
-                      ),
-                    ],
-                  )),
+                      spacing: 6.0,
+                      // activeColorOverride: (i) => colors[i],
+                      // inActiveColorOverride: ,
+                    ),
+                  ).paddingSymmetric(vertical: 20),
+                ],
+              ),
               //  const Gap(10),
 
-              const Gap(20),
               if (isMobile())
                 CustomButton(
                   title: 'get_started'.tr,
                   onTap: () {
-                       context.pushRoute(const LoginRoute());
+                    context.pushRoute(const LoginRoute());
                     // context.router.pushNamed(
                     //     '${LoginWebBodyRoute.name}/${LoginRoute.name}');
-                  //  Get.to(const Login());
+                    //  Get.to(const Login());
                   },
                 ),
-              const Gap(20),
             ],
           ),
         ),

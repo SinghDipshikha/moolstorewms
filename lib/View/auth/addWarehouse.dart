@@ -114,28 +114,31 @@ class AddWarehouseWidget extends StatelessWidget {
             MyTextField(
               labelText: "Warehouse Name",
             ),
-            MyTextField(labelText: "Manager Email Address"),
-            MyTextField(labelText: "Warehouse Manager"),
-            MyTextField(labelText: "Mobile Number"),
+            MyTextField(
+              labelText: "Warehouse GST",
+            ),
+            // MyTextField(labelText: "Manager Email Address"),
+            // MyTextField(labelText: "Warehouse Manager"),
+            // MyTextField(labelText: "Mobile Number"),
             MyTextField(
               labelText: "Warehouse Location",
               suffixIcon: IconButton(
                   onPressed: () {}, icon: const Icon(Icons.location_pin)),
             ),
-            Row(
-              children: [
-                Expanded(child: MyTextField(labelText: "No of Chambers")),
-                const Gap(15),
-                Expanded(child: MyTextField(labelText: "Total Capacity")),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(child: MyTextField(labelText: "No of Docks")),
-                const Gap(15),
-                Expanded(child: MyTextField(labelText: "No of States")),
-              ],
-            ),
+            // Row(
+            //   children: [
+            //     Expanded(child: MyTextField(labelText: "No of Chambers")),
+            //     const Gap(15),
+            //     Expanded(child: MyTextField(labelText: "No of Docks")),
+            //   ],
+            // ),
+            // Row(
+            //   children: [
+            //     Expanded(child: MyTextField(labelText: "Total Capacity")),
+            //     // const Gap(15),
+            //     // Expanded(child: MyTextField(labelText: "No of States")),
+            //   ],
+            // ),
           ],
         ),
       ),

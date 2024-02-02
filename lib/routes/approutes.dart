@@ -14,9 +14,14 @@ class AppRouter extends $AppRouter {
         ),
         AutoRoute(path: "/", page: MobileWebBodyRoute.page, children: [
           AutoRoute(
+            path: "OwnerDashboard",
+            page: OwnerOnboradRoute.page,
+            initial: true,
+          ),
+          AutoRoute(
               page: GMSDashboardRoute.page,
               path: "GMSDashboard",
-              initial: true,
+              //  initial: true,
               children: [
                 AutoRoute(page: GMSDashboardBodyRoute.page, initial: true),
                 AutoRoute(page: MaterialPageBodyRoute.page, path: "Material"),

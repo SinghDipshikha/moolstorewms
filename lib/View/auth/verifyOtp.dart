@@ -64,7 +64,7 @@ class _VerifyOtpState extends State<VerifyOtp> {
         const Gap(28),
         CustomButton(
           onTap: () {
-            context.pushRoute(const SelectUsageRoute());
+            context.pushRoute(MobileWebBodyRoute());
             // Get.to(const SelectUsage());
             // Get.dialog(
             //   Container(

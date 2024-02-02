@@ -9,10 +9,12 @@ import 'package:moolwmsstore/View/base/animated_dialog.dart';
 import 'package:moolwmsstore/View/base/customButton.dart';
 import 'package:moolwmsstore/appConstants.dart';
 import 'package:moolwmsstore/helper/route_helper.dart';
+import 'package:moolwmsstore/routes/approutes.gr.dart';
 import 'package:moolwmsstore/utils/textfielddecoration.dart';
 import 'package:moolwmsstore/utils/textutils.dart';
 import 'package:auto_route/auto_route.dart';
-@RoutePage() 
+
+@RoutePage()
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
 
@@ -23,7 +25,6 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  bool passObscure = true, rePassObscure = true;
   bool isAgreeTermsAndCondition = false;
   @override
   Widget build(BuildContext context) {
@@ -218,9 +219,27 @@ class _SignUpState extends State<SignUp> {
                       }
                       return null;
                     },
-                    maxLength: 10,
+                    // maxLength: 10,
                     decoration: DecorationUtils.getTextFieldDecoration(
                             context: context, labelText: "pan_number".tr)
+                        .copyWith(),
+                  ),
+                  const SizedBox(height: 24),
+                  TextFormField(
+                    //   initialValue: signupModel.panNo,
+                    textCapitalization: TextCapitalization.characters,
+                    //  onSaved: (val) => signupModel.panNo = val.toUpperCase(),
+                    validator: (val) {
+                      if (val == null) {
+                        return "enter_gst_no".tr;
+                      } else if (!TextUtils.isValidGST(val)) {
+                        return "enter_valid_gst_no".tr;
+                      }
+                      return null;
+                    },
+                    // maxLength: 10,
+                    decoration: DecorationUtils.getTextFieldDecoration(
+                            context: context, labelText: "gst_no".tr)
                         .copyWith(),
                   ),
                   const SizedBox(height: 24),
@@ -270,112 +289,112 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  TextFormField(
-                    // initialValue: signupModel.password,
-                    // onSaved: (val) => signupModel.password = val,
-                    validator: (val) {
-                      if (val == null) {
-                        return "enter_password".tr;
-                      } else if (val.length < 8) {
-                        return "must_contain_at_least_8_characters".tr;
-                      } else if (!val.contains(RegExp(r'[A-Z]'))) {
-                        return "must_contain_at_least_one_uppercase_character"
-                            .tr;
-                      } else if (!val.contains(RegExp(r'[a-z]'))) {
-                        return "must_contain_at_least_one_lowercase_character"
-                            .tr;
-                      } else if (!val.contains(RegExp(r'[0-9]'))) {
-                        return "must_contain_one_number".tr;
-                      } else if (!val
-                          .contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
-                        return "must_contain_at_least_one_special_character".tr;
-                      }
-                      //  signupModel.password = val;
-                      return null;
-                    },
-                    obscureText: passObscure,
-                    decoration: DecorationUtils.getTextFieldDecoration(
-                      context: context,
-                      labelText: "password".tr,
-                    ).copyWith(
-                      suffixIcon: InkWell(
-                        onTap: () {
-                          setState(() {
-                            passObscure = !passObscure;
-                          });
-                        },
-                        child: Icon(
-                          passObscure ? Icons.visibility_off : Icons.visibility,
-                          color: ColorConstants.GREY_DARK,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  TextFormField(
-                    validator: (val) {
-                      if (val == null) {
-                        return "enter_confirm_password".tr;
-                      }
-                      // else if (val != signupModel.password) {
-                      //   return
-                      //     "confirm_password_doesnt_match".tr;
-                      // }
-                      return null;
-                    },
-                    // initialValue: signupModel.password,
-                    obscureText: rePassObscure,
-                    decoration: DecorationUtils.getTextFieldDecoration(
-                      context: context,
-                      labelText: "confirm_password".tr,
-                    ).copyWith(
-                      suffixIcon: InkWell(
-                        onTap: () {
-                          setState(() {
-                            rePassObscure = !rePassObscure;
-                          });
-                        },
-                        child: Icon(
-                          rePassObscure
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: ColorConstants.GREY_DARK,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 18),
-                  Text("password_requirements".tr,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge!
-                          .copyWith(fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 4),
-                  Text("must_contain_at_least_8_characters".tr,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(color: Theme.of(context).hintColor)),
-                  Text("must_contain_at_least_one_uppercase_character".tr,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(color: Theme.of(context).hintColor)),
-                  Text("must_contain_at_least_one_lowercase_character".tr,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(color: Theme.of(context).hintColor)),
-                  Text("must_contain_one_number".tr,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(color: Theme.of(context).hintColor)),
-                  Text("must_contain_at_least_one_special_character".tr,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(color: Theme.of(context).hintColor)),
+                  // TextFormField(
+                  //   // initialValue: signupModel.password,
+                  //   // onSaved: (val) => signupModel.password = val,
+                  //   validator: (val) {
+                  //     if (val == null) {
+                  //       return "enter_password".tr;
+                  //     } else if (val.length < 8) {
+                  //       return "must_contain_at_least_8_characters".tr;
+                  //     } else if (!val.contains(RegExp(r'[A-Z]'))) {
+                  //       return "must_contain_at_least_one_uppercase_character"
+                  //           .tr;
+                  //     } else if (!val.contains(RegExp(r'[a-z]'))) {
+                  //       return "must_contain_at_least_one_lowercase_character"
+                  //           .tr;
+                  //     } else if (!val.contains(RegExp(r'[0-9]'))) {
+                  //       return "must_contain_one_number".tr;
+                  //     } else if (!val
+                  //         .contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+                  //       return "must_contain_at_least_one_special_character".tr;
+                  //     }
+                  //     //  signupModel.password = val;
+                  //     return null;
+                  //   },
+                  //   obscureText: passObscure,
+                  //   decoration: DecorationUtils.getTextFieldDecoration(
+                  //     context: context,
+                  //     labelText: "password".tr,
+                  //   ).copyWith(
+                  //     suffixIcon: InkWell(
+                  //       onTap: () {
+                  //         setState(() {
+                  //           passObscure = !passObscure;
+                  //         });
+                  //       },
+                  //       child: Icon(
+                  //         passObscure ? Icons.visibility_off : Icons.visibility,
+                  //         color: ColorConstants.GREY_DARK,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 24),
+                  // TextFormField(
+                  //   validator: (val) {
+                  //     if (val == null) {
+                  //       return "enter_confirm_password".tr;
+                  //     }
+                  //     // else if (val != signupModel.password) {
+                  //     //   return
+                  //     //     "confirm_password_doesnt_match".tr;
+                  //     // }
+                  //     return null;
+                  //   },
+                  //   // initialValue: signupModel.password,
+                  //   obscureText: rePassObscure,
+                  //   decoration: DecorationUtils.getTextFieldDecoration(
+                  //     context: context,
+                  //     labelText: "confirm_password".tr,
+                  //   ).copyWith(
+                  //     suffixIcon: InkWell(
+                  //       onTap: () {
+                  //         setState(() {
+                  //           rePassObscure = !rePassObscure;
+                  //         });
+                  //       },
+                  //       child: Icon(
+                  //         rePassObscure
+                  //             ? Icons.visibility_off
+                  //             : Icons.visibility,
+                  //         color: ColorConstants.GREY_DARK,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 18),
+                  // Text("password_requirements".tr,
+                  //     style: Theme.of(context)
+                  //         .textTheme
+                  //         .bodyLarge!
+                  //         .copyWith(fontWeight: FontWeight.bold)),
+                  // const SizedBox(height: 4),
+                  // Text("must_contain_at_least_8_characters".tr,
+                  //     style: Theme.of(context)
+                  //         .textTheme
+                  //         .bodySmall!
+                  //         .copyWith(color: Theme.of(context).hintColor)),
+                  // Text("must_contain_at_least_one_uppercase_character".tr,
+                  //     style: Theme.of(context)
+                  //         .textTheme
+                  //         .bodySmall!
+                  //         .copyWith(color: Theme.of(context).hintColor)),
+                  // Text("must_contain_at_least_one_lowercase_character".tr,
+                  //     style: Theme.of(context)
+                  //         .textTheme
+                  //         .bodySmall!
+                  //         .copyWith(color: Theme.of(context).hintColor)),
+                  // Text("must_contain_one_number".tr,
+                  //     style: Theme.of(context)
+                  //         .textTheme
+                  //         .bodySmall!
+                  //         .copyWith(color: Theme.of(context).hintColor)),
+                  // Text("must_contain_at_least_one_special_character".tr,
+                  //     style: Theme.of(context)
+                  //         .textTheme
+                  //         .bodySmall!
+                  //         .copyWith(color: Theme.of(context).hintColor)),
                   const SizedBox(height: 18),
                   Row(
                     children: [
@@ -434,9 +453,13 @@ class _SignUpState extends State<SignUp> {
                   ),
                   const SizedBox(height: 18),
                   CustomButton(
+                    glow: isAgreeTermsAndCondition,
                     title: 'get_started'.tr,
                     onTap: () {
-                      Get.to(RouteHelper.gMSDashboard);
+                      if (isAgreeTermsAndCondition) {
+                        _formKey.currentState!.validate();
+                        context.pushRoute(AddWarehouseRoute());
+                      }
                     },
                   ),
                   const SizedBox(height: 8),

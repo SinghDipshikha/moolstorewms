@@ -174,266 +174,256 @@ class _LoginState extends State<Login> {
           : null,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Gap(height * 0.08),
-              Center(
-                child: SvgPicture.asset(
-                  "assets/images/verification.svg",
-                  width: height * 0.38,
-                ),
+        child: Column(
+          children: [
+            Gap(height * 0.08),
+            Center(
+              child: SvgPicture.asset(
+                "assets/images/verification.svg",
+                width: height * 0.38,
               ),
-              isOtp
-                  ? const VerifyOtp()
-                  : Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const SizedBox(height: 18),
-                        Text("login".tr,
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.headlineSmall),
-                        const SizedBox(height: 4),
-                        Text("enter_your_details_to_login_to_your_account".tr,
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(color: Theme.of(context).hintColor)),
-                        const Gap(10),
-                        MyTextField(
-                          labelText: "mobile_number".tr,
-                          maxLength: 10,
-                          keyboardType: const TextInputType.numberWithOptions(
-                              decimal: false),
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                          validator: (val) {
-                            if (val == null) {
-                              return "enter_mobile_number".tr;
-                            } else if (val.length < 6) {
-                              return "enter_valid_mobile_number".tr;
-                            }
-                            return null;
-                          },
-                        ),
-                        MyTextField(
-                          padding: EdgeInsets.zero,
-                          labelText: "enter_password".tr,
-                          validator: (val) {
-                            if (val == null) {
-                              return "enter_password".tr;
-                            }
-                            return null;
-                          },
-                          obscureText: passObscure,
-                          suffixIcon: InkWell(
-                            onTap: () {
-                              setState(() {
-                                passObscure = !passObscure;
-                              });
-                            },
-                            child: Icon(
-                              passObscure
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
-                              color: ColorConstants.GREY_DARK,
-                            ),
-                          ),
-                        ),
-                        const Gap(10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text("forgot_password?".tr,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge!
-                                    .copyWith(
-                                        color: Theme.of(context).primaryColor,
-                                        fontWeight: FontWeight.w700))
-                          ],
-                        ),
+            ),
+            isOtp
+                ? const VerifyOtp()
+                : Column(
+                    children: [
+                      const SizedBox(height: 18),
+                      Text("login".tr,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.headlineSmall),
+                      const SizedBox(height: 4),
+                      Text("enter_your_details_to_login_to_your_account".tr,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(color: Theme.of(context).hintColor)),
+                      const Gap(10),
+                      MyTextField(
+                        labelText: "mobile_number".tr,
+                        maxLength: 10,
+                        keyboardType: const TextInputType.numberWithOptions(
+                            decimal: false),
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        validator: (val) {
+                          if (val == null) {
+                            return "enter_mobile_number".tr;
+                          } else if (val.length < 6) {
+                            return "enter_valid_mobile_number".tr;
+                          }
+                          return null;
+                        },
+                      ),
+                      // MyTextField(
+                      //   padding: EdgeInsets.zero,
+                      //   labelText: "enter_password".tr,
+                      //   validator: (val) {
+                      //     if (val == null) {
+                      //       return "enter_password".tr;
+                      //     }
+                      //     return null;
+                      //   },
+                      //   obscureText: passObscure,
+                      //   suffixIcon: InkWell(
+                      //     onTap: () {
+                      //       setState(() {
+                      //         passObscure = !passObscure;
+                      //       });
+                      //     },
+                      //     child: Icon(
+                      //       passObscure
+                      //           ? Icons.visibility_off
+                      //           : Icons.visibility,
+                      //       color: ColorConstants.GREY_DARK,
+                      //     ),
+                      //   ),
+                      // ),
+                      // const Gap(10),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.end,
+                      //   children: [
+                      //     Text("forgot_password?".tr,
+                      //         style: Theme.of(context)
+                      //             .textTheme
+                      //             .bodyLarge!
+                      //             .copyWith(
+                      //                 color: Theme.of(context).primaryColor,
+                      //                 fontWeight: FontWeight.w700))
+                      //   ],
+                      // ),
 
-                        const Gap(25),
-                        CustomButton(
-                          onTap: () {
-                            setState(() {
-                              isOtp = true;
-                            });
-                          },
-                          title: 'login'.tr,
-                          width: 200,
-                        ),
-                        // const Gap(10),
-                        Wrap(
-                          alignment: WrapAlignment.center,
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          children: [
-                            Text("did_not_have_an_account_yet".tr,
-                                style: Theme.of(context).textTheme.bodyLarge!),
-                            InkWell(
-                                onTap: () {
-                                  showModalBottomSheet(
-                                    context: context,
-                                    builder: (context) {
-                                      return Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 20, horizontal: 10),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 10),
-                                              child: Text(
-                                                "select_role".tr,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .titleLarge!
-                                                    .copyWith(
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                      // const Gap(25),
+                      CustomButton(
+                        onTap: () {
+                          setState(() {
+                            isOtp = true;
+                          });
+                        },
+                        title: 'login'.tr,
+                        width: 200,
+                      ),
+                      //  Expanded(child: Container()),
+                      Wrap(
+                        alignment: WrapAlignment.center,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: [
+                          Text("did_not_have_an_account_yet".tr,
+                              style: Theme.of(context).textTheme.bodyLarge!),
+                          InkWell(
+                              onTap: () {
+                                showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) {
+                                    return Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 20, horizontal: 10),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10),
+                                            child: Text(
+                                              "select_role".tr,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleLarge!
+                                                  .copyWith(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                            ),
+                                          ),
+                                          const Gap(10),
+                                          InkWell(
+                                            onTap: () {
+                                              Navigator.of(context).pop();
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return AlertDialog(
+                                                    backgroundColor:
+                                                        Theme.of(context)
+                                                            .cardColor,
+                                                    actions: [
+                                                      InkWell(
+                                                        onTap: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                        child: Text(
+                                                          "ok".tr,
+                                                        ),
+                                                      )
+                                                    ],
+                                                    content: Text(
+                                                      "please_contact_respective_warehouse_owner_to_get_the_login_credentials"
+                                                          .tr,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .titleMedium,
                                                     ),
+                                                  );
+                                                },
+                                              );
+                                            },
+                                            child: Container(
+                                              margin: const EdgeInsets.all(4),
+                                              padding: const EdgeInsets.all(10),
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Theme.of(context)
+                                                          .primaryColor,
+                                                      width: 1),
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(8))),
+                                              child: Row(
+                                                children: [
+                                                  Icon(Icons.person,
+                                                      color: Theme.of(context)
+                                                          .primaryColor),
+                                                  const SizedBox(width: 12),
+                                                  Expanded(
+                                                    child: Text(
+                                                      "i_am_an_individual_logging_in_to_view_my_person_in_and_out_at_various_locations_using_MoolWMS"
+                                                          .tr,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .titleSmall,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
-                                            const Gap(10),
-                                            InkWell(
-                                              onTap: () {
-                                                Navigator.of(context).pop();
-                                                showDialog(
-                                                  context: context,
-                                                  builder: (context) {
-                                                    return AlertDialog(
-                                                      backgroundColor:
-                                                          Theme.of(context)
-                                                              .cardColor,
-                                                      actions: [
-                                                        InkWell(
-                                                          onTap: () {
-                                                            Navigator.of(
-                                                                    context)
-                                                                .pop();
-                                                          },
-                                                          child: Text(
-                                                            "ok".tr,
-                                                          ),
-                                                        )
-                                                      ],
-                                                      content: Text(
-                                                        "please_contact_respective_warehouse_owner_to_get_the_login_credentials"
-                                                            .tr,
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .titleMedium,
-                                                      ),
-                                                    );
-                                                  },
-                                                );
-                                              },
-                                              child: Container(
-                                                margin: const EdgeInsets.all(4),
-                                                padding:
-                                                    const EdgeInsets.all(10),
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        color: Theme.of(context)
-                                                            .primaryColor,
-                                                        width: 1),
-                                                    borderRadius:
-                                                        const BorderRadius.all(
-                                                            Radius.circular(
-                                                                8))),
-                                                child: Row(
-                                                  children: [
-                                                    Icon(Icons.person,
-                                                        color: Theme.of(context)
-                                                            .primaryColor),
-                                                    const SizedBox(width: 12),
-                                                    Expanded(
-                                                      child: Text(
-                                                        "i_am_an_individual_logging_in_to_view_my_person_in_and_out_at_various_locations_using_MoolWMS"
-                                                            .tr,
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .titleSmall,
-                                                      ),
+                                          ),
+                                          const Gap(10),
+                                          InkWell(
+                                            splashColor:
+                                                Theme.of(context).primaryColor,
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(8)),
+                                            onTap: () {
+                                              context.pushRoute(
+                                                  const SignUpRoute());
+                                              // Get.to(const SignUp());
+                                            },
+                                            child: Container(
+                                              margin: const EdgeInsets.all(4),
+                                              padding: const EdgeInsets.all(8),
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Theme.of(context)
+                                                          .primaryColor,
+                                                      width: 1),
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(8))),
+                                              child: Row(
+                                                children: [
+                                                  Icon(Icons.location_city,
+                                                      color: Theme.of(context)
+                                                          .primaryColor),
+                                                  const SizedBox(width: 12),
+                                                  Expanded(
+                                                    child: Text(
+                                                      "I am a warehouse owner, wishing to manage and view warehouses using MoolWMS for which I am authorised.",
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .titleSmall,
                                                     ),
-                                                  ],
-                                                ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
-                                            const Gap(10),
-                                            InkWell(
-                                              splashColor: Theme.of(context)
-                                                  .primaryColor,
-                                              borderRadius:
-                                                  const BorderRadius.all(
-                                                      Radius.circular(8)),
-                                              onTap: () {
-                                                context.pushRoute(
-                                                    const SelectUsageRoute());
-                                                // Get.to(const SignUp());
-                                              },
-                                              child: Container(
-                                                margin: const EdgeInsets.all(4),
-                                                padding:
-                                                    const EdgeInsets.all(8),
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        color: Theme.of(context)
-                                                            .primaryColor,
-                                                        width: 1),
-                                                    borderRadius:
-                                                        const BorderRadius.all(
-                                                            Radius.circular(
-                                                                8))),
-                                                child: Row(
-                                                  children: [
-                                                    Icon(Icons.location_city,
-                                                        color: Theme.of(context)
-                                                            .primaryColor),
-                                                    const SizedBox(width: 12),
-                                                    Expanded(
-                                                      child: Text(
-                                                        "I am a warehouse owner, wishing to manage and view warehouses using MoolWMS for which I am authorised.",
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .titleSmall,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            const Gap(20),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text("sign_up".tr,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              fontWeight: FontWeight.w700)),
-                                ))
-                          ],
-                        )
-                      ],
-                    )
-            ],
-          ),
+                                          ),
+                                          const Gap(20),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text("sign_up".tr,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge!
+                                        .copyWith(
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                            fontWeight: FontWeight.w700)),
+                              ))
+                        ],
+                      )
+                    ],
+                  )
+          ],
         ),
       ),
     );
