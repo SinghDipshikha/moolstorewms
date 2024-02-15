@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/View/base/customButton.dart';
+import 'package:moolwmsstore/View/common/customButton.dart';
 import 'package:moolwmsstore/routes/approutes.gr.dart';
 
 @RoutePage()

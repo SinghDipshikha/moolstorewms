@@ -2,9 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/View/base/customButton.dart';
-import 'package:moolwmsstore/View/base/myTextField.dart';
-import 'package:moolwmsstore/appConstants.dart';
+import 'package:moolwmsstore/View/common/customButton.dart';
+import 'package:moolwmsstore/View/common/myTextField.dart';
+import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/routes/approutes.gr.dart';
 
 @RoutePage()
@@ -112,16 +112,16 @@ class AddWarehouseWidget extends StatelessWidget {
             ),
             const Gap(10),
             MyTextField(
-              labelText: "Warehouse Name",
+              labelText: "warehouse_name".tr,
             ),
-            MyTextField(
-              labelText: "Warehouse GST",
-            ),
+            // MyTextField(
+            //   labelText: "Warehouse GST",
+            // ),
             // MyTextField(labelText: "Manager Email Address"),
             // MyTextField(labelText: "Warehouse Manager"),
             // MyTextField(labelText: "Mobile Number"),
             MyTextField(
-              labelText: "Warehouse Location",
+              labelText: "warehouse_location".tr,
               suffixIcon: IconButton(
                   onPressed: () {}, icon: const Icon(Icons.location_pin)),
             ),

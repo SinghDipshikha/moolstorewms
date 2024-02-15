@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/View/base/customButton.dart';
+import 'package:moolwmsstore/View/common/customButton.dart';
 import 'package:moolwmsstore/routes/approutes.gr.dart';
 import 'package:platform_detector/platform_detector.dart';
 

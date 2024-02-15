@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
-import 'package:moolwmsstore/View/base/animated_dialog.dart';
-import 'package:moolwmsstore/appConstants.dart';
+import 'package:moolwmsstore/View/common/animated_dialog.dart';
+import 'package:moolwmsstore/utils/appConstants.dart';
 
 class AppBarWeb extends StatelessWidget {
   const AppBarWeb({Key? key}) : super(key: key);

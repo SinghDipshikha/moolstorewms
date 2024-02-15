@@ -5,8 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:moolwmsstore/View/base/mobileAppBar.dart';
-import 'package:moolwmsstore/appConstants.dart';
+import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/routes/approutes.gr.dart';
 import 'package:platform_detector/platform_detector.dart';
 
@@ -487,7 +486,6 @@ class _DmsDashboardBodyState extends State<DmsDashboardBody> {
     });
 
     return Scaffold(
-      appBar: isMobile() ? appBarMobile(context) : null,
       body: Container(
         padding: isMobile()
             ? EdgeInsets.zero

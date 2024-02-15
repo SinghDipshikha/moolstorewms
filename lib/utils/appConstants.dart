@@ -1,7 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:moolwmsstore/Model/LanaguageModel.dart';
+import 'package:moolwmsstore/Data/Model/LanaguageModel.dart';
+
 
 class AppConstants {
+  static List<String> roles = [
+    // "Head of Operations",
+    // "Regional Manager",
+    // "Senior Manager",
+    // "Plant Manager",
+    // "Assistant Manager",
+    // "Senior Supervisor",
+    // "Supervisor",
+    // "Dock Supervisor",
+    // "Intern",
+    "Security Guard",
+    //   "Plant Helper",
+    //   "Senior Plant Operator",
+    //   "MultiSkilled Engineer",
+    //   "Electrician",
+    //   "MHE Operator",
+    //   "Super Admin",
+    //   "Corporate / Owner",
+  ];
+  static const String token = 'token';
+  static const String baseUrl = 'http://13.234.185.160:3000/';
+  static const String signupuri = 'user/adminsignup';
+  static const String signupfields = 'dynamic/getAllSignupValues';
+
   static const String countryCode = 'country_code';
   static const String languageCode = 'language_code';
   static final List<LanguageModel> LANGUAGE_LIST = [
@@ -28,19 +53,20 @@ class ColorConstants {
           ]
         : null;
   }
+
   static List<BoxShadow>? colouredboxShadow({required Color color}) {
     return [
-            BoxShadow(
-              color: color,
-              blurRadius: 20,
-              offset: const Offset(0, 5),
-              spreadRadius: 0,
-            )
-          ];
+      BoxShadow(
+        color: color,
+        blurRadius: 20,
+        offset: const Offset(0, 5),
+        spreadRadius: 0,
+      )
+    ];
   }
 
   static const Color BACKGROUND = Color(0xFFF5F5F5);
-  static const Color PRIMARY = Color(0xFF028FFF);
+  static const Color PRIMARY = Color.fromARGB(255, 2, 143, 255);
   static const Color PRIMARY_DARK = Color(0xFF1B54D9);
   static const Color PRIMARY_LIGHT = Color(0xFF3EA6F9);
   static const Color PRIMARY_EXTRA_LIGHT = Color(0xFFE3EBFC);

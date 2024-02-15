@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/View/base/VisibilityExtended.dart';
+import 'package:moolwmsstore/View/common/VisibilityExtended.dart';
 import 'package:moolwmsstore/routes/approutes.gr.dart';
 import 'package:moolwmsstore/utils/AppIcons.dart';
 import 'package:platform_detector/platform_detector.dart';
@@ -100,6 +100,33 @@ class _MyNavigationDrawerState extends State<MyNavigationDrawer> {
                           //     ModuleConstants.GMS_DASHBOARD),
                           child: InkWell(
                             onTap: () {
+                              context.pushRoute(const OwnerDashboradRoute());
+
+                              if (isMobile()) Navigator.pop(context);
+                              // if (ModalRoute.of(context)!.settings.name !=
+                              //     "/admin/gms/dashboard") {
+                              //   Navigator.of(context).pushNamedAndRemoveUntil(
+                              //       '/admin/gms/dashboard', (route) => false);
+                              // }
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8.0, vertical: 8),
+                              child: Row(
+                                children: [
+                                  Text(("Owner Dashboard"),
+                                      style: itemSubHeadingStyle),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        VisibilityExtended(
+                          visible: true,
+                          // visible: GlobalData().isViewAccessPresent(
+                          //     ModuleConstants.GMS_DASHBOARD),
+                          child: InkWell(
+                            onTap: () {
                               context.pushRoute(const GMSDashboardRoute());
 
                               if (isMobile()) Navigator.pop(context);
@@ -151,1546 +178,1549 @@ class _MyNavigationDrawerState extends State<MyNavigationDrawer> {
                       ],
                     ),
                   ),
-                  if (true)
-                    AccordionSection(
-                      rightIcon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      isOpen: false,
-                      leftIcon:
-                          navigationDrawerIcon(NavigationDrawerIcons.gate),
-                      headerBackgroundColor: Theme.of(context).cardColor,
-                      headerBackgroundColorOpened: Theme.of(context).cardColor,
-                      headerBorderWidth: 1,
-                      contentBackgroundColor: Colors.white,
-                      headerPadding: const EdgeInsets.all(10),
-                      contentBorderWidth: 0,
-                      contentVerticalPadding: 10,
-                      header: Text('gms'.tr,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(color: Theme.of(context).primaryColor)),
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          VisibilityExtended(
-                            visible: true,
-                            // visible: GlobalData().isViewAccessPresent(
-                            //     ModuleConstants.GMS_PERSON),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.of(context)
-                                    .pushNamed('/admin/gms/person/in');
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 8),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(("person_in".tr),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge!
-                                            .copyWith(
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.black)),
-                                    const Icon(Icons.arrow_forward_ios,
-                                        color: Colors.black, size: 18),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          VisibilityExtended(
-                            visible: true,
-                            // visible: GlobalData().isViewAccessPresent(
-                            //     ModuleConstants.GMS_PERSON),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.of(context)
-                                    .pushNamed('/admin/gms/vehicle/in');
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 8),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(("vehicle_in".tr),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge!
-                                            .copyWith(
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.black)),
-                                    const Icon(Icons.arrow_forward_ios,
-                                        color: Colors.black, size: 18),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          VisibilityExtended(
-                            visible: true,
-                            // visible: GlobalData().isViewAccessPresent(
-                            //     ModuleConstants.GMS_PERSON),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.of(context)
-                                    .pushNamed('/admin/gms/material/in');
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 8),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(("material_in".tr),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge!
-                                            .copyWith(
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.black)),
-                                    const Icon(Icons.arrow_forward_ios,
-                                        color: Colors.black, size: 18),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          VisibilityExtended(
-                            visible: true,
-                            // visible: GlobalData().isViewAccessPresent(
-                            //     ModuleConstants.GMS_PERSON),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.of(context)
-                                    .pushNamed('/admin/gms/person/out');
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 8),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(("person_out".tr),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge!
-                                            .copyWith(
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.black)),
-                                    const Icon(Icons.arrow_forward_ios,
-                                        color: Colors.black, size: 18),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+
+                  // AccordionSection(
+                  //   rightIcon: Icon(
+                  //     Icons.arrow_drop_down,
+                  //     color: Theme.of(context).primaryColor,
+                  //   ),
+                  //   isOpen: false,
+                  //   leftIcon:
+                  //       navigationDrawerIcon(NavigationDrawerIcons.gate),
+                  //   headerBackgroundColor: Theme.of(context).cardColor,
+                  //   headerBackgroundColorOpened: Theme.of(context).cardColor,
+                  //   headerBorderWidth: 1,
+                  //   contentBackgroundColor: Colors.white,
+                  //   headerPadding: const EdgeInsets.all(10),
+                  //   contentBorderWidth: 0,
+                  //   contentVerticalPadding: 10,
+                  //   header: Text('gms'.tr,
+                  //       style: Theme.of(context)
+                  //           .textTheme
+                  //           .bodyLarge!
+                  //           .copyWith(color: Theme.of(context).primaryColor)),
+                  //   content: Column(
+                  //     mainAxisSize: MainAxisSize.min,
+                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                  //     children: [
+                  //       VisibilityExtended(
+                  //         visible: true,
+                  //         // visible: GlobalData().isViewAccessPresent(
+                  //         //     ModuleConstants.GMS_PERSON),
+                  //         child: InkWell(
+                  //           onTap: () {
+                  //             Navigator.of(context)
+                  //                 .pushNamed('/admin/gms/person/in');
+                  //           },
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.symmetric(
+                  //                 horizontal: 8.0, vertical: 8),
+                  //             child: Row(
+                  //               mainAxisAlignment:
+                  //                   MainAxisAlignment.spaceBetween,
+                  //               children: [
+                  //                 Text(("person_in".tr),
+                  //                     style: Theme.of(context)
+                  //                         .textTheme
+                  //                         .bodyLarge!
+                  //                         .copyWith(
+                  //                             fontWeight: FontWeight.w600,
+                  //                             color: Colors.black)),
+                  //                 const Icon(Icons.arrow_forward_ios,
+                  //                     color: Colors.black, size: 18),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       VisibilityExtended(
+                  //         visible: true,
+                  //         // visible: GlobalData().isViewAccessPresent(
+                  //         //     ModuleConstants.GMS_PERSON),
+                  //         child: InkWell(
+                  //           onTap: () {
+                  //             Navigator.of(context)
+                  //                 .pushNamed('/admin/gms/vehicle/in');
+                  //           },
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.symmetric(
+                  //                 horizontal: 8.0, vertical: 8),
+                  //             child: Row(
+                  //               mainAxisAlignment:
+                  //                   MainAxisAlignment.spaceBetween,
+                  //               children: [
+                  //                 Text(("vehicle_in".tr),
+                  //                     style: Theme.of(context)
+                  //                         .textTheme
+                  //                         .bodyLarge!
+                  //                         .copyWith(
+                  //                             fontWeight: FontWeight.w600,
+                  //                             color: Colors.black)),
+                  //                 const Icon(Icons.arrow_forward_ios,
+                  //                     color: Colors.black, size: 18),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       VisibilityExtended(
+                  //         visible: true,
+                  //         // visible: GlobalData().isViewAccessPresent(
+                  //         //     ModuleConstants.GMS_PERSON),
+                  //         child: InkWell(
+                  //           onTap: () {
+                  //             Navigator.of(context)
+                  //                 .pushNamed('/admin/gms/material/in');
+                  //           },
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.symmetric(
+                  //                 horizontal: 8.0, vertical: 8),
+                  //             child: Row(
+                  //               mainAxisAlignment:
+                  //                   MainAxisAlignment.spaceBetween,
+                  //               children: [
+                  //                 Text(("material_in".tr),
+                  //                     style: Theme.of(context)
+                  //                         .textTheme
+                  //                         .bodyLarge!
+                  //                         .copyWith(
+                  //                             fontWeight: FontWeight.w600,
+                  //                             color: Colors.black)),
+                  //                 const Icon(Icons.arrow_forward_ios,
+                  //                     color: Colors.black, size: 18),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       VisibilityExtended(
+                  //         visible: true,
+                  //         // visible: GlobalData().isViewAccessPresent(
+                  //         //     ModuleConstants.GMS_PERSON),
+                  //         child: InkWell(
+                  //           onTap: () {
+                  //             Navigator.of(context)
+                  //                 .pushNamed('/admin/gms/person/out');
+                  //           },
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.symmetric(
+                  //                 horizontal: 8.0, vertical: 8),
+                  //             child: Row(
+                  //               mainAxisAlignment:
+                  //                   MainAxisAlignment.spaceBetween,
+                  //               children: [
+                  //                 Text(("person_out".tr),
+                  //                     style: Theme.of(context)
+                  //                         .textTheme
+                  //                         .bodyLarge!
+                  //                         .copyWith(
+                  //                             fontWeight: FontWeight.w600,
+                  //                             color: Colors.black)),
+                  //                 const Icon(Icons.arrow_forward_ios,
+                  //                     color: Colors.black, size: 18),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+
+                  // AccordionSection(
+                  //   rightIcon: Icon(
+                  //     Icons.arrow_drop_down,
+                  //     color: Theme.of(context).primaryColor,
+                  //   ),
+                  //   isOpen: false,
+                  //   leftIcon:
+                  //       navigationDrawerIcon(NavigationDrawerIcons.register),
+                  //   headerBackgroundColor: Theme.of(context).cardColor,
+                  //   headerBackgroundColorOpened: Theme.of(context).cardColor,
+                  //   headerBorderWidth: 1,
+                  //   contentBackgroundColor: Colors.white,
+                  //   headerPadding: const EdgeInsets.all(10),
+                  //   contentBorderWidth: 0,
+                  //   contentVerticalPadding: 10,
+                  //   header: Text('registers'.tr,
+                  //       style: Theme.of(context)
+                  //           .textTheme
+                  //           .bodyLarge!
+                  //           .copyWith(color: Theme.of(context).primaryColor)),
+                  //   content: Column(
+                  //     mainAxisSize: MainAxisSize.min,
+                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                  //     children: [
+                  //       InkWell(
+                  //         onTap: () {
+                  //           Navigator.of(context)
+                  //               .pushNamed('/admin/gms/person/register');
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.symmetric(
+                  //               horizontal: 8.0, vertical: 8),
+                  //           child: Row(
+                  //             mainAxisAlignment:
+                  //                 MainAxisAlignment.spaceBetween,
+                  //             children: [
+                  //               Text(("person_in_out".tr),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black)),
+                  //               const Icon(Icons.arrow_forward_ios,
+                  //                   color: Colors.black, size: 18),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       InkWell(
+                  //         onTap: () {
+                  //           Navigator.of(context).pushNamed(
+                  //               '/admin/gms/person/register',
+                  //               arguments: {
+                  //                 "personType": 1,
+                  //                 "title": ("employee_in_out".tr)
+                  //               });
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.symmetric(
+                  //               horizontal: 8.0, vertical: 8),
+                  //           child: Row(
+                  //             mainAxisAlignment:
+                  //                 MainAxisAlignment.spaceBetween,
+                  //             children: [
+                  //               Text(("employee_in_out".tr),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black)),
+                  //               const Icon(Icons.arrow_forward_ios,
+                  //                   color: Colors.black, size: 18),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       InkWell(
+                  //         onTap: () {
+                  //           Navigator.of(context).pushNamed(
+                  //               '/admin/gms/person/register',
+                  //               arguments: {
+                  //                 "personType": 2,
+                  //                 "title": ("labour_in_out".tr)
+                  //               });
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.symmetric(
+                  //               horizontal: 8.0, vertical: 8),
+                  //           child: Row(
+                  //             mainAxisAlignment:
+                  //                 MainAxisAlignment.spaceBetween,
+                  //             children: [
+                  //               Text(("labour_in_out".tr),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black)),
+                  //               const Icon(Icons.arrow_forward_ios,
+                  //                   color: Colors.black, size: 18),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       InkWell(
+                  //         onTap: () {
+                  //           Navigator.of(context).pushNamed(
+                  //               '/admin/gms/person/register',
+                  //               arguments: {
+                  //                 "personType": 8,
+                  //                 "title": ("intern_in_out".tr)
+                  //               });
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.symmetric(
+                  //               horizontal: 8.0, vertical: 8),
+                  //           child: Row(
+                  //             mainAxisAlignment:
+                  //                 MainAxisAlignment.spaceBetween,
+                  //             children: [
+                  //               Text(("intern_in_out".tr),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black)),
+                  //               const Icon(Icons.arrow_forward_ios,
+                  //                   color: Colors.black, size: 18),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       InkWell(
+                  //         onTap: () {
+                  //           Navigator.of(context).pushNamed(
+                  //               '/admin/gms/person/register',
+                  //               arguments: {
+                  //                 "personType": 5,
+                  //                 "title": ("visitor_in_out".tr)
+                  //               });
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.symmetric(
+                  //               horizontal: 8.0, vertical: 8),
+                  //           child: Row(
+                  //             mainAxisAlignment:
+                  //                 MainAxisAlignment.spaceBetween,
+                  //             children: [
+                  //               Text(("visitor_in_out".tr),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black)),
+                  //               const Icon(Icons.arrow_forward_ios,
+                  //                   color: Colors.black, size: 18),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       InkWell(
+                  //         onTap: () {
+                  //           Navigator.of(context)
+                  //               .pushNamed('/admin/gms/vehicle/inoutlist');
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.symmetric(
+                  //               horizontal: 8.0, vertical: 8),
+                  //           child: Row(
+                  //             mainAxisAlignment:
+                  //                 MainAxisAlignment.spaceBetween,
+                  //             children: [
+                  //               Text(("vehicle_in_out".tr),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black)),
+                  //               const Icon(Icons.arrow_forward_ios,
+                  //                   color: Colors.black, size: 18),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       InkWell(
+                  //         onTap: () {
+                  //           Navigator.of(context)
+                  //               .pushNamed('/admin/gms/material/register');
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.symmetric(
+                  //               horizontal: 8.0, vertical: 8),
+                  //           child: Row(
+                  //             mainAxisAlignment:
+                  //                 MainAxisAlignment.spaceBetween,
+                  //             children: [
+                  //               Text(("material_in_out".tr),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black)),
+                  //               const Icon(Icons.arrow_forward_ios,
+                  //                   color: Colors.black, size: 18),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       InkWell(
+                  //         onTap: () {
+                  //           Navigator.of(context).pushNamed(
+                  //               '/admin/gms/material/register',
+                  //               arguments: {
+                  //                 "direction": 1,
+                  //                 "title": ("material_inward".tr)
+                  //               });
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.symmetric(
+                  //               horizontal: 8.0, vertical: 8),
+                  //           child: Row(
+                  //             mainAxisAlignment:
+                  //                 MainAxisAlignment.spaceBetween,
+                  //             children: [
+                  //               Text(("material_inward".tr),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black)),
+                  //               const Icon(Icons.arrow_forward_ios,
+                  //                   color: Colors.black, size: 18),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       InkWell(
+                  //         onTap: () {
+                  //           Navigator.of(context).pushNamed(
+                  //               '/admin/gms/material/register',
+                  //               arguments: {
+                  //                 "direction": 2,
+                  //                 "title": ("material_outward".tr)
+                  //               });
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.symmetric(
+                  //               horizontal: 8.0, vertical: 8),
+                  //           child: Row(
+                  //             mainAxisAlignment:
+                  //                 MainAxisAlignment.spaceBetween,
+                  //             children: [
+                  //               Text(("material_outward".tr),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black)),
+                  //               const Icon(Icons.arrow_forward_ios,
+                  //                   color: Colors.black, size: 18),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       InkWell(
+                  //         onTap: () {
+                  //           Navigator.of(context).pushNamed(
+                  //               '/admin/gms/material/register',
+                  //               arguments: {
+                  //                 "materialType": 3,
+                  //                 "title": ("documents_movement".tr)
+                  //               });
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.symmetric(
+                  //               horizontal: 8.0, vertical: 8),
+                  //           child: Row(
+                  //             mainAxisAlignment:
+                  //                 MainAxisAlignment.spaceBetween,
+                  //             children: [
+                  //               Text(("documents_movement".tr),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black)),
+                  //               const Icon(Icons.arrow_forward_ios,
+                  //                   color: Colors.black, size: 18),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+
+                  // AccordionSection(
+                  //     rightIcon: Icon(
+                  //       Icons.arrow_drop_down,
+                  //       color: Theme.of(context).primaryColor,
+                  //     ),
+                  //     isOpen: false,
+                  //     leftIcon: navigationDrawerIcon(
+                  //         NavigationDrawerIcons.register),
+                  //     headerBackgroundColor: Theme.of(context).cardColor,
+                  //     headerBackgroundColorOpened:
+                  //         Theme.of(context).cardColor,
+                  //     headerBorderWidth: 1,
+                  //     contentBackgroundColor: Colors.white,
+                  //     headerPadding: const EdgeInsets.all(10),
+                  //     contentBorderWidth: 0,
+                  //     contentVerticalPadding: 10,
+                  //     header: Text('inventory'.tr,
+                  //         style: Theme.of(context)
+                  //             .textTheme
+                  //             .bodyLarge!
+                  //             .copyWith(
+                  //                 color: Theme.of(context).primaryColor)),
+                  //     content: Column(
+                  //         mainAxisSize: MainAxisSize.min,
+                  //         crossAxisAlignment: CrossAxisAlignment.start,
+                  //         children: [
+                  //           VisibilityExtended(
+                  //             visible: true,
+                  //             child: InkWell(
+                  //               onTap: () {
+                  //                 Navigator.of(context)
+                  //                     .pushNamed("/inventory");
+                  //               },
+                  //               child: Padding(
+                  //                 padding: const EdgeInsets.symmetric(
+                  //                     horizontal: 4.0, vertical: 8),
+                  //                 child: Row(
+                  //                   children: [
+                  //                     navigationDrawerIcon(
+                  //                         NavigationDrawerIcons.inventory),
+                  //                     const Gap(10),
+                  //                     Text("map_view".tr,
+                  //                         style: Theme.of(context)
+                  //                             .textTheme
+                  //                             .bodyLarge!
+                  //                             .copyWith(
+                  //                                 fontWeight: FontWeight.w600,
+                  //                                 color: Colors.black)),
+                  //                   ],
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         ])),
+
+                  // AccordionSection(
+                  //     rightIcon: Icon(
+                  //       Icons.arrow_drop_down,
+                  //       color: Theme.of(context).primaryColor,
+                  //     ),
+                  //     isOpen: false,
+                  //     leftIcon: navigationDrawerIcon(
+                  //         NavigationDrawerIcons.register),
+                  //     headerBackgroundColor: Theme.of(context).cardColor,
+                  //     headerBackgroundColorOpened:
+                  //         Theme.of(context).cardColor,
+                  //     headerBorderWidth: 1,
+                  //     contentBackgroundColor: Colors.white,
+                  //     headerPadding: const EdgeInsets.all(10),
+                  //     contentBorderWidth: 0,
+                  //     contentVerticalPadding: 10,
+                  //     header: Text('reports'.tr,
+                  //         style: Theme.of(context)
+                  //             .textTheme
+                  //             .bodyLarge!
+                  //             .copyWith(
+                  //                 color: Theme.of(context).primaryColor)),
+                  //     content: Column(
+                  //         mainAxisSize: MainAxisSize.min,
+                  //         crossAxisAlignment: CrossAxisAlignment.start,
+                  //         children: [
+                  //           VisibilityExtended(
+                  //             visible: true,
+                  //             child: InkWell(
+                  //               onTap: () {
+                  //                 Navigator.of(context).pushNamed("/reports");
+                  //               },
+                  //               child: Padding(
+                  //                 padding: const EdgeInsets.symmetric(
+                  //                     horizontal: 8.0, vertical: 8),
+                  //                 child: Row(
+                  //                   children: [
+                  //                     navigationDrawerIcon(
+                  //                         NavigationDrawerIcons.reports),
+                  //                     const Gap(10),
+                  //                     Text("reports".tr,
+                  //                         style: Theme.of(context)
+                  //                             .textTheme
+                  //                             .bodyLarge!
+                  //                             .copyWith(
+                  //                                 fontWeight: FontWeight.w600,
+                  //                                 color: Colors.black)),
+                  //                   ],
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         ])),
+
+                  // AccordionSection(
+                  //   rightIcon: Icon(
+                  //     Icons.arrow_drop_down,
+                  //     color: Theme.of(context).primaryColor,
+                  //   ),
+                  //   isOpen: false,
+                  //   leftIcon:
+                  //       navigationDrawerIcon(NavigationDrawerIcons.sensors),
+                  //   headerBackgroundColor: Theme.of(context).cardColor,
+                  //   headerBackgroundColorOpened: Theme.of(context).cardColor,
+                  //   headerBorderWidth: 1,
+                  //   contentBackgroundColor: Colors.white,
+                  //   headerPadding: const EdgeInsets.all(10),
+                  //   contentBorderWidth: 0,
+                  //   contentVerticalPadding: 10,
+                  //   header: Text('sensors'.tr,
+                  //       style: Theme.of(context)
+                  //           .textTheme
+                  //           .bodyLarge!
+                  //           .copyWith(color: Theme.of(context).primaryColor)),
+                  //   content: Column(
+                  //     mainAxisSize: MainAxisSize.min,
+                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                  //     children: [
+                  //       VisibilityExtended(
+                  //         visible: true,
+                  //         child: InkWell(
+                  //           onTap: () {
+                  //             // Navigator.of(context).pushNamed(
+                  //             //     "/iotsensors/temperature/sensorReportPage"); //change this
+                  //             // Navigator.push(
+                  //             //     context,
+                  //             //     MaterialPageRoute(
+                  //             //         builder: (context) =>
+                  //             //             const SelectSensorLocation()));
+                  //           },
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.symmetric(
+                  //                 horizontal: 8.0, vertical: 8),
+                  //             child: Row(
+                  //               mainAxisAlignment:
+                  //                   MainAxisAlignment.spaceBetween,
+                  //               children: [
+                  //                 Text("sensor_report".tr,
+                  //                     style: Theme.of(context)
+                  //                         .textTheme
+                  //                         .bodyLarge!
+                  //                         .copyWith(
+                  //                             fontWeight: FontWeight.w600,
+                  //                             color: Colors.black)),
+                  //                 const Icon(Icons.arrow_forward_ios,
+                  //                     color: Colors.black, size: 18),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       // VisibilityExtended(
+                  //       //   visible: GlobalData().isViewAccessPresent(
+                  //       //       ModuleConstants.SENSOR_EXCEPTION_REPORT),
+                  //       //   child: InkWell(
+                  //       //     onTap: () {
+                  //       //       Navigator.of(context).pushNamed(
+                  //       //           "/iotsensors/temperature/sensorExceptionReportPage"); //change this
+                  //       //     },
+                  //       //     child: Padding(
+                  //       //       padding: const EdgeInsets.symmetric(
+                  //       //           horizontal: 8.0, vertical: 8),
+                  //       //       child: Row(
+                  //       //         children: [
+                  //       //           Icon(Icons.arrow_forward,
+                  //       //               color: Colors.white, size: 22),
+                  //       //           SizedBox(width: 8),
+                  //       //           Text(
+                  //       //               AppLocalizations.of(context)        (
+                  //       //                   "sensor_exception_report"),
+                  //       //               style: Theme.of(context)
+                  //       //                   .textTheme
+                  //       //                   .bodyText1
+                  //       //                   .copyWith(
+                  //       //                       fontWeight: FontWeight.w600,
+                  //       //                       color: Colors.white)),
+                  //       //         ],
+                  //       //       ),
+                  //       //     ),
+                  //       //   ),
+                  //       // ),
+                  //       // VisibilityExtended(
+                  //       //   visible: GlobalData().isViewAccessPresent(
+                  //       //       ModuleConstants.SENSOR_DATA_VIEW_REPORT),
+                  //       //   child: InkWell(
+                  //       //     onTap: () {
+                  //       //       Navigator.of(context).pushNamed(
+                  //       //           "/iotsensors/temperature/sensordataviewlist"); //change this
+                  //       //     },
+                  //       //     child: Padding(
+                  //       //       padding: const EdgeInsets.symmetric(
+                  //       //           horizontal: 8.0, vertical: 8),
+                  //       //       child: Row(
+                  //       //         children: [
+                  //       //           Icon(Icons.arrow_forward,
+                  //       //               color: Colors.white, size: 22),
+                  //       //           SizedBox(width: 8),
+                  //       //           Text(
+                  //       //               AppLocalizations.of(context)
+                  //       //                         ("sensor_data_view"),
+                  //       //               style: Theme.of(context)
+                  //       //                   .textTheme
+                  //       //                   .bodyText1
+                  //       //                   .copyWith(
+                  //       //                       fontWeight: FontWeight.w600,
+                  //       //                       color: Colors.white)),
+                  //       //         ],
+                  //       //       ),
+                  //       //     ),
+                  //       //   ),
+                  //       // ),
+                  //       // VisibilityExtended(
+                  //       //   visible: GlobalData().isViewAccessPresent(
+                  //       //       ModuleConstants.SENSOR_VIEW),
+                  //       //   child: InkWell(
+                  //       //     onTap: () {
+                  //       //       Navigator.of(context).pushNamed(
+                  //       //           "/iotsensors/temperature/sensorViewPage"); //change this
+                  //       //     },
+                  //       //     child: Padding(
+                  //       //       padding: const EdgeInsets.symmetric(
+                  //       //           horizontal: 8.0, vertical: 8),
+                  //       //       child: Row(
+                  //       //         children: [
+                  //       //           Icon(Icons.arrow_forward,
+                  //       //               color: Colors.white, size: 22),
+                  //       //           SizedBox(width: 8),
+                  //       //           Text(
+                  //       //               AppLocalizations.of(context)
+                  //       //                         ("sensor_view"),
+                  //       //               style: Theme.of(context)
+                  //       //                   .textTheme
+                  //       //                   .bodyText1
+                  //       //                   .copyWith(
+                  //       //                       fontWeight: FontWeight.w600,
+                  //       //                       color: Colors.white)),
+                  //       //         ],
+                  //       //       ),
+                  //       //     ),
+                  //       //   ),
+                  //       // ),
+                  //       // VisibilityExtended(
+                  //       //   visible: GlobalData().isViewAccessPresent(
+                  //       //       ModuleConstants.SENSOR_ALERT),
+                  //       //   child: InkWell(
+                  //       //     onTap: () {
+                  //       //       Navigator.of(context).pushNamed(
+                  //       //           "/iotsensors/temperature/sensoralertlistpage"); //change this
+                  //       //     },
+                  //       //     child: Padding(
+                  //       //       padding: const EdgeInsets.symmetric(
+                  //       //           horizontal: 8.0, vertical: 8),
+                  //       //       child: Row(
+                  //       //         children: [
+                  //       //           Icon(Icons.arrow_forward,
+                  //       //               color: Colors.white, size: 22),
+                  //       //           SizedBox(width: 8),
+                  //       //           Text(
+                  //       //               AppLocalizations.of(context)
+                  //       //                         ("sensor_alert"),
+                  //       //               style: Theme.of(context)
+                  //       //                   .textTheme
+                  //       //                   .bodyText1
+                  //       //                   .copyWith(
+                  //       //                       fontWeight: FontWeight.w600,
+                  //       //                       color: Colors.white)),
+                  //       //         ],
+                  //       //       ),
+                  //       //     ),
+                  //       //   ),
+                  //       // ),
+                  //       // VisibilityExtended(
+                  //       //   visible: GlobalData().isViewAccessPresent(
+                  //       //       ModuleConstants.SENSOR_ALERT_SUBSCRIPTION),
+                  //       //   child: InkWell(
+                  //       //     onTap: () {
+                  //       //       Navigator.of(context).pushNamed(
+                  //       //           "/iotsensors/temperature/sensoralertsubscriptionpage"); //change this
+                  //       //     },
+                  //       //     child: Padding(
+                  //       //       padding: const EdgeInsets.symmetric(
+                  //       //           horizontal: 8.0, vertical: 8),
+                  //       //       child: Row(
+                  //       //         children: [
+                  //       //           Icon(Icons.arrow_forward,
+                  //       //               color: Colors.white, size: 22),
+                  //       //           SizedBox(width: 8),
+                  //       //           Text(
+                  //       //               AppLocalizations.of(context)        (
+                  //       //                   "sensor_alert_subscription"),
+                  //       //               style: Theme.of(context)
+                  //       //                   .textTheme
+                  //       //                   .bodyText1
+                  //       //                   .copyWith(
+                  //       //                       fontWeight: FontWeight.w600,
+                  //       //                       color: Colors.white)),
+                  //       //         ],
+                  //       //       ),
+                  //       //     ),
+                  //       //   ),
+                  //       // ),
+                  //     ],
+                  //   ),
+                  // ),
+
+                  // AccordionSection(
+                  //   rightIcon: Icon(
+                  //     Icons.arrow_drop_down,
+                  //     color: Theme.of(context).primaryColor,
+                  //   ),
+                  //   isOpen: false,
+                  //   leftIcon: navigationDrawerIcon(NavigationDrawerIcons.hr),
+                  //   headerBackgroundColor: Theme.of(context).cardColor,
+                  //   headerBackgroundColorOpened: Theme.of(context).cardColor,
+                  //   headerBorderWidth: 1,
+                  //   contentBackgroundColor: Colors.white,
+                  //   headerPadding: const EdgeInsets.all(10),
+                  //   contentBorderWidth: 0,
+                  //   contentVerticalPadding: 10,
+                  //   header: Text('hr'.tr,
+                  //       style: Theme.of(context)
+                  //           .textTheme
+                  //           .bodyLarge!
+                  //           .copyWith(color: Theme.of(context).primaryColor)),
+                  //   content: Column(
+                  //     mainAxisSize: MainAxisSize.min,
+                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                  //     children: [
+                  //       VisibilityExtended(
+                  //         visible: true,
+                  //         // visible: GlobalData().isViewAccessPresent(
+                  //         //     ModuleConstants.HR_PERSON),
+                  //         child: InkWell(
+                  //           onTap: () {
+                  //             Navigator.of(context)
+                  //                 .pushNamed('/admin/gms/person/list');
+                  //           },
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.symmetric(
+                  //                 horizontal: 8.0, vertical: 8),
+                  //             child: Row(
+                  //               mainAxisAlignment:
+                  //                   MainAxisAlignment.spaceBetween,
+                  //               children: [
+                  //                 Text(("person".tr),
+                  //                     style: Theme.of(context)
+                  //                         .textTheme
+                  //                         .bodyLarge!
+                  //                         .copyWith(
+                  //                             fontWeight: FontWeight.w600,
+                  //                             color: Colors.black)),
+                  //                 const Icon(Icons.arrow_forward_ios,
+                  //                     color: Colors.black, size: 18),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       InkWell(
+                  //         onTap: () {
+                  //           Navigator.of(context).pushNamed(
+                  //               //TODO: change this
+                  //               '/admin/gms/person/taskmanagement',
+                  //               arguments: {
+                  //                 "personType": 1,
+                  //                 "title": ("task_management".tr)
+                  //               });
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.symmetric(
+                  //               horizontal: 8.0, vertical: 8),
+                  //           child: Row(
+                  //             mainAxisAlignment:
+                  //                 MainAxisAlignment.spaceBetween,
+                  //             children: [
+                  //               Text(("task_management".tr),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black)),
+                  //               const Icon(Icons.arrow_forward_ios,
+                  //                   color: Colors.black, size: 18),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+
+                  // AccordionSection(
+                  //   rightIcon: Icon(
+                  //     Icons.arrow_drop_down,
+                  //     color: Theme.of(context).primaryColor,
+                  //   ),
+                  //   isOpen: false,
+                  //   leftIcon:
+                  //       navigationDrawerIcon(NavigationDrawerIcons.sales),
+                  //   headerBackgroundColor: Theme.of(context).cardColor,
+                  //   headerBackgroundColorOpened: Theme.of(context).cardColor,
+                  //   headerBorderWidth: 1,
+                  //   contentBackgroundColor: Colors.white,
+                  //   headerPadding: const EdgeInsets.all(10),
+                  //   contentBorderWidth: 0,
+                  //   contentVerticalPadding: 10,
+                  //   header: Text('sales'.tr,
+                  //       style: Theme.of(context)
+                  //           .textTheme
+                  //           .bodyLarge!
+                  //           .copyWith(color: Theme.of(context).primaryColor)),
+                  //   content: Container(
+                  //       child: InkWell(
+                  //     onTap: () {
+                  //       Navigator.of(context)
+                  //           .pushNamed('/admin/customer/list');
+                  //     },
+                  //     child: Padding(
+                  //       padding: const EdgeInsets.symmetric(
+                  //           horizontal: 8.0, vertical: 8),
+                  //       child: Row(
+                  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //         children: [
+                  //           Text(("customer".tr),
+                  //               style: Theme.of(context)
+                  //                   .textTheme
+                  //                   .bodyLarge!
+                  //                   .copyWith(
+                  //                       fontWeight: FontWeight.w600,
+                  //                       color: Colors.black)),
+                  //           const Icon(Icons.arrow_forward_ios,
+                  //               color: Colors.black, size: 18),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   )),
+                  // ),
+
+                  // AccordionSection(
+                  //   rightIcon: Icon(
+                  //     Icons.arrow_drop_down,
+                  //     color: Theme.of(context).primaryColor,
+                  //   ),
+                  //   isOpen: false,
+                  //   leftIcon: Icon(
+                  //     Icons.assignment,
+                  //     color: Theme.of(context).primaryColor,
+                  //   ),
+                  //   headerBackgroundColor: Theme.of(context).cardColor,
+                  //   headerBackgroundColorOpened: Theme.of(context).cardColor,
+                  //   headerBorderWidth: 1,
+                  //   contentBackgroundColor: Colors.white,
+                  //   headerPadding: const EdgeInsets.all(10),
+                  //   contentBorderWidth: 0,
+                  //   contentVerticalPadding: 10,
+                  //   header: Text('Report'.tr,
+                  //       style: Theme.of(context)
+                  //           .textTheme
+                  //           .bodyLarge!
+                  //           .copyWith(color: Theme.of(context).primaryColor)),
+                  //   content: Column(
+                  //     children: [
+                  //       InkWell(
+                  //         onTap: () {
+                  //           // Navigator.of(context)
+                  //           //     .push(MaterialPageRoute(builder: (context) {
+                  //           //   return const BatchStockFilterPage();
+                  //           // }));
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.symmetric(
+                  //               horizontal: 8.0, vertical: 8),
+                  //           child: Row(
+                  //             mainAxisAlignment:
+                  //                 MainAxisAlignment.spaceBetween,
+                  //             children: [
+                  //               Text(("Batch Stock Report".tr),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black)),
+                  //               const Icon(Icons.arrow_forward_ios,
+                  //                   color: Colors.black, size: 18),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       InkWell(
+                  //         onTap: () {
+                  //           // Navigator.of(context)
+                  //           //     .push(MaterialPageRoute(builder: (context) {
+                  //           //   return const ChamberFilterPage();
+                  //           // }));
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.symmetric(
+                  //               horizontal: 8.0, vertical: 8),
+                  //           child: Row(
+                  //             mainAxisAlignment:
+                  //                 MainAxisAlignment.spaceBetween,
+                  //             children: [
+                  //               Text(("Chamber Stock Report"),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black)),
+                  //               const Icon(Icons.arrow_forward_ios,
+                  //                   color: Colors.black, size: 18),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       InkWell(
+                  //         onTap: () {
+                  //           // Navigator.of(context)
+                  //           //     .push(MaterialPageRoute(builder: (context) {
+                  //           //   return const CustomerFilterPage();
+                  //           // }));
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.symmetric(
+                  //               horizontal: 8.0, vertical: 8),
+                  //           child: Row(
+                  //             mainAxisAlignment:
+                  //                 MainAxisAlignment.spaceBetween,
+                  //             children: [
+                  //               Text(("Customer Stock Report"),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black)),
+                  //               const Icon(Icons.arrow_forward_ios,
+                  //                   color: Colors.black, size: 18),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       InkWell(
+                  //         onTap: () {
+                  //           // Navigator.of(context)
+                  //           //     .push(MaterialPageRoute(builder: (context) {
+                  //           //   return const ExpiryStockFilterPage();
+                  //           // }));
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.symmetric(
+                  //               horizontal: 8.0, vertical: 8),
+                  //           child: Row(
+                  //             mainAxisAlignment:
+                  //                 MainAxisAlignment.spaceBetween,
+                  //             children: [
+                  //               Text(("Expire Stock Report"),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black)),
+                  //               const Icon(Icons.arrow_forward_ios,
+                  //                   color: Colors.black, size: 18),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       InkWell(
+                  //         onTap: () {
+                  //           // Navigator.of(context)
+                  //           //     .push(MaterialPageRoute(builder: (context) {
+                  //           //   return const ItemStockFilterPage();
+                  //           // }));
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.symmetric(
+                  //               horizontal: 8.0, vertical: 8),
+                  //           child: Row(
+                  //             mainAxisAlignment:
+                  //                 MainAxisAlignment.spaceBetween,
+                  //             children: [
+                  //               Text(("Item Stock Report"),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black)),
+                  //               const Icon(Icons.arrow_forward_ios,
+                  //                   color: Colors.black, size: 18),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       InkWell(
+                  //         onTap: () {
+                  //           // Navigator.of(context)
+                  //           //     .push(MaterialPageRoute(builder: (context) {
+                  //           //   return const StockFilterPage();
+                  //           // }));
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.symmetric(
+                  //               horizontal: 8.0, vertical: 8),
+                  //           child: Row(
+                  //             mainAxisAlignment:
+                  //                 MainAxisAlignment.spaceBetween,
+                  //             children: [
+                  //               // const Icon(Icons.arrow_forward,
+                  //               //     color: Colors.white, size: 22),
+                  //               //
+                  //               Text(("Stock View Report".tr),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black)),
+                  //               const Icon(Icons.arrow_forward_ios,
+                  //                   color: Colors.black, size: 18),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+
+                  // AccordionSection(
+                  //   rightIcon: Icon(
+                  //     Icons.arrow_drop_down,
+                  //     color: Theme.of(context).primaryColor,
+                  //   ),
+                  //   isOpen: false,
+                  //   leftIcon:
+                  //       navigationDrawerIcon(NavigationDrawerIcons.assets),
+                  //   headerBackgroundColor: Theme.of(context).cardColor,
+                  //   headerBackgroundColorOpened: Theme.of(context).cardColor,
+                  //   headerBorderWidth: 1,
+                  //   contentBackgroundColor: Colors.white,
+                  //   headerPadding: const EdgeInsets.all(10),
+                  //   contentBorderWidth: 0,
+                  //   contentVerticalPadding: 10,
+                  //   header: Text('Assets'.tr,
+                  //       style: Theme.of(context)
+                  //           .textTheme
+                  //           .bodyLarge!
+                  //           .copyWith(color: Theme.of(context).primaryColor)),
+                  //   content: Column(
+                  //     mainAxisSize: MainAxisSize.min,
+                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                  //     children: [
+                  //       VisibilityExtended(
+                  //         visible: true,
+                  //         // visible: GlobalData().isViewAccessPresent(
+                  //         //     ModuleConstants.ASSET_DASHBOARD),
+                  //         child: InkWell(
+                  //           onTap: () {
+                  //             Navigator.of(context)
+                  //                 .pushNamed('/warehouse/assets/dashboard');
+                  //           },
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.symmetric(
+                  //                 horizontal: 8.0, vertical: 8),
+                  //             child: Row(
+                  //               mainAxisAlignment:
+                  //                   MainAxisAlignment.spaceBetween,
+                  //               children: [
+                  //                 Text(("asset_dashboard".tr),
+                  //                     style: Theme.of(context)
+                  //                         .textTheme
+                  //                         .bodyLarge!
+                  //                         .copyWith(
+                  //                             fontWeight: FontWeight.w600,
+                  //                             color: Colors.black)),
+                  //                 const Icon(Icons.arrow_forward_ios,
+                  //                     color: Colors.black, size: 18),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       VisibilityExtended(
+                  //         visible: true,
+                  //         // visible: GlobalData().isViewAccessPresent(
+                  //         //     ModuleConstants.ASSET_ENTRY),
+                  //         child: InkWell(
+                  //           onTap: () {
+                  //             Navigator.of(context)
+                  //                 .pushNamed("/warehouse/assets/list");
+                  //           },
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.symmetric(
+                  //                 horizontal: 8.0, vertical: 8),
+                  //             child: Row(
+                  //               mainAxisAlignment:
+                  //                   MainAxisAlignment.spaceBetween,
+                  //               children: [
+                  //                 Text(("asset_entry".tr),
+                  //                     style: Theme.of(context)
+                  //                         .textTheme
+                  //                         .bodyLarge!
+                  //                         .copyWith(
+                  //                             fontWeight: FontWeight.w600,
+                  //                             color: Colors.black)),
+                  //                 const Icon(Icons.arrow_forward_ios,
+                  //                     color: Colors.black, size: 18),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       VisibilityExtended(
+                  //         visible: true,
+                  //         // visible: GlobalData().isViewAccessPresent(
+                  //         //     ModuleConstants.ASSET_LABELLING),
+                  //         child: InkWell(
+                  //           onTap: () {
+                  //             Navigator.of(context)
+                  //                 .pushNamed('/warehouse/assets/labelling');
+                  //           },
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.symmetric(
+                  //                 horizontal: 8.0, vertical: 8),
+                  //             child: Row(
+                  //               mainAxisAlignment:
+                  //                   MainAxisAlignment.spaceBetween,
+                  //               children: [
+                  //                 Text(("asset_labelling".tr),
+                  //                     style: Theme.of(context)
+                  //                         .textTheme
+                  //                         .bodyLarge!
+                  //                         .copyWith(
+                  //                             fontWeight: FontWeight.w600,
+                  //                             color: Colors.black)),
+                  //                 const Icon(Icons.arrow_forward_ios,
+                  //                     color: Colors.black, size: 18),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       VisibilityExtended(
+                  //         visible: true,
+                  //         // visible: GlobalData().isViewAccessPresent(
+                  //         //     ModuleConstants.ASSET_AUDIT),
+                  //         child: InkWell(
+                  //           onTap: () {
+                  //             Navigator.of(context)
+                  //                 .pushNamed('/warehouse/assets/audit');
+                  //           },
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.symmetric(
+                  //                 horizontal: 8.0, vertical: 8),
+                  //             child: Row(
+                  //               mainAxisAlignment:
+                  //                   MainAxisAlignment.spaceBetween,
+                  //               children: [
+                  //                 Text(("asset_audit".tr),
+                  //                     style: Theme.of(context)
+                  //                         .textTheme
+                  //                         .bodyLarge!
+                  //                         .copyWith(
+                  //                             fontWeight: FontWeight.w600,
+                  //                             color: Colors.black)),
+                  //                 const Icon(Icons.arrow_forward_ios,
+                  //                     color: Colors.black, size: 18),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       VisibilityExtended(
+                  //         visible: true,
+                  //         // visible: GlobalData().isViewAccessPresent(
+                  //         //     ModuleConstants.ASSET_MAINTENANCE),
+                  //         child: InkWell(
+                  //           onTap: () {
+                  //             Navigator.of(context).pushNamed(
+                  //                 '/warehouse/assets/maintenanceListPage');
+                  //           },
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.symmetric(
+                  //                 horizontal: 8.0, vertical: 8),
+                  //             child: Row(
+                  //               mainAxisAlignment:
+                  //                   MainAxisAlignment.spaceBetween,
+                  //               children: [
+                  //                 Text(
+                  //                   ("asset_maintenance".tr),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black),
+                  //                 ),
+                  //                 const Icon(Icons.arrow_forward_ios,
+                  //                     color: Colors.black, size: 18),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       VisibilityExtended(
+                  //         visible: true,
+                  //         // visible: GlobalData().isViewAccessPresent(
+                  //         //     ModuleConstants.ASSET_ASSIGNMENT),
+                  //         child: InkWell(
+                  //           onTap: () {
+                  //             Navigator.of(context).pushNamed(
+                  //                 '/warehouse/assets/assetAssignmentListPage');
+                  //           },
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.symmetric(
+                  //                 horizontal: 8.0, vertical: 8),
+                  //             child: Row(
+                  //               mainAxisAlignment:
+                  //                   MainAxisAlignment.spaceBetween,
+                  //               children: [
+                  //                 Text(
+                  //                   ("asset_assignments".tr),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black),
+                  //                 ),
+                  //                 const Icon(Icons.arrow_forward_ios,
+                  //                     color: Colors.black, size: 18),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       VisibilityExtended(
+                  //         visible: true,
+                  //         // visible: GlobalData().isViewAccessPresent(
+                  //         //     ModuleConstants.ASSET_ASSIGNMENT_LOG),
+                  //         child: InkWell(
+                  //           onTap: () {
+                  //             Navigator.of(context).pushNamed(
+                  //                 '/warehouse/assets/assetAssignment/log');
+                  //           },
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.symmetric(
+                  //                 horizontal: 8.0, vertical: 8),
+                  //             child: Row(
+                  //               mainAxisAlignment:
+                  //                   MainAxisAlignment.spaceBetween,
+                  //               children: [
+                  //                 Text(
+                  //                   ("asset_assignment_log".tr),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black),
+                  //                 ),
+                  //                 const Icon(Icons.arrow_forward_ios,
+                  //                     color: Colors.black, size: 18),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+
+                  // AccordionSection(
+                  //   rightIcon: Icon(
+                  //     Icons.arrow_drop_down,
+                  //     color: Theme.of(context).primaryColor,
+                  //   ),
+                  //   isOpen: false,
+                  //   leftIcon: navigationDrawerIcon(
+                  //       NavigationDrawerIcons.preferences),
+                  //   headerBackgroundColor: Theme.of(context).cardColor,
+                  //   headerBackgroundColorOpened: Theme.of(context).cardColor,
+                  //   headerBorderWidth: 1,
+                  //   contentBackgroundColor: Colors.white,
+                  //   headerPadding: const EdgeInsets.all(10),
+                  //   contentBorderWidth: 0,
+                  //   contentVerticalPadding: 10,
+                  //   header: Text('preferences'.tr,
+                  //       style: Theme.of(context)
+                  //           .textTheme
+                  //           .bodyLarge!
+                  //           .copyWith(color: Theme.of(context).primaryColor)),
+                  //   content: Column(
+                  //     mainAxisSize: MainAxisSize.min,
+                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                  //     children: [
+                  //       VisibilityExtended(
+                  //         visible: true,
+                  //         // visible: GlobalData()
+                  //         //     .isViewAccessPresent(ModuleConstants.WAREHOUSE),
+                  //         child: InkWell(
+                  //           onTap: () {
+                  //             Navigator.of(context)
+                  //                 .pushNamed("/warehouse/list");
+                  //           },
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.symmetric(
+                  //                 horizontal: 8.0, vertical: 8),
+                  //             child: Row(
+                  //               mainAxisAlignment:
+                  //                   MainAxisAlignment.spaceBetween,
+                  //               children: [
+                  //                 Text(("warehouse".tr),
+                  //                     style: Theme.of(context)
+                  //                         .textTheme
+                  //                         .bodyLarge!
+                  //                         .copyWith(
+                  //                             fontWeight: FontWeight.w600,
+                  //                             color: Colors.black)),
+                  //                 const Icon(Icons.arrow_forward_ios,
+                  //                     color: Colors.black, size: 18),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       InkWell(
+                  //         onTap: () {
+                  //           Navigator.of(context)
+                  //               .pushNamed('/changelanguage');
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.symmetric(
+                  //               horizontal: 8.0, vertical: 8),
+                  //           child: Row(
+                  //             mainAxisAlignment:
+                  //                 MainAxisAlignment.spaceBetween,
+                  //             children: [
+                  //               Text(("change_language".tr),
+                  //                   style: Theme.of(context)
+                  //                       .textTheme
+                  //                       .bodyLarge!
+                  //                       .copyWith(
+                  //                           fontWeight: FontWeight.w600,
+                  //                           color: Colors.black)),
+                  //               const Icon(Icons.arrow_forward_ios,
+                  //                   color: Colors.black, size: 18),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+
+                  // AccordionSection(
+                  //   rightIcon: Icon(
+                  //     Icons.arrow_drop_down,
+                  //     color: Theme.of(context).primaryColor,
+                  //   ),
+                  //   isOpen: false,
+                  //   leftIcon: navigationDrawerIcon(
+                  //       NavigationDrawerIcons.preferences),
+                  //   headerBackgroundColor: Theme.of(context).cardColor,
+                  //   headerBackgroundColorOpened: Theme.of(context).cardColor,
+                  //   headerBorderWidth: 1,
+                  //   contentBackgroundColor: Colors.white,
+                  //   headerPadding: const EdgeInsets.all(10),
+                  //   contentBorderWidth: 0,
+                  //   contentVerticalPadding: 10,
+                  //   header: Text("Indent".tr,
+                  //       style: Theme.of(context)
+                  //           .textTheme
+                  //           .bodyLarge!
+                  //           .copyWith(color: Theme.of(context).primaryColor)),
+                  //   content: Column(
+                  //     mainAxisSize: MainAxisSize.min,
+                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                  //     children: [
+                  //       VisibilityExtended(
+                  //         visible: true,
+                  //         // visible: GlobalData()
+                  //         //     .isViewAccessPresent(ModuleConstants.WAREHOUSE),
+                  //         child: InkWell(
+                  //           onTap: () {
+                  //             Navigator.of(context).pushNamed("/indent");
+                  //           },
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.symmetric(
+                  //                 horizontal: 8.0, vertical: 8),
+                  //             child: Row(
+                  //               mainAxisAlignment:
+                  //                   MainAxisAlignment.spaceBetween,
+                  //               children: [
+                  //                 Text("Indent",
+                  //                     style: Theme.of(context)
+                  //                         .textTheme
+                  //                         .bodyLarge!
+                  //                         .copyWith(
+                  //                             fontWeight: FontWeight.w600,
+                  //                             color: Colors.black)),
+                  //                 const Icon(Icons.arrow_forward_ios,
+                  //                     color: Colors.black, size: 18),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+
+                  AccordionSection(
+                    rightIcon: Icon(
+                      Icons.arrow_drop_down,
+                      color: Theme.of(context).primaryColor,
                     ),
-                  if (true)
-                    AccordionSection(
-                      rightIcon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      isOpen: false,
-                      leftIcon:
-                          navigationDrawerIcon(NavigationDrawerIcons.register),
-                      headerBackgroundColor: Theme.of(context).cardColor,
-                      headerBackgroundColorOpened: Theme.of(context).cardColor,
-                      headerBorderWidth: 1,
-                      contentBackgroundColor: Colors.white,
-                      headerPadding: const EdgeInsets.all(10),
-                      contentBorderWidth: 0,
-                      contentVerticalPadding: 10,
-                      header: Text('registers'.tr,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(color: Theme.of(context).primaryColor)),
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              Navigator.of(context)
-                                  .pushNamed('/admin/gms/person/register');
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(("person_in_out".tr),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black)),
-                                  const Icon(Icons.arrow_forward_ios,
-                                      color: Colors.black, size: 18),
-                                ],
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.of(context).pushNamed(
-                                  '/admin/gms/person/register',
-                                  arguments: {
-                                    "personType": 1,
-                                    "title": ("employee_in_out".tr)
-                                  });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(("employee_in_out".tr),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black)),
-                                  const Icon(Icons.arrow_forward_ios,
-                                      color: Colors.black, size: 18),
-                                ],
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.of(context).pushNamed(
-                                  '/admin/gms/person/register',
-                                  arguments: {
-                                    "personType": 2,
-                                    "title": ("labour_in_out".tr)
-                                  });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(("labour_in_out".tr),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black)),
-                                  const Icon(Icons.arrow_forward_ios,
-                                      color: Colors.black, size: 18),
-                                ],
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.of(context).pushNamed(
-                                  '/admin/gms/person/register',
-                                  arguments: {
-                                    "personType": 8,
-                                    "title": ("intern_in_out".tr)
-                                  });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(("intern_in_out".tr),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black)),
-                                  const Icon(Icons.arrow_forward_ios,
-                                      color: Colors.black, size: 18),
-                                ],
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.of(context).pushNamed(
-                                  '/admin/gms/person/register',
-                                  arguments: {
-                                    "personType": 5,
-                                    "title": ("visitor_in_out".tr)
-                                  });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(("visitor_in_out".tr),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black)),
-                                  const Icon(Icons.arrow_forward_ios,
-                                      color: Colors.black, size: 18),
-                                ],
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.of(context)
-                                  .pushNamed('/admin/gms/vehicle/inoutlist');
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(("vehicle_in_out".tr),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black)),
-                                  const Icon(Icons.arrow_forward_ios,
-                                      color: Colors.black, size: 18),
-                                ],
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.of(context)
-                                  .pushNamed('/admin/gms/material/register');
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(("material_in_out".tr),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black)),
-                                  const Icon(Icons.arrow_forward_ios,
-                                      color: Colors.black, size: 18),
-                                ],
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.of(context).pushNamed(
-                                  '/admin/gms/material/register',
-                                  arguments: {
-                                    "direction": 1,
-                                    "title": ("material_inward".tr)
-                                  });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(("material_inward".tr),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black)),
-                                  const Icon(Icons.arrow_forward_ios,
-                                      color: Colors.black, size: 18),
-                                ],
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.of(context).pushNamed(
-                                  '/admin/gms/material/register',
-                                  arguments: {
-                                    "direction": 2,
-                                    "title": ("material_outward".tr)
-                                  });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(("material_outward".tr),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black)),
-                                  const Icon(Icons.arrow_forward_ios,
-                                      color: Colors.black, size: 18),
-                                ],
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.of(context).pushNamed(
-                                  '/admin/gms/material/register',
-                                  arguments: {
-                                    "materialType": 3,
-                                    "title": ("documents_movement".tr)
-                                  });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(("documents_movement".tr),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black)),
-                                  const Icon(Icons.arrow_forward_ios,
-                                      color: Colors.black, size: 18),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  if (true)
-                    AccordionSection(
-                        rightIcon: Icon(
-                          Icons.arrow_drop_down,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        isOpen: false,
-                        leftIcon: navigationDrawerIcon(
-                            NavigationDrawerIcons.register),
-                        headerBackgroundColor: Theme.of(context).cardColor,
-                        headerBackgroundColorOpened:
-                            Theme.of(context).cardColor,
-                        headerBorderWidth: 1,
-                        contentBackgroundColor: Colors.white,
-                        headerPadding: const EdgeInsets.all(10),
-                        contentBorderWidth: 0,
-                        contentVerticalPadding: 10,
-                        header: Text('inventory'.tr,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge!
-                                .copyWith(
-                                    color: Theme.of(context).primaryColor)),
-                        content: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              VisibilityExtended(
-                                visible: true,
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.of(context)
-                                        .pushNamed("/inventory");
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 4.0, vertical: 8),
-                                    child: Row(
-                                      children: [
-                                        navigationDrawerIcon(
-                                            NavigationDrawerIcons.inventory),
-                                        const Gap(10),
-                                        Text("map_view".tr,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyLarge!
-                                                .copyWith(
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Colors.black)),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ])),
-                  if (true)
-                    AccordionSection(
-                        rightIcon: Icon(
-                          Icons.arrow_drop_down,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        isOpen: false,
-                        leftIcon: navigationDrawerIcon(
-                            NavigationDrawerIcons.register),
-                        headerBackgroundColor: Theme.of(context).cardColor,
-                        headerBackgroundColorOpened:
-                            Theme.of(context).cardColor,
-                        headerBorderWidth: 1,
-                        contentBackgroundColor: Colors.white,
-                        headerPadding: const EdgeInsets.all(10),
-                        contentBorderWidth: 0,
-                        contentVerticalPadding: 10,
-                        header: Text('reports'.tr,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge!
-                                .copyWith(
-                                    color: Theme.of(context).primaryColor)),
-                        content: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              VisibilityExtended(
-                                visible: true,
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).pushNamed("/reports");
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 8.0, vertical: 8),
-                                    child: Row(
-                                      children: [
-                                        navigationDrawerIcon(
-                                            NavigationDrawerIcons.reports),
-                                        const Gap(10),
-                                        Text("reports".tr,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyLarge!
-                                                .copyWith(
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Colors.black)),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ])),
-                  if (true)
-                    AccordionSection(
-                      rightIcon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      isOpen: false,
-                      leftIcon:
-                          navigationDrawerIcon(NavigationDrawerIcons.sensors),
-                      headerBackgroundColor: Theme.of(context).cardColor,
-                      headerBackgroundColorOpened: Theme.of(context).cardColor,
-                      headerBorderWidth: 1,
-                      contentBackgroundColor: Colors.white,
-                      headerPadding: const EdgeInsets.all(10),
-                      contentBorderWidth: 0,
-                      contentVerticalPadding: 10,
-                      header: Text('sensors'.tr,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(color: Theme.of(context).primaryColor)),
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          VisibilityExtended(
-                            visible: true,
-                            child: InkWell(
-                              onTap: () {
-                                // Navigator.of(context).pushNamed(
-                                //     "/iotsensors/temperature/sensorReportPage"); //change this
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) =>
-                                //             const SelectSensorLocation()));
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 8),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text("sensor_report".tr,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge!
-                                            .copyWith(
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.black)),
-                                    const Icon(Icons.arrow_forward_ios,
-                                        color: Colors.black, size: 18),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          // VisibilityExtended(
-                          //   visible: GlobalData().isViewAccessPresent(
-                          //       ModuleConstants.SENSOR_EXCEPTION_REPORT),
-                          //   child: InkWell(
-                          //     onTap: () {
-                          //       Navigator.of(context).pushNamed(
-                          //           "/iotsensors/temperature/sensorExceptionReportPage"); //change this
-                          //     },
-                          //     child: Padding(
-                          //       padding: const EdgeInsets.symmetric(
-                          //           horizontal: 8.0, vertical: 8),
-                          //       child: Row(
-                          //         children: [
-                          //           Icon(Icons.arrow_forward,
-                          //               color: Colors.white, size: 22),
-                          //           SizedBox(width: 8),
-                          //           Text(
-                          //               AppLocalizations.of(context)        (
-                          //                   "sensor_exception_report"),
-                          //               style: Theme.of(context)
-                          //                   .textTheme
-                          //                   .bodyText1
-                          //                   .copyWith(
-                          //                       fontWeight: FontWeight.w600,
-                          //                       color: Colors.white)),
-                          //         ],
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-                          // VisibilityExtended(
-                          //   visible: GlobalData().isViewAccessPresent(
-                          //       ModuleConstants.SENSOR_DATA_VIEW_REPORT),
-                          //   child: InkWell(
-                          //     onTap: () {
-                          //       Navigator.of(context).pushNamed(
-                          //           "/iotsensors/temperature/sensordataviewlist"); //change this
-                          //     },
-                          //     child: Padding(
-                          //       padding: const EdgeInsets.symmetric(
-                          //           horizontal: 8.0, vertical: 8),
-                          //       child: Row(
-                          //         children: [
-                          //           Icon(Icons.arrow_forward,
-                          //               color: Colors.white, size: 22),
-                          //           SizedBox(width: 8),
-                          //           Text(
-                          //               AppLocalizations.of(context)
-                          //                         ("sensor_data_view"),
-                          //               style: Theme.of(context)
-                          //                   .textTheme
-                          //                   .bodyText1
-                          //                   .copyWith(
-                          //                       fontWeight: FontWeight.w600,
-                          //                       color: Colors.white)),
-                          //         ],
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-                          // VisibilityExtended(
-                          //   visible: GlobalData().isViewAccessPresent(
-                          //       ModuleConstants.SENSOR_VIEW),
-                          //   child: InkWell(
-                          //     onTap: () {
-                          //       Navigator.of(context).pushNamed(
-                          //           "/iotsensors/temperature/sensorViewPage"); //change this
-                          //     },
-                          //     child: Padding(
-                          //       padding: const EdgeInsets.symmetric(
-                          //           horizontal: 8.0, vertical: 8),
-                          //       child: Row(
-                          //         children: [
-                          //           Icon(Icons.arrow_forward,
-                          //               color: Colors.white, size: 22),
-                          //           SizedBox(width: 8),
-                          //           Text(
-                          //               AppLocalizations.of(context)
-                          //                         ("sensor_view"),
-                          //               style: Theme.of(context)
-                          //                   .textTheme
-                          //                   .bodyText1
-                          //                   .copyWith(
-                          //                       fontWeight: FontWeight.w600,
-                          //                       color: Colors.white)),
-                          //         ],
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-                          // VisibilityExtended(
-                          //   visible: GlobalData().isViewAccessPresent(
-                          //       ModuleConstants.SENSOR_ALERT),
-                          //   child: InkWell(
-                          //     onTap: () {
-                          //       Navigator.of(context).pushNamed(
-                          //           "/iotsensors/temperature/sensoralertlistpage"); //change this
-                          //     },
-                          //     child: Padding(
-                          //       padding: const EdgeInsets.symmetric(
-                          //           horizontal: 8.0, vertical: 8),
-                          //       child: Row(
-                          //         children: [
-                          //           Icon(Icons.arrow_forward,
-                          //               color: Colors.white, size: 22),
-                          //           SizedBox(width: 8),
-                          //           Text(
-                          //               AppLocalizations.of(context)
-                          //                         ("sensor_alert"),
-                          //               style: Theme.of(context)
-                          //                   .textTheme
-                          //                   .bodyText1
-                          //                   .copyWith(
-                          //                       fontWeight: FontWeight.w600,
-                          //                       color: Colors.white)),
-                          //         ],
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-                          // VisibilityExtended(
-                          //   visible: GlobalData().isViewAccessPresent(
-                          //       ModuleConstants.SENSOR_ALERT_SUBSCRIPTION),
-                          //   child: InkWell(
-                          //     onTap: () {
-                          //       Navigator.of(context).pushNamed(
-                          //           "/iotsensors/temperature/sensoralertsubscriptionpage"); //change this
-                          //     },
-                          //     child: Padding(
-                          //       padding: const EdgeInsets.symmetric(
-                          //           horizontal: 8.0, vertical: 8),
-                          //       child: Row(
-                          //         children: [
-                          //           Icon(Icons.arrow_forward,
-                          //               color: Colors.white, size: 22),
-                          //           SizedBox(width: 8),
-                          //           Text(
-                          //               AppLocalizations.of(context)        (
-                          //                   "sensor_alert_subscription"),
-                          //               style: Theme.of(context)
-                          //                   .textTheme
-                          //                   .bodyText1
-                          //                   .copyWith(
-                          //                       fontWeight: FontWeight.w600,
-                          //                       color: Colors.white)),
-                          //         ],
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-                        ],
-                      ),
-                    ),
-                  if (true)
-                    AccordionSection(
-                      rightIcon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      isOpen: false,
-                      leftIcon: navigationDrawerIcon(NavigationDrawerIcons.hr),
-                      headerBackgroundColor: Theme.of(context).cardColor,
-                      headerBackgroundColorOpened: Theme.of(context).cardColor,
-                      headerBorderWidth: 1,
-                      contentBackgroundColor: Colors.white,
-                      headerPadding: const EdgeInsets.all(10),
-                      contentBorderWidth: 0,
-                      contentVerticalPadding: 10,
-                      header: Text('hr'.tr,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(color: Theme.of(context).primaryColor)),
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          VisibilityExtended(
-                            visible: true,
-                            // visible: GlobalData().isViewAccessPresent(
-                            //     ModuleConstants.HR_PERSON),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.of(context)
-                                    .pushNamed('/admin/gms/person/list');
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 8),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(("person".tr),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge!
-                                            .copyWith(
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.black)),
-                                    const Icon(Icons.arrow_forward_ios,
-                                        color: Colors.black, size: 18),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.of(context).pushNamed(
-                                  //TODO: change this
-                                  '/admin/gms/person/taskmanagement',
-                                  arguments: {
-                                    "personType": 1,
-                                    "title": ("task_management".tr)
-                                  });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(("task_management".tr),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black)),
-                                  const Icon(Icons.arrow_forward_ios,
-                                      color: Colors.black, size: 18),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  if (true)
-                    AccordionSection(
-                      rightIcon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      isOpen: false,
-                      leftIcon:
-                          navigationDrawerIcon(NavigationDrawerIcons.sales),
-                      headerBackgroundColor: Theme.of(context).cardColor,
-                      headerBackgroundColorOpened: Theme.of(context).cardColor,
-                      headerBorderWidth: 1,
-                      contentBackgroundColor: Colors.white,
-                      headerPadding: const EdgeInsets.all(10),
-                      contentBorderWidth: 0,
-                      contentVerticalPadding: 10,
-                      header: Text('sales'.tr,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(color: Theme.of(context).primaryColor)),
-                      content: Container(
+                    isOpen: false,
+                    leftIcon:
+                        navigationDrawerIcon(NavigationDrawerIcons.preferences),
+                    headerBackgroundColor: Theme.of(context).cardColor,
+                    headerBackgroundColorOpened: Theme.of(context).cardColor,
+                    headerBorderWidth: 1,
+                    contentBackgroundColor: Colors.white,
+                    headerPadding: const EdgeInsets.all(10),
+                    contentBorderWidth: 0,
+                    contentVerticalPadding: 10,
+                    header: Text("Onboarding",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge!
+                            .copyWith(color: Theme.of(context).primaryColor)),
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        VisibilityExtended(
+                          visible: true,
+                          // visible: GlobalData()
+                          //     .isViewAccessPresent(ModuleConstants.WAREHOUSE),
                           child: InkWell(
-                        onTap: () {
-                          Navigator.of(context)
-                              .pushNamed('/admin/customer/list');
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8.0, vertical: 8),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(("customer".tr),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .copyWith(
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black)),
-                              const Icon(Icons.arrow_forward_ios,
-                                  color: Colors.black, size: 18),
-                            ],
+                            onTap: () {
+                              context.pushRoute(const AddEmployeeRoute());
+                              if (isMobile()) Navigator.pop(context);
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8.0, vertical: 8),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("Add Employee",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge!
+                                          .copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.black)),
+                                  const Icon(Icons.arrow_forward_ios,
+                                      color: Colors.black, size: 18),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
-                      )),
+                      ],
                     ),
-                  if (true)
-                    AccordionSection(
-                      rightIcon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      isOpen: false,
-                      leftIcon: Icon(
-                        Icons.assignment,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      headerBackgroundColor: Theme.of(context).cardColor,
-                      headerBackgroundColorOpened: Theme.of(context).cardColor,
-                      headerBorderWidth: 1,
-                      contentBackgroundColor: Colors.white,
-                      headerPadding: const EdgeInsets.all(10),
-                      contentBorderWidth: 0,
-                      contentVerticalPadding: 10,
-                      header: Text('Report'.tr,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(color: Theme.of(context).primaryColor)),
-                      content: Column(
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              // Navigator.of(context)
-                              //     .push(MaterialPageRoute(builder: (context) {
-                              //   return const BatchStockFilterPage();
-                              // }));
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(("Batch Stock Report".tr),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black)),
-                                  const Icon(Icons.arrow_forward_ios,
-                                      color: Colors.black, size: 18),
-                                ],
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              // Navigator.of(context)
-                              //     .push(MaterialPageRoute(builder: (context) {
-                              //   return const ChamberFilterPage();
-                              // }));
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(("Chamber Stock Report"),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black)),
-                                  const Icon(Icons.arrow_forward_ios,
-                                      color: Colors.black, size: 18),
-                                ],
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              // Navigator.of(context)
-                              //     .push(MaterialPageRoute(builder: (context) {
-                              //   return const CustomerFilterPage();
-                              // }));
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(("Customer Stock Report"),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black)),
-                                  const Icon(Icons.arrow_forward_ios,
-                                      color: Colors.black, size: 18),
-                                ],
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              // Navigator.of(context)
-                              //     .push(MaterialPageRoute(builder: (context) {
-                              //   return const ExpiryStockFilterPage();
-                              // }));
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(("Expire Stock Report"),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black)),
-                                  const Icon(Icons.arrow_forward_ios,
-                                      color: Colors.black, size: 18),
-                                ],
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              // Navigator.of(context)
-                              //     .push(MaterialPageRoute(builder: (context) {
-                              //   return const ItemStockFilterPage();
-                              // }));
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(("Item Stock Report"),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black)),
-                                  const Icon(Icons.arrow_forward_ios,
-                                      color: Colors.black, size: 18),
-                                ],
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              // Navigator.of(context)
-                              //     .push(MaterialPageRoute(builder: (context) {
-                              //   return const StockFilterPage();
-                              // }));
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  // const Icon(Icons.arrow_forward,
-                                  //     color: Colors.white, size: 22),
-                                  //
-                                  Text(("Stock View Report".tr),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black)),
-                                  const Icon(Icons.arrow_forward_ios,
-                                      color: Colors.black, size: 18),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  if (true)
-                    AccordionSection(
-                      rightIcon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      isOpen: false,
-                      leftIcon:
-                          navigationDrawerIcon(NavigationDrawerIcons.assets),
-                      headerBackgroundColor: Theme.of(context).cardColor,
-                      headerBackgroundColorOpened: Theme.of(context).cardColor,
-                      headerBorderWidth: 1,
-                      contentBackgroundColor: Colors.white,
-                      headerPadding: const EdgeInsets.all(10),
-                      contentBorderWidth: 0,
-                      contentVerticalPadding: 10,
-                      header: Text('Assets'.tr,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(color: Theme.of(context).primaryColor)),
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          VisibilityExtended(
-                            visible: true,
-                            // visible: GlobalData().isViewAccessPresent(
-                            //     ModuleConstants.ASSET_DASHBOARD),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.of(context)
-                                    .pushNamed('/warehouse/assets/dashboard');
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 8),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(("asset_dashboard".tr),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge!
-                                            .copyWith(
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.black)),
-                                    const Icon(Icons.arrow_forward_ios,
-                                        color: Colors.black, size: 18),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          VisibilityExtended(
-                            visible: true,
-                            // visible: GlobalData().isViewAccessPresent(
-                            //     ModuleConstants.ASSET_ENTRY),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.of(context)
-                                    .pushNamed("/warehouse/assets/list");
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 8),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(("asset_entry".tr),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge!
-                                            .copyWith(
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.black)),
-                                    const Icon(Icons.arrow_forward_ios,
-                                        color: Colors.black, size: 18),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          VisibilityExtended(
-                            visible: true,
-                            // visible: GlobalData().isViewAccessPresent(
-                            //     ModuleConstants.ASSET_LABELLING),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.of(context)
-                                    .pushNamed('/warehouse/assets/labelling');
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 8),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(("asset_labelling".tr),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge!
-                                            .copyWith(
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.black)),
-                                    const Icon(Icons.arrow_forward_ios,
-                                        color: Colors.black, size: 18),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          VisibilityExtended(
-                            visible: true,
-                            // visible: GlobalData().isViewAccessPresent(
-                            //     ModuleConstants.ASSET_AUDIT),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.of(context)
-                                    .pushNamed('/warehouse/assets/audit');
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 8),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(("asset_audit".tr),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge!
-                                            .copyWith(
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.black)),
-                                    const Icon(Icons.arrow_forward_ios,
-                                        color: Colors.black, size: 18),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          VisibilityExtended(
-                            visible: true,
-                            // visible: GlobalData().isViewAccessPresent(
-                            //     ModuleConstants.ASSET_MAINTENANCE),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.of(context).pushNamed(
-                                    '/warehouse/assets/maintenanceListPage');
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 8),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      ("asset_maintenance".tr),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black),
-                                    ),
-                                    const Icon(Icons.arrow_forward_ios,
-                                        color: Colors.black, size: 18),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          VisibilityExtended(
-                            visible: true,
-                            // visible: GlobalData().isViewAccessPresent(
-                            //     ModuleConstants.ASSET_ASSIGNMENT),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.of(context).pushNamed(
-                                    '/warehouse/assets/assetAssignmentListPage');
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 8),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      ("asset_assignments".tr),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black),
-                                    ),
-                                    const Icon(Icons.arrow_forward_ios,
-                                        color: Colors.black, size: 18),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          VisibilityExtended(
-                            visible: true,
-                            // visible: GlobalData().isViewAccessPresent(
-                            //     ModuleConstants.ASSET_ASSIGNMENT_LOG),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.of(context).pushNamed(
-                                    '/warehouse/assets/assetAssignment/log');
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 8),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      ("asset_assignment_log".tr),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black),
-                                    ),
-                                    const Icon(Icons.arrow_forward_ios,
-                                        color: Colors.black, size: 18),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  if (true)
-                    AccordionSection(
-                      rightIcon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      isOpen: false,
-                      leftIcon: navigationDrawerIcon(
-                          NavigationDrawerIcons.preferences),
-                      headerBackgroundColor: Theme.of(context).cardColor,
-                      headerBackgroundColorOpened: Theme.of(context).cardColor,
-                      headerBorderWidth: 1,
-                      contentBackgroundColor: Colors.white,
-                      headerPadding: const EdgeInsets.all(10),
-                      contentBorderWidth: 0,
-                      contentVerticalPadding: 10,
-                      header: Text('preferences'.tr,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(color: Theme.of(context).primaryColor)),
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          VisibilityExtended(
-                            visible: true,
-                            // visible: GlobalData()
-                            //     .isViewAccessPresent(ModuleConstants.WAREHOUSE),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.of(context)
-                                    .pushNamed("/warehouse/list");
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 8),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(("warehouse".tr),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge!
-                                            .copyWith(
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.black)),
-                                    const Icon(Icons.arrow_forward_ios,
-                                        color: Colors.black, size: 18),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.of(context)
-                                  .pushNamed('/changelanguage');
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(("change_language".tr),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black)),
-                                  const Icon(Icons.arrow_forward_ios,
-                                      color: Colors.black, size: 18),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  if (true)
-                    AccordionSection(
-                      rightIcon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      isOpen: false,
-                      leftIcon: navigationDrawerIcon(
-                          NavigationDrawerIcons.preferences),
-                      headerBackgroundColor: Theme.of(context).cardColor,
-                      headerBackgroundColorOpened: Theme.of(context).cardColor,
-                      headerBorderWidth: 1,
-                      contentBackgroundColor: Colors.white,
-                      headerPadding: const EdgeInsets.all(10),
-                      contentBorderWidth: 0,
-                      contentVerticalPadding: 10,
-                      header: Text("Indent".tr,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(color: Theme.of(context).primaryColor)),
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          VisibilityExtended(
-                            visible: true,
-                            // visible: GlobalData()
-                            //     .isViewAccessPresent(ModuleConstants.WAREHOUSE),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.of(context).pushNamed("/indent");
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 8),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text("Indent",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge!
-                                            .copyWith(
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.black)),
-                                    const Icon(Icons.arrow_forward_ios,
-                                        color: Colors.black, size: 18),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  if (true)
-                    AccordionSection(
-                      rightIcon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      isOpen: false,
-                      leftIcon: navigationDrawerIcon(
-                          NavigationDrawerIcons.preferences),
-                      headerBackgroundColor: Theme.of(context).cardColor,
-                      headerBackgroundColorOpened: Theme.of(context).cardColor,
-                      headerBorderWidth: 1,
-                      contentBackgroundColor: Colors.white,
-                      headerPadding: const EdgeInsets.all(10),
-                      contentBorderWidth: 0,
-                      contentVerticalPadding: 10,
-                      header: Text("logout".tr,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(color: Theme.of(context).primaryColor)),
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          VisibilityExtended(
-                            visible: true,
-                            // visible: GlobalData()
-                            //     .isViewAccessPresent(ModuleConstants.WAREHOUSE),
-                            child: InkWell(
-                              onTap: () {},
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 8),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text("logout".tr,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge!
-                                            .copyWith(
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.black)),
-                                    const Icon(Icons.arrow_forward_ios,
-                                        color: Colors.black, size: 18),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  ),
                 ],
               ),
             ),

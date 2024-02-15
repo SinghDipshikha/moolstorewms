@@ -6,8 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:moolwmsstore/View/base/mobileAppBar.dart';
-import 'package:moolwmsstore/appConstants.dart';
+import 'package:moolwmsstore/View/common/mobileAppBar.dart';
+import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/routes/approutes.gr.dart';
 import 'package:platform_detector/platform_detector.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -91,7 +91,7 @@ class _GMSDashboardBodyState extends State<GMSDashboardBody> {
     final double height = MediaQuery.sizeOf(context).height;
     final double width = MediaQuery.sizeOf(context).width;
     return Scaffold(
-      appBar: isMobile() ? appBarMobile(context) : null,
+
       body: ListView(
         children: [
           const Gap(10),

@@ -5,8 +5,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:moolwmsstore/Controller/userController.dart';
-import 'package:moolwmsstore/View/base/customButton.dart';
-import 'package:moolwmsstore/appConstants.dart';
+import 'package:moolwmsstore/View/common/customButton.dart';
+import 'package:moolwmsstore/utils/appConstants.dart';
 
 bool securityVerified = false;
 bool driverVerified = false;

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
-import 'package:moolwmsstore/appConstants.dart';
+import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/helper/messages.dart';
 import 'package:moolwmsstore/routes/approutes.dart';
 import 'package:platform_detector/platform_detector.dart';

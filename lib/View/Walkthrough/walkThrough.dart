@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/View/auth/login.dart';
-import 'package:moolwmsstore/View/base/customButton.dart';
+import 'package:moolwmsstore/View/common/customButton.dart';
 import 'package:moolwmsstore/routes/approutes.gr.dart';
 import 'package:platform_detector/platform_detector.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -47,6 +46,18 @@ class _WalkThroughState extends State<WalkThrough> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: isMobile()
+          ? CustomButton(
+              title: 'get_started'.tr,
+              onTap: () {
+                context.pushRoute(const LoginRoute());
+                // context.router.pushNamed(
+                //     '${LoginWebBodyRoute.name}/${LoginRoute.name}');
+                //  Get.to(const Login());
+              },
+            )
+          : null,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
@@ -93,17 +104,6 @@ class _WalkThroughState extends State<WalkThrough> {
                 ],
               ),
               //  const Gap(10),
-
-              if (isMobile())
-                CustomButton(
-                  title: 'get_started'.tr,
-                  onTap: () {
-                    context.pushRoute(const LoginRoute());
-                    // context.router.pushNamed(
-                    //     '${LoginWebBodyRoute.name}/${LoginRoute.name}');
-                    //  Get.to(const Login());
-                  },
-                ),
             ],
           ),
         ),

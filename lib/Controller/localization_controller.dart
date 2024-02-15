@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/appConstants.dart';
+import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalizationController extends GetxController {

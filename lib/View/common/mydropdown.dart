@@ -6,16 +6,16 @@ class MyDropdown extends StatelessWidget {
   String? selectedValue;
   String? labelText;
   bool shadow;
-  Widget? y = Container();
+  // Widget? y = Container();
   void Function(String?)? onChanged;
-  MyDropdown(
-      {super.key,
-      required this.list,
-      required this.selectedValue,
-      required this.onChanged,
-      required this.labelText,
-      this.shadow = false,
-      this.y});
+  MyDropdown({
+    super.key,
+    required this.list,
+    required this.selectedValue,
+    required this.onChanged,
+    required this.labelText,
+    this.shadow = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,7 @@ class MyDropdown extends StatelessWidget {
         dropdownStyleData: DropdownStyleData(
           direction: DropdownDirection.right,
           maxHeight: 1000,
-          width: 120,
+          width: 200,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(14),
             // color: Colors.white,

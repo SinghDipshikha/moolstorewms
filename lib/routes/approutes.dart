@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:moolwmsstore/View/auth/addWarehouse.dart';
 import 'package:platform_detector/platform_detector.dart';
 
 import 'approutes.gr.dart';
@@ -13,15 +12,17 @@ class AppRouter extends $AppRouter {
           initial: true,
         ),
         AutoRoute(path: "/", page: MobileWebBodyRoute.page, children: [
+           AutoRoute(page: AddEmployeeRoute.page, path: "AddEmployee"),
           AutoRoute(
-            path: "OwnerDashboard",
-            page: OwnerOnboradRoute.page,
-            initial: true,
-          ),
+              initial: true,
+              page: OwnerDashboradRoute.page,
+              path: "OwnerDashboard",
+              children: [
+                AutoRoute(page: OwnerDashboardBodyRoute.page, initial: true),
+              ]),
           AutoRoute(
               page: GMSDashboardRoute.page,
               path: "GMSDashboard",
-              //  initial: true,
               children: [
                 AutoRoute(page: GMSDashboardBodyRoute.page, initial: true),
                 AutoRoute(page: MaterialPageBodyRoute.page, path: "Material"),

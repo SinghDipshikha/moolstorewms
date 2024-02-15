@@ -7,10 +7,10 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
 import 'package:moolwmsstore/View/auth/verifyOtp.dart';
-import 'package:moolwmsstore/View/base/animated_dialog.dart';
-import 'package:moolwmsstore/View/base/customButton.dart';
-import 'package:moolwmsstore/View/base/myTextField.dart';
-import 'package:moolwmsstore/appConstants.dart';
+import 'package:moolwmsstore/View/common/animated_dialog.dart';
+import 'package:moolwmsstore/View/common/customButton.dart';
+import 'package:moolwmsstore/View/common/myTextField.dart';
+import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/routes/approutes.gr.dart';
 import 'package:platform_detector/platform_detector.dart';
 
