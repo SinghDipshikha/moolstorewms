@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 
 class TextUtils {
-  static bool validateTYPE({required String type, required String val}) {
+  static bool validateTYPE({required String? type, required String val}) {
     if (type == "mobile") {
       return true;
     } else if (type == "pan") {
@@ -46,6 +46,28 @@ class TextUtils {
       return TextInputType.text;
     } else {
       return TextInputType.text;
+    }
+  }
+
+  static List<TextInputFormatter>? inputFormatters(String? type) {
+    if (type == "mobile") {
+      return null;
+    } else if (type == "pan") {
+      return [UpperCaseTextFormatter()];
+    } else if (type == "gst") {
+      return [UpperCaseTextFormatter()];
+    } else if (type == "num") {
+      return null;
+    } else if (type == "email") {
+      return null;
+    } else if (type == "double") {
+      return null;
+    } else if (type == "string") {
+      return null;
+    } else if (type == "name") {
+      return [UpperCaseTextFormatter()];
+    } else {
+      return null;
     }
   }
 
@@ -103,4 +125,20 @@ class TextUtils {
   static bool isValidPAN(String gstNo) {
     return gstNo.contains(RegExp('[A-Z]{5}[0-9]{4}[A-Z]{1}'));
   }
+}
+
+class UpperCaseTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    return TextEditingValue(
+      text: capitalize(newValue.text),
+      selection: newValue.selection,
+    );
+  }
+}
+
+String capitalize(String value) {
+  if (value.trim().isEmpty) return "";
+  return "${value[0].toUpperCase()}${value.substring(1).toLowerCase()}";
 }

@@ -25,8 +25,11 @@ mixin _$SignupField {
   String get type => throw _privateConstructorUsedError;
   String? get error_message_on_empt => throw _privateConstructorUsedError;
   String? get invalid_message => throw _privateConstructorUsedError;
-  dynamic get value => throw _privateConstructorUsedError; //   String? regex,
-  int get required => throw _privateConstructorUsedError;
+  dynamic get value => throw _privateConstructorUsedError;
+  String? get regex => throw _privateConstructorUsedError;
+  List<dynamic>? get selected_values => throw _privateConstructorUsedError;
+  int? get required => throw _privateConstructorUsedError;
+  int? get isShow => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,7 +50,10 @@ abstract class $SignupFieldCopyWith<$Res> {
       String? error_message_on_empt,
       String? invalid_message,
       dynamic value,
-      int required});
+      String? regex,
+      List<dynamic>? selected_values,
+      int? required,
+      int? isShow});
 }
 
 /// @nodoc
@@ -69,7 +75,10 @@ class _$SignupFieldCopyWithImpl<$Res, $Val extends SignupField>
     Object? error_message_on_empt = freezed,
     Object? invalid_message = freezed,
     Object? value = freezed,
-    Object? required = null,
+    Object? regex = freezed,
+    Object? selected_values = freezed,
+    Object? required = freezed,
+    Object? isShow = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -96,10 +105,22 @@ class _$SignupFieldCopyWithImpl<$Res, $Val extends SignupField>
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      required: null == required
+      regex: freezed == regex
+          ? _value.regex
+          : regex // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selected_values: freezed == selected_values
+          ? _value.selected_values
+          : selected_values // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+      required: freezed == required
           ? _value.required
           : required // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
+      isShow: freezed == isShow
+          ? _value.isShow
+          : isShow // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -119,7 +140,10 @@ abstract class _$$SignupFieldImplCopyWith<$Res>
       String? error_message_on_empt,
       String? invalid_message,
       dynamic value,
-      int required});
+      String? regex,
+      List<dynamic>? selected_values,
+      int? required,
+      int? isShow});
 }
 
 /// @nodoc
@@ -139,7 +163,10 @@ class __$$SignupFieldImplCopyWithImpl<$Res>
     Object? error_message_on_empt = freezed,
     Object? invalid_message = freezed,
     Object? value = freezed,
-    Object? required = null,
+    Object? regex = freezed,
+    Object? selected_values = freezed,
+    Object? required = freezed,
+    Object? isShow = freezed,
   }) {
     return _then(_$SignupFieldImpl(
       id: null == id
@@ -166,10 +193,22 @@ class __$$SignupFieldImplCopyWithImpl<$Res>
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      required: null == required
+      regex: freezed == regex
+          ? _value.regex
+          : regex // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selected_values: freezed == selected_values
+          ? _value._selected_values
+          : selected_values // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+      required: freezed == required
           ? _value.required
           : required // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
+      isShow: freezed == isShow
+          ? _value.isShow
+          : isShow // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -184,7 +223,11 @@ class _$SignupFieldImpl implements _SignupField {
       this.error_message_on_empt,
       this.invalid_message,
       this.value,
-      required this.required});
+      this.regex,
+      final List<dynamic>? selected_values,
+      this.required,
+      this.isShow})
+      : _selected_values = selected_values;
 
   factory _$SignupFieldImpl.fromJson(Map<String, dynamic> json) =>
       _$$SignupFieldImplFromJson(json);
@@ -201,13 +244,26 @@ class _$SignupFieldImpl implements _SignupField {
   final String? invalid_message;
   @override
   final dynamic value;
-//   String? regex,
   @override
-  final int required;
+  final String? regex;
+  final List<dynamic>? _selected_values;
+  @override
+  List<dynamic>? get selected_values {
+    final value = _selected_values;
+    if (value == null) return null;
+    if (_selected_values is EqualUnmodifiableListView) return _selected_values;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final int? required;
+  @override
+  final int? isShow;
 
   @override
   String toString() {
-    return 'SignupField(id: $id, field_name: $field_name, type: $type, error_message_on_empt: $error_message_on_empt, invalid_message: $invalid_message, value: $value, required: $required)';
+    return 'SignupField(id: $id, field_name: $field_name, type: $type, error_message_on_empt: $error_message_on_empt, invalid_message: $invalid_message, value: $value, regex: $regex, selected_values: $selected_values, required: $required, isShow: $isShow)';
   }
 
   @override
@@ -224,8 +280,12 @@ class _$SignupFieldImpl implements _SignupField {
             (identical(other.invalid_message, invalid_message) ||
                 other.invalid_message == invalid_message) &&
             const DeepCollectionEquality().equals(other.value, value) &&
+            (identical(other.regex, regex) || other.regex == regex) &&
+            const DeepCollectionEquality()
+                .equals(other._selected_values, _selected_values) &&
             (identical(other.required, required) ||
-                other.required == required));
+                other.required == required) &&
+            (identical(other.isShow, isShow) || other.isShow == isShow));
   }
 
   @JsonKey(ignore: true)
@@ -238,7 +298,10 @@ class _$SignupFieldImpl implements _SignupField {
       error_message_on_empt,
       invalid_message,
       const DeepCollectionEquality().hash(value),
-      required);
+      regex,
+      const DeepCollectionEquality().hash(_selected_values),
+      required,
+      isShow);
 
   @JsonKey(ignore: true)
   @override
@@ -262,7 +325,10 @@ abstract class _SignupField implements SignupField {
       final String? error_message_on_empt,
       final String? invalid_message,
       final dynamic value,
-      required final int required}) = _$SignupFieldImpl;
+      final String? regex,
+      final List<dynamic>? selected_values,
+      final int? required,
+      final int? isShow}) = _$SignupFieldImpl;
 
   factory _SignupField.fromJson(Map<String, dynamic> json) =
       _$SignupFieldImpl.fromJson;
@@ -279,8 +345,14 @@ abstract class _SignupField implements SignupField {
   String? get invalid_message;
   @override
   dynamic get value;
-  @override //   String? regex,
-  int get required;
+  @override
+  String? get regex;
+  @override
+  List<dynamic>? get selected_values;
+  @override
+  int? get required;
+  @override
+  int? get isShow;
   @override
   @JsonKey(ignore: true)
   _$$SignupFieldImplCopyWith<_$SignupFieldImpl> get copyWith =>

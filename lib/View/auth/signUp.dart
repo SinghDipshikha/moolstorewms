@@ -1,350 +1,495 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Controller/authController.dart';
-import 'package:moolwmsstore/Controller/localization_controller.dart';
 import 'package:moolwmsstore/Data/Model/Auth/signupfield.dart';
-import 'package:moolwmsstore/View/common/animated_dialog.dart';
+import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
-import 'package:moolwmsstore/View/common/loadingWidget.dart';
-import 'package:moolwmsstore/routes/approutes.gr.dart';
-import 'package:moolwmsstore/utils/appConstants.dart';
-import 'package:moolwmsstore/utils/textfielddecoration.dart';
+import 'package:moolwmsstore/View/common/myTextField.dart';
+import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:moolwmsstore/utils/textutils.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 @RoutePage()
-class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+class Signup extends StatefulWidget {
+  const Signup({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<Signup> createState() => _SignupState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignupState extends State<Signup> {
+  List toAskInWarehouse = [];
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  List addWarehouse = [];
 
-  bool isAgreeTermsAndCondition = true;
+  Map response = {};
+  void submit() {
+    if (_formKey.currentState?.validate() ?? false) {}
+    Get.find<AuthController>().fields.forEach((element) {
+      response[element.field_name] = element.value;
+    });
+
+    response["wareHouse"] = addWarehouse;
+    Logger().i(response);
+    Get.find<AuthController>().signup(response);
+    //
+  }
+
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AuthController>(initState: (state) {
-      Get.find<AuthController>().getSignupFields();
-    }, builder: (authController) {
-      return Scaffold(
-          // floatingActionButtonLocation:
-          //     FloatingActionButtonLocation.centerDocked,
-          // floatingActionButton: CustomButton(
-          //   glow: isAgreeTermsAndCondition,
-          //   title: 'get_started'.tr,
-          //   onTap: () {
-          //     if (isAgreeTermsAndCondition) {
-          //       _formKey.currentState!.validate();
-          //       // context.pushRoute(const AddWarehouseRoute());
-          //     }
-          //   },
-          // ),
-          appBar: AppBar(
-            centerTitle: true,
-            title: Image.asset(
-              "assets/images/moolcode_logo.png",
-              height: kToolbarHeight * 0.9,
-            ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: PopupMenuButton(
-                  child: const Icon(
-                    Icons.more_vert,
-                  ),
-                  onSelected: (val) async {
-                    if (val == "CHANGE_LANGUAGE ".tr) {
-                      showAnimatedDialog(
-                          animationType: DialogTransitionType.slideFromLeftFade,
-                          barrierDismissible: true,
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: Text('select_your_language'.tr),
-                              content: GetBuilder<LocalizationController>(
-                                  builder: (localizationController) {
-                                return Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(
-                                      'please_select_your_prefer_languages'.tr,
-                                      style: TextStyle(
-                                          color: Theme.of(context).hintColor),
-                                    ),
-                                    const Gap(10),
-                                    Wrap(
-                                      children: List.generate(
-                                          AppConstants.LANGUAGE_LIST.length,
-                                          (index) => Padding(
-                                                padding:
-                                                    const EdgeInsets.all(3.0),
-                                                child: InkWell(
-                                                  onTap: () {
-                                                    localizationController
-                                                        .setLanguage(Locale(
-                                                            AppConstants
-                                                                .LANGUAGE_LIST[
-                                                                    index]
-                                                                .languageCode));
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12),
-                                                        color: localizationController
-                                                                    .locale
-                                                                    .languageCode ==
-                                                                AppConstants
-                                                                    .LANGUAGE_LIST[
-                                                                        index]
-                                                                    .languageCode
-                                                            ? Theme.of(context)
-                                                                .primaryColor
-                                                            : null),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              13.0),
-                                                      child: Text(
-                                                        AppConstants
-                                                            .LANGUAGE_LIST[
-                                                                index]
-                                                            .languageName,
-                                                        style: localizationController
-                                                                    .locale
-                                                                    .languageCode ==
-                                                                AppConstants
-                                                                    .LANGUAGE_LIST[
-                                                                        index]
-                                                                    .languageCode
-                                                            ? TextStyle(
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .cardColor)
-                                                            : null,
+    return Scaffold(
+      // floatingActionButtonLocation:
+      //     isMobile(context) ? FloatingActionButtonLocation.centerDocked : null,
+      // floatingActionButton: Padding(
+      //   padding: const EdgeInsets.all(8.0),
+      //   child: CustomButton(
+      //     onTap: submit,
+      //     //    glow: false,
+      //     title: 'next'.tr,
+      //   ),
+      // ),
+      body: SafeArea(
+        child: GetBuilder<AuthController>(builder: (authController) {
+          return authController.fields.isEmpty
+              ? Center(
+                  child: CircularProgressIndicator(
+                  color: AppColors.primaryColor,
+                ))
+              : Center(
+                  child: Form(
+                    key: _formKey,
+                    child: SingleChildScrollView(
+                        child: SizedBox(
+                      width: 96.w,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          //  const Gap(40),
+                          CustomContainer(
+                            labelText: "Sign up",
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              child: Wrap(
+                                runSpacing: isMobile(context) ? 10 : 20,
+                                spacing: 140,
+                                children: List.generate(
+                                    authController.fields.length, (index) {
+                                  SignupField field =
+                                      authController.fields[index];
+                                  if (field.isShow == 0) {
+                                    return Container();
+                                  }
+                                  if (field.type == "initwarehouse") {
+                                    toAskInWarehouse = field.selected_values!;
+                                    return Container();
+                                  }
+                                  onchanged(String? x) {
+                                    authController.fields[index] =
+                                        authController.fields[index]
+                                            .copyWith(value: x);
+                                    authController.update();
+                                  }
+
+                                  return Container(
+                                    constraints: const BoxConstraints(
+                                        // maxHeight: 60,
+                                        minWidth: 400,
+                                        maxWidth: 600),
+                                    child: isMobile(context)
+                                        ? Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 6),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text.rich(
+                                                  TextSpan(
+                                                    children: [
+                                                      TextSpan(
+                                                        text:
+                                                            field.field_name.tr,
+                                                        style: TextStyles
+                                                                .bodyMedium(
+                                                                    context)
+                                                            .copyWith(
+                                                                color: AppColors
+                                                                    .primaryColor),
                                                       ),
-                                                    ),
+                                                      if (field.required == 1)
+                                                        TextSpan(
+                                                          text: '*',
+                                                          style: TextStyles
+                                                                  .bodyMedium(
+                                                                      context)
+                                                              .copyWith(
+                                                                  color: Colors
+                                                                      .red),
+                                                        ),
+                                                    ],
                                                   ),
                                                 ),
-                                              )),
-                                    ),
-                                  ],
+                                                MyTextField(
+                                                  onChanged: onchanged,
+                                                  textCapitalization: TextUtils
+                                                      .textCapitalization(
+                                                          field.type),
+                                                  keyboardType:
+                                                      TextUtils.keyboardType(
+                                                          field.type),
+                                                  validator: (val) {
+                                                    if (val == null ||
+                                                        val.isEmpty) {
+                                                      if (field.error_message_on_empt !=
+                                                              null &&
+                                                          field.required == 1) {
+                                                        return field
+                                                            .error_message_on_empt;
+                                                      } else {
+                                                        return null;
+                                                      }
+                                                    } else if (field
+                                                            .invalid_message !=
+                                                        null) {
+                                                      if (!TextUtils
+                                                          .validateTYPE(
+                                                              type: field.type,
+                                                              val: val)) {
+                                                        return (field
+                                                            .invalid_message
+                                                            ?.tr);
+                                                      } else {
+                                                        return null;
+                                                      }
+                                                    }
+                                                    return null;
+                                                  },
+                                                  borderRadius: 4.82,
+                                                  labelText: field
+                                                      .error_message_on_empt
+                                                      ?.tr,
+                                                )
+                                              ],
+                                            ),
+                                          )
+                                        : Row(
+                                            children: [
+                                              Expanded(
+                                                flex: 2,
+                                                child: Text.rich(
+                                                  TextSpan(
+                                                    children: [
+                                                      TextSpan(
+                                                        text:
+                                                            field.field_name.tr,
+                                                        style: TextStyles
+                                                            .bodyMedium(
+                                                                context),
+                                                      ),
+                                                      if (field.required == 1)
+                                                        TextSpan(
+                                                          text: '*',
+                                                          style: TextStyles
+                                                                  .bodyMedium(
+                                                                      context)
+                                                              .copyWith(
+                                                                  color: Colors
+                                                                      .red),
+                                                        ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                  flex: 5,
+                                                  child: MyTextField(
+                                                    onChanged: onchanged,
+                                                    inputFormatters: TextUtils
+                                                        .inputFormatters(
+                                                            field.type),
+                                                    textCapitalization:
+                                                        TextUtils
+                                                            .textCapitalization(
+                                                                field.type),
+                                                    keyboardType:
+                                                        TextUtils.keyboardType(
+                                                            field.type),
+                                                    validator: (val) {
+                                                      if (val == null ||
+                                                          val.isEmpty) {
+                                                        if (field.error_message_on_empt !=
+                                                                null &&
+                                                            field.required ==
+                                                                1) {
+                                                          return field
+                                                              .error_message_on_empt;
+                                                        } else {
+                                                          return null;
+                                                        }
+                                                      } else if (field
+                                                              .invalid_message !=
+                                                          null) {
+                                                        if (!TextUtils
+                                                            .validateTYPE(
+                                                                type:
+                                                                    field.type,
+                                                                val: val)) {
+                                                          return (field
+                                                              .invalid_message
+                                                              ?.tr);
+                                                        } else {
+                                                          return null;
+                                                        }
+                                                      }
+                                                      return null;
+                                                    },
+                                                    borderRadius: 4.82,
+                                                    labelText: field
+                                                        .error_message_on_empt
+                                                        ?.tr,
+                                                  )),
+                                            ],
+                                          ),
+                                  );
+                                }),
+                              ),
+                            ),
+                          ),
+
+                          ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: addWarehouse.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                  child: CustomContainer(
+                                    labelText: "Add new warehouse",
+                                    child: ListView.builder(
+                                        // scrollDirection: Axis.horizontal,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        itemCount: toAskInWarehouse.length,
+                                        shrinkWrap: true,
+                                        itemBuilder: (context, i) {
+                                          return Container(
+                                            constraints: const BoxConstraints(
+                                                // maxHeight: 60,
+                                                minWidth: 400,
+                                                maxWidth: 600),
+                                            child: isMobile(context)
+                                                ? Padding(
+                                                    padding: const EdgeInsets
+                                                        .symmetric(vertical: 6),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text.rich(
+                                                          TextSpan(
+                                                            children: [
+                                                              TextSpan(
+                                                                text: toAskInWarehouse[
+                                                                        i]
+                                                                    .toString()
+                                                                    .tr,
+                                                                style: TextStyles
+                                                                        .bodyMedium(
+                                                                            context)
+                                                                    .copyWith(
+                                                                        color: AppColors
+                                                                            .primaryColor),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        MyTextField(
+                                                          onChanged: (p0) {
+                                                            addWarehouse[index][
+                                                                toAskInWarehouse[
+                                                                    i]] = p0;
+                                                          },
+                                                          textCapitalization:
+                                                              TextCapitalization
+                                                                  .words,
+
+                                                          // maxLength:
+                                                          //     TextUtils.length(field.type),
+                                                          // initialValue: signupModel.companyName,
+                                                          // onSaved: (val) => signupModel.companyName = val,
+                                                          validator: (val) {
+                                                            if (val == null ||
+                                                                val.isEmpty) {
+                                                              return "required";
+                                                            }
+                                                            return null;
+                                                          },
+                                                          borderRadius: 4.82,
+                                                          //labelText: "cascacac",
+                                                        )
+                                                      ],
+                                                    ),
+                                                  )
+                                                : Padding(
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        vertical: 10),
+                                                    child: Row(
+                                                      children: [
+                                                        Expanded(
+                                                          flex: 2,
+                                                          child: Text.rich(
+                                                            TextSpan(
+                                                              children: [
+                                                                TextSpan(
+                                                                  text: toAskInWarehouse[
+                                                                          i]
+                                                                      .toString()
+                                                                      .tr,
+                                                                  style: TextStyles
+                                                                      .bodyMedium(
+                                                                          context),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Expanded(
+                                                            flex: 5,
+                                                            child: MyTextField(
+                                                              textCapitalization:
+                                                                  TextCapitalization
+                                                                      .words,
+
+                                                              // maxLength:
+                                                              //     TextUtils.length(field.type),
+                                                              // initialValue: signupModel.companyName,
+                                                              // onSaved: (val) => signupModel.companyName = val,
+                                                              // validator: (val) {
+                                                              //   if (val == null ||
+                                                              //       val.isEmpty) {
+                                                              //     return false;
+                                                              //   }
+                                                              // },
+                                                              borderRadius:
+                                                                  4.82,
+                                                            )),
+                                                      ],
+                                                    ),
+                                                  ),
+                                          );
+                                        }),
+                                  ),
                                 );
                               }),
-                            );
-                          });
-                      // Navigator.of(context).pushNamed('/changelanguage');
-                    } else if (val == "CHAT_SUPPORT ".tr) {
-                      // await FlutterFreshchat.showConversations(
-                      //     title: 'MoolWMS Chat Support');
-                    }
-                  },
-                  itemBuilder: (context) {
-                    return [
-                      PopupMenuItem(
-                        value: "CHANGE_LANGUAGE",
-                        child: Row(children: <Widget>[
-                          Icon(Icons.translate,
-                              size: 20, color: Colors.grey[700]),
-                          const SizedBox(width: 8),
-                          Text("change_language".tr)
-                        ]),
-                      ),
-                      PopupMenuItem(
-                        value: "CHAT_SUPPORT",
-                        child: Row(children: <Widget>[
-                          Icon(Icons.live_help,
-                              size: 20, color: Colors.grey[700]),
-                          const SizedBox(width: 8),
-                          Text("chat_support".tr)
-                        ]),
-                      )
-                    ];
-                  },
-                ),
-              ),
-            ],
-          ),
-          body: authController.signupFields.isEmpty
-              ? const LoadingWidget()
-              : Form(
-                  key: _formKey,
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.all(24.0),
-                      child: Column(
-                        children: [
-                          Center(
-                            child: Text("signup".tr,
-                                textAlign: TextAlign.center,
-                                style:
-                                    Theme.of(context).textTheme.headlineSmall),
-                          ),
-                          const SizedBox(height: 8),
-                          Center(
-                            child: Text(
-                                "enter_your_details_to_Create_your_account".tr,
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context).textTheme.bodyMedium
-                                // .copyWith(color: ColorConstants.GREY_DARK)
-                                ),
-                          ),
-                          const SizedBox(height: 32),
-                          Column(
-                            children: List.generate(
-                                authController.signupFields.length, (index) {
-                              SignupField field =
-                                  authController.signupFields[index];
-                              return TextFormField(
-                                onTapOutside: (event) {
-                                  FocusManager.instance.primaryFocus?.unfocus();
-                                },
-                                textCapitalization:
-                                    TextUtils.textCapitalization(field.type),
-                                keyboardType:
-                                    TextUtils.keyboardType(field.type),
-                                maxLength: TextUtils.length(field.type),
-                                // initialValue: signupModel.companyName,
-                                // onSaved: (val) => signupModel.companyName = val,
-                                validator: (val) {
-                                  if (val == null || val.isEmpty) {
-                                    if (field.error_message_on_empt != null) {
-                                      return field.error_message_on_empt!.tr;
-                                    } else {
-                                      return null;
-                                    }
-                                  } else if (field.invalid_message != null) {
-                                    if (!TextUtils.validateTYPE(
-                                        type: field.type, val: val)) {
-                                      return field.invalid_message!.tr;
-                                    } else {
-                                      return null;
-                                    }
-                                  }
-                                  return null;
-                                },
-                                decoration:
-                                    DecorationUtils.getTextFieldDecoration(
-                                  context: context,
-                                  labelText: field.field_name.tr,
-                                ),
-                              ).paddingSymmetric(vertical: 10);
-                            }),
-                          ),
-
-                          const SizedBox(height: 18),
+                          !isMobile(context) ? const Gap(10) : Container(),
                           Row(
+                            mainAxisAlignment: isMobile(context)
+                                ? MainAxisAlignment.center
+                                : MainAxisAlignment.spaceBetween,
                             children: [
-                              SizedBox(
-                                  width: 20,
-                                  height: 20,
-                                  child: Checkbox(
-                                      value: isAgreeTermsAndCondition,
-                                      onChanged: (val) {
-                                        setState(() {
-                                          isAgreeTermsAndCondition =
-                                              !isAgreeTermsAndCondition;
-                                        });
-                                      })),
-                              const SizedBox(width: 8),
-                              Expanded(
-                                child: RichText(
-                                    text: TextSpan(children: [
-                                  TextSpan(
-                                      text: 'i_agree_with_the'.tr,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium),
-                                  TextSpan(
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () async {
-                                          // if (await canLaunch(
-                                          //     AppConstants.TNC_LINK)) {
-                                          //   await launch(AppConstants.TNC_LINK);
-                                          // }
-                                        },
-                                      text: 'terms_and_conditions'.tr,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .copyWith(
-                                              color: Theme.of(context)
-                                                  .primaryColor)),
-                                  TextSpan(
-                                      text: " and ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium),
-                                  TextSpan(
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () async {
-                                          // if (await canLaunch(
-                                          //     AppConstants.POLICY_LINK)) {
-                                          //   await launch(AppConstants.POLICY_LINK);
-                                          // }
-                                        },
-                                      text: 'privacy_policy'.tr,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .copyWith(
-                                              color: Theme.of(context)
-                                                  .primaryColor)),
-                                ])),
-                              )
+                              CustomButton(
+                                onTap: () {
+                                  // int i = addWarehouse.length;
+
+                                  // addWarehouse[i] = {};
+                                  // for (var element in toAskInWarehouse) {
+                                  //   addWarehouse[i][element] = "";
+                                  // }
+                                  setState(() {
+                                    addWarehouse.add({});
+                                  });
+                                },
+                                leftIcon: "assets/icons/Add Red.png",
+                                width: isMobile(context) ? 84.w : 400,
+                                title: 'Add New Warehouse',
+                                glow: false,
+                                //width: 100,
+                              ),
+                              isMobile(context)
+                                  ? Container()
+                                  : CustomButton(
+                                      rightIcon: "assets/icons/Arrow_right.png",
+                                      title: "Next",
+                                      onTap: submit,
+                                    )
                             ],
                           ),
-                          // const SizedBox(height: 18),
 
-                          // const SizedBox(height: 8),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("already_have_an_account".tr,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .copyWith(fontWeight: FontWeight.w700)),
-                              InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text("login".tr,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge!
-                                            .copyWith(
-                                                color: Theme.of(context)
-                                                    .primaryColor,
-                                                fontWeight: FontWeight.w700)),
-                                  ))
-                            ],
-                          ),
-                          CustomButton(
-                            glow: isAgreeTermsAndCondition,
-                            title: 'get_started'.tr,
-                            onTap: () {
-                              if (isAgreeTermsAndCondition) {
-                                // _formKey.currentState!.validate();
-                                context.pushRoute(const AddWarehouseRoute());
-                              }
-                            },
-                          )
+                          const Gap(20),
+                          if (isMobile(context))
+                            CustomButton(
+                              rightIcon: "assets/icons/Arrow_right.png",
+                              width: 84.w,
+                              onTap: submit,
+                              //    glow: false,
+                              title: 'next'.tr,
+                            ),
+                          const Gap(20),
                         ],
                       ),
-                    ),
+                    )),
                   ),
-                ));
-    });
+                );
+        }),
+      ),
+    );
+  }
+}
+
+class CustomContainer extends StatelessWidget {
+  final String labelText;
+  Widget? child;
+  CustomContainer({
+    super.key,
+    required this.labelText,
+    this.child,
+  });
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.topLeft,
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(
+            top: Adaptive.sp(14),
+          ),
+          child: Container(
+            width: 96.w,
+            decoration: ShapeDecoration(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                    width: 5,
+                    color: isMobile(context)
+                        ? AppColors.scaffoldBackgroundColor
+                        : AppColors.primaryColor),
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 20),
+              child: child,
+            ),
+          ),
+        ),
+        Container(
+                // alignment: Alignment.center,
+                color: AppColors.scaffoldBackgroundColor,
+                child: Text(
+                  labelText,
+                  style: TextStyles.titleMedium(context),
+                ).paddingSymmetric(horizontal: 10))
+            .paddingOnly(left: 20)
+      ],
+    );
   }
 }

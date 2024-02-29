@@ -14,7 +14,10 @@ _$SignupFieldImpl _$$SignupFieldImplFromJson(Map<String, dynamic> json) =>
       error_message_on_empt: json['error_message_on_empt'] as String?,
       invalid_message: json['invalid_message'] as String?,
       value: json['value'],
-      required: json['required'] as int,
+      regex: json['regex'] as String?,
+      selected_values: json['selected_values'] as List<dynamic>?,
+      required: json['required'] as int?,
+      isShow: json['isShow'] as int?,
     );
 
 Map<String, dynamic> _$$SignupFieldImplToJson(_$SignupFieldImpl instance) =>
@@ -25,5 +28,8 @@ Map<String, dynamic> _$$SignupFieldImplToJson(_$SignupFieldImpl instance) =>
       'error_message_on_empt': instance.error_message_on_empt,
       'invalid_message': instance.invalid_message,
       'value': instance.value,
+      'regex': instance.regex,
+      'selected_values': instance.selected_values,
       'required': instance.required,
+      'isShow': instance.isShow,
     };

@@ -6,14 +6,16 @@ part 'signupfield.g.dart';
 @freezed
 class SignupField with _$SignupField {
   const factory SignupField({
-    required int id,
+   required int id,
     required String field_name,
     required String type,
     String? error_message_on_empt,
     String? invalid_message,
     dynamic value,
-    //   String? regex,
-    required int required,
+    String? regex,
+    List? selected_values,
+    int? required,
+    int? isShow,
   }) = _SignupField;
 
   factory SignupField.fromJson(Map<String, Object?> json) =>
