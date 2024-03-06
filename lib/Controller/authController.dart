@@ -5,7 +5,6 @@ import 'package:moolwmsstore/Data/api/api_client.dart';
 import 'package:moolwmsstore/Data/repository/authRepo.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/routes/approutes.dart';
-import 'package:moolwmsstore/routes/approutes.gr.dart';
 
 // enum OTP {
 //   init,
@@ -21,14 +20,14 @@ class AuthController extends GetxController {
   final ApiClient apiClient;
   AuthController({required this.authRepo, required this.apiClient});
 
- // var otpstate = OTP.init;
+  // var otpstate = OTP.init;
   String phoneNum = "";
   List<SignupField> fields = [];
   List<AddWarehiuseField> addWarehouseFields = [];
 
   splash() {
     Future.delayed(const Duration(seconds: 3)).whenComplete(() {
-      getIt<AppRouter>().replace(const ChooselanguageRoute());
+    //  getIt<AppRouter>().replace(const ChooselanguageRoute());
       // getIt<AppRouter>().replace(
       //   const SignupRoute(),
       // );
@@ -39,9 +38,9 @@ class AuthController extends GetxController {
     phoneNum = number ?? phoneNum;
     authRepo.sendotp(phoneNum).then((value) {
       if (value.data["result"] == "Otp Sent") {
-        getIt<AppRouter>().replace(
-          const OtpScreenRoute(),
-        );
+        // getIt<AppRouter>().replace(
+        //   const OtpScreenRoute(),
+       // );
       } else {
         AppDecorations.redSnack(value.data["message"]);
       }
@@ -63,9 +62,9 @@ class AuthController extends GetxController {
   verifyOtp(String otp) {
     authRepo.verifyotp(number: phoneNum, otp: otp).then((value) {
       if (value.data["message"] == "Sign up first") {
-        getIt<AppRouter>().replace(
-          const SignupRoute(),
-        );
+        // getIt<AppRouter>().replace(
+        //   const SignupRoute(),
+        // );
       } else {}
     });
   }
@@ -76,9 +75,9 @@ class AuthController extends GetxController {
     //       );
     authRepo.signUp(res: res).then((value) {
       if (value.data["message"] == "User Signup Successful") {
-        getIt<AppRouter>().replace(
-          const WelcomeRoute(),
-        );
+        // getIt<AppRouter>().replace(
+        //   const WelcomeRoute(),
+        // );
       }
     });
   }

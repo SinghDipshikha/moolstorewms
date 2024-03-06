@@ -1,11 +1,29 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-@RoutePage()
+import 'package:get/get.dart';
+
 class AddChamber extends StatelessWidget {
-const AddChamber({ Key? key }) : super(key: key);
+  const AddChamber({super.key});
 
   @override
-  Widget build(BuildContext context){
-    return Container();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        //  centerTitle: false,
+        // shape: const RoundedRectangleBorder(
+        //   borderRadius: BorderRadius.vertical(
+        //     bottom: Radius.circular(34),
+        //   ),
+        // ),
+        backgroundColor: Colors.black,
+        title: Text(
+          'add_chamber'.tr,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 22,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+      ),
+    );
   }
 }

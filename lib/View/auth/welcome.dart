@@ -1,12 +1,9 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
 import 'package:moolwmsstore/routes/approutes.dart';
-import 'package:moolwmsstore/routes/approutes.gr.dart';
 
-@RoutePage()
 class Welcome extends StatelessWidget {
   const Welcome({super.key});
 
@@ -52,9 +49,9 @@ class Welcome extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: CustomButton(
                       onTap: () {
-                        getIt<AppRouter>().replace(
-                          BaseRoute(),
-                        );
+                        // getIt<AppRouter>().replace(
+                        //   BaseRoute(),
+                        // );
                         //  context.pushReplacement(location)
                       },
                       title: "Welcome",

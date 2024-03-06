@@ -38,7 +38,7 @@ class MyTextField extends StatelessWidget {
       decoration: ShapeDecoration(
         color: Colors.white,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(borderRadius ?? 15),
+          borderRadius: BorderRadius.circular(borderRadius ?? 4.82),
         ),
         shadows: const [
           BoxShadow(
@@ -106,9 +106,7 @@ class MyTextField2 extends StatelessWidget {
       this.maxLength,
       this.type,
       this.padding,
-      this.validator}){
-
-      }
+      this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -139,10 +137,10 @@ class MyTextField2 extends StatelessWidget {
           onFieldSubmitted: (value) {
             FocusManager.instance.primaryFocus?.unfocus();
           },
-         // keyboardType: ,
+          // keyboardType: ,
           controller: controller,
           validator: validator,
-          inputFormatters: [],
+          inputFormatters: const [],
           obscureText: obscureText ?? false,
           decoration: InputDecoration(
               hintText: labelText,

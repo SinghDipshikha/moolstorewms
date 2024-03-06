@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -12,35 +11,6 @@ import 'package:otp_text_field_v2/otp_field_style_v2.dart';
 import 'package:otp_text_field_v2/otp_field_v2.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-/*  if (state is OtpVerfiedSucess) {
-                        context.pushReplacement('/SelectRole');
-                      }
-                      if (state is OtpSentSuccess) {
-                        AnimatedSnackBar.material(
-                          "One Time Password has been sent successfully.",
-                          type: AnimatedSnackBarType.success,
-                        ).show(context);
-                        context.pushReplacement('/otpVerification');
-                      }
-                      if (state is OtpSentFailed) {
-                        AnimatedSnackBar.material(
-                          'Cannot send otp to this number',
-                          type: AnimatedSnackBarType.error,
-                        ).show(context);
-                      }
-                      if (state is OtpVerfiedFailed) {
-                        AnimatedSnackBar.material(
-                          "Invalid OTP",
-                          type: AnimatedSnackBarType.error,
-                        ).show(context);
-                      }
-                      if (state is OtpVerfiedSucess) {
-                        if (BlocProvider.of<OtpCubit>(context).newUser) {
-                          context.pushNamed('/SelectRole');
-                        }
-                      } */
-
-@RoutePage()
 class OtpScreen extends StatefulWidget {
   const OtpScreen({
     super.key,

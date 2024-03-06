@@ -1,11 +1,9 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Controller/authController.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-@RoutePage()
 class Splash extends StatelessWidget {
   const Splash({super.key});
 

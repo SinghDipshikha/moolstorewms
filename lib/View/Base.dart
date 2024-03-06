@@ -1,13 +1,10 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
-import 'package:moolwmsstore/routes/approutes.gr.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-@RoutePage()
 class Base extends StatefulWidget {
   const Base({super.key});
 
@@ -200,7 +197,7 @@ class _BaseState extends State<Base> {
               )
             ],
           ),
-          body: const AutoRouter(),
+          body:  Container(),
         ),
         if (show)
           Container(
@@ -243,7 +240,7 @@ class _BaseState extends State<Base> {
                       ),
                       CustomButton(
                         onTap: () {
-                          context.pushRoute(const AddWarehouseRoute());
+                         // context.pushRoute(const AddWarehouseRoute());
                           setState(() {
                             show = false;
                           });

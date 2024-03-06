@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
+import 'package:moolwmsstore/View/Sales/createPo.dart';
 import 'package:moolwmsstore/helper/messages.dart';
-import 'package:moolwmsstore/routes/approutes.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -14,7 +14,7 @@ import 'helper/get_di.dart' as di;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Map<String, Map<String, String>> languages = await di.init();
-  getIt.registerSingleton<AppRouter>(AppRouter());
+//  getIt.registerSingleton<AppRouter>(AppRouter());
 
   runApp(MyApp(
     languages: languages,
@@ -37,7 +37,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _router = getIt<AppRouter>();
+//  final _router = getIt<AppRouter>();
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +47,12 @@ class _MyAppState extends State<MyApp> {
       //  getIt.registerSingleton<TextStyles>(TextStyles);
     }, builder: (localizeController) {
       return ResponsiveSizer(builder: (context, orientation, screenType) {
-        return GetMaterialApp.router(
+        return GetMaterialApp(
+          home: const CreatePo(),
           scaffoldMessengerKey: snackbarKey,
-          routerDelegate: _router.delegate(),
-          routeInformationProvider: _router.routeInfoProvider(),
-          routeInformationParser: _router.defaultRouteParser(),
+          // routerDelegate: _router.delegate(),
+          // routeInformationProvider: _router.routeInfoProvider(),
+          // routeInformationParser: _router.defaultRouteParser(),
           debugShowCheckedModeBanner: true,
           locale: localizeController.locale,
           fallbackLocale: Locale(
@@ -64,9 +65,11 @@ class _MyAppState extends State<MyApp> {
           scrollBehavior: const MaterialScrollBehavior().copyWith(
             dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch},
           ),
+
           theme: ThemeData(
-            // appBarTheme:
-            //     AppBarTheme(color: Colors.white, backgroundColor: Colors.white),
+            // appBarTheme: const AppBarTheme(
+            //   color: Colors.white,
+            // ),
             //  useMaterial3: true,
             scaffoldBackgroundColor: const Color(0xFFF7F7F7),
             textTheme: GoogleFonts.nunitoTextTheme(textTheme),
