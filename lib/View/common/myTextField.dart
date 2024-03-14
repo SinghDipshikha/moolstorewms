@@ -51,7 +51,7 @@ class MyTextField extends StatelessWidget {
       ),
       child: Padding(
         padding:
-            padding ?? const EdgeInsets.symmetric(vertical: 0, horizontal: 5),
+            padding ?? const EdgeInsets.symmetric(vertical: 0, horizontal: 6),
         child: TextFormField(
           textCapitalization: textCapitalization ?? TextCapitalization.none,
           onTapOutside: (event) {
@@ -144,8 +144,7 @@ class MyTextField2 extends StatelessWidget {
           obscureText: obscureText ?? false,
           decoration: InputDecoration(
               hintText: labelText,
-              hintStyle: TextStyles.bodyMedium(context)
-                  .copyWith(color: AppColors.hint),
+              hintStyle: TextStyle(color: AppColors.hint),
               suffixIcon: suffixIcon,
               prefixIcon: prefixIcon,
               border: InputBorder.none),
