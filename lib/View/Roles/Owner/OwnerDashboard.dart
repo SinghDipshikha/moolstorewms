@@ -1,7 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-
+@RoutePage()  
 class OwnerDashboard extends StatefulWidget {
   const OwnerDashboard({super.key});
 

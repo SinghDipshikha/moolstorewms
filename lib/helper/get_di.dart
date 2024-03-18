@@ -14,6 +14,7 @@ import 'package:moolwmsstore/Data/repository/splashRepo.dart';
 import 'package:moolwmsstore/Data/repository/warehouseRepo.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get_it/get_it.dart';
 
 Future<Map<String, Map<String, String>>> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();

@@ -4,7 +4,6 @@ import 'package:moolwmsstore/Data/Model/Auth/signupfield.dart';
 import 'package:moolwmsstore/Data/api/api_client.dart';
 import 'package:moolwmsstore/Data/repository/authRepo.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
-import 'package:moolwmsstore/routes/approutes.dart';
 
 // enum OTP {
 //   init,
@@ -27,7 +26,7 @@ class AuthController extends GetxController {
 
   splash() {
     Future.delayed(const Duration(seconds: 3)).whenComplete(() {
-    //  getIt<AppRouter>().replace(const ChooselanguageRoute());
+      //  getIt<AppRouter>().replace(const ChooselanguageRoute());
       // getIt<AppRouter>().replace(
       //   const SignupRoute(),
       // );
@@ -40,7 +39,7 @@ class AuthController extends GetxController {
       if (value.data["result"] == "Otp Sent") {
         // getIt<AppRouter>().replace(
         //   const OtpScreenRoute(),
-       // );
+        // );
       } else {
         AppDecorations.redSnack(value.data["message"]);
       }

@@ -4,26 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
-import 'package:moolwmsstore/View/Roles/Owner/OwnerDashboard.dart';
 import 'package:moolwmsstore/helper/messages.dart';
+import 'package:moolwmsstore/routes/approutes.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'helper/get_di.dart' as di;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  getIt.registerSingleton<AppRouter>(AppRouter());
   Map<String, Map<String, String>> languages = await di.init();
-//  getIt.registerSingleton<AppRouter>(AppRouter());
 
   runApp(MyApp(
     languages: languages,
   ));
 }
-
-init() async {}
-final GlobalKey<ScaffoldMessengerState> snackbarKey =
-    GlobalKey<ScaffoldMessengerState>();
 
 class MyApp extends StatefulWidget {
   final Map<String, Map<String, String>> languages;
@@ -37,7 +34,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-//  final _router = getIt<AppRouter>();
+  final _router = getIt<AppRouter>();
 
   @override
   Widget build(BuildContext context) {
@@ -47,12 +44,12 @@ class _MyAppState extends State<MyApp> {
       //  getIt.registerSingleton<TextStyles>(TextStyles);
     }, builder: (localizeController) {
       return ResponsiveSizer(builder: (context, orientation, screenType) {
-        return GetMaterialApp(
-          home: const OwnerDashboard(),
+        return GetMaterialApp.router(
+          // home: const OwnerDashboard(),
           scaffoldMessengerKey: snackbarKey,
-          // routerDelegate: _router.delegate(),
-          // routeInformationProvider: _router.routeInfoProvider(),
-          // routeInformationParser: _router.defaultRouteParser(),
+          routerDelegate: _router.delegate(),
+          routeInformationProvider: _router.routeInfoProvider(),
+          routeInformationParser: _router.defaultRouteParser(),
           debugShowCheckedModeBanner: true,
           locale: localizeController.locale,
           fallbackLocale: Locale(

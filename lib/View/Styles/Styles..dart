@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../main.dart';

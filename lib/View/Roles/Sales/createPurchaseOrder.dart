@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -6,7 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
-
+@RoutePage()  
 class CreatePo extends StatefulWidget {
   const CreatePo({
     super.key,

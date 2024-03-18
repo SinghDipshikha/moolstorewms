@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -8,7 +9,7 @@ import 'package:moolwmsstore/View/common/backbutton.dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';
 import 'package:moolwmsstore/utils/textutils.dart';
-
+@RoutePage()  
 class AddWarehouse extends StatelessWidget {
   const AddWarehouse({super.key});
 
