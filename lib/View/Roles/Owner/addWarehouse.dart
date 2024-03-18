@@ -21,9 +21,8 @@ class AddWarehouse extends StatelessWidget {
           style: TextStyle(
             color: Colors.black,
             fontSize: 22,
-            fontFamily: 'Nunito',
             fontWeight: FontWeight.w700,
-            height: 0,
+
           ),
         ),
       ),

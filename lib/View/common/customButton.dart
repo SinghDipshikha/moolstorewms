@@ -21,6 +21,7 @@ class CustomButton extends StatelessWidget {
       this.glow = true,
       this.color,
       this.leftIcon,
+   
       this.rightIcon,
       this.radius});
 
@@ -100,7 +101,9 @@ class CustomButton2 extends StatelessWidget {
   double? width;
   String title;
   double? radius;
-
+  
+ double? rightIconheight ;
+ double? leftIconheight ;
   Color? color;
   String? leftIcon;
   String? rightIcon;
@@ -109,6 +112,8 @@ class CustomButton2 extends StatelessWidget {
       this.onTap,
       this.width,
       required this.title,
+         this.leftIconheight,
+      this.rightIconheight,
       this.color,
       this.leftIcon,
       this.rightIcon,
@@ -150,19 +155,21 @@ class CustomButton2 extends StatelessWidget {
                 if (leftIcon != null)
                   Image.asset(
                     leftIcon!,
+                     height: leftIconheight,
                     // color: glow ? Colors.white : null,
                   ),
                 Text(
                   title,
-                  style: TextStyles.buttonText(context).copyWith(
+                  style: const TextStyle(
                     color: Colors.white,
                   ),
                   textAlign: TextAlign.center,
                 ).paddingSymmetric(horizontal: 10),
                 if (rightIcon != null)
                   Image.asset(
-                    height: 26,
+                     
                     rightIcon!,
+                    height: rightIconheight
                   ),
               ],
             ),

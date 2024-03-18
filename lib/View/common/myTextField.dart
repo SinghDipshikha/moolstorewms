@@ -16,6 +16,7 @@ class MyTextField extends StatelessWidget {
   void Function(String)? onChanged;
   TextCapitalization? textCapitalization;
   double? borderRadius;
+  int? maxLines;
   MyTextField(
       {super.key,
       this.labelText,
@@ -27,6 +28,7 @@ class MyTextField extends StatelessWidget {
       this.prefixIcon,
       this.controller,
       this.maxLength,
+      this.maxLines,
       this.inputFormatters,
       this.keyboardType,
       this.padding,
@@ -53,6 +55,7 @@ class MyTextField extends StatelessWidget {
         padding:
             padding ?? const EdgeInsets.symmetric(vertical: 0, horizontal: 6),
         child: TextFormField(
+          maxLines: maxLines,
           textCapitalization: textCapitalization ?? TextCapitalization.none,
           onTapOutside: (event) {
             FocusManager.instance.primaryFocus?.unfocus();
@@ -68,8 +71,7 @@ class MyTextField extends StatelessWidget {
           obscureText: obscureText ?? false,
           decoration: InputDecoration(
               hintText: labelText,
-              hintStyle: TextStyles.bodyMedium(context)
-                  .copyWith(color: AppColors.hint),
+              hintStyle: TextStyle(color: AppColors.hint),
               suffixIcon: suffixIcon,
               prefixIcon: prefixIcon,
               border: InputBorder.none),

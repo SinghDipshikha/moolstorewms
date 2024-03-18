@@ -268,7 +268,7 @@ class _SignupState extends State<Signup> {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 10),
                                   child: CustomContainer(
-                                    labelText: "Add new warehouse",
+                                    labelText: "Add new warehouse".tr,
                                     child: ListView.builder(
                                         // scrollDirection: Axis.horizontal,
                                         physics:
