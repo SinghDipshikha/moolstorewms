@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
+import 'package:get/get.dart';
 import '../../main.dart';
 
 class TextStyles {
@@ -14,11 +14,75 @@ class TextStyles {
     );
   }
 
-  static TextStyle bodyMedium(context) {
+  static TextStyle titleText(context) {
     return TextStyle(
       color: const Color(0xFF161616),
-      fontSize: !isMobile(context) ? 12.sp : 15.sp,
-      fontWeight: FontWeight.w400,
+      fontSize: context.isPhone ? 22 : 44,
+      fontWeight: context.isPhone ? FontWeight.w700 : FontWeight.w600,
+    );
+  }
+
+  static TextStyle containerSubText(context) {
+    return TextStyle(
+      color: const Color(0xFF161616),
+      fontSize: context.isPhone ? 14 : 40,
+      fontWeight: context.isPhone ? FontWeight.w400 : FontWeight.w600,
+    );
+  }
+
+  static TextStyle subTitleText(context) {
+    return TextStyle(
+      color: const Color(0xFF161616),
+      fontSize: context.isPhone ? 14 : 32,
+      fontWeight: context.isPhone ? FontWeight.w400 : FontWeight.w400,
+    );
+  }
+
+  static TextStyle formLabelText(context) {
+    return TextStyle(
+      color: const Color(0xFF161616),
+      fontSize: context.isPhone ? 16 : 23,
+      fontWeight: context.isPhone ? FontWeight.w400 : FontWeight.w400,
+    );
+  }
+
+  static TextStyle inputFieldHintText(context) {
+    return TextStyle(
+      color: const Color(0xFF161616),
+      fontSize: context.isPhone ? 14 : 23,
+      fontWeight: context.isPhone ? FontWeight.w400 : FontWeight.w400,
+    );
+  }
+
+  static TextStyle inputFieldText(context) {
+    return TextStyle(
+      color: const Color(0xFF161616),
+      fontSize: context.isPhone ? 16 : 23,
+      fontWeight: context.isPhone ? FontWeight.w400 : FontWeight.w400,
+    );
+  }
+
+  static TextStyle sideDrawerTitleText(context) {
+    return TextStyle(
+      color: const Color(0xFF161616),
+      fontSize: context.isPhone ? 16 : 29,
+      fontWeight: context.isPhone ? FontWeight.w700 : FontWeight.w400,
+    );
+  }
+
+  static TextStyle assestsListDataTableHeadingText(context) {
+    return TextStyle(
+      color: context.isPhone ? Color(0x8B8B8B) : Colors.white,
+      fontSize: context.isPhone ? 10 : 25,
+      fontWeight: context.isPhone ? FontWeight.w400 : FontWeight.w700,
+    );
+  }
+
+  static TextStyle assestsListDataTableDetailsText(context) {
+    return TextStyle(
+      color: const Color(0xFF161616),
+      fontSize: context.isPhone ? 12 : 25,
+      fontWeight: context.isPhone ? FontWeight.w600 : FontWeight.w500,
     );
   }
 
@@ -38,11 +102,19 @@ class TextStyles {
     );
   }
 
+  static TextStyle bodyMedium(context) {
+    return TextStyle(
+      color: const Color(0xFF161616),
+      fontSize: !isMobile(context) ? 14.sp : 18.sp,
+      fontWeight: FontWeight.w400,
+    );
+  }
+
   static TextStyle buttonText(context) {
     return TextStyle(
       color: const Color(0xFF161616),
-      fontSize: isMobile(context) ? 15.sp : 12.sp,
-      fontWeight: FontWeight.w700,
+      fontSize: context.isPhone ? 16 : 29.561,
+      fontWeight: context.isPhone ? FontWeight.w700 : FontWeight.w700,
     );
   }
 }
