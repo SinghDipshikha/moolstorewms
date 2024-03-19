@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -10,7 +11,7 @@ import 'package:moolwmsstore/View/common/myTextField.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:moolwmsstore/utils/textutils.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
+@RoutePage()  
 class Signup extends StatefulWidget {
   const Signup({super.key});
 

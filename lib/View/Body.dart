@@ -8,8 +8,9 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.red,
+      ),
       body: const AutoRouter(),
     );
   }

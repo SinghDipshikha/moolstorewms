@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -6,7 +7,7 @@ import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
+@RoutePage()  
 class SelectRole extends StatefulWidget {
   const SelectRole({super.key});
 

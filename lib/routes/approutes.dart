@@ -8,6 +8,25 @@ import 'package:moolwmsstore/routes/approutes.gr.dart';
 class AppRouter extends $AppRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(initial: true, page: Body.page),
+        //Auth
+        AutoRoute(
+          page: Splash.page,
+        ),
+        AutoRoute(initial: true, page: Body.page, children: [
+          AutoRoute(
+            page: AssetsList.page,
+            initial: true,
+          ),
+          AutoRoute(
+            page: AssetEntry.page,
+          ),
+          AutoRoute(
+            page: ChamberView.page,
+          ),
+          AutoRoute(
+            page: ChamberView.page,
+          ),
+          AutoRoute(page: ChamberView.page),
+        ]),
       ];
 }

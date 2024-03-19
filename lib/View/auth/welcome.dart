@@ -1,9 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
 import 'package:moolwmsstore/routes/approutes.dart';
-
+@RoutePage()  
 class Welcome extends StatelessWidget {
   const Welcome({super.key});
 

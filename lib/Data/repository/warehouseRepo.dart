@@ -19,5 +19,11 @@ class WarehouseRepo {
       return null;
     }
   }
-  //owner/getAllWareHouse
+  Future<void>  getWarehousesByUserId({required var ownerId}) async {
+    await apiClient.getData("owner/getWarehousesByUserId/$ownerId");
+  }
+  Future<void>  getChamberByFloorID({required var floorid}) async {
+    await apiClient.getData("owner/getChamberHouseView/$floorid");
+  }
+ 
 }
