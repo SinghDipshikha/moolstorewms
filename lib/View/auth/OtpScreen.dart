@@ -7,11 +7,10 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/Controller/authController.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
-import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:otp_text_field_v2/otp_field_style_v2.dart';
 import 'package:otp_text_field_v2/otp_field_v2.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
-@RoutePage()  
+
+@RoutePage()
 class OtpScreen extends StatefulWidget {
   const OtpScreen({
     super.key,
@@ -79,8 +78,10 @@ class _OtpScreenState extends State<OtpScreen> {
                       children: [
                         Image.asset(
                           "assets/icons/ic_logo.png",
-                          height: 8.h,
-                          width: isMobile(context) ? 50.w : null,
+                          height: 0.08 * MediaQuery.sizeOf(context).height,
+                          width: context.isPhone
+                              ? 0.5 * MediaQuery.sizeOf(context).width
+                              : null,
                         ),
                         const Gap(20),
                         Text(
@@ -158,7 +159,7 @@ class _OtpScreenState extends State<OtpScreen> {
                 ),
               ),
             ),
-            isMobile(context)
+            context.isPhone
                 ? Container()
                 : Expanded(
                     flex: 2,

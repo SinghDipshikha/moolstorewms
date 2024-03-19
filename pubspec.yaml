@@ -23,7 +23,7 @@ dependencies:
   auto_route: ^7.9.0
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
-  responsive_sizer: ^3.3.0+1
+  # responsive_sizer: ^3.3.0+1
   calendar_date_picker2: ^0.5.3
   image_picker: ^1.0.7
   get_it: ^7.6.7

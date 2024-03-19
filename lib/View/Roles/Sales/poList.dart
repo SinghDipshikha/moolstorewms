@@ -19,7 +19,7 @@ class _PoListState extends State<PoList> {
     return Scaffold(
       body: Column(
         children: [
-          isMobile(context)
+          context.isPhone
               ? Container()
               : Padding(
                   padding: const EdgeInsets.symmetric(vertical: 12),
@@ -57,7 +57,7 @@ class _PoListState extends State<PoList> {
                     ),
                   ),
                 ),
-          isMobile(context)
+          context.isPhone
               ? Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 14),
@@ -142,7 +142,7 @@ class _PoListState extends State<PoList> {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  isMobile(context)
+                  context.isPhone
                       ? Container()
                       : const Expanded(
                           flex: 2,
@@ -156,7 +156,7 @@ class _PoListState extends State<PoList> {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                  isMobile(context)
+                  context.isPhone
                       ? Container()
                       : const Expanded(
                           flex: 2,
@@ -170,7 +170,7 @@ class _PoListState extends State<PoList> {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                  isMobile(context)
+                  context.isPhone
                       ? Container()
                       : const Expanded(
                           flex: 2,
@@ -185,7 +185,7 @@ class _PoListState extends State<PoList> {
                             //  textAlign: TextAlign.center,
                           ),
                         ),
-                  isMobile(context)
+                  context.isPhone
                       ? Container()
                       : const Expanded(
                           flex: 2,
@@ -200,7 +200,7 @@ class _PoListState extends State<PoList> {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                  isMobile(context)
+                  context.isPhone
                       ? Container()
                       : IconButton(
                           onPressed: () {},
@@ -281,7 +281,7 @@ class _PoListState extends State<PoList> {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      isMobile(context)
+                      context.isPhone
                           ? Container()
                           : const Expanded(
                               flex: 2,
@@ -295,7 +295,7 @@ class _PoListState extends State<PoList> {
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                      isMobile(context)
+                      context.isPhone
                           ? Container()
                           : const Expanded(
                               flex: 2,
@@ -309,7 +309,7 @@ class _PoListState extends State<PoList> {
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                      isMobile(context)
+                      context.isPhone
                           ? Container()
                           : const Expanded(
                               flex: 2,
@@ -323,7 +323,7 @@ class _PoListState extends State<PoList> {
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                      isMobile(context)
+                      context.isPhone
                           ? Container()
                           : Expanded(
                               flex: 2,
@@ -393,7 +393,7 @@ class _PoListState extends State<PoList> {
                                 ),
                               ),
                             ),
-                      isMobile(context)
+                      context.isPhone
                           ? Container()
                           : IconButton(
                               onPressed: () {},
@@ -417,8 +417,8 @@ class _PoListState extends State<PoList> {
               ),
             );
           })),
-          isMobile(context) ? Container() : const Gap(20),
-          isMobile(context)
+          context.isPhone ? Container() : const Gap(20),
+          context.isPhone
               ? CustomButton2(title: "Create New Purchase Order")
                   .paddingSymmetric(vertical: 26, horizontal: 12)
               : Container()

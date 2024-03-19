@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
-import 'package:moolwmsstore/utils/dimensions.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Base extends StatefulWidget {
   const Base({super.key});
@@ -84,6 +83,8 @@ class _BaseState extends State<Base> {
   ];
   @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery.sizeOf(context).height;
+    final double width = MediaQuery.sizeOf(context).width;
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -102,7 +103,7 @@ class _BaseState extends State<Base> {
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   child: Image.asset(
                     "assets/icons/ic_logo.png",
-                    height: 10.h,
+                    height: 10 * height,
                   ),
                 ),
                 ListView.builder(
@@ -124,7 +125,7 @@ class _BaseState extends State<Base> {
                           child: Row(
                             children: [
                               Container(
-                                height: 5.h,
+                                height: 5 * height,
                                 width: 18,
                                 color: selectedIndex == i
                                     ? Colors.white
@@ -141,7 +142,7 @@ class _BaseState extends State<Base> {
                                 data[i]["title"],
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: isMobile(context) ? 12.sp : 13.sp,
+                                  fontSize: context.isPhone ? 12 : 13,
                                   fontWeight: FontWeight.w700,
                                 ),
                               )
@@ -154,7 +155,7 @@ class _BaseState extends State<Base> {
             ),
           ),
           appBar: AppBar(
-            toolbarHeight: isMobile(context) ? null : 80,
+            toolbarHeight: context.isPhone ? null : 80,
             // foregroundColor: Colors.white,
             backgroundColor: Colors.white,
             title: Image.asset(
@@ -197,12 +198,12 @@ class _BaseState extends State<Base> {
               )
             ],
           ),
-          body:  Container(),
+          body: Container(),
         ),
         if (show)
           Container(
-            height: 100.h,
-            width: 100.w,
+            height: height,
+            width: width,
             color: Colors.white.withOpacity(0.550000011920929),
           ),
         if (show)
@@ -212,8 +213,8 @@ class _BaseState extends State<Base> {
             body: Center(
               child: Container(
                 alignment: Alignment.center,
-                height: isMobile(context) ? 60.h : 80.h,
-                width: isMobile(context) ? 94.w : 80.w,
+                height: context.isPhone ? 0.60 * height : 0.80 * height,
+                width: context.isPhone ? 0.94 * width : 0.80 * width,
                 decoration: BoxDecoration(
                     color: Colors.black,
                     borderRadius: BorderRadius.circular(12)),
@@ -240,7 +241,7 @@ class _BaseState extends State<Base> {
                       ),
                       CustomButton(
                         onTap: () {
-                         // context.pushRoute(const AddWarehouseRoute());
+                          // context.pushRoute(const AddWarehouseRoute());
                           setState(() {
                             show = false;
                           });

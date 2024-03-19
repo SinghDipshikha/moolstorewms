@@ -5,9 +5,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
-import 'package:moolwmsstore/utils/dimensions.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
-@RoutePage()  
+
+@RoutePage()
 class SelectRole extends StatefulWidget {
   const SelectRole({super.key});
 
@@ -33,13 +32,15 @@ class _SelectRoleState extends State<SelectRole> {
   int? selectedindex;
   @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery.sizeOf(context).height;
+    final double width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       floatingActionButtonLocation:
           kIsWeb ? null : FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(8.0),
         child: CustomButton(
-          width: isMobile(context) ? 200 : null,
+          width: context.isPhone ? 200 : null,
           rightIcon: "assets/icons/Arrow_right.png",
           glow: selectedindex != null,
           onTap: () {
@@ -63,8 +64,8 @@ class _SelectRoleState extends State<SelectRole> {
           children: [
             Image.asset(
               "assets/icons/ic_logo.png",
-              height: isMobile(context) ? 8.h : 12.h,
-              width: isMobile(context) ? 50.w : null,
+              height: context.isPhone ? 0.08 * height : 0.12 * height,
+              width: context.isPhone ? 0.5 * width : null,
             ),
             const Gap(20),
             Text(
@@ -77,7 +78,7 @@ class _SelectRoleState extends State<SelectRole> {
               style: TextStyles.bodyMedium(context),
             ),
             Container(
-              constraints: BoxConstraints(maxWidth: 94.w),
+              constraints: BoxConstraints(maxWidth: 0.94 * width),
               child: ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 2,
@@ -94,12 +95,12 @@ class _SelectRoleState extends State<SelectRole> {
                       child: Container(
                         // height: 175,
                         padding: EdgeInsets.symmetric(
-                            horizontal: isMobile(context) ? 20 : 14,
+                            horizontal: context.isPhone ? 20 : 14,
                             vertical: 20),
                         decoration: selectedindex == index
                             ? AppDecorations.selectedelevatedShadowDecoration
                             : AppDecorations.elevatedShadowDecoration,
-                        child: isMobile(context)
+                        child: context.isPhone
                             ? Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
@@ -110,7 +111,7 @@ class _SelectRoleState extends State<SelectRole> {
                                       width: 70,
                                       child: Image.asset(
                                         data[index]["asset"],
-                                        height: 6.h,
+                                        height: 0.06 * height,
                                         color: selectedindex == index
                                             ? Colors.white
                                             : null,
@@ -146,7 +147,7 @@ class _SelectRoleState extends State<SelectRole> {
                                       width: 70,
                                       child: Image.asset(
                                         data[index]["asset"],
-                                        height: 6.h,
+                                        height: 0.06 * height,
                                         color: selectedindex == index
                                             ? Colors.white
                                             : null,

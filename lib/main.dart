@@ -8,7 +8,6 @@ import 'package:moolwmsstore/helper/messages.dart';
 import 'package:moolwmsstore/routes/approutes.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/utils/globals.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'helper/get_di.dart' as di;
 
@@ -43,7 +42,9 @@ class _MyAppState extends State<MyApp> {
     return GetBuilder<LocalizationController>(initState: (state) {
       //  getIt.registerSingleton<TextStyles>(TextStyles);
     }, builder: (localizeController) {
-      return ResponsiveSizer(builder: (context, orientation, screenType) {
+       
+      
+     
         return GetMaterialApp.router(
           // home: const OwnerDashboard(),
           scaffoldMessengerKey: snackbarKey,
@@ -264,7 +265,7 @@ class _MyAppState extends State<MyApp> {
           //             .copyWith(error: const Color(0xFFE84D4F))
           //             .copyWith()),
         );
-      });
+   ;
     });
   }
 }

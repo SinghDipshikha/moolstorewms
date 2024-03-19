@@ -69,13 +69,13 @@ class _CreatePoState extends State<CreatePo> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(isMobile(context) ? 12 : 40),
+          padding: EdgeInsets.all(context.isPhone ? 12 : 40),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: EdgeInsets.all(isMobile(context) ? 0 : 40),
-                decoration: isMobile(context)
+                padding: EdgeInsets.all(context.isPhone ? 0 : 40),
+                decoration: context.isPhone
                     ? null
                     : ShapeDecoration(
                         shape: RoundedRectangleBorder(

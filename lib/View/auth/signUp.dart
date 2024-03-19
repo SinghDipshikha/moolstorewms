@@ -10,7 +10,7 @@ import 'package:moolwmsstore/View/common/customButton.dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:moolwmsstore/utils/textutils.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+  
 @RoutePage()  
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -39,9 +39,11 @@ class _SignupState extends State<Signup> {
 
   @override
   Widget build(BuildContext context) {
+      final double height = MediaQuery.sizeOf(context).height ;
+    final double width = MediaQuery.sizeOf(context).width ;
     return Scaffold(
       // floatingActionButtonLocation:
-      //     isMobile(context) ? FloatingActionButtonLocation.centerDocked : null,
+      //     context.isPhone ? FloatingActionButtonLocation.centerDocked : null,
       // floatingActionButton: Padding(
       //   padding: const EdgeInsets.all(8.0),
       //   child: CustomButton(
@@ -62,7 +64,7 @@ class _SignupState extends State<Signup> {
                     key: _formKey,
                     child: SingleChildScrollView(
                         child: SizedBox(
-                      width: 96.w,
+                      width: 0.96 * width,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -73,7 +75,7 @@ class _SignupState extends State<Signup> {
                             child: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 10),
                               child: Wrap(
-                                runSpacing: isMobile(context) ? 10 : 20,
+                                runSpacing: context.isPhone ? 10 : 20,
                                 spacing: 140,
                                 children: List.generate(
                                     authController.fields.length, (index) {
@@ -98,7 +100,7 @@ class _SignupState extends State<Signup> {
                                         // maxHeight: 60,
                                         minWidth: 400,
                                         maxWidth: 600),
-                                    child: isMobile(context)
+                                    child: context.isPhone
                                         ? Padding(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 6),
@@ -282,7 +284,7 @@ class _SignupState extends State<Signup> {
                                                 // maxHeight: 60,
                                                 minWidth: 400,
                                                 maxWidth: 600),
-                                            child: isMobile(context)
+                                            child: context.isPhone
                                                 ? Padding(
                                                     padding: const EdgeInsets
                                                         .symmetric(vertical: 6),
@@ -390,9 +392,9 @@ class _SignupState extends State<Signup> {
                                   ),
                                 );
                               }),
-                          !isMobile(context) ? const Gap(10) : Container(),
+                          !context.isPhone ? const Gap(10) : Container(),
                           Row(
-                            mainAxisAlignment: isMobile(context)
+                            mainAxisAlignment: context.isPhone
                                 ? MainAxisAlignment.center
                                 : MainAxisAlignment.spaceBetween,
                             children: [
@@ -409,12 +411,12 @@ class _SignupState extends State<Signup> {
                                   });
                                 },
                                 leftIcon: "assets/icons/Add Red.png",
-                                width: isMobile(context) ? 84.w : 400,
+                                width: context.isPhone ? 0.84 * width : 400,
                                 title: 'Add New Warehouse',
                                 glow: false,
                                 //width: 100,
                               ),
-                              isMobile(context)
+                              context.isPhone
                                   ? Container()
                                   : CustomButton(
                                       rightIcon: "assets/icons/Arrow_right.png",
@@ -425,10 +427,10 @@ class _SignupState extends State<Signup> {
                           ),
 
                           const Gap(20),
-                          if (isMobile(context))
+                          if (context.isPhone)
                             CustomButton(
                               rightIcon: "assets/icons/Arrow_right.png",
-                              width: 84.w,
+                              width: 0.84 * width,
                               onTap: submit,
                               //    glow: false,
                               title: 'next'.tr,
@@ -460,22 +462,22 @@ class CustomContainer extends StatelessWidget {
       children: <Widget>[
         Padding(
           padding: EdgeInsets.only(
-            top: Adaptive.sp(14),
+            top: 14,
           ),
           child: Container(
-            width: 96.w,
+            width: 0.96 * MediaQuery.sizeOf(context).width,
             decoration: ShapeDecoration(
               shape: RoundedRectangleBorder(
                 side: BorderSide(
                     width: 5,
-                    color: isMobile(context)
+                    color: context.isPhone
                         ? AppColors.scaffoldBackgroundColor
                         : AppColors.primaryColor),
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 20),
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 20),
               child: child,
             ),
           ),

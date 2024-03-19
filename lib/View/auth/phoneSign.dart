@@ -8,8 +8,6 @@ import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/changeLangButton.dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';
-import 'package:moolwmsstore/utils/dimensions.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 
 /*  if (state is OtpSentSuccess) {
           AnimatedSnackBar.material(
@@ -26,7 +24,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
   
         } */
 
-@RoutePage()  
+@RoutePage()
 class PhoneSign extends StatefulWidget {
   const PhoneSign({super.key});
 
@@ -62,8 +60,11 @@ class _PhoneSignState extends State<PhoneSign> {
                             children: [
                               Image.asset(
                                 "assets/icons/ic_logo.png",
-                                height: 8.h,
-                                width: isMobile(context) ? 50.w : null,
+                                height:
+                                    0.08 * MediaQuery.sizeOf(context).height,
+                                width: context.isPhone
+                                    ? 0.05 * MediaQuery.sizeOf(context).width
+                                    : null,
                               ),
                               const ChangeLangButton()
                             ],
@@ -120,7 +121,7 @@ class _PhoneSignState extends State<PhoneSign> {
                   ),
                 ),
               ),
-              isMobile(context)
+              context.isPhone
                   ? Container()
                   : Expanded(
                       flex: 2,

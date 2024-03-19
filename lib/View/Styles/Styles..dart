@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:moolwmsstore/utils/dimensions.dart';
-import 'package:moolwmsstore/utils/globals.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart';
-import '../../main.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 class TextStyles {
-  static TextStyle titleMedium(context) {
+  static TextStyle titleMedium(BuildContext context) {
     return TextStyle(
       color: const Color.fromRGBO(22, 22, 22, 1),
-      fontSize: !isMobile(context) ? 16.sp : 20.sp,
+      fontSize: !context.isPhone ? 16 : 20,
       fontWeight: FontWeight.w700,
     );
   }
 
-  static TextStyle titleText(context) {
+  static TextStyle titleText(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF161616),
       fontSize: context.isPhone ? 22 : 44,
@@ -22,7 +19,7 @@ class TextStyles {
     );
   }
 
-  static TextStyle containerSubText(context) {
+  static TextStyle containerSubText(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF161616),
       fontSize: context.isPhone ? 14 : 40,
@@ -30,7 +27,7 @@ class TextStyles {
     );
   }
 
-  static TextStyle subTitleText(context) {
+  static TextStyle subTitleText(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF161616),
       fontSize: context.isPhone ? 14 : 32,
@@ -38,7 +35,7 @@ class TextStyles {
     );
   }
 
-  static TextStyle formLabelText(context) {
+  static TextStyle formLabelText(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF161616),
       fontSize: context.isPhone ? 16 : 23,
@@ -46,7 +43,7 @@ class TextStyles {
     );
   }
 
-  static TextStyle inputFieldHintText(context) {
+  static TextStyle inputFieldHintText(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF161616),
       fontSize: context.isPhone ? 14 : 23,
@@ -54,7 +51,7 @@ class TextStyles {
     );
   }
 
-  static TextStyle inputFieldText(context) {
+  static TextStyle inputFieldText(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF161616),
       fontSize: context.isPhone ? 16 : 23,
@@ -62,7 +59,7 @@ class TextStyles {
     );
   }
 
-  static TextStyle sideDrawerTitleText(context) {
+  static TextStyle sideDrawerTitleText(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF161616),
       fontSize: context.isPhone ? 16 : 29,
@@ -70,15 +67,15 @@ class TextStyles {
     );
   }
 
-  static TextStyle assestsListDataTableHeadingText(context) {
+  static TextStyle assestsListDataTableHeadingText(BuildContext context) {
     return TextStyle(
-      color: context.isPhone ? Color(0x8B8B8B) : Colors.white,
+      color: context.isPhone ? const Color(0x008b8b8b) : Colors.white,
       fontSize: context.isPhone ? 10 : 25,
       fontWeight: context.isPhone ? FontWeight.w400 : FontWeight.w700,
     );
   }
 
-  static TextStyle assestsListDataTableDetailsText(context) {
+  static TextStyle assestsListDataTableDetailsText(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF161616),
       fontSize: context.isPhone ? 12 : 25,
@@ -86,31 +83,31 @@ class TextStyles {
     );
   }
 
-  static TextStyle bodylarge(context) {
+  static TextStyle bodylarge(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF161616),
-      fontSize: !isMobile(context) ? 14.sp : 18.sp,
+      fontSize: !context.isPhone ? 14 : 18,
       fontWeight: FontWeight.w400,
     );
   }
 
-  static TextStyle bodysmall(context) {
+  static TextStyle bodysmall(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF161616),
-      fontSize: !isMobile(context) ? 12.sp : 14.sp,
+      fontSize: !context.isPhone ? 12 : 14,
       fontWeight: FontWeight.w400,
     );
   }
 
-  static TextStyle bodyMedium(context) {
+  static TextStyle bodyMedium(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF161616),
-      fontSize: !isMobile(context) ? 14.sp : 18.sp,
+      fontSize: !context.isPhone ? 14 : 18,
       fontWeight: FontWeight.w400,
     );
   }
 
-  static TextStyle buttonText(context) {
+  static TextStyle buttonText(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF161616),
       fontSize: context.isPhone ? 16 : 29.561,

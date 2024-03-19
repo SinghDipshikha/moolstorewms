@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
-import 'package:moolwmsstore/utils/dimensions.dart';
 
 class CustomButton extends StatelessWidget {
   bool glow;
@@ -21,7 +20,6 @@ class CustomButton extends StatelessWidget {
       this.glow = true,
       this.color,
       this.leftIcon,
-   
       this.rightIcon,
       this.radius});
 
@@ -38,7 +36,7 @@ class CustomButton extends StatelessWidget {
         //alignment: Alignment.centerLeft,
         children: [
           Container(
-            width: width ?? (isMobile(context) ? width : 198),
+            width: width ?? (context.isPhone ? width : 198),
             alignment: Alignment.center,
             height: 60,
             decoration: BoxDecoration(
@@ -101,9 +99,9 @@ class CustomButton2 extends StatelessWidget {
   double? width;
   String title;
   double? radius;
-  
- double? rightIconheight ;
- double? leftIconheight ;
+
+  double? rightIconheight;
+  double? leftIconheight;
   Color? color;
   String? leftIcon;
   String? rightIcon;
@@ -112,7 +110,7 @@ class CustomButton2 extends StatelessWidget {
       this.onTap,
       this.width,
       required this.title,
-         this.leftIconheight,
+      this.leftIconheight,
       this.rightIconheight,
       this.color,
       this.leftIcon,
@@ -132,7 +130,7 @@ class CustomButton2 extends StatelessWidget {
         //alignment: Alignment.centerLeft,
         children: [
           Container(
-            width: width ?? (isMobile(context) ? width : 198),
+            width: width ?? (context.isPhone ? width : 198),
             alignment: Alignment.center,
             height: 60,
             decoration: BoxDecoration(
@@ -155,7 +153,7 @@ class CustomButton2 extends StatelessWidget {
                 if (leftIcon != null)
                   Image.asset(
                     leftIcon!,
-                     height: leftIconheight,
+                    height: leftIconheight,
                     // color: glow ? Colors.white : null,
                   ),
                 Text(
@@ -166,11 +164,7 @@ class CustomButton2 extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ).paddingSymmetric(horizontal: 10),
                 if (rightIcon != null)
-                  Image.asset(
-                     
-                    rightIcon!,
-                    height: rightIconheight
-                  ),
+                  Image.asset(rightIcon!, height: rightIconheight),
               ],
             ),
           ),

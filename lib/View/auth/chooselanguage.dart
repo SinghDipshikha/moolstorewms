@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
-@RoutePage()  
+
+@RoutePage()
 class Chooselanguage extends StatelessWidget {
   const Chooselanguage({super.key});
 
@@ -14,10 +14,10 @@ class Chooselanguage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation:
-          kIsWeb ? null : FloatingActionButtonLocation.centerFloat,
+          context.isPhone ? FloatingActionButtonLocation.centerFloat : null,
       floatingActionButton: CustomButton(
         onTap: () {
-        //  context.replaceRoute(const PhoneSignRoute());
+          //  context.replaceRoute(const PhoneSignRoute());
         },
         //    glow: false,
         title: 'next'.tr,
