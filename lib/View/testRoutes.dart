@@ -107,7 +107,7 @@ class TestRoutespage extends StatelessWidget {
                 child: const Text("chamber view")),
             ElevatedButton(
                 onPressed: () {
-                  context.pushRoute(const AddSecurityGuardRoute());
+                  context.pushRoute(const AddEmployeePersonalDetails());
                 },
                 child: const Text("Add Employee")),
           ],

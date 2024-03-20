@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:moolwmsstore/View/Roles/Hr/addEmployeeReferralDetails.dart';
+
 import 'package:moolwmsstore/routes/approutes.gr.dart';
 
 // import 'approutes.gr.dart';
@@ -6,6 +8,25 @@ import 'package:moolwmsstore/routes/approutes.gr.dart';
 // @AutoRouterConfig(replaceInRouteName: "Route")
 @AutoRouterConfig()
 class AppRouter extends $AppRouter {
+  List<AutoRoute> dipikshaRoutes = [
+    AutoRoute(initial: true, page: TestRoutes.page, children: [
+      AutoRoute(
+        page: AddEmployeePersonalDetails.page,
+      ),
+      AutoRoute(
+        page: AddEmployeeContactDetails.page,
+      ),
+      AutoRoute(
+        page: AddEmployeeCareerDetails.page,
+      ),
+      AutoRoute(
+        page: AddEmployeeEducationQualificationDetails.page,
+      ),
+      //      AutoRoute(
+      //   page: AddEmployeeReferralDetails.page, initial: true
+      // ),
+    ]),
+  ];
   List<AutoRoute> testroutes = [
     //Auth
     AutoRoute(initial: true, page: TestRoutes.page, children: [
@@ -66,9 +87,9 @@ class AppRouter extends $AppRouter {
       page: AssetEntry.page,
     ),
     //HR
-    AutoRoute(
-      page: AddSecurityGuardRoute.page,
-    ),
+    // AutoRoute(
+    //   page: AddSecurityGuardRoute.page,
+    // ),
   ];
 
   List<AutoRoute> myroutes = [
@@ -95,5 +116,5 @@ class AppRouter extends $AppRouter {
   ];
 
   @override
-  List<AutoRoute> get routes => testroutes;
+  List<AutoRoute> get routes => dipikshaRoutes;
 }
