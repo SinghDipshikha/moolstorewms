@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/View/Roles/Hr/widget/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonDropDown.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonTextField.dart';
+import 'package:moolwmsstore/View/common/customButton.dart';
 
 @RoutePage()
 class AddEmployeeReferralDetails extends StatefulWidget {
@@ -108,7 +110,13 @@ class _AddEmployeeReferralDetailsState
                             ),
                           )
                         ],
-                      ).paddingOnly(left: 50)
+                      ).paddingOnly(left: 50),
+                      CommonPreviousButton(
+                        title: 'Next',
+                      ),
+                      CommonPreviousButton(
+                        title: 'Next',
+                      ),
                     ],
                   ),
                 ),

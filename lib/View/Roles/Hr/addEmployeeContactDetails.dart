@@ -45,8 +45,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                         width: 2)),
                 width: double.infinity,
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 60.0, top: 20, bottom: 20, right: 20),
+                  padding: const EdgeInsets.all(20),
                   child: Wrap(
                     alignment: WrapAlignment.spaceBetween,
                     spacing: 20,

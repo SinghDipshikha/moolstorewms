@@ -26,10 +26,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      // highlightColor:
-      //     color ?? Theme.of(context).primaryColor.withOpacity(0.1),
-      // // hoverColor: color?? Theme.of(context).primaryColor,
-      // splashColor: color ?? Theme.of(context).primaryColor.withOpacity(0.1),
+  
       borderRadius: BorderRadius.all(Radius.circular(radius ?? 60)),
       onTap: onTap,
       child: Stack(
