@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
 class UserController extends GetxController {
+  var userId = 55;
+
   bool celebrate = false;
   List roles = [
     "Head of Operations",

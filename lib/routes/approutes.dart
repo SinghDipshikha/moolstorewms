@@ -43,6 +43,10 @@ class AppRouter extends $AppRouter {
       page: AddWarehouse.page,
     ),
     AutoRoute(
+      guards: [
+
+      ],
+    
       page: WarehouseList.page,
     ),
     AutoRoute(

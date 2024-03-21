@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/Controller/warehouseController.dart';
 @RoutePage()  
 class WarehouseList extends StatelessWidget {
   const WarehouseList({super.key});
@@ -84,86 +85,93 @@ class WarehouseList extends StatelessWidget {
                 ],
               )),
           const Gap(4),
-          Expanded(child: ListView.builder(itemBuilder: (context, i) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-              child: Container(
-                width: double.infinity,
-
-                //  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
-                clipBehavior: Clip.antiAlias,
-                decoration: ShapeDecoration(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+          Expanded(child: GetBuilder<WarehouseController>(
+            initState: (state) {
+              Get.find<WarehouseController>().getWarehousesByUserId();
+            },
+            builder: (context) {
+              return ListView.builder(itemBuilder: (context, i) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  child: Container(
+                    width: double.infinity,
+              
+                    //  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
+                    clipBehavior: Clip.antiAlias,
+                    decoration: ShapeDecoration(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      shadows: const [
+                        BoxShadow(
+                          color: Color(0x0C000000),
+                          blurRadius: 2,
+                          offset: Offset(0, 1),
+                          spreadRadius: 0,
+                        )
+                      ],
+                    ),
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                      child: Row(
+                        children: [
+                          Container(
+                            alignment: Alignment.center,
+                            width: 40,
+                            child: Text(
+                              i < 9 ? "0${i + 1}" : "${i + 1}",
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          const Expanded(
+                            flex: 2,
+                            child: Text(
+                              "Warehouse Name",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          const Expanded(
+                            flex: 2,
+                            child: Text(
+                              "Manager",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          IconButton(
+                              onPressed: () {
+                                // context.pushRoute(const ChamberViewRoute());
+                                // context
+                                //     .pushRoute(const ViewWarehouseDetailsRoute());
+                              },
+                              icon: const Icon(
+                                Icons.more_horiz,
+                                color: Colors.black,
+                              ))
+                        ],
+                      ),
+                    ),
                   ),
-                  shadows: const [
-                    BoxShadow(
-                      color: Color(0x0C000000),
-                      blurRadius: 2,
-                      offset: Offset(0, 1),
-                      spreadRadius: 0,
-                    )
-                  ],
-                ),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                  child: Row(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        width: 40,
-                        child: Text(
-                          i < 9 ? "0${i + 1}" : "${i + 1}",
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      const Expanded(
-                        flex: 2,
-                        child: Text(
-                          "Warehouse Name",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      const Expanded(
-                        flex: 2,
-                        child: Text(
-                          "Manager",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      IconButton(
-                          onPressed: () {
-                            // context.pushRoute(const ChamberViewRoute());
-                            // context
-                            //     .pushRoute(const ViewWarehouseDetailsRoute());
-                          },
-                          icon: const Icon(
-                            Icons.more_horiz,
-                            color: Colors.black,
-                          ))
-                    ],
-                  ),
-                ),
-              ),
-            );
-          }))
+                );
+              });
+            }
+          ))
         ],
       ),
       appBar: AppBar(
