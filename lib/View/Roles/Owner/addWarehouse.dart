@@ -5,11 +5,10 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/Controller/authController.dart';
 import 'package:moolwmsstore/Data/Model/Auth/addWarehouseField.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
-import 'package:moolwmsstore/View/common/backbutton.dart';
-import 'package:moolwmsstore/View/common/customButton.dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';
 import 'package:moolwmsstore/utils/textutils.dart';
-@RoutePage()  
+
+@RoutePage()
 class AddWarehouse extends StatelessWidget {
   const AddWarehouse({super.key});
 
@@ -17,13 +16,13 @@ class AddWarehouse extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: const Text(
           'Add Warehouse',
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 22,
             fontWeight: FontWeight.w700,
-
           ),
         ),
       ),
@@ -111,27 +110,27 @@ class AddWarehouse extends StatelessWidget {
                       }),
                 ),
                 const Gap(10),
-                CustomButton(
-                  onTap: () {},
-                  leftIcon: "assets/icons/Add Red.png",
-                  // width: isMobile(context) ? 100.w : 400,
-                  title: 'Add New Warehouse',
-                  glow: false,
-                  //width: 100,
-                ),
+                // CustomButton(
+                //   onTap: () {},
+                //   leftIcon: "assets/icons/Add Red.png",
+                //   // width: isMobile(context) ? 100.w : 400,
+                //   title: 'Add New Warehouse',
+                //   glow: false,
+                //   //width: 100,
+                // ),
                 const Gap(10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomBackbutton(),
-                    CustomButton(
-                      width: 160,
-                      title: "Submit",
-                      glow: true,
-                      rightIcon: "assets/icons/submit.png",
-                    )
-                  ],
-                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     CustomBackbutton(),
+                //     CustomButton(
+                //       width: 160,
+                //       title: "Submit",
+                //       glow: true,
+                //       rightIcon: "assets/icons/submit.png",
+                //     )
+                //   ],
+                // ),
                 const Gap(20),
               ],
             ),

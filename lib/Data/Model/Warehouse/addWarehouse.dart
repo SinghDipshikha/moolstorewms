@@ -26,19 +26,19 @@ class AddWarehouseField with _$AddWarehouseField {
 @freezed
 class AddWarehouse with _$AddWarehouse {
   const factory AddWarehouse({
-    String? warehouseName,
-    int? userId,
-    String? warehouseLocation,
+    String? warehouse_name,
+    int? user_id,
+    String? warehouse_locationtion,
     double? lat,
     double? lng,
-    String? manageEmail,
-    String? warehouseManager,
+    String? manage_email,
+    String? warehouse_managerger,
     int? phone,
-    String? countryCode,
-    int? noOfChambers,
-    int? totalCapacity,
-    int? noOfDocks,
-    int? noOfGates,
+    String? country_code,
+    int? no_of_chambers,
+    int? total_capacity,
+    int? no_of_docks,
+    int? no_of_gates,
   }) = _AddWarehouse;
 
   factory AddWarehouse.fromJson(Map<String, Object?> json) =>

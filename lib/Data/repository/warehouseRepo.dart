@@ -44,9 +44,10 @@ class WarehouseRepo {
     }
   }
 
-  addWarehouse({required Map warehouse}) async {
+  addWarehouse({required AddWarehouse warehouse}) async {
     await apiClient.postData("/owner/addOnlyWareHouse", warehouse);
   }
+
   addWarehouseChamber({required Map chamber}) async {
     await apiClient.postData("/owner/addChamberHouse", chamber);
   }
@@ -55,7 +56,7 @@ class WarehouseRepo {
     Response<dynamic> value =
         await apiClient.getData("owner/getWarehousesByUserId/$ownerId");
 
-    if (value.data["message"] == "Values found") {
+    if (value.data["message"] == "Ware House Detail Found") {
       List result = value.data["result"];
 
       return result.map((e) => Warehouse.fromJson(e)).toList();

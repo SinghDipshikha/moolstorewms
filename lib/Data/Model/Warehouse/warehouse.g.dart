@@ -8,48 +8,50 @@ part of 'warehouse.dart';
 
 _$WarehouseImpl _$$WarehouseImplFromJson(Map<String, dynamic> json) =>
     _$WarehouseImpl(
-      id: json['id'],
-      warehouseName: json['warehouseName'] as String?,
-      manageEmail: json['manageEmail'] as String?,
-      warehouseManager: json['warehouseManager'] as String?,
+      id: json['id'] as int?,
+      warehouse_name: json['warehouse_name'] as String?,
+      manage_email: json['manage_email'] as String?,
+      warehouse_manager: json['warehouse_manager'] as String?,
       phone: json['phone'] as String?,
-      countryCode: json['countryCode'] as String?,
-      noOfChambers: json['noOfChambers'] as int?,
-      totalCapacity: (json['totalCapacity'] as num?)?.toDouble(),
-      noOfDocks: json['noOfDocks'] as int?,
-      noOfGates: json['noOfGates'] as int?,
+      country_code: json['country_code'] as String?,
+      no_of_chambers: json['no_of_chambers'] as int?,
+      total_capacity: json['total_capacity'] as int?,
+      no_of_docks: json['no_of_docks'] as int?,
+      no_of_gates: json['no_of_gates'] as int?,
+      slug: json['slug'],
       status: json['status'] as int?,
-      createdAt: json['createdAt'] == null
+      created_at: json['created_at'] == null
           ? null
-          : DateTime.parse(json['createdAt'] as String),
-      updateAt: json['updateAt'] == null
+          : DateTime.parse(json['created_at'] as String),
+      update_at: json['update_at'] == null
           ? null
-          : DateTime.parse(json['updateAt'] as String),
-      deletedAt: json['deletedAt'] == null
-          ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['update_at'] as String),
+      deleted_at: json['deleted_at'],
+      user_id: json['user_id'] as int?,
       lat: (json['lat'] as num?)?.toDouble(),
       lng: (json['lng'] as num?)?.toDouble(),
-      warehouseLocation: json['warehouseLocation'] as String?,
+      warehouse_location: json['warehouse_location'] as String?,
     );
 
 Map<String, dynamic> _$$WarehouseImplToJson(_$WarehouseImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'warehouseName': instance.warehouseName,
-      'manageEmail': instance.manageEmail,
-      'warehouseManager': instance.warehouseManager,
+      'warehouse_name': instance.warehouse_name,
+      'manage_email': instance.manage_email,
+      'warehouse_manager': instance.warehouse_manager,
       'phone': instance.phone,
-      'countryCode': instance.countryCode,
-      'noOfChambers': instance.noOfChambers,
-      'totalCapacity': instance.totalCapacity,
-      'noOfDocks': instance.noOfDocks,
-      'noOfGates': instance.noOfGates,
+      'country_code': instance.country_code,
+      'no_of_chambers': instance.no_of_chambers,
+      'total_capacity': instance.total_capacity,
+      'no_of_docks': instance.no_of_docks,
+      'no_of_gates': instance.no_of_gates,
+      'slug': instance.slug,
       'status': instance.status,
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updateAt': instance.updateAt?.toIso8601String(),
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'created_at': instance.created_at?.toIso8601String(),
+      'update_at': instance.update_at?.toIso8601String(),
+      'deleted_at': instance.deleted_at,
+      'user_id': instance.user_id,
       'lat': instance.lat,
       'lng': instance.lng,
-      'warehouseLocation': instance.warehouseLocation,
+      'warehouse_location': instance.warehouse_location,
     };

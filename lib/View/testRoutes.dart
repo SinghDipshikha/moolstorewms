@@ -72,7 +72,7 @@ class TestRoutespage extends StatelessWidget {
                 child: const Text("Warhouse List")),
             ElevatedButton(
                 onPressed: () {
-                  context.pushRoute(const ViewWarehouseDetails());
+                  context.pushRoute( ViewWarehouseDetails());
                 },
                 child: const Text("ViewWarehouseDetails")),
             ElevatedButton(

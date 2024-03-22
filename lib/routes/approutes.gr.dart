@@ -9,13 +9,15 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i22;
-import 'package:moolwmsstore/View/Auth/chooselanguage.dart' as _i9;
-import 'package:moolwmsstore/View/Auth/OtpScreen.dart' as _i11;
-import 'package:moolwmsstore/View/Auth/phoneSign.dart' as _i13;
-import 'package:moolwmsstore/View/Auth/SelectRole.dart' as _i15;
-import 'package:moolwmsstore/View/Auth/signUp.dart' as _i16;
-import 'package:moolwmsstore/View/Auth/splash.dart' as _i17;
-import 'package:moolwmsstore/View/Auth/welcome.dart' as _i21;
+import 'package:flutter/material.dart' as _i23;
+import 'package:moolwmsstore/Data/Model/Warehouse/warehouse.dart' as _i24;
+import 'package:moolwmsstore/View/auth/chooselanguage.dart' as _i9;
+import 'package:moolwmsstore/View/auth/OtpScreen.dart' as _i11;
+import 'package:moolwmsstore/View/auth/phoneSign.dart' as _i13;
+import 'package:moolwmsstore/View/auth/SelectRole.dart' as _i15;
+import 'package:moolwmsstore/View/auth/signUp.dart' as _i16;
+import 'package:moolwmsstore/View/auth/splash.dart' as _i17;
+import 'package:moolwmsstore/View/auth/welcome.dart' as _i21;
 import 'package:moolwmsstore/View/Body.dart' as _i6;
 import 'package:moolwmsstore/View/Roles/Dock%20Supervisor/chamberView.dart'
     as _i8;
@@ -158,9 +160,14 @@ abstract class $AppRouter extends _i22.RootStackRouter {
       );
     },
     ViewWarehouseDetails.name: (routeData) {
+      final args = routeData.argsAs<ViewWarehouseDetailsArgs>(
+          orElse: () => const ViewWarehouseDetailsArgs());
       return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i19.ViewWarehouseDetails(),
+        child: _i19.ViewWarehouseDetails(
+          key: args.key,
+          warehouse: args.warehouse,
+        ),
       );
     },
     WarehouseList.name: (routeData) {
@@ -446,16 +453,41 @@ class TestRoutespage extends _i22.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i19.ViewWarehouseDetails]
-class ViewWarehouseDetails extends _i22.PageRouteInfo<void> {
-  const ViewWarehouseDetails({List<_i22.PageRouteInfo>? children})
-      : super(
+class ViewWarehouseDetails
+    extends _i22.PageRouteInfo<ViewWarehouseDetailsArgs> {
+  ViewWarehouseDetails({
+    _i23.Key? key,
+    _i24.Warehouse? warehouse,
+    List<_i22.PageRouteInfo>? children,
+  }) : super(
           ViewWarehouseDetails.name,
+          args: ViewWarehouseDetailsArgs(
+            key: key,
+            warehouse: warehouse,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'ViewWarehouseDetails';
 
-  static const _i22.PageInfo<void> page = _i22.PageInfo<void>(name);
+  static const _i22.PageInfo<ViewWarehouseDetailsArgs> page =
+      _i22.PageInfo<ViewWarehouseDetailsArgs>(name);
+}
+
+class ViewWarehouseDetailsArgs {
+  const ViewWarehouseDetailsArgs({
+    this.key,
+    this.warehouse,
+  });
+
+  final _i23.Key? key;
+
+  final _i24.Warehouse? warehouse;
+
+  @override
+  String toString() {
+    return 'ViewWarehouseDetailsArgs{key: $key, warehouse: $warehouse}';
+  }
 }
 
 /// generated route for

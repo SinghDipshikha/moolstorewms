@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Controller/userController.dart';
 import 'package:moolwmsstore/Data/Model/Warehouse/addChamber.dart';
 import 'package:moolwmsstore/Data/Model/Warehouse/warehouse.dart';
@@ -19,12 +20,14 @@ class WarehouseController extends GetxController {
     update();
   }
 
-  getWarehousesByUserId() {
-    warehouseRepo
+  getWarehousesByUserId() async{
+  await  warehouseRepo
         .getWarehousesByUserId(ownerId: Get.find<UserController>().userId)
         .then((value) {
       if (value != null) {
         ownerWarehouses = value;
+        Logger().d(value);
+
         update();
       }
     });

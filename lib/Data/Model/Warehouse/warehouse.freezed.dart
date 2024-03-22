@@ -20,23 +20,25 @@ Warehouse _$WarehouseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Warehouse {
-  dynamic get id => throw _privateConstructorUsedError;
-  String? get warehouseName => throw _privateConstructorUsedError;
-  String? get manageEmail => throw _privateConstructorUsedError;
-  String? get warehouseManager => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String? get warehouse_name => throw _privateConstructorUsedError;
+  String? get manage_email => throw _privateConstructorUsedError;
+  String? get warehouse_manager => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
-  String? get countryCode => throw _privateConstructorUsedError;
-  int? get noOfChambers => throw _privateConstructorUsedError;
-  double? get totalCapacity => throw _privateConstructorUsedError;
-  int? get noOfDocks => throw _privateConstructorUsedError;
-  int? get noOfGates => throw _privateConstructorUsedError;
+  String? get country_code => throw _privateConstructorUsedError;
+  int? get no_of_chambers => throw _privateConstructorUsedError;
+  int? get total_capacity => throw _privateConstructorUsedError;
+  int? get no_of_docks => throw _privateConstructorUsedError;
+  int? get no_of_gates => throw _privateConstructorUsedError;
+  dynamic get slug => throw _privateConstructorUsedError;
   int? get status => throw _privateConstructorUsedError;
-  DateTime? get createdAt => throw _privateConstructorUsedError;
-  DateTime? get updateAt => throw _privateConstructorUsedError;
-  DateTime? get deletedAt => throw _privateConstructorUsedError;
+  DateTime? get created_at => throw _privateConstructorUsedError;
+  DateTime? get update_at => throw _privateConstructorUsedError;
+  dynamic get deleted_at => throw _privateConstructorUsedError;
+  int? get user_id => throw _privateConstructorUsedError;
   double? get lat => throw _privateConstructorUsedError;
   double? get lng => throw _privateConstructorUsedError;
-  String? get warehouseLocation => throw _privateConstructorUsedError;
+  String? get warehouse_location => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,23 +52,25 @@ abstract class $WarehouseCopyWith<$Res> {
       _$WarehouseCopyWithImpl<$Res, Warehouse>;
   @useResult
   $Res call(
-      {dynamic id,
-      String? warehouseName,
-      String? manageEmail,
-      String? warehouseManager,
+      {int? id,
+      String? warehouse_name,
+      String? manage_email,
+      String? warehouse_manager,
       String? phone,
-      String? countryCode,
-      int? noOfChambers,
-      double? totalCapacity,
-      int? noOfDocks,
-      int? noOfGates,
+      String? country_code,
+      int? no_of_chambers,
+      int? total_capacity,
+      int? no_of_docks,
+      int? no_of_gates,
+      dynamic slug,
       int? status,
-      DateTime? createdAt,
-      DateTime? updateAt,
-      DateTime? deletedAt,
+      DateTime? created_at,
+      DateTime? update_at,
+      dynamic deleted_at,
+      int? user_id,
       double? lat,
       double? lng,
-      String? warehouseLocation});
+      String? warehouse_location});
 }
 
 /// @nodoc
@@ -83,80 +87,90 @@ class _$WarehouseCopyWithImpl<$Res, $Val extends Warehouse>
   @override
   $Res call({
     Object? id = freezed,
-    Object? warehouseName = freezed,
-    Object? manageEmail = freezed,
-    Object? warehouseManager = freezed,
+    Object? warehouse_name = freezed,
+    Object? manage_email = freezed,
+    Object? warehouse_manager = freezed,
     Object? phone = freezed,
-    Object? countryCode = freezed,
-    Object? noOfChambers = freezed,
-    Object? totalCapacity = freezed,
-    Object? noOfDocks = freezed,
-    Object? noOfGates = freezed,
+    Object? country_code = freezed,
+    Object? no_of_chambers = freezed,
+    Object? total_capacity = freezed,
+    Object? no_of_docks = freezed,
+    Object? no_of_gates = freezed,
+    Object? slug = freezed,
     Object? status = freezed,
-    Object? createdAt = freezed,
-    Object? updateAt = freezed,
-    Object? deletedAt = freezed,
+    Object? created_at = freezed,
+    Object? update_at = freezed,
+    Object? deleted_at = freezed,
+    Object? user_id = freezed,
     Object? lat = freezed,
     Object? lng = freezed,
-    Object? warehouseLocation = freezed,
+    Object? warehouse_location = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      warehouseName: freezed == warehouseName
-          ? _value.warehouseName
-          : warehouseName // ignore: cast_nullable_to_non_nullable
+              as int?,
+      warehouse_name: freezed == warehouse_name
+          ? _value.warehouse_name
+          : warehouse_name // ignore: cast_nullable_to_non_nullable
               as String?,
-      manageEmail: freezed == manageEmail
-          ? _value.manageEmail
-          : manageEmail // ignore: cast_nullable_to_non_nullable
+      manage_email: freezed == manage_email
+          ? _value.manage_email
+          : manage_email // ignore: cast_nullable_to_non_nullable
               as String?,
-      warehouseManager: freezed == warehouseManager
-          ? _value.warehouseManager
-          : warehouseManager // ignore: cast_nullable_to_non_nullable
+      warehouse_manager: freezed == warehouse_manager
+          ? _value.warehouse_manager
+          : warehouse_manager // ignore: cast_nullable_to_non_nullable
               as String?,
       phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      countryCode: freezed == countryCode
-          ? _value.countryCode
-          : countryCode // ignore: cast_nullable_to_non_nullable
+      country_code: freezed == country_code
+          ? _value.country_code
+          : country_code // ignore: cast_nullable_to_non_nullable
               as String?,
-      noOfChambers: freezed == noOfChambers
-          ? _value.noOfChambers
-          : noOfChambers // ignore: cast_nullable_to_non_nullable
+      no_of_chambers: freezed == no_of_chambers
+          ? _value.no_of_chambers
+          : no_of_chambers // ignore: cast_nullable_to_non_nullable
               as int?,
-      totalCapacity: freezed == totalCapacity
-          ? _value.totalCapacity
-          : totalCapacity // ignore: cast_nullable_to_non_nullable
-              as double?,
-      noOfDocks: freezed == noOfDocks
-          ? _value.noOfDocks
-          : noOfDocks // ignore: cast_nullable_to_non_nullable
+      total_capacity: freezed == total_capacity
+          ? _value.total_capacity
+          : total_capacity // ignore: cast_nullable_to_non_nullable
               as int?,
-      noOfGates: freezed == noOfGates
-          ? _value.noOfGates
-          : noOfGates // ignore: cast_nullable_to_non_nullable
+      no_of_docks: freezed == no_of_docks
+          ? _value.no_of_docks
+          : no_of_docks // ignore: cast_nullable_to_non_nullable
               as int?,
+      no_of_gates: freezed == no_of_gates
+          ? _value.no_of_gates
+          : no_of_gates // ignore: cast_nullable_to_non_nullable
+              as int?,
+      slug: freezed == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as int?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      created_at: freezed == created_at
+          ? _value.created_at
+          : created_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updateAt: freezed == updateAt
-          ? _value.updateAt
-          : updateAt // ignore: cast_nullable_to_non_nullable
+      update_at: freezed == update_at
+          ? _value.update_at
+          : update_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      deletedAt: freezed == deletedAt
-          ? _value.deletedAt
-          : deletedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      deleted_at: freezed == deleted_at
+          ? _value.deleted_at
+          : deleted_at // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      user_id: freezed == user_id
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
+              as int?,
       lat: freezed == lat
           ? _value.lat
           : lat // ignore: cast_nullable_to_non_nullable
@@ -165,9 +179,9 @@ class _$WarehouseCopyWithImpl<$Res, $Val extends Warehouse>
           ? _value.lng
           : lng // ignore: cast_nullable_to_non_nullable
               as double?,
-      warehouseLocation: freezed == warehouseLocation
-          ? _value.warehouseLocation
-          : warehouseLocation // ignore: cast_nullable_to_non_nullable
+      warehouse_location: freezed == warehouse_location
+          ? _value.warehouse_location
+          : warehouse_location // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -182,23 +196,25 @@ abstract class _$$WarehouseImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {dynamic id,
-      String? warehouseName,
-      String? manageEmail,
-      String? warehouseManager,
+      {int? id,
+      String? warehouse_name,
+      String? manage_email,
+      String? warehouse_manager,
       String? phone,
-      String? countryCode,
-      int? noOfChambers,
-      double? totalCapacity,
-      int? noOfDocks,
-      int? noOfGates,
+      String? country_code,
+      int? no_of_chambers,
+      int? total_capacity,
+      int? no_of_docks,
+      int? no_of_gates,
+      dynamic slug,
       int? status,
-      DateTime? createdAt,
-      DateTime? updateAt,
-      DateTime? deletedAt,
+      DateTime? created_at,
+      DateTime? update_at,
+      dynamic deleted_at,
+      int? user_id,
       double? lat,
       double? lng,
-      String? warehouseLocation});
+      String? warehouse_location});
 }
 
 /// @nodoc
@@ -213,80 +229,90 @@ class __$$WarehouseImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? warehouseName = freezed,
-    Object? manageEmail = freezed,
-    Object? warehouseManager = freezed,
+    Object? warehouse_name = freezed,
+    Object? manage_email = freezed,
+    Object? warehouse_manager = freezed,
     Object? phone = freezed,
-    Object? countryCode = freezed,
-    Object? noOfChambers = freezed,
-    Object? totalCapacity = freezed,
-    Object? noOfDocks = freezed,
-    Object? noOfGates = freezed,
+    Object? country_code = freezed,
+    Object? no_of_chambers = freezed,
+    Object? total_capacity = freezed,
+    Object? no_of_docks = freezed,
+    Object? no_of_gates = freezed,
+    Object? slug = freezed,
     Object? status = freezed,
-    Object? createdAt = freezed,
-    Object? updateAt = freezed,
-    Object? deletedAt = freezed,
+    Object? created_at = freezed,
+    Object? update_at = freezed,
+    Object? deleted_at = freezed,
+    Object? user_id = freezed,
     Object? lat = freezed,
     Object? lng = freezed,
-    Object? warehouseLocation = freezed,
+    Object? warehouse_location = freezed,
   }) {
     return _then(_$WarehouseImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      warehouseName: freezed == warehouseName
-          ? _value.warehouseName
-          : warehouseName // ignore: cast_nullable_to_non_nullable
+              as int?,
+      warehouse_name: freezed == warehouse_name
+          ? _value.warehouse_name
+          : warehouse_name // ignore: cast_nullable_to_non_nullable
               as String?,
-      manageEmail: freezed == manageEmail
-          ? _value.manageEmail
-          : manageEmail // ignore: cast_nullable_to_non_nullable
+      manage_email: freezed == manage_email
+          ? _value.manage_email
+          : manage_email // ignore: cast_nullable_to_non_nullable
               as String?,
-      warehouseManager: freezed == warehouseManager
-          ? _value.warehouseManager
-          : warehouseManager // ignore: cast_nullable_to_non_nullable
+      warehouse_manager: freezed == warehouse_manager
+          ? _value.warehouse_manager
+          : warehouse_manager // ignore: cast_nullable_to_non_nullable
               as String?,
       phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      countryCode: freezed == countryCode
-          ? _value.countryCode
-          : countryCode // ignore: cast_nullable_to_non_nullable
+      country_code: freezed == country_code
+          ? _value.country_code
+          : country_code // ignore: cast_nullable_to_non_nullable
               as String?,
-      noOfChambers: freezed == noOfChambers
-          ? _value.noOfChambers
-          : noOfChambers // ignore: cast_nullable_to_non_nullable
+      no_of_chambers: freezed == no_of_chambers
+          ? _value.no_of_chambers
+          : no_of_chambers // ignore: cast_nullable_to_non_nullable
               as int?,
-      totalCapacity: freezed == totalCapacity
-          ? _value.totalCapacity
-          : totalCapacity // ignore: cast_nullable_to_non_nullable
-              as double?,
-      noOfDocks: freezed == noOfDocks
-          ? _value.noOfDocks
-          : noOfDocks // ignore: cast_nullable_to_non_nullable
+      total_capacity: freezed == total_capacity
+          ? _value.total_capacity
+          : total_capacity // ignore: cast_nullable_to_non_nullable
               as int?,
-      noOfGates: freezed == noOfGates
-          ? _value.noOfGates
-          : noOfGates // ignore: cast_nullable_to_non_nullable
+      no_of_docks: freezed == no_of_docks
+          ? _value.no_of_docks
+          : no_of_docks // ignore: cast_nullable_to_non_nullable
               as int?,
+      no_of_gates: freezed == no_of_gates
+          ? _value.no_of_gates
+          : no_of_gates // ignore: cast_nullable_to_non_nullable
+              as int?,
+      slug: freezed == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as int?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      created_at: freezed == created_at
+          ? _value.created_at
+          : created_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updateAt: freezed == updateAt
-          ? _value.updateAt
-          : updateAt // ignore: cast_nullable_to_non_nullable
+      update_at: freezed == update_at
+          ? _value.update_at
+          : update_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      deletedAt: freezed == deletedAt
-          ? _value.deletedAt
-          : deletedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      deleted_at: freezed == deleted_at
+          ? _value.deleted_at
+          : deleted_at // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      user_id: freezed == user_id
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
+              as int?,
       lat: freezed == lat
           ? _value.lat
           : lat // ignore: cast_nullable_to_non_nullable
@@ -295,9 +321,9 @@ class __$$WarehouseImplCopyWithImpl<$Res>
           ? _value.lng
           : lng // ignore: cast_nullable_to_non_nullable
               as double?,
-      warehouseLocation: freezed == warehouseLocation
-          ? _value.warehouseLocation
-          : warehouseLocation // ignore: cast_nullable_to_non_nullable
+      warehouse_location: freezed == warehouse_location
+          ? _value.warehouse_location
+          : warehouse_location // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -308,64 +334,70 @@ class __$$WarehouseImplCopyWithImpl<$Res>
 class _$WarehouseImpl implements _Warehouse {
   const _$WarehouseImpl(
       {this.id,
-      this.warehouseName,
-      this.manageEmail,
-      this.warehouseManager,
+      this.warehouse_name,
+      this.manage_email,
+      this.warehouse_manager,
       this.phone,
-      this.countryCode,
-      this.noOfChambers,
-      this.totalCapacity,
-      this.noOfDocks,
-      this.noOfGates,
+      this.country_code,
+      this.no_of_chambers,
+      this.total_capacity,
+      this.no_of_docks,
+      this.no_of_gates,
+      this.slug,
       this.status,
-      this.createdAt,
-      this.updateAt,
-      this.deletedAt,
+      this.created_at,
+      this.update_at,
+      this.deleted_at,
+      this.user_id,
       this.lat,
       this.lng,
-      this.warehouseLocation});
+      this.warehouse_location});
 
   factory _$WarehouseImpl.fromJson(Map<String, dynamic> json) =>
       _$$WarehouseImplFromJson(json);
 
   @override
-  final dynamic id;
+  final int? id;
   @override
-  final String? warehouseName;
+  final String? warehouse_name;
   @override
-  final String? manageEmail;
+  final String? manage_email;
   @override
-  final String? warehouseManager;
+  final String? warehouse_manager;
   @override
   final String? phone;
   @override
-  final String? countryCode;
+  final String? country_code;
   @override
-  final int? noOfChambers;
+  final int? no_of_chambers;
   @override
-  final double? totalCapacity;
+  final int? total_capacity;
   @override
-  final int? noOfDocks;
+  final int? no_of_docks;
   @override
-  final int? noOfGates;
+  final int? no_of_gates;
+  @override
+  final dynamic slug;
   @override
   final int? status;
   @override
-  final DateTime? createdAt;
+  final DateTime? created_at;
   @override
-  final DateTime? updateAt;
+  final DateTime? update_at;
   @override
-  final DateTime? deletedAt;
+  final dynamic deleted_at;
+  @override
+  final int? user_id;
   @override
   final double? lat;
   @override
   final double? lng;
   @override
-  final String? warehouseLocation;
+  final String? warehouse_location;
 
   @override
   String toString() {
-    return 'Warehouse(id: $id, warehouseName: $warehouseName, manageEmail: $manageEmail, warehouseManager: $warehouseManager, phone: $phone, countryCode: $countryCode, noOfChambers: $noOfChambers, totalCapacity: $totalCapacity, noOfDocks: $noOfDocks, noOfGates: $noOfGates, status: $status, createdAt: $createdAt, updateAt: $updateAt, deletedAt: $deletedAt, lat: $lat, lng: $lng, warehouseLocation: $warehouseLocation)';
+    return 'Warehouse(id: $id, warehouse_name: $warehouse_name, manage_email: $manage_email, warehouse_manager: $warehouse_manager, phone: $phone, country_code: $country_code, no_of_chambers: $no_of_chambers, total_capacity: $total_capacity, no_of_docks: $no_of_docks, no_of_gates: $no_of_gates, slug: $slug, status: $status, created_at: $created_at, update_at: $update_at, deleted_at: $deleted_at, user_id: $user_id, lat: $lat, lng: $lng, warehouse_location: $warehouse_location)';
   }
 
   @override
@@ -373,58 +405,63 @@ class _$WarehouseImpl implements _Warehouse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WarehouseImpl &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            (identical(other.warehouseName, warehouseName) ||
-                other.warehouseName == warehouseName) &&
-            (identical(other.manageEmail, manageEmail) ||
-                other.manageEmail == manageEmail) &&
-            (identical(other.warehouseManager, warehouseManager) ||
-                other.warehouseManager == warehouseManager) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.warehouse_name, warehouse_name) ||
+                other.warehouse_name == warehouse_name) &&
+            (identical(other.manage_email, manage_email) ||
+                other.manage_email == manage_email) &&
+            (identical(other.warehouse_manager, warehouse_manager) ||
+                other.warehouse_manager == warehouse_manager) &&
             (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.countryCode, countryCode) ||
-                other.countryCode == countryCode) &&
-            (identical(other.noOfChambers, noOfChambers) ||
-                other.noOfChambers == noOfChambers) &&
-            (identical(other.totalCapacity, totalCapacity) ||
-                other.totalCapacity == totalCapacity) &&
-            (identical(other.noOfDocks, noOfDocks) ||
-                other.noOfDocks == noOfDocks) &&
-            (identical(other.noOfGates, noOfGates) ||
-                other.noOfGates == noOfGates) &&
+            (identical(other.country_code, country_code) ||
+                other.country_code == country_code) &&
+            (identical(other.no_of_chambers, no_of_chambers) ||
+                other.no_of_chambers == no_of_chambers) &&
+            (identical(other.total_capacity, total_capacity) ||
+                other.total_capacity == total_capacity) &&
+            (identical(other.no_of_docks, no_of_docks) ||
+                other.no_of_docks == no_of_docks) &&
+            (identical(other.no_of_gates, no_of_gates) ||
+                other.no_of_gates == no_of_gates) &&
+            const DeepCollectionEquality().equals(other.slug, slug) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updateAt, updateAt) ||
-                other.updateAt == updateAt) &&
-            (identical(other.deletedAt, deletedAt) ||
-                other.deletedAt == deletedAt) &&
+            (identical(other.created_at, created_at) ||
+                other.created_at == created_at) &&
+            (identical(other.update_at, update_at) ||
+                other.update_at == update_at) &&
+            const DeepCollectionEquality()
+                .equals(other.deleted_at, deleted_at) &&
+            (identical(other.user_id, user_id) || other.user_id == user_id) &&
             (identical(other.lat, lat) || other.lat == lat) &&
             (identical(other.lng, lng) || other.lng == lng) &&
-            (identical(other.warehouseLocation, warehouseLocation) ||
-                other.warehouseLocation == warehouseLocation));
+            (identical(other.warehouse_location, warehouse_location) ||
+                other.warehouse_location == warehouse_location));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      warehouseName,
-      manageEmail,
-      warehouseManager,
-      phone,
-      countryCode,
-      noOfChambers,
-      totalCapacity,
-      noOfDocks,
-      noOfGates,
-      status,
-      createdAt,
-      updateAt,
-      deletedAt,
-      lat,
-      lng,
-      warehouseLocation);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        warehouse_name,
+        manage_email,
+        warehouse_manager,
+        phone,
+        country_code,
+        no_of_chambers,
+        total_capacity,
+        no_of_docks,
+        no_of_gates,
+        const DeepCollectionEquality().hash(slug),
+        status,
+        created_at,
+        update_at,
+        const DeepCollectionEquality().hash(deleted_at),
+        user_id,
+        lat,
+        lng,
+        warehouse_location
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -442,61 +479,67 @@ class _$WarehouseImpl implements _Warehouse {
 
 abstract class _Warehouse implements Warehouse {
   const factory _Warehouse(
-      {final dynamic id,
-      final String? warehouseName,
-      final String? manageEmail,
-      final String? warehouseManager,
+      {final int? id,
+      final String? warehouse_name,
+      final String? manage_email,
+      final String? warehouse_manager,
       final String? phone,
-      final String? countryCode,
-      final int? noOfChambers,
-      final double? totalCapacity,
-      final int? noOfDocks,
-      final int? noOfGates,
+      final String? country_code,
+      final int? no_of_chambers,
+      final int? total_capacity,
+      final int? no_of_docks,
+      final int? no_of_gates,
+      final dynamic slug,
       final int? status,
-      final DateTime? createdAt,
-      final DateTime? updateAt,
-      final DateTime? deletedAt,
+      final DateTime? created_at,
+      final DateTime? update_at,
+      final dynamic deleted_at,
+      final int? user_id,
       final double? lat,
       final double? lng,
-      final String? warehouseLocation}) = _$WarehouseImpl;
+      final String? warehouse_location}) = _$WarehouseImpl;
 
   factory _Warehouse.fromJson(Map<String, dynamic> json) =
       _$WarehouseImpl.fromJson;
 
   @override
-  dynamic get id;
+  int? get id;
   @override
-  String? get warehouseName;
+  String? get warehouse_name;
   @override
-  String? get manageEmail;
+  String? get manage_email;
   @override
-  String? get warehouseManager;
+  String? get warehouse_manager;
   @override
   String? get phone;
   @override
-  String? get countryCode;
+  String? get country_code;
   @override
-  int? get noOfChambers;
+  int? get no_of_chambers;
   @override
-  double? get totalCapacity;
+  int? get total_capacity;
   @override
-  int? get noOfDocks;
+  int? get no_of_docks;
   @override
-  int? get noOfGates;
+  int? get no_of_gates;
+  @override
+  dynamic get slug;
   @override
   int? get status;
   @override
-  DateTime? get createdAt;
+  DateTime? get created_at;
   @override
-  DateTime? get updateAt;
+  DateTime? get update_at;
   @override
-  DateTime? get deletedAt;
+  dynamic get deleted_at;
+  @override
+  int? get user_id;
   @override
   double? get lat;
   @override
   double? get lng;
   @override
-  String? get warehouseLocation;
+  String? get warehouse_location;
   @override
   @JsonKey(ignore: true)
   _$$WarehouseImplCopyWith<_$WarehouseImpl> get copyWith =>
