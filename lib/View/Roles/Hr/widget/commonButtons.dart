@@ -31,7 +31,7 @@ class CommonNextButton extends StatelessWidget {
       borderRadius: BorderRadius.all(Radius.circular(radius ?? 60)),
       onTap: onTap,
       child: Container(
-        constraints: context.isPhone ? null : BoxConstraints(maxWidth: 180),
+        constraints: context.isPhone ? null : BoxConstraints(maxWidth: 210),
         padding: const EdgeInsets.symmetric(horizontal: 43, vertical: 20),
         clipBehavior: Clip.antiAlias,
         decoration: ShapeDecoration(
@@ -61,7 +61,7 @@ class CommonNextButton extends StatelessWidget {
                 height: 0,
               ),
             ),
-            Gap(15),
+            Gap(20),
             Icon(
               Icons.arrow_forward,
               color: Colors.white,
@@ -100,7 +100,7 @@ class CommonPreviousButton extends StatelessWidget {
       borderRadius: BorderRadius.all(Radius.circular(radius ?? 60)),
       onTap: onTap,
       child: Container(
-        constraints: context.isPhone ? null : BoxConstraints(maxWidth: 180),
+        constraints: context.isPhone?null : BoxConstraints( maxWidth: 205),
         padding: const EdgeInsets.symmetric(horizontal: 43, vertical: 20),
         clipBehavior: Clip.antiAlias,
         decoration: ShapeDecoration(

@@ -301,20 +301,7 @@ class _AddEmployeePersonalDetailsState
                               ),
                             )).paddingOnly(left: 80),
                   ]),
-                  CommonPreviousButton(
-                    title: 'Previous',
-                  ),
-                  Gap(20),
-                  CommonNextButton(
-                    title: 'Next',
-                    onTap: () {
-                      if (_formKey.currentState!.validate()) {
-                        _formKey.currentState!.save();
-
-                        print('Valid email: $_email');
-                      }
-                    },
-                  ),
+               
                 ],
               ),
             ),
