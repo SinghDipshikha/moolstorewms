@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 
@@ -44,28 +45,32 @@ class CommanTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: context.isPhone ? null : BoxConstraints(maxWidth: 400),
+      constraints: context.isPhone ? null : BoxConstraints(maxWidth: 500),
       child: context.isPhone
           ? Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "$labelText",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
+                Container(
+                  constraints:
+                      context.isPhone ? null : BoxConstraints(maxWidth: 100),
+                  child: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: "$labelText",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
-                      ),
-                      TextSpan(
-                        text: '*',
-                        style: TextStyles.bodyMedium(context)
-                            .copyWith(color: Colors.red),
-                      ),
-                    ],
+                        TextSpan(
+                          text: '*',
+                          style: TextStyles.bodyMedium(context)
+                              .copyWith(color: Colors.red),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 // Text("$labelText",
@@ -125,27 +130,29 @@ class CommanTextField extends StatelessWidget {
             )
           : Row(
               children: [
-                Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "$labelText",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
+                Container(
+                  width: 220,
+                  child: Text.rich(
+                    overflow: TextOverflow.ellipsis,
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: "$labelText",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
-                      ),
-                      TextSpan(
-                        text: '*',
-                        style: TextStyles.bodyMedium(context)
-                            .copyWith(color: Colors.red),
-                      ),
-                    ],
+                        TextSpan(
+                          text: '*',
+                          style: TextStyles.bodyMedium(context)
+                              .copyWith(color: Colors.red),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                SizedBox(
-                  width: 40,
-                ),
+                //  Gap(20),
                 Expanded(
                   child: Container(
                     decoration: ShapeDecoration(

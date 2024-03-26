@@ -9,6 +9,35 @@ import 'package:moolwmsstore/routes/approutes.gr.dart';
 // @AutoRouterConfig(replaceInRouteName: "Route")
 @AutoRouterConfig()
 class AppRouter extends $AppRouter {
+  List<AutoRoute> dipikshaRoutes = [
+    AutoRoute(initial: true, page: TestRoutes.page, children: [
+      AutoRoute(
+        initial: true,
+        page: TestRoutespage.page,
+      ),
+      AutoRoute(
+        page: AddEmployeePersonalDetails.page,
+      ),
+      AutoRoute(
+        page: AddEmployeeContactDetails.page,
+      ),
+      AutoRoute(
+        page: AddEmployeeCareerDetails.page,
+      ),
+      AutoRoute(
+        page: AddEmployeeEducationQualificationDetails.page,
+      ),
+      AutoRoute(
+        page: AddEmployeeReferralDetails.page,
+      ),
+      AutoRoute(
+        page: AddEmployeeBankDetails.page,
+      ),
+      AutoRoute(
+        page: AddEmployeeDocumentsDetails.page,
+      ),
+    ]),
+  ];
   List<AutoRoute> testroutes = [
     //Auth
     // AutoRoute(initial: true, page: TestRoutes.page, children: [
@@ -64,9 +93,6 @@ class AppRouter extends $AppRouter {
         page: AssetEntry.page,
       ),
       //HR
-      AutoRoute(
-        page: AddSecurityGuardRoute.page,
-      ),
     ]),
     AutoRoute(
       page: Chooselanguage.page,
@@ -86,6 +112,41 @@ class AppRouter extends $AppRouter {
     AutoRoute(
       page: Welcome.page,
     ),
+
+    AutoRoute(
+      page: OwnerDashboard.page,
+    ),
+
+    AutoRoute(
+      page: AddWarehouse.page,
+    ),
+    AutoRoute(
+      page: WarehouseList.page,
+    ),
+    AutoRoute(
+      page: ViewWarehouseDetails.page,
+    ),
+    //Dock Supervisor
+    AutoRoute(
+      page: ChamberList.page,
+    ),
+    AutoRoute(
+      page: AddChamber.page,
+    ),
+    AutoRoute(
+      page: ChamberView.page,
+    ),
+    //Plant Manager
+    AutoRoute(
+      page: AssetsList.page,
+    ),
+    AutoRoute(
+      page: AssetEntry.page,
+    ),
+    //HR
+    // AutoRoute(
+    //   page: AddSecurityGuardRoute.page,
+    // ),
   ];
 
   List<AutoRoute> myroutes = [
@@ -112,7 +173,7 @@ class AppRouter extends $AppRouter {
   ];
 
   @override
-  List<AutoRoute> get routes => testroutes;
+  List<AutoRoute> get routes => dipikshaRoutes;
 }
 
 class NameGuard extends AutoRouteGuard {

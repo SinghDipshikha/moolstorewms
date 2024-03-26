@@ -243,8 +243,8 @@ class WarehouseList extends StatelessWidget {
                             IconButton(
                                 onPressed: () {
                                   // context.pushRoute(const ChamberViewRoute());
-                                  context.pushRoute(ViewWarehouseDetails(
-                                      warehouse: warehouse));
+                                  // context.pushRoute(ViewWarehouseDetails(
+                                  //     warehouse: warehouse));
                                 },
                                 icon: const Icon(
                                   Icons.more_horiz,

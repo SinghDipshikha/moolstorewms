@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/View/Roles/Owner/WarehouseList.dart';
 // import 'package:moolwmsstore/View/Roles/Owner/WarehouseList.dart';
 import 'package:moolwmsstore/routes/approutes.gr.dart';
 
@@ -75,7 +76,7 @@ class _BodyState extends State<Body> {
             leading: Image.asset("assets/icons/warehousedd.png", height: 16),
             title: const Text('Warehouse'),
             onTap: () {
-              context.pushRoute(const WarehouseList());
+            //  context.pushRoute( WarehouseList());
               if (context.isPhone) {
                 scaffoldkey.currentState!.closeDrawer();
               }
@@ -103,7 +104,7 @@ class _BodyState extends State<Body> {
                 height: 16),
             title: const Text('HR'),
             onTap: () {
-              context.pushRoute(const WarehouseList());
+            //  context.pushRoute(const WarehouseList());
               if (context.isPhone) {
                 scaffoldkey.currentState!.closeDrawer();
               }
