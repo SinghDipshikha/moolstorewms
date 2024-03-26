@@ -28,6 +28,7 @@ class _AddEmployeeDocumentsDetailsState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: SingleChildScrollView(
         child: Center(
           child: Padding(

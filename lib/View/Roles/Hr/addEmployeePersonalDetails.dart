@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/View/Roles/Hr/constants/validations.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonTextField.dart';
 
@@ -18,8 +18,16 @@ class AddEmployeePersonalDetails extends StatefulWidget {
 class _AddEmployeePersonalDetailsState
     extends State<AddEmployeePersonalDetails> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController _emailController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   String _email = '';
+  String _mobileNumber = '';
+  String _gaurdName = '';
+  String _bloodGroup = '';
+  String _gateId = '';
+  final String _pfNumber = '';
+  final String _esicNumber = '';
+  String _passportNumber = '';
+
   DateTime? _selectedDate;
   bool _isCheckedPassportYes = false;
   bool _isCheckedPassportNo = false;
@@ -47,6 +55,19 @@ class _AddEmployeePersonalDetailsState
     return Form(
       key: _formKey,
       child: Scaffold(
+         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: context.isPhone
+            ? CommonNextButton(
+                title: 'next'.tr,
+                onTap: (){
+                   if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+
+                        print('Valid email: $_email');
+                      }
+                },
+              )
+            : Container().paddingSymmetric(horizontal: 12),
         body: SingleChildScrollView(
           child: Center(
             child: Padding(
@@ -73,11 +94,40 @@ class _AddEmployeePersonalDetailsState
                               labelText: "Mobile Number",
                               hintText: "Mobile Number",
                               obscureText: false,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Please enter your mobile number.';
+                                }
+
+                                if (!HrModuleValidator.isValidMobileNumber(
+                                    value)) {
+                                  return 'Please enter a valid mobile number.';
+                                }
+
+                                return null;
+                              },
+                              onChanged: (value) {
+                                _mobileNumber = value;
+                              },
                             ).paddingAll(8),
                             CommanTextField(
                               labelText: "Guard Name",
                               hintText: "Guard Name",
                               obscureText: false,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Please enter your gaurd name.';
+                                }
+
+                                if (!HrModuleValidator.isValidUsername(value)) {
+                                  return 'Please enter a valid gaurd name.';
+                                }
+
+                                return null;
+                              },
+                              onChanged: (value) {
+                                _gaurdName = value;
+                              },
                             ).paddingAll(8),
                             CommanTextField(
                               labelText: "Gender",
@@ -88,9 +138,9 @@ class _AddEmployeePersonalDetailsState
                               labelText: "Date of Birth",
                               hintText: _selectedDate == null
                                   ? 'Choose your DOB'
-                                  : '${_selectedDate.toString()}',
+                                  : _selectedDate.toString(),
                               suffixIcon: GestureDetector(
-                                child: Icon(Icons.calendar_month),
+                                child: const Icon(Icons.calendar_month),
                                 onTap: () {
                                   _selectDate(context);
                                 },
@@ -100,6 +150,21 @@ class _AddEmployeePersonalDetailsState
                               labelText: "Blood Group",
                               hintText: "Blood Group",
                               obscureText: false,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Please enter your blood group.';
+                                }
+
+                                if (!HrModuleValidator.isValidBloodGroup(
+                                    value)) {
+                                  return 'Please enter a valid blood group.';
+                                }
+
+                                return null;
+                              },
+                              onChanged: (value) {
+                                _bloodGroup = value;
+                              },
                             ).paddingAll(8),
                             CommanTextField(
                               labelText: "Email ID",
@@ -110,10 +175,7 @@ class _AddEmployeePersonalDetailsState
                                   return 'Please enter your email address';
                                 }
 
-                                String emailPattern =
-                                    r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
-                                RegExp regex = RegExp(emailPattern);
-                                if (!regex.hasMatch(value!)) {
+                                if (!HrModuleValidator.isValidEmail(value)) {
                                   return 'Please enter a valid email address';
                                 }
 
@@ -127,30 +189,72 @@ class _AddEmployeePersonalDetailsState
                               labelText: "Gate ID",
                               hintText: "Gate ID",
                               obscureText: false,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Please enter your Gate Id';
+                                }
+
+                                if (!HrModuleValidator.isValidGateID(value)) {
+                                  return 'Please enter a valid gate id.';
+                                }
+
+                                return null;
+                              },
+                              onChanged: (value) {
+                                _gateId = value;
+                              },
                             ).paddingAll(8),
                             CommanTextField(
                               labelText: "PF Number",
                               hintText: "PF Number",
                               obscureText: false,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Please enter your PF Number.';
+                                }
+
+                                if (!HrModuleValidator.isValidPFNumber(value)) {
+                                  return 'Please enter a valid PF Number.';
+                                }
+
+                                return null;
+                              },
+                              onChanged: (value) {
+                                _gateId = value;
+                              },
                             ).paddingAll(8),
                             CommanTextField(
                               labelText: "ESIC Number",
                               hintText: "ESIC Number",
                               obscureText: false,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Please enter your ESIC Number';
+                                }
+
+                                if (!HrModuleValidator.isValidGateID(value)) {
+                                  return 'Please enter a valid ESIC Number.';
+                                }
+
+                                return null;
+                              },
+                              onChanged: (value) {
+                                _gateId = value;
+                              },
                             ).paddingAll(8),
                             Container(
                               constraints: context.isPhone
                                   ? null
-                                  : BoxConstraints(maxWidth: 500),
+                                  : const BoxConstraints(maxWidth: 500),
                             ),
                             Container(
                               constraints: context.isPhone
                                   ? null
-                                  : BoxConstraints(maxWidth: 520),
+                                  : const BoxConstraints(maxWidth: 520),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'Do you have Passport?',
                                     style: TextStyle(fontSize: 16.0),
                                   ).paddingOnly(top: 5),
@@ -176,20 +280,35 @@ class _AddEmployeePersonalDetailsState
                             Container(
                               constraints: context.isPhone
                                   ? null
-                                  : BoxConstraints(maxWidth: 500),
+                                  : const BoxConstraints(maxWidth: 500),
                             ),
                             CommanTextField(
                               labelText: "Passport Number",
                               hintText: "Passport Number",
                               obscureText: false,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Please enter your Passport Number.';
+                                }
+
+                                if (!HrModuleValidator.isValidPassportNumber(
+                                    value)) {
+                                  return 'Please enter a valid passport number.';
+                                }
+
+                                return null;
+                              },
+                              onChanged: (value) {
+                                _passportNumber = value;
+                              },
                             ).paddingAll(8),
                             CommanTextField(
                               labelText: "Expiry Date",
                               hintText: _selectedDate == null
                                   ? 'No Date Selected'
-                                  : '${_selectedDate.toString()}',
+                                  : _selectedDate.toString(),
                               suffixIcon: GestureDetector(
-                                child: Icon(Icons.calendar_month),
+                                child: const Icon(Icons.calendar_month),
                                 onTap: () {
                                   _selectDate(context);
                                 },
@@ -199,11 +318,11 @@ class _AddEmployeePersonalDetailsState
                             Container(
                               constraints: context.isPhone
                                   ? null
-                                  : BoxConstraints(maxWidth: 520),
+                                  : const BoxConstraints(maxWidth: 520),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'Do you have any Disability?',
                                     style: TextStyle(fontSize: 16.0),
                                   ).paddingOnly(top: 5),
@@ -229,7 +348,7 @@ class _AddEmployeePersonalDetailsState
                             Container(
                               constraints: context.isPhone
                                   ? null
-                                  : BoxConstraints(maxWidth: 500),
+                                  : const BoxConstraints(maxWidth: 500),
                             ),
                             CommanTextField(
                               labelText: "Description",
@@ -239,68 +358,44 @@ class _AddEmployeePersonalDetailsState
                             Container(
                               constraints: context.isPhone
                                   ? null
-                                  : BoxConstraints(maxWidth: 520),
+                                  : const BoxConstraints(maxWidth: 520),
                             ),
                           ],
                         ),
                       ),
                     ).paddingAll(20),
-                    // Container(
-                    //   width: 197,
-                    //   height: 81,
-                    //   padding:
-                    //       const EdgeInsets.symmetric(horizontal: 43, vertical: 20),
-                    //   clipBehavior: Clip.antiAlias,
-                    //   decoration: ShapeDecoration(
-                    //     color: Colors.black,
-                    //     shape: RoundedRectangleBorder(
-                    //         borderRadius: BorderRadius.circular(5)),
-                    //     shadows: [
-                    //       BoxShadow(
-                    //         color: Color(0x0C000000),
-                    //         blurRadius: 2,
-                    //         offset: Offset(0, 2),
-                    //         spreadRadius: 0,
-                    //       )
-                    //     ],
-                    //   ),
-                    //   child: Row(
-                    //     mainAxisSize: MainAxisSize.min,
-                    //     mainAxisAlignment: MainAxisAlignment.start,
-                    //     crossAxisAlignment: CrossAxisAlignment.center,
-                    //     children: [
-                    //       Text(
-                    //         'Next',
-                    //         style: TextStyle(
-                    //           color: Colors.white,
-                    //           fontSize: 30,
-                    //           fontFamily: 'Nunito',
-                    //           fontWeight: FontWeight.w700,
-                    //           height: 0,
-                    //         ),
-                    //       ),
-                    //       Container(
-                    //         width: 34,
-                    //         height: 34,
-                    //         child: Stack(children: []),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
-
                     context.isPhone
                         ? Container()
                         : Container(
                             color: const Color(0xFFF7F7F7),
                             child: Padding(
                               padding: const EdgeInsets.all(10.0).copyWith(),
-                              child: Text(
+                              child: const Text(
                                 'Personal Details',
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
                             )).paddingOnly(left: 80),
                   ]),
+                  
+            if(!context.isPhone)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [   CommonPreviousButton(
+                    title: 'Previous',
+                  ),
+                  const Gap(20),
+                  CommonNextButton(
+                    title: 'next'.tr,
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+
+                        print('Valid email: $_email');
+                      }
+                    },
+                  ),],
+            ).paddingAll(20)
                
                 ],
               ),
