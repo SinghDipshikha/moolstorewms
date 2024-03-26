@@ -11,13 +11,13 @@
 import 'package:auto_route/auto_route.dart' as _i22;
 import 'package:flutter/material.dart' as _i23;
 import 'package:moolwmsstore/Data/Model/Warehouse/warehouse.dart' as _i24;
-import 'package:moolwmsstore/View/auth/chooselanguage.dart' as _i9;
-import 'package:moolwmsstore/View/auth/OtpScreen.dart' as _i11;
-import 'package:moolwmsstore/View/auth/phoneSign.dart' as _i13;
-import 'package:moolwmsstore/View/auth/SelectRole.dart' as _i15;
-import 'package:moolwmsstore/View/auth/signUp.dart' as _i16;
-import 'package:moolwmsstore/View/auth/splash.dart' as _i17;
-import 'package:moolwmsstore/View/auth/welcome.dart' as _i21;
+import 'package:moolwmsstore/View/Auth/chooselanguage.dart' as _i9;
+import 'package:moolwmsstore/View/Auth/OtpScreen.dart' as _i11;
+import 'package:moolwmsstore/View/Auth/phoneSign.dart' as _i13;
+import 'package:moolwmsstore/View/Auth/SelectRole.dart' as _i15;
+import 'package:moolwmsstore/View/Auth/signUp.dart' as _i16;
+import 'package:moolwmsstore/View/Auth/splash.dart' as _i17;
+import 'package:moolwmsstore/View/Auth/welcome.dart' as _i21;
 import 'package:moolwmsstore/View/Body.dart' as _i6;
 import 'package:moolwmsstore/View/Roles/Dock%20Supervisor/chamberView.dart'
     as _i8;
@@ -124,9 +124,11 @@ abstract class $AppRouter extends _i22.RootStackRouter {
       );
     },
     PoList.name: (routeData) {
+      final args =
+          routeData.argsAs<PoListArgs>(orElse: () => const PoListArgs());
       return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i14.PoList(),
+        child: _i14.PoList(key: args.key),
       );
     },
     SelectRole.name: (routeData) {
@@ -369,16 +371,30 @@ class PhoneSign extends _i22.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i14.PoList]
-class PoList extends _i22.PageRouteInfo<void> {
-  const PoList({List<_i22.PageRouteInfo>? children})
-      : super(
+class PoList extends _i22.PageRouteInfo<PoListArgs> {
+  PoList({
+    _i23.Key? key,
+    List<_i22.PageRouteInfo>? children,
+  }) : super(
           PoList.name,
+          args: PoListArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'PoList';
 
-  static const _i22.PageInfo<void> page = _i22.PageInfo<void>(name);
+  static const _i22.PageInfo<PoListArgs> page = _i22.PageInfo<PoListArgs>(name);
+}
+
+class PoListArgs {
+  const PoListArgs({this.key});
+
+  final _i23.Key? key;
+
+  @override
+  String toString() {
+    return 'PoListArgs{key: $key}';
+  }
 }
 
 /// generated route for

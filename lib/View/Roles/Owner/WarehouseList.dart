@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Controller/warehouseController.dart';
 import 'package:moolwmsstore/Data/Model/Warehouse/warehouse.dart';
+import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/routes/approutes.gr.dart';
 
 @RoutePage()
@@ -265,11 +266,11 @@ class WarehouseList extends StatelessWidget {
         //     bottom: Radius.circular(34),
         //   ),
         // ),
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.scaffoldBackgroundColor,
         title: Text(
           'warehouse_list'.tr,
           style: const TextStyle(
-            color: Colors.white,
+            color: Colors.black,
             fontSize: 22,
             fontWeight: FontWeight.w700,
           ),

@@ -3,21 +3,25 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Controller/authController.dart';
+import 'package:moolwmsstore/Controller/hrController.dart';
 import 'package:moolwmsstore/Controller/language_controller.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
+import 'package:moolwmsstore/Controller/salesController.dart';
 import 'package:moolwmsstore/Controller/userController.dart';
 import 'package:moolwmsstore/Controller/warehouseController.dart';
 import 'package:moolwmsstore/Data/Model/LanaguageModel.dart';
 import 'package:moolwmsstore/Data/api/api_client.dart';
 import 'package:moolwmsstore/Data/repository/authRepo.dart';
+import 'package:moolwmsstore/Data/repository/hrrepo.dart';
+import 'package:moolwmsstore/Data/repository/salesRepo.dart';
 import 'package:moolwmsstore/Data/repository/splashRepo.dart';
 import 'package:moolwmsstore/Data/repository/warehouseRepo.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:get_it/get_it.dart';
 
 Future<Map<String, Map<String, String>>> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
+
   Get.put(UserController(), permanent: true);
   Get.put(sharedPreferences);
   Get.put(
@@ -31,6 +35,10 @@ Future<Map<String, Map<String, String>>> init() async {
       () => AuthRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
   Get.lazyPut(() =>
       WarehouseRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
+  Get.lazyPut(
+      () => SalesRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
+  Get.lazyPut(
+      () => HrRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
 
   Get.lazyPut(
     () => LanguageController(sharedPreferences: Get.find()),
@@ -41,6 +49,11 @@ Future<Map<String, Map<String, String>>> init() async {
   Get.put(AuthController(authRepo: Get.find(), apiClient: Get.find()),
       permanent: true);
   Get.put(WarehouseController(warehouseRepo: Get.find(), apiClient: Get.find()),
+      permanent: true);
+  Get.put(
+      SalesController(salesRepo: Get.find<SalesRepo>(), apiClient: Get.find()),
+      permanent: true);
+  Get.put(HRController(hrRepo: Get.find<HrRepo>(), apiClient: Get.find()),
       permanent: true);
   // Get.lazyPut(
   //     () => SplashController(splashRepo: Get.find(), apiClient: Get.find()));

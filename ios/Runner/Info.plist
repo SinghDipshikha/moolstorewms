@@ -24,14 +24,14 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>We want image for assets of warehouse</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>We want image for assets of warehouse</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We want image for assets of warehouse</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

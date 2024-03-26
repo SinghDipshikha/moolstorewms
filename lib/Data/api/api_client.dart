@@ -4,7 +4,6 @@ import 'package:get/get.dart' as g;
 import 'package:image_picker/image_picker.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiClient extends g.GetxService {
@@ -23,12 +22,12 @@ class ApiClient extends g.GetxService {
     token = sharedPreferences.getString(AppConstants.token);
 
     updateHeader();
-    _dio.interceptors.add(PrettyDioLogger(
-      request: true,
-      requestBody: true,
-      requestHeader: true,
-      responseBody: true,
-    ));
+    // _dio.interceptors.add(PrettyDioLogger(
+    //   request: true,
+    //   requestBody: true,
+    //   requestHeader: true,
+    //   responseBody: true,
+    // ));
   }
 
   void updateHeader() {
