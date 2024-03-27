@@ -30,6 +30,19 @@ class _AddEmployeeReferralDetailsState
     return Form(
       key: _formKey,
       child: Scaffold(
+         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: context.isPhone
+            ? CommonNextButton(
+                title: 'next'.tr,
+                onTap: (){
+                   if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+
+                        print('Valid email: $_email');
+                      }
+                },
+              )
+            : Container().paddingSymmetric(horizontal: 12),
         body: SingleChildScrollView(
           child: Center(
             child: Padding(
