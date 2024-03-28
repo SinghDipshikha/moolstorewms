@@ -43,6 +43,7 @@ class EmployeeList extends StatelessWidget {
                         color: Colors.white,
                       ));
                 }
+
                 return Expanded(
                     flex: tags[index]["flex"],
                     child: Text(
@@ -75,6 +76,17 @@ class EmployeeList extends StatelessWidget {
               height: 60,
               child: Row(
                 children: List.generate(tags.length, (index) {
+                  if (tags[index]["title"] == "Info") {
+                    return Expanded(
+                      flex: tags[index]["flex"],
+                      child: IconButton(
+                          onPressed: () {},
+                          icon: Image.asset(
+                            "assets/icons/Eye.png",
+                            height: 22,
+                          )),
+                    );
+                  }
                   if (tags[index]["title"] == "icon") {
                     return IconButton(
                         onPressed: () {},
