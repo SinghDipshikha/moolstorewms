@@ -12,19 +12,12 @@ class RegistrationTypeOptions extends StatefulWidget {
 }
 
 class _RegistrationTypeOptionsState extends State<RegistrationTypeOptions> {
- 
   @override
-  
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(
+      appBar: const CommonAppBar(
         title: 'My Screen',
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {},
-          ),
-        ],
+        actions: [],
       ),
       body: Center(
         child: Column(
@@ -33,7 +26,6 @@ class _RegistrationTypeOptionsState extends State<RegistrationTypeOptions> {
           children: [
             const Gap(80),
             InkWell(
-              
               child: Container(
                 width: 306,
                 height: 60,
