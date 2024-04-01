@@ -1,8 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'Personaldetails.freezed.dart';
-part 'Personaldetails.g.dart';
-
+part 'personalDetails.freezed.dart';
+part 'personalDetails.g.dart';
 @freezed
 class PersonalDetails with _$PersonalDetails {
   const factory PersonalDetails({
@@ -29,25 +28,3 @@ class PersonalDetails with _$PersonalDetails {
   factory PersonalDetails.fromJson(Map<String, Object?> json) =>
       _$PersonalDetailsFromJson(json);
 }
-/* 
-
-//   "user_id": 68,
-//   "pan_card": "jkhsdkujhfk",
-//   "gst_number": "fdgsdf",
-//   "blood_group": "dfg",
-//   "pf_number": "dfdfgedtrer",
-//   "esic_number": "dfgdfgfb",
-//   "have_passport": "0",
-//   "passport_number": "fdgfdg",
-//   "passport_expiry_date": "2022-03-05 00:00:00",
-//   "have_disability": "0",
-//   "disability_describe": "fthfghf",
-//   "address": "fghfg",
-//   "state": "fghfghvbcn",
-//   "city": "vbnvbn",
-//   "pincode": "56456",
-//   "emergency_contact_no": "456456456",
-//   "emergency_contact_person": "fghbnvn",
-//   "mailing_address_diffrent": "hfghfgh"
-
-// */
