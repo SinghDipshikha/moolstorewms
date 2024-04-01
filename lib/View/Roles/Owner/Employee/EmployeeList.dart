@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/View/Roles/Owner/Employee/AddEmployee.dart';
+import 'package:moolwmsstore/View/Roles/Owner/widget/MyButton.dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';
 
 class EmployeeList extends StatelessWidget {
@@ -22,11 +25,36 @@ class EmployeeList extends StatelessWidget {
       body: Column(
         children: [
           const Gap(40),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-            child: MyTextField(
-              labelText: "Search",
-            ),
+          Row(
+            children: [
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 300),
+                child: MyTextField(
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Image.asset(
+                      "assets/icons/Search Icon.png",
+                      height: 6,
+                    ),
+                  ),
+                  labelText: "Search",
+                ),
+              ),
+              const Spacer(),
+              if (!context.isPhone)
+                MyButton(
+                  onTap: () {
+                  //  context.pushRoute(AddEmployee());
+                  },
+                  // glow: true,
+                  width: 300,
+                  title: "Register",
+                  suffixIcon: Image.asset(
+                    "assets/icons/Add Red.png",
+                    height: 22,
+                  ),
+                ),
+            ],
           ),
           const Gap(10),
           Container(
@@ -42,6 +70,18 @@ class EmployeeList extends StatelessWidget {
                         Icons.more_horiz,
                         color: Colors.white,
                       ));
+                }
+                if (tags[index]["title"] == "Info") {
+                  return Expanded(
+                    flex: tags[index]["flex"],
+                    child: IconButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () {},
+                        icon: Image.asset(
+                          "assets/icons/Eye.png",
+                          height: 22,
+                        )),
+                  );
                 }
 
                 return Expanded(
@@ -89,6 +129,7 @@ class EmployeeList extends StatelessWidget {
                   }
                   if (tags[index]["title"] == "icon") {
                     return IconButton(
+                        padding: EdgeInsets.zero,
                         onPressed: () {},
                         icon: const Icon(
                           Icons.more_horiz,
