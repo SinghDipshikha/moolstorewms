@@ -1,21 +1,20 @@
-class HrModuleValidator {
-
-  HrModuleValidator._();
+abstract class HrModuleValidator {
+  // HrModuleValidator._();
 
   static bool isValidEmail(String email) {
     if (email.isEmpty) {
       return false;
     }
-    final RegExp regex = RegExp(
-        r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$");
+    final RegExp regex =
+        RegExp(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$");
     return regex.hasMatch(email);
   }
+
   static bool isValidPassword(String password) {
     if (password.isEmpty) {
       return false;
     }
-    final RegExp regex = RegExp(
-        r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$");
+    final RegExp regex = RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$");
     return regex.hasMatch(password);
   }
 
@@ -26,7 +25,8 @@ class HrModuleValidator {
     final RegExp regex = RegExp(r"^[a-zA-Z0-9_]{3,15}$");
     return regex.hasMatch(username);
   }
-   static bool isValidMobileNumber(String mobileNumber) {
+
+  static bool isValidMobileNumber(String mobileNumber) {
     if (mobileNumber.isEmpty) {
       return false;
     }
@@ -41,6 +41,7 @@ class HrModuleValidator {
     final RegExp regex = RegExp(r"^[a-zA-Z0-9]{6,10}$");
     return regex.hasMatch(passportNumber);
   }
+
   static bool isValidPFNumber(String pfNumber) {
     if (pfNumber.isEmpty) {
       return false;
@@ -48,25 +49,27 @@ class HrModuleValidator {
     final RegExp regex = RegExp(r"^[a-zA-Z]{2}\d{6}$");
     return regex.hasMatch(pfNumber);
   }
-   static bool isValidAadharNumber(String aadharNumber) {
+
+  static bool isValidAadharNumber(String aadharNumber) {
     if (aadharNumber.isEmpty) {
       return false;
     }
     final RegExp regex = RegExp(r'^[0-9]{12}$');
     return regex.hasMatch(aadharNumber);
   }
-   static bool isValidPAN(String pan) {
+
+  static bool isValidPAN(String pan) {
     if (pan.isEmpty) {
       return false;
     }
     final RegExp regex = RegExp(r"^[A-Z]{5}[0-9]{4}[A-Z]{1}$");
     return regex.hasMatch(pan);
   }
+
   static bool isValidAddress(String address) {
     return address.isNotEmpty;
   }
 
- 
   static bool isValidCity(String city) {
     if (city.isEmpty) {
       return false;
@@ -75,7 +78,6 @@ class HrModuleValidator {
     return regex.hasMatch(city);
   }
 
-  
   static bool isValidState(String state) {
     if (state.isEmpty) {
       return false;
@@ -83,13 +85,15 @@ class HrModuleValidator {
     final RegExp regex = RegExp(r"^[A-Za-z]{2}$");
     return regex.hasMatch(state);
   }
-   static bool isValidPincode(String pincode) {
+
+  static bool isValidPincode(String pincode) {
     if (pincode.isEmpty) {
       return false;
     }
     final RegExp regex = RegExp(r"^[0-9]{6}$");
     return regex.hasMatch(pincode);
   }
+
   static bool isValidESIC(String esicNumber) {
     if (esicNumber.isEmpty) {
       return false;
@@ -97,6 +101,7 @@ class HrModuleValidator {
     final RegExp regex = RegExp(r"^[a-zA-Z0-9]{17}$");
     return regex.hasMatch(esicNumber);
   }
+
   static bool isValidGateID(String gateID) {
     if (gateID.isEmpty) {
       return false;
@@ -104,20 +109,23 @@ class HrModuleValidator {
     final RegExp regex = RegExp(r"^Gate-\d{3,5}$");
     return regex.hasMatch(gateID);
   }
-   static bool isValidBloodGroup(String bloodGroup) {
+
+  static bool isValidBloodGroup(String bloodGroup) {
     if (bloodGroup.isEmpty) {
       return false;
     }
     final RegExp regex = RegExp(r"^(A|B|AB|O)[\+-]$");
     return regex.hasMatch(bloodGroup);
   }
-   static bool isValidMonthlySalary(String salary) {
+
+  static bool isValidMonthlySalary(String salary) {
     if (salary.isEmpty) {
       return false;
     }
-    final RegExp regex = RegExp(r"^[1-9]\d*(\.\d+)?$"); 
+    final RegExp regex = RegExp(r"^[1-9]\d*(\.\d+)?$");
     return regex.hasMatch(salary);
   }
+
   // Validate passing year (four-digit number)
   static bool isValidPassingYear(String year) {
     if (year.isEmpty) {
@@ -132,7 +140,8 @@ class HrModuleValidator {
     if (grade.isEmpty) {
       return false;
     }
-    final RegExp regex = RegExp(r"^100(\.0{1,2})?$|^\d{1,2}(\.\d{1,2})?$"); // Number between 0 and 100
+    final RegExp regex = RegExp(
+        r"^100(\.0{1,2})?$|^\d{1,2}(\.\d{1,2})?$"); // Number between 0 and 100
     return regex.hasMatch(grade);
   }
 
@@ -141,16 +150,16 @@ class HrModuleValidator {
     if (school.isEmpty) {
       return false;
     }
-    final RegExp regex = RegExp(r"^[a-zA-Z\s\.,'-]+$"); // Alphabets, spaces, dots, commas, hyphens, and apostrophes
+    final RegExp regex = RegExp(
+        r"^[a-zA-Z\s\.,'-]+$"); // Alphabets, spaces, dots, commas, hyphens, and apostrophes
     return regex.hasMatch(school);
   }
-
 
   static bool isValidEducationBoard(String board) {
     if (board.isEmpty) {
       return false;
     }
-    final RegExp regex = RegExp(r"^[a-zA-Z\s\.,'-]+$"); 
+    final RegExp regex = RegExp(r"^[a-zA-Z\s\.,'-]+$");
     return regex.hasMatch(board);
   }
 
@@ -158,7 +167,7 @@ class HrModuleValidator {
     if (qualification.isEmpty) {
       return false;
     }
-    final RegExp regex = RegExp(r"^[a-zA-Z\s]+$"); 
+    final RegExp regex = RegExp(r"^[a-zA-Z\s]+$");
     return regex.hasMatch(qualification);
   }
 
@@ -166,16 +175,15 @@ class HrModuleValidator {
     if (specialization.isEmpty) {
       return false;
     }
-    final RegExp regex = RegExp(r"^[a-zA-Z\s\.,'-]+$"); 
+    final RegExp regex = RegExp(r"^[a-zA-Z\s\.,'-]+$");
     return regex.hasMatch(specialization);
   }
 
- 
   static bool isValidCollegeUniversity(String college) {
     if (college.isEmpty) {
       return false;
     }
-    final RegExp regex = RegExp(r"^[a-zA-Z\s\.,'-]+$"); 
+    final RegExp regex = RegExp(r"^[a-zA-Z\s\.,'-]+$");
     return regex.hasMatch(college);
   }
 

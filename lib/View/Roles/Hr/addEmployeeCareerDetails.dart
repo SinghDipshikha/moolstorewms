@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Roles/Hr/constants/validations.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonTextField.dart';
+import 'package:moolwmsstore/routes/approutes.gr.dart';
 
 @RoutePage()
 class AddEmployeeCareerDetails extends StatefulWidget {
@@ -40,7 +41,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
   }
 
   String? selectedLanguage = "Hindi";
-    final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -139,11 +140,11 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                 if (value!.isEmpty) {
                                   return 'Please enter your gaurd name.';
                                 }
-      
+
                                 if (!HrModuleValidator.isValidUsername(value)) {
                                   return 'Please enter a valid gaurd name.';
                                 }
-      
+
                                 return null;
                               },
                               onChanged: (value) {
@@ -297,12 +298,12 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                 if (value!.isEmpty) {
                                   return 'Please enter your monthly salary.';
                                 }
-      
+
                                 if (!HrModuleValidator.isValidMonthlySalary(
                                     value)) {
                                   return 'Please enter a monthly salary.';
                                 }
-      
+
                                 return null;
                               },
                               onChanged: (value) {
@@ -317,12 +318,12 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                 if (value!.isEmpty) {
                                   return 'Please enter your monthly salary.';
                                 }
-      
+
                                 if (!HrModuleValidator.isValidMonthlySalary(
                                     value)) {
                                   return 'Please enter a monthly salary.';
                                 }
-      
+
                                 return null;
                               },
                               onChanged: (value) {
@@ -390,17 +391,22 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CommonPreviousButton(
+                          onTap: () {
+                            context.back();
+                          },
                           title: 'Previous',
                         ),
                         const Gap(20),
                         CommonNextButton(
                           title: 'Next',
                           onTap: () {
-                            if (_formKey.currentState!.validate()) {
-                              _formKey.currentState!.save();
-      
-                              // print('Valid email: $_email');
-                            }
+                            // if (_formKey.currentState!.validate()) {
+                            //   _formKey.currentState!.save();
+
+                            //   // print('Valid email: $_email');
+                            // }
+                            context
+                                .pushRoute(const AddEmployeeReferralDetails());
                           },
                         ),
                       ],

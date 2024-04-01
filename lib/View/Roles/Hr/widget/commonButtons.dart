@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/View/Styles/Styles..dart';
 
 class CommonNextButton extends StatelessWidget {
   bool glow;
@@ -31,13 +29,14 @@ class CommonNextButton extends StatelessWidget {
       borderRadius: BorderRadius.all(Radius.circular(radius ?? 60)),
       onTap: onTap,
       child: Container(
-        constraints: context.isPhone ? null : BoxConstraints(maxWidth: 210),
+        constraints:
+            context.isPhone ? null : const BoxConstraints(maxWidth: 210),
         padding: const EdgeInsets.symmetric(horizontal: 43, vertical: 20),
         clipBehavior: Clip.antiAlias,
         decoration: ShapeDecoration(
           color: Colors.black,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          shadows: [
+          shadows: const [
             BoxShadow(
               color: Color(0x0C000000),
               blurRadius: 2,
@@ -46,7 +45,7 @@ class CommonNextButton extends StatelessWidget {
             )
           ],
         ),
-        child: Row(
+        child: const Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -56,9 +55,7 @@ class CommonNextButton extends StatelessWidget {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
-                fontFamily: 'Nunito',
                 fontWeight: FontWeight.w700,
-                height: 0,
               ),
             ),
             Gap(20),
@@ -100,13 +97,14 @@ class CommonPreviousButton extends StatelessWidget {
       borderRadius: BorderRadius.all(Radius.circular(radius ?? 60)),
       onTap: onTap,
       child: Container(
-        constraints: context.isPhone?null : BoxConstraints( maxWidth: 205),
+        constraints:
+            context.isPhone ? null : const BoxConstraints(maxWidth: 205),
         padding: const EdgeInsets.symmetric(horizontal: 43, vertical: 20),
         clipBehavior: Clip.antiAlias,
         decoration: ShapeDecoration(
           color: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          shadows: [
+          shadows: const [
             BoxShadow(
               color: Color(0x0C000000),
               blurRadius: 2,
@@ -115,7 +113,7 @@ class CommonPreviousButton extends StatelessWidget {
             )
           ],
         ),
-        child: Row(
+        child: const Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -131,7 +129,7 @@ class CommonPreviousButton extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
-                  fontFamily: 'Nunito',
+
                   fontWeight: FontWeight.w700,
                   // overflow: TextOverflow.ellipsis
                 ),

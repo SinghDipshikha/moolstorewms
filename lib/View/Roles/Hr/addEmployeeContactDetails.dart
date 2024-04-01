@@ -6,6 +6,7 @@ import 'package:moolwmsstore/View/Roles/Hr/constants/validations.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonDropDown.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonTextField.dart';
+import 'package:moolwmsstore/routes/approutes.gr.dart';
 
 @RoutePage()
 class AddEmployeeContactDetails extends StatefulWidget {
@@ -343,14 +344,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                         CommonPreviousButton(
                           title: 'Previous',
                           onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) {
-                            //       return AddEmployeePersonalDetails();
-                            //     },
-                            //   ),
-                            // );
+                            context.back();
                           },
                         ),
                         const Gap(20),
@@ -362,6 +356,8 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
 
                               // print('Valid email: $_email');
                             }
+
+                            context.pushRoute(const AddEmployeeCareerDetails());
                           },
                         ),
                       ],

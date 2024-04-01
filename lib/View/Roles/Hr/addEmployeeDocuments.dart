@@ -28,7 +28,6 @@ class _AddEmployeeDocumentsDetailsState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
@@ -52,8 +51,7 @@ class _AddEmployeeDocumentsDetailsState
                         spacing: 10,
                         runSpacing: 10,
                         children: [
-                          assetImage
-                           != null
+                          assetImage != null
                               ? DottedBorder(
                                   borderType: BorderType.RRect,
                                   radius: const Radius.circular(12),
@@ -165,6 +163,9 @@ class _AddEmployeeDocumentsDetailsState
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CommonPreviousButton(
+                        onTap: () {
+                          context.back();
+                        },
                         title: 'Previous',
                       ),
                       const Gap(20),

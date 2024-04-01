@@ -1,15 +1,28 @@
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/Data/Model/Warehouse/warehouse.dart';
 
-@RoutePage()  
+@RoutePage()
 class ViewWarehouseDetails extends StatelessWidget {
-  const ViewWarehouseDetails({super.key});
+  Warehouse? warehouse;
+  ViewWarehouseDetails({super.key, this.warehouse});
 
   @override
   Widget build(BuildContext context) {
+    Map data = {
+      "Warehouse Name": warehouse?.warehouse_name ?? "",
+      "Manager Name": warehouse?.warehouse_manager ?? "",
+      "Mobile Number": warehouse?.phone ?? "",
+      "Email ID": warehouse?.manage_email ?? "",
+      "No. of Chambers": warehouse?.no_of_chambers ?? "",
+      "Total Capacity": warehouse?.total_capacity ?? "",
+      "No. of Docks": warehouse?.no_of_docks ?? "",
+      "No. of Gates": warehouse?.no_of_gates ?? "",
+      "Location": warehouse?.warehouse_location ?? "",
+    };
+
     return Scaffold(
       appBar: AppBar(
         //  centerTitle: false,
@@ -40,7 +53,10 @@ class ViewWarehouseDetails extends StatelessWidget {
               /// alignment: WrapAlignment.center,
               runSpacing: 14,
               spacing: 30,
-              children: List.generate(9, (index) {
+              children: List.generate(data.keys.length, (index) {
+                String key = data.keys.toList()[index];
+                String value = data[key].toString();
+
                 return Container(
                   clipBehavior: Clip.antiAlias,
                   decoration: ShapeDecoration(
@@ -59,22 +75,22 @@ class ViewWarehouseDetails extends StatelessWidget {
                   ),
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  child: const Column(
+                  child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Warehouse Name',
-                        style: TextStyle(
+                        key,
+                        style: const TextStyle(
                           color: Colors.black,
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
                       Text(
-                        'MidSize Warehouse',
-                        style: TextStyle(
+                        value,
+                        style: const TextStyle(
                           color: Colors.black,
                           fontSize: 16,
                           fontWeight: FontWeight.w500,

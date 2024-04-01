@@ -2,18 +2,20 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:moolwmsstore/Controller/salesController.dart';
+import 'package:moolwmsstore/Data/Model/Sales/PurchaseOrder.dart';
+import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';
-import 'package:moolwmsstore/utils/dimensions.dart';
-@RoutePage()  
-class PoList extends StatefulWidget {
-  const PoList({super.key});
 
-  @override
-  _PoListState createState() => _PoListState();
-}
+@RoutePage()
+class PoList extends StatelessWidget {
+  PoList({super.key});
 
-class _PoListState extends State<PoList> {
+  final DateFormat formatter = DateFormat('dd-MM-yyyy');
+  final DateFormat timeformatter = DateFormat.jms();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -217,206 +219,221 @@ class _PoListState extends State<PoList> {
                 ],
               )),
           const Gap(4),
-          Expanded(child: ListView.builder(itemBuilder: (context, i) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-              child: Container(
-                width: double.infinity,
+          GetBuilder<SalesController>(
+            initState: (state) {
+            Get.find<SalesController>().getPoList();
+          }, builder: (salesController) {
+            return Expanded(
+                child: ListView.builder(
+                    itemCount: salesController.purchaseOrders.length,
+                    itemBuilder: (context, i) {
+                      final PurchaseOrder po =
+                          salesController.purchaseOrders[i];
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 4),
+                        child: Container(
+                          width: double.infinity,
 
-                //  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
-                clipBehavior: Clip.antiAlias,
-                decoration: ShapeDecoration(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  shadows: const [
-                    BoxShadow(
-                      color: Color(0x0C000000),
-                      blurRadius: 2,
-                      offset: Offset(0, 1),
-                      spreadRadius: 0,
-                    )
-                  ],
-                ),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                  child: Row(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        width: 40,
-                        child: Text(
-                          i < 9 ? "0${i + 1}" : "${i + 1}",
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      const Expanded(
-                        flex: 2,
-                        child: Text(
-                          "Jackhammer",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      const Expanded(
-                        flex: 2,
-                        child: Text(
-                          "22-11-2023",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      context.isPhone
-                          ? Container()
-                          : const Expanded(
-                              flex: 2,
-                              child: Text(
-                                "#12345",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                          //  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
+                          clipBehavior: Clip.antiAlias,
+                          decoration: ShapeDecoration(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                      context.isPhone
-                          ? Container()
-                          : const Expanded(
-                              flex: 2,
-                              child: Text(
-                                "VD-001",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                      context.isPhone
-                          ? Container()
-                          : const Expanded(
-                              flex: 2,
-                              child: Text(
-                                "A small description goes here",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                      context.isPhone
-                          ? Container()
-                          : Expanded(
-                              flex: 2,
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 12),
-                                child: Container(
-                                  // width: 80,
-                                  height: 38.90,
-                                  decoration: const BoxDecoration(
-                                      color: Color(0xFFEFEFEF)),
-                                  child: const Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        '12',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 13.89,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      Icon(
-                                        Icons.more_vert,
-                                        color: Colors.black,
-                                        size: 12,
-                                      ),
-                                      Text(
-                                        '40',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 13.89,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      Icon(
-                                        Icons.more_vert,
-                                        color: Colors.black,
-                                        size: 12,
-                                      ),
-                                      Text(
-                                        '00',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 13.89,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      Text(
-                                        'AM',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 13.89,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ],
+                            shadows: const [
+                              BoxShadow(
+                                color: Color(0x0C000000),
+                                blurRadius: 2,
+                                offset: Offset(0, 1),
+                                spreadRadius: 0,
+                              )
+                            ],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 4),
+                            child: Row(
+                              children: [
+                                Container(
+                                  alignment: Alignment.center,
+                                  width: 40,
+                                  child: Text(
+                                    i < 9 ? "0${i + 1}" : "${i + 1}",
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
-                              ),
+                                Expanded(
+                                  flex: 2,
+                                  child: Text(
+                                    po.name ?? "",
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: Text(
+                                    po.created_at == null
+                                        ? ""
+                                        : formatter
+                                            .format(po.created_at as DateTime),
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                context.isPhone
+                                    ? Container()
+                                    : Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          po.order_number ?? "",
+                                          style: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                context.isPhone
+                                    ? Container()
+                                    : Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          po.vendor_id ?? "",
+                                          style: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                context.isPhone
+                                    ? Container()
+                                    : const Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          "A small description goes here",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                context.isPhone
+                                    ? Container()
+                                    : Expanded(
+                                        flex: 2,
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 12),
+                                          child: Container(
+                                            // width: 80,
+                                            height: 38.90,
+                                            decoration: const BoxDecoration(
+                                                color: Color(0xFFEFEFEF)),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  timeformatter.format(po
+                                                      .created_at as DateTime),
+                                                  textAlign: TextAlign.center,
+                                                  style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 13.89,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                                // const Icon(
+                                                //   Icons.more_vert,
+                                                //   color: Colors.black,
+                                                //   size: 12,
+                                                // ),
+                                                // const Text(
+                                                //   '40',
+                                                //   textAlign: TextAlign.center,
+                                                //   style: TextStyle(
+                                                //     color: Colors.black,
+                                                //     fontSize: 13.89,
+                                                //     fontWeight: FontWeight.w600,
+                                                //   ),
+                                                // ),
+                                                // const Icon(
+                                                //   Icons.more_vert,
+                                                //   color: Colors.black,
+                                                //   size: 12,
+                                                // ),
+                                                // const Text(
+                                                //   '00',
+                                                //   textAlign: TextAlign.center,
+                                                //   style: TextStyle(
+                                                //     color: Colors.black,
+                                                //     fontSize: 13.89,
+                                                //     fontWeight: FontWeight.w600,
+                                                //   ),
+                                                // ),
+                                                // const Text(
+                                                //   'AM',
+                                                //   textAlign: TextAlign.center,
+                                                //   style: TextStyle(
+                                                //     color: Colors.black,
+                                                //     fontSize: 13.89,
+                                                //     fontWeight: FontWeight.w600,
+                                                //   ),
+                                                // ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                context.isPhone
+                                    ? Container()
+                                    : IconButton(
+                                        onPressed: () {},
+                                        icon: Image.asset(
+                                          "assets/icons/Eye.png",
+                                          height: 22,
+                                        )),
+                                IconButton(
+                                    onPressed: () {
+                                      // context.pushRoute(const ChamberViewRoute());
+                                      // context
+                                      //     .pushRoute(const ViewWarehouseDetailsRoute());
+                                    },
+                                    icon: const Icon(
+                                      Icons.more_horiz,
+                                      color: Colors.black,
+                                    ))
+                              ],
                             ),
-                      context.isPhone
-                          ? Container()
-                          : IconButton(
-                              onPressed: () {},
-                              icon: Image.asset(
-                                "assets/icons/Eye.png",
-                                height: 22,
-                              )),
-                      IconButton(
-                          onPressed: () {
-                            // context.pushRoute(const ChamberViewRoute());
-                            // context
-                            //     .pushRoute(const ViewWarehouseDetailsRoute());
-                          },
-                          icon: const Icon(
-                            Icons.more_horiz,
-                            color: Colors.black,
-                          ))
-                    ],
-                  ),
-                ),
-              ),
-            );
-          })),
+                          ),
+                        ),
+                      );
+                    }));
+          }),
           context.isPhone ? Container() : const Gap(20),
           context.isPhone
               ? CustomButton2(title: "Create New Purchase Order")
@@ -431,11 +448,11 @@ class _PoListState extends State<PoList> {
         //     bottom: Radius.circular(34),
         //   ),
         // ),
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.scaffoldBackgroundColor,
         title: const Text(
           'Purchase Order List',
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
             fontSize: 22,
             fontWeight: FontWeight.w700,
           ),

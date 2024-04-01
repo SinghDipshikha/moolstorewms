@@ -13,9 +13,16 @@ class TestRoutes extends StatelessWidget {
 }
 
 @RoutePage()
-class TestRoutespage extends StatelessWidget {
+class TestRoutespage extends StatefulWidget {
   const TestRoutespage({super.key});
 
+  @override
+  State<TestRoutespage> createState() => _TestRoutespageState();
+}
+
+class _TestRoutespageState extends State<TestRoutespage> {
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
+  bool showWebDrawr = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +79,7 @@ class TestRoutespage extends StatelessWidget {
                 child: const Text("Warhouse List")),
             ElevatedButton(
                 onPressed: () {
-                  context.pushRoute(const ViewWarehouseDetails());
+                  context.pushRoute(ViewWarehouseDetails());
                 },
                 child: const Text("ViewWarehouseDetails")),
             ElevatedButton(

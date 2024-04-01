@@ -9,6 +9,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i28;
+import 'package:flutter/material.dart' as _i29;
+import 'package:moolwmsstore/Data/Model/Warehouse/warehouse.dart' as _i30;
 import 'package:moolwmsstore/View/auth/chooselanguage.dart' as _i15;
 import 'package:moolwmsstore/View/auth/OtpScreen.dart' as _i17;
 import 'package:moolwmsstore/View/auth/phoneSign.dart' as _i19;
@@ -168,9 +170,11 @@ abstract class $AppRouter extends _i28.RootStackRouter {
       );
     },
     PoList.name: (routeData) {
+      final args =
+          routeData.argsAs<PoListArgs>(orElse: () => const PoListArgs());
       return _i28.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i20.PoList(),
+        child: _i20.PoList(key: args.key),
       );
     },
     SelectRole.name: (routeData) {
@@ -204,9 +208,14 @@ abstract class $AppRouter extends _i28.RootStackRouter {
       );
     },
     ViewWarehouseDetails.name: (routeData) {
+      final args = routeData.argsAs<ViewWarehouseDetailsArgs>(
+          orElse: () => const ViewWarehouseDetailsArgs());
       return _i28.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i25.ViewWarehouseDetails(),
+        child: _i25.ViewWarehouseDetails(
+          key: args.key,
+          warehouse: args.warehouse,
+        ),
       );
     },
     WarehouseList.name: (routeData) {
@@ -494,16 +503,30 @@ class PhoneSign extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i20.PoList]
-class PoList extends _i28.PageRouteInfo<void> {
-  const PoList({List<_i28.PageRouteInfo>? children})
-      : super(
+class PoList extends _i28.PageRouteInfo<PoListArgs> {
+  PoList({
+    _i29.Key? key,
+    List<_i28.PageRouteInfo>? children,
+  }) : super(
           PoList.name,
+          args: PoListArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'PoList';
 
-  static const _i28.PageInfo<void> page = _i28.PageInfo<void>(name);
+  static const _i28.PageInfo<PoListArgs> page = _i28.PageInfo<PoListArgs>(name);
+}
+
+class PoListArgs {
+  const PoListArgs({this.key});
+
+  final _i29.Key? key;
+
+  @override
+  String toString() {
+    return 'PoListArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -578,16 +601,41 @@ class TestRoutespage extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i25.ViewWarehouseDetails]
-class ViewWarehouseDetails extends _i28.PageRouteInfo<void> {
-  const ViewWarehouseDetails({List<_i28.PageRouteInfo>? children})
-      : super(
+class ViewWarehouseDetails
+    extends _i28.PageRouteInfo<ViewWarehouseDetailsArgs> {
+  ViewWarehouseDetails({
+    _i29.Key? key,
+    _i30.Warehouse? warehouse,
+    List<_i28.PageRouteInfo>? children,
+  }) : super(
           ViewWarehouseDetails.name,
+          args: ViewWarehouseDetailsArgs(
+            key: key,
+            warehouse: warehouse,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'ViewWarehouseDetails';
 
-  static const _i28.PageInfo<void> page = _i28.PageInfo<void>(name);
+  static const _i28.PageInfo<ViewWarehouseDetailsArgs> page =
+      _i28.PageInfo<ViewWarehouseDetailsArgs>(name);
+}
+
+class ViewWarehouseDetailsArgs {
+  const ViewWarehouseDetailsArgs({
+    this.key,
+    this.warehouse,
+  });
+
+  final _i29.Key? key;
+
+  final _i30.Warehouse? warehouse;
+
+  @override
+  String toString() {
+    return 'ViewWarehouseDetailsArgs{key: $key, warehouse: $warehouse}';
+  }
 }
 
 /// generated route for

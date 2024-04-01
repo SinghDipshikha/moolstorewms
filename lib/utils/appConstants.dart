@@ -14,6 +14,7 @@ class AppConstants {
     // "Dock Supervisor",
     // "Intern",
     "Security Guard",
+    "HR",
     //   "Plant Helper",
     //   "Senior Plant Operator",
     //   "MultiSkilled Engineer",

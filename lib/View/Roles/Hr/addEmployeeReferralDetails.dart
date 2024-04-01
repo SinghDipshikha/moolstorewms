@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Roles/Hr/constants/validations.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonTextField.dart';
+import 'package:moolwmsstore/routes/approutes.gr.dart';
 
 @RoutePage()
 class AddEmployeeReferralDetails extends StatefulWidget {
@@ -18,13 +19,13 @@ class AddEmployeeReferralDetails extends StatefulWidget {
 class _AddEmployeeReferralDetailsState
     extends State<AddEmployeeReferralDetails> {
   @override
-    final _formKey = GlobalKey<FormState>();
-    String _mobileNumber = '';
-    String _address = '';
-    String _email = '';
-    String _refereeName = '';
-    String _companyName = '';
-    String _designation='';
+  final _formKey = GlobalKey<FormState>();
+  String _mobileNumber = '';
+  String _address = '';
+  String _email = '';
+  String _refereeName = '';
+  String _companyName = '';
+  String _designation = '';
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -53,8 +54,9 @@ class _AddEmployeeReferralDetailsState
                     Container(
                       decoration: BoxDecoration(
                           border: Border.all(
-                              color:
-                                  context.isPhone ? Colors.transparent : Colors.black,
+                              color: context.isPhone
+                                  ? Colors.transparent
+                                  : Colors.black,
                               width: 2)),
                       width: double.infinity,
                       child: Padding(
@@ -65,7 +67,7 @@ class _AddEmployeeReferralDetailsState
                           spacing: 20,
                           runSpacing: 20,
                           children: [
-                                                        CommanTextField(
+                            CommanTextField(
                               labelText: "Referee Name",
                               hintText: "Referee Name",
                               obscureText: false,
@@ -88,7 +90,7 @@ class _AddEmployeeReferralDetailsState
                               labelText: "Company",
                               hintText: "Company",
                               obscureText: false,
-                               validator: (value) {
+                              validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Please enter your company name.';
                                 }
@@ -126,7 +128,7 @@ class _AddEmployeeReferralDetailsState
                               labelText: "Designation",
                               hintText: "Designation",
                               obscureText: false,
-                               validator: (value) {
+                              validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Please enter your designation.';
                                 }
@@ -141,7 +143,7 @@ class _AddEmployeeReferralDetailsState
                                 _designation = value;
                               },
                             ).paddingAll(2),
-                             CommanTextField(
+                            CommanTextField(
                               labelText: "Mobile Number",
                               hintText: "Mobile Number",
                               obscureText: false,
@@ -161,7 +163,7 @@ class _AddEmployeeReferralDetailsState
                                 _mobileNumber = value;
                               },
                             ).paddingAll(2),
-                             CommanTextField(
+                            CommanTextField(
                               labelText: "Email ID",
                               hintText: "Email ID",
                               obscureText: false,
@@ -180,46 +182,45 @@ class _AddEmployeeReferralDetailsState
                                 _email = value;
                               },
                             ).paddingAll(8),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 28.39,
-                                  height: 28.39,
-                                  child: Stack(
-                                    children: [
-                                      Positioned(
-                                        left: 0,
-                                        top: 0,
-                                        child: Container(
-                                          width: 28.39,
-                                          height: 28.39,
-                                          decoration: const ShapeDecoration(
-                                            color: Colors.black,
-                                            shape: OvalBorder(),
-                                          ),
-                                          child: const Icon(
-                                            Icons.add,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const Gap(5),
-                                const Text(
-                                  'Add More',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18.03,
-                                    fontFamily: 'Nunito',
-                                    fontWeight: FontWeight.w700,
-                                    height: 0,
-                                  ),
-                                )
-                              ],
-                            ).paddingOnly(left: 50),
-                           
+                            // Row(
+                            //   children: [
+                            //     SizedBox(
+                            //       width: 28.39,
+                            //       height: 28.39,
+                            //       child: Stack(
+                            //         children: [
+                            //           Positioned(
+                            //             left: 0,
+                            //             top: 0,
+                            //             child: Container(
+                            //               width: 28.39,
+                            //               height: 28.39,
+                            //               decoration: const ShapeDecoration(
+                            //                 color: Colors.black,
+                            //                 shape: OvalBorder(),
+                            //               ),
+                            //               child: const Icon(
+                            //                 Icons.add,
+                            //                 color: Colors.white,
+                            //               ),
+                            //             ),
+                            //           ),
+                            //         ],
+                            //       ),
+                            //     ),
+                            //     const Gap(5),
+                            //     const Text(
+                            //       'Add More',
+                            //       style: TextStyle(
+                            //         color: Colors.black,
+                            //         fontSize: 18.03,
+                            //         fontFamily: 'Nunito',
+                            //         fontWeight: FontWeight.w700,
+                            //         height: 0,
+                            //       ),
+                            //     )
+                            //   ],
+                            // ).paddingOnly(left: 50),
                           ],
                         ),
                       ),
@@ -237,25 +238,28 @@ class _AddEmployeeReferralDetailsState
                               ),
                             )).paddingOnly(left: 80),
                   ]),
-             
-              if(!context.isPhone)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [   CommonPreviousButton(
-                      title: 'Previous',
-                    ),
-                    const Gap(20),
-                    CommonNextButton(
-                      title: 'Next',
-                      onTap: () {
-                        if (_formKey.currentState!.validate()) {
-                          _formKey.currentState!.save();
-      
-                       
-                        }
-                      },
-                    ),],
-              ).paddingAll(20)
+                  if (!context.isPhone)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CommonPreviousButton(
+                          onTap: () {
+                            context.back();
+                          },
+                          title: 'Previous',
+                        ),
+                        const Gap(20),
+                        CommonNextButton(
+                          title: 'Next',
+                          onTap: () {
+                            if (_formKey.currentState!.validate()) {
+                              _formKey.currentState!.save();
+                            }
+                            context.pushRoute(const AddEmployeeBankDetails());
+                          },
+                        ),
+                      ],
+                    ).paddingAll(20)
                 ],
               ),
             ),

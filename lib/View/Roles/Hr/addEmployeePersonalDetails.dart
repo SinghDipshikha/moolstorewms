@@ -2,9 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/Data/Model/Hr/Personaldetails.dart';
 import 'package:moolwmsstore/View/Roles/Hr/constants/validations.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonTextField.dart';
+import 'package:moolwmsstore/routes/approutes.gr.dart';
 
 @RoutePage()
 class AddEmployeePersonalDetails extends StatefulWidget {
@@ -17,10 +19,11 @@ class AddEmployeePersonalDetails extends StatefulWidget {
 
 class _AddEmployeePersonalDetailsState
     extends State<AddEmployeePersonalDetails> {
+      PersonalDetails? details ;
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   String _email = '';
-  String _mobileNumber = '';
+  final String _mobileNumber = '';
   String _gaurdName = '';
   String _bloodGroup = '';
   String _gateId = '';
@@ -55,16 +58,16 @@ class _AddEmployeePersonalDetailsState
     return Form(
       key: _formKey,
       child: Scaffold(
-         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: context.isPhone
             ? CommonNextButton(
                 title: 'next'.tr,
-                onTap: (){
-                   if (_formKey.currentState!.validate()) {
-                        _formKey.currentState!.save();
+                onTap: () {
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
 
-                        print('Valid email: $_email');
-                      }
+                   // print('Valid email: $_email');
+                  }
                 },
               )
             : Container().paddingSymmetric(horizontal: 12),
@@ -107,7 +110,7 @@ class _AddEmployeePersonalDetailsState
                                 return null;
                               },
                               onChanged: (value) {
-                                _mobileNumber = value;
+                             //   details. = value;
                               },
                             ).paddingAll(8),
                             CommanTextField(
@@ -377,26 +380,29 @@ class _AddEmployeePersonalDetailsState
                               ),
                             )).paddingOnly(left: 80),
                   ]),
-                  
-            if(!context.isPhone)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [   CommonPreviousButton(
-                    title: 'Previous',
-                  ),
-                  const Gap(20),
-                  CommonNextButton(
-                    title: 'next'.tr,
-                    onTap: () {
-                      if (_formKey.currentState!.validate()) {
-                        _formKey.currentState!.save();
-
-                        print('Valid email: $_email');
-                      }
-                    },
-                  ),],
-            ).paddingAll(20)
-               
+                  if (!context.isPhone)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CommonPreviousButton(
+                          onTap: () {
+                                              context.back();
+                          },
+                          title: 'Previous',
+                        ),
+                        const Gap(20),
+                        CommonNextButton(
+                          title: 'next'.tr,
+                          onTap: () {
+                            if (_formKey.currentState!.validate()) {
+                              _formKey.currentState!.save();
+                            }
+                            context
+                                .pushRoute(const AddEmployeeContactDetails());
+                          },
+                        ),
+                      ],
+                    ).paddingAll(20)
                 ],
               ),
             ),

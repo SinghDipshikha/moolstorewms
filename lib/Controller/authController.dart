@@ -100,19 +100,4 @@ class AuthController extends GetxController {
       }
     });
   }
-  // Future signup() async {
-  //   authRepo.signup({});
-  // }
-
-  // List<SignupField> signupFields = [];
-  // getSignupFields() async {
-  //   authRepo.getSignupParams().then((value) {
-  //     if (value.body["status"] == true) {
-  //       List x = value.body["result"];
-  //       Logger().i(x);
-  //       signupFields = x.map((e) => SignupField.fromJson(e)).toList();
-  //       update();
-  //     }
-  //   });
-  // }
 }
