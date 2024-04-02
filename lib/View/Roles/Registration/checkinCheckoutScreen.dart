@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/View/Roles/Registration/widgets/commonAppBar.dart';
 
 class CheckInCheckCheckOutScreen extends StatefulWidget {
   const CheckInCheckCheckOutScreen({super.key});
@@ -143,5 +144,68 @@ class _CheckInCheckCheckOutScreenState
         ),
       ),
     ));
+  }
+}
+
+class CheckInCheckOutScreenMobile extends StatefulWidget {
+  const CheckInCheckOutScreenMobile({super.key});
+
+  @override
+  State<CheckInCheckOutScreenMobile> createState() =>
+      _CheckInCheckOutScreenMobileState();
+}
+
+class _CheckInCheckOutScreenMobileState
+    extends State<CheckInCheckOutScreenMobile> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: const CommonAppBar(
+        title: 'Results',
+        actions: [],
+      ),
+      body: Column(
+        children: [
+          const Gap(20),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                '25 - FEB - 2024',
+                style: TextStyle(
+                  color: Color(0xFF595959),
+                  fontSize: 14,
+                  fontFamily: 'Nunito',
+                  fontWeight: FontWeight.w500,
+                  height: 0,
+                ),
+              ),
+              Text(
+                '12 : 30 : 40 PM',
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                  color: Color(0xFF595959),
+                  fontSize: 14,
+                  fontFamily: 'Nunito',
+                  fontWeight: FontWeight.w500,
+                  height: 0,
+                ),
+              )
+            ],
+          ),
+          const Gap(20),
+          Container(
+            width: 212,
+            height: 232,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage("assets/images/profile_photo.png"),
+                fit: BoxFit.fill,
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
