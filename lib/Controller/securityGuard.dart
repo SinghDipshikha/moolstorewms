@@ -1,15 +1,55 @@
 import 'package:get/get.dart';
+import 'package:moolwmsstore/Data/Model/SecurityGuard/employeeEntry.dart';
+import 'package:moolwmsstore/Data/Model/SecurityGuard/secGuardDetail.dart';
 import 'package:moolwmsstore/Data/api/api_client.dart';
 import 'package:moolwmsstore/Data/repository/securityGuardRepo.dart';
 
 class SecurityGuardController extends GetxController {
   final SecurityGuardRepo secGaurdRepo;
   final ApiClient apiClient;
-  SecurityGuardController({required this.secGaurdRepo, required this.apiClient});
+  SecGuardDetail? secGuardDetail;
+  List<EmployeeEntry>? empEntryList;
+  bool? isCheckIn;
 
-  
+  SecurityGuardController(
+      {required this.secGaurdRepo, required this.apiClient});
+
   void verifyEmployee() {
-    secGaurdRepo.verifyEmployee(
-        empId: 2);
+    secGaurdRepo
+        .verifyEmployee(empId: 2, daterTime: DateTime.now(), gateId: 1)
+        .then((value) {
+      if (value != null) {
+        secGuardDetail = value;
+        update();
+      }
+    });
   }
+
+  void getEmployeesList() {
+    secGaurdRepo.getEmployeesList().then((value) {
+      if (value != null) {
+        empEntryList = value;
+        update();
+      }
+    });
+  }
+
+  // void checkInOut() {
+  //   secGaurdRepo
+  //       .checkInOut(
+  //           userId: 2,
+  //           dateTime: DateTime.now(),
+  //           status: "IN",
+  //           gateId: 2,
+  //           allowBy: 1)
+  //       .then((value) {
+  //     if (value) {
+  //       isCheckIn = true;
+  //       update();
+  //     } else {
+  //       isCheckIn = false;
+  //       update();
+  //     }
+  //   });
+  // }
 }
