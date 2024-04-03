@@ -45,10 +45,17 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
     return Form(
       key: _formKey,
       child: Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+ floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: context.isPhone
             ? CommonNextButton(
                 title: 'next'.tr,
+                onTap: (){
+                   if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+
+                        
+                      }
+                },
               )
             : Container().paddingSymmetric(horizontal: 12),
         body: SingleChildScrollView(

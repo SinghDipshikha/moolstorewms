@@ -186,4 +186,47 @@ abstract class HrModuleValidator {
     final RegExp regex = RegExp(r"^[a-zA-Z\s\.,'-]+$");
     return regex.hasMatch(college);
   }
+
+   // Validate account number (alphanumeric, min length: 6, max length: 18)
+  static bool isValidAccountNumber(String accountNumber) {
+    if (accountNumber.isEmpty) {
+      return false;
+    }
+    final RegExp regex = RegExp(r"^[a-zA-Z0-9]{6,18}$"); 
+    return regex.hasMatch(accountNumber);
+  }
+
+
+  static bool isValidIFSCCode(String ifscCode) {
+    if (ifscCode.isEmpty) {
+      return false;
+    }
+    final RegExp regex = RegExp(r"^[A-Z]{4}0[A-Z0-9]{6}$"); 
+    return regex.hasMatch(ifscCode);
+  }
+
+  
+  static bool isValidBankName(String bankName) {
+    if (bankName.isEmpty) {
+      return false;
+    }
+    final RegExp regex = RegExp(r"^[a-zA-Z\s\.,'-]+$"); 
+    return regex.hasMatch(bankName);
+  }
+
+ 
+  static bool isValidAccountType(String accountType) {
+    if (accountType.isEmpty) {
+      return false;
+    }
+    final RegExp regex = RegExp(r"^[a-zA-Z\s\.,'-]+$"); 
+    return regex.hasMatch(accountType);
+  }
+   static bool isValidAccountName(String accountName) {
+    if (accountName.isEmpty) {
+      return false;
+    }
+    final RegExp regex = RegExp(r"^[a-zA-Z\s\.,'-]+$"); 
+    return regex.hasMatch(accountName);
+  }
 }

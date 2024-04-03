@@ -47,6 +47,19 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
     return Form(
       key: _formKey,
       child: Scaffold(
+         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: context.isPhone
+            ? CommonNextButton(
+                title: 'next'.tr,
+                onTap: (){
+                   if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+
+                        
+                      }
+                },
+              )
+            : Container().paddingSymmetric(horizontal: 12),
         body: SingleChildScrollView(
           child: Center(
             child: Padding(
@@ -99,7 +112,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                             ),
                                           ),
                                         ),
-                                      ).paddingOnly(top: 10, left: 40),
+                                      ).paddingAll(8),
                                     ],
                                   )
                                 : const SizedBox(
@@ -137,17 +150,17 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                               onChanged: (value) {
                                 _employerName = value;
                               },
-                            ).paddingOnly(left: 20),
+                            ).paddingAll(8),
                             CommanTextField(
                               labelText: "Designation",
                               hintText: "Designation",
                               obscureText: false,
-                            ).paddingOnly(left: 20),
+                            ).paddingAll(8),
                             CommanTextField(
                               labelText: "Reporting To",
                               hintText: "Reporting To ",
                               obscureText: false,
-                            ).paddingOnly(left: 20),
+                            ).paddingAll(8),
                             Container(
                               constraints: context.isPhone
                                   ? null
@@ -182,7 +195,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                             ),
                                           ),
                                         ),
-                                      ).paddingOnly(top: 10, left: 40),
+                                      ).paddingAll(8)
                                     ],
                                   )
                                 : const SizedBox(
@@ -214,7 +227,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                 },
                               ),
                               obscureText: false,
-                            ).paddingOnly(left: 20),
+                            ).paddingAll(8),
                             CommanTextField(
                               labelText: "To Date",
                               hintText: _selectedDate == null
@@ -227,7 +240,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                 },
                               ),
                               obscureText: false,
-                            ).paddingOnly(left: 20),
+                            ).paddingAll(8),
                             !context.isPhone
                                 ? Row(
                                     children: [
@@ -257,7 +270,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                             ),
                                           ),
                                         ),
-                                      ).paddingOnly(top: 10, left: 40),
+                                      ).paddingAll(8),
                                     ],
                                   )
                                 : const SizedBox(
@@ -296,7 +309,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                               onChanged: (value) {
                                 _monthlySalary = value;
                               },
-                            ).paddingOnly(left: 20),
+                            ).paddingAll(8),
                             CommanTextField(
                               labelText: "Current/End",
                               hintText: "₹",
@@ -316,7 +329,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                               onChanged: (value) {
                                 _currentSalary = value;
                               },
-                            ).paddingOnly(left: 20),
+                            ).paddingAll(8),
                             Row(
                               children: [
                                 SizedBox(
@@ -355,7 +368,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                   ),
                                 )
                               ],
-                            ).paddingOnly(left: 20)
+                            ).paddingAll(8)
                           ],
                         ),
                       ),
