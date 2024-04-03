@@ -13,6 +13,22 @@ class RegistrationModuleDashboard extends StatefulWidget {
 class _RegistrationModuleDashboardState
     extends State<RegistrationModuleDashboard> {
   @override
+  DateTime? _selectedDate;
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null && picked != _selectedDate) {
+      setState(() {
+        _selectedDate = picked;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -45,97 +61,152 @@ class _RegistrationModuleDashboardState
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Gap(50),
-            Container(
-              height: 60,
-              width: 295,
-              decoration: const ShapeDecoration(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(),
-                shadows: [
-                  BoxShadow(
-                    color: Color(0x0C000000),
-                    blurRadius: 4,
-                    offset: Offset(3, 4),
-                    spreadRadius: 0,
-                  )
-                ],
-              ),
-            ),
-            const Gap(20),
-            Container(
-              width: 295,
-              height: 163,
-              decoration: ShapeDecoration(
-                gradient: const LinearGradient(
-                  colors: [Colors.black, Color(0xFF383838)],
+            InkWell(
+              onTap: () {
+                _selectDate(context);
+              },
+              child: Container(
+                height: 60,
+                width: 295,
+                decoration: const ShapeDecoration(
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(),
+                  shadows: [
+                    BoxShadow(
+                      color: Color(0x0C000000),
+                      blurRadius: 4,
+                      offset: Offset(3, 4),
+                      spreadRadius: 0,
+                    )
+                  ],
                 ),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)),
-              ),
-              child: const Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Register',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontFamily: 'Nunito',
-                      fontWeight: FontWeight.w700,
-                      height: 0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.calendar_month,
+                      color: Colors.black,
+                      size: 40,
                     ),
-                  ),
-                  Gap(20),
-                  Row(
+                    Text(
+                      _selectedDate == null
+                          ? 'No Date Selected'
+                          : _selectedDate.toString(),
+                    )
+                  ],
+                ),
+              ),
+          
+          
+           ),
+            Container(
+              width: 295,
+              height: 163,
+              decoration: ShapeDecoration(
+                gradient: const LinearGradient(
+                  colors: [Colors.black, Color(0xFF383838)],
+                ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Check In',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontFamily: 'Nunito',
-                          fontWeight: FontWeight.w500,
-                          height: 0,
+                      const Gap(20),
+                      const Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Text(
+                          'Register',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontFamily: 'Nunito',
+                            fontWeight: FontWeight.w700,
+                            height: 0,
+                          ),
                         ),
                       ),
-                      Gap(40),
-                      Text(
-                        '12',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontFamily: 'Nunito',
-                          fontWeight: FontWeight.w500,
-                          height: 0,
+                      Container(
+                        width: 110,
+                        height: 110,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          image: DecorationImage(
+                            image: NetworkImage(
+                                "assets/images/register_engineer.png"),
+                            fit: BoxFit.fill,
+                          ),
                         ),
-                      )
+                      ),
                     ],
                   ),
-                  Gap(20),
-                  Row(
+                  const Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Check Out',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontFamily: 'Nunito',
-                          fontWeight: FontWeight.w500,
-                          height: 0,
+                      Gap(50),
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Check In',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'Nunito',
+                                fontWeight: FontWeight.w500,
+                                height: 0,
+                              ),
+                            ),
+                            Gap(10),
+                            Text(
+                              '12',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'Nunito',
+                                fontWeight: FontWeight.w500,
+                                height: 0,
+                              ),
+                            )
+                          ],
                         ),
                       ),
-                      Gap(40),
-                      Text(
-                        '10',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontFamily: 'Nunito',
-                          fontWeight: FontWeight.w500,
-                          height: 0,
+                      Gap(20),
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Check Out',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'Nunito',
+                                fontWeight: FontWeight.w500,
+                                height: 0,
+                              ),
+                            ),
+                            Gap(20),
+                            Text(
+                              '10',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'Nunito',
+                                fontWeight: FontWeight.w500,
+                                height: 0,
+                              ),
+                            ),
+                          ],
                         ),
-                      )
+                      ),
                     ],
                   )
                 ],
@@ -151,6 +222,107 @@ class _RegistrationModuleDashboardState
                 ),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Gap(20),
+                      const Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Text(
+                          'Tickets',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontFamily: 'Nunito',
+                            fontWeight: FontWeight.w700,
+                            height: 0,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 150,
+                        height: 110,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          image: DecorationImage(
+                            image:
+                                NetworkImage("assets/images/ticket_image.png"),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Gap(50),
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Check In',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'Nunito',
+                                fontWeight: FontWeight.w500,
+                                height: 0,
+                              ),
+                            ),
+                            Gap(20),
+                            Text(
+                              '12',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'Nunito',
+                                fontWeight: FontWeight.w500,
+                                height: 0,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Gap(10),
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Check Out',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'Nunito',
+                                fontWeight: FontWeight.w500,
+                                height: 0,
+                              ),
+                            ),
+                            Gap(20),
+                            Text(
+                              '10',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'Nunito',
+                                fontWeight: FontWeight.w500,
+                                height: 0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                ],
               ),
             ),
             const Gap(20),
