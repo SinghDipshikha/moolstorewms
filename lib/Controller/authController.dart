@@ -101,4 +101,13 @@ class AuthController extends GetxController {
       }
     });
   }
+  // register() async {
+  //   await authRepo.register().then((value) {
+  //     if (value != null) {
+  //       addWarehouseFields = value;
+
+  //       update();
+  //     }
+  //   });
+  // }
 }

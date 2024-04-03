@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
 import 'package:moolwmsstore/View/Roles/Plant%20Manager/Assets/assetEntry.dart';
+import 'package:moolwmsstore/View/Roles/Hr/addEmployeeCareerDetails.dart';
 import 'package:moolwmsstore/helper/messages.dart';
 import 'package:moolwmsstore/routes/approutes.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
@@ -114,7 +115,7 @@ class _DipshikaAppState extends State<DipshikaApp> {
         builder: (localizeController) {
           return GetMaterialApp(
             scaffoldMessengerKey: snackbarKey,
-            home: const AssetEntry(),
+            home: const AddEmployeeCareerDetails(),
             debugShowCheckedModeBanner: false,
             locale: localizeController.locale,
             fallbackLocale: Locale(

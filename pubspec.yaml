@@ -33,11 +33,11 @@ dependencies:
   otp_text_field_v2: ^1.0.3
   percent_indicator: ^4.2.3
   dotted_border: ^2.1.0
-  qr_code_scanner: ^1.0.1
+  # qr_code_scanner: ^1.0.1
   intl:
   # image_picker_web:
   flutter_spinkit:
-  # getx_route_annotations: 
+  # getx_route_annotations:
   # flutter_spinkit: ^5.2.0
   # flutter_localization: ^0.2.0
   # accordion: ^2.6.0
