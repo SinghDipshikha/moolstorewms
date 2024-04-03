@@ -298,6 +298,8 @@ class CommanTextFieldWithoutLabel extends StatelessWidget {
                     horizontal: 4,
                   ),
                 ),
+              
+              
               ],
             )
           : Row(

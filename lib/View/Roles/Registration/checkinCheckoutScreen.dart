@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Roles/Registration/widgets/commonAppBar.dart';
+import 'package:moolwmsstore/View/Roles/Registration/widgets/commonButtons.dart';
 
 class CheckInCheckCheckOutScreen extends StatefulWidget {
   const CheckInCheckCheckOutScreen({super.key});
@@ -166,7 +167,7 @@ class _CheckInCheckOutScreenMobileState
       ),
       body: Column(
         children: [
-          const Gap(20),
+          const Gap(30),
           const Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -193,16 +194,53 @@ class _CheckInCheckOutScreenMobileState
               )
             ],
           ),
-          const Gap(20),
+          const Gap(40),
           Container(
             width: 212,
             height: 232,
             decoration: const BoxDecoration(
+              shape: BoxShape.circle,
               image: DecorationImage(
                 image: NetworkImage("assets/images/profile_photo.png"),
                 fit: BoxFit.fill,
               ),
             ),
+          ),
+          const Gap(40),
+          const Text(
+            'Johnson Charles',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 24,
+              fontFamily: 'Nunito',
+              fontWeight: FontWeight.w600,
+              height: 0,
+            ),
+          ),
+          const Gap(20),
+          const Text(
+            'ID : #01-JC/2024',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Color(0xFF595959),
+              fontSize: 14,
+              fontFamily: 'Nunito',
+              fontWeight: FontWeight.w400,
+              height: 0,
+            ),
+          ),
+          const Gap(80),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              CommonButtonForMobile(
+                title: 'Check-In',
+              ),
+              CommonButtonForMobile(
+                title: 'Check-Out',
+              ),
+            ],
           )
         ],
       ),
