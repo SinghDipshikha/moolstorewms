@@ -24,6 +24,7 @@ class AuthController extends GetxController {
   List<SignupField> fields = [];
   List<AddWarehiuseField> addWarehouseFields = [];
 
+
   splash() {
     Future.delayed(const Duration(seconds: 3)).whenComplete(() {
       //  getIt<AppRouter>().replace(const ChooselanguageRoute());

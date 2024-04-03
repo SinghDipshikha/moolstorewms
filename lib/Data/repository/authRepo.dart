@@ -24,6 +24,10 @@ class AuthRepo {
   }
 
   Future<List<SignupField>?> getSignupParams() async {
+
+
+    SignupField.fromJson({});
+    
     Response<dynamic> value =
         await apiClient.getData('dynamic/getAllSignupValues');
     if (value.data["message"] == "Values found") {
