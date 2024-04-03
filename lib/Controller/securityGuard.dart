@@ -8,7 +8,7 @@ class SecurityGuardController extends GetxController {
   final SecurityGuardRepo secGaurdRepo;
   final ApiClient apiClient;
   SecGuardDetail? secGuardDetail;
-  List<EmployeeEntry>? empEntryList;
+  List<EmployeeEntry> empEntryList =[];
   bool? isCheckIn;
 
   SecurityGuardController(

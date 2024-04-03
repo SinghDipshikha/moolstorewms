@@ -24,7 +24,7 @@ class AppConstants {
     //   "Corporate / Owner",
   ];
   static const String token = 'token';
-  static const String baseUrl = 'http://13.234.185.160:3000/';
+  static const String baseUrl = 'http://65.1.152.63:3000/';
 
   static const String countryCode = 'country_code';
   static const String languageCode = 'language_code';

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
-import 'package:moolwmsstore/View/Roles/Registration/registrationList.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/registrationList.dart';
 import 'package:moolwmsstore/helper/messages.dart';
 import 'package:moolwmsstore/routes/approutes.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
