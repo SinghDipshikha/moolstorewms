@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Roles/Hr/constants/validations.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonTextField.dart';
-import 'package:moolwmsstore/routes/approutes.gr.dart';
 
 @RoutePage()
 class AddEmployeeBankDetails extends StatefulWidget {

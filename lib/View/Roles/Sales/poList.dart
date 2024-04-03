@@ -219,7 +219,8 @@ class PoList extends StatelessWidget {
                 ],
               )),
           const Gap(4),
-          GetBuilder<SalesController>(initState: (state) {
+          GetBuilder<SalesController>(
+            initState: (state) {
             Get.find<SalesController>().getPoList();
           }, builder: (salesController) {
             return Expanded(

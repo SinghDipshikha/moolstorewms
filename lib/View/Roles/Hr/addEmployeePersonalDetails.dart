@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/Data/Model/Hr/personalDetails.dart';
 import 'package:moolwmsstore/View/Roles/Hr/constants/validations.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonTextField.dart';
@@ -18,10 +19,11 @@ class AddEmployeePersonalDetails extends StatefulWidget {
 
 class _AddEmployeePersonalDetailsState
     extends State<AddEmployeePersonalDetails> {
+      PersonalDetails? details ;
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   String _email = '';
-  String _mobileNumber = '';
+  final String _mobileNumber = '';
   String _gaurdName = '';
   String _bloodGroup = '';
   String _gateId = '';
@@ -64,7 +66,7 @@ class _AddEmployeePersonalDetailsState
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
 
-                    print('Valid email: $_email');
+                   // print('Valid email: $_email');
                   }
                 },
               )
@@ -108,7 +110,7 @@ class _AddEmployeePersonalDetailsState
                                 return null;
                               },
                               onChanged: (value) {
-                                _mobileNumber = value;
+                             //   details. = value;
                               },
                             ).paddingAll(8),
                             CommanTextField(
