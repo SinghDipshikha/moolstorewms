@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:moolwmsstore/View/Roles/Registration/widgets/commonAppBar.dart';
-import 'package:moolwmsstore/View/Roles/Registration/widgets/commonButtons.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/widgets/commonAppBar.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/widgets/commonButtons.dart';
 
 class IsUserCheckedInScreen extends StatefulWidget {
   const IsUserCheckedInScreen({super.key});

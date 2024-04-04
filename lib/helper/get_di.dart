@@ -8,6 +8,7 @@ import 'package:moolwmsstore/Controller/language_controller.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
 import 'package:moolwmsstore/Controller/ownerController.dart';
 import 'package:moolwmsstore/Controller/salesController.dart';
+import 'package:moolwmsstore/Controller/securityGuard.dart';
 import 'package:moolwmsstore/Controller/userController.dart';
 import 'package:moolwmsstore/Controller/warehouseController.dart';
 import 'package:moolwmsstore/Data/Model/LanaguageModel.dart';
@@ -17,6 +18,7 @@ import 'package:moolwmsstore/Data/repository/commonRepo.dart';
 import 'package:moolwmsstore/Data/repository/hrrepo.dart';
 import 'package:moolwmsstore/Data/repository/ownerRepo.dart';
 import 'package:moolwmsstore/Data/repository/salesRepo.dart';
+import 'package:moolwmsstore/Data/repository/securityGuardRepo.dart';
 import 'package:moolwmsstore/Data/repository/splashRepo.dart';
 import 'package:moolwmsstore/Data/repository/warehouseRepo.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
@@ -45,6 +47,8 @@ Future<Map<String, Map<String, String>>> init() async {
       () => HrRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
   Get.lazyPut(
       () => OwnerRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
+  Get.lazyPut(
+      () => SecurityGuardRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
 
   Get.lazyPut(
     () => LanguageController(sharedPreferences: Get.find()),
@@ -63,6 +67,8 @@ Future<Map<String, Map<String, String>>> init() async {
       SalesController(salesRepo: Get.find<SalesRepo>(), apiClient: Get.find()),
       permanent: true);
   Get.put(HRController(hrRepo: Get.find<HrRepo>(), apiClient: Get.find()),
+      permanent: true);
+  Get.put(SecurityGuardController(secGaurdRepo: Get.find<SecurityGuardRepo>(), apiClient: Get.find()),
       permanent: true);
   // Get.lazyPut(
   //     () => SplashController(splashRepo: Get.find(), apiClient: Get.find()));
