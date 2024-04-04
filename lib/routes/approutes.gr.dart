@@ -11,13 +11,13 @@
 import 'package:auto_route/auto_route.dart' as _i28;
 import 'package:flutter/material.dart' as _i29;
 import 'package:moolwmsstore/Data/Model/Warehouse/warehouse.dart' as _i30;
-import 'package:moolwmsstore/View/auth/chooselanguage.dart' as _i15;
-import 'package:moolwmsstore/View/auth/OtpScreen.dart' as _i17;
-import 'package:moolwmsstore/View/auth/phoneSign.dart' as _i19;
-import 'package:moolwmsstore/View/auth/SelectRole.dart' as _i21;
-import 'package:moolwmsstore/View/auth/signUp.dart' as _i22;
-import 'package:moolwmsstore/View/auth/splash.dart' as _i23;
-import 'package:moolwmsstore/View/auth/welcome.dart' as _i27;
+import 'package:moolwmsstore/View/Auth/chooselanguage.dart' as _i15;
+import 'package:moolwmsstore/View/Auth/OtpScreen.dart' as _i17;
+import 'package:moolwmsstore/View/Auth/phoneSign.dart' as _i19;
+import 'package:moolwmsstore/View/Auth/SelectRole.dart' as _i21;
+import 'package:moolwmsstore/View/Auth/signUp.dart' as _i22;
+import 'package:moolwmsstore/View/Auth/splash.dart' as _i23;
+import 'package:moolwmsstore/View/Auth/welcome.dart' as _i27;
 import 'package:moolwmsstore/View/Body.dart' as _i12;
 import 'package:moolwmsstore/View/Roles/Dock%20Supervisor/chamberView.dart'
     as _i14;
