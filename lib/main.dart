@@ -159,7 +159,7 @@ class _DipshikaAppState extends State<DipshikaApp> {
               textTheme: GoogleFonts.nunitoTextTheme(
                 textTheme,
               ).copyWith(),
-            ),
+            ), 
           );
         });
   }
