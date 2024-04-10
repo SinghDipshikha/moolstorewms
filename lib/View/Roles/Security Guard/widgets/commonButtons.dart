@@ -234,6 +234,59 @@ class _CommonCheckInButtonState extends State<CommonCheckInButton> {
   }
 }
 
+class CommonCheckOutButtons extends StatefulWidget {
+  String title;
+  CommonCheckOutButtons({super.key, required this.title});
+
+  @override
+  State<CommonCheckOutButtons> createState() => _CommonCheckOutButtonsState();
+}
+
+class _CommonCheckOutButtonsState extends State<CommonCheckOutButtons> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 294,
+      height: 55,
+      decoration: ShapeDecoration(
+        color: const Color(0x33E33442),
+        shape: RoundedRectangleBorder(
+          side: const BorderSide(width: 1, color: Color(0x4C02A676)),
+          borderRadius: BorderRadius.circular(5),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+            width: 50,
+            height: 50,
+            decoration: ShapeDecoration(
+              color: Colors.transparent,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5)),
+              image: const DecorationImage(
+                image: AssetImage("assets/icons/check_out.png"),
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+          Text(
+            widget.title,
+            style: const TextStyle(
+              color: Color(0xFF161616),
+              fontSize: 26,
+              fontFamily: 'Nunito',
+              fontWeight: FontWeight.w500,
+              height: 0,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class CommonApproveAndDeclineButton extends StatefulWidget {
   const CommonApproveAndDeclineButton({
     super.key,

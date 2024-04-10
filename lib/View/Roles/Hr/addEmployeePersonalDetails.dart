@@ -19,7 +19,7 @@ class AddEmployeePersonalDetails extends StatefulWidget {
 
 class _AddEmployeePersonalDetailsState
     extends State<AddEmployeePersonalDetails> {
-      PersonalDetails? details ;
+  PersonalDetails? details;
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   String _email = '';
@@ -66,7 +66,7 @@ class _AddEmployeePersonalDetailsState
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
 
-                   // print('Valid email: $_email');
+                    // print('Valid email: $_email');
                   }
                 },
               )
@@ -96,6 +96,7 @@ class _AddEmployeePersonalDetailsState
                             CommanTextField(
                               labelText: "Mobile Number",
                               hintText: "Mobile Number",
+                              keyboardType: TextInputType.number,
                               obscureText: false,
                               validator: (value) {
                                 if (value!.isEmpty) {
@@ -110,7 +111,7 @@ class _AddEmployeePersonalDetailsState
                                 return null;
                               },
                               onChanged: (value) {
-                             //   details. = value;
+                                //   details. = value;
                               },
                             ).paddingAll(8),
                             CommanTextField(
@@ -386,7 +387,7 @@ class _AddEmployeePersonalDetailsState
                       children: [
                         CommonPreviousButton(
                           onTap: () {
-                                              context.back();
+                            context.back();
                           },
                           title: 'Previous',
                         ),

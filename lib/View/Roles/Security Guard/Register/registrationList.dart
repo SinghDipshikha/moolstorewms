@@ -265,13 +265,14 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                                           height: 10,
                                           width: 10,
                                           child: Icon(
-                                            Icons.search,
+                                            Icons.more_horiz_rounded,
                                             color: Colors.black,
                                             size: 20,
                                           ),
                                         ),
                                       );
                                     }
+
                                     return Expanded(
                                       flex: tags[index]["flex"],
                                       child: Text(

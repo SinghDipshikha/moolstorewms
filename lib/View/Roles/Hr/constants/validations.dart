@@ -30,9 +30,17 @@ abstract class HrModuleValidator {
     if (mobileNumber.isEmpty) {
       return false;
     }
-    final RegExp regex = RegExp(r"^[0-9]{10}$");
+    final RegExp regex = RegExp(r"^\(\d{3}\) \d{3}-\d{4}$");
     return regex.hasMatch(mobileNumber);
   }
+
+  // static bool isValidMobileNumber(String mobileNumber) {
+  //   if (mobileNumber.isEmpty) {
+  //     return false;
+  //   }
+  //   final RegExp regex = RegExp(r"^[0-9]{10}$");
+  //   return regex.hasMatch(mobileNumber);
+  // }
 
   static bool isValidPassportNumber(String passportNumber) {
     if (passportNumber.isEmpty) {
@@ -135,23 +143,19 @@ abstract class HrModuleValidator {
     return regex.hasMatch(year);
   }
 
-  // Validate percentage grade (number between 0 and 100)
   static bool isValidPercentageGrade(String grade) {
     if (grade.isEmpty) {
       return false;
     }
-    final RegExp regex = RegExp(
-        r"^100(\.0{1,2})?$|^\d{1,2}(\.\d{1,2})?$"); // Number between 0 and 100
+    final RegExp regex = RegExp(r"^100(\.0{1,2})?$|^\d{1,2}(\.\d{1,2})?$");
     return regex.hasMatch(grade);
   }
 
-  // Validate school name (alphabets, spaces, and special characters)
   static bool isValidSchool(String school) {
     if (school.isEmpty) {
       return false;
     }
-    final RegExp regex = RegExp(
-        r"^[a-zA-Z\s\.,'-]+$"); // Alphabets, spaces, dots, commas, hyphens, and apostrophes
+    final RegExp regex = RegExp(r"^[a-zA-Z\s\.,'-]+$");
     return regex.hasMatch(school);
   }
 
@@ -187,46 +191,43 @@ abstract class HrModuleValidator {
     return regex.hasMatch(college);
   }
 
-   // Validate account number (alphanumeric, min length: 6, max length: 18)
   static bool isValidAccountNumber(String accountNumber) {
     if (accountNumber.isEmpty) {
       return false;
     }
-    final RegExp regex = RegExp(r"^[a-zA-Z0-9]{6,18}$"); 
+    final RegExp regex = RegExp(r"^[a-zA-Z0-9]{6,18}$");
     return regex.hasMatch(accountNumber);
   }
-
 
   static bool isValidIFSCCode(String ifscCode) {
     if (ifscCode.isEmpty) {
       return false;
     }
-    final RegExp regex = RegExp(r"^[A-Z]{4}0[A-Z0-9]{6}$"); 
+    final RegExp regex = RegExp(r"^[A-Z]{4}0[A-Z0-9]{6}$");
     return regex.hasMatch(ifscCode);
   }
 
-  
   static bool isValidBankName(String bankName) {
     if (bankName.isEmpty) {
       return false;
     }
-    final RegExp regex = RegExp(r"^[a-zA-Z\s\.,'-]+$"); 
+    final RegExp regex = RegExp(r"^[a-zA-Z\s\.,'-]+$");
     return regex.hasMatch(bankName);
   }
 
- 
   static bool isValidAccountType(String accountType) {
     if (accountType.isEmpty) {
       return false;
     }
-    final RegExp regex = RegExp(r"^[a-zA-Z\s\.,'-]+$"); 
+    final RegExp regex = RegExp(r"^[a-zA-Z\s\.,'-]+$");
     return regex.hasMatch(accountType);
   }
-   static bool isValidAccountName(String accountName) {
+
+  static bool isValidAccountName(String accountName) {
     if (accountName.isEmpty) {
       return false;
     }
-    final RegExp regex = RegExp(r"^[a-zA-Z\s\.,'-]+$"); 
+    final RegExp regex = RegExp(r"^[a-zA-Z\s\.,'-]+$");
     return regex.hasMatch(accountName);
   }
 }

@@ -72,7 +72,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                         size: 30,
                       ),
                       Text(
-                        'View',
+                        'View > Vehicle',
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -254,10 +254,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                         ),
                                       );
                                     }
-                                    const Icon(
-                                      Icons.more_horiz,
-                                      color: Colors.white,
-                                    );
+
                                     return Expanded(
                                       flex: tags[index]["flex"],
                                       child: Text(
