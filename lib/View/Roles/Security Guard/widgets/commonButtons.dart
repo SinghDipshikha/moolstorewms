@@ -180,3 +180,115 @@ class _CommonButtonForMobileState extends State<CommonButtonForMobile> {
     );
   }
 }
+
+class CommonCheckInButton extends StatefulWidget {
+  String title;
+  CommonCheckInButton({super.key, required this.title});
+
+  @override
+  State<CommonCheckInButton> createState() => _CommonCheckInButtonState();
+}
+
+class _CommonCheckInButtonState extends State<CommonCheckInButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 294,
+      height: 55,
+      decoration: ShapeDecoration(
+        color: const Color(0x3302A676),
+        shape: RoundedRectangleBorder(
+          side: const BorderSide(width: 1, color: Color(0x4C02A676)),
+          borderRadius: BorderRadius.circular(5),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+            width: 50,
+            height: 50,
+            decoration: ShapeDecoration(
+              color: Colors.transparent,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5)),
+              image: const DecorationImage(
+                image: AssetImage("assets/icons/check_in.png"),
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+          Text(
+            widget.title,
+            style: const TextStyle(
+              color: Color(0xFF161616),
+              fontSize: 26,
+              fontFamily: 'Nunito',
+              fontWeight: FontWeight.w500,
+              height: 0,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CommonApproveAndDeclineButton extends StatefulWidget {
+  const CommonApproveAndDeclineButton({
+    super.key,
+  });
+
+  @override
+  State<CommonApproveAndDeclineButton> createState() =>
+      _CommonApproveAndDeclineButtonState();
+}
+
+class _CommonApproveAndDeclineButtonState
+    extends State<CommonApproveAndDeclineButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          width: 20,
+          height: 20,
+          decoration: const ShapeDecoration(
+            shape: OvalBorder(
+              side: BorderSide(
+                width: 2,
+                strokeAlign: BorderSide.strokeAlignCenter,
+                color: Color(0xFFACACAC),
+              ),
+            ),
+          ),
+          child: const Icon(
+            Icons.check,
+            color: Colors.black,
+            size: 10,
+          ),
+        ),
+        const Gap(10),
+        Container(
+          width: 20,
+          height: 20,
+          decoration: const ShapeDecoration(
+            shape: OvalBorder(
+              side: BorderSide(
+                width: 2,
+                strokeAlign: BorderSide.strokeAlignCenter,
+                color: Color(0xFFACACAC),
+              ),
+            ),
+          ),
+          child: const Icon(
+            Icons.check,
+            color: Colors.black,
+            size: 10,
+          ),
+        )
+      ],
+    );
+  }
+}

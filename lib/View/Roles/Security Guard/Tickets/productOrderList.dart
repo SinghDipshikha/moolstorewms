@@ -6,14 +6,14 @@ import 'package:moolwmsstore/Controller/securityGuard.dart';
 import 'package:moolwmsstore/Data/Model/SecurityGuard/employeeEntry.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/widgets/commonAppBar.dart';
 
-class RegistrationListScreen extends StatefulWidget {
-  const RegistrationListScreen({super.key});
+class ProductListScreen extends StatefulWidget {
+  const ProductListScreen({super.key});
 
   @override
-  State<RegistrationListScreen> createState() => _RegistrationListScreenState();
+  State<ProductListScreen> createState() => _ProductListScreenState();
 }
 
-class _RegistrationListScreenState extends State<RegistrationListScreen> {
+class _ProductListScreenState extends State<ProductListScreen> {
   @override
   final List tags = [
     {"title": "Name", "flex": 1},
@@ -31,7 +31,7 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CommonAppBar(
-        title: 'Register List',
+        title: 'Tickets List',
         actions: [],
       ),
       body: Center(
@@ -69,10 +69,10 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                       Icon(
                         Icons.sort,
                         color: Colors.black,
-                        size: 40,
+                        size: 30,
                       ),
                       Text(
-                        'Scan QR',
+                        'View',
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -88,7 +88,7 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                       horizontal: 10, vertical: 3.12),
                   clipBehavior: Clip.antiAlias,
                   decoration: ShapeDecoration(
-                    color: Colors.black,
+                    color: Colors.white,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
                     shadows: const [
@@ -105,16 +105,16 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Icon(
-                        Icons.qr_code,
-                        color: Colors.white,
-                        size: 40,
+                        Icons.search,
+                        color: Colors.black,
+                        size: 30,
                       ),
                       Text(
-                        'Scan QR',
+                        'Search',
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                            color: Colors.black),
                       )
                     ],
                   ),
@@ -254,7 +254,10 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                                         ),
                                       );
                                     }
-
+                                    const Icon(
+                                      Icons.more_horiz,
+                                      color: Colors.white,
+                                    );
                                     return Expanded(
                                       flex: tags[index]["flex"],
                                       child: Text(
@@ -273,70 +276,6 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                         });
               }),
             )
-
-            // Container(
-            //   constraints: const BoxConstraints(maxWidth: double.infinity),
-            //   height: 47,
-            //   clipBehavior: Clip.antiAlias,
-            //   decoration: const BoxDecoration(color: Colors.black),
-            //   child: const Row(
-            //     children: [
-            //       Expanded(
-            //         flex: 3,
-            //         child: Text(
-            //           'Status',
-            //           style: TextStyle(
-            //             color: Colors.white,
-            //             fontSize: 12,
-            //             fontFamily: 'Nunito',
-            //             fontWeight: FontWeight.w600,
-            //             height: 0,
-            //           ),
-            //         ),
-            //       ),
-            //       Expanded(
-            //         flex: 3,
-            //         child: Text(
-            //           'Date & Time',
-            //           style: TextStyle(
-            //             color: Colors.white,
-            //             fontSize: 12,
-            //             fontFamily: 'Nunito',
-            //             fontWeight: FontWeight.w600,
-            //             height: 0,
-            //           ),
-            //         ),
-            //       ),
-            //       Expanded(
-            //         flex: 3,
-            //         child: Text(
-            //           'Name',
-            //           style: TextStyle(
-            //             color: Colors.white,
-            //             fontSize: 12,
-            //             fontFamily: 'Nunito',
-            //             fontWeight: FontWeight.w600,
-            //             height: 0,
-            //           ),
-            //         ),
-            //       ),
-            //       Expanded(
-            //         flex: 3,
-            //         child: Text(
-            //           'Mobile',
-            //           textAlign: TextAlign.center,
-            //           style: TextStyle(
-            //             color: Colors.white,
-            //             fontSize: 12,
-            //             fontFamily: 'Nunito',
-            //             fontWeight: FontWeight.w600,
-            //             height: 0,
-            //           ),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // )
           ],
         ),
       ),

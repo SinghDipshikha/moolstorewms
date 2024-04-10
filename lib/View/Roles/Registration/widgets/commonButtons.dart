@@ -152,7 +152,7 @@ class _CommonButtonForMobileState extends State<CommonButtonForMobile> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 174,
+      width: 150,
       height: 34,
       decoration: ShapeDecoration(
         color: Colors.white,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 
@@ -49,8 +50,9 @@ class CommanTextField extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  constraints:
-                      context.isPhone ? null : const BoxConstraints(maxWidth: 100),
+                  constraints: context.isPhone
+                      ? null
+                      : const BoxConstraints(maxWidth: 100),
                   child: Text.rich(
                     TextSpan(
                       children: [
@@ -70,11 +72,6 @@ class CommanTextField extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Text("$labelText",
-                //     style: TextStyle(
-                //       fontSize: 16,
-                //       fontWeight: FontWeight.w400,
-                //     )),
                 const SizedBox(
                   width: 40,
                 ),
@@ -249,7 +246,6 @@ class CommanTextFieldWithoutLabel extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-               
                 const SizedBox(
                   width: 40,
                 ),
@@ -298,13 +294,10 @@ class CommanTextFieldWithoutLabel extends StatelessWidget {
                     horizontal: 4,
                   ),
                 ),
-              
-              
               ],
             )
           : Row(
               children: [
-               
                 Expanded(
                   child: Container(
                     decoration: ShapeDecoration(
@@ -356,5 +349,101 @@ class CommanTextFieldWithoutLabel extends StatelessWidget {
               ],
             ),
     );
+  }
+}
+
+class CommanTextFieldTickets extends StatelessWidget {
+  bool? obscureText;
+  String? labelText;
+
+  String? hintText;
+
+  String? Function(String?)? validator;
+
+  TextEditingController? controller;
+  void Function(String)? onChanged;
+  TextCapitalization? textCapitalization;
+  double? borderRadius;
+
+  CommanTextFieldTickets({
+    super.key,
+    this.labelText,
+    this.hintText,
+    this.textCapitalization,
+    this.borderRadius,
+    this.onChanged,
+    this.controller,
+    this.validator,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        constraints:
+            context.isPhone ? null : const BoxConstraints(maxWidth: 500),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+                child: Text(
+              '$labelText',
+              style: const TextStyle(
+                color: Color(0xFF595959),
+                fontSize: 10,
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.w400,
+                height: 0.31,
+              ),
+            )),
+            const SizedBox(
+              width: 40,
+            ),
+            const Gap(10),
+            Container(
+              width: 200,
+              height: 27,
+              padding:
+                  const EdgeInsets.only(top: 2, left: 10, right: 20, bottom: 2),
+              decoration: ShapeDecoration(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(3)),
+                shadows: const [
+                  BoxShadow(
+                    color: Color(0x0C000000),
+                    blurRadius: 1.30,
+                    offset: Offset(0, 0.90),
+                    spreadRadius: 0,
+                  )
+                ],
+              ),
+              child: TextFormField(
+                textCapitalization:
+                    textCapitalization ?? TextCapitalization.none,
+                onTapOutside: (event) {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
+                onChanged: onChanged,
+                onFieldSubmitted: (value) {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
+                controller: controller,
+                validator: validator,
+                obscureText: obscureText ?? false,
+                decoration: InputDecoration(
+                  hintText: hintText,
+                  hintTextDirection: TextDirection.ltr,
+                  hintStyle: const TextStyle(color: Colors.grey, fontSize: 10),
+                  border: InputBorder.none,
+                  errorStyle: const TextStyle(fontSize: 12),
+                ),
+              ).paddingSymmetric(
+                vertical: 0,
+                horizontal: 4,
+              ),
+            ),
+          ],
+        ));
   }
 }
