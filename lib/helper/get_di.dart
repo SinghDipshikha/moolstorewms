@@ -47,8 +47,8 @@ Future<Map<String, Map<String, String>>> init() async {
       () => HrRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
   Get.lazyPut(
       () => OwnerRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
-  Get.lazyPut(
-      () => SecurityGuardRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
+  Get.lazyPut(() =>
+      SecurityGuardRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
 
   Get.lazyPut(
     () => LanguageController(sharedPreferences: Get.find()),
@@ -68,7 +68,9 @@ Future<Map<String, Map<String, String>>> init() async {
       permanent: true);
   Get.put(HRController(hrRepo: Get.find<HrRepo>(), apiClient: Get.find()),
       permanent: true);
-  Get.put(SecurityGuardController(secGaurdRepo: Get.find<SecurityGuardRepo>(), apiClient: Get.find()),
+  Get.put(
+      SecurityGuardController(
+          secGaurdRepo: Get.find<SecurityGuardRepo>(), apiClient: Get.find()),
       permanent: true);
   // Get.lazyPut(
   //     () => SplashController(splashRepo: Get.find(), apiClient: Get.find()));

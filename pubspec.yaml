@@ -37,6 +37,8 @@ dependencies:
   intl:
   # image_picker_web:
   flutter_spinkit:
+  smooth_page_indicator: ^1.1.0
+  google_geocoding_api: ^1.5.1
   # getx_route_annotations:
   # flutter_spinkit: ^5.2.0
   # flutter_localization: ^0.2.0
@@ -60,3 +62,14 @@ flutter:
     - assets/icons/
     - assets/languages/
     - assets/images/
+  fonts:
+    - family: SF Pro Display
+      fonts:
+        - asset: assets/font/SF-Pro-Display-Regular.otf
+          weight: 400
+        - asset: assets/font/SF-Pro-Display-Medium.otf
+          weight: 500
+        - asset: assets/font/SF-Pro-Display-Bold.otf
+          weight: 700
+        - asset: assets/font/SF-Pro-Display-Black.otf
+          weight: 900
