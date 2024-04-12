@@ -19,13 +19,17 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
     {"title": "Name", "flex": 1},
     {"title": "Mobile", "flex": 2},
     {"title": "Date & Time", "flex": 2},
-    {"title": "Status", "flex": 1},
+    {
+      "title": "Status",
+      "flex": 1,
+    },
   ];
   final List dataList = [
     {"title": "Johnson Charles", "flex": 1},
     {"title": "123456789", "flex": 2},
     {"title": "25-06-2024 10:35 AM", "flex": 2},
     {"title": "icon", "flex": 1},
+    {"title": "icon2", "flex": 1},
   ];
   @override
   Widget build(BuildContext context) {
@@ -225,14 +229,14 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                                                 borderRadius:
                                                     BorderRadius.circular(5)),
                                             image: const DecorationImage(
-                                              image: NetworkImage(
+                                              image: AssetImage(
                                                   "assets/icons/check_in.png"),
-                                              fit: BoxFit.fill,
+                                              fit: BoxFit.cover,
                                             ),
                                           ),
                                         ),
                                       );
-                                    } else {}
+                                    }
                                     if (dataList[index]["title"] == "icon" &&
                                         entry.status == "OUT") {
                                       return Expanded(
@@ -246,10 +250,24 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                                                 borderRadius:
                                                     BorderRadius.circular(5)),
                                             image: const DecorationImage(
-                                              image: NetworkImage(
+                                              image: AssetImage(
                                                   "assets/icons/check_out.png"),
-                                              fit: BoxFit.fill,
+                                              fit: BoxFit.cover,
                                             ),
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                    if (dataList[index]["title"] == "icon2") {
+                                      return Expanded(
+                                        flex: dataList[index]["flex"],
+                                        child: const SizedBox(
+                                          height: 10,
+                                          width: 10,
+                                          child: Icon(
+                                            Icons.more_horiz_rounded,
+                                            color: Colors.black,
+                                            size: 20,
                                           ),
                                         ),
                                       );
@@ -273,70 +291,6 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                         });
               }),
             )
-
-            // Container(
-            //   constraints: const BoxConstraints(maxWidth: double.infinity),
-            //   height: 47,
-            //   clipBehavior: Clip.antiAlias,
-            //   decoration: const BoxDecoration(color: Colors.black),
-            //   child: const Row(
-            //     children: [
-            //       Expanded(
-            //         flex: 3,
-            //         child: Text(
-            //           'Status',
-            //           style: TextStyle(
-            //             color: Colors.white,
-            //             fontSize: 12,
-            //             fontFamily: 'Nunito',
-            //             fontWeight: FontWeight.w600,
-            //             height: 0,
-            //           ),
-            //         ),
-            //       ),
-            //       Expanded(
-            //         flex: 3,
-            //         child: Text(
-            //           'Date & Time',
-            //           style: TextStyle(
-            //             color: Colors.white,
-            //             fontSize: 12,
-            //             fontFamily: 'Nunito',
-            //             fontWeight: FontWeight.w600,
-            //             height: 0,
-            //           ),
-            //         ),
-            //       ),
-            //       Expanded(
-            //         flex: 3,
-            //         child: Text(
-            //           'Name',
-            //           style: TextStyle(
-            //             color: Colors.white,
-            //             fontSize: 12,
-            //             fontFamily: 'Nunito',
-            //             fontWeight: FontWeight.w600,
-            //             height: 0,
-            //           ),
-            //         ),
-            //       ),
-            //       Expanded(
-            //         flex: 3,
-            //         child: Text(
-            //           'Mobile',
-            //           textAlign: TextAlign.center,
-            //           style: TextStyle(
-            //             color: Colors.white,
-            //             fontSize: 12,
-            //             fontFamily: 'Nunito',
-            //             fontWeight: FontWeight.w600,
-            //             height: 0,
-            //           ),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // )
           ],
         ),
       ),

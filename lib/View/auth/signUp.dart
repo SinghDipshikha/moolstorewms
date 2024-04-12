@@ -496,8 +496,10 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/View/Auth/widgets/commonTextField.dart';
 import 'package:moolwmsstore/View/common/tagContainer.dart';
 
 class Signup extends StatelessWidget {
@@ -506,63 +508,67 @@ class Signup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          const Gap(20),
-          Column(
-            children: [
-              Stack(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.only(top: 10),
-                    // alignment: Alignment.center,
-                    height: 54,
-                    decoration: const ShapeDecoration(
-                      color: Color(0xFF5A57FF),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const Gap(20),
+            Column(
+              children: [
+                TagContainer(
+                    title: 'Personal Information',
+                    child: Column(
+                      children: [
+                        CommonTextField(
+                          //   inputFormatters: [ FilteringTextInputFormatter.allow(RegExp('[0-9]')),],
+                          labelText: 'Organisation Name',
+                          hintText: 'Enter your organisation’s name',
                         ),
-                      ),
-                    ),
-                    child: const Text(
-                      'Add Organisation',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontFamily: 'SF Pro Display',
-                        fontWeight: FontWeight.w600,
-                        height: 0,
-                      ),
-                    ).paddingSymmetric(horizontal: 18),
-                  ),
-                  Container(
-                    width: double.infinity,
-                    height: 190,
-                    decoration: const ShapeDecoration(
-                      color: Color(0xFFFAF9FF),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        side: BorderSide(width: 1, color: Color(0x195A57FF)),
-                      ),
-                    ),
-                  ).paddingOnly(top: 36)
-                ],
-              ),
-              TagContainer(
-                  title: 'Personal Information',
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 200,
-                      )
-                    ],
-                  ))
-            ],
-          )
-        ],
-      ).paddingAll(14),
+                        const Gap(16),
+                        CommonTextField(
+                        //  validator: ,
+                          // inputFormatters: [
+                          //   FilteringTextInputFormatter.allow(
+                          //       RegExp(r"^[A-Z]{5}[0-9]{4}[A-Z]{1}$"))
+                          // ],
+                          labelText: "PAN Number",
+                          hintText: "Enter PAN number",
+                        ),
+                        const Gap(16),
+                      ],
+                    ).paddingSymmetric(vertical: 16, horizontal: 16)),
+                const Gap(16),
+                TagContainer(
+                    title: 'Personal Information',
+                    child: Column(
+                      children: [
+                        CommonTextField(
+                          labelText: "Full Name",
+                          hintText: "Enter full name",
+                        ),
+                        const Gap(16),
+                        CommonTextField( inputFormatters: [
+                            FilteringTextInputFormatter.allow(
+                                RegExp(r"^[A-Z]{5}[0-9]{4}[A-Z]{1}$"))
+                          ],
+                          labelText: "Mobile Number",
+                          hintText: "Enter mobile number",
+                        ),
+                        const Gap(16),
+                        CommonTextField( inputFormatters: [
+                            FilteringTextInputFormatter.allow(
+                                RegExp(r"^[A-Z]{5}[0-9]{4}[A-Z]{1}$"))
+                          ],
+                          labelText: "Email ID",
+                          hintText: "Enter email address",
+                        ),
+                        const Gap(16),
+                      ],
+                    ).paddingSymmetric(vertical: 16, horizontal: 16))
+              ],
+            )
+          ],
+        ).paddingSymmetric(vertical: 8, horizontal: 20),
+      ),
       appBar: AppBar(
         title: const Text(
           "Sign Up",
