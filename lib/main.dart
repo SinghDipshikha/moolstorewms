@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/Register/registrationList.dart';
 import 'package:moolwmsstore/helper/messages.dart';
 import 'package:moolwmsstore/routes/approutes.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
+import 'View/Roles/Security Guard/Tickets/demo.dart';
 import 'helper/get_di.dart' as di;
 
 Future<void> main() async {
@@ -114,7 +114,7 @@ class _DipshikaAppState extends State<DipshikaApp> {
         builder: (localizeController) {
           return GetMaterialApp(
             scaffoldMessengerKey: snackbarKey,
-            home: const RegistrationListScreen(),
+            home: const SignUpScreen(),
             debugShowCheckedModeBanner: false,
             locale: localizeController.locale,
             fallbackLocale: Locale(

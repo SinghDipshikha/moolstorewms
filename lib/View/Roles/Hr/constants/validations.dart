@@ -26,21 +26,21 @@ abstract class HrModuleValidator {
     return regex.hasMatch(username);
   }
 
-  static bool isValidMobileNumber(String mobileNumber) {
-    if (mobileNumber.isEmpty) {
-      return false;
-    }
-    final RegExp regex = RegExp(r"^\(\d{3}\) \d{3}-\d{4}$");
-    return regex.hasMatch(mobileNumber);
-  }
-
   // static bool isValidMobileNumber(String mobileNumber) {
   //   if (mobileNumber.isEmpty) {
   //     return false;
   //   }
-  //   final RegExp regex = RegExp(r"^[0-9]{10}$");
+  //   final RegExp regex = RegExp(r"^\(\d{3}\) \d{3}-\d{4}$");
   //   return regex.hasMatch(mobileNumber);
   // }
+
+  static bool isValidMobileNumber(String mobileNumber) {
+    if (mobileNumber.isEmpty) {
+      return false;
+    }
+    final RegExp regex = RegExp(r"^[0-9]{10}$");
+    return regex.hasMatch(mobileNumber);
+  }
 
   static bool isValidPassportNumber(String passportNumber) {
     if (passportNumber.isEmpty) {

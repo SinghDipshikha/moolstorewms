@@ -447,3 +447,86 @@ class CommanTextFieldTickets extends StatelessWidget {
         ));
   }
 }
+
+class CommanTextFieldNewTheme extends StatelessWidget {
+  bool? obscureText;
+  String? labelText;
+
+  String? hintText;
+
+  String? Function(String?)? validator;
+
+  TextEditingController? controller;
+  void Function(String)? onChanged;
+  TextCapitalization? textCapitalization;
+  double? borderRadius;
+
+  CommanTextFieldNewTheme({
+    super.key,
+    this.labelText,
+    this.hintText,
+    this.textCapitalization,
+    this.borderRadius,
+    this.onChanged,
+    this.controller,
+    this.validator,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          '$labelText',
+          style: const TextStyle(
+            color: Color(0xFFACACAC),
+            fontSize: 16,
+            fontFamily: 'SF Pro Display',
+            fontWeight: FontWeight.w400,
+            height: 0,
+          ),
+        ),
+        const Gap(10),
+        Container(
+            alignment: Alignment.center,
+            width: double.infinity,
+            height: 36,
+            decoration: ShapeDecoration(
+              color: const Color(0xFFFAF9FF),
+              shape: RoundedRectangleBorder(
+                side: const BorderSide(width: 1, color: Color(0x195E57FC)),
+                borderRadius: BorderRadius.circular(5),
+              ),
+            ),
+            child: TextFormField(
+              // expands: true,
+              textCapitalization: textCapitalization ?? TextCapitalization.none,
+              onTapOutside: (event) {
+                FocusManager.instance.primaryFocus?.unfocus();
+              },
+              onChanged: onChanged,
+              onFieldSubmitted: (value) {
+                FocusManager.instance.primaryFocus?.unfocus();
+              },
+              controller: controller,
+              validator: validator,
+              obscureText: obscureText ?? false,
+              decoration: InputDecoration(
+                hintText: hintText,
+                contentPadding: EdgeInsets.zero,
+                hintStyle: const TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'SF Pro Display',
+                    fontWeight: FontWeight.w400,
+                    color: Colors.grey),
+                border: InputBorder.none,
+                errorStyle: const TextStyle(fontSize: 18),
+              ),
+            )),
+      ],
+    );
+  }
+}

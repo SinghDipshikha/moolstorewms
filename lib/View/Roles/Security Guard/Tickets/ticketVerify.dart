@@ -93,7 +93,7 @@ class _VerifyTicketScreenState extends State<VerifyTicketScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        CommanTextFieldTickets(
+                        CommanTextFieldNewTheme(
                           labelText: 'Product Name',
                           hintText: 'Jackhammers',
                         ),
@@ -104,7 +104,7 @@ class _VerifyTicketScreenState extends State<VerifyTicketScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        CommanTextFieldTickets(
+                        CommanTextFieldNewTheme(
                           labelText: 'Quantity',
                           hintText: '1500',
                         ),
@@ -115,7 +115,7 @@ class _VerifyTicketScreenState extends State<VerifyTicketScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        CommanTextFieldTickets(
+                        CommanTextFieldNewTheme(
                           labelText: 'Units',
                           hintText: '10',
                         ),
@@ -157,7 +157,7 @@ class _VerifyTicketScreenState extends State<VerifyTicketScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        CommanTextFieldTickets(
+                        CommanTextFieldNewTheme(
                           labelText: 'Product Name',
                           hintText: 'Jackhammers',
                         ),
@@ -168,7 +168,7 @@ class _VerifyTicketScreenState extends State<VerifyTicketScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        CommanTextFieldTickets(
+                        CommanTextFieldNewTheme(
                           labelText: 'Quantity',
                           hintText: '1500',
                         ),
@@ -179,7 +179,7 @@ class _VerifyTicketScreenState extends State<VerifyTicketScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        CommanTextFieldTickets(
+                        CommanTextFieldNewTheme(
                           labelText: 'Units',
                           hintText: '10',
                         ),
@@ -220,7 +220,7 @@ class _VerifyTicketScreenState extends State<VerifyTicketScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        CommanTextFieldTickets(
+                        CommanTextFieldNewTheme(
                           labelText: 'Vehicle Number',
                           hintText: 'MH 01 AB 1234',
                         ),
@@ -231,7 +231,7 @@ class _VerifyTicketScreenState extends State<VerifyTicketScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        CommanTextFieldTickets(
+                        CommanTextFieldNewTheme(
                           labelText: 'Driver Name',
                           hintText: 'Christopher',
                         ),

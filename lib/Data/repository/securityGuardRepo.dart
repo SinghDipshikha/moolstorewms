@@ -35,27 +35,27 @@ class SecurityGuardRepo {
     return null;
   }
 
-  // Future checkInOut({
-  //   required int userId,
-  //   required DateTime dateTime,
-  //   required String status,
-  //   required int gateId,
-  //   required int allowBy,
-  // }) async {
-  //   Response<dynamic> res =
-  //       await apiClient.postData("register/addNewCheckInOut", {
-  //     "user_id": userId,
-  //     "date_time": "2024-03-30 05:30:35",
-  //     "status": status,
-  //     "gate_id": gateId,
-  //     "allow_by": allowBy
-  //   });
-  //   if (res.data["message"] == "Invalid status value provided") {
-  //     return false;
-  //   } else if (res.data["message"] == "") {
-  //     return true;
-  //   }
-  //   return false;
-  // }
-  //status can be IN and ...
+  Future checkInOut({
+    required int userId,
+    required DateTime dateTime,
+    required String status,
+    required int gateId,
+    required int allowBy,
+  }) async {
+    Response<dynamic> res =
+        await apiClient.postData("register/addNewCheckInOut", {
+      "user_id": userId,
+      "date_time": "2024-03-30 05:30:35",
+      "status": status,
+      "gate_id": gateId,
+      "allow_by": allowBy
+    });
+    if (res.data["message"] == "Invalid status value provided") {
+      return false;
+    } else if (res.data["message"] == "") {
+      return true;
+    }
+    return false;
+  }
+  
 }
