@@ -25,22 +25,20 @@ class _AddEmployeeEducationQualificationDetailsState
   String _highestQualification = '';
   final String _collegeUniversity = '';
   String? selectedLanguage = "Hindi";
-    final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
       child: Scaffold(
-         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: context.isPhone
             ? CommonNextButton(
                 title: 'next'.tr,
-                onTap: (){
-                   if (_formKey.currentState!.validate()) {
-                        _formKey.currentState!.save();
-
-                      
-                      }
+                onTap: () {
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
+                  }
                 },
               )
             : Container().paddingSymmetric(horizontal: 12),
@@ -124,12 +122,12 @@ class _AddEmployeeEducationQualificationDetailsState
                                 if (value!.isEmpty) {
                                   return 'Please enter your passing year.';
                                 }
-      
-                                if (!HrModuleValidator.isValidPassingYear(
+
+                                if (!GlobalValidator.isValidPassingYear(
                                     value)) {
                                   return 'Please enter a valid passing year.';
                                 }
-      
+
                                 return null;
                               },
                               onChanged: (value) {
@@ -144,12 +142,12 @@ class _AddEmployeeEducationQualificationDetailsState
                                 if (value!.isEmpty) {
                                   return 'Please enter your percentage.';
                                 }
-      
-                                if (!HrModuleValidator.isValidPercentageGrade(
+
+                                if (!GlobalValidator.isValidPercentageGrade(
                                     value)) {
                                   return 'Please enter a valid percentage.';
                                 }
-      
+
                                 return null;
                               },
                               onChanged: (value) {
@@ -164,12 +162,12 @@ class _AddEmployeeEducationQualificationDetailsState
                                 if (value!.isEmpty) {
                                   return 'Please enter your grade.';
                                 }
-      
-                                if (!HrModuleValidator.isValidPercentageGrade(
+
+                                if (!GlobalValidator.isValidPercentageGrade(
                                     value)) {
                                   return 'Please enter a valid grade.';
                                 }
-      
+
                                 return null;
                               },
                               onChanged: (value) {
@@ -184,11 +182,11 @@ class _AddEmployeeEducationQualificationDetailsState
                                 if (value!.isEmpty) {
                                   return 'Please enter your school name.';
                                 }
-      
-                                if (!HrModuleValidator.isValidSchool(value)) {
+
+                                if (!GlobalValidator.isValidSchool(value)) {
                                   return 'Please enter a valid school name.';
                                 }
-      
+
                                 return null;
                               },
                               onChanged: (value) {
@@ -203,20 +201,18 @@ class _AddEmployeeEducationQualificationDetailsState
                                 if (value!.isEmpty) {
                                   return 'Please enter your college/university name.';
                                 }
-      
-                                if (!HrModuleValidator.isValidCollegeUniversity(
+
+                                if (!GlobalValidator.isValidCollegeUniversity(
                                     value)) {
                                   return 'Please enter a valid college/universit name.';
                                 }
-      
+
                                 return null;
                               },
                               onChanged: (value) {
                                 _school = value;
                               },
                             ).paddingAll(2),
-                           
-                           
                             Container(
                               constraints: context.isPhone
                                   ? null
@@ -275,16 +271,16 @@ class _AddEmployeeEducationQualificationDetailsState
                               labelText: "Highest Qualification",
                               hintText: "Highest Qualification",
                               obscureText: false,
-                               validator: (value) {
+                              validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Please enter your highest qualification.';
                                 }
-      
-                                if (!HrModuleValidator.isValidHighestQualification(
-                                    value)) {
+
+                                if (!GlobalValidator
+                                    .isValidHighestQualification(value)) {
                                   return 'Please enter a valid highest qualification.';
                                 }
-      
+
                                 return null;
                               },
                               onChanged: (value) {
@@ -295,16 +291,16 @@ class _AddEmployeeEducationQualificationDetailsState
                               labelText: "Specialization",
                               hintText: "Specialization",
                               obscureText: false,
-                               validator: (value) {
+                              validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Please enter your specialization name.';
                                 }
-      
-                                if (!HrModuleValidator.isValidSpecialization(
+
+                                if (!GlobalValidator.isValidSpecialization(
                                     value)) {
                                   return 'Please enter a valid specialization name.';
                                 }
-      
+
                                 return null;
                               },
                               onChanged: (value) {
@@ -319,12 +315,12 @@ class _AddEmployeeEducationQualificationDetailsState
                                 if (value!.isEmpty) {
                                   return 'Please enter your passing year.';
                                 }
-      
-                                if (!HrModuleValidator.isValidPassingYear(
+
+                                if (!GlobalValidator.isValidPassingYear(
                                     value)) {
                                   return 'Please enter a valid passing year.';
                                 }
-      
+
                                 return null;
                               },
                               onChanged: (value) {
@@ -335,16 +331,16 @@ class _AddEmployeeEducationQualificationDetailsState
                               labelText: "College?University ",
                               hintText: "College?University ",
                               obscureText: false,
-                               validator: (value) {
+                              validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Please enter your college/university name.';
                                 }
-      
-                                if (!HrModuleValidator.isValidCollegeUniversity(
+
+                                if (!GlobalValidator.isValidCollegeUniversity(
                                     value)) {
                                   return 'Please enter a valid college/universit name.';
                                 }
-      
+
                                 return null;
                               },
                               onChanged: (value) {
@@ -355,16 +351,16 @@ class _AddEmployeeEducationQualificationDetailsState
                               labelText: "Percentage & Grade ",
                               hintText: "Percentage & Grade ",
                               obscureText: false,
-                                 validator: (value) {
+                              validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Please enter your percentage.';
                                 }
-      
-                                if (!HrModuleValidator.isValidPercentageGrade(
+
+                                if (!GlobalValidator.isValidPercentageGrade(
                                     value)) {
                                   return 'Please enter a valid percentage.';
                                 }
-      
+
                                 return null;
                               },
                               onChanged: (value) {
@@ -406,7 +402,7 @@ class _AddEmployeeEducationQualificationDetailsState
                           onTap: () {
                             if (_formKey.currentState!.validate()) {
                               _formKey.currentState!.save();
-      
+
                               // print('Valid email: $_email');
                             }
                           },

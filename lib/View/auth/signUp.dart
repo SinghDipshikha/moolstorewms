@@ -500,11 +500,14 @@ import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Auth/widgets/commonTextField.dart';
+import 'package:moolwmsstore/View/Roles/Hr/constants/validations.dart';
 import 'package:moolwmsstore/View/common/tagContainer.dart';
 
 class Signup extends StatelessWidget {
-  const Signup({super.key});
+  Signup({super.key});
 
+  @override
+  String? _email;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -525,7 +528,7 @@ class Signup extends StatelessWidget {
                         ),
                         const Gap(16),
                         CommonTextField(
-                        //  validator: ,
+                          //  validator: ,
                           // inputFormatters: [
                           //   FilteringTextInputFormatter.allow(
                           //       RegExp(r"^[A-Z]{5}[0-9]{4}[A-Z]{1}$"))
@@ -544,22 +547,60 @@ class Signup extends StatelessWidget {
                         CommonTextField(
                           labelText: "Full Name",
                           hintText: "Enter full name",
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your name.';
+                            }
+
+                            if (!GlobalValidator.isValidUsername(value)) {
+                              return 'Please enter a valid name.';
+                            }
+
+                            return null;
+                          },
+                          onChanged: (value) {},
                         ),
                         const Gap(16),
-                        CommonTextField( inputFormatters: [
+                        CommonTextField(
+                          inputFormatters: [
                             FilteringTextInputFormatter.allow(
                                 RegExp(r"^[A-Z]{5}[0-9]{4}[A-Z]{1}$"))
                           ],
                           labelText: "Mobile Number",
                           hintText: "Enter mobile number",
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your mobile number.';
+                            }
+
+                            if (!GlobalValidator.isValidMobileNumber(value)) {
+                              return 'Please enter a valid mobile number.';
+                            }
+
+                            return null;
+                          },
+                          onChanged: (value) {},
                         ),
                         const Gap(16),
-                        CommonTextField( inputFormatters: [
+                        CommonTextField(
+                          inputFormatters: [
                             FilteringTextInputFormatter.allow(
                                 RegExp(r"^[A-Z]{5}[0-9]{4}[A-Z]{1}$"))
                           ],
                           labelText: "Email ID",
                           hintText: "Enter email address",
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your email address';
+                            }
+
+                            if (!GlobalValidator.isValidEmail(value)) {
+                              return 'Please enter a valid email address';
+                            }
+
+                            return null;
+                          },
+                          onChanged: (value) {},
                         ),
                         const Gap(16),
                       ],

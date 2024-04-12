@@ -1,4 +1,4 @@
-abstract class HrModuleValidator {
+abstract class GlobalValidator {
   // HrModuleValidator._();
 
   static bool isValidEmail(String email) {

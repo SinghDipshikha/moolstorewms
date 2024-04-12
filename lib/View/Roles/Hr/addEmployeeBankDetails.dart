@@ -70,7 +70,7 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
                                   return 'Please enter your account name.';
                                 }
 
-                                if (!HrModuleValidator.isValidAccountName(
+                                if (!GlobalValidator.isValidAccountName(
                                     value)) {
                                   return 'Please enter a account name.';
                                 }
@@ -90,7 +90,7 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
                                   return 'Please enter your account number.';
                                 }
 
-                                if (!HrModuleValidator.isValidAccountNumber(
+                                if (!GlobalValidator.isValidAccountNumber(
                                     value)) {
                                   return 'Please enter a account number.';
                                 }
@@ -110,7 +110,7 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
                                   return 'Please enter your bank name';
                                 }
 
-                                if (!HrModuleValidator.isValidBankName(value)) {
+                                if (!GlobalValidator.isValidBankName(value)) {
                                   return 'Please enter a bank name.';
                                 }
 
@@ -129,7 +129,7 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
                                   return 'Please enter your ifsc code.';
                                 }
 
-                                if (!HrModuleValidator.isValidIFSCCode(value)) {
+                                if (!GlobalValidator.isValidIFSCCode(value)) {
                                   return 'Please enter a ifsc code.';
                                 }
 
@@ -148,7 +148,7 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
                                   return 'Please enter your account type.';
                                 }
 
-                                if (!HrModuleValidator.isValidMonthlySalary(
+                                if (!GlobalValidator.isValidMonthlySalary(
                                     value)) {
                                   return 'Please enter a account type.';
                                 }

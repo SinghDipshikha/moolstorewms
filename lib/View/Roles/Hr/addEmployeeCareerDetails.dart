@@ -155,7 +155,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                           return 'Please enter your gaurd name.';
                                         }
 
-                                        if (!HrModuleValidator.isValidUsername(
+                                        if (!GlobalValidator.isValidUsername(
                                             value)) {
                                           return 'Please enter a valid gaurd name.';
                                         }
@@ -324,7 +324,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                           return 'Please enter your monthly salary.';
                                         }
 
-                                        if (!HrModuleValidator
+                                        if (!GlobalValidator
                                             .isValidMonthlySalary(value)) {
                                           return 'Please enter a monthly salary.';
                                         }
@@ -344,7 +344,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                           return 'Please enter your monthly salary.';
                                         }
 
-                                        if (!HrModuleValidator
+                                        if (!GlobalValidator
                                             .isValidMonthlySalary(value)) {
                                           return 'Please enter a monthly salary.';
                                         }

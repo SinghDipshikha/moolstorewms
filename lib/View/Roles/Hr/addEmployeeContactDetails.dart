@@ -45,16 +45,14 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
     return Form(
       key: _formKey,
       child: Scaffold(
- floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: context.isPhone
             ? CommonNextButton(
                 title: 'next'.tr,
-                onTap: (){
-                   if (_formKey.currentState!.validate()) {
-                        _formKey.currentState!.save();
-
-                        
-                      }
+                onTap: () {
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
+                  }
                 },
               )
             : Container().paddingSymmetric(horizontal: 12),
@@ -89,7 +87,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                                   return 'Please enter your address';
                                 }
 
-                                if (!HrModuleValidator.isValidAddress(value)) {
+                                if (!GlobalValidator.isValidAddress(value)) {
                                   return 'Please enter a valid address.';
                                 }
 
@@ -108,7 +106,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                                   return 'Please enter your State.';
                                 }
 
-                                if (!HrModuleValidator.isValidState(value)) {
+                                if (!GlobalValidator.isValidState(value)) {
                                   return 'Please enter a valid State.';
                                 }
 
@@ -127,7 +125,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                                   return 'Please enter your city.';
                                 }
 
-                                if (!HrModuleValidator.isValidCity(value)) {
+                                if (!GlobalValidator.isValidCity(value)) {
                                   return 'Please enter a valid city.';
                                 }
 
@@ -146,7 +144,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                                   return 'Please enter your Pincode.';
                                 }
 
-                                if (!HrModuleValidator.isValidPincode(value)) {
+                                if (!GlobalValidator.isValidPincode(value)) {
                                   return 'Please enter a valid Pincode.';
                                 }
 
@@ -274,7 +272,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                                   return 'Please enter your contact number.';
                                 }
 
-                                if (!HrModuleValidator.isValidMobileNumber(
+                                if (!GlobalValidator.isValidMobileNumber(
                                     value)) {
                                   return 'Please enter a valid contact number.';
                                 }
@@ -294,7 +292,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                                   return 'Please enter your contact name.';
                                 }
 
-                                if (!HrModuleValidator.isValidUsername(value)) {
+                                if (!GlobalValidator.isValidUsername(value)) {
                                   return 'Please enter a valid contact name.';
                                 }
 

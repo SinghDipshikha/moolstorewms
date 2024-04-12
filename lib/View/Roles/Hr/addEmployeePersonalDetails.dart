@@ -103,7 +103,7 @@ class _AddEmployeePersonalDetailsState
                                   return 'Please enter your mobile number.';
                                 }
 
-                                if (!HrModuleValidator.isValidMobileNumber(
+                                if (!GlobalValidator.isValidMobileNumber(
                                     value)) {
                                   return 'Please enter a valid mobile number.';
                                 }
@@ -123,7 +123,7 @@ class _AddEmployeePersonalDetailsState
                                   return 'Please enter your gaurd name.';
                                 }
 
-                                if (!HrModuleValidator.isValidUsername(value)) {
+                                if (!GlobalValidator.isValidUsername(value)) {
                                   return 'Please enter a valid gaurd name.';
                                 }
 
@@ -159,8 +159,7 @@ class _AddEmployeePersonalDetailsState
                                   return 'Please enter your blood group.';
                                 }
 
-                                if (!HrModuleValidator.isValidBloodGroup(
-                                    value)) {
+                                if (!GlobalValidator.isValidBloodGroup(value)) {
                                   return 'Please enter a valid blood group.';
                                 }
 
@@ -179,7 +178,7 @@ class _AddEmployeePersonalDetailsState
                                   return 'Please enter your email address';
                                 }
 
-                                if (!HrModuleValidator.isValidEmail(value)) {
+                                if (!GlobalValidator.isValidEmail(value)) {
                                   return 'Please enter a valid email address';
                                 }
 
@@ -198,7 +197,7 @@ class _AddEmployeePersonalDetailsState
                                   return 'Please enter your Gate Id';
                                 }
 
-                                if (!HrModuleValidator.isValidGateID(value)) {
+                                if (!GlobalValidator.isValidGateID(value)) {
                                   return 'Please enter a valid gate id.';
                                 }
 
@@ -217,7 +216,7 @@ class _AddEmployeePersonalDetailsState
                                   return 'Please enter your PF Number.';
                                 }
 
-                                if (!HrModuleValidator.isValidPFNumber(value)) {
+                                if (!GlobalValidator.isValidPFNumber(value)) {
                                   return 'Please enter a valid PF Number.';
                                 }
 
@@ -236,7 +235,7 @@ class _AddEmployeePersonalDetailsState
                                   return 'Please enter your ESIC Number';
                                 }
 
-                                if (!HrModuleValidator.isValidGateID(value)) {
+                                if (!GlobalValidator.isValidGateID(value)) {
                                   return 'Please enter a valid ESIC Number.';
                                 }
 
@@ -295,7 +294,7 @@ class _AddEmployeePersonalDetailsState
                                   return 'Please enter your Passport Number.';
                                 }
 
-                                if (!HrModuleValidator.isValidPassportNumber(
+                                if (!GlobalValidator.isValidPassportNumber(
                                     value)) {
                                   return 'Please enter a valid passport number.';
                                 }

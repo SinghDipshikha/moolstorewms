@@ -76,7 +76,7 @@ class _AddEmployeeReferralDetailsState
                                   return 'Please enter your referee name.';
                                 }
 
-                                if (!HrModuleValidator.isValidUsername(value)) {
+                                if (!GlobalValidator.isValidUsername(value)) {
                                   return 'Please enter a valid referee name.';
                                 }
 
@@ -95,7 +95,7 @@ class _AddEmployeeReferralDetailsState
                                   return 'Please enter your company name.';
                                 }
 
-                                if (!HrModuleValidator.isValidUsername(value)) {
+                                if (!GlobalValidator.isValidUsername(value)) {
                                   return 'Please enter a valid company name.';
                                 }
 
@@ -114,7 +114,7 @@ class _AddEmployeeReferralDetailsState
                                   return 'Please enter your address';
                                 }
 
-                                if (!HrModuleValidator.isValidAddress(value)) {
+                                if (!GlobalValidator.isValidAddress(value)) {
                                   return 'Please enter a valid address.';
                                 }
 
@@ -133,7 +133,7 @@ class _AddEmployeeReferralDetailsState
                                   return 'Please enter your designation.';
                                 }
 
-                                if (!HrModuleValidator.isValidUsername(value)) {
+                                if (!GlobalValidator.isValidUsername(value)) {
                                   return 'Please enter a valid designation.';
                                 }
 
@@ -152,7 +152,7 @@ class _AddEmployeeReferralDetailsState
                                   return 'Please enter your mobile number.';
                                 }
 
-                                if (!HrModuleValidator.isValidMobileNumber(
+                                if (!GlobalValidator.isValidMobileNumber(
                                     value)) {
                                   return 'Please enter a valid mobile number.';
                                 }
@@ -172,7 +172,7 @@ class _AddEmployeeReferralDetailsState
                                   return 'Please enter your email address';
                                 }
 
-                                if (!HrModuleValidator.isValidEmail(value)) {
+                                if (!GlobalValidator.isValidEmail(value)) {
                                   return 'Please enter a valid email address';
                                 }
 
