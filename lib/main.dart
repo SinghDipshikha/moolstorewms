@@ -15,7 +15,7 @@ import 'helper/get_di.dart' as di;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  getIt.registerSingleton<AppRouter>(AppRouter());
+ // getIt.registerSingleton<AppRouter>(AppRouter());
   Map<String, Map<String, String>> languages = await di.init();
 
   runApp(DipshikaApp(
@@ -23,74 +23,74 @@ Future<void> main() async {
   ));
 }
 
-class MyApp extends StatefulWidget {
-  final Map<String, Map<String, String>> languages;
-  const MyApp({
-    super.key,
-    required this.languages,
-  });
+// class MyApp extends StatefulWidget {
+//   final Map<String, Map<String, String>> languages;
+//   const MyApp({
+//     super.key,
+//     required this.languages,
+//   });
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
+//   @override
+//   State<MyApp> createState() => _MyAppState();
+// }
 
-class _MyAppState extends State<MyApp> {
-  final _router = getIt<AppRouter>();
+// class _MyAppState extends State<MyApp> {
+// //  final _router = getIt<AppRouter>();
 
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+//   @override
+//   Widget build(BuildContext context) {
+//     final textTheme = Theme.of(context).textTheme;
 
-    return GetBuilder<LocalizationController>(
-        initState: (state) {},
-        builder: (localizeController) {
-          return GetMaterialApp.router(
-            scaffoldMessengerKey: snackbarKey,
-            routerDelegate: _router.delegate(),
-            routeInformationProvider: _router.routeInfoProvider(),
-            routeInformationParser: _router.defaultRouteParser(),
-            debugShowCheckedModeBanner: false,
-            locale: localizeController.locale,
-            fallbackLocale: Locale(
-              AppConstants.LANGUAGE_LIST[0].languageCode,
-            ),
-            translations: Messages(languages: widget.languages),
-            defaultTransition: Transition.topLevel,
-            transitionDuration: const Duration(milliseconds: 500),
-            scrollBehavior: const MaterialScrollBehavior().copyWith(
-              dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch},
-            ),
-            theme: ThemeData(
-              colorScheme: const ColorScheme.dark(
-                //  background: Colors.red,
-                primary: Colors.white,
-              ),
-              // primaryColor: Colors.black,
-              // switchTheme: ,
-              useMaterial3: true,
-              actionIconTheme: ActionIconThemeData(
-                backButtonIconBuilder: (context) => const Icon(
-                  Icons.arrow_back_ios_new,
-                  color: Colors.black,
-                ),
-              ),
-              drawerTheme: const DrawerThemeData(backgroundColor: Colors.black),
-              appBarTheme: const AppBarTheme(
-                  backgroundColor: Colors.black,
-                  foregroundColor: Colors.black,
-                  iconTheme: IconThemeData()
-                  // color: Colors.white,
-                  ),
-              //  useMaterial3: true,
-              scaffoldBackgroundColor: const Color(0xFFF7F7F7),
-              textTheme: GoogleFonts.nunitoTextTheme(
-                textTheme,
-              ).copyWith(),
-            ),
-          );
-        });
-  }
-}
+//     return GetBuilder<LocalizationController>(
+//         initState: (state) {},
+//         builder: (localizeController) {
+//           return GetMaterialApp.router(
+//             scaffoldMessengerKey: snackbarKey,
+//             routerDelegate: _router.delegate(),
+//             routeInformationProvider: _router.routeInfoProvider(),
+//             routeInformationParser: _router.defaultRouteParser(),
+//             debugShowCheckedModeBanner: false,
+//             locale: localizeController.locale,
+//             fallbackLocale: Locale(
+//               AppConstants.LANGUAGE_LIST[0].languageCode,
+//             ),
+//             translations: Messages(languages: widget.languages),
+//             defaultTransition: Transition.topLevel,
+//             transitionDuration: const Duration(milliseconds: 500),
+//             scrollBehavior: const MaterialScrollBehavior().copyWith(
+//               dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch},
+//             ),
+//             theme: ThemeData(
+//               colorScheme: const ColorScheme.dark(
+//                 //  background: Colors.red,
+//                 primary: Colors.white,
+//               ),
+//               // primaryColor: Colors.black,
+//               // switchTheme: ,
+//               useMaterial3: true,
+//               actionIconTheme: ActionIconThemeData(
+//                 backButtonIconBuilder: (context) => const Icon(
+//                   Icons.arrow_back_ios_new,
+//                   color: Colors.black,
+//                 ),
+//               ),
+//               drawerTheme: const DrawerThemeData(backgroundColor: Colors.black),
+//               appBarTheme: const AppBarTheme(
+//                   backgroundColor: Colors.black,
+//                   foregroundColor: Colors.black,
+//                   iconTheme: IconThemeData()
+//                   // color: Colors.white,
+//                   ),
+//               //  useMaterial3: true,
+//               scaffoldBackgroundColor: const Color(0xFFF7F7F7),
+//               textTheme: GoogleFonts.nunitoTextTheme(
+//                 textTheme,
+//               ).copyWith(),
+//             ),
+//           );
+//         });
+//   }
+// }
 
 class DipshikaApp extends StatefulWidget {
   final Map<String, Map<String, String>> languages;
@@ -104,7 +104,7 @@ class DipshikaApp extends StatefulWidget {
 }
 
 class _DipshikaAppState extends State<DipshikaApp> {
-  final _router = getIt<AppRouter>();
+
 
   @override
   Widget build(BuildContext context) {

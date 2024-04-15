@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/widgets/commonButtons.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/widgets/commonTextField.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonButtons.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonTextField.dart';
 
 class LandingScreenForRegistration extends StatefulWidget {
   const LandingScreenForRegistration({super.key});

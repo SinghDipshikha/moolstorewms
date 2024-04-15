@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/widgets/commonAppBar.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/widgets/commonButtons.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonAppBar.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonButtons.dart';
 
 class CheckInCheckCheckOutScreen extends StatefulWidget {
   const CheckInCheckCheckOutScreen({super.key});
