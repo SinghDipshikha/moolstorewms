@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Controller/authController.dart';
+import 'package:moolwmsstore/View/auth/OtpScreen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 /*  if (state is OtpSentSuccess) {
@@ -155,37 +156,42 @@ class _PhoneSignState extends State<PhoneSign> {
                     ).paddingSymmetric(vertical: 20),
                   ],
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  width: double.infinity,
-                  height: 45,
-                  decoration: ShapeDecoration(
-                    gradient: const LinearGradient(
-                      begin: Alignment(1.00, 0.00),
-                      end: Alignment(-1, 0),
-                      colors: [Color(0xFFFD578A), Color(0xFF5B57FE)],
+                InkWell(
+                  onTap: () {
+                    Get.to(const OtpScreen());
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: double.infinity,
+                    height: 45,
+                    decoration: ShapeDecoration(
+                      gradient: const LinearGradient(
+                        begin: Alignment(1.00, 0.00),
+                        end: Alignment(-1, 0),
+                        colors: [Color(0xFFFD578A), Color(0xFF5B57FE)],
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
+                      shadows: const [
+                        BoxShadow(
+                          color: Color(0x19000000),
+                          blurRadius: 2,
+                          offset: Offset(0, 2),
+                          spreadRadius: 0,
+                        )
+                      ],
                     ),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                    shadows: const [
-                      BoxShadow(
-                        color: Color(0x19000000),
-                        blurRadius: 2,
-                        offset: Offset(0, 2),
-                        spreadRadius: 0,
-                      )
-                    ],
-                  ),
-                  child: const Text(
-                    'Request OTP',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      //  fontFamily: 'SF Pro Display',
-                      fontWeight: FontWeight.w600,
-                      // height: 0.12,
-                      // letterSpacing: 0.32,
+                    child: const Text(
+                      'Request OTP',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        //  fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w600,
+                        // height: 0.12,
+                        // letterSpacing: 0.32,
+                      ),
                     ),
                   ),
                 ),

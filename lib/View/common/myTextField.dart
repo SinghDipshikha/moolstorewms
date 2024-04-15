@@ -132,10 +132,10 @@ class MyTextField2 extends StatelessWidget {
             padding ?? const EdgeInsets.symmetric(vertical: 0, horizontal: 5),
         child: TextFormField(
           textCapitalization: textCapitalization ?? TextCapitalization.none,
+          onChanged: onChanged,
           onTapOutside: (event) {
             FocusManager.instance.primaryFocus?.unfocus();
           },
-          onChanged: onChanged,
           onFieldSubmitted: (value) {
             FocusManager.instance.primaryFocus?.unfocus();
           },

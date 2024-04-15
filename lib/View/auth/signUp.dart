@@ -562,9 +562,9 @@ class Signup extends StatelessWidget {
                         ),
                         const Gap(16),
                         CommonTextField(
+                          keyboardType: TextInputType.phone,
                           inputFormatters: [
-                            FilteringTextInputFormatter.allow(
-                                RegExp(r"^[A-Z]{5}[0-9]{4}[A-Z]{1}$"))
+                            FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                           ],
                           labelText: "Mobile Number",
                           hintText: "Enter mobile number",
@@ -604,12 +604,42 @@ class Signup extends StatelessWidget {
                         ),
                         const Gap(16),
                       ],
-                    ).paddingSymmetric(vertical: 16, horizontal: 16))
+                    ).paddingSymmetric(vertical: 16, horizontal: 16)),
+                const Gap(20),
+                Container(
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  height: 45,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: ShapeDecoration(
+                    gradient: const LinearGradient(
+                      begin: Alignment(1.00, 0.00),
+                      end: Alignment(-1, 0),
+                      colors: [Color(0xFF2D2D2D), Color(0xFF1F1F1F)],
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                  ),
+                  child: const Text(
+                    'Submit',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontFamily: 'SF Pro Display',
+                      fontWeight: FontWeight.w600,
+                      height: 0,
+                      letterSpacing: 0.32,
+                    ),
+                  ),
+                )
               ],
             )
           ],
         ).paddingSymmetric(vertical: 8, horizontal: 20),
       ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton:
       appBar: AppBar(
         title: const Text(
           "Sign Up",
