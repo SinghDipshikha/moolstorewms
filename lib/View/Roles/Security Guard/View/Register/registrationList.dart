@@ -6,32 +6,36 @@ import 'package:moolwmsstore/View/Roles/Security%20Guard/Controllers/securityGua
 import 'package:moolwmsstore/Data/Model/SecurityGuard/employeeEntry.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonAppBar.dart';
 
-class ProductListScreen extends StatefulWidget {
-  const ProductListScreen({super.key});
+class RegistrationListScreen extends StatefulWidget {
+  const RegistrationListScreen({super.key});
 
   @override
-  State<ProductListScreen> createState() => _ProductListScreenState();
+  State<RegistrationListScreen> createState() => _RegistrationListScreenState();
 }
 
-class _ProductListScreenState extends State<ProductListScreen> {
+class _RegistrationListScreenState extends State<RegistrationListScreen> {
   @override
   final List tags = [
     {"title": "Name", "flex": 1},
     {"title": "Mobile", "flex": 2},
     {"title": "Date & Time", "flex": 2},
-    {"title": "Status", "flex": 1},
+    {
+      "title": "Status",
+      "flex": 1,
+    },
   ];
   final List dataList = [
     {"title": "Johnson Charles", "flex": 1},
     {"title": "123456789", "flex": 2},
     {"title": "25-06-2024 10:35 AM", "flex": 2},
     {"title": "icon", "flex": 1},
+    {"title": "icon2", "flex": 1},
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CommonAppBar(
-        title: 'Tickets List',
+        title: 'Register List',
         actions: [],
       ),
       body: Center(
@@ -69,10 +73,10 @@ class _ProductListScreenState extends State<ProductListScreen> {
                       Icon(
                         Icons.sort,
                         color: Colors.black,
-                        size: 30,
+                        size: 40,
                       ),
                       Text(
-                        'View > Vehicle',
+                        'Scan QR',
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -88,7 +92,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                       horizontal: 10, vertical: 3.12),
                   clipBehavior: Clip.antiAlias,
                   decoration: ShapeDecoration(
-                    color: Colors.white,
+                    color: Colors.black,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
                     shadows: const [
@@ -105,16 +109,16 @@ class _ProductListScreenState extends State<ProductListScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Icon(
-                        Icons.search,
-                        color: Colors.black,
-                        size: 30,
+                        Icons.qr_code,
+                        color: Colors.white,
+                        size: 40,
                       ),
                       Text(
-                        'Search',
+                        'Scan QR',
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black),
+                            color: Colors.white),
                       )
                     ],
                   ),
@@ -225,14 +229,14 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                                 borderRadius:
                                                     BorderRadius.circular(5)),
                                             image: const DecorationImage(
-                                              image: NetworkImage(
+                                              image: AssetImage(
                                                   "assets/icons/check_in.png"),
-                                              fit: BoxFit.fill,
+                                              fit: BoxFit.cover,
                                             ),
                                           ),
                                         ),
                                       );
-                                    } else {}
+                                    }
                                     if (dataList[index]["title"] == "icon" &&
                                         entry.status == "OUT") {
                                       return Expanded(
@@ -246,10 +250,24 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                                 borderRadius:
                                                     BorderRadius.circular(5)),
                                             image: const DecorationImage(
-                                              image: NetworkImage(
+                                              image: AssetImage(
                                                   "assets/icons/check_out.png"),
-                                              fit: BoxFit.fill,
+                                              fit: BoxFit.cover,
                                             ),
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                    if (dataList[index]["title"] == "icon2") {
+                                      return Expanded(
+                                        flex: dataList[index]["flex"],
+                                        child: const SizedBox(
+                                          height: 10,
+                                          width: 10,
+                                          child: Icon(
+                                            Icons.more_horiz_rounded,
+                                            color: Colors.black,
+                                            size: 20,
                                           ),
                                         ),
                                       );

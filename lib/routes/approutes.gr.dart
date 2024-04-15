@@ -186,7 +186,7 @@ abstract class $AppRouter extends _i28.RootStackRouter {
     Signup.name: (routeData) {
       return _i28.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i22.Signup(),
+        child:  _i22.Signup(),
       );
     },
     Splash.name: (routeData) {

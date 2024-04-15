@@ -2,40 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Controller/securityGuard.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/Controllers/securityGuard.dart';
 import 'package:moolwmsstore/Data/Model/SecurityGuard/employeeEntry.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/widgets/commonAppBar.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonAppBar.dart';
 
-class RegistrationListScreen extends StatefulWidget {
-  const RegistrationListScreen({super.key});
+class ProductListScreen extends StatefulWidget {
+  const ProductListScreen({super.key});
 
   @override
-  State<RegistrationListScreen> createState() => _RegistrationListScreenState();
+  State<ProductListScreen> createState() => _ProductListScreenState();
 }
 
-class _RegistrationListScreenState extends State<RegistrationListScreen> {
+class _ProductListScreenState extends State<ProductListScreen> {
   @override
   final List tags = [
     {"title": "Name", "flex": 1},
     {"title": "Mobile", "flex": 2},
     {"title": "Date & Time", "flex": 2},
-    {
-      "title": "Status",
-      "flex": 1,
-    },
+    {"title": "Status", "flex": 1},
   ];
   final List dataList = [
     {"title": "Johnson Charles", "flex": 1},
     {"title": "123456789", "flex": 2},
     {"title": "25-06-2024 10:35 AM", "flex": 2},
     {"title": "icon", "flex": 1},
-    {"title": "icon2", "flex": 1},
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CommonAppBar(
-        title: 'Register List',
+        title: 'Tickets List',
         actions: [],
       ),
       body: Center(
@@ -73,10 +69,10 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                       Icon(
                         Icons.sort,
                         color: Colors.black,
-                        size: 40,
+                        size: 30,
                       ),
                       Text(
-                        'Scan QR',
+                        'View > Vehicle',
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -92,7 +88,7 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                       horizontal: 10, vertical: 3.12),
                   clipBehavior: Clip.antiAlias,
                   decoration: ShapeDecoration(
-                    color: Colors.black,
+                    color: Colors.white,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
                     shadows: const [
@@ -109,16 +105,16 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Icon(
-                        Icons.qr_code,
-                        color: Colors.white,
-                        size: 40,
+                        Icons.search,
+                        color: Colors.black,
+                        size: 30,
                       ),
                       Text(
-                        'Scan QR',
+                        'Search',
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                            color: Colors.black),
                       )
                     ],
                   ),
@@ -229,14 +225,14 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                                                 borderRadius:
                                                     BorderRadius.circular(5)),
                                             image: const DecorationImage(
-                                              image: AssetImage(
+                                              image: NetworkImage(
                                                   "assets/icons/check_in.png"),
-                                              fit: BoxFit.cover,
+                                              fit: BoxFit.fill,
                                             ),
                                           ),
                                         ),
                                       );
-                                    }
+                                    } else {}
                                     if (dataList[index]["title"] == "icon" &&
                                         entry.status == "OUT") {
                                       return Expanded(
@@ -250,24 +246,10 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                                                 borderRadius:
                                                     BorderRadius.circular(5)),
                                             image: const DecorationImage(
-                                              image: AssetImage(
+                                              image: NetworkImage(
                                                   "assets/icons/check_out.png"),
-                                              fit: BoxFit.cover,
+                                              fit: BoxFit.fill,
                                             ),
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                    if (dataList[index]["title"] == "icon2") {
-                                      return Expanded(
-                                        flex: dataList[index]["flex"],
-                                        child: const SizedBox(
-                                          height: 10,
-                                          width: 10,
-                                          child: Icon(
-                                            Icons.more_horiz_rounded,
-                                            color: Colors.black,
-                                            size: 20,
                                           ),
                                         ),
                                       );
