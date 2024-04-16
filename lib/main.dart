@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
-import 'package:moolwmsstore/View/Auth/organisationCode.dart';
+import 'package:moolwmsstore/View/Auth/signInUp.dart';
 import 'package:moolwmsstore/helper/messages.dart';
-import 'package:moolwmsstore/routes/approutes.dart';
 // import 'package:moolwmsstore/routes/approutes.gr.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/utils/globals.dart';
@@ -15,7 +14,7 @@ import 'helper/get_di.dart' as di;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
- // getIt.registerSingleton<AppRouter>(AppRouter());
+  // getIt.registerSingleton<AppRouter>(AppRouter());
   Map<String, Map<String, String>> languages = await di.init();
 
   runApp(DipshikaApp(
@@ -104,8 +103,6 @@ class DipshikaApp extends StatefulWidget {
 }
 
 class _DipshikaAppState extends State<DipshikaApp> {
-
-
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -117,7 +114,7 @@ class _DipshikaAppState extends State<DipshikaApp> {
           // final width = MediaQuery.sizeOf(context).width;
           return GetMaterialApp(
             scaffoldMessengerKey: snackbarKey,
-            home: const OrganisationCode(),
+            home: const SignInUp(),
             debugShowCheckedModeBanner: false,
             locale: localizeController.locale,
             fallbackLocale: Locale(
@@ -129,6 +126,15 @@ class _DipshikaAppState extends State<DipshikaApp> {
             scrollBehavior: const MaterialScrollBehavior().copyWith(
               dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch},
             ),
+            // builder: (context, child) {
+            //   final mediaQueryData = MediaQuery.of(context);
+            //   final scale = mediaQueryData.textScaleFactor.clamp(1.0, 1.3);
+            //   return MediaQuery(
+            //     data: MediaQuery.of(context)
+            //         .copyWith(textScaler: TextScaler.linear(scale)),
+            //     child: const SignInUp(),
+            //   );
+            // },
             theme: ThemeData(
               scaffoldBackgroundColor: Colors.white,
 

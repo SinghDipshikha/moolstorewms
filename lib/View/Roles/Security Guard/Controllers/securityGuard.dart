@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Data/Model/SecurityGuard/employeeEntry.dart';
-import 'package:moolwmsstore/Data/Model/SecurityGuard/secGuardDetail.dart';
+
 import 'package:moolwmsstore/Data/api/api_client.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/employeeEntry.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/secGuardDetail.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/repository/securityGuardRepo.dart';
 
 class SecurityGuardController extends GetxController {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/View/Auth/organisationCode.dart';
+import 'package:moolwmsstore/View/auth/signUp.dart';
 
 class SignInUp extends StatelessWidget {
   const SignInUp({super.key});
@@ -55,55 +57,65 @@ class SignInUp extends StatelessWidget {
               //  height: 0.06,
             ),
           ).paddingSymmetric(vertical: 8),
-          Container(
-            width: 317,
-            height: 54,
-            alignment: Alignment.center,
-            // padding: const EdgeInsets.symmetric(horizontal: 124, vertical: 14),
-            clipBehavior: Clip.antiAlias,
-            decoration: ShapeDecoration(
-              color: const Color(0xFF5A57FF),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
+          InkWell(
+            onTap: () {
+              Get.to(const OrganisationCode());
+            },
+            child: Container(
+              width: 317,
+              height: 54,
+              alignment: Alignment.center,
+              // padding: const EdgeInsets.symmetric(horizontal: 124, vertical: 14),
+              clipBehavior: Clip.antiAlias,
+              decoration: ShapeDecoration(
+                color: const Color(0xFF5A57FF),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
-            ),
-            child: const Text(
-              'Sign In',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 22,
-                fontFamily: 'SF Pro Text',
-                fontWeight: FontWeight.w600,
-                height: 0,
-                letterSpacing: -0.88,
+              child: const Text(
+                'Sign In',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontFamily: 'SF Pro Text',
+                  fontWeight: FontWeight.w600,
+                  height: 0,
+                  letterSpacing: -0.88,
+                ),
               ),
-            ),
-          ).paddingSymmetric(vertical: 12),
-          Container(
-            width: 317,
-            height: 54,
-            alignment: Alignment.center,
-            // padding: const EdgeInsets.symmetric(horizontal: 113, vertical: 14),
-            clipBehavior: Clip.antiAlias,
-            decoration: ShapeDecoration(
-              color: const Color(0xFFFAF9FF),
-              shape: RoundedRectangleBorder(
-                side: const BorderSide(width: 2, color: Color(0x195A57FF)),
-                borderRadius: BorderRadius.circular(10),
+            ).paddingSymmetric(vertical: 12),
+          ),
+          InkWell(
+            onTap: () {
+              Get.to(Signup());
+            },
+            child: Container(
+              width: 317,
+              height: 54,
+              alignment: Alignment.center,
+              // padding: const EdgeInsets.symmetric(horizontal: 113, vertical: 14),
+              clipBehavior: Clip.antiAlias,
+              decoration: ShapeDecoration(
+                color: const Color(0xFFFAF9FF),
+                shape: RoundedRectangleBorder(
+                  side: const BorderSide(width: 2, color: Color(0x195A57FF)),
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
-            ),
-            child: const Text(
-              'Sign Up',
-              style: TextStyle(
-                color: Color(0xFF5A57FF),
-                fontSize: 22,
-                fontFamily: 'SF Pro Text',
-                fontWeight: FontWeight.w600,
-                height: 0,
-                letterSpacing: -0.88,
+              child: const Text(
+                'Sign Up',
+                style: TextStyle(
+                  color: Color(0xFF5A57FF),
+                  fontSize: 22,
+                  fontFamily: 'SF Pro Text',
+                  fontWeight: FontWeight.w600,
+                  height: 0,
+                  letterSpacing: -0.88,
+                ),
               ),
-            ),
-          ).paddingSymmetric(vertical: 4),
+            ).paddingSymmetric(vertical: 4),
+          ),
           //const Spacer(),
           const Gap(20),
           const Text.rich(
