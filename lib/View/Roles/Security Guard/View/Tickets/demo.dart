@@ -1,42 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonAppBar.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonTextField.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonButtons.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class DemoScreenForNavigations extends StatefulWidget {
+  const DemoScreenForNavigations({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<DemoScreenForNavigations> createState() =>
+      _DemoScreenForNavigationsState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _DemoScreenForNavigationsState extends State<DemoScreenForNavigations> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CommonAppBar(
-        title: 'Sign Up',
+        title: '',
         actions: [],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Center(
-            child: Container(
-              width: double.infinity,
-              //  height: 190,
-              decoration: const ShapeDecoration(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(width: 1, color: Color(0x195A57FF)),
-                ),
-              ),
-              child: CommanTextFieldNewTheme(
-                labelText: 'Vehicle Number',
-                hintText: 'MH 01 AB 1234',
-              ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Gap(20),
+            CommonSubmitButton(
+              title: 'HR',
             ),
-          ),
-        ],
+            const Gap(20),
+            CommonSubmitButton(
+              title: 'Sales',
+            ),
+            const Gap(20),
+            CommonSubmitButton(
+              title: 'Owner',
+            ),
+            const Gap(20),
+            CommonSubmitButton(
+              title: 'Plant Manager',
+            ),
+            const Gap(20),
+            CommonSubmitButton(
+              title: 'Security Gaurd',
+            ),
+            const Gap(20),
+            CommonSubmitButton(
+              title: 'Dock Supervisor',
+            ),
+            const Gap(20),
+          ],
+        ),
       ),
     );
   }

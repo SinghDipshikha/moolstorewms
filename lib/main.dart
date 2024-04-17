@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/View/dashboard.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/registrationList.dart';
 import 'package:moolwmsstore/helper/messages.dart';
 import 'package:moolwmsstore/routes/approutes.dart';
 // import 'package:moolwmsstore/routes/approutes.gr.dart';
@@ -113,11 +113,9 @@ class _DipshikaAppState extends State<DipshikaApp> {
     return GetBuilder<LocalizationController>(
         initState: (state) {},
         builder: (localizeController) {
-          // final height = MediaQuery.sizeOf(context).height;
-          // final width = MediaQuery.sizeOf(context).width;
           return GetMaterialApp(
             scaffoldMessengerKey: snackbarKey,
-            home: const RegistrationModuleDashboard(),
+            home: const RegistrationListScreen(),
             debugShowCheckedModeBanner: false,
             locale: localizeController.locale,
             fallbackLocale: Locale(
