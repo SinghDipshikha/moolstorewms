@@ -133,12 +133,25 @@ class _PhoneSignState extends State<PhoneSign> {
                       ),
                     ),
                     TextFormField(
+                      keyboardType: TextInputType.phone,
+                      textAlign: TextAlign.left,
+                      textAlignVertical: TextAlignVertical.center,
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                       ],
                       // keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        border: const UnderlineInputBorder(),
+                        // isDense: true,
+                        alignLabelWithHint: true,
+                        // contentPadding: const EdgeInsets.all(0),
+                        enabledBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Color(0xffDA44bb),
+                        )),
+                        border: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Color(0xffDA44bb),
+                        )),
                         prefixIcon: CountryCodePicker(
                           onChanged: (x) {
                             if (x.code != null) {

@@ -122,8 +122,9 @@ class AppColors {
   static Color hint = const Color(0xFF595959);
 }
 
-class AppDecorations {
+class Snacks {
   static redSnack(String text) {
+    snackbarKey.currentState?.clearSnackBars();
     final SnackBar snackBar = SnackBar(
       duration: const Duration(seconds: 2),
       content: Text(
@@ -133,27 +134,10 @@ class AppDecorations {
       backgroundColor: Colors.red,
     );
     snackbarKey.currentState?.showSnackBar(snackBar);
-    // ScaffoldMessenger.of(Get.context).clearSnackBars();
-    // Get.showSnackbar(GetSnackBar(
-    //   duration: const Duration(milliseconds: 1000),
-    //   animationDuration: const Duration(milliseconds: 500),
-    //   snackPosition: SnackPosition.BOTTOM,
-    //   messageText: Text(
-    //     text,
-    //     style: const TextStyle(
-    //       color: Colors.white,
-    //       fontSize: 18,
-
-    //       fontWeight: FontWeight.w700,
-    //       //  height: 0.06,
-    //     ),
-    //   ),
-    //   backgroundColor: Colors.red,
-    // ));
   }
 
   static greenSnack(String text) {
-    // ScaffoldMessenger.of(Get.context).clearSnackBars();
+    snackbarKey.currentState?.clearSnackBars();
     final SnackBar snackBar = SnackBar(
       duration: const Duration(seconds: 2),
       content: Text(
@@ -165,6 +149,38 @@ class AppDecorations {
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
+  static ShapeDecoration elevatedShadowDecoration = ShapeDecoration(
+    color: Colors.white,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(25),
+    ),
+    shadows: const [
+      BoxShadow(
+        color: Color(0x0C000000),
+        blurRadius: 10,
+        offset: Offset(5, 5),
+        spreadRadius: 0,
+      )
+    ],
+  );
+  static ShapeDecoration selectedelevatedShadowDecoration = ShapeDecoration(
+    color: AppColors.primaryColor,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(25),
+    ),
+    shadows: const [
+      BoxShadow(
+        color: Color(0x0C000000),
+        blurRadius: 10,
+        offset: Offset(5, 5),
+        spreadRadius: 0,
+      )
+    ],
+  );
+  static Color scaffoldBackgroundColor = const Color(0xFFFCFCFC);
+}
+
+class AppDecorations {
   static ShapeDecoration elevatedShadowDecoration = ShapeDecoration(
     color: Colors.white,
     shape: RoundedRectangleBorder(

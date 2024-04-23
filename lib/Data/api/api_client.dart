@@ -51,8 +51,7 @@ class ApiClient extends g.GetxService {
 
       return response;
     } catch (e) {
-      AppDecorations.redSnack(
-          "Something went wrong, Check Internet connection");
+      Snacks.redSnack("Something went wrong, Check Internet connection");
       return Response(
           statusCode: 1,
           statusMessage: noInternetMessage,
@@ -72,7 +71,7 @@ class ApiClient extends g.GetxService {
           .timeout(Duration(seconds: timeoutInSeconds));
       return handleResponse(response);
     } catch (e) {
-      AppDecorations.redSnack(noInternetMessage);
+      Snacks.redSnack(noInternetMessage);
       return Response(
           statusCode: 1,
           statusMessage: noInternetMessage,
@@ -165,20 +164,20 @@ class ApiClient extends g.GetxService {
         requestOptions: RequestOptions());
     if (response0.statusCode == 200 && response0.data != null) {
       if (response0.data["message"] == false) {
-        AppDecorations.redSnack(response0.data["message"]);
+        Snacks.redSnack(response0.data["message"]);
       } else {
-        AppDecorations.greenSnack(response0.data["message"]);
+        Snacks.greenSnack(response0.data["message"]);
       }
     }
     if (response0.statusCode != 200 &&
         response0.data != null &&
         response0.data is! String) {
       if (response0.statusMessage != null) {
-        AppDecorations.redSnack(response0.data["message"] ?? noInternetMessage);
+        Snacks.redSnack(response0.data["message"] ?? noInternetMessage);
       }
     }
     if (response0.statusCode != 200 && response0.data == null) {
-      AppDecorations.redSnack(noInternetMessage);
+      Snacks.redSnack(noInternetMessage);
       response0 = Response(
           statusCode: 0,
           statusMessage: noInternetMessage,

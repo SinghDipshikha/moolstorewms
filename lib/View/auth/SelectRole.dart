@@ -41,7 +41,7 @@ class _SelectRoleState extends State<SelectRole> {
                 if (selectedindex == 0) {
                   //  context.pushReplacement('/Signup');
                 } else if (selectedindex == 1) {
-                  AppDecorations.redSnack(
+                  Snacks.redSnack(
                       'please_contact_respective_warehouse_owner_to_get_the_login_credentials'
                           .tr);
                 }

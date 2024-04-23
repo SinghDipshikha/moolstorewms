@@ -1,9 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/View/Auth/organisationCode.dart';
-import 'package:moolwmsstore/View/auth/signUp.dart';
+import 'package:moolwmsstore/routes/approutes.gr.dart';
 
+@RoutePage()
 class SignInUp extends StatelessWidget {
   const SignInUp({super.key});
 
@@ -59,7 +60,8 @@ class SignInUp extends StatelessWidget {
           ).paddingSymmetric(vertical: 8),
           InkWell(
             onTap: () {
-              Get.to(const OrganisationCode());
+              context.pushRoute(OrganisationCode());
+              // Get.to(const OrganisationCode());
             },
             child: Container(
               width: 317,
@@ -88,7 +90,7 @@ class SignInUp extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.to(Signup());
+              context.pushRoute(OrganisationCode());
             },
             child: Container(
               width: 317,

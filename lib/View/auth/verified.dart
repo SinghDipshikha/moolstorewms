@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_route_annotations/getx_route_annotations.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
+@GetXRoutePage("/verify")
 class Verified extends StatelessWidget {
   const Verified({super.key});
 

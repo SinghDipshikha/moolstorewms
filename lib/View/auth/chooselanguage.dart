@@ -64,58 +64,56 @@ class Chooselanguage extends StatelessWidget {
                     bool selected = localizeController.locale.languageCode ==
                         AppConstants.LANGUAGE_LIST[index].language.languageCode;
 
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        onTap: () {
-                          localizeController.setLanguage(Locale(
-                            AppConstants.LANGUAGE_LIST[index].languageCode,
-                          ));
-                        },
-                        child: Container(
-                          // padding: const EdgeInsets.symmetric(
-                          //     vertical: 10, horizontal: 12),
-                          decoration: const BoxDecoration(boxShadow: [
-                            BoxShadow(
-                              color: Color(0x0C000000),
-                              blurRadius: 5,
-                              offset: Offset(3, 4),
-                              spreadRadius: 0,
-                            )
-                          ], color: Colors.white),
-                          child: Row(
-                            children: [
-                              Text(
-                                AppConstants.LANGUAGE_LIST[index].languageName,
-                                // style: TextStyles.bodyMedium(context)
-                                //     .copyWith(
-                                //         fontWeight: FontWeight.w500,
-                                //         color: selected
-                                //             ? Colors.white
-                                //             : Colors.black)
-                                // TextStyle(
-                                //     fontSize: 16.sp,
-                                //     color: selected ? Colors.white : Colors.black),
+                    return InkWell(
+                      onTap: () {
+                        localizeController.setLanguage(Locale(
+                          AppConstants.LANGUAGE_LIST[index].languageCode,
+                        ));
+                      },
+                      child: Container(
+                        height: 40,
+                        // padding: const EdgeInsets.symmetric(
+                        //     vertical: 10, horizontal: 12),
+                        decoration: const BoxDecoration(boxShadow: [
+                          BoxShadow(
+                            color: Color(0x0C000000),
+                            blurRadius: 5,
+                            offset: Offset(3, 4),
+                            spreadRadius: 0,
+                          )
+                        ], color: Colors.white),
+                        child: Row(
+                          children: [
+                            Text(
+                              AppConstants.LANGUAGE_LIST[index].languageName,
+                              // style: TextStyles.bodyMedium(context)
+                              //     .copyWith(
+                              //         fontWeight: FontWeight.w500,
+                              //         color: selected
+                              //             ? Colors.white
+                              //             : Colors.black)
+                              // TextStyle(
+                              //     fontSize: 16.sp,
+                              //     color: selected ? Colors.white : Colors.black),
+                            ),
+                            const Spacer(),
+                            if (selected)
+                              //  Transform.scale(
+                              // scale: 1.3,
+                              Radio(
+                                activeColor: Colors.green,
+                                value: true,
+                                groupValue: true,
+                                onChanged: (value) {
+                                  // setState(() {
+                                  //   selectedLevel = value;
+                                  // });
+                                },
                               ),
-                              const Spacer(),
-                              if (selected)
-                                //  Transform.scale(
-                                // scale: 1.3,
-                                Radio(
-                                  // activeColor: Styles.primary,
-                                  value: true,
-                                  groupValue: true,
-                                  onChanged: (value) {
-                                    // setState(() {
-                                    //   selectedLevel = value;
-                                    // });
-                                  },
-                                ),
-                              // ),
-                            ],
-                          ).paddingSymmetric(vertical: 12),
-                        ),
-                      ),
+                            // ),
+                          ],
+                        ).paddingSymmetric(vertical: 12, horizontal: 6),
+                      ).paddingSymmetric(vertical: 4),
                     );
                   }),
                 );

@@ -4,6 +4,9 @@ import 'package:moolwmsstore/Data/Model/Auth/signupfield.dart';
 import 'package:moolwmsstore/Data/api/api_client.dart';
 import 'package:moolwmsstore/Data/repository/authRepo.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
+import 'package:moolwmsstore/routes/approutes.dart';
+import 'package:moolwmsstore/routes/approutes.gr.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 // enum OTP {
 //   init,
@@ -24,14 +27,15 @@ class AuthController extends GetxController {
   List<SignupField> fields = [];
   List<AddWarehiuseField> addWarehouseFields = [];
 
-
   splash() {
-    Future.delayed(const Duration(seconds: 3)).whenComplete(() {
-      //  getIt<AppRouter>().replace(const ChooselanguageRoute());
-      // getIt<AppRouter>().replace(
-      //   const SignupRoute(),
-      // );
+    Future.delayed(const Duration(seconds: 2)).whenComplete(() {
+      getIt<AppRouter>().replace(const SignInUp());
     });
+  }
+
+  onSignInPressed() {}
+  checkOrganisationCode({required String organiosationCode}) {
+    getIt<AppRouter>().replace(const PhoneSign());
   }
 
   sendOtp(String? number) async {
@@ -42,7 +46,7 @@ class AuthController extends GetxController {
         //   const OtpScreenRoute(),
         // );
       } else {
-        AppDecorations.redSnack(value.data["message"]);
+        Snacks.redSnack(value.data["message"]);
       }
     });
   }
@@ -54,7 +58,7 @@ class AuthController extends GetxController {
         //   const OtpScreenRoute(),
         // );
       } else {
-        AppDecorations.redSnack(value.data["message"]);
+        Snacks.redSnack(value.data["message"]);
       }
     });
   }
