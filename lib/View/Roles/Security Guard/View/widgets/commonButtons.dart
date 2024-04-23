@@ -340,3 +340,37 @@ class _CommonApproveAndDeclineButtonState
     );
   }
 }
+
+class CommonSubmitButtonForNewTheme extends StatelessWidget {
+  String title;
+  Color buttonColors;
+  CommonSubmitButtonForNewTheme(
+      {super.key, required this.buttonColors, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 258,
+      height: 40,
+      decoration: ShapeDecoration(
+        color: buttonColors,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50),
+        ),
+      ),
+      child: Center(
+        child: Text(
+          title,
+          style: const TextStyle(
+            color: Color(0xFFFAF9FF),
+            fontSize: 18,
+            fontFamily: 'SF Pro Text',
+            fontWeight: FontWeight.w600,
+            height: 0,
+            letterSpacing: -0.72,
+          ),
+        ),
+      ),
+    );
+  }
+}

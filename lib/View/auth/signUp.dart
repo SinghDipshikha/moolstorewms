@@ -503,8 +503,8 @@ import 'package:moolwmsstore/View/Auth/widgets/commonTextField.dart';
 import 'package:moolwmsstore/View/Roles/Hr/constants/validations.dart';
 import 'package:moolwmsstore/View/common/tagContainer.dart';
 
-class Signup extends StatelessWidget {
-  Signup({super.key});
+class SignUp extends StatelessWidget {
+  SignUp({super.key});
 
   @override
   String? _email;

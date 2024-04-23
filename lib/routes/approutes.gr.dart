@@ -11,13 +11,6 @@
 import 'package:auto_route/auto_route.dart' as _i28;
 import 'package:flutter/material.dart' as _i29;
 import 'package:moolwmsstore/Data/Model/Warehouse/warehouse.dart' as _i30;
-import 'package:moolwmsstore/View/auth/chooselanguage.dart' as _i15;
-import 'package:moolwmsstore/View/auth/OtpScreen.dart' as _i17;
-import 'package:moolwmsstore/View/auth/phoneSign.dart' as _i19;
-import 'package:moolwmsstore/View/auth/SelectRole.dart' as _i21;
-import 'package:moolwmsstore/View/auth/signUp.dart' as _i22;
-import 'package:moolwmsstore/View/auth/splash.dart' as _i23;
-import 'package:moolwmsstore/View/auth/welcome.dart' as _i27;
 import 'package:moolwmsstore/View/Body.dart' as _i12;
 import 'package:moolwmsstore/View/Roles/Dock%20Supervisor/chamberView.dart'
     as _i14;
@@ -33,21 +26,28 @@ import 'package:moolwmsstore/View/Roles/Hr/addEmployeePersonalDetails.dart'
     as _i7;
 import 'package:moolwmsstore/View/Roles/Hr/addEmployeeReferralDetails.dart'
     as _i8;
-import 'package:moolwmsstore/View/Roles/Owner/addWarehouse.dart' as _i9;
 import 'package:moolwmsstore/View/Roles/Owner/OwnerDashboard.dart' as _i18;
+import 'package:moolwmsstore/View/Roles/Owner/WarehouseList.dart' as _i26;
+import 'package:moolwmsstore/View/Roles/Owner/addWarehouse.dart' as _i9;
 import 'package:moolwmsstore/View/Roles/Owner/viewWarehouseDetails.dart'
     as _i25;
-import 'package:moolwmsstore/View/Roles/Owner/WarehouseList.dart' as _i26;
+import 'package:moolwmsstore/View/Roles/Plant%20Manager/Assets/AssetsList.dart'
+    as _i11;
 import 'package:moolwmsstore/View/Roles/Plant%20Manager/Assets/addChamber.dart'
     as _i1;
 import 'package:moolwmsstore/View/Roles/Plant%20Manager/Assets/assetEntry.dart'
     as _i10;
-import 'package:moolwmsstore/View/Roles/Plant%20Manager/Assets/AssetsList.dart'
-    as _i11;
 import 'package:moolwmsstore/View/Roles/Plant%20Manager/Assets/chamberList.dart'
     as _i13;
 import 'package:moolwmsstore/View/Roles/Sales/createPurchaseOrder.dart' as _i16;
 import 'package:moolwmsstore/View/Roles/Sales/poList.dart' as _i20;
+import 'package:moolwmsstore/View/auth/OtpScreen.dart' as _i17;
+import 'package:moolwmsstore/View/auth/SelectRole.dart' as _i21;
+import 'package:moolwmsstore/View/auth/chooselanguage.dart' as _i15;
+import 'package:moolwmsstore/View/auth/phoneSign.dart' as _i19;
+import 'package:moolwmsstore/View/auth/signUp.dart' as _i22;
+import 'package:moolwmsstore/View/auth/splash.dart' as _i23;
+import 'package:moolwmsstore/View/auth/welcome.dart' as _i27;
 import 'package:moolwmsstore/View/testRoutes.dart' as _i24;
 
 abstract class $AppRouter extends _i28.RootStackRouter {
@@ -186,7 +186,7 @@ abstract class $AppRouter extends _i28.RootStackRouter {
     Signup.name: (routeData) {
       return _i28.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child:  _i22.Signup(),
+        child: _i22.SignUp(),
       );
     },
     Splash.name: (routeData) {
@@ -544,7 +544,7 @@ class SelectRole extends _i28.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i22.Signup]
+/// [_i22.SignUp]
 class Signup extends _i28.PageRouteInfo<void> {
   const Signup({List<_i28.PageRouteInfo>? children})
       : super(
