@@ -19,6 +19,13 @@ class AppRouter extends $AppRouter {
         page: PhoneSign.page,
       ),
     ]),
+    AutoRoute(page: SecurityGuard.page, children: [
+
+
+      
+      AutoRoute(page: SecurityGuardDashBoard.page, initial: true),
+     
+    ]),
     AutoRoute(page: OwnerBody.page, children: [
       AutoRoute(page: OwnerDashboard.page, initial: true),
       AutoRoute(

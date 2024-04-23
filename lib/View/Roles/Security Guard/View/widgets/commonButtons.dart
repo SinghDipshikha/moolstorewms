@@ -151,25 +151,20 @@ class _CommonButtonForMobileState extends State<CommonButtonForMobile> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 174,
-      height: 34,
+      width: 156,
+      height: 50,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       decoration: ShapeDecoration(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        shadows: const [
-          BoxShadow(
-            color: Color(0x0C000000),
-            blurRadius: 2,
-            offset: Offset(0, 2),
-            spreadRadius: 0,
-          )
-        ],
+        color: const Color(0xFF5A57FF),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
       ),
       child: Center(
         child: Text(
           widget.title,
           style: const TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 18,
             fontFamily: 'Nunito',
             fontWeight: FontWeight.w500,
@@ -342,6 +337,40 @@ class _CommonApproveAndDeclineButtonState
           ),
         )
       ],
+    );
+  }
+}
+
+class CommonSubmitButtonForNewTheme extends StatelessWidget {
+  String title;
+  Color buttonColors;
+  CommonSubmitButtonForNewTheme(
+      {super.key, required this.buttonColors, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 258,
+      height: 40,
+      decoration: ShapeDecoration(
+        color: buttonColors,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50),
+        ),
+      ),
+      child: Center(
+        child: Text(
+          title,
+          style: const TextStyle(
+            color: Color(0xFFFAF9FF),
+            fontSize: 18,
+            fontFamily: 'SF Pro Text',
+            fontWeight: FontWeight.w600,
+            height: 0,
+            letterSpacing: -0.72,
+          ),
+        ),
+      ),
     );
   }
 }

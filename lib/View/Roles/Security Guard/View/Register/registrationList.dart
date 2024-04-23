@@ -31,6 +31,7 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
     {"title": "icon", "flex": 1},
     {"title": "icon2", "flex": 1},
   ];
+  bool isSelected = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,112 +49,107 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Container(
-                  width: 140,
-                  height: 42,
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 10, vertical: 3.12),
-                  clipBehavior: Clip.antiAlias,
+                  width: 169,
+                  height: 39,
+                  padding: const EdgeInsets.only(
+                    top: 10,
+                    left: 30,
+                    right: 10,
+                    bottom: 10,
+                  ),
                   decoration: ShapeDecoration(
-                    color: Colors.white,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                    shadows: const [
-                      BoxShadow(
-                        color: Color(0x0C000000),
-                        blurRadius: 2,
-                        offset: Offset(0, 1.50),
-                        spreadRadius: 0,
-                      )
-                    ],
+                      side:
+                          const BorderSide(width: 1, color: Color(0x195A57FF)),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
                   ),
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(
-                        Icons.sort,
-                        color: Colors.black,
-                        size: 40,
-                      ),
                       Text(
                         'Scan QR',
                         style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
-                      )
+                          color: Color(0xFFACACAC),
+                          fontSize: 16,
+                          fontFamily: 'SF Pro Display',
+                          fontWeight: FontWeight.w400,
+                          height: 0,
+                        ),
+                      ),
+                      Icon(
+                        Icons.sort,
+                        color: Color(0xFFACACAC),
+                        size: 20,
+                      ),
                     ],
                   ),
                 ),
                 Container(
-                  width: 140,
-                  height: 42,
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 10, vertical: 3.12),
-                  clipBehavior: Clip.antiAlias,
+                  width: 169,
+                  height: 39,
+                  padding: const EdgeInsets.only(
+                    top: 10,
+                    left: 30,
+                    right: 10,
+                    bottom: 10,
+                  ),
                   decoration: ShapeDecoration(
-                    color: Colors.black,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                    shadows: const [
-                      BoxShadow(
-                        color: Color(0x0C000000),
-                        blurRadius: 2,
-                        offset: Offset(0, 1.50),
-                        spreadRadius: 0,
-                      )
-                    ],
+                      side:
+                          const BorderSide(width: 1, color: Color(0x195A57FF)),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
                   ),
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(
-                        Icons.qr_code,
-                        color: Colors.white,
-                        size: 40,
-                      ),
                       Text(
-                        'Scan QR',
+                        'Search',
                         style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      )
+                          color: Color(0xFFACACAC),
+                          fontSize: 16,
+                          fontFamily: 'SF Pro Display',
+                          fontWeight: FontWeight.w400,
+                          height: 0,
+                        ),
+                      ),
+                      Icon(
+                        Icons.search,
+                        color: Color(0xFFACACAC),
+                        size: 20,
+                      ),
                     ],
                   ),
                 ),
               ],
             ),
             const Gap(20),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12 * 2),
-              height: 60,
-              color: Colors.black,
-              child: Row(
-                children: List.generate(tags.length, (index) {
-                  if (tags[index]["title"] == "icon") {
-                    return Expanded(
-                      flex: tags[index]["flex"],
-                      child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.more_horiz,
-                            color: Colors.white,
-                          )),
-                    );
-                  }
+            Row(
+              children: List.generate(tags.length, (index) {
+                if (tags[index]["title"] == "icon") {
                   return Expanded(
-                      flex: tags[index]["flex"],
-                      child: Text(
-                        tags[index]["title"],
-                        style: const TextStyle(
+                    flex: tags[index]["flex"],
+                    child: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.more_horiz,
                           color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ));
-                }),
-              ),
+                        )),
+                  );
+                }
+                return Expanded(
+                    flex: tags[index]["flex"],
+                    child: Text(
+                      tags[index]["title"],
+                      style: const TextStyle(
+                        color: Color(0xFF5A57FF),
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ));
+              }),
             ),
             Expanded(
               child: GetBuilder<SecurityGuardController>(initState: (state) {
@@ -172,28 +168,21 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                           EmployeeEntry entry =
                               securityGuardController.empEntryList[i];
                           return Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 10),
+                            padding: const EdgeInsets.all(8.0),
                             child: Container(
-                              height: 100,
-                              clipBehavior: Clip.antiAlias,
+                              width: 382,
+                              height: 50,
                               decoration: ShapeDecoration(
-                                color: Colors.white,
+                                color: const Color(0xFFFAF9FF),
                                 shape: RoundedRectangleBorder(
+                                  side: const BorderSide(
+                                      width: 1, color: Color(0x195A57FF)),
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                shadows: const [
-                                  BoxShadow(
-                                    color: Color(0x11000000),
-                                    blurRadius: 2,
-                                    offset: Offset(0, 1.50),
-                                    spreadRadius: 0,
-                                  )
-                                ],
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 12 * 2),
+                                    horizontal: 12, vertical: 12),
                                 child: Row(
                                   children:
                                       List.generate(dataList.length, (index) {
@@ -201,37 +190,66 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                                         "Johnson Charles") {
                                       return Expanded(
                                           flex: dataList[index]["flex"],
-                                          child: Text(entry.name ?? ""));
+                                          child: Text(
+                                            entry.name ?? "",
+                                            style: const TextStyle(
+                                              color: Color(0xFF353535),
+                                              fontSize: 12,
+                                              fontFamily: 'SF Pro Text',
+                                              fontWeight: FontWeight.w500,
+                                              height: 0,
+                                              letterSpacing: -0.48,
+                                            ),
+                                          ));
                                     }
                                     if (dataList[index]["title"] ==
                                         "123456789") {
                                       return Expanded(
                                           flex: dataList[index]["flex"],
-                                          child: Text("${entry.mobile ?? ""}"));
+                                          child: Text(
+                                            "${entry.mobile ?? ""}",
+                                            style: const TextStyle(
+                                              color: Color(0xFF353535),
+                                              fontSize: 12,
+                                              fontFamily: 'SF Pro Text',
+                                              fontWeight: FontWeight.w500,
+                                              height: 0,
+                                              letterSpacing: -0.48,
+                                            ),
+                                          ));
                                     }
                                     if (dataList[index]["title"] ==
                                         "25-06-2024 10:35 AM") {
                                       return Expanded(
                                           flex: dataList[index]["flex"],
-                                          child: Text(entry.date ??
-                                              "${DateTime.now()}"));
+                                          child: Text(
+                                            entry.date ?? "${DateTime.now()}",
+                                            style: const TextStyle(
+                                              color: Color(0xFFCCCCCC),
+                                              fontSize: 10,
+                                              fontFamily: 'SF Pro Text',
+                                              fontWeight: FontWeight.w400,
+                                              height: 0,
+                                              letterSpacing: -0.40,
+                                            ),
+                                          ));
                                     }
                                     if (dataList[index]["title"] == "icon" &&
                                         entry.status == "IN") {
                                       return Expanded(
                                         flex: dataList[index]["flex"],
                                         child: Container(
-                                          width: 50,
-                                          height: 50,
+                                          width: 30,
+                                          height: 30,
                                           decoration: ShapeDecoration(
-                                            color: Colors.white,
+                                            color: const Color(0xFFFAF9FF),
                                             shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(5)),
                                             image: const DecorationImage(
                                               image: AssetImage(
-                                                  "assets/icons/check_in.png"),
-                                              fit: BoxFit.cover,
+                                                  "assets/images/check_in.png"),
+                                              fit: BoxFit.fill,
                                             ),
                                           ),
                                         ),
@@ -242,17 +260,17 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                                       return Expanded(
                                         flex: dataList[index]["flex"],
                                         child: Container(
-                                          width: 50,
-                                          height: 50,
+                                          width: 30,
+                                          height: 30,
                                           decoration: ShapeDecoration(
-                                            color: Colors.white,
+                                            color: const Color(0xFFFAF9FF),
                                             shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(5)),
                                             image: const DecorationImage(
                                               image: AssetImage(
-                                                  "assets/icons/check_out.png"),
-                                              fit: BoxFit.cover,
+                                                  "assets/images/check_out.png"),
+                                              fit: BoxFit.fill,
                                             ),
                                           ),
                                         ),
@@ -265,7 +283,7 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                                           height: 10,
                                           width: 10,
                                           child: Icon(
-                                            Icons.more_horiz_rounded,
+                                            Icons.more_vert,
                                             color: Colors.black,
                                             size: 20,
                                           ),

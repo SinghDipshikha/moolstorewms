@@ -111,8 +111,6 @@ class _DipshikaAppState extends State<DipshikaApp> {
     return GetBuilder<LocalizationController>(
         initState: (state) {},
         builder: (localizeController) {
-          // final height = MediaQuery.sizeOf(context).height;
-          // final width = MediaQuery.sizeOf(context).width;
           return GetMaterialApp(
             //scaffoldMessengerKey: snackbarKey,
             //  home:  Aspectlayout(),
