@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
@@ -5,7 +6,9 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/Controllers/securityGuard.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/employeeEntry.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonAppBar.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonButtons.dart';
 
+@RoutePage()
 class RegistrationListScreen extends StatefulWidget {
   const RegistrationListScreen({super.key});
 
@@ -35,6 +38,8 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButton: CustomFloatingActionButton(),
       appBar: const CommonAppBar(
         title: 'Register List',
         actions: [],
@@ -308,7 +313,7 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                           );
                         });
               }),
-            )
+            ),
           ],
         ),
       ),

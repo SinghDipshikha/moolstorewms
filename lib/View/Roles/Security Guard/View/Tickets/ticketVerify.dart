@@ -1,10 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonTextField.dart';
 
 import '../widgets/commonButtons.dart';
-
+@RoutePage()
 class VerifyTicketScreen extends StatefulWidget {
   const VerifyTicketScreen({super.key});
 

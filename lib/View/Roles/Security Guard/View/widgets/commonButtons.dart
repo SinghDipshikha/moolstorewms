@@ -374,3 +374,41 @@ class CommonSubmitButtonForNewTheme extends StatelessWidget {
     );
   }
 }
+
+class CustomFloatingActionButton extends StatelessWidget {
+  const CustomFloatingActionButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 358,
+      height: 50,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      decoration: ShapeDecoration(
+        color: const Color(0xFF5A57FF),
+     
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+      ),
+      child: const Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(width: 15),
+          Text(
+            'Scan QR ',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w600,
+              height: 0,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

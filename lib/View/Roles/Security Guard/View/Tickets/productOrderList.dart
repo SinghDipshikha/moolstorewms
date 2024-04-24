@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
@@ -5,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/Controllers/securityGuard.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/employeeEntry.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonAppBar.dart';
-
+@RoutePage()
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen({super.key});
 

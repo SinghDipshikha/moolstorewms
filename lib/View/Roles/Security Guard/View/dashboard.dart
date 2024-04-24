@@ -2,19 +2,19 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/registrationList.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonSideDrawer.dart';
+
 @RoutePage()
 class SecurityGuardDashBoard extends StatefulWidget {
   const SecurityGuardDashBoard({super.key});
 
   @override
-  State<SecurityGuardDashBoard> createState() =>
-      _SecurityGuardDashBoardState();
+  State<SecurityGuardDashBoard> createState() => _SecurityGuardDashBoardState();
 }
 
-class _SecurityGuardDashBoardState
-    extends State<SecurityGuardDashBoard> {
+class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
   @override
   DateTime? _selectedDate;
   Future<void> _selectDate(BuildContext context) async {
@@ -248,31 +248,41 @@ class _SecurityGuardDashBoardState
                   ),
                 ),
               ),
-              Container(
-                width: 100,
-                height: 85,
-                decoration: ShapeDecoration(
-                  gradient: const LinearGradient(
-                    begin: Alignment(-1.00, -0.00),
-                    end: Alignment(1, 0),
-                    colors: [Color(0xFF5A57FF), Color(0xFF7C79FF)],
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const RegistrationListScreen()),
+                  );
+                },
+                child: Container(
+                  width: 100,
+                  height: 85,
+                  decoration: ShapeDecoration(
+                    gradient: const LinearGradient(
+                      begin: Alignment(-1.00, -0.00),
+                      end: Alignment(1, 0),
+                      colors: [Color(0xFF5A57FF), Color(0xFF7C79FF)],
+                    ),
+                    shape: RoundedRectangleBorder(
+                      side:
+                          const BorderSide(width: 1, color: Color(0x3FFAF9FF)),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
-                  shape: RoundedRectangleBorder(
-                    side: const BorderSide(width: 1, color: Color(0x3FFAF9FF)),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: const Center(
-                  child: Text(
-                    'Register',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w700,
-                      height: 0,
-                      letterSpacing: -0.64,
+                  child: const Center(
+                    child: Text(
+                      'Register',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontFamily: 'SF Pro Text',
+                        fontWeight: FontWeight.w700,
+                        height: 0,
+                        letterSpacing: -0.64,
+                      ),
                     ),
                   ),
                 ),

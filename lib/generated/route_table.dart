@@ -1,8 +1,8 @@
 // ignore_for_file: constant_identifier_names
 import 'package:get/get.dart';
-import 'package:moolwmsstore/View/Auth/splash.dart';
-import 'package:moolwmsstore/View/Auth/welcome.dart';
-import 'package:moolwmsstore/View/Auth/verified.dart';
+import 'package:moolwmsstore/View/auth/splash.dart';
+import 'package:moolwmsstore/View/auth/welcome.dart';
+import 'package:moolwmsstore/View/auth/verified.dart';
 
 class RouteTable {
   static const String splash = '/splash';
