@@ -337,6 +337,6 @@ class TestRoutes extends StatelessWidget {
               ),
             ),
           ],
-        ).paddingSymmetric(horizontal: 12, vertical: 12));
+        ).paddingSymmetric(horizontal: 12, vertical: 10));
   }
 }
