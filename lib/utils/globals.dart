@@ -1,6 +1,6 @@
-import 'package:get_it/get_it.dart';
+// import 'package:get_it/get_it.dart';
 
-final getIt = GetIt.instance;
+// final getIt = GetIt.instance;
 
 int authNavigationKey = 1;
 int securityGuardNavigation = 2;
