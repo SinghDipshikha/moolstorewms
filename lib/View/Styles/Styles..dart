@@ -124,7 +124,7 @@ class AppColors {
 
 class Snacks {
   static redSnack(String text) {
-    snackbarKey.currentState?.clearSnackBars();
+   // snackbarKey.currentState?.clearSnackBars();
     final SnackBar snackBar = SnackBar(
       duration: const Duration(seconds: 2),
       content: Text(
@@ -133,11 +133,11 @@ class Snacks {
       ),
       backgroundColor: Colors.red,
     );
-    snackbarKey.currentState?.showSnackBar(snackBar);
+   // snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
   static greenSnack(String text) {
-    snackbarKey.currentState?.clearSnackBars();
+  //  snackbarKey.currentState?.clearSnackBars();
     final SnackBar snackBar = SnackBar(
       duration: const Duration(seconds: 2),
       content: Text(
@@ -146,7 +146,7 @@ class Snacks {
       ),
       backgroundColor: Colors.green,
     );
-    snackbarKey.currentState?.showSnackBar(snackBar);
+  //  snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
   static ShapeDecoration elevatedShadowDecoration = ShapeDecoration(

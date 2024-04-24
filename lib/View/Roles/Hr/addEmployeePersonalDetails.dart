@@ -6,7 +6,7 @@ import 'package:moolwmsstore/Data/Model/Hr/personaldetails.dart';
 import 'package:moolwmsstore/View/Roles/Hr/constants/validations.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonTextField.dart';
-import 'package:moolwmsstore/routes/approutes.gr.dart';
+//import 'package:moolwmsstore/routes/approutes.gr.dart';
 
 @RoutePage()
 class AddEmployeePersonalDetails extends StatefulWidget {
@@ -397,8 +397,8 @@ class _AddEmployeePersonalDetailsState
                             if (_formKey.currentState!.validate()) {
                               _formKey.currentState!.save();
                             }
-                            context
-                                .pushRoute(const AddEmployeeContactDetails());
+                            // context
+                            //     .pushRoute(const AddEmployeeContactDetails());
                           },
                         ),
                       ],

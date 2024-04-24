@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/Controller/warehouseController.dart';
 import 'package:moolwmsstore/Data/Model/Warehouse/warehouse.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
-import 'package:moolwmsstore/routes/approutes.gr.dart';
+//import 'package:moolwmsstore/routes/approutes.gr.dart';
 
 @RoutePage()
 class WarehouseList extends StatelessWidget {

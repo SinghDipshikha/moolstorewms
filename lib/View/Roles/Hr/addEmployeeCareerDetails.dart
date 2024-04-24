@@ -7,7 +7,7 @@ import 'package:moolwmsstore/Data/Model/Hr/addCareerDetail.dart';
 import 'package:moolwmsstore/View/Roles/Hr/constants/validations.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonTextField.dart';
-import 'package:moolwmsstore/routes/approutes.gr.dart';
+//import 'package:moolwmsstore/routes/approutes.gr.dart';
 
 @RoutePage()
 class AddEmployeeCareerDetails extends StatefulWidget {
@@ -441,8 +441,8 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
 
                               //   // print('Valid email: $_email');
                               // }
-                              context.pushRoute(
-                                  const AddEmployeeReferralDetails());
+                              // context.pushRoute(
+                              //     const AddEmployeeReferralDetails());
                             },
                           ),
                         ],

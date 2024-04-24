@@ -3,9 +3,10 @@ import 'package:moolwmsstore/Data/Model/Auth/addWarehouseField.dart';
 import 'package:moolwmsstore/Data/Model/Auth/signupfield.dart';
 import 'package:moolwmsstore/Data/api/api_client.dart';
 import 'package:moolwmsstore/Data/repository/authRepo.dart';
+import 'package:moolwmsstore/View/Auth/signInUp.dart';
+import 'package:moolwmsstore/View/Roles/Owner/OwnerDashboard.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/View/dashboard.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
-import 'package:moolwmsstore/routes/approutes.dart';
-import 'package:moolwmsstore/routes/approutes.gr.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 // enum OTP {
@@ -29,26 +30,36 @@ class AuthController extends GetxController {
 
   splash() {
     Future.delayed(const Duration(seconds: 2)).whenComplete(() {
-      getIt<AppRouter>().replace(const SignInUp());
+      Get.to(const SignInUp(), id: authNavigationKey);
+      Get.to(const SecurityGuardDashBoard(), id: securityGuardNavigation);
+      Get.to(const OwnerDashboard(), id: ownerNavigationKey);
+      // navigatorKeyokoko1.currentState!.context.replaceRoute(SignInUp());
+      // BuildContext? c = navigatorKey1.currentContext;
+      // navigatorKey1.currentState?.push(MaterialPageRoute(builder: (c) {
+      //   return const SignInUp();
+      // }));
+      // getIt<AppRouter>().replace(const SignInUp());
     });
   }
 
   onSignInPressed() {}
   checkOrganisationCode({required String organiosationCode}) {
-    getIt<AppRouter>().replace(const PhoneSign());
+    //  getIt<AppRouter>().replace(const PhoneSign());
   }
 
   sendOtp(String? number) async {
-    phoneNum = number ?? phoneNum;
-    authRepo.sendotp(phoneNum).then((value) {
-      if (value.data["result"] == "Otp Sent") {
-        // getIt<AppRouter>().replace(
-        //   const OtpScreenRoute(),
-        // );
-      } else {
-        Snacks.redSnack(value.data["message"]);
-      }
-    });
+    // getIt<AppRouter>().replaceAll([const OwnerBody()]);
+
+    // phoneNum = number ?? phoneNum;
+    // authRepo.sendotp(phoneNum).then((value) {
+    //   if (value.data["result"] == "Otp Sent") {
+    //     // getIt<AppRouter>().replace(
+    //     //   const OtpScreenRoute(),
+    //     // );
+    //   } else {
+    //     Snacks.redSnack(value.data["message"]);
+    //   }
+    // });
   }
 
   resendOtp() {
