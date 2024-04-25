@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Controller/authController.dart';
+import 'package:moolwmsstore/View/Auth/Controllers/authController.dart';
+
 
 class OrganisationCode extends StatelessWidget {
   OrganisationCode({super.key});

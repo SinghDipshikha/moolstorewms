@@ -2,8 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Controller/authController.dart';
+
 import 'package:moolwmsstore/Data/Model/Auth/addWarehouseField.dart';
+import 'package:moolwmsstore/View/Auth/Controllers/authController.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';
 import 'package:moolwmsstore/utils/textutils.dart';
