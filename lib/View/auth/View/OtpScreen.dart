@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/View/Auth/verified.dart';
+import 'package:moolwmsstore/View/Auth/View/verified.dart';
 import 'package:otp_text_field_v2/otp_field_style_v2.dart';
 import 'package:otp_text_field_v2/otp_field_v2.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';

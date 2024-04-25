@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 
-import '../auth/phoneSign.dart';
+import '../../auth/phoneSign.dart';
 
 @RoutePage()
 class Chooselanguage extends StatelessWidget {

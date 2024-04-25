@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/View/Auth/splash.dart';
+import 'package:moolwmsstore/View/Auth/View/splash.dart';
 import 'package:moolwmsstore/View/Roles/Owner/OwnerDashboard.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 

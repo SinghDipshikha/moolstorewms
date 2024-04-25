@@ -60,7 +60,7 @@ class ApiClient extends g.GetxService {
   }
 
   Future<Response> postData(String uri, dynamic body,
-      {Map<String, String>? headers}) async {
+      {Map<String, String>? headers , bool passhandlecheck = false}) async {
     try {
       Response response = await _dio
           .post(appBaseUrl! + uri,
@@ -69,7 +69,7 @@ class ApiClient extends g.GetxService {
                 headers: headers ?? _mainHeaders,
               ))
           .timeout(Duration(seconds: timeoutInSeconds));
-      return handleResponse(response);
+      return  passhandlecheck ? response : handleResponse(response);
     } catch (e) {
       Snacks.redSnack(noInternetMessage);
       return Response(
