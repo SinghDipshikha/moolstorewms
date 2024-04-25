@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Data/Model/Hr/addCareerDetail.dart';
+import 'package:moolwmsstore/View/auth/Model/Hr/addCareerDetail.dart';
 import 'package:moolwmsstore/Data/api/api_client.dart';
-import 'package:moolwmsstore/Data/repository/hrrepo.dart';
+import 'package:moolwmsstore/View/Roles/Hr/repository/hrrepo.dart';
 
 class HRController extends GetxController {
   final HrRepo hrRepo;

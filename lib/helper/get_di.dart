@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import 'package:moolwmsstore/Controller/hrController.dart';
+import 'package:moolwmsstore/View/Roles/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Controller/language_controller.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
 import 'package:moolwmsstore/Controller/ownerController.dart';
@@ -16,7 +16,7 @@ import 'package:moolwmsstore/Data/Model/LanaguageModel.dart';
 import 'package:moolwmsstore/Data/api/api_client.dart';
 import 'package:moolwmsstore/Data/repository/authRepo.dart';
 import 'package:moolwmsstore/Data/repository/commonRepo.dart';
-import 'package:moolwmsstore/Data/repository/hrrepo.dart';
+import 'package:moolwmsstore/View/Roles/Hr/repository/hrrepo.dart';
 import 'package:moolwmsstore/Data/repository/ownerRepo.dart';
 import 'package:moolwmsstore/Data/repository/salesRepo.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/repository/securityGuardRepo.dart';

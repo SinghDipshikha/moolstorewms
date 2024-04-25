@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:moolwmsstore/Data/Model/Hr/addCareerDetail.dart';
+import 'package:moolwmsstore/View/auth/Model/Hr/addCareerDetail.dart';
 import 'package:moolwmsstore/Data/api/api_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
