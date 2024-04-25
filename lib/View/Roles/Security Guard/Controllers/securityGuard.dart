@@ -15,7 +15,7 @@ class SecurityGuardController extends GetxController {
   AddVisitorBySecurityGaurd? addVisitorDetails;
   GetAllVisitorBySecurityGaurd? allVisitorsDetails;
   GetAllPersonsBySecurityGaurd? allPersonsDetails;
-  GetSinglePersonDetails ? singelPersonDetails;
+  GetSinglePersonDetails? singelPersonDetails;
   List<EmployeeEntry> empEntryList = [];
   bool? isCheckIn;
 
@@ -98,17 +98,20 @@ class SecurityGuardController extends GetxController {
     });
   }
 
-  void getSinglePersonDetails(){
+  void getSinglePersonDetails() {
     secGaurdRepo.getSinglePersonDetails(personId: "#PTC002").then((value) {
-      if (value!= null) {
+      if (value != null) {
         singelPersonDetails = value;
         update();
       }
     });
   }
-  void getVisitorDetailsByVisitorId(){
-    secGaurdRepo.getVisitorDetailsByVisitorId(visitorId: "#VS002").then((value) {
-      if (value!= null) {
+
+  void getVisitorDetailsByVisitorId() {
+    secGaurdRepo
+        .getVisitorDetailsByVisitorId(visitorId: "#VS002")
+        .then((value) {
+      if (value != null) {
         singelPersonDetails = value;
         update();
       }
