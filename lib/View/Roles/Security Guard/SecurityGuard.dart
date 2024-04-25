@@ -1,6 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/View/dashboard.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 //@RoutePage()
 class SecurityGuard extends StatelessWidget {
@@ -8,21 +9,20 @@ class SecurityGuard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return context.isPhone
-        ? const AutoRouter()
-        : Container(
-            color: Colors.white,
-            child: Center(
-              child: Card(
-                margin: EdgeInsets.zero,
-                elevation: 20,
-                child: Container(
-                  height: double.infinity,
-                  constraints: const BoxConstraints(maxWidth: 800),
-                  child: const AutoRouter(),
-                ),
-              ),
-            ),
-          );
+    return GetNavigator(
+      // initialRoute: RouteTable.splash,
+      // key: navigatorKeyokoko1,
+      key: Get.nestedKey(securityGuardNavigation),
+      pages: const [
+        MaterialPage(
+          key: ValueKey('Splash'),
+          child: SecurityGuardDashBoard(),
+        )
+      ],
+      // onGenerateInitialRoutes: (navigator, initialRoute) =>,
+
+      onPopPage: (route, result) => route.didPop(result),
+      // key: const Key("1"),
+    );
   }
 }

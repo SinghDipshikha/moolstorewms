@@ -45,7 +45,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
     return Form(
       key: _formKey,
       child: Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+ floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: context.isPhone
             ? CommonNextButton(
                 title: 'next'.tr,

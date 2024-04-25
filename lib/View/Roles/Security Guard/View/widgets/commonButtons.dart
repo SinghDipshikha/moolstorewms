@@ -374,3 +374,69 @@ class CommonSubmitButtonForNewTheme extends StatelessWidget {
     );
   }
 }
+
+class CustomFloatingActionButton extends StatelessWidget {
+  String title;
+  double? radius;
+  void Function()? onTap;
+  Color? color;
+  String? leftIcon;
+  CustomFloatingActionButton(
+      {super.key, required this.title, this.leftIcon, this.onTap, this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: 358,
+        height: 50,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        decoration: ShapeDecoration(
+          color: color,
+          shadows: const [
+            BoxShadow(
+              color: Colors.grey,
+              offset: Offset(0.0, 1.0), //(x,y)
+              blurRadius: 50.0,
+            ),
+          ],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: 25,
+              height: 25,
+              decoration: ShapeDecoration(
+                color: color,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                image: DecorationImage(
+                  image: AssetImage("$leftIcon"),
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
+            const Gap(10),
+            Text(
+              title,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontFamily: 'SF Pro Display',
+                fontWeight: FontWeight.w600,
+                height: 0,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

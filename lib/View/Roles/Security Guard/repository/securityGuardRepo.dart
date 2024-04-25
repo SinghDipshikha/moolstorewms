@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
-
 import 'package:moolwmsstore/Data/api/api_client.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/addVisitor.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/allPersonsInfo.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/allVisitorsInfo.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/employeeEntry.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/secGuardDetail.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/singlePersonDetail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SecurityGuardRepo {
@@ -58,5 +61,80 @@ class SecurityGuardRepo {
     }
     return false;
   }
-  
+
+  Future<AddVisitorBySecurityGaurd?> addVisitor({
+    required var visitorId,
+    required var ticketGeneratedBy,
+    required var visitorName,
+    required var visitorPhoneNumber,
+    required var visitorIdProof,
+    required var purposeOfVisit,
+    required var inOutStatus,
+  }) async {
+    Response res =
+        await apiClient.postData("visitor/addVisitorBySecurityGuard", {
+      "id": visitorId,
+      "ticket_generate_by": ticketGeneratedBy,
+      "visitor_name": visitorName,
+      "visitor_ph_number": visitorPhoneNumber,
+      "id_proof": visitorIdProof,
+      "purpose_of_visit": purposeOfVisit,
+      "in_out_status": inOutStatus
+    });
+    if (res.data["message"] == "Visitor Information updated") {
+      return AddVisitorBySecurityGaurd.fromJson(res.data["result"]);
+    }
+    return null;
+  }
+
+  Future<GetAllVisitorBySecurityGaurd?> getAllVisitorsData({
+    required var recordsPerPage,
+    required var next,
+  }) async {
+    Response res = await apiClient.getData(
+        "visitor/getAllVisitors?recordsPerPage=$recordsPerPage&$next=$next");
+    if (res.data["message"] == "Visitor details fetched Successfully!") {
+      return GetAllVisitorBySecurityGaurd.fromJson(res.data["result"]);
+    }
+    return null;
+  }
+
+  Future<GetAllPersonsBySecurityGaurd?> getAllPersonsData({
+    required var recordsPerPage,
+    required var next,
+  }) async {
+    Response res = await apiClient.getData(
+        "person/getAllPersons?recordsPerPage=$recordsPerPage&$next=$next");
+    if (res.data["message"] == "Person details fetched Successfully!") {
+      return GetAllPersonsBySecurityGaurd.fromJson(res.data["result"]);
+    }
+    return null;
+  }
+
+  Future<GetSinglePersonDetails?> getSinglePersonDetails({
+    required var personId,
+  }) async {
+    Response res =
+        await apiClient.postData("person/getPersonDetailsByPersonId", {
+      "employee_id": "$personId",
+    });
+    if (res.data["message"] == "Person Details Found for person id $personId") {
+      return GetSinglePersonDetails.fromJson(res.data["result"]);
+    }
+    return null;
+  }
+
+  Future<GetSinglePersonDetails?> getVisitorDetailsByVisitorId({
+    required var visitorId,
+  }) async {
+    Response res =
+        await apiClient.postData("visitor/getVisitorDetailsByVisitorId", {
+      "employee_id": "$visitorId",
+    });
+    if (res.data["message"] ==
+        "Visitor Details Found for visitor id $visitorId") {
+      return GetSinglePersonDetails.fromJson(res.data["result"]);
+    }
+    return null;
+  }
 }

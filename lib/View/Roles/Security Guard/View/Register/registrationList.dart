@@ -1,11 +1,16 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/Controllers/securityGuard.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/employeeEntry.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/View/dashboard.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonAppBar.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonButtons.dart';
 
+@RoutePage()
 class RegistrationListScreen extends StatefulWidget {
   const RegistrationListScreen({super.key});
 
@@ -35,9 +40,25 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CommonAppBar(
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButton: CustomFloatingActionButton(
+        title: 'Scan QR',
+        leftIcon: 'assets/icons/qr_icon.png',
+        color: const Color(0xFF5A57FF),
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const RegistrationTypeOptions(),
+          ));
+        },
+      ),
+      appBar: CommonAppBar(
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const SecurityGuardDashBoard(),
+          ));
+        },
         title: 'Register List',
-        actions: [],
+        actions: const [],
       ),
       body: Center(
         child: Column(
@@ -140,15 +161,18 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                         )),
                   );
                 }
-                return Expanded(
-                    flex: tags[index]["flex"],
-                    child: Text(
-                      tags[index]["title"],
-                      style: const TextStyle(
-                        color: Color(0xFF5A57FF),
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ));
+                return Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Expanded(
+                      flex: tags[index]["flex"],
+                      child: Text(
+                        tags[index]["title"],
+                        style: const TextStyle(
+                          color: Color(0xFF5A57FF),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      )),
+                );
               }),
             ),
             Expanded(
@@ -239,8 +263,8 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                                       return Expanded(
                                         flex: dataList[index]["flex"],
                                         child: Container(
-                                          width: 30,
-                                          height: 30,
+                                          // width: 20,
+                                          // height: 30,
                                           decoration: ShapeDecoration(
                                             color: const Color(0xFFFAF9FF),
                                             shape: RoundedRectangleBorder(
@@ -249,7 +273,7 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                                             image: const DecorationImage(
                                               image: AssetImage(
                                                   "assets/images/check_in.png"),
-                                              fit: BoxFit.fill,
+                                              fit: BoxFit.contain,
                                             ),
                                           ),
                                         ),
@@ -260,8 +284,8 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                                       return Expanded(
                                         flex: dataList[index]["flex"],
                                         child: Container(
-                                          width: 30,
-                                          height: 30,
+                                          // width: 20,
+                                          // height: 30,
                                           decoration: ShapeDecoration(
                                             color: const Color(0xFFFAF9FF),
                                             shape: RoundedRectangleBorder(
@@ -270,7 +294,7 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                                             image: const DecorationImage(
                                               image: AssetImage(
                                                   "assets/images/check_out.png"),
-                                              fit: BoxFit.fill,
+                                              fit: BoxFit.contain,
                                             ),
                                           ),
                                         ),
@@ -308,7 +332,7 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                           );
                         });
               }),
-            )
+            ),
           ],
         ),
       ),

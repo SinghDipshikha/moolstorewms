@@ -49,7 +49,7 @@ class AuthController extends GetxController {
   bool loading = false;
   splash() async {
     Future.delayed(const Duration(seconds: 2)).whenComplete(() {
-      Get.to(const SignInUp(), id: authNavigationKey);
+     // Get.to(const SignInUp(), id: authNavigationKey);
       Get.to(const SecurityGuardDashBoard(), id: securityGuardNavigation);
       Get.to(const OwnerDashboard(), id: ownerNavigationKey);
     });

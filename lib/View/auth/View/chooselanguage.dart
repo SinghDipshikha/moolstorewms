@@ -15,7 +15,9 @@ class Chooselanguage extends StatelessWidget {
           context.isPhone ? FloatingActionButtonLocation.centerFloat : null,
       floatingActionButton: InkWell(
         onTap: () {
-          Get.to( PhoneSign(signUp: true,));
+          Get.to(PhoneSign(
+            signUp: true,
+          ));
         },
         child: Image.asset(
           "assets/icons/arrow-circle-right.png",

@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 
@@ -24,7 +21,7 @@ class CommanTextField extends StatelessWidget {
   int? maxLines;
 
   CommanTextField({
-    Key? key,
+    super.key,
     this.labelText,
     this.hintText,
     this.textCapitalization,
@@ -40,26 +37,27 @@ class CommanTextField extends StatelessWidget {
     this.keyboardType,
     this.padding,
     this.validator,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: context.isPhone ? null : BoxConstraints(maxWidth: 500),
+      constraints: context.isPhone ? null : const BoxConstraints(maxWidth: 500),
       child: context.isPhone
           ? Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  constraints:
-                      context.isPhone ? null : BoxConstraints(maxWidth: 100),
+                  constraints: context.isPhone
+                      ? null
+                      : const BoxConstraints(maxWidth: 100),
                   child: Text.rich(
                     TextSpan(
                       children: [
                         TextSpan(
                           text: "$labelText",
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
                           ),
@@ -78,23 +76,21 @@ class CommanTextField extends StatelessWidget {
                 //       fontSize: 16,
                 //       fontWeight: FontWeight.w400,
                 //     )),
-                SizedBox(
+                const SizedBox(
                   width: 40,
                 ),
                 Container(
+                  width: 358,
+                  height: 36,
+                  padding: const EdgeInsets.only(
+                      top: 5, left: 20, right: 10, bottom: 5),
                   decoration: ShapeDecoration(
-                    color: Colors.white,
+                    color: const Color(0xFFFAF9FF),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(borderRadius ?? 4.82),
+                      side:
+                          const BorderSide(width: 1, color: Color(0x195E57FC)),
+                      borderRadius: BorderRadius.circular(5),
                     ),
-                    shadows: const [
-                      BoxShadow(
-                        color: Color(0x0C000000),
-                        blurRadius: 4,
-                        offset: Offset(3, 4),
-                        spreadRadius: 0,
-                      )
-                    ],
                   ),
                   child: TextFormField(
                     //  expands: true,
@@ -115,11 +111,12 @@ class CommanTextField extends StatelessWidget {
                     obscureText: obscureText ?? false,
                     decoration: InputDecoration(
                       hintText: hintText,
-                      hintStyle: TextStyle(color: Colors.grey),
+                      hintStyle: const TextStyle(color: Colors.grey),
                       suffixIcon: suffixIcon,
                       prefixIcon: prefixIcon,
                       border: InputBorder.none,
-                      errorStyle: TextStyle(fontSize: 12),
+                      errorStyle: const TextStyle(fontSize: 12),
+                      //contentPadding: const EdgeInsets.all(2),
                     ),
                   ).paddingSymmetric(
                     vertical: 0,
@@ -130,7 +127,7 @@ class CommanTextField extends StatelessWidget {
             )
           : Row(
               children: [
-                Container(
+                SizedBox(
                   width: 220,
                   child: Text.rich(
                     overflow: TextOverflow.ellipsis,
@@ -138,7 +135,7 @@ class CommanTextField extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: "$labelText",
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
                           ),
@@ -189,11 +186,11 @@ class CommanTextField extends StatelessWidget {
                       obscureText: obscureText ?? false,
                       decoration: InputDecoration(
                         hintText: hintText,
-                        hintStyle: TextStyle(color: Colors.grey),
+                        hintStyle: const TextStyle(color: Colors.grey),
                         suffixIcon: suffixIcon,
                         prefixIcon: prefixIcon,
                         border: InputBorder.none,
-                        errorStyle: TextStyle(fontSize: 12),
+                        errorStyle: const TextStyle(fontSize: 12),
                       ),
                     ).paddingSymmetric(
                       vertical: 2,
