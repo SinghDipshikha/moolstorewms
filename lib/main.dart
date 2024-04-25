@@ -19,12 +19,11 @@ Future<void> main() async {
 
   // init hive
   await Hive.initFlutter(dbDir.path);
+  Hive.registerAdapter(DbConnectAdapter());
 
   // getIt.registerSingleton<AppRouter>(AppRouter());
 
   Map<String, Map<String, String>> languages = await di.init();
-
-  Hive.registerAdapter(DbConnectAdapter());
 
   runApp(DipshikaApp(
     languages: languages,
