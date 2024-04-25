@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
+import 'package:moolwmsstore/View/Roles/Hr/View/addEmployeePersonalDetails.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/ScannedUserDetails.dart';
 import 'package:moolwmsstore/helper/messages.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
@@ -118,7 +119,7 @@ class _DipshikaAppState extends State<DipshikaApp> {
         initState: (state) {},
         builder: (localizeController) {
           return GetMaterialApp(
-            home: const ScannedUserDetails(),
+            home: const AddEmployeePersonalDetails(),
             //scaffoldMessengerKey: snackbarKey,
             // home: GetNavigator(
             //               // initialRoute: RouteTable.splash,
