@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -7,7 +6,7 @@ import 'package:moolwmsstore/View/Auth/View/phoneSign.dart';
 //import 'package:moolwmsstore/routes/approutes.gr.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
-@RoutePage()
+//@RoutePage()
 class SignInUp extends StatelessWidget {
   const SignInUp({super.key});
 
@@ -94,7 +93,7 @@ class SignInUp extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.to(const PhoneSign(), id: authNavigationKey);
+              Get.to( PhoneSign(signUp: true,), id: authNavigationKey);
               //  Get.to(OrganisationCode(), id: authNavigationKey);
               //  context.pushRoute(OrganisationCode());
             },

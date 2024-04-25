@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-@RoutePage()
+//@RoutePage()
 class Aspectlayout extends StatelessWidget {
   const Aspectlayout({super.key});
 

@@ -1,19 +1,18 @@
 import 'dart:async';
 
-import 'package:auto_route/auto_route.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/View/Auth/View/verified.dart';
+import 'package:moolwmsstore/View/Auth/Controllers/authController.dart';
+import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:otp_text_field_v2/otp_field_style_v2.dart';
 import 'package:otp_text_field_v2/otp_field_v2.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-@RoutePage()
+//@RoutePage()
 class OtpScreen extends StatefulWidget {
-  const OtpScreen({
-    super.key,
-  });
+  bool signUp;
+  OtpScreen({super.key, required this.signUp});
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
@@ -43,12 +42,29 @@ class _OtpScreenState extends State<OtpScreen> {
   }
 
   void resetTimer() {
-    stopTimer();
+   // stopTimer();
     setState(() => myDuration = const Duration(seconds: 30));
+
   }
 
   void stopTimer() {
     setState(() => countdownTimer!.cancel());
+  }
+
+  void submitOtp() {
+    if (otp != null) {
+      if (widget.signUp) {
+        Get.find<AuthController>().verifySignupOtp(int.parse(otp!));
+      }
+    }
+    if (otp == null) {
+      Snacks.redSnack("Please enter Otp");
+      return;
+    }
+    if (otp!.length < 6) {
+      Snacks.redSnack("Please enter complete");
+      return;
+    }
   }
 
   @override
@@ -61,202 +77,277 @@ class _OtpScreenState extends State<OtpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Gap(20),
-              const Row(
-                children: [
-                  Text(
-                    'OTP Verification',
-                    style: TextStyle(
-                      color: Color(0xFF353535),
-                      fontSize: 24,
-                      fontFamily: 'SF Pro Display',
-                      fontWeight: FontWeight.w600,
-                      height: 0,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ],
-              ),
-              const Row(
-                children: [
-                  Text(
-                    'A six digit code has been sent',
-                    style: TextStyle(
-                      color: Color(0xFF595959),
-                      fontSize: 16,
-                      fontFamily: 'SF Pro Display',
-                      fontWeight: FontWeight.w400,
-                      height: 0,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ],
-              ),
-              Image.asset(
-                "assets/icons/23_Cloud Security Icon 1.png",
-                height: 140,
-              ),
-              const Text(
-                'Verify your Mobile Number',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontFamily: 'Aileron',
-                  fontWeight: FontWeight.w600,
-                  height: 1,
-                  letterSpacing: 0.36,
-                ),
-              ),
-              const Text(
-                'Enter the OTP you just received',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color(0xFF717171),
-                  fontSize: 16,
-                  fontFamily: 'SF Pro Display',
-                  fontWeight: FontWeight.w400,
-                  height: 1,
-                  letterSpacing: 0.32,
-                ),
-              ),
-              OTPTextFieldV2(
-                spaceBetween: 4,
-                // contentPadding:
-                //     const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                otpFieldStyle: OtpFieldStyle(
-                  borderColor: const Color(0x195A57FE),
-                  backgroundColor: const Color(0xFFFAF9FF),
-                ),
-                controller: controller,
-                length: 6,
-                width: MediaQuery.of(context).size.width - 20,
-                textFieldAlignment: MainAxisAlignment.spaceAround,
-                fieldWidth: 40,
-                isDense: false,
-                autoFocus: true,
-                fieldStyle: FieldStyle.box,
-                keyboardType: TextInputType.number,
-                outlineBorderRadius: 5,
-                style: const TextStyle(
-                  color: Color(0xFF5A57FF),
-                  fontSize: 16,
-                  fontFamily: 'SF Pro Display',
-                  fontWeight: FontWeight.w600,
-                  // height: 0.12,
-                  // letterSpacing: 0.32,
-                ),
-                onChanged: (pin) {
-                  print("Changed: $pin");
-                },
-                onCompleted: (pin) {
-                  print("Completed: $pin");
-                  setState(() {
-                    otp = pin;
-                  });
-                },
-              ).paddingOnly(top: 40, bottom: 20),
-              const Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text: 'Didn’t receive the OTP? ',
-                      style: TextStyle(
-                        color: Color(0xFF717171),
-                        fontSize: 12,
-                        fontFamily: 'SF Pro Display',
-                        fontWeight: FontWeight.w400,
-                        height: 0.14,
-                        letterSpacing: 0.24,
-                      ),
-                    ),
-                    TextSpan(
-                      text: 'Resend',
-                      style: TextStyle(
-                        color: Color(0xFF5D57FD),
-                        fontSize: 12,
-                        fontFamily: 'SF Pro Display',
-                        fontWeight: FontWeight.w400,
-                        height: 0.14,
-                        letterSpacing: 0.24,
-                      ),
-                    ),
-                  ],
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const Gap(20),
-              InkWell(
-                onTap: () {
-                  Get.to(const Verified());
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  width: double.infinity,
-                  height: 45,
-                  decoration: ShapeDecoration(
-                    gradient: const LinearGradient(
-                      begin: Alignment(1.00, 0.00),
-                      end: Alignment(-1, 0),
-                      colors: [Color(0xFFFD578A), Color(0xFF5B57FE)],
-                    ),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                    shadows: const [
-                      BoxShadow(
-                        color: Color(0x19000000),
-                        blurRadius: 2,
-                        offset: Offset(0, 2),
-                        spreadRadius: 0,
-                      )
-                    ],
-                  ),
-                  child: const Text(
-                    'Confirm',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      //  fontFamily: 'SF Pro Display',
-                      fontWeight: FontWeight.w600,
-                      // height: 0.12,
-                      // letterSpacing: 0.32,
-                    ),
-                  ),
-                ),
-              ),
-              SmoothPageIndicator(
-                      controller:
-                          PageController(initialPage: 1), // PageController
-                      count: 3,
-                      effect: const WormEffect(
-                        dotHeight: 10,
-                        dotWidth: 10,
-                        dotColor: Color.fromARGB(255, 212, 212, 226),
-                        activeDotColor: Color(0xFF5C57FE),
-                      ), // your preferred effect
-                      onDotClicked: (index) {})
-                  .paddingSymmetric(vertical: 20),
-              const Text(
-                'By continuing you agree to the\nTerms of Use & Privacy Policy',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color(0xFF717171),
-                  fontSize: 16,
-                  fontFamily: 'SF Pro Display',
-                  fontWeight: FontWeight.w400,
-                  height: 1,
-                  //   letterSpacing: 0.32,
-                ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: InkWell(
+        onTap: submitOtp,
+        child: Container(
+          alignment: Alignment.center,
+          width: double.infinity,
+          height: 45,
+          decoration: ShapeDecoration(
+            gradient: const LinearGradient(
+              begin: Alignment(1.00, 0.00),
+              end: Alignment(-1, 0),
+              colors: [Color(0xFFFD578A), Color(0xFF5B57FE)],
+            ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            shadows: const [
+              BoxShadow(
+                color: Color(0x19000000),
+                blurRadius: 2,
+                offset: Offset(0, 2),
+                spreadRadius: 0,
               )
             ],
-          ).paddingSymmetric(horizontal: 14),
-        ),
+          ),
+          child: const Text(
+            'Confirm',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              //  fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w600,
+              // height: 0.12,
+              // letterSpacing: 0.32,
+            ),
+          ),
+        ).paddingSymmetric(horizontal: 12),
+      ),
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            //  Gap(MediaQuery.sizeOf(context).height * 0.1),
+            const Text(
+              'OTP Verification',
+              style: TextStyle(
+                color: Color(0xFF353535),
+                fontSize: 24,
+                fontFamily: 'SF Pro Display',
+                fontWeight: FontWeight.w600,
+                height: 0,
+              ),
+              textAlign: TextAlign.left,
+            ),
+            Text(
+              'A six digit code has been sent on ${Get.find<AuthController>().number}',
+              style: const TextStyle(
+                color: Color(0xFF595959),
+                fontSize: 16,
+                fontFamily: 'SF Pro Display',
+                fontWeight: FontWeight.w400,
+                height: 0,
+              ),
+              textAlign: TextAlign.left,
+            ),
+            const Gap(20),
+            Image.asset(
+              "assets/icons/23_Cloud Security Icon 1.png",
+              height: 140,
+            ),
+            const Text(
+              'Verify your Mobile Number',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 18,
+                fontFamily: 'Aileron',
+                fontWeight: FontWeight.w600,
+                height: 1,
+                letterSpacing: 0.36,
+              ),
+            ),
+            const Text(
+              'Enter the OTP you just received',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Color(0xFF717171),
+                fontSize: 16,
+                fontFamily: 'SF Pro Display',
+                fontWeight: FontWeight.w400,
+                height: 1,
+                letterSpacing: 0.32,
+              ),
+            ),
+            OTPTextFieldV2(
+              spaceBetween: 4,
+              // contentPadding:
+              //     const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              otpFieldStyle: OtpFieldStyle(
+                borderColor: const Color(0x195A57FE),
+                backgroundColor: const Color(0xFFFAF9FF),
+              ),
+              controller: controller,
+              length: 6,
+              width: MediaQuery.of(context).size.width - 20,
+              textFieldAlignment: MainAxisAlignment.spaceAround,
+              fieldWidth: 40,
+              isDense: false,
+              autoFocus: true,
+              fieldStyle: FieldStyle.box,
+              keyboardType: TextInputType.number,
+              outlineBorderRadius: 5,
+              style: const TextStyle(
+                color: Color(0xFF5A57FF),
+                fontSize: 16,
+                fontFamily: 'SF Pro Display',
+                fontWeight: FontWeight.w600,
+                // height: 0.12,
+                // letterSpacing: 0.32,
+              ),
+              onChanged: (value) {
+                otp = value;
+              },
+
+              onCompleted: (pin) {
+                // setState(() {
+                otp = pin;
+                //  });
+              },
+            ).paddingOnly(top: 40, bottom: 20),
+            myDuration.inSeconds != 0
+                ? Text.rich(
+                    TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: 'Resend otp in',
+                          style: TextStyle(
+                            color: Color(0xFF717171),
+                            fontSize: 12,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w400,
+                            height: 0.14,
+                            letterSpacing: 0.24,
+                          ),
+                        ),
+                        TextSpan(
+                          text: ' ${myDuration.inSeconds}',
+                          style: const TextStyle(
+                            color: Color(0xFF5D57FD),
+                            fontSize: 12,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w400,
+                            height: 0.14,
+                            letterSpacing: 0.24,
+                          ),
+                        ),
+                        const TextSpan(
+                          text: ' secs',
+                          style: TextStyle(
+                            color: Color(0xFF717171),
+                            fontSize: 12,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w400,
+                            height: 0.14,
+                            letterSpacing: 0.24,
+                          ),
+                        ),
+                      ],
+                    ),
+                    textAlign: TextAlign.center,
+                  )
+                : Text.rich(
+                    TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: 'Didn’t receive the OTP? ',
+                          style: TextStyle(
+                            color: Color(0xFF717171),
+                            fontSize: 12,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w400,
+                            height: 0.14,
+                            letterSpacing: 0.24,
+                          ),
+                        ),
+                        TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              resetTimer();
+                               Get.find<AuthController>().sendSignUpOtp(Get.find<AuthController>().number ?? "");
+                            },
+                          text: 'Resend',
+                          style: const TextStyle(
+                            color: Color(0xFF5D57FD),
+                            fontSize: 12,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w400,
+                            height: 0.14,
+                            letterSpacing: 0.24,
+                          ),
+                        ),
+                      ],
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+            const Gap(20),
+            // InkWell(
+            //   onTap: () {
+            //     Get.to(const Verified());
+            //   },
+            //   child: Container(
+            //     alignment: Alignment.center,
+            //     width: double.infinity,
+            //     height: 45,
+            //     decoration: ShapeDecoration(
+            //       gradient: const LinearGradient(
+            //         begin: Alignment(1.00, 0.00),
+            //         end: Alignment(-1, 0),
+            //         colors: [Color(0xFFFD578A), Color(0xFF5B57FE)],
+            //       ),
+            //       shape: RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.circular(5)),
+            //       shadows: const [
+            //         BoxShadow(
+            //           color: Color(0x19000000),
+            //           blurRadius: 2,
+            //           offset: Offset(0, 2),
+            //           spreadRadius: 0,
+            //         )
+            //       ],
+            //     ),
+            //     child: const Text(
+            //       'Confirm',
+            //       textAlign: TextAlign.center,
+            //       style: TextStyle(
+            //         color: Colors.white,
+            //         fontSize: 16,
+            //         //  fontFamily: 'SF Pro Display',
+            //         fontWeight: FontWeight.w600,
+            //         // height: 0.12,
+            //         // letterSpacing: 0.32,
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            // SmoothPageIndicator(
+            //         controller:
+            //             PageController(initialPage: 1), // PageController
+            //         count: 3,
+            //         effect: const WormEffect(
+            //           dotHeight: 10,
+            //           dotWidth: 10,
+            //           dotColor: Color.fromARGB(255, 212, 212, 226),
+            //           activeDotColor: Color(0xFF5C57FE),
+            //         ), // your preferred effect
+            //         onDotClicked: (index) {})
+            //     .paddingSymmetric(vertical: 20),
+            const Text(
+              'By continuing you agree to the\nTerms of Use & Privacy Policy',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Color(0xFF717171),
+                fontSize: 16,
+                fontFamily: 'SF Pro Display',
+                fontWeight: FontWeight.w400,
+                height: 1,
+                //   letterSpacing: 0.32,
+              ),
+            )
+          ],
+        ).paddingSymmetric(horizontal: 14),
       ),
 
       //     body:

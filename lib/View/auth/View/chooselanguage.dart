@@ -1,12 +1,10 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
+import 'package:moolwmsstore/View/Auth/View/phoneSign.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 
-import '../../auth/phoneSign.dart';
-
-@RoutePage()
+//@RoutePage()
 class Chooselanguage extends StatelessWidget {
   const Chooselanguage({super.key});
 
@@ -17,7 +15,7 @@ class Chooselanguage extends StatelessWidget {
           context.isPhone ? FloatingActionButtonLocation.centerFloat : null,
       floatingActionButton: InkWell(
         onTap: () {
-          Get.to(const PhoneSign());
+          Get.to( PhoneSign(signUp: true,));
         },
         child: Image.asset(
           "assets/icons/arrow-circle-right.png",

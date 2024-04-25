@@ -14,7 +14,7 @@ import 'package:moolwmsstore/Controller/userController.dart';
 import 'package:moolwmsstore/Controller/warehouseController.dart';
 import 'package:moolwmsstore/Data/Model/LanaguageModel.dart';
 import 'package:moolwmsstore/Data/api/api_client.dart';
-import 'package:moolwmsstore/Data/repository/authRepo.dart';
+import 'package:moolwmsstore/View/Auth/Repository/authRepo.dart';
 import 'package:moolwmsstore/Data/repository/commonRepo.dart';
 import 'package:moolwmsstore/Data/repository/hrrepo.dart';
 import 'package:moolwmsstore/Data/repository/ownerRepo.dart';

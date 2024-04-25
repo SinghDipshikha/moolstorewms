@@ -9,7 +9,7 @@ import 'package:moolwmsstore/View/Roles/Hr/widget/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonTextField.dart';
 //import 'package:moolwmsstore/routes/approutes.gr.dart';
 
-@RoutePage()
+//@RoutePage()
 class AddEmployeeCareerDetails extends StatefulWidget {
   const AddEmployeeCareerDetails({super.key});
 

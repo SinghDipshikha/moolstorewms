@@ -1,10 +1,9 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Data/Model/Warehouse/warehouse.dart';
 
-@RoutePage()
+//@RoutePage()
 class ViewWarehouseDetails extends StatelessWidget {
   Warehouse? warehouse;
   ViewWarehouseDetails({super.key, this.warehouse});

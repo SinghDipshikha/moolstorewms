@@ -11,7 +11,7 @@ import 'package:moolwmsstore/View/Roles/Hr/widget/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/documentsCommonContainer.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 
-@RoutePage()
+//@RoutePage()
 class AddEmployeeDocumentsDetails extends StatefulWidget {
   const AddEmployeeDocumentsDetails({super.key});
 
@@ -52,8 +52,7 @@ class _AddEmployeeDocumentsDetailsState
                         runSpacing: 10,
                         children: [
                           assetImage != null
-                              ? 
-                              DottedBorder(
+                              ? DottedBorder(
                                   borderType: BorderType.RRect,
                                   radius: const Radius.circular(12),
                                   child: ClipRRect(

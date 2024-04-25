@@ -1,12 +1,10 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_route_annotations/getx_route_annotations.dart';
 import 'package:moolwmsstore/View/Auth/Controllers/authController.dart';
 
-
 @GetXRoutePage("/splash")
-@RoutePage()
+//@RoutePage()
 class Splash extends StatelessWidget {
   const Splash({super.key});
 

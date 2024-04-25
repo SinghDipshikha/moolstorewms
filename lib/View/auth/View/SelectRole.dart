@@ -1,10 +1,9 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 
-@RoutePage()
+//@RoutePage()
 class SelectRole extends StatefulWidget {
   const SelectRole({super.key});
 

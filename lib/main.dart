@@ -3,18 +3,28 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
-import 'package:moolwmsstore/View/testRoutes.dart';
+import 'package:moolwmsstore/View/Auth/Auth.dart';
+import 'package:moolwmsstore/View/Auth/Model/dbConnect.dart';
 import 'package:moolwmsstore/helper/messages.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
 
 import 'helper/get_di.dart' as di;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final dbDir = await path_provider.getApplicationDocumentsDirectory();
+
+  // init hive
+  await Hive.initFlutter(dbDir.path);
+
   // getIt.registerSingleton<AppRouter>(AppRouter());
 
   Map<String, Map<String, String>> languages = await di.init();
+
+  Hive.registerAdapter(DbConnectAdapter());
 
   runApp(DipshikaApp(
     languages: languages,
@@ -118,8 +128,8 @@ class _DipshikaAppState extends State<DipshikaApp> {
         initState: (state) {},
         builder: (localizeController) {
           return GetMaterialApp(
-            //scaffoldMessengerKey: snackbarKey,
-            home: const TestRoutes(),
+            // home: SignUp(),
+            home: const Auth(),
             debugShowCheckedModeBanner: false,
             locale: localizeController.locale,
             fallbackLocale: Locale(

@@ -8,7 +8,7 @@ import 'package:moolwmsstore/View/Roles/Hr/widget/commonDropDown.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonTextField.dart';
 //import 'package:moolwmsstore/routes/approutes.gr.dart';
 
-@RoutePage()
+//@RoutePage()
 class AddEmployeeContactDetails extends StatefulWidget {
   const AddEmployeeContactDetails({super.key});
 
@@ -355,7 +355,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                               // print('Valid email: $_email');
                             }
 
-                          //  context.pushRoute(const AddEmployeeCareerDetails());
+                            //  context.pushRoute(const AddEmployeeCareerDetails());
                           },
                         ),
                       ],

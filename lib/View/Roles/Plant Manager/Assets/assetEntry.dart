@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -10,7 +9,7 @@ import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';
 
-@RoutePage()
+//@RoutePage()
 class AssetEntry extends StatefulWidget {
   const AssetEntry({super.key});
 

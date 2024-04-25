@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -7,7 +6,7 @@ import 'package:moolwmsstore/Data/Model/Warehouse/warehouse.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 //import 'package:moolwmsstore/routes/approutes.gr.dart';
 
-@RoutePage()
+//@RoutePage()
 class WarehouseList extends StatelessWidget {
   const WarehouseList({super.key});
 

@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -9,7 +8,7 @@ import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';
 
-@RoutePage()
+//@RoutePage()
 class PoList extends StatelessWidget {
   PoList({super.key});
 
@@ -219,8 +218,7 @@ class PoList extends StatelessWidget {
                 ],
               )),
           const Gap(4),
-          GetBuilder<SalesController>(
-            initState: (state) {
+          GetBuilder<SalesController>(initState: (state) {
             Get.find<SalesController>().getPoList();
           }, builder: (salesController) {
             return Expanded(

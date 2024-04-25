@@ -7,7 +7,7 @@ import 'package:moolwmsstore/View/Roles/Hr/widget/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonTextField.dart';
 //import 'package:moolwmsstore/routes/approutes.gr.dart';
 
-@RoutePage()
+//@RoutePage()
 class AddEmployeeReferralDetails extends StatefulWidget {
   const AddEmployeeReferralDetails({super.key});
 

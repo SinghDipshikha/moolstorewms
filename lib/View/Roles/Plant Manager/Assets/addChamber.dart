@@ -1,7 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-@RoutePage()  
+
+//@RoutePage()
 class AddChamber extends StatelessWidget {
   const AddChamber({super.key});
 
