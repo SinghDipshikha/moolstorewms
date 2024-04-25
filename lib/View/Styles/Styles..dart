@@ -124,28 +124,44 @@ class AppColors {
 
 class Snacks {
   static redSnack(String text) {
-   // snackbarKey.currentState?.clearSnackBars();
-    final SnackBar snackBar = SnackBar(
-      duration: const Duration(seconds: 2),
-      content: Text(
+    ScaffoldMessenger.of(Get.context!).clearSnackBars();
+    Get.showSnackbar(GetSnackBar(
+      duration: const Duration(milliseconds: 1000),
+      animationDuration: const Duration(milliseconds: 500),
+      snackPosition: SnackPosition.BOTTOM,
+      messageText: Text(
         text,
-        style: const TextStyle(color: Colors.white),
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 18,
+          fontFamily: 'Satoshi',
+          fontWeight: FontWeight.w700,
+          //  height: 0.06,
+        ),
       ),
       backgroundColor: Colors.red,
-    );
-   // snackbarKey.currentState?.showSnackBar(snackBar);
+    ));
   }
 
   static greenSnack(String text) {
-  //  snackbarKey.currentState?.clearSnackBars();
-    final SnackBar snackBar = SnackBar(
-      duration: const Duration(seconds: 2),
-      content: Text(
+    ScaffoldMessenger.of(Get.context!).clearSnackBars();
+    Get.showSnackbar(GetSnackBar(
+      duration: const Duration(milliseconds: 1000),
+      animationDuration: const Duration(milliseconds: 500),
+      snackPosition: SnackPosition.BOTTOM,
+      messageText: Text(
         text,
-        style: const TextStyle(color: Colors.white),
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 18,
+          fontFamily: 'Satoshi',
+          fontWeight: FontWeight.w700,
+          //  height: 0.06,
+        ),
       ),
       backgroundColor: Colors.green,
-    );
+    ));
+  
   //  snackbarKey.currentState?.showSnackBar(snackBar);
   }
 

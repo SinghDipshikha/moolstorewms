@@ -10,6 +10,27 @@ class AuthRepo {
   final SharedPreferences sharedPreferences;
   AuthRepo({required this.sharedPreferences, required this.apiClient});
 
+  dbConnect() {
+    apiClient.postData('dynamicDbConnect', {
+      {
+        "config": {
+          "host": "wms-rds.cl4mcyewc6ix.ap-south-1.rds.amazonaws.com",
+          "user": "moolcode",
+          "password": "moolcode2024",
+          "database": "jnew_ltd_1057"
+        },
+        "query": "SELECT * FROM users"
+      }
+    });
+  }
+
+checkorganisationCode(){
+
+
+  
+}
+
+
   Future<Response> sendotp(String number) async {
     return apiClient.postData('user/loginOtp', {"mobile": number});
   }
@@ -24,10 +45,6 @@ class AuthRepo {
   }
 
   Future<List<SignupField>?> getSignupParams() async {
-
-
-    SignupField.fromJson({});
-    
     Response<dynamic> value =
         await apiClient.getData('dynamic/getAllSignupValues');
     if (value.data["message"] == "Values found") {

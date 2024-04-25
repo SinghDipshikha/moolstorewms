@@ -2,12 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Controller/authController.dart';
+
 import 'package:moolwmsstore/Controller/hrController.dart';
 import 'package:moolwmsstore/Controller/language_controller.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
 import 'package:moolwmsstore/Controller/ownerController.dart';
 import 'package:moolwmsstore/Controller/salesController.dart';
+import 'package:moolwmsstore/View/Auth/Controllers/authController.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/Controllers/securityGuard.dart';
 import 'package:moolwmsstore/Controller/userController.dart';
 import 'package:moolwmsstore/Controller/warehouseController.dart';

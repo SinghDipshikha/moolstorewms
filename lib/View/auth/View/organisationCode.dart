@@ -1,9 +1,8 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Controller/authController.dart';
+import 'package:moolwmsstore/View/Auth/Controllers/authController.dart';
 
-@RoutePage()
+
 class OrganisationCode extends StatelessWidget {
   OrganisationCode({super.key});
   TextEditingController? controller = TextEditingController();

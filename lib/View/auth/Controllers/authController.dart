@@ -1,9 +1,10 @@
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Data/Model/Auth/addWarehouseField.dart';
 import 'package:moolwmsstore/Data/Model/Auth/signupfield.dart';
 import 'package:moolwmsstore/Data/api/api_client.dart';
 import 'package:moolwmsstore/Data/repository/authRepo.dart';
-import 'package:moolwmsstore/View/Auth/signInUp.dart';
+import 'package:moolwmsstore/View/Auth/View/signInUp.dart';
 import 'package:moolwmsstore/View/Roles/Owner/OwnerDashboard.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/dashboard.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
@@ -32,20 +33,40 @@ class AuthController extends GetxController {
     Future.delayed(const Duration(seconds: 2)).whenComplete(() {
      // Get.to(const SignInUp(), id: authNavigationKey);
       Get.to(const SecurityGuardDashBoard(), id: securityGuardNavigation);
-    //  Get.to(const OwnerDashboard(), id: ownerNavigationKey);
-      // navigatorKeyokoko1.currentState!.context.replaceRoute(SignInUp());
-      // BuildContext? c = navigatorKey1.currentContext;
-      // navigatorKey1.currentState?.push(MaterialPageRoute(builder: (c) {
-      //   return const SignInUp();
-      // }));
-      // getIt<AppRouter>().replace(const SignInUp());
+      Get.to(const OwnerDashboard(), id: ownerNavigationKey);
     });
   }
 
   onSignInPressed() {}
   checkOrganisationCode({required String organiosationCode}) {
-    //  getIt<AppRouter>().replace(const PhoneSign());
+    apiClient.postData('verifyOrgByCode', {"org_code": organiosationCode}).then(
+        (value) {
+      if (value.data["message"] == "Organisation Details Present") {
+        //    Snacks.greenSnack("Organisation Details Present");
+//Get.snackbar("Organisation Details Present", "Hooraaayyyyy!!!!!");
+        apiClient
+            .postData(
+                'dynamicDbConnect',
+                {
+                  "config": {
+                    "host": value.data["data"]["database_host"],
+                    "user": value.data["data"]["database_username"],
+                    "password": value.data["data"]["database_password"],
+                    "database": value.data["data"]["database_name"],
+                  },
+                  "query": "SELECT * FROM users"
+                },
+                passhandlecheck: true)
+            .then((value) {
+          Logger().i(value.data);
+        });
+      } else {
+        Snacks.redSnack("Something went wrong");
+      }
+    });
   }
+
+  signUpNumberverification(String number) {}
 
   sendOtp(String? number) async {
     // getIt<AppRouter>().replaceAll([const OwnerBody()]);

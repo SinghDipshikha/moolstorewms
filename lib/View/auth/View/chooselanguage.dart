@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 
-import '../auth/phoneSign.dart';
+
 
 @RoutePage()
 class Chooselanguage extends StatelessWidget {
@@ -17,7 +17,7 @@ class Chooselanguage extends StatelessWidget {
           context.isPhone ? FloatingActionButtonLocation.centerFloat : null,
       floatingActionButton: InkWell(
         onTap: () {
-          Get.to(const PhoneSign());
+        //  Get.to( PhoneSign());
         },
         child: Image.asset(
           "assets/icons/arrow-circle-right.png",
