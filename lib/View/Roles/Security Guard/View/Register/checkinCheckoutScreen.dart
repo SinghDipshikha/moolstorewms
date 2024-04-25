@@ -162,7 +162,7 @@ class _CheckInCheckOutScreenMobileState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CommonAppBar(
+      appBar:  CommonAppBar(
         title: 'Results',
         actions: [],
       ),

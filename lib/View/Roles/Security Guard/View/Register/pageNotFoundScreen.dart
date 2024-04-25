@@ -15,7 +15,7 @@ class _PageNotFoundScreenState extends State<PageNotFoundScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CommonAppBar(
+      appBar:  CommonAppBar(
         title: 'Enter Employee ID',
         actions: [],
       ),

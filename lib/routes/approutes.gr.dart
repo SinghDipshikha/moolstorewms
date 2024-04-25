@@ -59,11 +59,11 @@ import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/checkinCh
     as _i16;
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/isUserCheckedIn.dart'
     as _i19;
-import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/landing.dart'
+import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/landingScreenRegistration.dart'
     as _i20;
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/pageNotFoundScreen.dart'
     as _i25;
-import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/qrScan.dart'
+import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart'
     as _i30;
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/registrationList.dart'
     as _i29;

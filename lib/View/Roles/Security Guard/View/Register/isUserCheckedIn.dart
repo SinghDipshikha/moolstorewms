@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonButtons.dart';
+
 @RoutePage()
 class IsUserCheckedInScreen extends StatefulWidget {
   const IsUserCheckedInScreen({super.key});
@@ -15,9 +16,9 @@ class _IsUserCheckedInScreenState extends State<IsUserCheckedInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CommonAppBar(
+      appBar: CommonAppBar(
         title: 'Results',
-        actions: [],
+        actions: const [],
       ),
       body: Column(
         children: [

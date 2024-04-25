@@ -18,7 +18,7 @@ class _VerifyTicketScreenState extends State<VerifyTicketScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const CommonAppBar(
+      appBar:  CommonAppBar(
         title: 'Verify',
         actions: [],
       ),

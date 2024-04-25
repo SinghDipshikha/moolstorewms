@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Roles/Hr/constants/validations.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonTextField.dart';
-import 'package:moolwmsstore/routes/approutes.gr.dart';
+//import 'package:moolwmsstore/routes/approutes.gr.dart';
 
 @RoutePage()
 class AddEmployeeReferralDetails extends StatefulWidget {
@@ -255,7 +255,7 @@ class _AddEmployeeReferralDetailsState
                             if (_formKey.currentState!.validate()) {
                               _formKey.currentState!.save();
                             }
-                            context.pushRoute(const AddEmployeeBankDetails());
+                            //  context.pushRoute(const AddEmployeeBankDetails());
                           },
                         ),
                       ],

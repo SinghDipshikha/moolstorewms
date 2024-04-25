@@ -15,7 +15,7 @@ class _DemoScreenForNavigationsState extends State<DemoScreenForNavigations> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CommonAppBar(
+      appBar:  CommonAppBar(
         title: '',
         actions: [],
       ),

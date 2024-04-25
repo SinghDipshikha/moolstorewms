@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Controller/authController.dart';
-import 'package:moolwmsstore/View/auth/OtpScreen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 /*  if (state is OtpSentSuccess) {
@@ -171,7 +170,8 @@ class _PhoneSignState extends State<PhoneSign> {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(const OtpScreen());
+                    Get.find<AuthController>().sendOtp("number");
+                    // Get.to(const OtpScreen());
                   },
                   child: Container(
                     alignment: Alignment.center,

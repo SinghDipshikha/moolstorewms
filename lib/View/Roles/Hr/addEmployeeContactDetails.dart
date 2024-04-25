@@ -6,7 +6,7 @@ import 'package:moolwmsstore/View/Roles/Hr/constants/validations.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonDropDown.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonTextField.dart';
-import 'package:moolwmsstore/routes/approutes.gr.dart';
+//import 'package:moolwmsstore/routes/approutes.gr.dart';
 
 @RoutePage()
 class AddEmployeeContactDetails extends StatefulWidget {
@@ -355,7 +355,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                               // print('Valid email: $_email');
                             }
 
-                            context.pushRoute(const AddEmployeeCareerDetails());
+                          //  context.pushRoute(const AddEmployeeCareerDetails());
                           },
                         ),
                       ],

@@ -31,7 +31,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CommonAppBar(
+      appBar:  CommonAppBar(
         title: 'Tickets List',
         actions: [],
       ),

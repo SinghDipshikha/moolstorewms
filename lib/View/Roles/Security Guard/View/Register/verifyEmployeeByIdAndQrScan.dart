@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/registrationList.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonButtons.dart';
+
 @RoutePage()
 class RegistrationTypeOptions extends StatefulWidget {
   const RegistrationTypeOptions({super.key});
@@ -16,9 +18,14 @@ class _RegistrationTypeOptionsState extends State<RegistrationTypeOptions> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CommonAppBar(
+      appBar: CommonAppBar(
         title: 'My Screen',
-        actions: [],
+        actions: const [],
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const RegistrationListScreen(),
+          ));
+        },
       ),
       body: Center(
         child: Column(
