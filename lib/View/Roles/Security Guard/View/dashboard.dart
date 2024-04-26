@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/registrationList.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonSideDrawer.dart';
-
+import 'package:moolwmsstore/utils/globals.dart';
 
 class SecurityGuardDashBoard extends StatefulWidget {
   const SecurityGuardDashBoard({super.key});
@@ -249,11 +249,9 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const RegistrationListScreen()),
-                  );
+                  Get.to(const RegistrationListScreen(),
+                      id: securityGuardNavigation);
+              
                 },
                 child: Container(
                   width: 100,
