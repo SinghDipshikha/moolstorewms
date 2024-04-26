@@ -12,8 +12,6 @@ import 'package:moolwmsstore/View/Auth/View/phoneSign.dart';
 import 'package:moolwmsstore/View/Auth/View/signInUp.dart';
 import 'package:moolwmsstore/View/Auth/View/signUp.dart';
 import 'package:moolwmsstore/View/Auth/View/welcome.dart';
-import 'package:moolwmsstore/View/Roles/Owner/OwnerDashboard.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/View/dashboard.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
@@ -36,6 +34,7 @@ class AuthController extends GetxController {
 
   @override
   Future<void> onInit() async {
+    Hive.registerAdapter(DbConnectAdapter());
     // TODO: implement onInit
     box = await Hive.openBox('authbox');
     super.onInit();
@@ -49,13 +48,16 @@ class AuthController extends GetxController {
   bool loading = false;
   splash() async {
     Future.delayed(const Duration(seconds: 2)).whenComplete(() {
-     // Get.to(const SignInUp(), id: authNavigationKey);
-      Get.to(const SecurityGuardDashBoard(), id: securityGuardNavigation);
-      Get.to(const OwnerDashboard(), id: ownerNavigationKey);
+      Get.to(const SignInUp(), id: authNavigationKey);
+      //  Get.to(const SecurityGuardDashBoard(), id: securityGuardNavigation);
+      // Get.to(const OwnerDashboard(), id: ownerNavigationKey);
     });
   }
 
-  onSignInPressed() {}
+  onSignInPressed() {
+    Get.offAll(const Welcome(), id: authNavigationKey);
+  }
+
   checkOrganisationCode({required String organiosationCode}) {
     apiClient.postData('verifyOrgByCode', {"org_code": organiosationCode}).then(
         (value) {
@@ -159,7 +161,9 @@ class AuthController extends GetxController {
 
         Snacks.greenSnack("Organization Added Successfully");
         loading = false;
-        Get.to(const Welcome(), id: authNavigationKey);
+        Get.offAll(
+          const Welcome(),
+        );
       } else if (value.data["message"] == "Failed to add") {
         loading = false;
         update();
@@ -179,63 +183,96 @@ class AuthController extends GetxController {
     */
   }
 
-  sendOtp(String? number) async {
-    // phoneNum = number ?? phoneNum;
-    // authRepo.sendotp(phoneNum).then((value) {
-    //   if (value.data["result"] == "Otp Sent") {
-    //     // getIt<AppRouter>().replace(
-    //     //   const OtpScreenRoute(),
-    //     // );
-    //   } else {
-    //     Snacks.redSnack(value.data["message"]);
-    //   }
-    // });
+  sendSignInOtp(String num) {
+    number = num;
+
+    apiClient.postData("user/loginOtp", {
+      "mobile": num,
+    }).then((value) {
+      if (value.data["message"] ==
+          "One Time Password has been sent successfully.") {
+        Snacks.greenSnack("One Time Password has been sent successfully.");
+        Get.to(
+            OtpScreen(
+              signUp: false,
+            ),
+            id: authNavigationKey);
+      }
+      // Logger().i(value.data);
+    });
   }
 
-  resendOtp() {
-    authRepo.sendotp(phoneNum).then((value) {
-      if (value.data["result"] == "Otp Sent") {
-        // getIt<AppRouter>().replace(
-        //   const OtpScreenRoute(),
-        // );
-      } else {
-        Snacks.redSnack(value.data["message"]);
+  verifySignInOtp(int otp) {
+    apiClient.postData(
+        "otp/verifySignInOtp", {"mobile": number, "otp": otp}).then((value) {
+      Logger().i(value.data);
+
+      if (value.data["message"] == "Your Number is now verified") {
+        //   Get.to(SignUp(), id: authNavigationKey);
+        Snacks.greenSnack("Your Number is now verified");
+      }
+      if (value.data["message"] == "Invalid OTP") {
+        Snacks.redSnack("Invalid OTP");
       }
     });
   }
+  // sendOtp(String? number) async {
+  //   // phoneNum = number ?? phoneNum;
+  //   // authRepo.sendotp(phoneNum).then((value) {
+  //   //   if (value.data["result"] == "Otp Sent") {
+  //   //     // getIt<AppRouter>().replace(
+  //   //     //   const OtpScreenRoute(),
+  //   //     // );
+  //   //   } else {
+  //   //     Snacks.redSnack(value.data["message"]);
+  //   //   }
+  //   // });
+  // }
 
-  verifyOtp(String otp) {
-    authRepo.verifyotp(number: phoneNum, otp: otp).then((value) {
-      if (value.data["message"] == "Sign up first") {
-        // getIt<AppRouter>().replace(
-        //   const SignupRoute(),
-        // );
-      } else {}
-    });
-  }
+  // resendOtp() {
+  //   authRepo.sendotp(phoneNum).then((value) {
+  //     if (value.data["result"] == "Otp Sent") {
+  //       // getIt<AppRouter>().replace(
+  //       //   const OtpScreenRoute(),
+  //       // );
+  //     } else {
+  //       Snacks.redSnack(value.data["message"]);
+  //     }
+  //   });
+  // }
 
-  signup(res) {
-    //  getIt<AppRouter>().replace(
-    //         const WelcomeRoute(),
-    //       );
-    authRepo.signUp(res: res).then((value) {
-      if (value.data["message"] == "User Signup Successful") {
-        // getIt<AppRouter>().replace(
-        //   const WelcomeRoute(),
-        // );
-      }
-    });
-  }
+  // verifyOtp(String otp) {
+  //   authRepo.verifyotp(number: phoneNum, otp: otp).then((value) {
+  //     if (value.data["message"] == "Sign up first") {
+  //       // getIt<AppRouter>().replace(
+  //       //   const SignupRoute(),
+  //       // );
+  //     } else {}
+  //   });
+  // }
 
-  getSignupFields() async {
-    await authRepo.getSignupParams().then((value) {
-      if (value != null) {
-        fields = value;
+  // signup(res) {
+  //   //  getIt<AppRouter>().replace(
+  //   //         const WelcomeRoute(),
+  //   //       );
+  //   authRepo.signUp(res: res).then((value) {
+  //     if (value.data["message"] == "User Signup Successful") {
+  //       // getIt<AppRouter>().replace(
+  //       //   const WelcomeRoute(),
+  //       // );
+  //     }
+  //   });
+  // }
 
-        update();
-      }
-    });
-  }
+  // getSignupFields() async {
+  //   await authRepo.getSignupParams().then((value) {
+  //     if (value != null) {
+  //       fields = value;
+
+  //       update();
+  //     }
+  //   });
+  // }
 
   getAddWarehouseFields() async {
     await authRepo.getAddWarehouseFields().then((value) {

@@ -1,12 +1,12 @@
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
-import 'package:moolwmsstore/View/Auth/Model/dbConnect.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/SecurityGuard.dart';
+import 'package:moolwmsstore/View/Auth/Auth.dart';
 import 'package:moolwmsstore/helper/messages.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
@@ -15,9 +15,18 @@ import 'helper/get_di.dart' as di;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final dbDir = await path_provider.getApplicationDocumentsDirectory();
-  await Hive.initFlutter(dbDir.path);
-  Hive.registerAdapter(DbConnectAdapter());
+
+  if (kIsWeb) {
+    await Hive.initFlutter();
+  } else {
+    final dbDir = await path_provider.getApplicationDocumentsDirectory();
+    await Hive.initFlutter(dbDir.path);
+  }
+  // GlobalKey<NavigatorState> navigatorKey1 = GlobalKey<NavigatorState>();
+  // GlobalKey<NavigatorState> navigatorKey2 = GlobalKey<NavigatorState>();
+  // Get.addKey(navigatorKey1);
+  // Get.addKey(navigatorKey2);
+
   Map<String, Map<String, String>> languages = await di.init();
   runApp(DipshikaApp(
     languages: languages,
@@ -44,8 +53,8 @@ class _DipshikaAppState extends State<DipshikaApp> {
         initState: (state) {},
         builder: (localizeController) {
           return GetMaterialApp(
-            home: const SecurityGuard(),
-            // home: const Auth(),
+            // home: const SecurityGuard(),
+            home: const Auth(),
             debugShowCheckedModeBanner: false,
             locale: localizeController.locale,
             fallbackLocale: Locale(

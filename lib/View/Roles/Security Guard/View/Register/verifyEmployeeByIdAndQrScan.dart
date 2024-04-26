@@ -1,11 +1,11 @@
-import 'package:auto_route/auto_route.dart';
+//import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/registrationList.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonButtons.dart';
 
-@RoutePage()
+//@RoutePage()
 class RegistrationTypeOptions extends StatefulWidget {
   const RegistrationTypeOptions({super.key});
 

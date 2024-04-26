@@ -9,7 +9,7 @@ import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:otp_text_field_v2/otp_field_style_v2.dart';
 import 'package:otp_text_field_v2/otp_field_v2.dart';
 
-//@RoutePage()
+////@RoutePage()
 class OtpScreen extends StatefulWidget {
   bool signUp;
   OtpScreen({super.key, required this.signUp});
@@ -42,9 +42,8 @@ class _OtpScreenState extends State<OtpScreen> {
   }
 
   void resetTimer() {
-   // stopTimer();
+    // stopTimer();
     setState(() => myDuration = const Duration(seconds: 30));
-
   }
 
   void stopTimer() {
@@ -55,6 +54,8 @@ class _OtpScreenState extends State<OtpScreen> {
     if (otp != null) {
       if (widget.signUp) {
         Get.find<AuthController>().verifySignupOtp(int.parse(otp!));
+      } else {
+        Get.find<AuthController>().verifySignInOtp(int.parse(otp!));
       }
     }
     if (otp == null) {
@@ -266,7 +267,14 @@ class _OtpScreenState extends State<OtpScreen> {
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               resetTimer();
-                               Get.find<AuthController>().sendSignUpOtp(Get.find<AuthController>().number ?? "");
+                              if (widget.signUp) {
+                                Get.find<AuthController>().sendSignUpOtp(
+                                    Get.find<AuthController>().number ?? "");
+                              } else {
+                                Get.find<AuthController>().sendSignInOtp(
+                                    Get.find<AuthController>().number ?? "");
+                              }
+                              controller!.clear();
                             },
                           text: 'Resend',
                           style: const TextStyle(

@@ -3,10 +3,11 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Auth/View/organisationCode.dart';
 import 'package:moolwmsstore/View/Auth/View/phoneSign.dart';
+import 'package:moolwmsstore/View/Auth/View/welcome.dart';
 //import 'package:moolwmsstore/routes/approutes.gr.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
-//@RoutePage()
+////@RoutePage()
 class SignInUp extends StatelessWidget {
   const SignInUp({super.key});
 
@@ -93,9 +94,13 @@ class SignInUp extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.to( PhoneSign(signUp: true,), id: authNavigationKey);
-              //  Get.to(OrganisationCode(), id: authNavigationKey);
-              //  context.pushRoute(OrganisationCode());
+              Get.to(
+                  PhoneSign(
+                    signUp: true,
+                  ),
+                  id: authNavigationKey);
+              //  Get.off(const Welcome(), id: authNavigationKey);
+              //Get.offUntil(Welcome(), (route) => true ,id: authNavigationKey);
             },
             child: Container(
               width: 317,

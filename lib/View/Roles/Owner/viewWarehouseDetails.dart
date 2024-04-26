@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Data/Model/Warehouse/warehouse.dart';
 
-//@RoutePage()
+////@RoutePage()
 class ViewWarehouseDetails extends StatelessWidget {
   Warehouse? warehouse;
   ViewWarehouseDetails({super.key, this.warehouse});

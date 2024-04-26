@@ -4,7 +4,7 @@ import 'package:getx_route_annotations/getx_route_annotations.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
 
-//@RoutePage()
+////@RoutePage()
 @GetXRoutePage("/welcome")
 class Welcome extends StatelessWidget {
   const Welcome({super.key});

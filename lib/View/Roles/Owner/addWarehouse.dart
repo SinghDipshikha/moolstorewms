@@ -7,7 +7,7 @@ import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';
 import 'package:moolwmsstore/utils/textutils.dart';
 
-//@RoutePage()
+////@RoutePage()
 class AddWarehouse extends StatelessWidget {
   const AddWarehouse({super.key});
 

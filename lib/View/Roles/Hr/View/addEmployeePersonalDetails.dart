@@ -1,4 +1,4 @@
-import 'package:auto_route/auto_route.dart';
+//import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -9,7 +9,7 @@ import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonAppB
 import 'package:moolwmsstore/View/auth/Model/Hr/personaldetails.dart';
 //import 'package:moolwmsstore/routes/approutes.gr.dart';
 
-//@RoutePage()
+////@RoutePage()
 class AddEmployeePersonalDetails extends StatefulWidget {
   const AddEmployeePersonalDetails({super.key});
 
@@ -48,7 +48,7 @@ class _AddEmployeePersonalDetailsState
     if (picked != null && picked != _selectedDate) {
       setState(() {
         _selectedDate = picked;
-      }); 
+      });
     }
   }
 
@@ -390,7 +390,7 @@ class _AddEmployeePersonalDetailsState
                       children: [
                         CommonPreviousButton(
                           onTap: () {
-                            context.back();
+                          //  context.back();
                           },
                           title: 'Previous',
                         ),

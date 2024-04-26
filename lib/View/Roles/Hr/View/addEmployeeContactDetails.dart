@@ -1,4 +1,4 @@
-import 'package:auto_route/auto_route.dart';
+//import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -8,7 +8,7 @@ import 'package:moolwmsstore/View/Roles/Hr/widget/commonDropDown.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonTextField.dart';
 //import 'package:moolwmsstore/routes/approutes.gr.dart';
 
-//@RoutePage()
+////@RoutePage()
 class AddEmployeeContactDetails extends StatefulWidget {
   const AddEmployeeContactDetails({super.key});
 
@@ -45,7 +45,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
     return Form(
       key: _formKey,
       child: Scaffold(
- floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: context.isPhone
             ? CommonNextButton(
                 title: 'next'.tr,
@@ -342,7 +342,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                         CommonPreviousButton(
                           title: 'Previous',
                           onTap: () {
-                            context.back();
+                         //   context.back();
                           },
                         ),
                         const Gap(20),

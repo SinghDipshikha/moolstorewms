@@ -6,7 +6,7 @@ import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';
 
-//@RoutePage()
+////@RoutePage()
 class AssetsList extends StatelessWidget {
   const AssetsList({super.key});
 

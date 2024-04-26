@@ -1,11 +1,12 @@
-import 'package:auto_route/auto_route.dart';
+//import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonTextField.dart';
 
 import '../widgets/commonButtons.dart';
-@RoutePage()
+
+//@RoutePage()
 class VerifyTicketScreen extends StatefulWidget {
   const VerifyTicketScreen({super.key});
 
@@ -18,9 +19,9 @@ class _VerifyTicketScreenState extends State<VerifyTicketScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar:  CommonAppBar(
+      appBar: CommonAppBar(
         title: 'Verify',
-        actions: [],
+        actions: const [],
       ),
       body: SingleChildScrollView(
         child: Center(

@@ -5,7 +5,7 @@ import 'package:moolwmsstore/View/Roles/Hr/constants/validations.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonTextField.dart';
 
-//@RoutePage()
+////@RoutePage()
 class AddEmployeeEducationQualificationDetails extends StatefulWidget {
   const AddEmployeeEducationQualificationDetails({super.key});
 

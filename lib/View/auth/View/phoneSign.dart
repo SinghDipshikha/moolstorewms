@@ -21,7 +21,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
   
         } */
 
-//@RoutePage()
+////@RoutePage()
 class PhoneSign extends StatelessWidget {
   bool signUp;
   PhoneSign({super.key, required this.signUp});
@@ -186,7 +186,10 @@ class PhoneSign extends StatelessWidget {
                         if (signUp) {
                           Get.find<AuthController>()
                               .sendSignUpOtp("$countryCode${controller!.text}");
-                        } else {}
+                        } else {
+                          Get.find<AuthController>()
+                              .sendSignInOtp("$countryCode${controller!.text}");
+                        }
                       }
 
                       //  Get.find<AuthController>().sendOtp("number");

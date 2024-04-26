@@ -6,7 +6,7 @@ import 'package:moolwmsstore/Data/Model/Warehouse/warehouse.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 //import 'package:moolwmsstore/routes/approutes.gr.dart';
 
-//@RoutePage()
+////@RoutePage()
 class WarehouseList extends StatelessWidget {
   const WarehouseList({super.key});
 

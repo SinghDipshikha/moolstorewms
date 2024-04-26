@@ -1,4 +1,4 @@
-import 'package:auto_route/auto_route.dart';
+//import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -7,7 +7,7 @@ import 'package:moolwmsstore/View/Roles/Hr/widget/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonTextField.dart';
 //import 'package:moolwmsstore/routes/approutes.gr.dart';
 
-//@RoutePage()
+////@RoutePage()
 class AddEmployeeReferralDetails extends StatefulWidget {
   const AddEmployeeReferralDetails({super.key});
 
@@ -244,7 +244,7 @@ class _AddEmployeeReferralDetailsState
                       children: [
                         CommonPreviousButton(
                           onTap: () {
-                            context.back();
+                            // context.back();
                           },
                           title: 'Previous',
                         ),

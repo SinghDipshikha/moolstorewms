@@ -1,9 +1,10 @@
-import 'package:auto_route/auto_route.dart';
+//import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonButtons.dart';
-@RoutePage()
+
+//@RoutePage()
 class PageNotFoundScreen extends StatefulWidget {
   const PageNotFoundScreen({super.key});
 
@@ -15,9 +16,9 @@ class _PageNotFoundScreenState extends State<PageNotFoundScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  CommonAppBar(
+      appBar: CommonAppBar(
         title: 'Enter Employee ID',
-        actions: [],
+        actions: const [],
       ),
       body: Column(
         children: [
