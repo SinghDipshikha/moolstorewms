@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -25,8 +24,10 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.black,
       title: Text(
         title,
-        style: const TextStyle(color: Colors.white),
-      ).paddingOnly(right: 150),
+        style: const TextStyle(
+          color: Colors.white,
+        ),
+      ).paddingOnly(right: 50),
       actions: actions,
     );
   }
