@@ -416,22 +416,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.6.7"
-  getx_route_annotations:
-    dependency: "direct main"
-    description:
-      name: getx_route_annotations
-      sha256: "8c4c40a57247515db8161d9cad7500ace37c6d3d4253eb3caec7c2de12a04de2"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
-  getx_route_generator:
-    dependency: "direct dev"
-    description:
-      name: getx_route_generator
-      sha256: "1dddc729d1db4d38bc3b5139a6e2da9f18535231e2c00251de859510db460ec6"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.2"
   glob:
     dependency: transitive
     description:
@@ -452,10 +436,10 @@ packages:
     dependency: "direct main"
     description:
       name: google_geocoding_api
-      sha256: d2a876443a0ac4202ea409e836c2cd14a18330be2b289a5d05b80c8f75c67744
+      sha256: "92080e6a0cfcd28b2a73454213e8d0c067342b237392a4431c2787ac10ffeca2"
       url: "https://pub.dev"
     source: hosted
-    version: "1.5.1"
+    version: "1.5.2"
   graphs:
     dependency: transitive
     description:
@@ -848,6 +832,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.3"
+  qr_bar_code:
+    dependency: "direct main"
+    description:
+      name: qr_bar_code
+      sha256: f74a31d5d3bbd67c64d7045eead421c88bca9d27e668331fa6c3877bd4ccf6e4
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0"
+  restart_app:
+    dependency: "direct main"
+    description:
+      name: restart_app
+      sha256: b37daeb1c02fcab30e19d9e30b6fdd215bd53577efd927042eb77cf6f09daadb
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.1"
   rxdart:
     dependency: transitive
     description:

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/utils/globals.dart';
 
 class TextStyles {
   static TextStyle titleMedium(BuildContext context) {
@@ -126,6 +125,7 @@ class Snacks {
   static redSnack(String text) {
     ScaffoldMessenger.of(Get.context!).clearSnackBars();
     Get.showSnackbar(GetSnackBar(
+      snackStyle: SnackStyle.GROUNDED,
       duration: const Duration(milliseconds: 1000),
       animationDuration: const Duration(milliseconds: 500),
       snackPosition: SnackPosition.BOTTOM,
@@ -161,8 +161,8 @@ class Snacks {
       ),
       backgroundColor: Colors.green,
     ));
-  
-  //  snackbarKey.currentState?.showSnackBar(snackBar);
+
+    //  snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
   static ShapeDecoration elevatedShadowDecoration = ShapeDecoration(

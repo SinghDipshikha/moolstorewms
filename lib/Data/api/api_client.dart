@@ -60,7 +60,7 @@ class ApiClient extends g.GetxService {
   }
 
   Future<Response> postData(String uri, dynamic body,
-      {Map<String, String>? headers , bool passhandlecheck = false}) async {
+      {Map<String, String>? headers, bool passhandlecheck = false}) async {
     try {
       Response response = await _dio
           .post(appBaseUrl! + uri,
@@ -69,7 +69,7 @@ class ApiClient extends g.GetxService {
                 headers: headers ?? _mainHeaders,
               ))
           .timeout(Duration(seconds: timeoutInSeconds));
-      return  passhandlecheck ? response : handleResponse(response);
+      return passhandlecheck ? response : handleResponse(response);
     } catch (e) {
       Snacks.redSnack(noInternetMessage);
       return Response(
@@ -163,10 +163,10 @@ class ApiClient extends g.GetxService {
         statusMessage: response.statusMessage,
         requestOptions: RequestOptions());
     if (response0.statusCode == 200 && response0.data != null) {
-      if (response0.data["message"] == false) {
-        Snacks.redSnack(response0.data["message"]);
+      if (response0.data["status"] == false) {
+        Snacks.redSnack(response0.data["error"]);
       } else {
-        Snacks.greenSnack(response0.data["message"]);
+        // Snacks.greenSnack(response0.data["message"]);
       }
     }
     if (response0.statusCode != 200 &&

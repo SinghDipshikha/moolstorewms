@@ -2,11 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/View/Roles/Hr/Model/personaldetails.dart';
 import 'package:moolwmsstore/View/Roles/Hr/constants/validations.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonTextField.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonAppBar.dart';
-import 'package:moolwmsstore/View/auth/Model/Hr/personaldetails.dart';
+
 //import 'package:moolwmsstore/routes/approutes.gr.dart';
 
 ////@RoutePage()
@@ -390,7 +391,7 @@ class _AddEmployeePersonalDetailsState
                       children: [
                         CommonPreviousButton(
                           onTap: () {
-                          //  context.back();
+                            //  context.back();
                           },
                           title: 'Previous',
                         ),

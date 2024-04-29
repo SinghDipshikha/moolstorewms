@@ -38,23 +38,17 @@ class MyTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: ShapeDecoration(
-        color: Colors.white,
+        color: const Color(0xFFFAF9FF),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(borderRadius ?? 4.82),
+          side: const BorderSide(width: 1, color: Color(0x195E57FC)),
+          borderRadius: BorderRadius.circular(5),
         ),
-        shadows: const [
-          BoxShadow(
-            color: Color(0x0C000000),
-            blurRadius: 4,
-            offset: Offset(3, 4),
-            spreadRadius: 0,
-          )
-        ],
       ),
       child: Padding(
         padding:
             padding ?? const EdgeInsets.symmetric(vertical: 0, horizontal: 6),
         child: TextFormField(
+
           maxLines: maxLines,
           textCapitalization: textCapitalization ?? TextCapitalization.none,
           onTapOutside: (event) {
@@ -70,8 +64,15 @@ class MyTextField extends StatelessWidget {
           inputFormatters: inputFormatters,
           obscureText: obscureText ?? false,
           decoration: InputDecoration(
+           // contentPadding: ,
               hintText: labelText,
-              hintStyle: TextStyle(color: AppColors.hint),
+              hintStyle: const TextStyle(
+                color: Color(0xFFACACAC),
+                fontSize: 12,
+                fontFamily: 'SF Pro Display',
+                fontWeight: FontWeight.w400,
+                //  height: 0,
+              ),
               suffixIcon: suffixIcon,
               prefixIcon: prefixIcon,
               border: InputBorder.none),
