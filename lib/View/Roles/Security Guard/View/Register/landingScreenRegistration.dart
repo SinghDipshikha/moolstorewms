@@ -1,9 +1,10 @@
-import 'package:auto_route/auto_route.dart';
+//import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonTextField.dart';
-@RoutePage()
+
+//@RoutePage()
 class LandingScreenForRegistration extends StatefulWidget {
   const LandingScreenForRegistration({super.key});
 
@@ -80,11 +81,12 @@ class _LandingScreenForRegistrationState
               _showPopup(context);
             },
           ),
-         const SizedBox(height: 90,),
-                     
+          const SizedBox(
+            height: 90,
+          ),
           Container(
             width: double.infinity,
-           constraints: const BoxConstraints(maxHeight: 157,minHeight: 82),
+            constraints: const BoxConstraints(maxHeight: 157, minHeight: 82),
             clipBehavior: Clip.antiAlias,
             decoration: const BoxDecoration(
               color: Colors.black,
@@ -101,12 +103,11 @@ void _showPopup(BuildContext context) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        backgroundColor: Colors.white, 
+        backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
-        
           borderRadius: BorderRadius.circular(25),
         ),
-        contentPadding: EdgeInsets.zero, 
+        contentPadding: EdgeInsets.zero,
         content: Center(
           child: Container(
             width: 700,
@@ -116,9 +117,9 @@ void _showPopup(BuildContext context) {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                 const Text.rich(
+                const Text.rich(
                     textAlign: TextAlign.center,
-                 TextSpan(children: [
+                    TextSpan(children: [
                       TextSpan(
                         text: 'Ouchh!\n',
                         style: TextStyle(
@@ -141,7 +142,7 @@ void _showPopup(BuildContext context) {
                         ),
                       ),
                     ])),
-                 const SizedBox(height: 20), // Spacer
+                const SizedBox(height: 20), // Spacer
                 Container(
                   width: 500,
                   height: 200,
@@ -167,9 +168,6 @@ void _showPopup(BuildContext context) {
         actions: const <Widget>[],
       );
 
-    
-    
-    
       // return AlertDialog(
       //   backgroundColor: Colors.red,
       //   contentPadding: EdgeInsets.zero,

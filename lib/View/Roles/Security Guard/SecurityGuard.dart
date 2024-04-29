@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/dashboard.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
-//@RoutePage()
+////@RoutePage()
 class SecurityGuard extends StatelessWidget {
   const SecurityGuard({super.key});
 

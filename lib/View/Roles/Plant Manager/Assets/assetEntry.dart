@@ -9,7 +9,7 @@ import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';
 
-//@RoutePage()
+////@RoutePage()
 class AssetEntry extends StatefulWidget {
   const AssetEntry({super.key});
 

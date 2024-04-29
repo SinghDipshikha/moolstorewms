@@ -9,6 +9,8 @@
     "enter_otp":"Enter OTP Sent To Mobile Number",
     "choose_role":"Choose a role that suits you the most",
 "warehouse_owner" :"Warehouse Owner",
+"manager_phone_number" :"Manager Mobile No.",
+"enter_manager_phone_number" :"Manager’s mobile number",
 "individual_user" :"Individual User",
 "i_am_individual" :"I'm logging in as a user to view my personal records for items at various locations using WMS.",
 

@@ -1,11 +1,13 @@
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:moolwmsstore/Auth/Auth.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
-import 'package:moolwmsstore/View/Auth/Model/dbConnect.dart';
+
 import 'package:moolwmsstore/View/Roles/Hr/View/addEmployeeCareerDetails.dart';
 import 'package:moolwmsstore/helper/messages.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
@@ -15,9 +17,18 @@ import 'helper/get_di.dart' as di;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final dbDir = await path_provider.getApplicationDocumentsDirectory();
-  await Hive.initFlutter(dbDir.path);
-  Hive.registerAdapter(DbConnectAdapter());
+
+  if (kIsWeb) {
+    await Hive.initFlutter();
+  } else {
+    final dbDir = await path_provider.getApplicationDocumentsDirectory();
+    await Hive.initFlutter(dbDir.path);
+  }
+  // GlobalKey<NavigatorState> navigatorKey1 = GlobalKey<NavigatorState>();
+  // GlobalKey<NavigatorState> navigatorKey2 = GlobalKey<NavigatorState>();
+  // Get.addKey(navigatorKey1);
+  // Get.addKey(navigatorKey2);
+
   Map<String, Map<String, String>> languages = await di.init();
   runApp(DipshikaApp(
     languages: languages,
@@ -94,9 +105,9 @@ class _DipshikaAppState extends State<DipshikaApp> {
               // switchTheme: ,
               useMaterial3: true,
               actionIconTheme: ActionIconThemeData(
-                backButtonIconBuilder: (context) => const Icon(
-                  Icons.arrow_back_ios_new,
-                  color: Colors.black,
+                backButtonIconBuilder: (context) => Image.asset(
+                  "assets/icons/appbarabckicon.png",
+                  height: 30,
                 ),
               ),
               drawerTheme: const DrawerThemeData(backgroundColor: Colors.black),

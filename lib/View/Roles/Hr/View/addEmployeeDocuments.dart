@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:auto_route/auto_route.dart';
+//import 'package:auto_route/auto_route.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -11,7 +11,7 @@ import 'package:moolwmsstore/View/Roles/Hr/widget/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/documentsCommonContainer.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 
-//@RoutePage()
+////@RoutePage()
 class AddEmployeeDocumentsDetails extends StatefulWidget {
   const AddEmployeeDocumentsDetails({super.key});
 
@@ -164,7 +164,7 @@ class _AddEmployeeDocumentsDetailsState
                     children: [
                       CommonPreviousButton(
                         onTap: () {
-                          context.back();
+                       //   context.back();
                         },
                         title: 'Previous',
                       ),

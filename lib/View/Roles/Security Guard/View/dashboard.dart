@@ -34,7 +34,7 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const CustomDrawer(),
-      backgroundColor: const Color(0x00353535),
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: const Text(
           "Dashboard",

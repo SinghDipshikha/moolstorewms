@@ -1,14 +1,15 @@
-import 'package:auto_route/auto_route.dart';
+//import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Roles/Hr/Controllers/hrController.dart';
+import 'package:moolwmsstore/View/Roles/Hr/Model/addCareerDetail.dart';
 import 'package:moolwmsstore/View/Roles/Hr/constants/validations.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonAppBar.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonButtons.dart';
 import 'package:moolwmsstore/View/Roles/Hr/widget/commonTextField.dart';
-import 'package:moolwmsstore/View/auth/Model/Hr/addCareerDetail.dart';
-//import 'package:moolwmsstore/routes/approutes.gr.dart';
+// import 'package:moolwmsstore/View/auth/Model/Hr/addCareerDetail.dart';
+// //import 'package:moolwmsstore/routes/approutes.gr.dart';
 
 //@RoutePage()
 class AddEmployeeCareerDetails extends StatefulWidget {
@@ -374,7 +375,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                       children: [
                         CommonPreviousButton(
                           onTap: () {
-                            context.back();
+                      Get.back();
                           },
                           title: 'Previous',
                         ),

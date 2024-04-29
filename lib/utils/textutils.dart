@@ -38,6 +38,8 @@ class TextUtils {
       return TextInputType.text;
     } else if (type == "num") {
       return TextInputType.number;
+    } else if (type == "int") {
+      return TextInputType.number;
     } else if (type == "email") {
       return TextInputType.emailAddress;
     } else if (type == "double") {
@@ -87,6 +89,8 @@ class TextUtils {
     } else if (type == "string") {
       return TextCapitalization.none;
     } else if (type == "name") {
+      return TextCapitalization.words;
+    } else if (type == "location") {
       return TextCapitalization.words;
     } else {
       return TextCapitalization.none;
