@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Common%20Data/Model/Sales/PurchaseOrder.dart';
+import 'package:moolwmsstore/Sales/Model/PurchaseOrder.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
-import 'package:moolwmsstore/Common%20Data/repository/salesRepo.dart';
+import 'package:moolwmsstore/Sales/repo/salesRepo.dart';
 
 class SalesController extends GetxController {
   final SalesRepo salesRepo;

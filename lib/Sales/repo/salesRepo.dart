@@ -1,6 +1,6 @@
 // import 'package:get/get.dart';
 import 'package:dio/dio.dart';
-import 'package:moolwmsstore/Common%20Data/Model/Sales/PurchaseOrder.dart';
+import 'package:moolwmsstore/Sales/Model/PurchaseOrder.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
