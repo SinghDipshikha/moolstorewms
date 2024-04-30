@@ -7,6 +7,7 @@ import 'package:moolwmsstore/Owner/View/Employee/AddEmployee.dart';
 import 'package:moolwmsstore/Owner/View/Employee/EmployeeList.dart';
 import 'package:moolwmsstore/Owner/View/WarehouseList.dart';
 import 'package:moolwmsstore/Owner/View/addWarehouse.dart';
+import 'package:moolwmsstore/Sales/View/companyList.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -159,7 +160,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
                     color: const Color.fromARGB(255, 22, 22, 22),
                   ),
                   leading: Image.asset(
-                    "assets/icons/New House Icon (R).png",
+                    "assets/icons/PO Icon (R).png",
                     height: 28,
                   ),
                   title: const Text(
@@ -196,40 +197,6 @@ class _SalesDashboardState extends State<SalesDashboard> {
                     //     ),
                   ],
                 ),
-                // ListTile(
-                //   leading: Image.asset(
-                //     "assets/icons/Sales Icon (R).png",
-                //     height: 28,
-                //   ),
-                //   title: const Text(
-                //     'Sales',
-                //     textAlign: TextAlign.left,
-                //     style: TextStyle(
-                //       color: Color(0xFFA7A7A7),
-                //       fontSize: 16,
-                //       fontFamily: 'SF Pro Text',
-                //       fontWeight: FontWeight.w500,
-                //     ),
-                //   ),
-                //   onTap: () {},
-                // ),
-                // ListTile(
-                //   leading: Image.asset(
-                //     "assets/icons/HR Icon (R).png",
-                //     height: 28,
-                //   ),
-                //   title: const Text(
-                //     'HR',
-                //     textAlign: TextAlign.left,
-                //     style: TextStyle(
-                //       color: Color(0xFFA7A7A7),
-                //       fontSize: 16,
-                //       fontFamily: 'SF Pro Text',
-                //       fontWeight: FontWeight.w500,
-                //     ),
-                //   ),
-                //   onTap: () {},
-                // ),
                 ExpansionTile(
                   collapsedShape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12)),
@@ -239,7 +206,9 @@ class _SalesDashboardState extends State<SalesDashboard> {
                     color: const Color.fromARGB(255, 22, 22, 22),
                   ),
                   leading: Image.asset(
-                    "assets/icons/Staff Profile Icons (R).png",
+                    // "assets/icons/Staff Profile Icons (R).png",PO Icon (R).png
+                    "assets/icons/Company Icon (R).png",
+
                     height: 28,
                   ),
                   title: const Text(
@@ -264,7 +233,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
                       title: "Company List",
                       isShowextendedLine: false,
                       onTap: () {
-                        // Get.to(const CompanyList(), id: salesNavigationKey);
+                        Get.to(const CompanyList(), id: salesNavigationKey);
                         // Get.find<OwnerController>().setloadingtrue();
                         // Get.to(const WarehouseList(), id: ownerNavigationKey);
                         // WarehouseList

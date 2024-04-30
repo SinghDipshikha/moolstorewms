@@ -55,7 +55,7 @@ class _DipshikaAppState extends State<DipshikaApp> {
         builder: (localizeController) {
           return GetMaterialApp(
             // home: const AddEmployeeCareerDetails(),
-            home: const Auth(),
+            home: const Sales(),
             debugShowCheckedModeBanner: false,
             locale: localizeController.locale,
             fallbackLocale: Locale(
