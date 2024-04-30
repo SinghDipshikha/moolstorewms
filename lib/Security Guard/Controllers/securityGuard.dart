@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/addVisitor.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/allPersonsInfo.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/allVisitorsInfo.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/employeeEntry.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/secGuardDetail.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/singlePersonDetail.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/repository/securityGuardRepo.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addVisitor.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allPersonsInfo.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allVisitorsInfo.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/employeeEntry.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/secGuardDetail.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/singlePersonDetail.dart';
+import 'package:moolwmsstore/Security%20Guard/repository/securityGuardRepo.dart';
 
 class SecurityGuardController extends GetxController {
   final SecurityGuardRepo secGaurdRepo;

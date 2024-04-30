@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
-import 'package:moolwmsstore/Hr/widget/commonButtons.dart';
-import 'package:moolwmsstore/Hr/widget/commonTextField.dart';
+import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
+import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
 
 ////@RoutePage()
 class AddEmployeeEducationQualificationDetails extends StatefulWidget {

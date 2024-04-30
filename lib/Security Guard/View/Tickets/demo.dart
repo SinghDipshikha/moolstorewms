@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonAppBar.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonButtons.dart';
+import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
+import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 
 class DemoScreenForNavigations extends StatefulWidget {
   const DemoScreenForNavigations({super.key});

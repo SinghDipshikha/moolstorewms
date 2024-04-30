@@ -1,8 +1,8 @@
 //import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonButtons.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonTextField.dart';
+import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
+import 'package:moolwmsstore/Security%20Guard/View/widgets/commonTextField.dart';
 
 //@RoutePage()
 class LandingScreenForRegistration extends StatefulWidget {
