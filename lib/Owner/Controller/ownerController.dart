@@ -73,7 +73,9 @@ class OwnerController extends GetxController {
     });
   }
 
-  addEmployee(String name, int mobileNumber) {
+  addEmployee(String name, int mobileNumber) async {
+    loading = true;
+    update();
     // Logger().i({
     //   "owner_id": user.id,
     //   "warehouse_id": selectedWarehouses.map((e) => e.id).toList(),
@@ -92,6 +94,8 @@ class OwnerController extends GetxController {
     }).then((value) {
       if (value.data["message"] == "Employee added successfully") {
         Snacks.greenSnack("Employee added successfully");
+        loading = false;
+        update();
         Get.back(id: ownerNavigationKey);
       }
     });
