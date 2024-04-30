@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Owner/Model/addWarehouseField.dart';
-import 'package:moolwmsstore/Data/Model/Auth/signupfield.dart';
-import 'package:moolwmsstore/Data/api/api_client.dart';
+import 'package:moolwmsstore/Common%20Data/Model/Auth/signupfield.dart';
+import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepo {

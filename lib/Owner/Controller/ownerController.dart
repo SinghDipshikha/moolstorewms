@@ -2,10 +2,13 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
-import 'package:moolwmsstore/Data/api/api_client.dart';
-import 'package:moolwmsstore/Data/repository/ownerRepo.dart';
+import 'package:moolwmsstore/Common%20Data/Model/personType.dart';
+import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
+import 'package:moolwmsstore/Common%20Data/repository/ownerRepo.dart';
 import 'package:moolwmsstore/Owner/Model/addWarehouseField.dart';
 import 'package:moolwmsstore/Owner/Model/warehouse.dart';
+import 'package:moolwmsstore/View/Styles/Styles..dart';
+import 'package:moolwmsstore/utils/globals.dart';
 import 'package:restart_app/restart_app.dart';
 
 class OwnerController extends GetxController {
@@ -18,6 +21,9 @@ class OwnerController extends GetxController {
   List<Warehouse> warehouses = [];
   List<Warehouse> searchWarehouses = [];
   List<AddWarehiuseField> addWarehouseFields = [];
+  List<PersonType> roles = [];
+  List<PersonType> selectedRoles = [];
+  List<Warehouse> selectedWarehouses = [];
   bool loading = false;
   String countrydialCode = "+91";
 
@@ -67,12 +73,43 @@ class OwnerController extends GetxController {
     });
   }
 
+  addEmployee(String name, int mobileNumber) {
+    // Logger().i({
+    //   "owner_id": user.id,
+    //   "warehouse_id": selectedWarehouses.map((e) => e.id).toList(),
+    //   "employee_name": name,
+    //   "mobile_number": mobileNumber,
+    //   "person_type_id": selectedRoles.map((e) => e.id).toList(),
+    //   "country_code": countrydialCode
+    // });
+    apiClient.postData("owner/addEmployeeByOwner", {
+      "owner_id": user.id,
+      "warehouse_id": selectedWarehouses.map((e) => e.id).toList(),
+      "employee_name": name,
+      "mobile_number": "$countrydialCode$mobileNumber",
+      "person_type_id": selectedRoles.map((e) => e.id).toList(),
+      // "country_code": countrydialCode
+    }).then((value) {
+      if (value.data["message"] == "Employee added successfully") {
+        Snacks.greenSnack("Employee added successfully");
+        Get.back(id: ownerNavigationKey);
+      }
+    });
+  }
+
+  getRoles() async {
+    await apiClient.getData("common/getAllPersonType").then((value) {
+      if (value.data["message"] == "Person type fetched successfully!") {
+        List x = value.data["result"];
+
+        roles = x.map((e) => PersonType.fromJson(e)).toList();
+        update();
+      }
+    });
+    Logger().i(roles);
+  }
+
   submitWarehouse() {
-    /*
-     "user_id":2,
-    "warehouse_location":"Delhi",
-    "lat":48.24,
-    "lng":25.215, */
     Map body = {};
     body["country_code"] = countrydialCode;
     body["user_id"] = user.id;
@@ -81,8 +118,13 @@ class OwnerController extends GetxController {
     for (var element in addWarehouseFields) {
       body[element.field_name] = element.value;
     }
-    // Logger().i(body);
-    print(body);
+
+    apiClient.postData("owner/addOnlyWareHouse", body).then((value) {
+      if (value.data["result"] == "WareHouse added") {
+        Snacks.greenSnack("WareHouse added");
+        Get.back(id: ownerNavigationKey);
+      }
+    });
   }
 
   ownerLogout() async {

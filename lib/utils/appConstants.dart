@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moolwmsstore/Data/Model/LanaguageModel.dart';
+import 'package:moolwmsstore/Common%20Data/Model/LanaguageModel.dart';
 
 // DateFormat.yMd().add_jm()        -> 7/10/1996 5:08 PM
 class AppConstants {

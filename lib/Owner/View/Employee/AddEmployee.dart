@@ -1,218 +1,401 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
-import 'package:moolwmsstore/Controller/userController.dart';
-import 'package:moolwmsstore/Data/Model/Owner/initiateEmployee.dart';
-import 'package:moolwmsstore/Data/Model/User/designation.dart';
-import 'package:moolwmsstore/Owner/View/widget/MyButton.dart';
+import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
+import 'package:moolwmsstore/Owner/View/Common/customButton.dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';
-import 'package:moolwmsstore/View/common/titleContainer.dart';
+import 'package:msh_checkbox/msh_checkbox.dart';
 
-class AddEmployee extends StatelessWidget {
-  AddEmployee({super.key});
-  InitiateEmployee? employee;
+class AddEmployee extends StatefulWidget {
+  const AddEmployee({super.key});
+
+  @override
+  State<AddEmployee> createState() => _AddEmployeeState();
+}
+
+class _AddEmployeeState extends State<AddEmployee> {
+  // InitiateEmployee? employee;
   TextEditingController name = TextEditingController();
+
   TextEditingController mobile = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  bool showError = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: context.isPhone
-          ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: MyButton(
-                suffixIcon: "assets/icons/submit.png",
-                glow: true,
-                title: "Submit",
-                width: double.infinity,
-              ),
-            )
-          : null,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Form(
-          child: Column(
-            children: [
-              TitleContainer(
-                  title: "Employee Details",
-                  child: Padding(
-                    padding: EdgeInsets.all(context.isPhone ? 12.0 : 24),
-                    child: Wrap(
-                      runSpacing: 12,
-                      children: [
-                        RowColumn(
-                          children: [
-                            const SizedBox(
-                              width: 200,
-                              child: Text.rich(
-                                TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: 'Employee Name ',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: '*',
-                                      style: TextStyle(
-                                        color: Color(0xFFFF0000),
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            context.isPhone
-                                ? MyTextField(
-                                    controller: name,
-                                  )
-                                : Expanded(
-                                    child: MyTextField(
-                                    controller: name,
-                                  ))
-                          ],
-                        ),
-                        RowColumn(
-                          children: [
-                            const SizedBox(
-                              width: 200,
-                              child: Text.rich(
-                                TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: 'Mobile Number ',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: '*',
-                                      style: TextStyle(
-                                        color: Color(0xFFFF0000),
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            context.isPhone
-                                ? MyTextField(
-                                    controller: mobile,
-                                  )
-                                : Expanded(
-                                    child: MyTextField(
-                                    controller: mobile,
-                                  ))
-                          ],
-                        ),
-                        RowColumn(
-                          children: [
-                            const SizedBox(
-                              width: 200,
-                              child: Text.rich(
-                                TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: 'Employee Designation ',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: '*',
-                                      style: TextStyle(
-                                        color: Color(0xFFFF0000),
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              height: 50,
-                              decoration: ShapeDecoration(
-                                color: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5)),
-                                shadows: const [
-                                  BoxShadow(
-                                    color: Color(0x19000000),
-                                    blurRadius: 2,
-                                    offset: Offset(0, 2),
-                                    spreadRadius: 0,
-                                  )
-                                ],
-                              ),
-                              child: GetBuilder<UserController>(
-                                  initState: (state) {
-                               // Get.find<UserController>().getAllDesignations();
-                              }, builder: (userController) {
-                                if (userController.designations.isEmpty) {
-                                  return const SpinKitThreeBounce(
-                                    size: 20,
-                                    color: Colors.black,
-                                  ).paddingSymmetric(horizontal: 12);
-                                }
-                                return DropdownMenu<Designation>(
-                                  //width: double.infinity,
-                                  trailingIcon: const Icon(
-                                    Icons.arrow_drop_down,
-                                    color: Colors.black,
-                                  ),
-                                  hintText: "Select Designation",
-
-                                  onSelected: (Designation? value) {
-                                    Logger().i(value?.toJson());
-
-                                    // This is called when the user selects an item.
-                                    // setState(() {
-                                    //   dropdownValue = value!;
-                                    // });
-                                  },
-                                  dropdownMenuEntries: userController
-                                      .designations
-                                      .map<DropdownMenuEntry<Designation>>(
-                                          (Designation value) {
-                                    return DropdownMenuEntry<Designation>(
-                                        value: value, label: value.name);
-                                  }).toList(),
-                                );
-                              }),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  )),
-              if (!context.isPhone)
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MyButton(
-                      width: 200,
-                      title: "Previous",
-                      prefixIcon: "assets/icons/Back Button.png",
-                    ),
-                    MyButton(
-                      // glow: true,
-                      width: 200,
-                      title: "Submit",
-                      suffixIcon: "assets/icons/submit.png",
-                    ),
-                  ],
-                )
-            ],
+      appBar: AppBar(
+        title: const Text(
+          'Add New Staff',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontFamily: 'SF Pro Display',
+            fontWeight: FontWeight.w500,
+            height: 0,
           ),
         ),
       ),
+      body: GetBuilder<OwnerController>(initState: (state) {
+        Get.find<OwnerController>().getAllWarhouse();
+        Get.find<OwnerController>().getRoles();
+      }, builder: (ownerController) {
+        return Form(
+          key: formKey,
+          child: ListView(
+            //   crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Employee Name',
+                style: TextStyle(
+                  color: Color(0xFF595959),
+                  fontSize: 16,
+                  fontFamily: 'SF Pro Display',
+                  fontWeight: FontWeight.w400,
+                  height: 0,
+                ),
+              ),
+              const Gap(4),
+              MyTextField(
+                validator: (val) {
+                  if (val == null || val.isEmpty) {
+                    {
+                      return "required";
+                    }
+                  } else {
+                    return null;
+                  }
+                },
+                controller: name,
+                textCapitalization: TextCapitalization.words,
+              ),
+              const Gap(12),
+              const Text(
+                'Mobile Number',
+                style: TextStyle(
+                  color: Color(0xFF595959),
+                  fontSize: 16,
+                  fontFamily: 'SF Pro Display',
+                  fontWeight: FontWeight.w400,
+                  height: 0,
+                ),
+              ),
+              const Gap(4),
+              MyTextField(
+                validator: (val) {
+                  if (val == null || val.isEmpty) {
+                    {
+                      return "required";
+                    }
+                  } else {
+                    return null;
+                  }
+                },
+                keyboardType: TextInputType.number,
+                prefixIcon: CountryCodePicker(
+                  padding: EdgeInsets.zero,
+                  onChanged: (x) {
+                    if (x.code != null) {
+                      ownerController.countrydialCode = x.dialCode!;
+                    }
+                  },
+                  initialSelection: 'IN',
+                  favorite: const ['+91', 'IN'],
+
+                  showCountryOnly: true,
+                  // showOnlyCountryWhenClosed: true,
+                  alignLeft: false,
+                ),
+                controller: mobile,
+              ),
+              const Gap(12),
+              const Text(
+                'Designation',
+                style: TextStyle(
+                  color: Color(0xFF595959),
+                  fontSize: 16,
+                  fontFamily: 'SF Pro Display',
+                  fontWeight: FontWeight.w400,
+                  height: 0,
+                ),
+              ),
+              if (showError == true && ownerController.selectedRoles.isEmpty)
+                const Text(
+                  'At least one Designation is required',
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 14,
+                    fontFamily: 'SF Pro Display',
+                    fontWeight: FontWeight.w400,
+                    height: 0,
+                  ),
+                ),
+              const Gap(4),
+              GetBuilder<OwnerController>(
+                  initState: (state) {},
+                  builder: (ownerController) {
+                    if (ownerController.roles.isNotEmpty) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: List.generate(ownerController.roles.length,
+                            (index) {
+                          return Container(
+                            height: 40,
+                            width: 260,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 2),
+                            decoration: BoxDecoration(
+                              borderRadius: (index == 0 ||
+                                      index ==
+                                          (ownerController.roles.length - 1))
+                                  ? BorderRadius.only(
+                                      topRight: index == 0
+                                          ? const Radius.circular(12)
+                                          : const Radius.circular(0),
+                                      topLeft: index == 0
+                                          ? const Radius.circular(12)
+                                          : const Radius.circular(0),
+                                      bottomLeft: index != 0
+                                          ? const Radius.circular(12)
+                                          : const Radius.circular(0),
+                                      bottomRight: index != 0
+                                          ? const Radius.circular(12)
+                                          : const Radius.circular(0),
+                                    )
+                                  : null,
+                              color: ownerController.selectedRoles
+                                      .contains(ownerController.roles[index])
+                                  ? const Color(0xFFFAF9FF)
+                                  : Colors.white,
+                              border: const Border(
+                                left: BorderSide(
+                                    width: 1, color: Color(0x3F353535)),
+                                top: BorderSide(color: Color(0x3F353535)),
+                                right: BorderSide(
+                                    width: 1, color: Color(0x3F353535)),
+                                bottom: BorderSide(
+                                    width: 1, color: Color(0x3F353535)),
+                              ),
+                            ),
+                            child: InkWell(
+                              onTap: () {
+                                if (ownerController.selectedRoles
+                                    .contains(ownerController.roles[index])) {
+                                  ownerController.selectedRoles
+                                      .remove(ownerController.roles[index]);
+                                } else {
+                                  ownerController.selectedRoles
+                                      .add(ownerController.roles[index]);
+                                }
+                                ownerController.update();
+                                print(ownerController.selectedRoles);
+                              },
+                              child: Row(
+                                children: [
+                                  Text(
+                                    ownerController.roles[index].person_type ??
+                                        '',
+                                    style: const TextStyle(
+                                      color: Color(0xFF595959),
+                                      fontSize: 14,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w300,
+                                      // height: 0,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  MSHCheckbox(
+                                    size: 20,
+                                    value: ownerController.selectedRoles
+                                        .contains(ownerController.roles[index]),
+                                    colorConfig: MSHColorConfig
+                                        .fromCheckedUncheckedDisabled(
+                                      checkedColor: const Color(0xFF5A57FF),
+                                    ),
+                                    style: MSHCheckboxStyle.fillScaleCheck,
+                                    onChanged: (selected) {
+                                      if (ownerController.selectedRoles
+                                          .contains(
+                                              ownerController.roles[index])) {
+                                        ownerController.selectedRoles.remove(
+                                            ownerController.roles[index]);
+                                      } else {
+                                        ownerController.selectedRoles
+                                            .add(ownerController.roles[index]);
+                                      }
+                                      ownerController.update();
+                                      // setState(() {
+                                      // //  true = selected;
+                                      // });
+                                    },
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
+                      ).paddingSymmetric(horizontal: 12);
+                    }
+                    return const SpinKitRipple(
+                      color: Color(0xFF5A57FF),
+                    );
+                  }),
+              const Gap(14),
+              const Text(
+                'Select Warehouse',
+                style: TextStyle(
+                  color: Color(0xFF595959),
+                  fontSize: 16,
+                  fontFamily: 'SF Pro Display',
+                  fontWeight: FontWeight.w400,
+                  height: 0,
+                ),
+              ),
+              if (showError == true &&
+                  ownerController.selectedWarehouses.isEmpty)
+                const Text(
+                  'At least one Warehouse is required',
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 14,
+                    fontFamily: 'SF Pro Display',
+                    fontWeight: FontWeight.w400,
+                    height: 0,
+                  ),
+                ),
+              const Gap(4),
+              GetBuilder<OwnerController>(initState: (state) {
+                Get.find<OwnerController>().getAllWarhouse();
+              }, builder: (ownerController) {
+                if (ownerController.warehouses.isNotEmpty) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: List.generate(ownerController.warehouses.length,
+                        (index) {
+                      return InkWell(
+                        onTap: () {
+                          if (ownerController.selectedWarehouses
+                              .contains(ownerController.warehouses[index])) {
+                            ownerController.selectedWarehouses
+                                .remove(ownerController.warehouses[index]);
+                          } else {
+                            ownerController.selectedWarehouses
+                                .add(ownerController.warehouses[index]);
+                          }
+                          ownerController.update();
+                        },
+                        child: Container(
+                          height: 40,
+                          width: 260,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 2),
+                          decoration: BoxDecoration(
+                            borderRadius: (index == 0 ||
+                                    index ==
+                                        (ownerController.warehouses.length - 1))
+                                ? BorderRadius.only(
+                                    topRight: index == 0
+                                        ? const Radius.circular(12)
+                                        : const Radius.circular(0),
+                                    topLeft: index == 0
+                                        ? const Radius.circular(12)
+                                        : const Radius.circular(0),
+                                    bottomLeft: index != 0
+                                        ? const Radius.circular(12)
+                                        : const Radius.circular(0),
+                                    bottomRight: index != 0
+                                        ? const Radius.circular(12)
+                                        : const Radius.circular(0),
+                                  )
+                                : null,
+                            color: ownerController.selectedWarehouses
+                                    .contains(ownerController.warehouses[index])
+                                ? const Color(0xFFFAF9FF)
+                                : Colors.white,
+                            border: const Border(
+                              left: BorderSide(
+                                  width: 1, color: Color(0x3F353535)),
+                              top: BorderSide(color: Color(0x3F353535)),
+                              right: BorderSide(
+                                  width: 1, color: Color(0x3F353535)),
+                              bottom: BorderSide(
+                                  width: 1, color: Color(0x3F353535)),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              Text(
+                                ownerController
+                                        .warehouses[index].warehouse_name ??
+                                    '',
+                                style: const TextStyle(
+                                  color: Color(0xFF595959),
+                                  fontSize: 14,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w300,
+                                  // height: 0,
+                                ),
+                              ),
+                              const Spacer(),
+                              MSHCheckbox(
+                                size: 20,
+                                value: ownerController.selectedWarehouses
+                                    .contains(
+                                        ownerController.warehouses[index]),
+                                colorConfig:
+                                    MSHColorConfig.fromCheckedUncheckedDisabled(
+                                  checkedColor: const Color(0xFF5A57FF),
+                                ),
+                                style: MSHCheckboxStyle.fillScaleCheck,
+                                onChanged: (selected) {
+                                  if (ownerController.selectedWarehouses
+                                      .contains(
+                                          ownerController.warehouses[index])) {
+                                    ownerController.selectedWarehouses.remove(
+                                        ownerController.warehouses[index]);
+                                  } else {
+                                    ownerController.selectedWarehouses
+                                        .add(ownerController.warehouses[index]);
+                                  }
+                                  ownerController.update();
+                                  // setState(() {
+                                  // //  true = selected;
+                                  // });
+                                },
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
+                  ).paddingSymmetric(horizontal: 12);
+                }
+                return const SpinKitRipple(
+                  color: Color(0xFF5A57FF),
+                );
+              }),
+              const Gap(14),
+              CustomButton(
+                onTap: () {
+                  setState(() {
+                    showError = true;
+                  });
+                  if ((formKey.currentState?.validate() ?? false) &&
+                      ownerController.selectedRoles.isNotEmpty &&
+                      ownerController.selectedWarehouses.isNotEmpty) {
+                    ownerController.addEmployee(
+                        name.text, int.parse(mobile.text));
+                  }
+                },
+                title: "Submit",
+              ),
+              const Gap(20),
+            ],
+          ).paddingSymmetric(horizontal: 12, vertical: 12),
+        );
+      }),
     );
   }
 }

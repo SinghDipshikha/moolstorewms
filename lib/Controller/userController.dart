@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Data/Model/User/designation.dart';
-import 'package:moolwmsstore/Data/repository/commonRepo.dart';
+import 'package:moolwmsstore/Common%20Data/Model/User/designation.dart';
+import 'package:moolwmsstore/Common%20Data/repository/commonRepo.dart';
 
 class UserController extends GetxController {
   var userId = 55;
