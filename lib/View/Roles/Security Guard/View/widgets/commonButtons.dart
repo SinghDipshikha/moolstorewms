@@ -381,8 +381,17 @@ class CustomFloatingActionButton extends StatelessWidget {
   void Function()? onTap;
   Color? color;
   String? leftIcon;
-  CustomFloatingActionButton(
-      {super.key, required this.title, this.leftIcon, this.onTap, this.color});
+  Color? textColor;
+  Shadow? buttonShadow;
+  CustomFloatingActionButton({
+    super.key,
+    required this.title,
+    this.leftIcon,
+    this.onTap,
+    this.color,
+    this.buttonShadow,
+    this.textColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -426,8 +435,8 @@ class CustomFloatingActionButton extends StatelessWidget {
             const Gap(10),
             Text(
               title,
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: textColor,
                 fontSize: 18,
                 fontFamily: 'SF Pro Display',
                 fontWeight: FontWeight.w600,
@@ -435,6 +444,53 @@ class CustomFloatingActionButton extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class CommonButton extends StatelessWidget {
+  String? title;
+  double? radius;
+  void Function()? onTap;
+  Color? color;
+  String? leftIcon;
+  Color? textColor;
+  CommonButton(
+      {super.key,
+      this.title,
+      this.onTap,
+      this.color,
+      this.leftIcon,
+      this.textColor});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: 358,
+        height: 50,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        decoration: ShapeDecoration(
+          color: color,
+          shadows: const [],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+        ),
+        child: Center(
+          child: Text(
+            title!,
+            style: TextStyle(
+              color: textColor,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w600,
+              height: 0,
+            ),
+          ),
         ),
       ),
     );

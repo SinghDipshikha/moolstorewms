@@ -633,6 +633,9 @@ class SignUp extends StatelessWidget {
                           const Gap(16),
                         ],
                       ).paddingSymmetric(vertical: 16, horizontal: 16)),
+               
+               
+               
                   const Gap(20),
                   GetBuilder<AuthController>(builder: (authController) {
                     return authController.loading

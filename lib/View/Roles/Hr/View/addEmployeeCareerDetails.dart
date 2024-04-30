@@ -375,7 +375,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                       children: [
                         CommonPreviousButton(
                           onTap: () {
-                      Get.back();
+                            Get.back();
                           },
                           title: 'Previous',
                         ),
