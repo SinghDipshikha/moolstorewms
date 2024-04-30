@@ -48,18 +48,18 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
         //   ),
         //   onPressed: () {},
         // ),
-        actions: [
-          Container(
-            width: 50,
-            height: 50,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: NetworkImage("assets/images/profile_photo.png"),
-                fit: BoxFit.fill,
-              ),
-            ),
-          ).paddingOnly(right: 20),
+        actions: const [
+          // Container(
+          //   width: 50,
+          //   height: 50,
+          //   decoration: const BoxDecoration(
+          //     shape: BoxShape.circle,
+          //     image: DecorationImage(
+          //       image: AssetImage("assets/images/profile_photo.png"),
+          //       fit: BoxFit.fill,
+          //     ),
+          //   ),
+          // ).paddingOnly(right: 20),
         ],
       ),
       body: SingleChildScrollView(
@@ -251,7 +251,6 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                 onTap: () {
                   Get.to(const RegistrationListScreen(),
                       id: securityGuardNavigation);
-              
                 },
                 child: Container(
                   width: 100,

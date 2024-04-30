@@ -5,10 +5,12 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/Controllers/securityGuard.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/employeeEntry.dart';
+import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/registrationEntryReview.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/dashboard.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonButtons.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 //@RoutePage()
 class RegistrationListScreen extends StatefulWidget {
@@ -191,141 +193,156 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                         itemBuilder: (context, i) {
                           EmployeeEntry entry =
                               securityGuardController.empEntryList[i];
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: 382,
-                              height: 50,
-                              decoration: ShapeDecoration(
-                                color: const Color(0xFFFAF9FF),
-                                shape: RoundedRectangleBorder(
-                                  side: const BorderSide(
-                                      width: 1, color: Color(0x195A57FF)),
-                                  borderRadius: BorderRadius.circular(10),
+                          return InkWell(
+                            onTap: () {
+                              Get.to(const RegistrationEntryReviewScreen(),
+                                  id: securityGuardNavigation);
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                width: 382,
+                                height: 50,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFFAF9FF),
+                                  shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                        width: 1, color: Color(0x195A57FF)),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
                                 ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 12, vertical: 12),
-                                child: Row(
-                                  children:
-                                      List.generate(dataList.length, (index) {
-                                    if (dataList[index]["title"] ==
-                                        "Johnson Charles") {
-                                      return Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12, vertical: 12),
+                                  child: Row(
+                                    children:
+                                        List.generate(dataList.length, (index) {
+                                      if (dataList[index]["title"] ==
+                                          "Johnson Charles") {
+                                        return Expanded(
+                                            flex: dataList[index]["flex"],
+                                            child: Text(
+                                              entry.name ?? "",
+                                              style: const TextStyle(
+                                                color: Color(0xFF353535),
+                                                fontSize: 12,
+                                                fontFamily: 'SF Pro Text',
+                                                fontWeight: FontWeight.w500,
+                                                height: 0,
+                                                letterSpacing: -0.48,
+                                              ),
+                                            ));
+                                      }
+                                      if (dataList[index]["title"] ==
+                                          "123456789") {
+                                        return Expanded(
+                                            flex: dataList[index]["flex"],
+                                            child: Text(
+                                              "${entry.mobile ?? ""}",
+                                              style: const TextStyle(
+                                                color: Color(0xFF353535),
+                                                fontSize: 12,
+                                                fontFamily: 'SF Pro Text',
+                                                fontWeight: FontWeight.w500,
+                                                height: 0,
+                                                letterSpacing: -0.48,
+                                              ),
+                                            ));
+                                      }
+                                      if (dataList[index]["title"] ==
+                                          "25-06-2024 10:35 AM") {
+                                        return Expanded(
+                                            flex: dataList[index]["flex"],
+                                            child: Text(
+                                              entry.date ?? "${DateTime.now()}",
+                                              style: const TextStyle(
+                                                color: Color(0xFFCCCCCC),
+                                                fontSize: 10,
+                                                fontFamily: 'SF Pro Text',
+                                                fontWeight: FontWeight.w400,
+                                                height: 0,
+                                                letterSpacing: -0.40,
+                                              ),
+                                            ));
+                                      }
+                                      if (dataList[index]["title"] == "icon" &&
+                                          entry.status == "IN") {
+                                        return Expanded(
                                           flex: dataList[index]["flex"],
-                                          child: Text(
-                                            entry.name ?? "",
-                                            style: const TextStyle(
-                                              color: Color(0xFF353535),
-                                              fontSize: 12,
-                                              fontFamily: 'SF Pro Text',
-                                              fontWeight: FontWeight.w500,
-                                              height: 0,
-                                              letterSpacing: -0.48,
-                                            ),
-                                          ));
-                                    }
-                                    if (dataList[index]["title"] ==
-                                        "123456789") {
-                                      return Expanded(
-                                          flex: dataList[index]["flex"],
-                                          child: Text(
-                                            "${entry.mobile ?? ""}",
-                                            style: const TextStyle(
-                                              color: Color(0xFF353535),
-                                              fontSize: 12,
-                                              fontFamily: 'SF Pro Text',
-                                              fontWeight: FontWeight.w500,
-                                              height: 0,
-                                              letterSpacing: -0.48,
-                                            ),
-                                          ));
-                                    }
-                                    if (dataList[index]["title"] ==
-                                        "25-06-2024 10:35 AM") {
-                                      return Expanded(
-                                          flex: dataList[index]["flex"],
-                                          child: Text(
-                                            entry.date ?? "${DateTime.now()}",
-                                            style: const TextStyle(
-                                              color: Color(0xFFCCCCCC),
-                                              fontSize: 10,
-                                              fontFamily: 'SF Pro Text',
-                                              fontWeight: FontWeight.w400,
-                                              height: 0,
-                                              letterSpacing: -0.40,
-                                            ),
-                                          ));
-                                    }
-                                    if (dataList[index]["title"] == "icon" &&
-                                        entry.status == "IN") {
-                                      return Expanded(
-                                        flex: dataList[index]["flex"],
-                                        child: Container(
-                                          // width: 20,
-                                          // height: 30,
-                                          decoration: ShapeDecoration(
-                                            color: const Color(0xFFFAF9FF),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(5)),
-                                            image: const DecorationImage(
-                                              image: AssetImage(
-                                                  "assets/images/check_in.png"),
-                                              fit: BoxFit.contain,
+                                          child: InkWell(
+                                            onTap: () {
+                                              Get.to(
+                                                  const RegistrationEntryReviewScreen(),
+                                                  id: securityGuardNavigation);
+                                            },
+                                            child: Container(
+                                              decoration: ShapeDecoration(
+                                                color: const Color(0xFFFAF9FF),
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5)),
+                                                image: const DecorationImage(
+                                                  image: AssetImage(
+                                                      "assets/images/check_in.png"),
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      );
-                                    }
-                                    if (dataList[index]["title"] == "icon" &&
-                                        entry.status == "OUT") {
-                                      return Expanded(
-                                        flex: dataList[index]["flex"],
-                                        child: Container(
-                                          // width: 20,
-                                          // height: 30,
-                                          decoration: ShapeDecoration(
-                                            color: const Color(0xFFFAF9FF),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(5)),
-                                            image: const DecorationImage(
-                                              image: AssetImage(
-                                                  "assets/images/check_out.png"),
-                                              fit: BoxFit.contain,
+                                        );
+                                      }
+                                      if (dataList[index]["title"] == "icon" &&
+                                          entry.status == "OUT") {
+                                        return Expanded(
+                                          flex: dataList[index]["flex"],
+                                          child: InkWell(
+                                            child: Container(
+                                              // width: 20,
+                                              // height: 30,
+                                              decoration: ShapeDecoration(
+                                                color: const Color(0xFFFAF9FF),
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5)),
+                                                image: const DecorationImage(
+                                                  image: AssetImage(
+                                                      "assets/images/check_out.png"),
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      );
-                                    }
-                                    if (dataList[index]["title"] == "icon2") {
-                                      return Expanded(
-                                        flex: dataList[index]["flex"],
-                                        child: const SizedBox(
-                                          height: 10,
-                                          width: 10,
-                                          child: Icon(
-                                            Icons.more_vert,
-                                            color: Colors.black,
-                                            size: 20,
+                                        );
+                                      }
+                                      if (dataList[index]["title"] == "icon2") {
+                                        return Expanded(
+                                          flex: dataList[index]["flex"],
+                                          child: const SizedBox(
+                                            height: 10,
+                                            width: 10,
+                                            child: Icon(
+                                              Icons.more_vert,
+                                              color: Colors.black,
+                                              size: 20,
+                                            ),
                                           ),
-                                        ),
-                                      );
-                                    }
+                                        );
+                                      }
 
-                                    return Expanded(
-                                      flex: tags[index]["flex"],
-                                      child: Text(
-                                        tags[index]["title"],
-                                        style: const TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w700,
+                                      return Expanded(
+                                        flex: tags[index]["flex"],
+                                        child: Text(
+                                          tags[index]["title"],
+                                          style: const TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w700,
+                                          ),
                                         ),
-                                      ),
-                                    );
-                                  }),
+                                      );
+                                    }),
+                                  ),
                                 ),
                               ),
                             ),

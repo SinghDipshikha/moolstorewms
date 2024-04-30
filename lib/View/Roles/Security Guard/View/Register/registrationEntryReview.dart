@@ -10,15 +10,16 @@ import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonButt
 import 'package:moolwmsstore/View/common/tagContainer.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
-class TicketEntryReviewScreen extends StatefulWidget {
-  const TicketEntryReviewScreen({super.key});
+class RegistrationEntryReviewScreen extends StatefulWidget {
+  const RegistrationEntryReviewScreen({super.key});
 
   @override
-  State<TicketEntryReviewScreen> createState() =>
-      _TicketEntryReviewScreenState();
+  State<RegistrationEntryReviewScreen> createState() =>
+      _RegistrationEntryReviewScreenState();
 }
 
-class _TicketEntryReviewScreenState extends State<TicketEntryReviewScreen> {
+class _RegistrationEntryReviewScreenState
+    extends State<RegistrationEntryReviewScreen> {
   @override
   TextEditingController ogn = TextEditingController();
   TextEditingController pan = TextEditingController();
@@ -219,18 +220,18 @@ class _TicketEntryReviewScreenState extends State<TicketEntryReviewScreen> {
                 ),
               ),
               const Gap(16),
-              CommonButton(
-                textColor: Colors.white,
+              CustomFloatingActionButton(
                 title: 'Vehicle In',
                 color: const Color(0xFF04BF8A),
                 onTap: () {
-                  Get.to(const CheckedInSavedStatus(),
-                      id: securityGuardNavigation);
+                
+
+                    Get.to(const CheckedInSavedStatus(),
+                    id: securityGuardNavigation);
                 },
               ),
               const Gap(16),
-              CommonButton(
-                textColor: Colors.white,
+              CustomFloatingActionButton(
                 title: 'Vehicle Out',
                 color: const Color(0xFFFF5F5D),
               ),

@@ -5,14 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:moolwmsstore/Auth/Auth.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
-
-import 'package:moolwmsstore/View/Roles/Hr/View/addEmployeeCareerDetails.dart';
 import 'package:moolwmsstore/helper/messages.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
+import 'View/Roles/Security Guard/View/dashboard.dart';
 import 'helper/get_di.dart' as di;
 
 Future<void> main() async {
@@ -55,7 +53,7 @@ class _DipshikaAppState extends State<DipshikaApp> {
         initState: (state) {},
         builder: (localizeController) {
           return GetMaterialApp(
-            home: const AddEmployeeCareerDetails(),
+            home: const SecurityGuardDashBoard(),
             // home: const Auth(),
             debugShowCheckedModeBanner: false,
             locale: localizeController.locale,
