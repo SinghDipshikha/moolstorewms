@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:moolwmsstore/Controller/salesController.dart';
-import 'package:moolwmsstore/Data/Model/Sales/PurchaseOrder.dart';
+import 'package:moolwmsstore/Common%20Data/Model/Sales/PurchaseOrder.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';

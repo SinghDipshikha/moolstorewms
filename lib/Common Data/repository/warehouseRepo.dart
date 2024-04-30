@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:moolwmsstore/Owner/Model/addChamber.dart';
 import 'package:moolwmsstore/Owner/Model/addWarehouse.dart';
 import 'package:moolwmsstore/Owner/Model/warehouse.dart';
-import 'package:moolwmsstore/Data/api/api_client.dart';
+import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class WarehouseRepo {

@@ -11,11 +11,14 @@ import 'package:moolwmsstore/Auth/View/phoneSign.dart';
 import 'package:moolwmsstore/Auth/View/signInUp.dart';
 import 'package:moolwmsstore/Auth/View/signUp.dart';
 import 'package:moolwmsstore/Auth/View/welcome.dart';
-import 'package:moolwmsstore/Data/Model/Auth/signupfield.dart';
-import 'package:moolwmsstore/Data/api/api_client.dart';
-import 'package:moolwmsstore/Data/repository/ownerRepo.dart';
+import 'package:moolwmsstore/Common%20Data/Model/Auth/signupfield.dart';
+import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
+import 'package:moolwmsstore/Common%20Data/repository/ownerRepo.dart';
+import 'package:moolwmsstore/Hr/View/hrDashboard.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
 import 'package:moolwmsstore/Owner/Owner.dart';
+import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
+import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
@@ -266,8 +269,6 @@ class AuthController extends GetxController {
   verifySignInOtp(int otp) {
     apiClient.postData(
         "otp/verifySignInOtp", {"mobile": number, "otp": otp}).then((value) {
-      // Logger().i(value.data["result"]["role_id"]);
-      // Logger().i(value.data);
       if (value.data["result"]["role_id"] != null) {
         Logger().i(value.data);
         if (value.data["result"]["role_id"] == 1) {
@@ -286,6 +287,21 @@ class AuthController extends GetxController {
           Get.delete<AuthController>();
           Get.offAll(const Owner());
         }
+      }
+      if (value.data["result"]["role_id"] == "HR") {
+        user = User.fromJson(value.data["result"]);
+        box.put("user", user);
+        Logger().i(user);
+        Get.lazyPut(
+            () => HrRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
+        Get.put(
+            HRController(
+                user: user as User,
+                hrRepo: Get.find<HrRepo>(),
+                apiClient: apiClient),
+            permanent: true);
+             Get.delete<AuthController>();
+          Get.offAll(const HrDashboard());
       }
 
       if (value.data["message"] == "Invalid OTP") {

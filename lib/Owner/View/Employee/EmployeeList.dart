@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/Owner/View/Common/customButton.dart';
 
 class EmployeeList extends StatelessWidget {
   const EmployeeList({super.key});
@@ -19,6 +20,11 @@ class EmployeeList extends StatelessWidget {
       {"title": "icon", "flex": 1},
     ];
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: CustomButton(
+        onTap: () {},
+        title: 'Add New Staff',
+      ).paddingSymmetric(horizontal: 12),
       appBar: AppBar(
         title: const Text(
           'Staff List',

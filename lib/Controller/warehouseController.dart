@@ -2,8 +2,8 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/Controller/userController.dart';
 import 'package:moolwmsstore/Owner/Model/addChamber.dart';
 import 'package:moolwmsstore/Owner/Model/warehouse.dart';
-import 'package:moolwmsstore/Data/api/api_client.dart';
-import 'package:moolwmsstore/Data/repository/warehouseRepo.dart';
+import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
+import 'package:moolwmsstore/Common%20Data/repository/warehouseRepo.dart';
 
 class WarehouseController extends GetxController {
   final WarehouseRepo warehouseRepo;

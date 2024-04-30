@@ -501,7 +501,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Auth/Controllers/authController.dart';
 import 'package:moolwmsstore/Auth/widgets/commonTextField.dart';
-import 'package:moolwmsstore/View/Roles/Hr/constants/validations.dart';
+import 'package:moolwmsstore/Hr/constants/validations.dart';
 import 'package:moolwmsstore/View/common/tagContainer.dart';
 
 class SignUp extends StatelessWidget {

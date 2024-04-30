@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Auth/widgets/commonTextField.dart';
-import 'package:moolwmsstore/View/Roles/Hr/constants/validations.dart';
+import 'package:moolwmsstore/Hr/constants/validations.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/checkedInSaved.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/registrationList.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonAppBar.dart';

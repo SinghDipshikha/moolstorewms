@@ -6,10 +6,10 @@ import 'package:moolwmsstore/Auth/Controllers/authController.dart';
 import 'package:moolwmsstore/Auth/Repository/authRepo.dart';
 import 'package:moolwmsstore/Controller/language_controller.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
-import 'package:moolwmsstore/Data/Model/LanaguageModel.dart';
-import 'package:moolwmsstore/Data/api/api_client.dart';
-import 'package:moolwmsstore/Data/repository/commonRepo.dart';
-import 'package:moolwmsstore/Data/repository/splashRepo.dart';
+import 'package:moolwmsstore/Common%20Data/Model/LanaguageModel.dart';
+import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
+import 'package:moolwmsstore/Common%20Data/repository/commonRepo.dart';
+import 'package:moolwmsstore/Common%20Data/repository/splashRepo.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

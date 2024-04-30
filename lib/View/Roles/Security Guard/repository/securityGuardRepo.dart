@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:moolwmsstore/Data/api/api_client.dart';
+import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/addVisitor.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/allPersonsInfo.dart';
 import 'package:moolwmsstore/View/Roles/Security%20Guard/Model/SecurityGuard/allVisitorsInfo.dart';

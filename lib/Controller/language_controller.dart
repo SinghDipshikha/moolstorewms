@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Data/Model/LanaguageModel.dart';
+import 'package:moolwmsstore/Common%20Data/Model/LanaguageModel.dart';
 
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
