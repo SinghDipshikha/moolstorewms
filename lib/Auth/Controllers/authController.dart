@@ -14,6 +14,8 @@ import 'package:moolwmsstore/Auth/View/welcome.dart';
 import 'package:moolwmsstore/Common%20Data/Model/Auth/signupfield.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Common%20Data/repository/ownerRepo.dart';
+import 'package:moolwmsstore/Common%20Data/repository/salesRepo.dart';
+import 'package:moolwmsstore/Controller/salesController.dart';
 import 'package:moolwmsstore/Hr/View/hrDashboard.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
 import 'package:moolwmsstore/Owner/Owner.dart';
@@ -303,6 +305,24 @@ class AuthController extends GetxController {
              Get.delete<AuthController>();
           Get.offAll(const HrDashboard());
       }
+
+
+       if (value.data["result"]["role_id"] == "SALES") {
+        user = User.fromJson(value.data["result"]);
+        box.put("user", user);
+        Logger().i(user);
+        Get.lazyPut(
+            () => HrRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
+        Get.put(
+            SalesController(
+                user: user as User,
+                salesRepo: Get.find<SalesRepo>(),
+                apiClient: apiClient),
+            permanent: true);
+             Get.delete<AuthController>();
+          Get.offAll(const ());
+      }
+
 
       if (value.data["message"] == "Invalid OTP") {
         Snacks.redSnack("Invalid OTP");
