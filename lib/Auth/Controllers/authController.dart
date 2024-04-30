@@ -14,13 +14,15 @@ import 'package:moolwmsstore/Auth/View/welcome.dart';
 import 'package:moolwmsstore/Common%20Data/Model/Auth/signupfield.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Common%20Data/repository/ownerRepo.dart';
-import 'package:moolwmsstore/Common%20Data/repository/salesRepo.dart';
+
 import 'package:moolwmsstore/Controller/salesController.dart';
 import 'package:moolwmsstore/Hr/View/hrDashboard.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
 import 'package:moolwmsstore/Owner/Owner.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
+import 'package:moolwmsstore/Sales/View/SalesDashboard.dart';
+import 'package:moolwmsstore/Sales/repo/salesRepo.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
@@ -320,7 +322,7 @@ class AuthController extends GetxController {
                 apiClient: apiClient),
             permanent: true);
              Get.delete<AuthController>();
-          Get.offAll(const ());
+          Get.offAll(const SalesDashboard());
       }
 
 
