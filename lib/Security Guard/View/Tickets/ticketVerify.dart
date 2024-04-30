@@ -3,23 +3,22 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Auth/widgets/commonTextField.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/checkedInSaved.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/registrationList.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonAppBar.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonButtons.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Register/checkedInSaved.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Register/registrationList.dart';
+import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
+import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/View/common/tagContainer.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
-class RegistrationEntryReviewScreen extends StatefulWidget {
-  const RegistrationEntryReviewScreen({super.key});
+class TicketEntryReviewScreen extends StatefulWidget {
+  const TicketEntryReviewScreen({super.key});
 
   @override
-  State<RegistrationEntryReviewScreen> createState() =>
-      _RegistrationEntryReviewScreenState();
+  State<TicketEntryReviewScreen> createState() =>
+      _TicketEntryReviewScreenState();
 }
 
-class _RegistrationEntryReviewScreenState
-    extends State<RegistrationEntryReviewScreen> {
+class _TicketEntryReviewScreenState extends State<TicketEntryReviewScreen> {
   @override
   TextEditingController ogn = TextEditingController();
   TextEditingController pan = TextEditingController();
@@ -220,18 +219,18 @@ class _RegistrationEntryReviewScreenState
                 ),
               ),
               const Gap(16),
-              CustomFloatingActionButton(
+              CommonButton(
+                textColor: Colors.white,
                 title: 'Vehicle In',
                 color: const Color(0xFF04BF8A),
                 onTap: () {
-                
-
-                    Get.to(const CheckedInSavedStatus(),
-                    id: securityGuardNavigation);
+                  Get.to(const CheckedInSavedStatus(),
+                      id: securityGuardNavigation);
                 },
               ),
               const Gap(16),
-              CustomFloatingActionButton(
+              CommonButton(
+                textColor: Colors.white,
                 title: 'Vehicle Out',
                 color: const Color(0xFFFF5F5D),
               ),

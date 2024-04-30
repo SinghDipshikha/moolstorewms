@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/View/Register/registrationList.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonButtons.dart';
-import 'package:moolwmsstore/View/Roles/Security%20Guard/View/widgets/commonSideDrawer.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Register/registrationList.dart';
+import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
+import 'package:moolwmsstore/Security%20Guard/View/widgets/commonSideDrawer.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 class SecurityGuardDashBoard extends StatefulWidget {
