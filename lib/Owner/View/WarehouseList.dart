@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
+import 'package:moolwmsstore/Owner/View/addWarehouse.dart';
 import 'package:moolwmsstore/Owner/View/viewWarehouseDetails.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 //import 'package:moolwmsstore/routes/approutes.gr.dart';
@@ -43,7 +44,9 @@ class WarehouseList extends StatelessWidget {
                     style: const ButtonStyle(
                         backgroundColor:
                             MaterialStatePropertyAll(Colors.white)),
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(const AddWarehouse(), id: ownerNavigationKey);
+                    },
                     child: const Text(
                       'Add Warehouse',
                       style: TextStyle(

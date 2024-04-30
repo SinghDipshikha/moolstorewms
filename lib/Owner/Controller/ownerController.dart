@@ -56,6 +56,9 @@ class OwnerController extends GetxController {
         searchWarehouses = warehouses;
         loading = false;
         update();
+      } else {
+        loading = false;
+        update();
       }
     });
   }
@@ -92,11 +95,15 @@ class OwnerController extends GetxController {
       "person_type_id": selectedRoles.map((e) => e.id).toList(),
       // "country_code": countrydialCode
     }).then((value) {
+      Logger().i(value.data);
+
       if (value.data["message"] == "Employee added successfully") {
-        Snacks.greenSnack("Employee added successfully");
+        Logger().i("ducgudchdiuchduihciuhc");
+
         loading = false;
         update();
         Get.back(id: ownerNavigationKey);
+        Snacks.greenSnack("Employee added successfully");
       }
     });
   }
@@ -122,11 +129,13 @@ class OwnerController extends GetxController {
     for (var element in addWarehouseFields) {
       body[element.field_name] = element.value;
     }
-
-    apiClient.postData("owner/addOnlyWareHouse", body).then((value) {
+    // Snacks.greenSnack("WareHouse added");
+    apiClient.postData("owner/addOnlyWareHouse", body).then((value) async {
       if (value.data["result"] == "WareHouse added") {
-        Snacks.greenSnack("WareHouse added");
+        //  Logger().i("djughuidbvjdbvjdbvikbdhcvb");
         Get.back(id: ownerNavigationKey);
+        Snacks.greenSnack("WareHouse added");
+        //
       }
     });
   }

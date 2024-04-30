@@ -11,7 +11,6 @@ import 'package:moolwmsstore/helper/messages.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
-import 'View/Roles/Security Guard/View/dashboard.dart';
 import 'helper/get_di.dart' as di;
 
 Future<void> main() async {
@@ -55,7 +54,7 @@ class _DipshikaAppState extends State<DipshikaApp> {
         builder: (localizeController) {
           return GetMaterialApp(
             // home: const AddEmployeeCareerDetails(),
-            home:  Auth(),
+            home: const Auth(),
             debugShowCheckedModeBanner: false,
             locale: localizeController.locale,
             fallbackLocale: Locale(
