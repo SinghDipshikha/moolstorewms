@@ -38,8 +38,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthController extends GetxController {
   final AuthRepo authRepo;
-  final ApiClient apiClient;
-  AuthController({required this.authRepo, required this.apiClient});
+
+  AuthController({
+    required this.authRepo,
+  });
 
   // var otpstate = OTP.init;
   late Box box;
@@ -71,12 +73,12 @@ class AuthController extends GetxController {
     if (user != null || dbconnect?.organiosationCode != null) {
       sharedPreferences.setString(
           AppConstants.orgCode, dbconnect!.organiosationCode.toString());
-      apiClient.updateHeader();
-      Logger().i(user);
-      apiClient.postData('verifyOrgByCode',
+      Get.find<ApiClient>().updateHeader();
+      // Logger().i(user);
+      Get.find<ApiClient>().postData('verifyOrgByCode',
           {"org_code": dbconnect!.organiosationCode}).then((value) {
         if (value.data["message"] == "Organisation Details Present") {
-          apiClient
+          Get.find<ApiClient>()
               .postData(
                   'dynamicDbConnect',
                   {
@@ -97,12 +99,13 @@ class AuthController extends GetxController {
               }
               if (user?.role_id == 1) {
                 Get.lazyPut(() => OwnerRepo(
-                    sharedPreferences: Get.find(), apiClient: apiClient));
+                    sharedPreferences: Get.find(),
+                    apiClient: Get.find<ApiClient>()));
                 Get.put(
                     OwnerController(
                         user: user as User,
                         ownerRepo: Get.find<OwnerRepo>(),
-                        apiClient: Get.find()),
+                        apiClient: Get.find<ApiClient>()),
                     permanent: true);
                 Future.delayed(const Duration(seconds: 2)).whenComplete(() {
                   Get.delete<AuthController>();
@@ -137,10 +140,10 @@ class AuthController extends GetxController {
   }
 
   checkOrganisationCode({required String organiosationCode}) async {
-    apiClient.postData('verifyOrgByCode', {"org_code": organiosationCode}).then(
-        (value) {
+    Get.find<ApiClient>().postData(
+        'verifyOrgByCode', {"org_code": organiosationCode}).then((value) {
       if (value.data["message"] == "Organisation Details Present") {
-        apiClient
+        Get.find<ApiClient>()
             .postData(
                 'dynamicDbConnect',
                 {
@@ -163,7 +166,7 @@ class AuthController extends GetxController {
                 organiosationCode: organiosationCode);
             sharedPreferences.setString(
                 AppConstants.orgCode, organiosationCode);
-            apiClient.updateHeader();
+            Get.find<ApiClient>().updateHeader();
 
             box.put("dbkey", dbconnect);
 
@@ -182,7 +185,7 @@ class AuthController extends GetxController {
   }
 
   verifySignupOtp(int otp) {
-    apiClient.postData(
+    Get.find<ApiClient>().postData(
         "otp/verifySignupOtp", {"mobile": number, "otp": otp}).then((value) {
       if (value.data["message"] == "Your Number is now verified") {
         Get.to(SignUp(), id: authNavigationKey);
@@ -197,7 +200,7 @@ class AuthController extends GetxController {
   sendSignUpOtp(String num) {
     number = num;
 
-    apiClient.postData("user/signupOtp", {
+    Get.find<ApiClient>().postData("user/signupOtp", {
       "mobile": num,
     }).then((value) {
       if (value.data["message"] ==
@@ -220,7 +223,7 @@ class AuthController extends GetxController {
       required String name}) {
     loading = true;
     update();
-    apiClient.postData("admin/addMasterOrganisation", {
+    Get.find<ApiClient>().postData("admin/addMasterOrganisation", {
       "pan_card": pan,
       "email": email,
       "phone_number": number,
@@ -231,7 +234,7 @@ class AuthController extends GetxController {
       if (value.data["message"] == "Information Added") {
         value.data["result"][0]["id"];
 
-        apiClient.postData("notification/sendNotification", {
+        Get.find<ApiClient>().postData("notification/sendNotification", {
           "client_id": value.data["result"][0]["id"],
           "type": "NewOrg",
           "description":
@@ -265,7 +268,7 @@ class AuthController extends GetxController {
   sendSignInOtp(String num) {
     number = num;
 
-    apiClient.postData("user/loginOtp", {
+    Get.find<ApiClient>().postData("user/loginOtp", {
       "mobile": num,
     }).then((value) {
       if (value.data["message"] ==
@@ -282,7 +285,7 @@ class AuthController extends GetxController {
   }
 
   verifySignInOtp(int otp) {
-    apiClient.postData(
+    Get.find<ApiClient>().postData(
         "otp/verifySignInOtp", {"mobile": number, "otp": otp}).then((value) {
       if (value.data["result"]["role_id"] != null) {
         Logger().i(value.data);
@@ -313,7 +316,7 @@ class AuthController extends GetxController {
             HRController(
                 user: user as User,
                 hrRepo: Get.find<HrRepo>(),
-                apiClient: apiClient),
+                apiClient: Get.find<ApiClient>()),
             permanent: true);
         Get.delete<AuthController>();
         Get.offAll(const HrDashboard());
@@ -329,7 +332,7 @@ class AuthController extends GetxController {
             SalesController(
                 user: user as User,
                 salesRepo: Get.find<SalesRepo>(),
-                apiClient: apiClient),
+                apiClient: Get.find<ApiClient>()),
             permanent: true);
         Get.delete<AuthController>();
         Get.offAll(const SalesDashboard());

@@ -48,7 +48,7 @@ Future<Map<String, Map<String, String>>> init() async {
     () => LocalizationController(sharedPreferences: Get.find()),
   );
   Get.put(
-    AuthController(authRepo: Get.find(), apiClient: Get.find()),
+    AuthController(authRepo: Get.find(), ),
   );
 
   // Get.put(WarehouseController(warehouseRepo: Get.find(), apiClient: Get.find()),
