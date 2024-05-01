@@ -34,7 +34,8 @@ class ApiClient extends g.GetxService {
   void updateHeader() {
     _mainHeaders = {
       'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': '${sharedPreferences.getString(AppConstants.token)}'
+      'Authorization': '${sharedPreferences.getString(AppConstants.token)}',
+      'org-code': '${sharedPreferences.getString(AppConstants.orgCode)}'
     };
   }
 
