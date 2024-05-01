@@ -375,7 +375,7 @@ class _AddEmployeePersonalDetailsState
                     children: [
                       CommonPreviousButton(
                         onTap: () {
-                Get.back();
+                          Get.back();
                         },
                         title: 'Previous',
                       ),
