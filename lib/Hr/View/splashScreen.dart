@@ -2,29 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:moolwmsstore/Hr/View/hrDashboard.dart';
 
-// class SplashScreen extends StatelessWidget {
-//   const SplashScreen({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     Future.delayed(const Duration(seconds: 2), () {
-//       Navigator.pushReplacement(
-//         context,
-//         MaterialPageRoute(builder: (context) => const HrDashboard()),
-//       );
-//     });
-
-//     return Scaffold(
-//       body: Center(
-//         child: SizedBox(
-//             width: 100,
-//             height: 100,
-//             child: Image.asset('assets/images/splashLogo.png')),
-//       ),
-//     );
-//   }
-// }
-
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
@@ -57,12 +34,12 @@ class SplashScreen extends StatelessWidget {
                   child: Stack(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(120.0),
+                        padding: const EdgeInsets.all(100.0),
                         child: Column(
                           children: [
                             Container(
-                              width: 80,
-                              height: 80,
+                              width: 100,
+                              height: 100,
                               decoration: const BoxDecoration(
                                 image: DecorationImage(
                                   image: AssetImage(
@@ -104,6 +81,7 @@ class SplashScreen extends StatelessWidget {
                                 textAlign: TextAlign.center,
                               ),
                             ),
+                            const Gap(20)
                           ],
                         ),
                       ),
