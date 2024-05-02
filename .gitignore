@@ -1,5 +1,5 @@
 # Miscellaneous
-/ios
+\ios
 *.class
 *.log
 *.pyc
