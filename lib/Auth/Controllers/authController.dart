@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/dbConnect.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Auth/Repository/authRepo.dart';
@@ -16,12 +15,15 @@ import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Common%20Data/repository/ownerRepo.dart';
 import 'package:moolwmsstore/Controller/salesController.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
-import 'package:moolwmsstore/Hr/View/hrDashboard.dart';
+import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
 import 'package:moolwmsstore/Owner/Owner.dart';
-import 'package:moolwmsstore/Sales/View/SalesDashboard.dart';
+import 'package:moolwmsstore/Sales/Sales.dart';
 import 'package:moolwmsstore/Sales/repo/salesRepo.dart';
+import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
+import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
+import 'package:moolwmsstore/Security%20Guard/repository/securityGuardRepo.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/utils/globals.dart';
@@ -111,6 +113,56 @@ class AuthController extends GetxController {
                   Get.delete<AuthController>();
                   Get.offAll(const Owner());
                 });
+              }
+              if (user?.role_id == 2) {
+                for (var element in user!.person_type!) {
+                  if (element["person_type"] == "security-guard") {
+                    Get.lazyPut(() => SecurityGuardRepo(
+                        sharedPreferences: Get.find(), apiClient: Get.find()));
+                    Get.put(
+                        SecurityGuardController(
+                          user: user as User,
+                          secGaurdRepo: Get.find<SecurityGuardRepo>(),
+                          apiClient: Get.find<ApiClient>(),
+                        ),
+                        permanent: true);
+                  }
+                  if (element["person_type"] == "sales") {
+                    Get.lazyPut(() => SalesRepo(
+                        sharedPreferences: Get.find(), apiClient: Get.find()));
+                    Get.put(
+                        SalesController(
+                            user: user as User,
+                            salesRepo: Get.find<SalesRepo>(),
+                            apiClient: Get.find<ApiClient>()),
+                        permanent: true);
+                  }
+                  if (element["person_type"] == "hr") {
+                    Get.lazyPut(() => HrRepo(
+                        sharedPreferences: Get.find(), apiClient: Get.find()));
+                    Get.put(
+                        HRController(
+                            user: user as User,
+                            hrRepo: Get.find<HrRepo>(),
+                            apiClient: Get.find<ApiClient>()),
+                        permanent: true);
+                  }
+                }
+                if (user!.person_type?[0] != null) {
+                  if (user!.person_type?[0]["person_type"] ==
+                      "security-guard") {
+                    Get.delete<AuthController>();
+                    Get.offAll(const SecurityGuard());
+                  }
+                  if (user!.person_type?[0]["person_type"] == "sales") {
+                    Get.delete<AuthController>();
+                    Get.offAll(const Sales());
+                  }
+                  if (user!.person_type?[0]["person_type"] == "hr") {
+                    Get.delete<AuthController>();
+                    Get.offAll(const HumanResouce());
+                  }
+                }
               }
             } else {
               Snacks.redSnack("Something went wrong");
@@ -288,11 +340,10 @@ class AuthController extends GetxController {
     Get.find<ApiClient>().postData(
         "otp/verifySignInOtp", {"mobile": number, "otp": otp}).then((value) {
       if (value.data["result"]["role_id"] != null) {
-        Logger().i(value.data);
         if (value.data["result"]["role_id"] == 1) {
           user = User.fromJson(value.data["result"]);
           box.put("user", user);
-          Logger().i(user);
+
           Get.lazyPut(() =>
               OwnerRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
           Get.put(
@@ -305,37 +356,61 @@ class AuthController extends GetxController {
           Get.delete<AuthController>();
           Get.offAll(const Owner());
         }
-      }
-      if (value.data["result"]["role_id"] == "HR") {
-        user = User.fromJson(value.data["result"]);
-        box.put("user", user);
-        Logger().i(user);
-        Get.lazyPut(
-            () => HrRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
-        Get.put(
-            HRController(
-                user: user as User,
-                hrRepo: Get.find<HrRepo>(),
-                apiClient: Get.find<ApiClient>()),
-            permanent: true);
-        Get.delete<AuthController>();
-        Get.offAll(const HrDashboard());
-      }
 
-      if (value.data["result"]["role_id"] == "SALES") {
-        user = User.fromJson(value.data["result"]);
-        box.put("user", user);
-        Logger().i(user);
-        Get.lazyPut(
-            () => HrRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
-        Get.put(
-            SalesController(
-                user: user as User,
-                salesRepo: Get.find<SalesRepo>(),
-                apiClient: Get.find<ApiClient>()),
-            permanent: true);
-        Get.delete<AuthController>();
-        Get.offAll(const SalesDashboard());
+        if (value.data["result"]["role_id"] == 2) {
+          user = User.fromJson(value.data["result"]);
+          box.put("user", user);
+          List x = value.data["result"]["person_type"];
+
+          for (var element in x) {
+            if (element["person_type"] == "security-guard") {
+              Get.lazyPut(() => SecurityGuardRepo(
+                  sharedPreferences: Get.find(), apiClient: Get.find()));
+              Get.put(
+                  SecurityGuardController(
+                    user: user as User,
+                    secGaurdRepo: Get.find<SecurityGuardRepo>(),
+                    apiClient: Get.find<ApiClient>(),
+                  ),
+                  permanent: true);
+            }
+            if (element["person_type"] == "sales") {
+              Get.lazyPut(() => SalesRepo(
+                  sharedPreferences: Get.find(), apiClient: Get.find()));
+              Get.put(
+                  SalesController(
+                      user: user as User,
+                      salesRepo: Get.find<SalesRepo>(),
+                      apiClient: Get.find<ApiClient>()),
+                  permanent: true);
+            }
+            if (element["person_type"] == "hr") {
+              Get.lazyPut(() =>
+                  HrRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
+              Get.put(
+                  HRController(
+                      user: user as User,
+                      hrRepo: Get.find<HrRepo>(),
+                      apiClient: Get.find<ApiClient>()),
+                  permanent: true);
+            }
+          }
+
+          if (user!.person_type?[0] != null) {
+            if (user!.person_type?[0]["person_type"] == "security-guard") {
+              Get.delete<AuthController>();
+              Get.offAll(const SecurityGuard());
+            }
+            if (user!.person_type?[0]["person_type"] == "sales") {
+              Get.delete<AuthController>();
+              Get.offAll(const Sales());
+            }
+            if (user!.person_type?[0]["person_type"] == "hr") {
+              Get.delete<AuthController>();
+              Get.offAll(const HumanResouce());
+            }
+          }
+        }
       }
 
       if (value.data["message"] == "Invalid OTP") {
