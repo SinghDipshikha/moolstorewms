@@ -6,6 +6,7 @@ import 'package:moolwmsstore/Common%20Data/Model/personType.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Common%20Data/repository/ownerRepo.dart';
 import 'package:moolwmsstore/Owner/Model/addWarehouseField.dart';
+import 'package:moolwmsstore/Owner/Model/employee.dart';
 import 'package:moolwmsstore/Owner/Model/warehouse.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/globals.dart';
@@ -24,6 +25,7 @@ class OwnerController extends GetxController {
   List<PersonType> roles = [];
   List<PersonType> selectedRoles = [];
   List<Warehouse> selectedWarehouses = [];
+  List<Employee> employees = [];
   bool loading = false;
   String countrydialCode = "+91";
 
@@ -136,6 +138,20 @@ class OwnerController extends GetxController {
         Get.back(id: ownerNavigationKey);
         Snacks.greenSnack("WareHouse added");
         //
+      }
+    });
+  }
+
+  //owner/getAllEmployeesByOrg
+
+  getAllEmployeesByOrg() {
+    apiClient.getData("owner/getAllEmployeesByOrg").then((value) {
+      if (value.data["message"] == "All Employees found") {
+        List x = value.data["result"];
+        employees = x.map((e) => Employee.fromJson(e)).toList();
+        Logger().i(employees);
+
+        update();
       }
     });
   }
