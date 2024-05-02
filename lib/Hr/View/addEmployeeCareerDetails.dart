@@ -4,10 +4,10 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/Model/addCareerDetail.dart';
-import 'package:moolwmsstore/Hr/constants/validations.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonAppBar.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
+import 'package:moolwmsstore/Hr/constants/validations.dart';
 // import 'package:moolwmsstore/View/auth/Model/Hr/addCareerDetail.dart';
 // //import 'package:moolwmsstore/routes/approutes.gr.dart';
 
