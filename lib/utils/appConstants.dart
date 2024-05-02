@@ -24,6 +24,7 @@ class AppConstants {
     //   "Corporate / Owner",
   ];
   static const String token = 'token';
+  static const String orgCode = 'org-code';
   static const String baseUrl = 'http://65.1.152.63:3000/';
 
   static const String countryCode = 'country_code';

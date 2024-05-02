@@ -14,17 +14,18 @@ import 'package:moolwmsstore/Auth/View/welcome.dart';
 import 'package:moolwmsstore/Common%20Data/Model/Auth/signupfield.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Common%20Data/repository/ownerRepo.dart';
-
 import 'package:moolwmsstore/Controller/salesController.dart';
+import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/View/hrDashboard.dart';
+import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
 import 'package:moolwmsstore/Owner/Owner.dart';
-import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
-import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
 import 'package:moolwmsstore/Sales/View/SalesDashboard.dart';
 import 'package:moolwmsstore/Sales/repo/salesRepo.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
+import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/utils/globals.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // enum OTP {
 //   init,
@@ -43,9 +44,13 @@ class AuthController extends GetxController {
   // var otpstate = OTP.init;
   late Box box;
   User? user;
+  late SharedPreferences sharedPreferences;
 
   @override
   Future<void> onInit() async {
+    SharedPreferences.getInstance().then((value) {
+      sharedPreferences = value;
+    });
     Hive.registerAdapter(DbConnectAdapter());
     Hive.registerAdapter(UserAdapter());
     // TODO: implement onInit
@@ -64,6 +69,9 @@ class AuthController extends GetxController {
     user = box.get("user");
 
     if (user != null || dbconnect?.organiosationCode != null) {
+      sharedPreferences.setString(
+          AppConstants.orgCode, dbconnect!.organiosationCode.toString());
+      apiClient.updateHeader();
       Logger().i(user);
       apiClient.postData('verifyOrgByCode',
           {"org_code": dbconnect!.organiosationCode}).then((value) {
@@ -89,7 +97,7 @@ class AuthController extends GetxController {
               }
               if (user?.role_id == 1) {
                 Get.lazyPut(() => OwnerRepo(
-                    sharedPreferences: Get.find(), apiClient: Get.find()));
+                    sharedPreferences: Get.find(), apiClient: apiClient));
                 Get.put(
                     OwnerController(
                         user: user as User,
@@ -153,6 +161,9 @@ class AuthController extends GetxController {
                 // password: value.data["data"]["database_password"],
                 // database: value.data["data"]["database_name"],
                 organiosationCode: organiosationCode);
+            sharedPreferences.setString(
+                AppConstants.orgCode, organiosationCode);
+            apiClient.updateHeader();
 
             box.put("dbkey", dbconnect);
 
@@ -304,12 +315,11 @@ class AuthController extends GetxController {
                 hrRepo: Get.find<HrRepo>(),
                 apiClient: apiClient),
             permanent: true);
-             Get.delete<AuthController>();
-          Get.offAll(const HrDashboard());
+        Get.delete<AuthController>();
+        Get.offAll(const HrDashboard());
       }
 
-
-       if (value.data["result"]["role_id"] == "SALES") {
+      if (value.data["result"]["role_id"] == "SALES") {
         user = User.fromJson(value.data["result"]);
         box.put("user", user);
         Logger().i(user);
@@ -321,10 +331,9 @@ class AuthController extends GetxController {
                 salesRepo: Get.find<SalesRepo>(),
                 apiClient: apiClient),
             permanent: true);
-             Get.delete<AuthController>();
-          Get.offAll(const SalesDashboard());
+        Get.delete<AuthController>();
+        Get.offAll(const SalesDashboard());
       }
-
 
       if (value.data["message"] == "Invalid OTP") {
         Snacks.redSnack("Invalid OTP");
