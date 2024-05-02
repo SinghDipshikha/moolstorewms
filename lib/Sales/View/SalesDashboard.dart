@@ -7,6 +7,7 @@ import 'package:moolwmsstore/Owner/View/Employee/AddEmployee.dart';
 import 'package:moolwmsstore/Owner/View/Employee/EmployeeList.dart';
 import 'package:moolwmsstore/Owner/View/WarehouseList.dart';
 import 'package:moolwmsstore/Owner/View/addWarehouse.dart';
+import 'package:moolwmsstore/Sales/View/addCompany.dart';
 import 'package:moolwmsstore/Sales/View/companyList.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -226,7 +227,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
                     CurvedLineConatainer(
                       title: "Add Company",
                       onTap: () {
-                        // Get.to(const AddEmployee(), id: ownerNavigationKey);
+                        Get.to(AddCompany(), id: salesNavigationKey);
                       },
                     ),
                     CurvedLineConatainer(

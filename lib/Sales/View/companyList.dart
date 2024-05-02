@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:get/get_utils/get_utils.dart';
-import 'package:moolwmsstore/Owner/View/Common/customButton.dart';
+import 'package:moolwmsstore/Sales/View/addCompany.dart';
+import 'package:moolwmsstore/Sales/View/companyDetail.dart';
+import 'package:moolwmsstore/Sales/View/widgets/customButton.dart';
+import 'package:moolwmsstore/View/common/myTextField.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 class CompanyList extends StatelessWidget {
   const CompanyList({super.key});
@@ -18,10 +23,22 @@ class CompanyList extends StatelessWidget {
       {"title": "Info", "flex": 1},
       {"title": "icon", "flex": 1},
     ];
+    final List contents = [
+      {"title": "TechSavy Solutions", "flex": 1},
+      {"title": "555-123-4567", "flex": 1},
+      // {"title": "Employee ID", "flex": 1},
+      // {"title": "Category", "flex": 1},
+      {"title": "22-07-2024 10:30 AM", "flex": 1},
+      // {"title": "Timestamp", "flex": 1},
+      {"title": "Info", "flex": 1},
+      {"title": "icon", "flex": 1},
+    ];
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: CustomButton(
-        onTap: () {},
+        onTap: () {
+          Get.off(AddCompany(), id: salesNavigationKey);
+        },
         title: 'Add Company',
       ).paddingSymmetric(horizontal: 12),
       appBar: AppBar(
@@ -39,162 +56,191 @@ class CompanyList extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
+      body: Stack(
+        alignment: Alignment.bottomCenter,
         children: [
-          const Gap(20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Column(
             children: [
-              Container(
-                height: 40,
-                width: 170,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  border: Border.all(
-                      color: const Color(0xFF5A57FF).withOpacity(0.4)),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/icons/Filter (R).png',
-                      height: 19,
-                    ),
-                    const SizedBox(
-                      width: 12,
-                    ),
-                    const Text(
-                      'Filter',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFFA7A7A7),
-                        fontSize: 16,
-                        fontFamily: 'SF Pro Text',
-                        fontWeight: FontWeight.w500,
-                        height: 0,
-                        letterSpacing: -0.64,
-                      ),
-                    )
-                  ],
-                ),
-              ),
               const Gap(20),
-              Container(
-                height: 40,
-                width: 170,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  border: Border.all(
-                      width: 1,
-                      color: const Color(0xFF5A57FF).withOpacity(0.4)),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/icons/search-normal.png',
-                      height: 19,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 40,
+                    width: 170,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(
+                          color: const Color(0xFF5A57FF).withOpacity(0.4)),
                     ),
-                    const SizedBox(
-                      width: 12,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/icons/Filter (R).png',
+                          height: 19,
+                        ),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        const Text(
+                          'Filter',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Color(0xFFA7A7A7),
+                            fontSize: 16,
+                            fontFamily: 'SF Pro Text',
+                            fontWeight: FontWeight.w500,
+                            height: 0,
+                            letterSpacing: -0.64,
+                          ),
+                        )
+                      ],
                     ),
-                    const Text(
-                      'Search',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFFA7A7A7),
-                        fontSize: 16,
-                        fontFamily: 'SF Pro Text',
-                        fontWeight: FontWeight.w500,
-                        height: 0,
-                        letterSpacing: -0.64,
-                      ),
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
-          const Gap(30),
-          Row(
-            children: List.generate(tags.length, (index) {
-              if (tags[index]["title"] == "icon") {
-                return IconButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.more_horiz,
-                      color: Colors.white,
-                    ));
-              }
-              if (tags[index]["title"] == "Info") {
-                return IconButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () {},
-                    icon: Container());
-              }
-
-              return Expanded(
-                  flex: tags[index]["flex"],
-                  child: Text(
-                    tags[index]["title"],
-                    style: const TextStyle(
-                      color: Color(0xFF5A57FF),
-                      fontSize: 12,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w400,
-                      height: 0,
-                      letterSpacing: -0.48,
+                  ),
+                  const Gap(20),
+                  Container(
+                    height: 40,
+                    width: 170,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(
+                          width: 1,
+                          color: const Color(0xFF5A57FF).withOpacity(0.4)),
                     ),
-                  ));
-            }),
-          ).paddingSymmetric(horizontal: 20),
-          Expanded(child: ListView.builder(itemBuilder: (context, liatIndex) {
-            return Container(
-              height: 40,
-              decoration: ShapeDecoration(
-                color: const Color(0xFFFAF9FF),
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(width: 1, color: Color(0x195A57FF)),
-                  borderRadius: BorderRadius.circular(5),
-                ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/icons/search-normal.png',
+                          height: 19,
+                        ),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        const Text(
+                          'Search',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Color(0xFFA7A7A7),
+                            fontSize: 16,
+                            fontFamily: 'SF Pro Text',
+                            fontWeight: FontWeight.w500,
+                            height: 0,
+                            letterSpacing: -0.64,
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Row(
+              const Gap(30),
+              Row(
                 children: List.generate(tags.length, (index) {
-                  if (tags[index]["title"] == "Info") {
-                    return IconButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: () {},
-                        icon: Image.asset(
-                          "assets/icons/Eye.png",
-                          height: 22,
-                        ));
-                  }
                   if (tags[index]["title"] == "icon") {
                     return IconButton(
                         padding: EdgeInsets.zero,
                         onPressed: () {},
                         icon: const Icon(
                           Icons.more_horiz,
-                          color: Colors.black,
+                          color: Colors.white,
                         ));
                   }
+                  if (tags[index]["title"] == "Info") {
+                    return IconButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () {},
+                        icon: Container());
+                  }
+
                   return Expanded(
                       flex: tags[index]["flex"],
                       child: Text(
                         tags[index]["title"],
                         style: const TextStyle(
-                          color: Color(0xFF353535),
+                          color: Color(0xFF5A57FF),
                           fontSize: 12,
                           fontFamily: 'SF Pro Text',
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w400,
+                          height: 0,
+                          letterSpacing: -0.48,
                         ),
                       ));
                 }),
-              ),
-            ).paddingSymmetric(vertical: 4, horizontal: 10);
-          }))
+              ).paddingSymmetric(horizontal: 20),
+              Expanded(
+                  child: ListView.builder(itemBuilder: (context, liatIndex) {
+                return Container(
+                  height: 70,
+                  decoration: ShapeDecoration(
+                    color: const Color(0xFFFAF9FF),
+                    shape: RoundedRectangleBorder(
+                      side:
+                          const BorderSide(width: 1, color: Color(0x195A57FF)),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Row(
+                    children: List.generate(tags.length, (index) {
+                      if (tags[index]["title"] == "Info") {
+                        return IconButton(
+                            padding: EdgeInsets.zero,
+                            onPressed: () {},
+                            icon: Image.asset(
+                              "assets/icons/Eye.png",
+                              height: 22,
+                            ));
+                      }
+                      if (tags[index]["title"] == "icon") {
+                        return IconButton(
+                            padding: EdgeInsets.zero,
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.more_horiz,
+                              color: Colors.black,
+                            ));
+                      }
+                      return Expanded(
+                          flex: tags[index]["flex"],
+                          child: GestureDetector(
+                            onTap: () {
+                              Get.to(const CompanyDetail(),
+                                  id: salesNavigationKey);
+                            },
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Text(
+                                contents[index]["title"],
+                                style: const TextStyle(
+                                  color: Color(0xFF353535),
+                                  fontSize: 12,
+                                  fontFamily: 'SF Pro Text',
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ));
+                    }),
+                  ),
+                ).paddingSymmetric(vertical: 4, horizontal: 10);
+              })),
+            ],
+          ),
+          Container(
+            height: Get.height * 0.2,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                  Colors.white.withOpacity(0.3),
+                  Colors.white,
+                  Colors.white,
+                ])),
+          ),
         ],
       ),
     );
