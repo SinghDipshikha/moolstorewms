@@ -1,12 +1,15 @@
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
+import 'package:moolwmsstore/Hr/HumanResource.dart';
+import 'package:moolwmsstore/Sales/Sales.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addVisitor.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allPersonsInfo.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allVisitorsInfo.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/employeeEntry.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/secGuardDetail.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/singlePersonDetail.dart';
+import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
 import 'package:moolwmsstore/Security%20Guard/repository/securityGuardRepo.dart';
 
 class SecurityGuardController extends GetxController {
@@ -22,7 +25,9 @@ class SecurityGuardController extends GetxController {
   User user;
 
   SecurityGuardController(
-      {required this.secGaurdRepo, required this.apiClient,required this.user});
+      {required this.secGaurdRepo,
+      required this.apiClient,
+      required this.user});
 
   void verifyEmployee() {
     secGaurdRepo
@@ -118,5 +123,17 @@ class SecurityGuardController extends GetxController {
         update();
       }
     });
+  }
+
+  switchRole(String role) {
+    if (role == "security-guard") {
+      Get.offAll(const SecurityGuard());
+    }
+    if (role == "hr") {
+      Get.offAll(const HumanResouce());
+    }
+    if (role == "sales") {
+      Get.offAll(const Sales());
+    }
   }
 }

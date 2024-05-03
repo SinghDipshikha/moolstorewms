@@ -1,16 +1,11 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
-import 'package:moolwmsstore/Owner/View/Employee/AddEmployee.dart';
-import 'package:moolwmsstore/Owner/View/Employee/EmployeeList.dart';
-import 'package:moolwmsstore/Owner/View/WarehouseList.dart';
-import 'package:moolwmsstore/Owner/View/addWarehouse.dart';
 import 'package:moolwmsstore/Sales/View/addCompany.dart';
 import 'package:moolwmsstore/Sales/View/companyList.dart';
+import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/utils/globals.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 
 ////@RoutePage()
 class SalesDashboard extends StatefulWidget {
@@ -51,84 +46,86 @@ class _SalesDashboardState extends State<SalesDashboard> {
               data: Theme.of(context).copyWith(
                 dividerTheme: const DividerThemeData(color: Colors.transparent),
               ),
-              child: DrawerHeader(
-                  curve: Curves.bounceOut,
-                  decoration: const BoxDecoration(
-                      border: Border(bottom: BorderSide.none)),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 100,
-                        height: 100,
-                        decoration: const ShapeDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(
-                                "https://via.placeholder.com/100x100"),
-                            fit: BoxFit.fill,
-                          ),
-                          shape: OvalBorder(
-                            side: BorderSide(
-                              width: 2,
-                              strokeAlign: BorderSide.strokeAlignOutside,
-                              color: Color(0x195A57FF),
+              child: GetBuilder<SalesController>(builder: (salesController) {
+                return DrawerHeader(
+                    curve: Curves.bounceOut,
+                    decoration: const BoxDecoration(
+                        border: Border(bottom: BorderSide.none)),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 100,
+                          height: 100,
+                          decoration: const ShapeDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  "https://via.placeholder.com/100x100"),
+                              fit: BoxFit.fill,
+                            ),
+                            shape: OvalBorder(
+                              side: BorderSide(
+                                width: 2,
+                                strokeAlign: BorderSide.strokeAlignOutside,
+                                color: Color(0x195A57FF),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const Gap(12),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              const Text(
-                                '',
-                                // '${ownerController.user.first_name} ${ownerController.user.last_name ?? ""}',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontFamily: 'SF Pro Text',
-                                  fontWeight: FontWeight.w500,
-                                  // height: 0,
-                                  // letterSpacing: -0.80,
+                        const Gap(12),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                const Text(
+                                  '',
+                                  // '${ownerController.user.first_name} ${ownerController.user.last_name ?? ""}',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontFamily: 'SF Pro Text',
+                                    fontWeight: FontWeight.w500,
+                                    // height: 0,
+                                    // letterSpacing: -0.80,
+                                  ),
                                 ),
+                                const Gap(12),
+                                //  const Spacer(),
+                                Image.asset(
+                                  "assets/icons/candle.png",
+                                  height: 22,
+                                )
+                              ],
+                            ),
+                            const Text(
+                              // ownerController.user.email ?? "",
+                              '',
+                              style: TextStyle(
+                                color: Color(0xFFACACAC),
+                                fontSize: 14,
+                                fontFamily: 'SF Pro Text',
+                                fontWeight: FontWeight.w300,
+                                // height: 0,
+                                // letterSpacing: -0.56,
                               ),
-                              const Gap(12),
-                              //  const Spacer(),
-                              Image.asset(
-                                "assets/icons/candle.png",
-                                height: 22,
-                              )
-                            ],
-                          ),
-                          const Text(
-                            // ownerController.user.email ?? "",
-                            '',
-                            style: TextStyle(
-                              color: Color(0xFFACACAC),
-                              fontSize: 14,
-                              fontFamily: 'SF Pro Text',
-                              fontWeight: FontWeight.w300,
-                              // height: 0,
-                              // letterSpacing: -0.56,
                             ),
-                          ),
-                          const Text(
-                            'Owner',
-                            style: TextStyle(
-                              color: Color(0xFFFF5789),
-                              fontSize: 16,
-                              fontFamily: 'SF Pro Text',
-                              fontWeight: FontWeight.w500,
-                              // height: 0,
-                              // letterSpacing: -0.64,
-                            ),
-                          )
-                        ],
-                      )
-                    ],
-                  )),
+                            const Text(
+                              'Sales',
+                              style: TextStyle(
+                                color: Color(0xFFFF5789),
+                                fontSize: 16,
+                                fontFamily: 'SF Pro Text',
+                                fontWeight: FontWeight.w500,
+                                // height: 0,
+                                // letterSpacing: -0.64,
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ));
+              }),
             ),
             // }),
             Expanded(
@@ -249,6 +246,89 @@ class _SalesDashboardState extends State<SalesDashboard> {
                 ),
               ],
             )),
+            GetBuilder<SalesController>(builder: (salesController) {
+              if (salesController.user.person_type != null) {
+                if (salesController.user.person_type!.isNotEmpty) {
+                  return DropdownButtonFormField2<String>(
+                    //  isExpanded: true,
+
+                    decoration: InputDecoration(
+                      // Add Horizontal padding using menuItemStyleData.padding so it matches
+                      // the menu padding when button's width is not specified.
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 16, horizontal: 12),
+                      border: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      // Add more decoration..
+                    ),
+                    hint: const Text('Switch Role',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: 'SF Pro Text',
+                          fontWeight: FontWeight.w500,
+                          height: 0,
+                          letterSpacing: -0.64,
+                        )),
+                    items: salesController.user.person_type!.map((item) {
+                      return DropdownMenuItem<String>(
+                        value: item["person_type"].toString(),
+                        child: Text(
+                          item["person_type"].toString(),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontFamily: 'SF Pro Text',
+                            fontWeight: FontWeight.w500,
+                            height: 0,
+                            letterSpacing: -0.64,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                    validator: (value) {
+                      if (value == null) {
+                        return 'Switch Role';
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      if (value != null) {
+                        salesController.switchRole(value);
+                      }
+                      // Logger().i(value);
+                      //Do something when selected item is changed.
+                    },
+                    onSaved: (value) {
+                      // selectedValue = value.toString();
+                    },
+                    buttonStyleData: const ButtonStyleData(
+                      //decoration: BoxDecoration(color: Colors.white),
+                      overlayColor: MaterialStatePropertyAll(Colors.white),
+                    ),
+                    iconStyleData: const IconStyleData(
+                      icon: Icon(
+                        Icons.arrow_drop_down,
+                        color: Colors.white,
+                      ),
+                      iconSize: 24,
+                    ),
+                    dropdownStyleData: DropdownStyleData(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    menuItemStyleData: const MenuItemStyleData(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                    ),
+                  ).paddingSymmetric(horizontal: 12, vertical: 12);
+                }
+              }
+              return Container();
+            }),
+
             InkWell(
               onTap: () {
                 // Get.find<OwnerController>().ownerLogout();
