@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Controller/salesController.dart';
+
 import 'package:moolwmsstore/Sales/Sales.dart';
 import 'package:moolwmsstore/Sales/View/SalesDashboard.dart';
 import 'package:moolwmsstore/Sales/View/companyList.dart';
