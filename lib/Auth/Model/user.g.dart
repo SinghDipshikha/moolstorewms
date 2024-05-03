@@ -24,13 +24,15 @@ class UserAdapter extends TypeAdapter<User> {
       email: fields[2] as String?,
       phone: fields[3] as dynamic,
       organiosationCode: fields[4] as String?,
+      person_type: (fields[7] as List?)?.cast<dynamic>(),
+      warehouse: (fields[8] as List?)?.cast<dynamic>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, User obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.first_name)
       ..writeByte(5)
@@ -44,7 +46,11 @@ class UserAdapter extends TypeAdapter<User> {
       ..writeByte(3)
       ..write(obj.phone)
       ..writeByte(4)
-      ..write(obj.organiosationCode);
+      ..write(obj.organiosationCode)
+      ..writeByte(7)
+      ..write(obj.person_type)
+      ..writeByte(8)
+      ..write(obj.warehouse);
   }
 
   @override
@@ -70,6 +76,8 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       email: json['email'] as String?,
       phone: json['phone'],
       organiosationCode: json['organiosationCode'] as String?,
+      person_type: json['person_type'] as List<dynamic>?,
+      warehouse: json['warehouse'] as List<dynamic>?,
     );
 
 Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
@@ -81,4 +89,6 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'email': instance.email,
       'phone': instance.phone,
       'organiosationCode': instance.organiosationCode,
+      'person_type': instance.person_type,
+      'warehouse': instance.warehouse,
     };

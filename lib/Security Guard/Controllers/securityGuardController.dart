@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addVisitor.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allPersonsInfo.dart';
@@ -18,9 +19,10 @@ class SecurityGuardController extends GetxController {
   GetSinglePersonDetails? singelPersonDetails;
   List<EmployeeEntry> empEntryList = [];
   bool? isCheckIn;
+  User user;
 
   SecurityGuardController(
-      {required this.secGaurdRepo, required this.apiClient});
+      {required this.secGaurdRepo, required this.apiClient,required this.user});
 
   void verifyEmployee() {
     secGaurdRepo

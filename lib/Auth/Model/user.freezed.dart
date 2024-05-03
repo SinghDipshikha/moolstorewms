@@ -34,6 +34,10 @@ mixin _$User {
   dynamic get phone => throw _privateConstructorUsedError;
   @HiveField(4)
   String? get organiosationCode => throw _privateConstructorUsedError;
+  @HiveField(7)
+  List<dynamic>? get person_type => throw _privateConstructorUsedError;
+  @HiveField(8)
+  List<dynamic>? get warehouse => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,7 +56,9 @@ abstract class $UserCopyWith<$Res> {
       @HiveField(1) String? last_name,
       @HiveField(2) String? email,
       @HiveField(3) dynamic phone,
-      @HiveField(4) String? organiosationCode});
+      @HiveField(4) String? organiosationCode,
+      @HiveField(7) List<dynamic>? person_type,
+      @HiveField(8) List<dynamic>? warehouse});
 }
 
 /// @nodoc
@@ -75,6 +81,8 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? email = freezed,
     Object? phone = freezed,
     Object? organiosationCode = freezed,
+    Object? person_type = freezed,
+    Object? warehouse = freezed,
   }) {
     return _then(_value.copyWith(
       first_name: freezed == first_name
@@ -105,6 +113,14 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.organiosationCode
           : organiosationCode // ignore: cast_nullable_to_non_nullable
               as String?,
+      person_type: freezed == person_type
+          ? _value.person_type
+          : person_type // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+      warehouse: freezed == warehouse
+          ? _value.warehouse
+          : warehouse // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
     ) as $Val);
   }
 }
@@ -123,7 +139,9 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       @HiveField(1) String? last_name,
       @HiveField(2) String? email,
       @HiveField(3) dynamic phone,
-      @HiveField(4) String? organiosationCode});
+      @HiveField(4) String? organiosationCode,
+      @HiveField(7) List<dynamic>? person_type,
+      @HiveField(8) List<dynamic>? warehouse});
 }
 
 /// @nodoc
@@ -143,6 +161,8 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? email = freezed,
     Object? phone = freezed,
     Object? organiosationCode = freezed,
+    Object? person_type = freezed,
+    Object? warehouse = freezed,
   }) {
     return _then(_$UserImpl(
       first_name: freezed == first_name
@@ -173,6 +193,14 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.organiosationCode
           : organiosationCode // ignore: cast_nullable_to_non_nullable
               as String?,
+      person_type: freezed == person_type
+          ? _value._person_type
+          : person_type // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+      warehouse: freezed == warehouse
+          ? _value._warehouse
+          : warehouse // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
     ));
   }
 }
@@ -187,7 +215,11 @@ class _$UserImpl implements _User {
       @HiveField(1) this.last_name,
       @HiveField(2) this.email,
       @HiveField(3) this.phone,
-      @HiveField(4) this.organiosationCode});
+      @HiveField(4) this.organiosationCode,
+      @HiveField(7) final List<dynamic>? person_type,
+      @HiveField(8) final List<dynamic>? warehouse})
+      : _person_type = person_type,
+        _warehouse = warehouse;
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -213,10 +245,31 @@ class _$UserImpl implements _User {
   @override
   @HiveField(4)
   final String? organiosationCode;
+  final List<dynamic>? _person_type;
+  @override
+  @HiveField(7)
+  List<dynamic>? get person_type {
+    final value = _person_type;
+    if (value == null) return null;
+    if (_person_type is EqualUnmodifiableListView) return _person_type;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<dynamic>? _warehouse;
+  @override
+  @HiveField(8)
+  List<dynamic>? get warehouse {
+    final value = _warehouse;
+    if (value == null) return null;
+    if (_warehouse is EqualUnmodifiableListView) return _warehouse;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'User(first_name: $first_name, role_id: $role_id, id: $id, last_name: $last_name, email: $email, phone: $phone, organiosationCode: $organiosationCode)';
+    return 'User(first_name: $first_name, role_id: $role_id, id: $id, last_name: $last_name, email: $email, phone: $phone, organiosationCode: $organiosationCode, person_type: $person_type, warehouse: $warehouse)';
   }
 
   @override
@@ -233,7 +286,11 @@ class _$UserImpl implements _User {
             (identical(other.email, email) || other.email == email) &&
             const DeepCollectionEquality().equals(other.phone, phone) &&
             (identical(other.organiosationCode, organiosationCode) ||
-                other.organiosationCode == organiosationCode));
+                other.organiosationCode == organiosationCode) &&
+            const DeepCollectionEquality()
+                .equals(other._person_type, _person_type) &&
+            const DeepCollectionEquality()
+                .equals(other._warehouse, _warehouse));
   }
 
   @JsonKey(ignore: true)
@@ -246,7 +303,9 @@ class _$UserImpl implements _User {
       last_name,
       email,
       const DeepCollectionEquality().hash(phone),
-      organiosationCode);
+      organiosationCode,
+      const DeepCollectionEquality().hash(_person_type),
+      const DeepCollectionEquality().hash(_warehouse));
 
   @JsonKey(ignore: true)
   @override
@@ -270,7 +329,9 @@ abstract class _User implements User {
       @HiveField(1) final String? last_name,
       @HiveField(2) final String? email,
       @HiveField(3) final dynamic phone,
-      @HiveField(4) final String? organiosationCode}) = _$UserImpl;
+      @HiveField(4) final String? organiosationCode,
+      @HiveField(7) final List<dynamic>? person_type,
+      @HiveField(8) final List<dynamic>? warehouse}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -295,6 +356,12 @@ abstract class _User implements User {
   @override
   @HiveField(4)
   String? get organiosationCode;
+  @override
+  @HiveField(7)
+  List<dynamic>? get person_type;
+  @override
+  @HiveField(8)
+  List<dynamic>? get warehouse;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>

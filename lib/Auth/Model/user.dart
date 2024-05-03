@@ -15,6 +15,8 @@ class User with _$User {
     @HiveField(2) String? email,
     @HiveField(3) dynamic phone,
     @HiveField(4) String? organiosationCode,
+    @HiveField(7) List? person_type,
+    @HiveField(8) List? warehouse,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

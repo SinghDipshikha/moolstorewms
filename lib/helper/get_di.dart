@@ -27,16 +27,16 @@ Future<Map<String, Map<String, String>>> init() async {
   Get.put(CommonRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
   // Get.put(UserController());
   // Repository
-  Get.lazyPut(
-      () => SplashRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
+  // Get.lazyPut(
+  //     () => SplashRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
   Get.lazyPut(
       () => AuthRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
   // Get.lazyPut(() =>
   //     WarehouseRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
   // Get.lazyPut(
   //     () => SalesRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
-  Get.lazyPut(
-      () => HrRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
+  // Get.lazyPut(
+  //     () => HrRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
 
   // Get.lazyPut(() =>
   //     SecurityGuardRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
@@ -56,12 +56,12 @@ Future<Map<String, Map<String, String>>> init() async {
   // Get.put(
   //     SalesController(salesRepo: Get.find<SalesRepo>(), apiClient: Get.find()),
   //     permanent: true);
-  Get.put(
-      HRController(
-          user: const User(),
-          hrRepo: Get.find<HrRepo>(),
-          apiClient: Get.find()),
-      permanent: true);
+  // Get.put(
+  //     HRController(
+  //         user: const User(),
+  //         hrRepo: Get.find<HrRepo>(),
+  //         apiClient: Get.find()),
+  //     permanent: true);
   // Get.put(
   //     SecurityGuardController(
   //         secGaurdRepo: Get.find<SecurityGuardRepo>(), apiClient: Get.find()),
