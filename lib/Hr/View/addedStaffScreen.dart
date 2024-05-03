@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 
 class AddedStaffScreen extends StatefulWidget {
   const AddedStaffScreen({super.key});
@@ -22,82 +23,28 @@ class _AddedStaffScreenState extends State<AddedStaffScreen> {
               fit: BoxFit.cover,
             ),
           ),
-          child: const Stack(
+          child: Stack(
             children: [
               Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(top: 600.0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Gap(80),
-                    Text(
-                      'Staff Added',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
+                    Center(
+                      child: CommonButton(
+                        title: 'Goto Staff Profile',
                         color: Colors.white,
-                        fontSize: 42,
-                        fontFamily: 'SF Pro Display',
-                        fontWeight: FontWeight.w700,
-                        height: 0,
+                        textColor: Colors.black,
                       ),
                     ),
-                    Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: 'Success! ',
-                            style: TextStyle(
-                              color: Color(0xFFECECEC),
-                              fontSize: 18,
-                              fontFamily: 'Aileron',
-                              fontWeight: FontWeight.w400,
-                              height: 0.06,
-                              letterSpacing: 0.36,
-                            ),
-                          ),
-                          TextSpan(
-                            text: 'Michael Carter',
-                            style: TextStyle(
-                              color: Color(0xFFECECEC),
-                              fontSize: 18,
-                              fontFamily: 'Aileron',
-                              fontWeight: FontWeight.w700,
-                              height: 0.06,
-                              letterSpacing: 0.36,
-                            ),
-                          ),
-                          TextSpan(
-                            text: ' has been added\nto our warehouse team.',
-                            style: TextStyle(
-                              color: Color(0xFFECECEC),
-                              fontSize: 18,
-                              fontFamily: 'Aileron',
-                              fontWeight: FontWeight.w400,
-                              height: 0.06,
-                              letterSpacing: 0.36,
-                            ),
-                          ),
-                        ],
+                    const Gap(20),
+                    Center(
+                      child: CommonButton(
+                        title: 'Home',
+                        color: const Color(0xFF5A57FF),
+                        textColor: Colors.white,
                       ),
-                    ),
+                    )
                   ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 600.0),
-                child: Text(
-                  "Each new member brings fresh perspectives, skills, and ideas \nthat can invigorate the team and contribute\nto its overall productivity.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Color(0xFFBCBCBC),
-                    fontSize: 12,
-                    fontStyle: FontStyle.italic,
-                    fontFamily: 'Aileron',
-                    fontWeight: FontWeight.w400,
-                    height: 0.10,
-                    letterSpacing: 0.24,
-                  ),
                 ),
               ),
             ],

@@ -369,6 +369,8 @@ class _SalesDashboardState extends State<SalesDashboard> {
           ],
         ),
       ),
+      
+      
       appBar: AppBar(
         centerTitle: false,
         backgroundColor: const Color(0xFF232323),
