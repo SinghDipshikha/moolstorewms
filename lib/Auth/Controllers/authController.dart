@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/dbConnect.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Auth/Repository/authRepo.dart';
@@ -149,6 +150,7 @@ class AuthController extends GetxController {
                   }
                 }
                 if (user!.person_type?[0] != null) {
+                  Logger().i(user);
                   if (user!.person_type?[0]["person_type"] ==
                       "security-guard") {
                     Get.delete<AuthController>();

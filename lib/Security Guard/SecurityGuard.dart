@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Security%20Guard/View/dashboard.dart';
+import 'package:moolwmsstore/Security%20Guard/View/securityGuarddashboard.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 ////@RoutePage()
