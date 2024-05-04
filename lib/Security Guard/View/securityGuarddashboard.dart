@@ -155,11 +155,11 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                     color: const Color.fromARGB(255, 22, 22, 22),
                   ),
                   leading: Image.asset(
-                    "assets/icons/New House Icon (R).png",
+                    "assets/images/registerVector.png",
                     height: 28,
                   ),
                   title: const Text(
-                    'Warehouse',
+                    'Register',
                     style: TextStyle(
                       color: Color(0xFFACACAC),
                       fontSize: 16,
@@ -171,11 +171,11 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                   ),
                   children: [
                     CurvedLineConatainer(
-                      title: "Add Warehouse",
+                      title: "Regiter ",
                       onTap: () {},
                     ),
                     CurvedLineConatainer(
-                      title: "View Warehouse",
+                      title: "Register List",
                       isShowextendedLine: false,
                       onTap: () {
                         // WarehouseList
@@ -188,40 +188,6 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                     //     ),
                   ],
                 ),
-                ListTile(
-                  leading: Image.asset(
-                    "assets/icons/Sales Icon (R).png",
-                    height: 28,
-                  ),
-                  title: const Text(
-                    'Sales',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color(0xFFA7A7A7),
-                      fontSize: 16,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  onTap: () {},
-                ),
-                ListTile(
-                  leading: Image.asset(
-                    "assets/icons/HR Icon (R).png",
-                    height: 28,
-                  ),
-                  title: const Text(
-                    'HR',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color(0xFFA7A7A7),
-                      fontSize: 16,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  onTap: () {},
-                ),
                 ExpansionTile(
                   collapsedShape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12)),
@@ -231,11 +197,11 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                     color: const Color.fromARGB(255, 22, 22, 22),
                   ),
                   leading: Image.asset(
-                    "assets/icons/Staff Profile Icons (R).png",
+                    "assets/images/ticketVector.png",
                     height: 28,
                   ),
                   title: const Text(
-                    'Staff',
+                    'Tickets',
                     style: TextStyle(
                       color: Color(0xFFACACAC),
                       fontSize: 16,
@@ -247,11 +213,11 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                   ),
                   children: [
                     CurvedLineConatainer(
-                      title: "Add Staff",
+                      title: "Add Ticket",
                       onTap: () {},
                     ),
                     CurvedLineConatainer(
-                      title: "Staff List",
+                      title: "Ticket List",
                       isShowextendedLine: false,
                       onTap: () {},
                     ),
@@ -272,8 +238,7 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                     //  isExpanded: true,
 
                     decoration: InputDecoration(
-                      // Add Horizontal padding using menuItemStyleData.padding so it matches
-                      // the menu padding when button's width is not specified.
+                   
                       contentPadding: const EdgeInsets.symmetric(
                           vertical: 16, horizontal: 12),
                       border: OutlineInputBorder(

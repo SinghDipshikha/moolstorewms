@@ -13,8 +13,6 @@ class HrDashboard extends StatefulWidget {
 }
 
 class _HrDashboardState extends State<HrDashboard> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,8 +30,7 @@ class _HrDashboardState extends State<HrDashboard> {
           ),
         ),
       ),
-      drawer: 
-      Drawer(
+      drawer: Drawer(
         //  width: context.isPhone ? MediaQuery.sizeOf(context).width - 100 : 400,
         surfaceTintColor: const Color.fromARGB(255, 22, 22, 22),
         backgroundColor: const Color.fromARGB(255, 22, 22, 22),
@@ -77,15 +74,20 @@ class _HrDashboardState extends State<HrDashboard> {
                           children: [
                             Row(
                               children: [
-                                Text(
-                                  '${hrController.user.first_name} ${hrController.user.last_name ?? ""}',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontFamily: 'SF Pro Text',
-                                    fontWeight: FontWeight.w500,
-                                    // height: 0,
-                                    // letterSpacing: -0.80,
+                                SizedBox(
+                                  height: 40,
+                                  width: 120,
+                                  child: Text(
+                                    '${hrController.user.first_name} ${hrController.user.last_name ?? ""}',
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontFamily: 'SF Pro Text',
+                                      fontWeight: FontWeight.w500,
+                                      // height: 0,
+                                      // letterSpacing: -0.80,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
                                 const Gap(12),
@@ -103,6 +105,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                 fontSize: 14,
                                 fontFamily: 'SF Pro Text',
                                 fontWeight: FontWeight.w300,
+
                                 // height: 0,
                                 // letterSpacing: -0.56,
                               ),
@@ -154,83 +157,7 @@ class _HrDashboardState extends State<HrDashboard> {
                     color: const Color.fromARGB(255, 22, 22, 22),
                   ),
                   leading: Image.asset(
-                    "assets/icons/New House Icon (R).png",
-                    height: 28,
-                  ),
-                  title: const Text(
-                    'Warehouse',
-                    style: TextStyle(
-                      color: Color(0xFFACACAC),
-                      fontSize: 16,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w500,
-                      // height: 0,
-                      letterSpacing: -0.64,
-                    ),
-                  ),
-                  children: [
-                    CurvedLineConatainer(
-                      title: "Add Warehouse",
-                      onTap: () {},
-                    ),
-                    CurvedLineConatainer(
-                      title: "View Warehouse",
-                      isShowextendedLine: false,
-                      onTap: () {
-                        // WarehouseList
-                      },
-                    ),
-                    // CurvedLineConatainer(title: "dcdc"),
-                    // CurvedLineConatainer(
-                    //   title: "dcdc",
-                    //   isShowextendedLine: false,
-                    //     ),
-                  ],
-                ),
-                ListTile(
-                  leading: Image.asset(
-                    "assets/icons/Sales Icon (R).png",
-                    height: 28,
-                  ),
-                  title: const Text(
-                    'Sales',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color(0xFFA7A7A7),
-                      fontSize: 16,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  onTap: () {},
-                ),
-                ListTile(
-                  leading: Image.asset(
-                    "assets/icons/HR Icon (R).png",
-                    height: 28,
-                  ),
-                  title: const Text(
-                    'HR',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color(0xFFA7A7A7),
-                      fontSize: 16,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  onTap: () {},
-                ),
-                ExpansionTile(
-                  collapsedShape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                  iconColor: Colors.white,
-                  collapsedIconColor: Colors.white,
-                  shape: Border.all(
-                    color: const Color.fromARGB(255, 22, 22, 22),
-                  ),
-                  leading: Image.asset(
-                    "assets/icons/Staff Profile Icons (R).png",
+                    "assets/images/peopleVector.png",
                     height: 28,
                   ),
                   title: const Text(
@@ -250,15 +177,86 @@ class _HrDashboardState extends State<HrDashboard> {
                       onTap: () {},
                     ),
                     CurvedLineConatainer(
-                      title: "Staff List",
+                      title: "View Staff",
                       isShowextendedLine: false,
-                      onTap: () {},
+                      onTap: () {
+                        // WarehouseList
+                      },
                     ),
                     // CurvedLineConatainer(title: "dcdc"),
                     // CurvedLineConatainer(
                     //   title: "dcdc",
                     //   isShowextendedLine: false,
                     //     ),
+                  ],
+                ),
+                ListTile(
+                  leading: Image.asset(
+                    "assets/images/messageVector.png",
+                    height: 28,
+                  ),
+                  title: const Text(
+                    'Messages',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: Color(0xFFA7A7A7),
+                      fontSize: 16,
+                      fontFamily: 'SF Pro Text',
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: Image.asset(
+                    "assets/images/calenderVector.png",
+                    height: 28,
+                  ),
+                  title: const Text(
+                    'Calender',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: Color(0xFFA7A7A7),
+                      fontSize: 16,
+                      fontFamily: 'SF Pro Text',
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  onTap: () {},
+                ),
+                ExpansionTile(
+                  collapsedShape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                  iconColor: Colors.white,
+                  collapsedIconColor: Colors.white,
+                  shape: Border.all(
+                    color: const Color.fromARGB(255, 22, 22, 22),
+                  ),
+                  leading: Image.asset(
+                    "assets/images/reportVector.png",
+                    height: 28,
+                  ),
+                  title: const Text(
+                    'Report',
+                    style: TextStyle(
+                      color: Color(0xFFACACAC),
+                      fontSize: 16,
+                      fontFamily: 'SF Pro Text',
+                      fontWeight: FontWeight.w500,
+                      // height: 0,
+                      letterSpacing: -0.64,
+                    ),
+                  ),
+                  children: [
+                    CurvedLineConatainer(
+                      title: "Add report",
+                      onTap: () {},
+                    ),
+                    CurvedLineConatainer(
+                      title: "Report List",
+                      isShowextendedLine: false,
+                      onTap: () {},
+                    ),
                   ],
                 ),
               ],
@@ -270,8 +268,6 @@ class _HrDashboardState extends State<HrDashboard> {
                     //  isExpanded: true,
 
                     decoration: InputDecoration(
-                      // Add Horizontal padding using menuItemStyleData.padding so it matches
-                      // the menu padding when button's width is not specified.
                       contentPadding: const EdgeInsets.symmetric(
                           vertical: 16, horizontal: 12),
                       border: OutlineInputBorder(
@@ -345,7 +341,6 @@ class _HrDashboardState extends State<HrDashboard> {
               }
               return Container();
             }),
-
             InkWell(
               onTap: () {
                 // Get.find<OwnerController>().ownerLogout();
