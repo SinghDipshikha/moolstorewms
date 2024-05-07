@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/Auth/widgets/commonTextField.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/checkedInSaved.dart';
-import 'package:moolwmsstore/Security%20Guard/View/Register/registrationList.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Tickets/addTicket.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/View/common/tagContainer.dart';
@@ -30,11 +30,9 @@ class _TicketEntryReviewScreenState extends State<TicketEntryReviewScreen> {
     return Scaffold(
       appBar: CommonAppBar(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const RegistrationListScreen(),
-          ));
+          Get.to(const AddTicketScreen(), id: securityGuardNavigation);
         },
-        title: 'Verify',
+        title: 'Verify Ticket',
         actions: const [],
       ),
       body: SingleChildScrollView(
@@ -215,6 +213,8 @@ class _TicketEntryReviewScreenState extends State<TicketEntryReviewScreen> {
                             const Gap(16),
                           ],
                         ).paddingSymmetric(vertical: 16, horizontal: 16)),
+                 
+                 
                   ],
                 ),
               ),
