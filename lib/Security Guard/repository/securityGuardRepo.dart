@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addVisitor.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allPersonsInfo.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allTicketList.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allVisitorsInfo.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/employeeEntry.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/secGuardDetail.dart';
@@ -134,6 +135,14 @@ class SecurityGuardRepo {
     if (res.data["message"] ==
         "Visitor Details Found for visitor id $visitorId") {
       return GetSinglePersonDetails.fromJson(res.data["result"]);
+    }
+    return null;
+  }
+
+  Future<GetAllTicketListBySecurityGuard?> getAllTicketList() async {
+    Response res = await apiClient.getData("ticket/getAllTicketsList");
+    if (res.data["message"] == "Data Retrieved Successfully!") {
+      return GetAllTicketListBySecurityGuard.fromJson(res.data["result"]);
     }
     return null;
   }
