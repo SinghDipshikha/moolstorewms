@@ -54,6 +54,7 @@ class _DipshikaAppState extends State<DipshikaApp> {
         builder: (localizeController) {
           return GetMaterialApp(
             //  home: const FloorLayoutDesiging(),
+            // home: const TestQr(),
             home: const Auth(),
             // home: const AddEmployeeCareerDetails(),
             //home: ChamberDesign(),
