@@ -4,7 +4,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/registrationList.dart';
-import 'package:moolwmsstore/Security%20Guard/View/Visitor/visitorList.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Tickets/addTicket.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Visitor/addVisitor.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
@@ -629,13 +630,20 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                   ),
                   child: Column(
                     children: [
-                      Container(
-                        width: 100,
-                        height: 66,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("assets/images/ticket_image.png"),
-                            fit: BoxFit.cover,
+                      InkWell(
+                        onTap: () {
+                          Get.to(const AddTicketScreen(),
+                              id: securityGuardNavigation);
+                        },
+                        child: Container(
+                          width: 100,
+                          height: 66,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image:
+                                  AssetImage("assets/images/ticket_image.png"),
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
@@ -706,8 +714,7 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Get.to(const VisitorListScreen(),
-                          id: securityGuardNavigation);
+                      Get.to(const AddVisitor(), id: securityGuardNavigation);
                     },
                     child: Container(
                       width: 66,
@@ -1545,6 +1552,7 @@ void _showPopup(BuildContext context) {
     },
   );
 }
+
 
 class CurvedLineConatainer extends StatelessWidget {
   String title;

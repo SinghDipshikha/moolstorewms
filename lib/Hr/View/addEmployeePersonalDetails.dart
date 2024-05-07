@@ -338,6 +338,8 @@ class _AddEmployeePersonalDetailsState
                             ],
                           ),
                         ),
+                        
+                        
                         Container(
                           constraints: context.isPhone
                               ? null

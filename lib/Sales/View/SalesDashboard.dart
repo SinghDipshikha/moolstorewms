@@ -2,8 +2,10 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/Sales/View/Ticket/createticket.dart';
 import 'package:moolwmsstore/Sales/View/addCompany.dart';
 import 'package:moolwmsstore/Sales/View/companyList.dart';
+import 'package:moolwmsstore/Sales/View/poList.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
@@ -176,13 +178,14 @@ class _SalesDashboardState extends State<SalesDashboard> {
                     CurvedLineConatainer(
                       title: "Create Ticket",
                       onTap: () {
-                        // Get.to(const AddWarehouse(), id: ownerNavigationKey);
+                        Get.to(const Createticket(), id: salesNavigationKey);
                       },
                     ),
                     CurvedLineConatainer(
                       title: "View Ticket List",
                       isShowextendedLine: false,
                       onTap: () {
+                        Get.to(const PoList(), id: salesNavigationKey);
                         // Get.find<OwnerController>().setloadingtrue();
                         // Get.to(const WarehouseList(), id: ownerNavigationKey);
                         // WarehouseList
@@ -369,8 +372,6 @@ class _SalesDashboardState extends State<SalesDashboard> {
           ],
         ),
       ),
-      
-      
       appBar: AppBar(
         centerTitle: false,
         backgroundColor: const Color(0xFF232323),
