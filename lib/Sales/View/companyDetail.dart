@@ -1,15 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/Sales/Model/company.dart';
 import 'package:moolwmsstore/Sales/View/SalesDashboard.dart';
 import 'package:moolwmsstore/Sales/View/widgets/customButton.dart';
 import 'package:moolwmsstore/utils/globals.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 class CompanyDetail extends StatelessWidget {
-  const CompanyDetail({super.key});
+  Company company;
+  CompanyDetail({super.key, required this.company});
 
   @override
   Widget build(BuildContext context) {
@@ -62,12 +61,12 @@ class CompanyDetail extends StatelessWidget {
                           const Color(0xFF5A57FF).withOpacity(0.6),
                           Colors.transparent,
                         ])),
-                child: const Column(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'PixelGenix',
-                      style: TextStyle(
+                      company.company_name ?? "",
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 26,
                         fontFamily: 'SF Pro Text',
@@ -76,17 +75,17 @@ class CompanyDetail extends StatelessWidget {
                         letterSpacing: -0.80,
                       ),
                     ),
-                    Text(
-                      'Solutions',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontFamily: 'SF Pro Text',
-                        fontWeight: FontWeight.w400,
-                        height: 0,
-                        letterSpacing: -0.80,
-                      ),
-                    )
+                    // Text(
+                    //   'Solutions',
+                    //   style: TextStyle(
+                    //     color: Colors.white,
+                    //     fontSize: 18,
+                    //     fontFamily: 'SF Pro Text',
+                    //     fontWeight: FontWeight.w400,
+                    //     height: 0,
+                    //     letterSpacing: -0.80,
+                    //   ),
+                    // )
                   ],
                 ).paddingAll(
                   20,
@@ -96,10 +95,11 @@ class CompanyDetail extends StatelessWidget {
           ),
           const Gap(30),
           _detailBox(
-              title1: 'Company',
-              value1: 'PixelGenix Solutions',
-              title2: 'Phone',
-              value2: '555 234 5678'),
+            title1: 'Company',
+            value1: company.company_name ?? "",
+            title2: 'Phone',
+            value2: company.phone_no ?? "",
+          ),
           const Gap(30),
           Stack(
             children: [
@@ -121,11 +121,11 @@ class CompanyDetail extends StatelessWidget {
                       color: Colors.white,
                     ).paddingOnly(left: 20),
                     RichText(
-                      text: const TextSpan(
+                      text: TextSpan(
                         children: [
                           TextSpan(
-                            text: '167 Elm Street, ',
-                            style: TextStyle(
+                            text: company.address ?? "",
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 20,
                               fontFamily: 'SF Pro Text',
@@ -135,8 +135,8 @@ class CompanyDetail extends StatelessWidget {
                             ),
                           ),
                           TextSpan(
-                            text: ' Springdale',
-                            style: TextStyle(
+                            text: " ${company.state ?? ""}",
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 20,
                               fontFamily: 'SF Pro Text',
@@ -155,10 +155,11 @@ class CompanyDetail extends StatelessWidget {
           ),
           const Gap(30),
           _detailBox(
-              title1: 'State',
-              value1: 'Wisconsin',
-              title2: 'GST Number',
-              value2: 'ABCD-X-0099'),
+            title1: 'State',
+            value1: company.state ?? "",
+            title2: 'GST Number',
+            value2: company.gst_no ?? "",
+          ),
         ],
       ).paddingSymmetric(horizontal: 24, vertical: 20),
     );

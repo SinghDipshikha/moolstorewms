@@ -270,3 +270,195 @@
 //     // }
 //   }
 // }
+import 'package:drag_select_grid_view/drag_select_grid_view.dart';
+import 'package:flutter/material.dart';
+import 'package:zoom_widget/zoom_widget.dart';
+
+class FloorLayoutDesiging extends StatefulWidget {
+  const FloorLayoutDesiging({super.key});
+
+  @override
+  _FloorLayoutDesigingState createState() => _FloorLayoutDesigingState();
+}
+
+class _FloorLayoutDesigingState extends State<FloorLayoutDesiging> {
+  final controller = DragSelectGridViewController();
+  @override
+  void initState() {
+    super.initState();
+    controller.addListener(scheduleRebuild);
+  }
+
+  @override
+  void dispose() {
+    controller.removeListener(scheduleRebuild);
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: SelectionAppBar(
+        selection: controller.value,
+        title: const Text('Grid Example'),
+      ),
+      body: Zoom(
+        maxScale: 4,
+        initTotalZoomOut: true,
+        child: SizedBox(
+          height: MediaQuery.sizeOf(context).height,
+          width: MediaQuery.sizeOf(context).width,
+          child: DragSelectGridView(
+            // dragStartBehavior: DragStartBehavior.down,
+            //    triggerSelectionOnTap: true,
+            // reverse: true,
+            gridController: controller,
+            // padding: const EdgeInsets.all(8),
+            itemCount: 1200,
+            itemBuilder: (context, index, selected) {
+              return SelectableItem(
+                index: index,
+                color: Colors.yellow,
+                selected: selected,
+              );
+            },
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 20,
+              crossAxisSpacing: 2,
+              mainAxisSpacing: 2,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void scheduleRebuild() => setState(() {});
+}
+
+class SelectionAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const SelectionAppBar({
+    super.key,
+    this.title,
+    this.selection = const Selection.empty(),
+  });
+
+  final Widget? title;
+  final Selection selection;
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSwitcher(
+      duration: kThemeAnimationDuration,
+      child: selection.isSelecting
+          ? AppBar(
+              key: const Key('selecting'),
+              titleSpacing: 0,
+              leading: const CloseButton(),
+              title: Text('${selection.amount} item(s) selected…'),
+            )
+          : AppBar(
+              key: const Key('not-selecting'),
+              title: title,
+            ),
+    );
+  }
+}
+
+class SelectableItem extends StatefulWidget {
+  const SelectableItem({
+    super.key,
+    required this.index,
+    required this.color,
+    required this.selected,
+  });
+
+  final int index;
+  final MaterialColor color;
+  final bool selected;
+
+  @override
+  _SelectableItemState createState() => _SelectableItemState();
+}
+
+class _SelectableItemState extends State<SelectableItem>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final Animation<double> _scaleAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      value: widget.selected ? 1 : 0,
+      duration: kThemeChangeDuration,
+      vsync: this,
+    );
+
+    _scaleAnimation = Tween<double>(begin: 1, end: 0.8).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.ease,
+      ),
+    );
+  }
+
+  @override
+  void didUpdateWidget(SelectableItem oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.selected != widget.selected) {
+      if (widget.selected) {
+        _controller.forward();
+      } else {
+        _controller.reverse();
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _scaleAnimation,
+      builder: (context, child) {
+        return Container(
+          child: Transform.scale(
+            scale: _scaleAnimation.value,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(2),
+                color: calculateColor(),
+              ),
+              child: child,
+            ),
+          ),
+        );
+      },
+      child: Container(
+        alignment: Alignment.center,
+        child: Text(
+          '${widget.index}',
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 4, color: Colors.white),
+        ),
+      ),
+    );
+  }
+
+  Color? calculateColor() {
+    return Color.lerp(
+      widget.color.shade500,
+      widget.color.shade900,
+      _controller.value,
+    );
+  }
+}
