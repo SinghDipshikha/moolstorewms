@@ -5,6 +5,7 @@ import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Sales/Sales.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addVisitor.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allPersonsInfo.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allTicketList.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allVisitorsInfo.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/employeeEntry.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/secGuardDetail.dart';
@@ -21,6 +22,10 @@ class SecurityGuardController extends GetxController {
   GetAllPersonsBySecurityGaurd? allPersonsDetails;
   GetSinglePersonDetails? singelPersonDetails;
   List<EmployeeEntry> empEntryList = [];
+  GetAllTicketListBySecurityGuard? allTicketDetails;
+  List<GetAllVisitorBySecurityGaurd> allVisitorList = [];
+  List<GetAllTicketListBySecurityGuard> allTicketList = [];
+
   bool? isCheckIn;
   User user;
 
@@ -135,5 +140,15 @@ class SecurityGuardController extends GetxController {
     if (role == "sales") {
       Get.offAll(const Sales());
     }
+  }
+
+  void getAllTicketList() {
+    secGaurdRepo.getAllVisitorsData(recordsPerPage: 8, next: 1).then((value) {
+      if (value != null) {
+        allVisitorsDetails = value;
+
+        update();
+      }
+    });
   }
 }

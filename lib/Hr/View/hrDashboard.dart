@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
+import 'package:moolwmsstore/Hr/View/demo.dart';
+import 'package:moolwmsstore/Hr/View/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 class HrDashboard extends StatefulWidget {
   const HrDashboard({super.key});
@@ -49,20 +52,22 @@ class _HrDashboardState extends State<HrDashboard> {
                         border: Border(bottom: BorderSide.none)),
                     child: Row(
                       children: [
-                        Container(
-                          width: 100,
-                          height: 100,
-                          decoration: const ShapeDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                  "https://via.placeholder.com/100x100"),
-                              fit: BoxFit.fill,
-                            ),
-                            shape: OvalBorder(
-                              side: BorderSide(
-                                width: 2,
-                                strokeAlign: BorderSide.strokeAlignOutside,
-                                color: Color(0x195A57FF),
+                        InkWell(
+                          child: Container(
+                            width: 100,
+                            height: 100,
+                            decoration: const ShapeDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                    "https://via.placeholder.com/100x100"),
+                                fit: BoxFit.fill,
+                              ),
+                              shape: OvalBorder(
+                                side: BorderSide(
+                                  width: 2,
+                                  strokeAlign: BorderSide.strokeAlignOutside,
+                                  color: Color(0x195A57FF),
+                                ),
                               ),
                             ),
                           ),
@@ -180,7 +185,7 @@ class _HrDashboardState extends State<HrDashboard> {
                       title: "View Staff",
                       isShowextendedLine: false,
                       onTap: () {
-                        // WarehouseList
+                        Get.to( HrEmployeeList(), id: hrNavigationKey);
                       },
                     ),
                     // CurvedLineConatainer(title: "dcdc"),
@@ -385,96 +390,101 @@ class _HrDashboardState extends State<HrDashboard> {
         child: Column(
           children: [
             const Gap(20),
-            Container(
-              width: 358,
-              height: 173,
-              decoration: ShapeDecoration(
-                gradient: LinearGradient(
-                  begin: const Alignment(1.00, 0.00),
-                  end: const Alignment(-1, 0),
-                  colors: [
-                    Colors.white.withOpacity(0.10000000149011612),
-                    Colors.white.withOpacity(0.10000000149011612)
-                  ],
-                ),
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(width: 1, color: Colors.white),
-                  borderRadius: BorderRadius.circular(25),
-                ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Gap(20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Today',
-                        style: TextStyle(
-                          color: Color(0xFFEDEDFC),
-                          fontSize: 32,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                          height: 0,
-                        ),
-                      ),
-                      Container(
-                        width: 124,
-                        height: 38,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 6),
-                        decoration: ShapeDecoration(
-                          color: const Color(0xFF2C2C2C),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              '09 : 41 AM',
-                              style: TextStyle(
-                                color: Color(0xFFEDEDFC),
-                                fontSize: 22,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w400,
-                                height: 0,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+            InkWell(
+              onTap: () {
+                Get.to(const DemoScreen(), id: hrNavigationKey);
+              },
+              child: Container(
+                width: 358,
+                height: 173,
+                decoration: ShapeDecoration(
+                  gradient: LinearGradient(
+                    begin: const Alignment(1.00, 0.00),
+                    end: const Alignment(-1, 0),
+                    colors: [
+                      Colors.white.withOpacity(0.10000000149011612),
+                      Colors.white.withOpacity(0.10000000149011612)
                     ],
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 40.0, top: 20),
-                    child: Text(
-                      '18th March, 2024',
-                      style: TextStyle(
-                        color: Color(0xFFACACAC),
-                        fontSize: 22,
-                        fontFamily: 'SF Pro Display',
-                        fontWeight: FontWeight.w400,
-                        height: 0.05,
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(width: 1, color: Colors.white),
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Gap(20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Today',
+                          style: TextStyle(
+                            color: Color(0xFFEDEDFC),
+                            fontSize: 32,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w400,
+                            height: 0,
+                          ),
+                        ),
+                        Container(
+                          width: 124,
+                          height: 38,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 6),
+                          decoration: ShapeDecoration(
+                            color: const Color(0xFF2C2C2C),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                '09 : 41 AM',
+                                style: TextStyle(
+                                  color: Color(0xFFEDEDFC),
+                                  fontSize: 22,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w400,
+                                  height: 0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 40.0, top: 20),
+                      child: Text(
+                        '18th March, 2024',
+                        style: TextStyle(
+                          color: Color(0xFFACACAC),
+                          fontSize: 22,
+                          fontFamily: 'SF Pro Display',
+                          fontWeight: FontWeight.w400,
+                          height: 0.05,
+                        ),
                       ),
                     ),
-                  ),
-                  const Gap(20),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: CommonButton(
-                      color: const Color(0xFF5A57FF),
-                      textColor: Colors.white,
-                      title: 'View Attendance',
-                    ),
-                  )
-                ],
+                    const Gap(20),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: CommonButton(
+                        color: const Color(0xFF5A57FF),
+                        textColor: Colors.white,
+                        title: 'View Attendance',
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
             // const Gap(20),

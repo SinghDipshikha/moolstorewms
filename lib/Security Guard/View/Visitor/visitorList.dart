@@ -1,24 +1,23 @@
 //import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
-import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allTicketList.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allVisitorsInfo.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart';
 import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 
 //@RoutePage()
-class TicketListScreen extends StatefulWidget {
-  const TicketListScreen({super.key});
+class VisitorListScreen extends StatefulWidget {
+  const VisitorListScreen({super.key});
 
   @override
-  State<TicketListScreen> createState() => _TicketListScreenState();
+  State<VisitorListScreen> createState() => _VisitorListScreenState();
 }
 
-class _TicketListScreenState extends State<TicketListScreen> {
+class _VisitorListScreenState extends State<VisitorListScreen> {
   @override
   final List tags = [
     {"title": "Name", "flex": 1},
@@ -45,6 +44,7 @@ class _TicketListScreenState extends State<TicketListScreen> {
         title: 'Verify',
         //  leftIcon: 'assets/icons/qr_icon.png',
         color: const Color(0xFF5A57FF),
+        textColor: Colors.white,
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => const RegistrationTypeOptions(),
@@ -57,7 +57,7 @@ class _TicketListScreenState extends State<TicketListScreen> {
             builder: (context) => const SecurityGuardDashBoard(),
           ));
         },
-        title: 'Ticket List',
+        title: 'Register List',
         actions: const [],
       ),
       body: Center(
@@ -177,20 +177,26 @@ class _TicketListScreenState extends State<TicketListScreen> {
             ),
             Expanded(
               child: GetBuilder<SecurityGuardController>(initState: (state) {
-                Get.find<SecurityGuardController>().getAllTicketList();
+                Get.find<SecurityGuardController>().getAllVisitorsInfo();
               }, builder: (securityGuardController) {
-                return securityGuardController.allTicketList.isEmpty
+                return securityGuardController.allVisitorList.isEmpty
                     ? const Center(
-                        child: SpinKitChasingDots(
-                          color: Colors.black,
+                        child: Text(
+                          'No data found',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       )
                     : ListView.builder(
                         // shrinkWrap: true,
-                        itemCount: securityGuardController.allTicketList.length,
+                        itemCount:
+                            securityGuardController.allVisitorList.length,
                         itemBuilder: (context, i) {
-                          GetAllTicketListBySecurityGuard entry =
-                              securityGuardController.allTicketList[i];
+                          GetAllVisitorBySecurityGaurd entry =
+                              securityGuardController.allVisitorList[i];
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
@@ -215,7 +221,7 @@ class _TicketListScreenState extends State<TicketListScreen> {
                                       return Expanded(
                                           flex: dataList[index]["flex"],
                                           child: Text(
-                                            entry.visit_ticket_number ?? "",
+                                            entry.visitor_name ?? "",
                                             style: const TextStyle(
                                               color: Color(0xFF353535),
                                               fontSize: 12,

@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart' as g;
 // import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:logger/logger.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -134,7 +136,7 @@ class ApiClient extends g.GetxService {
   //         .timeout(Duration(seconds: timeoutInSeconds));
   //     return handleResponse(response);
   //   } catch (e) {
-  //     return const Response(statusCode: 1, statusText: noInternetMessage);
+  //     return  Response(statusCode: 1, statusText: noInternetMessage);
   //   }
   // }
 
@@ -151,7 +153,7 @@ class ApiClient extends g.GetxService {
   //         .timeout(Duration(seconds: timeoutInSeconds));
   //     return handleResponse(response);
   //   } catch (e) {
-  //     return const Response(statusCode: 1, statusText: noInternetMessage);
+  //     return  Response(statusCode: 1, statusText: noInternetMessage);
   //   }
   // }
 
@@ -185,6 +187,29 @@ class ApiClient extends g.GetxService {
           requestOptions: RequestOptions());
     }
     return response0;
+  }
+
+  final Logger _logger = Logger();
+
+  Future<void> uploadFile() async {
+    var file = await FilePicker.platform.pickFiles();
+
+    if (file != null) {
+      FormData formData = FormData.fromMap({
+        'file': await MultipartFile.fromFile(file.files.single.path!),
+      });
+
+      try {
+        _dio
+            .post(
+              'http://65.1.152.63:3000/file/upload',
+              data: formData,
+            )
+            .then((value) {});
+      } catch (e) {
+        print('Error uploading file: $e');
+      }
+    }
   }
 }
 

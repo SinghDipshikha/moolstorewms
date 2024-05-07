@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/registrationList.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Visitor/visitorList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
@@ -238,7 +239,6 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                     //  isExpanded: true,
 
                     decoration: InputDecoration(
-                   
                       contentPadding: const EdgeInsets.symmetric(
                           vertical: 16, horizontal: 12),
                       border: OutlineInputBorder(
@@ -704,13 +704,19 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
               ),
               child: Column(
                 children: [
-                  Container(
-                    width: 66,
-                    height: 66,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/visitorNew.png"),
-                        fit: BoxFit.cover,
+                  InkWell(
+                    onTap: () {
+                      Get.to(const VisitorListScreen(),
+                          id: securityGuardNavigation);
+                    },
+                    child: Container(
+                      width: 66,
+                      height: 66,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/visitorNew.png"),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),

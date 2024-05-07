@@ -397,43 +397,19 @@ class CustomFloatingActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Container(
-        width: 358,
-        height: 50,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-        decoration: ShapeDecoration(
-          color: color,
-          shadows: const [
-            BoxShadow(
-              color: Colors.grey,
-              offset: Offset(0.0, 1.0), //(x,y)
-              blurRadius: 50.0,
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Container(
+          width: 358,
+          height: 50,
+          decoration: ShapeDecoration(
+            color: color,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
             ),
-          ],
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
           ),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              width: 25,
-              height: 25,
-              decoration: ShapeDecoration(
-                color: color,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)),
-                image: DecorationImage(
-                  image: AssetImage("$leftIcon"),
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
-            const Gap(10),
-            Text(
+          child: Center(
+            child: Text(
               title,
               style: TextStyle(
                 color: textColor,
@@ -443,7 +419,7 @@ class CustomFloatingActionButton extends StatelessWidget {
                 height: 0,
               ),
             ),
-          ],
+          ),
         ),
       ),
     );
