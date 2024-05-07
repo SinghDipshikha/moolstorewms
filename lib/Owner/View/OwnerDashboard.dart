@@ -73,14 +73,38 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                           ),
                         ),
                         const Gap(12),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      '${ownerController.user.first_name}',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontFamily: 'SF Pro Text',
+                                        fontWeight: FontWeight.w500,
+                                        // height: 0,
+                                        // letterSpacing: -0.80,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  const Gap(12),
+                                  //  const Spacer(),
+                                  Image.asset(
+                                    "assets/icons/candle.png",
+                                    height: 22,
+                                  )
+                                ],
+                              ),
+                              if (ownerController.user.last_name != null)
                                 Text(
-                                  '${ownerController.user.first_name} ${ownerController.user.last_name ?? ""}',
+                                  ownerController.user.last_name ?? "",
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
@@ -89,38 +113,33 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                     // height: 0,
                                     // letterSpacing: -0.80,
                                   ),
+                                  overflow: TextOverflow.ellipsis,
                                 ),
-                                const Gap(12),
-                                //  const Spacer(),
-                                Image.asset(
-                                  "assets/icons/candle.png",
-                                  height: 22,
-                                )
-                              ],
-                            ),
-                            Text(
-                              ownerController.user.email ?? "",
-                              style: const TextStyle(
-                                color: Color(0xFFACACAC),
-                                fontSize: 14,
-                                fontFamily: 'SF Pro Text',
-                                fontWeight: FontWeight.w300,
-                                // height: 0,
-                                // letterSpacing: -0.56,
+                              Text(
+                                ownerController.user.email ?? "",
+                                style: const TextStyle(
+                                  color: Color(0xFFACACAC),
+                                  fontSize: 14,
+                                  fontFamily: 'SF Pro Text',
+                                  fontWeight: FontWeight.w300,
+                                  // height: 0,
+                                  // letterSpacing: -0.56,
+                                ),
+                                overflow: TextOverflow.ellipsis,
                               ),
-                            ),
-                            const Text(
-                              'Owner',
-                              style: TextStyle(
-                                color: Color(0xFFFF5789),
-                                fontSize: 16,
-                                fontFamily: 'SF Pro Text',
-                                fontWeight: FontWeight.w500,
-                                // height: 0,
-                                // letterSpacing: -0.64,
-                              ),
-                            )
-                          ],
+                              const Text(
+                                'Owner',
+                                style: TextStyle(
+                                  color: Color(0xFFFF5789),
+                                  fontSize: 16,
+                                  fontFamily: 'SF Pro Text',
+                                  fontWeight: FontWeight.w500,
+                                  // height: 0,
+                                  // letterSpacing: -0.64,
+                                ),
+                              )
+                            ],
+                          ),
                         )
                       ],
                     )),
