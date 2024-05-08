@@ -178,7 +178,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
                     CurvedLineConatainer(
                       title: "Create Ticket",
                       onTap: () {
-                        Get.to(const Createticket(), id: salesNavigationKey);
+                        Get.to( Createticket(), id: salesNavigationKey);
                       },
                     ),
                     CurvedLineConatainer(

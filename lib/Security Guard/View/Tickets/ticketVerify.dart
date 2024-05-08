@@ -398,7 +398,7 @@ class _TicketEntryReviewScreenState extends State<TicketEntryReviewScreen> {
                           ],
                         ),
                       ),
-                    const Gap(20),
+                    const Gap(20), 
                     if (isCheckedYesAddProduct && isCheckedYesMaterial)
                       TagContainer(
                           title: 'Product Name',

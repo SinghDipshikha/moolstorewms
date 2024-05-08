@@ -167,7 +167,7 @@ class ApiClient extends g.GetxService {
         requestOptions: RequestOptions());
     if (response0.statusCode == 200 && response0.data != null) {
       if (response0.data["status"] == false) {
-        Snacks.redSnack(response0.data["error"]);
+        Snacks.redSnack(response0.data["message"]);
       } else {
         // Snacks.greenSnack(response0.data["message"]);
       }
