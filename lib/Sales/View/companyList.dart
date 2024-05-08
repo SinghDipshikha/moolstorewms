@@ -38,7 +38,7 @@ class CompanyList extends StatelessWidget {
             fontSize: 20,
             fontFamily: 'SF Pro Text',
             fontWeight: FontWeight.w500,
-            height: 0,
+            //height: 0,
             letterSpacing: -0.80,
           ),
         ),
@@ -88,7 +88,7 @@ class CompanyList extends StatelessWidget {
                               fontSize: 16,
                               fontFamily: 'SF Pro Text',
                               fontWeight: FontWeight.w500,
-                              height: 0,
+                              //height: 0,
                               letterSpacing: -0.64,
                             ),
                           )
@@ -123,7 +123,7 @@ class CompanyList extends StatelessWidget {
                               fontSize: 16,
                               fontFamily: 'SF Pro Text',
                               fontWeight: FontWeight.w500,
-                              height: 0,
+                              //height: 0,
                               letterSpacing: -0.64,
                             ),
                           )
@@ -144,7 +144,7 @@ class CompanyList extends StatelessWidget {
                             fontSize: 12,
                             fontFamily: 'SF Pro Text',
                             fontWeight: FontWeight.w400,
-                            height: 0,
+                            //height: 0,
                             letterSpacing: -0.48,
                           ),
                         )),
@@ -157,7 +157,7 @@ class CompanyList extends StatelessWidget {
                             fontSize: 12,
                             fontFamily: 'SF Pro Text',
                             fontWeight: FontWeight.w400,
-                            height: 0,
+                            //height: 0,
                             letterSpacing: -0.48,
                           ),
                         )),
@@ -170,7 +170,7 @@ class CompanyList extends StatelessWidget {
                             fontSize: 12,
                             fontFamily: 'SF Pro Text',
                             fontWeight: FontWeight.w400,
-                            height: 0,
+                            //height: 0,
                             letterSpacing: -0.48,
                           ),
                         )),
@@ -184,7 +184,7 @@ class CompanyList extends StatelessWidget {
                     //         fontSize: 12,
                     //         fontFamily: 'SF Pro Text',
                     //         fontWeight: FontWeight.w400,
-                    //         height: 0,
+                    //         //height: 0,
                     //         letterSpacing: -0.48,
                     //       ),
                     //     )),
@@ -301,8 +301,11 @@ class CompanyList extends StatelessWidget {
                                 IconButton(
                                     padding: EdgeInsets.zero,
                                     onPressed: () {
-                                      Get.to( CompanyDetail(company:salesController
-                                                  .comapnies[i] ,),
+                                      Get.to(
+                                          CompanyDetail(
+                                            company:
+                                                salesController.comapnies[i],
+                                          ),
                                           id: salesNavigationKey);
                                     },
                                     icon: const Icon(

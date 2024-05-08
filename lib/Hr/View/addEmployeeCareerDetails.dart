@@ -135,7 +135,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                               fontSize: 12,
                                               fontFamily: 'SF Pro Display',
                                               fontWeight: FontWeight.w400,
-                                              height: 0,
+                                              //height: 0,
                                             ),
                                           ),
                                         ),
@@ -175,7 +175,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                                     fontFamily:
                                                         'SF Pro Display',
                                                     fontWeight: FontWeight.w400,
-                                                    height: 0,
+                                                    //height: 0,
                                                   ),
                                                 ),
                                                 Icon(
@@ -199,7 +199,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                               fontSize: 12,
                                               fontFamily: 'SF Pro Display',
                                               fontWeight: FontWeight.w400,
-                                              height: 0,
+                                              //height: 0,
                                             ),
                                           ),
                                         ),
@@ -239,7 +239,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                                     fontFamily:
                                                         'SF Pro Display',
                                                     fontWeight: FontWeight.w400,
-                                                    height: 0,
+                                                    //height: 0,
                                                   ),
                                                 ),
                                                 Icon(
@@ -263,7 +263,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                       fontSize: 16,
                                       fontFamily: 'SF Pro Display',
                                       fontWeight: FontWeight.w400,
-                                      height: 0,
+                                      //height: 0,
                                     ),
                                   ),
                                 ),
@@ -344,7 +344,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                           fontSize: 18.03,
                                           fontFamily: 'Nunito',
                                           fontWeight: FontWeight.w700,
-                                          height: 0,
+                                          //height: 0,
                                         ),
                                       )
                                     ],

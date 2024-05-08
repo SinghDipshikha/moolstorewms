@@ -216,7 +216,7 @@ class _AddEmployeeReferralDetailsState
                             //         fontSize: 18.03,
                             //         fontFamily: 'Nunito',
                             //         fontWeight: FontWeight.w700,
-                            //         height: 0,
+                            //         //height: 0,
                             //       ),
                             //     )
                             //   ],

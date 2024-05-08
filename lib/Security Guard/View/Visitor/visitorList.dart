@@ -96,7 +96,7 @@ class _VisitorListScreenState extends State<VisitorListScreen> {
                           fontSize: 16,
                           fontFamily: 'SF Pro Display',
                           fontWeight: FontWeight.w400,
-                          height: 0,
+                          //height: 0,
                         ),
                       ),
                       Icon(
@@ -134,7 +134,7 @@ class _VisitorListScreenState extends State<VisitorListScreen> {
                           fontSize: 16,
                           fontFamily: 'SF Pro Display',
                           fontWeight: FontWeight.w400,
-                          height: 0,
+                          //height: 0,
                         ),
                       ),
                       Icon(
@@ -227,7 +227,7 @@ class _VisitorListScreenState extends State<VisitorListScreen> {
                                               fontSize: 12,
                                               fontFamily: 'SF Pro Text',
                                               fontWeight: FontWeight.w500,
-                                              height: 0,
+                                              //height: 0,
                                               letterSpacing: -0.48,
                                             ),
                                           ));
@@ -243,7 +243,7 @@ class _VisitorListScreenState extends State<VisitorListScreen> {
                                               fontSize: 12,
                                               fontFamily: 'SF Pro Text',
                                               fontWeight: FontWeight.w500,
-                                              height: 0,
+                                              //height: 0,
                                               letterSpacing: -0.48,
                                             ),
                                           ));
@@ -260,7 +260,7 @@ class _VisitorListScreenState extends State<VisitorListScreen> {
                                               fontSize: 10,
                                               fontFamily: 'SF Pro Text',
                                               fontWeight: FontWeight.w400,
-                                              height: 0,
+                                              //height: 0,
                                               letterSpacing: -0.40,
                                             ),
                                           ));

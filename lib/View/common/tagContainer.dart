@@ -30,7 +30,7 @@ class TagContainer extends StatelessWidget {
               fontSize: 16,
               fontFamily: 'SF Pro Display',
               fontWeight: FontWeight.w600,
-              height: 0,
+              //height: 0,
             ),
           ).paddingSymmetric(horizontal: 18),
         ),

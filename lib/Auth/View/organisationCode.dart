@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Auth/Controllers/authController.dart';
 
-
 class OrganisationCode extends StatelessWidget {
   OrganisationCode({super.key});
   TextEditingController? controller = TextEditingController();
@@ -39,7 +38,7 @@ class OrganisationCode extends StatelessWidget {
                   fontSize: 16,
                   fontFamily: 'SF Pro Display',
                   fontWeight: FontWeight.w400,
-                  // height: 0,
+                  // //height: 0,
                 ),
               ).paddingSymmetric(vertical: 12),
               TextFormField(
@@ -62,7 +61,7 @@ class OrganisationCode extends StatelessWidget {
                   fontSize: 18,
                   fontFamily: 'SF Pro Display',
                   fontWeight: FontWeight.w900,
-                  // height: 0,
+                  // //height: 0,
                 ),
                 decoration: const InputDecoration(
                     hintText: 'Enter organisation number',

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Controller/localization_controller.dart';
 import 'package:moolwmsstore/Auth/View/phoneSign.dart';
+import 'package:moolwmsstore/Controller/localization_controller.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 
 ////@RoutePage()
@@ -44,7 +44,7 @@ class Chooselanguage extends StatelessWidget {
                   fontSize: 24,
                   fontFamily: 'SF Pro Display',
                   fontWeight: FontWeight.w600,
-                  height: 0,
+                  //height: 0,
                 ),
               ),
               const Text(
@@ -54,7 +54,7 @@ class Chooselanguage extends StatelessWidget {
                   fontSize: 16,
                   fontFamily: 'SF Pro Display',
                   fontWeight: FontWeight.w400,
-                  height: 0,
+                  //height: 0,
                 ),
               ),
               GetBuilder<LocalizationController>(builder: (localizeController) {

@@ -66,7 +66,7 @@ class _TicketEntryReviewScreenState extends State<TicketEntryReviewScreen> {
                         fontSize: 16,
                         fontFamily: 'SF Pro Display',
                         fontWeight: FontWeight.w400,
-                        height: 0,
+                        //height: 0,
                       ),
                     ),
                   ),
@@ -97,7 +97,7 @@ class _TicketEntryReviewScreenState extends State<TicketEntryReviewScreen> {
                             fontSize: 16,
                             fontFamily: 'SF Pro Display',
                             fontWeight: FontWeight.w400,
-                            height: 0,
+                            //height: 0,
                           ),
                         ),
                       ],
@@ -213,8 +213,6 @@ class _TicketEntryReviewScreenState extends State<TicketEntryReviewScreen> {
                             const Gap(16),
                           ],
                         ).paddingSymmetric(vertical: 16, horizontal: 16)),
-                 
-                 
                   ],
                 ),
               ),

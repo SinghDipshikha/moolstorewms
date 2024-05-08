@@ -69,7 +69,7 @@ class _RegistrationEntryReviewScreenState
                         fontSize: 16,
                         fontFamily: 'SF Pro Display',
                         fontWeight: FontWeight.w400,
-                        height: 0,
+                        //height: 0,
                       ),
                     ),
                   ),
@@ -100,7 +100,7 @@ class _RegistrationEntryReviewScreenState
                             fontSize: 16,
                             fontFamily: 'SF Pro Display',
                             fontWeight: FontWeight.w400,
-                            height: 0,
+                            //height: 0,
                           ),
                         ),
                       ],
@@ -224,10 +224,8 @@ class _RegistrationEntryReviewScreenState
                 title: 'Vehicle In',
                 color: const Color(0xFF04BF8A),
                 onTap: () {
-                
-
-                    Get.to(const CheckedInSavedStatus(),
-                    id: securityGuardNavigation);
+                  Get.to(const CheckedInSavedStatus(),
+                      id: securityGuardNavigation);
                 },
               ),
               const Gap(16),

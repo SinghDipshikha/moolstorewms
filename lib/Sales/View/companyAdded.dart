@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-
-import 'package:moolwmsstore/Sales/Sales.dart';
 import 'package:moolwmsstore/Sales/View/SalesDashboard.dart';
 import 'package:moolwmsstore/Sales/View/companyList.dart';
 import 'package:moolwmsstore/Sales/View/widgets/customButton.dart';
@@ -49,7 +47,7 @@ class CompanyAdded extends StatelessWidget {
                   fontSize: 36,
                   fontFamily: 'SF Pro Display',
                   fontWeight: FontWeight.w600,
-                  height: 0,
+                  //height: 0,
                 ),
               ),
               Text(
@@ -59,7 +57,7 @@ class CompanyAdded extends StatelessWidget {
                   fontSize: 16,
                   fontFamily: 'SF Pro Display',
                   fontWeight: FontWeight.w400,
-                  height: 0,
+                  //height: 0,
                 ),
               ),
             ],

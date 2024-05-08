@@ -75,7 +75,7 @@ class ViewWarehouseDetails extends StatelessWidget {
               fontSize: 18,
               fontFamily: 'SF Pro Display',
               fontWeight: FontWeight.w500,
-              height: 0,
+              //height: 0,
             ),
           )),
       body: Column(
@@ -117,7 +117,7 @@ class ViewWarehouseDetails extends StatelessWidget {
                         fontSize: 14,
                         fontFamily: 'SF Pro Display',
                         fontWeight: FontWeight.w400,
-                        //height: 0,
+                        ////height: 0,
                       ),
                     ),
                     const Gap(4),
@@ -128,7 +128,7 @@ class ViewWarehouseDetails extends StatelessWidget {
                         fontSize: 26,
                         fontFamily: 'SF Pro Display',
                         fontWeight: FontWeight.w700,
-                        height: 0,
+                        //height: 0,
                       ),
                     )
                   ],
@@ -173,7 +173,7 @@ class ViewWarehouseDetails extends StatelessWidget {
                           fontSize: 10,
                           fontFamily: 'SF Pro Display',
                           fontWeight: FontWeight.w300,
-                          height: 0,
+                          //height: 0,
                         ),
                       ),
                       Text(
@@ -220,7 +220,7 @@ class ViewWarehouseDetails extends StatelessWidget {
                             fontSize: 16,
                             fontFamily: 'SF Pro Display',
                             fontWeight: FontWeight.w600,
-                            height: 0,
+                            //height: 0,
                           ),
                         ).paddingOnly(top: 14, left: 8),
                         Row(

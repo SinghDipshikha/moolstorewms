@@ -54,7 +54,7 @@ class _PoListState extends State<PoList> {
             fontSize: 20,
             fontFamily: 'SF Pro Text',
             fontWeight: FontWeight.w500,
-            height: 0,
+            //height: 0,
             letterSpacing: -0.80,
           ),
         ),
@@ -94,7 +94,7 @@ class _PoListState extends State<PoList> {
                             fontSize: 16,
                             fontFamily: 'SF Pro Text',
                             fontWeight: FontWeight.w500,
-                            height: 0,
+                            //height: 0,
                             letterSpacing: -0.64,
                           ),
                         )
@@ -129,7 +129,7 @@ class _PoListState extends State<PoList> {
                             fontSize: 16,
                             fontFamily: 'SF Pro Text',
                             fontWeight: FontWeight.w500,
-                            height: 0,
+                            //height: 0,
                             letterSpacing: -0.64,
                           ),
                         )
@@ -152,7 +152,7 @@ class _PoListState extends State<PoList> {
                             fontSize: 12,
                             fontFamily: 'SF Pro Text',
                             fontWeight: FontWeight.w400,
-                            height: 0,
+                            //height: 0,
                             letterSpacing: -0.48,
                           ),
                         ));
@@ -177,7 +177,7 @@ class _PoListState extends State<PoList> {
                             fontSize: 12,
                             fontFamily: 'SF Pro Text',
                             fontWeight: FontWeight.w400,
-                            height: 0,
+                            //height: 0,
                             letterSpacing: -0.48,
                           ),
                         ));
@@ -192,7 +192,7 @@ class _PoListState extends State<PoList> {
                           fontSize: 12,
                           fontFamily: 'SF Pro Text',
                           fontWeight: FontWeight.w400,
-                          height: 0,
+                          //height: 0,
                           letterSpacing: -0.48,
                         ),
                       ));

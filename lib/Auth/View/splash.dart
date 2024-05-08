@@ -64,7 +64,7 @@ class Splash extends StatelessWidget {
                                           fontSize: 14,
                                           fontFamily: 'SF Pro Display',
                                           fontWeight: FontWeight.w600,
-                                          height: 0,
+                                          //height: 0,
                                         ),
                                       ),
                                       TextSpan(
@@ -75,7 +75,7 @@ class Splash extends StatelessWidget {
                                           fontSize: 14,
                                           fontFamily: 'SF Pro Display',
                                           fontWeight: FontWeight.w400,
-                                          height: 0,
+                                          //height: 0,
                                         ),
                                       ),
                                     ],

@@ -48,7 +48,7 @@ class _CheckedOutUserDetailsState extends State<CheckedOutUserDetails> {
                 fontSize: 16,
                 fontFamily: 'SF Pro Display',
                 fontWeight: FontWeight.w400,
-                height: 0,
+                //height: 0,
               ),
             ),
           ),

@@ -1,4 +1,6 @@
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
@@ -9,6 +11,7 @@ import 'package:moolwmsstore/Sales/repo/salesRepo.dart';
 import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/globals.dart';
+import 'package:restart_app/restart_app.dart';
 
 class SalesController extends GetxController {
   final SalesRepo salesRepo;
@@ -31,7 +34,9 @@ class SalesController extends GetxController {
   List<Company> comapnies = [];
   getCompanyList() {
     loading = true;
-    apiClient.getData("company/companylist").then((value) {
+    apiClient.postData("company/companylist",{
+    "keyword":""
+}).then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         List x = value.data["result"];
         comapnies = x.map((e) => Company.fromJson(e)).toList();
@@ -40,13 +45,21 @@ class SalesController extends GetxController {
       }
     });
   }
+  searchComapny(String s){
+        apiClient.postData("company/companylist",{
+    "keyword": s
+});
+  }
 
-  addCompany(Company company) {
+  addCompany(Company company ,{bool fromDialog = false}) {
     apiClient.postData("company/addCompany", company.toJson()).then((value) {
       if (value.data["message"] ==
           "Seller company and details added successfully") {
         Snacks.greenSnack("Company added successfully");
-        Get.off(const CompanyAdded(), id: salesNavigationKey);
+        if(fromDialog == false){
+  Get.off(const CompanyAdded(), id: salesNavigationKey);
+        }
+      
       }
     });
   }
@@ -61,5 +74,12 @@ class SalesController extends GetxController {
     if (role == "sales") {
       Get.offAll(const Sales());
     }
+  }
+  saleLogout() async {
+    var box = await Hive.openBox('authbox');
+    Get.find<SalesController>().dispose();
+
+    box.clear();
+    Restart.restartApp();
   }
 }

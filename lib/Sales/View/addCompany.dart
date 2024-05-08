@@ -28,7 +28,7 @@ class AddCompany extends StatelessWidget {
             fontSize: 18,
             fontFamily: 'SF Pro Display',
             fontWeight: FontWeight.w500,
-            height: 0,
+            //height: 0,
           ),
         ),
       ),
@@ -48,20 +48,10 @@ class AddCompany extends StatelessWidget {
                   state: state.text,
                   gst_no: gstNum.text));
 
-              /*{
-              "company_name":"Indicold4",
-              "user_id":"1",
-              "status":"1",
-              "phone_no":"9874561230",
-              "address":"new delhi",
-              "state":"delhi",
-              "gst_no":"ASGDHH15115ASDFGH"
-          }*/
-
-              // Get.find<SalesController>().getCompanyList();
+            
             }
 
-            // Get.off(const CompanyAdded(), id: salesNavigationKey);
+            
           },
           title: "Submit",
         ).paddingSymmetric(horizontal: 12);
@@ -78,7 +68,7 @@ class AddCompany extends StatelessWidget {
                 fontSize: 16,
                 fontFamily: 'SF Pro Display',
                 fontWeight: FontWeight.w400,
-                height: 0,
+                //height: 0,
               ),
             ),
             const Gap(4),
@@ -112,7 +102,7 @@ class AddCompany extends StatelessWidget {
                 fontSize: 16,
                 fontFamily: 'SF Pro Display',
                 fontWeight: FontWeight.w400,
-                height: 0,
+                //height: 0,
               ),
             ),
             const Gap(4),
@@ -146,7 +136,7 @@ class AddCompany extends StatelessWidget {
                 fontSize: 16,
                 fontFamily: 'SF Pro Display',
                 fontWeight: FontWeight.w400,
-                height: 0,
+                //height: 0,
               ),
             ),
             const Gap(4),
@@ -182,7 +172,7 @@ class AddCompany extends StatelessWidget {
                 fontSize: 16,
                 fontFamily: 'SF Pro Display',
                 fontWeight: FontWeight.w400,
-                height: 0,
+                //height: 0,
               ),
             ),
             const Gap(4),
@@ -223,7 +213,7 @@ class AddCompany extends StatelessWidget {
                 fontSize: 16,
                 fontFamily: 'SF Pro Display',
                 fontWeight: FontWeight.w400,
-                height: 0,
+                //height: 0,
               ),
             ),
             const Gap(4),

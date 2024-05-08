@@ -633,9 +633,6 @@ class SignUp extends StatelessWidget {
                           const Gap(16),
                         ],
                       ).paddingSymmetric(vertical: 16, horizontal: 16)),
-               
-               
-               
                   const Gap(20),
                   GetBuilder<AuthController>(builder: (authController) {
                     return authController.loading
@@ -677,7 +674,7 @@ class SignUp extends StatelessWidget {
                                   fontSize: 16,
                                   fontFamily: 'SF Pro Display',
                                   fontWeight: FontWeight.w600,
-                                  height: 0,
+                                  //height: 0,
                                   letterSpacing: 0.32,
                                 ),
                               ),
