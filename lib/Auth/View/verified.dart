@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 // import 'package:getx_route_annotations/getx_route_annotations.dart';
 // @GetXRoutePage("/verify")
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
 class Verified extends StatelessWidget {
   const Verified({super.key});
 
@@ -46,7 +47,7 @@ class Verified extends StatelessWidget {
                       fontSize: 42,
                       fontFamily: 'SF Pro Display',
                       fontWeight: FontWeight.w700,
-                      // height: 0,
+                      // //height: 0,
                     ),
                   ),
                   const Text(

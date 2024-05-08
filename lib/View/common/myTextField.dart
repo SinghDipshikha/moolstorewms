@@ -17,6 +17,7 @@ class MyTextField extends StatelessWidget {
   TextCapitalization? textCapitalization;
   double? borderRadius;
   int? maxLines;
+  Color? containercolor ;
   MyTextField(
       {super.key,
       this.labelText,
@@ -26,6 +27,7 @@ class MyTextField extends StatelessWidget {
       this.suffixIcon,
       this.onChanged,
       this.prefixIcon,
+      this.containercolor,
       this.controller,
       this.maxLength,
       this.maxLines,
@@ -38,7 +40,7 @@ class MyTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: ShapeDecoration(
-        color: const Color(0xFFFAF9FF),
+        color:  containercolor ?? Color(0xFFFAF9FF),
         shape: RoundedRectangleBorder(
           side: const BorderSide(width: 1, color: Color(0x195E57FC)),
           borderRadius: BorderRadius.circular(5),
@@ -48,7 +50,6 @@ class MyTextField extends StatelessWidget {
         padding:
             padding ?? const EdgeInsets.symmetric(vertical: 0, horizontal: 6),
         child: TextFormField(
-
           maxLines: maxLines,
           textCapitalization: textCapitalization ?? TextCapitalization.none,
           onTapOutside: (event) {
@@ -64,14 +65,14 @@ class MyTextField extends StatelessWidget {
           inputFormatters: inputFormatters,
           obscureText: obscureText ?? false,
           decoration: InputDecoration(
-           // contentPadding: ,
+              // contentPadding: ,
               hintText: labelText,
               hintStyle: const TextStyle(
                 color: Color(0xFFACACAC),
                 fontSize: 12,
                 fontFamily: 'SF Pro Display',
                 fontWeight: FontWeight.w400,
-                //  height: 0,
+                //  //height: 0,
               ),
               suffixIcon: suffixIcon,
               prefixIcon: prefixIcon,

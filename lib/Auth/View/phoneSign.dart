@@ -286,7 +286,7 @@ class PhoneSign extends StatelessWidget {
                               fontSize: 48,
                               fontFamily: 'SF Pro Display',
                               fontWeight: FontWeight.w700,
-                              height: 0,
+                              //height: 0,
                             ),
                           ),
                           // Container(

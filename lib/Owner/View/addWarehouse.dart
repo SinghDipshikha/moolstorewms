@@ -23,7 +23,7 @@ class AddWarehouse extends StatelessWidget {
               fontSize: 18,
               fontFamily: 'SF Pro Display',
               fontWeight: FontWeight.w500,
-              height: 0,
+              //height: 0,
             ),
           )),
       body: GetBuilder<OwnerController>(initState: (state) {
@@ -72,7 +72,7 @@ class AddWarehouse extends StatelessWidget {
                                           fontSize: 16,
                                           fontFamily: 'SF Pro Display',
                                           fontWeight: FontWeight.w400,
-                                          height: 0,
+                                          //height: 0,
                                         ),
                                       ),
                                       // if (field.required == 1)

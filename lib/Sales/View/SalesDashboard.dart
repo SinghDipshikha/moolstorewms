@@ -88,7 +88,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
                                     fontSize: 20,
                                     fontFamily: 'SF Pro Text',
                                     fontWeight: FontWeight.w500,
-                                    // height: 0,
+                                    // //height: 0,
                                     // letterSpacing: -0.80,
                                   ),
                                 ),
@@ -108,7 +108,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
                                 fontSize: 14,
                                 fontFamily: 'SF Pro Text',
                                 fontWeight: FontWeight.w300,
-                                // height: 0,
+                                // //height: 0,
                                 // letterSpacing: -0.56,
                               ),
                             ),
@@ -119,7 +119,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
                                 fontSize: 16,
                                 fontFamily: 'SF Pro Text',
                                 fontWeight: FontWeight.w500,
-                                // height: 0,
+                                // //height: 0,
                                 // letterSpacing: -0.64,
                               ),
                             )
@@ -170,7 +170,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
                       fontSize: 16,
                       fontFamily: 'SF Pro Text',
                       fontWeight: FontWeight.w500,
-                      // height: 0,
+                      // //height: 0,
                       letterSpacing: -0.64,
                     ),
                   ),
@@ -219,7 +219,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
                       fontSize: 16,
                       fontFamily: 'SF Pro Text',
                       fontWeight: FontWeight.w500,
-                      // height: 0,
+                      // //height: 0,
                       letterSpacing: -0.64,
                     ),
                   ),
@@ -272,7 +272,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
                           fontSize: 16,
                           fontFamily: 'SF Pro Text',
                           fontWeight: FontWeight.w500,
-                          height: 0,
+                          //height: 0,
                           letterSpacing: -0.64,
                         )),
                     items: salesController.user.person_type!.map((item) {
@@ -285,7 +285,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
                             fontSize: 16,
                             fontFamily: 'SF Pro Text',
                             fontWeight: FontWeight.w500,
-                            height: 0,
+                            //height: 0,
                             letterSpacing: -0.64,
                           ),
                         ),
@@ -334,7 +334,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
 
             InkWell(
               onTap: () {
-                // Get.find<OwnerController>().ownerLogout();
+                Get.find<SalesController>().saleLogout();
               },
               child: Container(
                 height: 60,
@@ -358,7 +358,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
                         fontSize: 16,
                         fontFamily: 'SF Pro Text',
                         fontWeight: FontWeight.w500,
-                        height: 0,
+                        //height: 0,
                         letterSpacing: -0.64,
                       ),
                     )
@@ -382,7 +382,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
             fontSize: 20,
             fontFamily: 'SF Pro Text',
             fontWeight: FontWeight.w500,
-            height: 0,
+            //height: 0,
             letterSpacing: -0.80,
           ),
         ),
@@ -462,7 +462,7 @@ class CurvedLineConatainer extends StatelessWidget {
                       fontSize: 16,
                       fontFamily: 'SF Pro Text',
                       fontWeight: FontWeight.w500,
-                      height: 0,
+                      //height: 0,
                       letterSpacing: -0.64,
                     ),
                   ),
