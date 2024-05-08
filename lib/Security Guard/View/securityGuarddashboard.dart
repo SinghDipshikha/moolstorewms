@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Material/materialList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/registrationList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Tickets/addTicket.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Tickets/personList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Tickets/ticketList.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Vehicle/vehicleList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Visitor/addVisitor.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Visitor/visitorList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
@@ -573,61 +576,90 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                   Get.to(const TicketListScreen(), id: securityGuardNavigation);
                 },
                 child: Container(
-                  width: 100,
-                  height: 85,
+                  width: 77,
+                  height: 106,
                   decoration: ShapeDecoration(
-                    gradient: const LinearGradient(
-                      begin: Alignment(-1.00, -0.00),
-                      end: Alignment(1, 0),
-                      colors: [Color(0xFF5A57FF), Color(0xFF7C79FF)],
-                    ),
+                    color: const Color(0xFF0070F2),
                     shape: RoundedRectangleBorder(
-                      side:
-                          const BorderSide(width: 1, color: Color(0x3FFAF9FF)),
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  child: const Center(
-                    child: Text(
-                      'Ticket',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontFamily: 'SF Pro Text',
-                        fontWeight: FontWeight.w700,
-                        height: 0,
-                        letterSpacing: -0.64,
-                      ),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        const Gap(20),
+                        Container(
+                          width: 42,
+                          height: 42,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image:
+                                  AssetImage("assets/images/ticket-star.png"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        const Gap(10),
+                        const Text(
+                          'Ticket',
+                          textAlign: TextAlign.end,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontFamily: 'SF Pro Text',
+                            fontWeight: FontWeight.w700,
+                            height: 0,
+                            letterSpacing: -0.64,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ),
-              Container(
-                width: 100,
-                height: 85,
-                decoration: ShapeDecoration(
-                  gradient: const LinearGradient(
-                    begin: Alignment(-1.00, -0.00),
-                    end: Alignment(1, 0),
-                    colors: [Color(0xFF5A57FF), Color(0xFF7C79FF)],
+              InkWell(
+                onTap: () {
+                  Get.to(const VisitorListScreen(),
+                      id: securityGuardNavigation);
+                },
+                child: Container(
+                  width: 77,
+                  height: 106,
+                  decoration: ShapeDecoration(
+                    color: const Color(0xFFCC00DC),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
                   ),
-                  shape: RoundedRectangleBorder(
-                    side: const BorderSide(width: 1, color: Color(0x3FFAF9FF)),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: const Center(
-                  child: Text(
-                    'Customer',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w700,
-                      //height: 0,
-                      letterSpacing: -0.64,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        const Gap(20),
+                        Container(
+                          width: 42,
+                          height: 42,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image:
+                                  AssetImage("assets/images/visitor_user.png"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        const Gap(10),
+                        const Text(
+                          'Visitor',
+                          textAlign: TextAlign.end,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontFamily: 'SF Pro Text',
+                            fontWeight: FontWeight.w700,
+                            height: 0,
+                            letterSpacing: -0.64,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -638,32 +670,90 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                       id: securityGuardNavigation);
                 },
                 child: Container(
-                  width: 100,
-                  height: 85,
+                  width: 77,
+                  height: 106,
                   decoration: ShapeDecoration(
-                    gradient: const LinearGradient(
-                      begin: Alignment(-1.00, -0.00),
-                      end: Alignment(1, 0),
-                      colors: [Color(0xFF5A57FF), Color(0xFF7C79FF)],
-                    ),
+                    color: const Color(0xFF5D36FF),
                     shape: RoundedRectangleBorder(
-                      side:
-                          const BorderSide(width: 1, color: Color(0x3FFAF9FF)),
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  child: const Center(
-                    child: Text(
-                      'Register',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontFamily: 'SF Pro Text',
-                        fontWeight: FontWeight.w700,
-                        //height: 0,
-                        letterSpacing: -0.64,
-                      ),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        const Gap(20),
+                        Container(
+                          width: 42,
+                          height: 42,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image:
+                                  AssetImage("assets/images/register_user.png"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        const Gap(10),
+                        const Text(
+                          'Register',
+                          textAlign: TextAlign.end,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontFamily: 'SF Pro Text',
+                            fontWeight: FontWeight.w700,
+                            height: 0,
+                            letterSpacing: -0.64,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Get.to(const RegistrationListScreen(),
+                      id: securityGuardNavigation);
+                },
+                child: Container(
+                  width: 77,
+                  height: 106,
+                  decoration: ShapeDecoration(
+                    color: const Color(0xFFDF127B),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        const Gap(20),
+                        Container(
+                          width: 42,
+                          height: 42,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image:
+                                  AssetImage("assets/images/scan_barcode.png"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        const Gap(10),
+                        const Text(
+                          'Scan QR',
+                          textAlign: TextAlign.end,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontFamily: 'SF Pro Text',
+                            fontWeight: FontWeight.w700,
+                            height: 0,
+                            letterSpacing: -0.64,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -674,101 +764,76 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
           Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
             Column(
               children: [
-                Container(
-                  width: 180,
-                  height: 100,
-                  decoration: ShapeDecoration(
-                    gradient: const LinearGradient(
-                      begin: Alignment(-1.00, -0.00),
-                      end: Alignment(1, 0),
-                      colors: [
-                        Color.fromARGB(255, 120, 118, 232),
-                        Color(0xFF7C79FF)
-                      ],
+                InkWell(
+                  onTap: () {
+                    Get.to(const AddTicketScreen(),
+                        id: securityGuardNavigation);
+                  },
+                  child: Container(
+                    width: 171,
+                    height: 110,
+                    decoration: ShapeDecoration(
+                      color: const Color(0xFF5A57FF),
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(
+                            width: 1, color: Color(0x3FFAF9FF)),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                    shape: RoundedRectangleBorder(
-                      side:
-                          const BorderSide(width: 1, color: Color(0x3FFAF9FF)),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Get.to(const AddTicketScreen(),
-                              id: securityGuardNavigation);
-                        },
-                        child: Container(
-                          width: 100,
-                          height: 66,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(
+                            top: 40.0,
+                          ),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Create\n',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w400,
+                                  height: 0.05,
+                                ),
+                              ),
+                              Gap(20),
+                              Text(
+                                'Ticket',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w600,
+                                  height: 0.04,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: 60,
+                          height: 60,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
                               image:
-                                  AssetImage("assets/images/ticket_image.png"),
+                                  AssetImage("assets/images/ticketVector.png"),
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                      ),
-                      const Gap(10),
-                      const Text(
-                        'Create Ticket',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontFamily: 'SF Pro Text',
-                          fontWeight: FontWeight.w500,
-                          //height: 0,
-                          letterSpacing: -0.64,
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
-
-            // Container(
-            //   width: 150,
-            //   height: 78,
-            //   decoration: ShapeDecoration(
-            //     image: const DecorationImage(
-            //       image: AssetImage("assets/images/addVisitorBySG.png"),
-            //       fit: BoxFit.fill,
-            //     ),
-            //     shape: RoundedRectangleBorder(
-            //       side: const BorderSide(width: 1, color: Color(0xFF38D6E0)),
-            //       borderRadius: BorderRadius.circular(10),
-            //     ),
-            //   ),
-            //   child: const Text(
-            //     'Add Visitor',
-            //     textAlign: TextAlign.center,
-            //     style: TextStyle(
-            //       color: Colors.white,
-            //       fontSize: 16,
-            //       fontFamily: 'SF Pro Text',
-            //       fontWeight: FontWeight.w500,
-            //       //height: 0,
-            //       letterSpacing: -0.64,
-            //     ),
-            //   ),
-            // ),
-
             Container(
               width: 180,
-              height: 100,
               decoration: ShapeDecoration(
-                gradient: const LinearGradient(
-                  begin: Alignment(-1.00, -0.00),
-                  end: Alignment(1, 0),
-                  colors: [
-                    Color.fromARGB(255, 120, 118, 232),
-                    Color(0xFF7C79FF)
-                  ],
-                ),
+                color: const Color(0xFF5A57FF),
                 shape: RoundedRectangleBorder(
                   side: const BorderSide(width: 1, color: Color(0x3FFAF9FF)),
                   borderRadius: BorderRadius.circular(10),
@@ -785,7 +850,7 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                       height: 66,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage("assets/images/visitorNew.png"),
+                          image: AssetImage("assets/images/visitorVector.png"),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -811,13 +876,13 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
           const Gap(5),
           InkWell(
             onTap: () {
-              _showPopup(context);
+              Get.to(const MaterialListScreen(), id: securityGuardNavigation);
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 width: double.infinity,
-                height: 134,
+                // height: 134,
                 decoration: ShapeDecoration(
                   gradient: LinearGradient(
                     begin: const Alignment(1.00, 0.00),
@@ -920,214 +985,222 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
             ),
           ),
           const Gap(5),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              width: double.infinity,
-              height: 134,
-              decoration: ShapeDecoration(
-                gradient: LinearGradient(
-                  begin: const Alignment(1.00, 0.00),
-                  end: const Alignment(-1, 0),
-                  colors: [
-                    Colors.white.withOpacity(0.10000000149011612),
-                    Colors.white.withOpacity(0.10000000149011612)
-                  ],
+          InkWell(
+            onTap: () {
+              Get.to(const VehicleListScreen(), id: securityGuardNavigation);
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: double.infinity,
+                decoration: ShapeDecoration(
+                  gradient: LinearGradient(
+                    begin: const Alignment(1.00, 0.00),
+                    end: const Alignment(-1, 0),
+                    colors: [
+                      Colors.white.withOpacity(0.10000000149011612),
+                      Colors.white.withOpacity(0.10000000149011612)
+                    ],
+                  ),
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(width: 1, color: Colors.white),
+                    borderRadius: BorderRadius.circular(25),
+                  ),
                 ),
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(width: 1, color: Colors.white),
-                  borderRadius: BorderRadius.circular(25),
-                ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Vehicle',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w600,
-                      //height: 0,
-                      letterSpacing: -0.72,
-                    ),
-                  ).paddingOnly(top: 20, left: 25),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      const Column(
-                        children: [
-                          Text(
-                            '12',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontFamily: 'SF Pro Text',
-                              fontWeight: FontWeight.w600,
-                              //height: 0,
-                              letterSpacing: -0.72,
-                            ),
-                          ),
-                          Text(
-                            'Vehicle In',
-                            style: TextStyle(
-                              color: Colors.green,
-                              fontSize: 14,
-                              fontFamily: 'SF Pro Text',
-                              fontWeight: FontWeight.w500,
-                              //height: 0,
-                              letterSpacing: -0.56,
-                            ),
-                          ),
-                        ],
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Vehicle',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontFamily: 'SF Pro Text',
+                        fontWeight: FontWeight.w600,
+                        //height: 0,
+                        letterSpacing: -0.72,
                       ),
-                      const Column(
-                        children: [
-                          Text(
-                            '10',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontFamily: 'SF Pro Text',
-                              fontWeight: FontWeight.w600,
-                              //height: 0,
-                              letterSpacing: -0.72,
+                    ).paddingOnly(top: 20, left: 25),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        const Column(
+                          children: [
+                            Text(
+                              '12',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontFamily: 'SF Pro Text',
+                                fontWeight: FontWeight.w600,
+                                //height: 0,
+                                letterSpacing: -0.72,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Vehicle Out',
-                            style: TextStyle(
-                              color: Colors.orange,
-                              fontSize: 14,
-                              fontFamily: 'SF Pro Text',
-                              fontWeight: FontWeight.w500,
-                              //height: 0,
-                              letterSpacing: -0.56,
+                            Text(
+                              'Vehicle In',
+                              style: TextStyle(
+                                color: Colors.green,
+                                fontSize: 14,
+                                fontFamily: 'SF Pro Text',
+                                fontWeight: FontWeight.w500,
+                                //height: 0,
+                                letterSpacing: -0.56,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        width: 120,
-                        height: 90,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("assets/images/vehicle.png"),
-                            fit: BoxFit.fill,
+                          ],
+                        ),
+                        const Column(
+                          children: [
+                            Text(
+                              '10',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontFamily: 'SF Pro Text',
+                                fontWeight: FontWeight.w600,
+                                //height: 0,
+                                letterSpacing: -0.72,
+                              ),
+                            ),
+                            Text(
+                              'Vehicle Out',
+                              style: TextStyle(
+                                color: Colors.orange,
+                                fontSize: 14,
+                                fontFamily: 'SF Pro Text',
+                                fontWeight: FontWeight.w500,
+                                //height: 0,
+                                letterSpacing: -0.56,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          width: 120,
+                          height: 90,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage("assets/images/vehicle.png"),
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  )
-                ],
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),
           const Gap(5),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              width: double.infinity,
-              height: 134,
-              decoration: ShapeDecoration(
-                gradient: LinearGradient(
-                  begin: const Alignment(1.00, 0.00),
-                  end: const Alignment(-1, 0),
-                  colors: [
-                    Colors.white.withOpacity(0.10000000149011612),
-                    Colors.white.withOpacity(0.10000000149011612)
-                  ],
+          InkWell(
+            onTap: () {
+              Get.to(const PersonsListScreen(), id: securityGuardNavigation);
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: double.infinity,
+                decoration: ShapeDecoration(
+                  gradient: LinearGradient(
+                    begin: const Alignment(1.00, 0.00),
+                    end: const Alignment(-1, 0),
+                    colors: [
+                      Colors.white.withOpacity(0.10000000149011612),
+                      Colors.white.withOpacity(0.10000000149011612)
+                    ],
+                  ),
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(width: 1, color: Colors.white),
+                    borderRadius: BorderRadius.circular(25),
+                  ),
                 ),
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(width: 1, color: Colors.white),
-                  borderRadius: BorderRadius.circular(25),
-                ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Person',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w600,
-                      //height: 0,
-                      letterSpacing: -0.72,
-                    ),
-                  ).paddingOnly(top: 20, left: 25),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      const Column(
-                        children: [
-                          Text(
-                            '12',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontFamily: 'SF Pro Text',
-                              fontWeight: FontWeight.w600,
-                              //height: 0,
-                              letterSpacing: -0.72,
-                            ),
-                          ),
-                          Text(
-                            'Person In',
-                            style: TextStyle(
-                              color: Colors.green,
-                              fontSize: 14,
-                              fontFamily: 'SF Pro Text',
-                              fontWeight: FontWeight.w500,
-                              //height: 0,
-                              letterSpacing: -0.56,
-                            ),
-                          ),
-                        ],
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Person',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontFamily: 'SF Pro Text',
+                        fontWeight: FontWeight.w600,
+                        //height: 0,
+                        letterSpacing: -0.72,
                       ),
-                      const Column(
-                        children: [
-                          Text(
-                            '10',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontFamily: 'SF Pro Text',
-                              fontWeight: FontWeight.w600,
-                              //height: 0,
-                              letterSpacing: -0.72,
+                    ).paddingOnly(top: 20, left: 25),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        const Column(
+                          children: [
+                            Text(
+                              '12',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontFamily: 'SF Pro Text',
+                                fontWeight: FontWeight.w600,
+                                //height: 0,
+                                letterSpacing: -0.72,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Person Out',
-                            style: TextStyle(
-                              color: Colors.orange,
-                              fontSize: 14,
-                              fontFamily: 'SF Pro Text',
-                              fontWeight: FontWeight.w500,
-                              //height: 0,
-                              letterSpacing: -0.56,
+                            Text(
+                              'Person In',
+                              style: TextStyle(
+                                color: Colors.green,
+                                fontSize: 14,
+                                fontFamily: 'SF Pro Text',
+                                fontWeight: FontWeight.w500,
+                                //height: 0,
+                                letterSpacing: -0.56,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        width: 92,
-                        height: 90,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("assets/images/person.png"),
-                            fit: BoxFit.fill,
+                          ],
+                        ),
+                        const Column(
+                          children: [
+                            Text(
+                              '10',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontFamily: 'SF Pro Text',
+                                fontWeight: FontWeight.w600,
+                                //height: 0,
+                                letterSpacing: -0.72,
+                              ),
+                            ),
+                            Text(
+                              'Person Out',
+                              style: TextStyle(
+                                color: Colors.orange,
+                                fontSize: 14,
+                                fontFamily: 'SF Pro Text',
+                                fontWeight: FontWeight.w500,
+                                //height: 0,
+                                letterSpacing: -0.56,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          width: 92,
+                          height: 90,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage("assets/images/person.png"),
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  )
-                ],
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),

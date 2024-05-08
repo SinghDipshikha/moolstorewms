@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/Auth/widgets/commonTextField.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Tickets/ticketVerify.dart';
-import 'package:moolwmsstore/Security%20Guard/View/securityGuarddashboard.dart';
+import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/View/common/tagContainer.dart';

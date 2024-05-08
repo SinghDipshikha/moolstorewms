@@ -185,7 +185,7 @@ class _HrDashboardState extends State<HrDashboard> {
                       title: "View Staff",
                       isShowextendedLine: false,
                       onTap: () {
-                        Get.to(HrEmployeeList(), id: hrNavigationKey);
+                        Get.to(const HrEmployeeList(), id: hrNavigationKey);
                       },
                     ),
                     // CurvedLineConatainer(title: "dcdc"),
@@ -396,7 +396,6 @@ class _HrDashboardState extends State<HrDashboard> {
               },
               child: Container(
                 width: 358,
-                height: 173,
                 decoration: ShapeDecoration(
                   gradient: LinearGradient(
                     begin: const Alignment(1.00, 0.00),

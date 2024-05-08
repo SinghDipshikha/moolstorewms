@@ -3,35 +3,35 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
-import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allPersonsInfo.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allTicketList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart';
 import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 
 //@RoutePage()
-class PersonsListScreen extends StatefulWidget {
-  const PersonsListScreen({super.key});
+class MaterialListScreen extends StatefulWidget {
+  const MaterialListScreen({super.key});
 
   @override
-  State<PersonsListScreen> createState() => _PersonsListScreenState();
+  State<MaterialListScreen> createState() => _MaterialListScreenState();
 }
 
-class _PersonsListScreenState extends State<PersonsListScreen> {
+class _MaterialListScreenState extends State<MaterialListScreen> {
   @override
   final List tags = [
-    {"title": "Name", "flex": 1},
-    {"title": "Mobile", "flex": 2},
-    {"title": "Date & Time", "flex": 2},
+    {"title": "Ticket Id", "flex": 1},
+    {"title": "Vehicle No.", "flex": 2},
+    {"title": "Driver Name", "flex": 2},
     {
       "title": "Status",
       "flex": 1,
     },
   ];
   final List dataList = [
-    {"title": "Johnson Charles", "flex": 1},
-    {"title": "123456789", "flex": 2},
-    {"title": "25-06-2024 10:35 AM", "flex": 2},
+    {"title": "#TC-130", "flex": 1},
+    {"title": "MH XY- 1234", "flex": 2},
+    {"title": "Alec Benjamin", "flex": 2},
     {"title": "icon", "flex": 1},
     {"title": "icon2", "flex": 1},
   ];
@@ -44,7 +44,6 @@ class _PersonsListScreenState extends State<PersonsListScreen> {
         title: 'Verify',
         //  leftIcon: 'assets/icons/qr_icon.png',
         color: const Color(0xFF5A57FF),
-        textColor: Colors.white,
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => const RegistrationTypeOptions(),
@@ -57,7 +56,7 @@ class _PersonsListScreenState extends State<PersonsListScreen> {
             builder: (context) => const SecurityGuardDashBoard(),
           ));
         },
-        title: 'Persons List',
+        title: 'Material List',
         actions: const [],
       ),
       body: Center(
@@ -90,17 +89,17 @@ class _PersonsListScreenState extends State<PersonsListScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        'Sort By',
+                        'Scan QR',
                         style: TextStyle(
                           color: Color(0xFFACACAC),
                           fontSize: 16,
                           fontFamily: 'SF Pro Display',
                           fontWeight: FontWeight.w400,
-                          height: 0,
+                          //height: 0,
                         ),
                       ),
                       Icon(
-                        Icons.filter,
+                        Icons.sort,
                         color: Color(0xFFACACAC),
                         size: 20,
                       ),
@@ -134,7 +133,7 @@ class _PersonsListScreenState extends State<PersonsListScreen> {
                           fontSize: 16,
                           fontFamily: 'SF Pro Display',
                           fontWeight: FontWeight.w400,
-                          height: 0,
+                          //height: 0,
                         ),
                       ),
                       Icon(
@@ -177,9 +176,9 @@ class _PersonsListScreenState extends State<PersonsListScreen> {
             ),
             Expanded(
               child: GetBuilder<SecurityGuardController>(initState: (state) {
-                Get.find<SecurityGuardController>().getAllPersonssInfo();
+                Get.find<SecurityGuardController>().getAllTicketList();
               }, builder: (securityGuardController) {
-                return securityGuardController.allVisitorList.isEmpty
+                return securityGuardController.allTicketList.isEmpty
                     ? const Center(
                         child: Text(
                           'No data found',
@@ -192,10 +191,10 @@ class _PersonsListScreenState extends State<PersonsListScreen> {
                       )
                     : ListView.builder(
                         // shrinkWrap: true,
-                        itemCount: securityGuardController.allPersonList.length,
+                        itemCount: securityGuardController.allTicketList.length,
                         itemBuilder: (context, i) {
-                          GetAllPersonsBySecurityGaurd entry =
-                              securityGuardController.allPersonList[i];
+                          GetAllTicketListBySecurityGuard entry =
+                              securityGuardController.allTicketList[i];
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
@@ -215,24 +214,23 @@ class _PersonsListScreenState extends State<PersonsListScreen> {
                                 child: Row(
                                   children:
                                       List.generate(dataList.length, (index) {
-                                    if (dataList[index]["title"] ==
-                                        "Johnson Charles") {
+                                    if (dataList[index]["title"] == "#TC-130") {
                                       return Expanded(
                                           flex: dataList[index]["flex"],
                                           child: Text(
-                                            entry.visitor_name ?? "",
+                                            entry.visit_ticket_number ?? "",
                                             style: const TextStyle(
                                               color: Color(0xFF353535),
                                               fontSize: 12,
                                               fontFamily: 'SF Pro Text',
                                               fontWeight: FontWeight.w500,
-                                              height: 0,
+                                              //height: 0,
                                               letterSpacing: -0.48,
                                             ),
                                           ));
                                     }
                                     if (dataList[index]["title"] ==
-                                        "123456789") {
+                                        "MH XY- 1234") {
                                       return Expanded(
                                           flex: dataList[index]["flex"],
                                           child: Text(
@@ -242,13 +240,13 @@ class _PersonsListScreenState extends State<PersonsListScreen> {
                                               fontSize: 12,
                                               fontFamily: 'SF Pro Text',
                                               fontWeight: FontWeight.w500,
-                                              height: 0,
+                                              //height: 0,
                                               letterSpacing: -0.48,
                                             ),
                                           ));
                                     }
                                     if (dataList[index]["title"] ==
-                                        "25-06-2024 10:35 AM") {
+                                        "Alec Benjamin") {
                                       return Expanded(
                                           flex: dataList[index]["flex"],
                                           child: Text(
@@ -259,7 +257,7 @@ class _PersonsListScreenState extends State<PersonsListScreen> {
                                               fontSize: 10,
                                               fontFamily: 'SF Pro Text',
                                               fontWeight: FontWeight.w400,
-                                              height: 0,
+                                              //height: 0,
                                               letterSpacing: -0.40,
                                             ),
                                           ));
