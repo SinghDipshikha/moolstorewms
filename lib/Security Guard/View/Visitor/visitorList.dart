@@ -20,18 +20,18 @@ class VisitorListScreen extends StatefulWidget {
 class _VisitorListScreenState extends State<VisitorListScreen> {
   @override
   final List tags = [
-    {"title": "Name", "flex": 1},
+    {"title": "Visitor ID", "flex": 1},
+    {"title": "Visitor Name", "flex": 1},
     {"title": "Mobile", "flex": 2},
-    {"title": "Date & Time", "flex": 2},
     {
       "title": "Status",
       "flex": 1,
     },
   ];
   final List dataList = [
+    {"title": "#TC-130", "flex": 1},
     {"title": "Johnson Charles", "flex": 1},
     {"title": "123456789", "flex": 2},
-    {"title": "25-06-2024 10:35 AM", "flex": 2},
     {"title": "icon", "flex": 1},
     {"title": "icon2", "flex": 1},
   ];
@@ -57,7 +57,7 @@ class _VisitorListScreenState extends State<VisitorListScreen> {
             builder: (context) => const SecurityGuardDashBoard(),
           ));
         },
-        title: 'Register List',
+        title: 'Visitor List',
         actions: const [],
       ),
       body: Center(
@@ -216,6 +216,21 @@ class _VisitorListScreenState extends State<VisitorListScreen> {
                                 child: Row(
                                   children:
                                       List.generate(dataList.length, (index) {
+                                    if (dataList[index]["title"] == "#TC-130") {
+                                      return Expanded(
+                                          flex: dataList[index]["flex"],
+                                          child: Text(
+                                            entry.visit_ticket_number ?? "",
+                                            style: const TextStyle(
+                                              color: Color(0xFF353535),
+                                              fontSize: 12,
+                                              fontFamily: 'SF Pro Text',
+                                              fontWeight: FontWeight.w500,
+                                              //height: 0,
+                                              letterSpacing: -0.48,
+                                            ),
+                                          ));
+                                    }
                                     if (dataList[index]["title"] ==
                                         "Johnson Charles") {
                                       return Expanded(
@@ -245,23 +260,6 @@ class _VisitorListScreenState extends State<VisitorListScreen> {
                                               fontWeight: FontWeight.w500,
                                               //height: 0,
                                               letterSpacing: -0.48,
-                                            ),
-                                          ));
-                                    }
-                                    if (dataList[index]["title"] ==
-                                        "25-06-2024 10:35 AM") {
-                                      return Expanded(
-                                          flex: dataList[index]["flex"],
-                                          child: Text(
-                                            entry.created_at.toString() ??
-                                                "${DateTime.now()}",
-                                            style: const TextStyle(
-                                              color: Color(0xFFCCCCCC),
-                                              fontSize: 10,
-                                              fontFamily: 'SF Pro Text',
-                                              fontWeight: FontWeight.w400,
-                                              //height: 0,
-                                              letterSpacing: -0.40,
                                             ),
                                           ));
                                     }

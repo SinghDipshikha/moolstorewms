@@ -25,7 +25,7 @@ class SecurityGuardController extends GetxController {
   GetAllTicketListBySecurityGuard? allTicketDetails;
   List<GetAllVisitorBySecurityGaurd> allVisitorList = [];
   List<GetAllTicketListBySecurityGuard> allTicketList = [];
-
+  List<GetAllPersonsBySecurityGaurd> allPersonList = [];
   bool? isCheckIn;
   User user;
 

@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Visitor/visitorCheckedInSuccessfully.dart';
-import 'package:moolwmsstore/Security%20Guard/View/securityGuarddashboard.dart';
+import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonTextField.dart';
