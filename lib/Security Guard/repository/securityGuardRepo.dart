@@ -93,7 +93,7 @@ class SecurityGuardRepo {
     required var next,
   }) async {
     Response res = await apiClient.getData(
-        "visitor/getAllVisitors?recordsPerPage=$recordsPerPage&$next=$next");
+        "ticket/getAllTicketsList?recordsPerPage=$recordsPerPage&$next=$next");
     if (res.data["message"] == "Visitor details fetched Successfully!") {
       return GetAllVisitorBySecurityGaurd.fromJson(res.data["result"]);
     }
