@@ -3,35 +3,35 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
-import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allTicketList.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allVisitorsInfo.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart';
 import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 
 //@RoutePage()
-class TicketListScreen extends StatefulWidget {
-  const TicketListScreen({super.key});
+class PersonsListScreen extends StatefulWidget {
+  const PersonsListScreen({super.key});
 
   @override
-  State<TicketListScreen> createState() => _TicketListScreenState();
+  State<PersonsListScreen> createState() => _PersonsListScreenState();
 }
 
-class _TicketListScreenState extends State<TicketListScreen> {
+class _PersonsListScreenState extends State<PersonsListScreen> {
   @override
   final List tags = [
-    {"title": "Ticket Id", "flex": 1},
-    {"title": "Vehicle No.", "flex": 2},
-    {"title": "Driver Name", "flex": 2},
+    {"title": "Name", "flex": 1},
+    {"title": "Mobile", "flex": 2},
+    {"title": "Date & Time", "flex": 2},
     {
       "title": "Status",
       "flex": 1,
     },
   ];
   final List dataList = [
-    {"title": "#TC-130", "flex": 1},
-    {"title": "MH XY- 1234", "flex": 2},
-    {"title": "Alec Benjamin", "flex": 2},
+    {"title": "Johnson Charles", "flex": 1},
+    {"title": "123456789", "flex": 2},
+    {"title": "25-06-2024 10:35 AM", "flex": 2},
     {"title": "icon", "flex": 1},
     {"title": "icon2", "flex": 1},
   ];
@@ -44,6 +44,7 @@ class _TicketListScreenState extends State<TicketListScreen> {
         title: 'Verify',
         //  leftIcon: 'assets/icons/qr_icon.png',
         color: const Color(0xFF5A57FF),
+        textColor: Colors.white,
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => const RegistrationTypeOptions(),
@@ -56,7 +57,7 @@ class _TicketListScreenState extends State<TicketListScreen> {
             builder: (context) => const SecurityGuardDashBoard(),
           ));
         },
-        title: 'Ticket List',
+        title: 'Register List',
         actions: const [],
       ),
       body: Center(
@@ -89,17 +90,17 @@ class _TicketListScreenState extends State<TicketListScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        'Scan QR',
+                        'Sort By',
                         style: TextStyle(
                           color: Color(0xFFACACAC),
                           fontSize: 16,
                           fontFamily: 'SF Pro Display',
                           fontWeight: FontWeight.w400,
-                          //height: 0,
+                          height: 0,
                         ),
                       ),
                       Icon(
-                        Icons.sort,
+                        Icons.filter,
                         color: Color(0xFFACACAC),
                         size: 20,
                       ),
@@ -133,7 +134,7 @@ class _TicketListScreenState extends State<TicketListScreen> {
                           fontSize: 16,
                           fontFamily: 'SF Pro Display',
                           fontWeight: FontWeight.w400,
-                          //height: 0,
+                          height: 0,
                         ),
                       ),
                       Icon(
@@ -176,9 +177,9 @@ class _TicketListScreenState extends State<TicketListScreen> {
             ),
             Expanded(
               child: GetBuilder<SecurityGuardController>(initState: (state) {
-                Get.find<SecurityGuardController>().getAllTicketList();
+                Get.find<SecurityGuardController>().getAllVisitorsInfo();
               }, builder: (securityGuardController) {
-                return securityGuardController.allTicketList.isEmpty
+                return securityGuardController.allVisitorList.isEmpty
                     ? const Center(
                         child: Text(
                           'No data found',
@@ -191,10 +192,11 @@ class _TicketListScreenState extends State<TicketListScreen> {
                       )
                     : ListView.builder(
                         // shrinkWrap: true,
-                        itemCount: securityGuardController.allTicketList.length,
+                        itemCount:
+                            securityGuardController.allVisitorList.length,
                         itemBuilder: (context, i) {
-                          GetAllTicketListBySecurityGuard entry =
-                              securityGuardController.allTicketList[i];
+                          GetAllVisitorBySecurityGaurd entry =
+                              securityGuardController.allVisitorList[i];
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
@@ -214,23 +216,24 @@ class _TicketListScreenState extends State<TicketListScreen> {
                                 child: Row(
                                   children:
                                       List.generate(dataList.length, (index) {
-                                    if (dataList[index]["title"] == "#TC-130") {
+                                    if (dataList[index]["title"] ==
+                                        "Johnson Charles") {
                                       return Expanded(
                                           flex: dataList[index]["flex"],
                                           child: Text(
-                                            entry.visit_ticket_number ?? "",
+                                            entry.visitor_name ?? "",
                                             style: const TextStyle(
                                               color: Color(0xFF353535),
                                               fontSize: 12,
                                               fontFamily: 'SF Pro Text',
                                               fontWeight: FontWeight.w500,
-                                              //height: 0,
+                                              height: 0,
                                               letterSpacing: -0.48,
                                             ),
                                           ));
                                     }
                                     if (dataList[index]["title"] ==
-                                        "MH XY- 1234") {
+                                        "123456789") {
                                       return Expanded(
                                           flex: dataList[index]["flex"],
                                           child: Text(
@@ -240,13 +243,13 @@ class _TicketListScreenState extends State<TicketListScreen> {
                                               fontSize: 12,
                                               fontFamily: 'SF Pro Text',
                                               fontWeight: FontWeight.w500,
-                                              //height: 0,
+                                              height: 0,
                                               letterSpacing: -0.48,
                                             ),
                                           ));
                                     }
                                     if (dataList[index]["title"] ==
-                                        "Alec Benjamin") {
+                                        "25-06-2024 10:35 AM") {
                                       return Expanded(
                                           flex: dataList[index]["flex"],
                                           child: Text(
@@ -257,7 +260,7 @@ class _TicketListScreenState extends State<TicketListScreen> {
                                               fontSize: 10,
                                               fontFamily: 'SF Pro Text',
                                               fontWeight: FontWeight.w400,
-                                              //height: 0,
+                                              height: 0,
                                               letterSpacing: -0.40,
                                             ),
                                           ));

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Visitor/visitorCheckedInSuccessfully.dart';
 import 'package:moolwmsstore/Security%20Guard/View/securityGuarddashboard.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
@@ -22,15 +23,15 @@ class _AddVisitorState extends State<AddVisitor> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: CustomFloatingActionButton(
-        title: 'Vehicle In',
+        title: 'Visitor In',
         color: const Color(0xFF04BF8A),
         textColor: Colors.white,
         onTap: () {
-          /// Get.to(const TicketEntryReviewScreen(), id: securityGuardNavigation);
+          Get.to(const VisitorAddedSuccessfully(), id: securityGuardNavigation);
         },
       ),
       appBar: CommonAppBar(
-        title: 'Add Ticket',
+        title: 'Add Visitor',
         onTap: () {
           Get.to(const SecurityGuardDashBoard(), id: securityGuardNavigation);
         },
@@ -41,32 +42,35 @@ class _AddVisitorState extends State<AddVisitor> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 358,
-              height: 39,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: ShapeDecoration(
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(width: 1, color: Color(0x195A57FF)),
-                  borderRadius: BorderRadius.circular(30),
-                ),
-              ),
-              child: const Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Visitor ID : 54321',
-                    style: TextStyle(
-                      color: Color(0xFFACACAC),
-                      fontSize: 16,
-                      fontFamily: 'SF Pro Display',
-                      fontWeight: FontWeight.w400,
-                      //height: 0,
-                    ),
+            Center(
+              child: Container(
+                width: 358,
+                height: 39,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                decoration: ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(width: 1, color: Color(0x195A57FF)),
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                ],
+                ),
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Visitor ID : 54321',
+                      style: TextStyle(
+                        color: Color(0xFFACACAC),
+                        fontSize: 16,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w400,
+                        height: 0,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             const Gap(10),
@@ -118,27 +122,29 @@ class _AddVisitorState extends State<AddVisitor> {
               onTap: () {
                 _showPopup(context);
               },
-              child: Container(
-                width: 358,
-                height: 75,
-                decoration: ShapeDecoration(
-                  color: const Color(0xFF5A57FF),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                ),
-                child: const Center(
-                  child: Text(
-                    'Upload ID Image',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontFamily: 'SF Pro Display',
-                      fontWeight: FontWeight.bold,
-                      //height: 0,
+              child: Center(
+                child: Container(
+                  width: 358,
+                  height: 75,
+                  decoration: ShapeDecoration(
+                    color: const Color(0xFF5A57FF),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Upload ID Image',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.bold,
+                        height: 0,
+                      ),
                     ),
                   ),
-                ),
-              ).paddingOnly(left: 10),
+                ).paddingOnly(left: 10),
+              ),
             ),
             const Gap(10),
             CommanTextFieldUpdated(
@@ -207,8 +213,7 @@ void _showPopup(BuildContext context) {
                     const Gap(10),
                     InkWell(
                       onTap: () {
-                        // Get.to(const SecurityGuardDashBoard(),
-                        //     id: securityGuardNavigation);
+                        _showPopupForDocuments(context);
                       },
                       child: Container(
                         width: 275,
@@ -270,7 +275,7 @@ void _showPopupForDocuments(BuildContext context) {
                         //height: 0,
                       ),
                     ),
-                    const Gap(10),
+                    const Gap(20),
                     Container(
                       width: 232,
                       height: 140,
@@ -289,6 +294,60 @@ void _showPopupForDocuments(BuildContext context) {
                         ),
                       ),
                     ),
+                    const Gap(20),
+                    Row(
+                      children: [
+                        Container(
+                          width: 120,
+                          height: 45,
+                          decoration: ShapeDecoration(
+                            color: const Color(0xFFFAF9FF),
+                            shape: RoundedRectangleBorder(
+                              side: const BorderSide(
+                                  width: 1, color: Color(0x195A57FF)),
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              'Retake',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFF353535),
+                                fontSize: 16,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w500,
+                                height: 0,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Gap(10),
+                        Container(
+                          width: 120,
+                          height: 45,
+                          decoration: ShapeDecoration(
+                            color: const Color(0xFF5A57FF),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              'Add',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w500,
+                                height: 0,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),

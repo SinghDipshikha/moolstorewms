@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Visitor/visitorList.dart';
+import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
-class AddedStaffScreen extends StatefulWidget {
-  const AddedStaffScreen({super.key});
+class VisitorAddedSuccessfully extends StatefulWidget {
+  const VisitorAddedSuccessfully({super.key});
 
   @override
-  State<AddedStaffScreen> createState() => _AddedStaffScreenState();
+  State<VisitorAddedSuccessfully> createState() =>
+      _VisitorAddedSuccessfullyState();
 }
 
-class _AddedStaffScreenState extends State<AddedStaffScreen> {
+class _VisitorAddedSuccessfullyState extends State<VisitorAddedSuccessfully> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +24,8 @@ class _AddedStaffScreenState extends State<AddedStaffScreen> {
           height: double.infinity,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/addedStaff.png"),
+              image:
+                  AssetImage("assets/images/visitorCheckedInSuccessfully.png"),
               fit: BoxFit.cover,
             ),
           ),
@@ -31,17 +37,25 @@ class _AddedStaffScreenState extends State<AddedStaffScreen> {
                   children: [
                     Center(
                       child: CommonButton(
-                        title: 'Goto Staff Profile',
+                        title: 'Go To List',
                         color: Colors.white,
                         textColor: Colors.black,
+                        onTap: () {
+                          Get.to(const VisitorListScreen(),
+                              id: securityGuardNavigation);
+                        },
                       ),
                     ),
                     const Gap(20),
                     Center(
                       child: CommonButton(
                         title: 'Home',
-                        color: const Color(0xFF5A57FF),
-                        textColor: Colors.white,
+                        color: Colors.white,
+                        textColor: Colors.black,
+                        onTap: () {
+                          Get.to(const SecurityGuardDashBoard(),
+                              id: securityGuardNavigation);
+                        },
                       ),
                     )
                   ],
