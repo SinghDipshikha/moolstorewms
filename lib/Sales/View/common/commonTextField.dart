@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 
-class CommanTextField extends StatelessWidget {
+class CommonTextField extends StatelessWidget {
   bool? obscureText;
   String? labelText;
   Widget? suffixIcon;
@@ -20,7 +21,7 @@ class CommanTextField extends StatelessWidget {
   double? borderRadius;
   int? maxLines;
 
-  CommanTextField({
+  CommonTextField({
     super.key,
     this.labelText,
     this.hintText,
@@ -41,174 +42,77 @@ class CommanTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        constraints:
-            context.isPhone ? null : const BoxConstraints(maxWidth: 500),
-        child:
-
-            // context.isPhone
-            //     ?
-
-            Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              constraints:
-                  context.isPhone ? null : const BoxConstraints(maxWidth: 100),
-              child: Text.rich(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          child: Text.rich(
+            TextSpan(
+              children: [
                 TextSpan(
-                  children: [
-                    TextSpan(
-                      text: "$labelText",
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFFACACAC),
-                      ),
-                    ),
-                    TextSpan(
-                      text: '*',
-                      style: TextStyles.bodyMedium(context)
-                          .copyWith(color: Colors.red),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(
-              width: 40,
-            ),
-            Container(
-              height: 40.0,
-              decoration: const BoxDecoration(
-                  color: Color(0xFFFAF9FF),
-                  borderRadius: BorderRadius.all(Radius.circular(25.7))),
-              child: TextFormField(
-                maxLines: maxLines,
-                textCapitalization:
-                    textCapitalization ?? TextCapitalization.none,
-                onTapOutside: (event) {
-                  FocusManager.instance.primaryFocus?.unfocus();
-                },
-                onChanged: onChanged,
-                onFieldSubmitted: (value) {
-                  FocusManager.instance.primaryFocus?.unfocus();
-                },
-                keyboardType: keyboardType,
-                controller: controller,
-                validator: validator,
-                inputFormatters: inputFormatters,
-                obscureText: obscureText ?? false,
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.only(left: 8),
-                  focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(255, 27, 23, 251), width: 0.4),
-                      borderRadius: BorderRadius.all(Radius.circular(5))),
-                  enabledBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(255, 169, 153, 246),
-                          width: 0.2),
-                      borderRadius: BorderRadius.all(Radius.circular(5))),
-                  hintText: hintText,
-                  hintStyle: const TextStyle(
-                    color: Color(0xFFACACAC),
-                    fontSize: 14,
-                    fontFamily: 'SF Pro Display',
+                  text: "$labelText",
+                  style: const TextStyle(
+                    fontSize: 16,
                     fontWeight: FontWeight.w400,
+                    color: Color(0xFFACACAC),
                   ),
-                  suffixIcon: suffixIcon,
-                  prefixIcon: prefixIcon,
-                  border: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red, width: 0.1),
-                      borderRadius: BorderRadius.all(Radius.circular(5))),
-                  errorStyle: const TextStyle(fontSize: 18),
                 ),
-              ).paddingSymmetric(
-                vertical: 0,
-                horizontal: 4,
-              ),
+              ],
             ),
-          ],
-        )
-        // : Row(
-        //     children: [
-        //       SizedBox(
-        //         width: 220,
-        //         child: Text.rich(
-        //           overflow: TextOverflow.ellipsis,
-        //           TextSpan(
-        //             children: [
-        //               TextSpan(
-        //                 text: "$labelText",
-        //                 style: const TextStyle(
-        //                   fontSize: 16,
-        //                   fontWeight: FontWeight.w400,
-        //                 ),
-        //               ),
-        //               TextSpan(
-        //                 text: '*',
-        //                 style: TextStyles.bodyMedium(context)
-        //                     .copyWith(color: Colors.red),
-        //               ),
-        //             ],
-        //           ),
-        //         ),
-        //       ),
-        //       //  Gap(20),
-        //       Expanded(
-        //         child: Container(
-        //           decoration: ShapeDecoration(
-        //             color: Colors.white,
-        //             shape: RoundedRectangleBorder(
-        //               borderRadius:
-        //                   BorderRadius.circular(borderRadius ?? 4.82),
-        //             ),
-        //             shadows: const [
-        //               BoxShadow(
-        //                 color: Color(0x0C000000),
-        //                 blurRadius: 4,
-        //                 offset: Offset(3, 4),
-        //                 spreadRadius: 0,
-        //               )
-        //             ],
-        //           ),
-        //           child: TextFormField(
-        //             //  expands: true,
-        //             maxLines: maxLines,
-        //             textCapitalization:
-        //                 textCapitalization ?? TextCapitalization.none,
-        //             onTapOutside: (event) {
-        //               FocusManager.instance.primaryFocus?.unfocus();
-        //             },
-        //             onChanged: onChanged,
-        //             onFieldSubmitted: (value) {
-        //               FocusManager.instance.primaryFocus?.unfocus();
-        //             },
-        //             keyboardType: keyboardType,
-        //             controller: controller,
-        //             validator: validator,
-        //             inputFormatters: inputFormatters,
-        //             obscureText: obscureText ?? false,
-        //             decoration: InputDecoration(
-        //               hintText: hintText,
-        //               hintStyle: const TextStyle(color: Colors.grey),
-        //               suffixIcon: suffixIcon,
-        //               prefixIcon: prefixIcon,
-        //               border: InputBorder.none,
-        //               errorStyle: const TextStyle(fontSize: 12),
-        //             ),
-        //           ).paddingSymmetric(
-        //             vertical: 2,
-        //             horizontal: 6,
-        //           ),
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-
-        );
+          ),
+        ),
+        const Gap(
+          8,
+        ),
+        Container(
+          height: 40.0,
+          decoration: const BoxDecoration(
+              color: Color(0xFFFAF9FF),
+              borderRadius: BorderRadius.all(Radius.circular(25.7))),
+          child: TextFormField(
+            maxLines: maxLines,
+            textCapitalization: textCapitalization ?? TextCapitalization.none,
+            onTapOutside: (event) {
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
+            onChanged: onChanged,
+            onFieldSubmitted: (value) {
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
+            keyboardType: keyboardType,
+            controller: controller,
+            validator: validator,
+            inputFormatters: inputFormatters,
+            obscureText: obscureText ?? false,
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.only(left: 8),
+              focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: Color.fromARGB(255, 27, 23, 251), width: 0.4),
+                  borderRadius: BorderRadius.all(Radius.circular(5))),
+              enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: Color.fromARGB(255, 169, 153, 246), width: 0.2),
+                  borderRadius: BorderRadius.all(Radius.circular(5))),
+              hintText: hintText,
+              hintStyle: const TextStyle(
+                color: Color(0xFFACACAC),
+                fontSize: 14,
+                fontFamily: 'SF Pro Display',
+                fontWeight: FontWeight.w400,
+              ),
+              suffixIcon: suffixIcon,
+              prefixIcon: prefixIcon,
+              border: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red, width: 0.1),
+                  borderRadius: BorderRadius.all(Radius.circular(5))),
+              errorStyle: const TextStyle(fontSize: 18),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
 

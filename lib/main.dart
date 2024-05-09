@@ -15,7 +15,7 @@ import 'helper/get_di.dart' as di;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+//  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   if (kIsWeb) {
     await Hive.initFlutter();
   } else {

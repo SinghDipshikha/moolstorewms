@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Sales/Model/company.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/addCompanyDialog.dart';
+import 'package:moolwmsstore/Sales/View/common/commonTextField.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';
 import 'package:moolwmsstore/View/common/tagContainer.dart';
@@ -172,6 +173,13 @@ class _CreateticketState extends State<Createticket> {
               // GetBuilder<SalesController>(builder: (salesController) {
               //   return ;
               // })
+              CommonTextField(
+                //  controller: ,
+                labelText: 'Purchase Order ID',
+              ).paddingSymmetric(vertical: 8),
+              TagContainer(title: "Product Details", child: Column(
+                children: [],
+              ))
             ],
           ).paddingAll(12);
         }),
