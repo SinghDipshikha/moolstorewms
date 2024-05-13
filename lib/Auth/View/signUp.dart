@@ -518,6 +518,52 @@ class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton:
+          GetBuilder<AuthController>(builder: (authController) {
+        return authController.loading
+            ? const SpinKitWave(
+                color: Color(0xFF5A57FF),
+              )
+            : InkWell(
+                onTap: () {
+                  if (_formKey.currentState!.validate()) {
+                    authController.sigupOrg(
+                        pan: pan.text,
+                        email: email.text,
+                        company_name: ogn.text,
+                        name: fn.text);
+                  }
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  height: 45,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: ShapeDecoration(
+                    gradient: const LinearGradient(
+                      begin: Alignment(1.00, 0.00),
+                      end: Alignment(-1, 0),
+                      colors: [Color(0xFF2D2D2D), Color(0xFF1F1F1F)],
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                  ),
+                  child: const Text(
+                    'Submit',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontFamily: 'SF Pro Display',
+                      fontWeight: FontWeight.w600,
+                      //height: 0,
+                      letterSpacing: 0.32,
+                    ),
+                  ),
+                ),
+              ).paddingSymmetric(horizontal: 12);
+      }),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -634,53 +680,6 @@ class SignUp extends StatelessWidget {
                         ],
                       ).paddingSymmetric(vertical: 16, horizontal: 16)),
                   const Gap(20),
-                  GetBuilder<AuthController>(builder: (authController) {
-                    return authController.loading
-                        ? const SpinKitWave(
-                            color: Color(0xFF5A57FF),
-                          )
-                        : InkWell(
-                            onTap: () {
-                              if (_formKey.currentState!.validate()) {
-                                authController.sigupOrg(
-                                    pan: pan.text,
-                                    email: email.text,
-                                    company_name: ogn.text,
-                                    name: fn.text);
-                              }
-                            },
-                            child: Container(
-                              alignment: Alignment.center,
-                              width: double.infinity,
-                              height: 45,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: ShapeDecoration(
-                                gradient: const LinearGradient(
-                                  begin: Alignment(1.00, 0.00),
-                                  end: Alignment(-1, 0),
-                                  colors: [
-                                    Color(0xFF2D2D2D),
-                                    Color(0xFF1F1F1F)
-                                  ],
-                                ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(100),
-                                ),
-                              ),
-                              child: const Text(
-                                'Submit',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontFamily: 'SF Pro Display',
-                                  fontWeight: FontWeight.w600,
-                                  //height: 0,
-                                  letterSpacing: 0.32,
-                                ),
-                              ),
-                            ),
-                          );
-                  })
                 ],
               )
             ],

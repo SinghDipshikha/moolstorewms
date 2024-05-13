@@ -20,8 +20,10 @@ class CommonTextField extends StatelessWidget {
   TextCapitalization? textCapitalization;
   double? borderRadius;
   int? maxLines;
+  Color? containerColor;
 
   CommonTextField({
+    this.containerColor,
     super.key,
     this.labelText,
     this.hintText,
@@ -46,8 +48,8 @@ class CommonTextField extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          child: Text.rich(
+        if (labelText != null)
+          Text.rich(
             TextSpan(
               children: [
                 TextSpan(
@@ -61,16 +63,16 @@ class CommonTextField extends StatelessWidget {
               ],
             ),
           ),
-        ),
         const Gap(
           8,
         ),
         Container(
           height: 40.0,
-          decoration: const BoxDecoration(
-              color: Color(0xFFFAF9FF),
-              borderRadius: BorderRadius.all(Radius.circular(25.7))),
+          decoration: BoxDecoration(
+              color: containerColor ?? const Color(0xFFFAF9FF),
+              borderRadius: const BorderRadius.all(Radius.circular(5.7))),
           child: TextFormField(
+            expands: true,
             maxLines: maxLines,
             textCapitalization: textCapitalization ?? TextCapitalization.none,
             onTapOutside: (event) {

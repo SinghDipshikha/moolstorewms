@@ -7,6 +7,7 @@ part 'company.g.dart';
 class Company with _$Company {
   const factory Company({
     int? id,
+    int? sellerCompanyDetailsID,
     int? user_id,
     int? seller_company_id,
     String? phone_no,

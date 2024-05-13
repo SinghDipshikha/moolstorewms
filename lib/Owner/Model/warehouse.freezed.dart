@@ -22,9 +22,9 @@ Warehouse _$WarehouseFromJson(Map<String, dynamic> json) {
 mixin _$Warehouse {
   int? get id => throw _privateConstructorUsedError;
   String? get warehouse_name => throw _privateConstructorUsedError;
-  String? get manage_email => throw _privateConstructorUsedError;
-  String? get warehouse_manager => throw _privateConstructorUsedError;
-  String? get phone => throw _privateConstructorUsedError;
+  String? get warehouse_manager_email_id => throw _privateConstructorUsedError;
+  String? get warehouse_manager_name => throw _privateConstructorUsedError;
+  String? get manager_phone_number => throw _privateConstructorUsedError;
   String? get country_code => throw _privateConstructorUsedError;
   int? get no_of_chambers => throw _privateConstructorUsedError;
   int? get total_capacity => throw _privateConstructorUsedError;
@@ -38,7 +38,7 @@ mixin _$Warehouse {
   int? get user_id => throw _privateConstructorUsedError;
   double? get lat => throw _privateConstructorUsedError;
   double? get lng => throw _privateConstructorUsedError;
-  String? get warehouse_location => throw _privateConstructorUsedError;
+  String? get warehouses_location => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,9 +54,9 @@ abstract class $WarehouseCopyWith<$Res> {
   $Res call(
       {int? id,
       String? warehouse_name,
-      String? manage_email,
-      String? warehouse_manager,
-      String? phone,
+      String? warehouse_manager_email_id,
+      String? warehouse_manager_name,
+      String? manager_phone_number,
       String? country_code,
       int? no_of_chambers,
       int? total_capacity,
@@ -70,7 +70,7 @@ abstract class $WarehouseCopyWith<$Res> {
       int? user_id,
       double? lat,
       double? lng,
-      String? warehouse_location});
+      String? warehouses_location});
 }
 
 /// @nodoc
@@ -88,9 +88,9 @@ class _$WarehouseCopyWithImpl<$Res, $Val extends Warehouse>
   $Res call({
     Object? id = freezed,
     Object? warehouse_name = freezed,
-    Object? manage_email = freezed,
-    Object? warehouse_manager = freezed,
-    Object? phone = freezed,
+    Object? warehouse_manager_email_id = freezed,
+    Object? warehouse_manager_name = freezed,
+    Object? manager_phone_number = freezed,
     Object? country_code = freezed,
     Object? no_of_chambers = freezed,
     Object? total_capacity = freezed,
@@ -104,7 +104,7 @@ class _$WarehouseCopyWithImpl<$Res, $Val extends Warehouse>
     Object? user_id = freezed,
     Object? lat = freezed,
     Object? lng = freezed,
-    Object? warehouse_location = freezed,
+    Object? warehouses_location = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -115,17 +115,17 @@ class _$WarehouseCopyWithImpl<$Res, $Val extends Warehouse>
           ? _value.warehouse_name
           : warehouse_name // ignore: cast_nullable_to_non_nullable
               as String?,
-      manage_email: freezed == manage_email
-          ? _value.manage_email
-          : manage_email // ignore: cast_nullable_to_non_nullable
+      warehouse_manager_email_id: freezed == warehouse_manager_email_id
+          ? _value.warehouse_manager_email_id
+          : warehouse_manager_email_id // ignore: cast_nullable_to_non_nullable
               as String?,
-      warehouse_manager: freezed == warehouse_manager
-          ? _value.warehouse_manager
-          : warehouse_manager // ignore: cast_nullable_to_non_nullable
+      warehouse_manager_name: freezed == warehouse_manager_name
+          ? _value.warehouse_manager_name
+          : warehouse_manager_name // ignore: cast_nullable_to_non_nullable
               as String?,
-      phone: freezed == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
+      manager_phone_number: freezed == manager_phone_number
+          ? _value.manager_phone_number
+          : manager_phone_number // ignore: cast_nullable_to_non_nullable
               as String?,
       country_code: freezed == country_code
           ? _value.country_code
@@ -179,9 +179,9 @@ class _$WarehouseCopyWithImpl<$Res, $Val extends Warehouse>
           ? _value.lng
           : lng // ignore: cast_nullable_to_non_nullable
               as double?,
-      warehouse_location: freezed == warehouse_location
-          ? _value.warehouse_location
-          : warehouse_location // ignore: cast_nullable_to_non_nullable
+      warehouses_location: freezed == warehouses_location
+          ? _value.warehouses_location
+          : warehouses_location // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -198,9 +198,9 @@ abstract class _$$WarehouseImplCopyWith<$Res>
   $Res call(
       {int? id,
       String? warehouse_name,
-      String? manage_email,
-      String? warehouse_manager,
-      String? phone,
+      String? warehouse_manager_email_id,
+      String? warehouse_manager_name,
+      String? manager_phone_number,
       String? country_code,
       int? no_of_chambers,
       int? total_capacity,
@@ -214,7 +214,7 @@ abstract class _$$WarehouseImplCopyWith<$Res>
       int? user_id,
       double? lat,
       double? lng,
-      String? warehouse_location});
+      String? warehouses_location});
 }
 
 /// @nodoc
@@ -230,9 +230,9 @@ class __$$WarehouseImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? warehouse_name = freezed,
-    Object? manage_email = freezed,
-    Object? warehouse_manager = freezed,
-    Object? phone = freezed,
+    Object? warehouse_manager_email_id = freezed,
+    Object? warehouse_manager_name = freezed,
+    Object? manager_phone_number = freezed,
     Object? country_code = freezed,
     Object? no_of_chambers = freezed,
     Object? total_capacity = freezed,
@@ -246,7 +246,7 @@ class __$$WarehouseImplCopyWithImpl<$Res>
     Object? user_id = freezed,
     Object? lat = freezed,
     Object? lng = freezed,
-    Object? warehouse_location = freezed,
+    Object? warehouses_location = freezed,
   }) {
     return _then(_$WarehouseImpl(
       id: freezed == id
@@ -257,17 +257,17 @@ class __$$WarehouseImplCopyWithImpl<$Res>
           ? _value.warehouse_name
           : warehouse_name // ignore: cast_nullable_to_non_nullable
               as String?,
-      manage_email: freezed == manage_email
-          ? _value.manage_email
-          : manage_email // ignore: cast_nullable_to_non_nullable
+      warehouse_manager_email_id: freezed == warehouse_manager_email_id
+          ? _value.warehouse_manager_email_id
+          : warehouse_manager_email_id // ignore: cast_nullable_to_non_nullable
               as String?,
-      warehouse_manager: freezed == warehouse_manager
-          ? _value.warehouse_manager
-          : warehouse_manager // ignore: cast_nullable_to_non_nullable
+      warehouse_manager_name: freezed == warehouse_manager_name
+          ? _value.warehouse_manager_name
+          : warehouse_manager_name // ignore: cast_nullable_to_non_nullable
               as String?,
-      phone: freezed == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
+      manager_phone_number: freezed == manager_phone_number
+          ? _value.manager_phone_number
+          : manager_phone_number // ignore: cast_nullable_to_non_nullable
               as String?,
       country_code: freezed == country_code
           ? _value.country_code
@@ -321,9 +321,9 @@ class __$$WarehouseImplCopyWithImpl<$Res>
           ? _value.lng
           : lng // ignore: cast_nullable_to_non_nullable
               as double?,
-      warehouse_location: freezed == warehouse_location
-          ? _value.warehouse_location
-          : warehouse_location // ignore: cast_nullable_to_non_nullable
+      warehouses_location: freezed == warehouses_location
+          ? _value.warehouses_location
+          : warehouses_location // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -335,9 +335,9 @@ class _$WarehouseImpl implements _Warehouse {
   const _$WarehouseImpl(
       {this.id,
       this.warehouse_name,
-      this.manage_email,
-      this.warehouse_manager,
-      this.phone,
+      this.warehouse_manager_email_id,
+      this.warehouse_manager_name,
+      this.manager_phone_number,
       this.country_code,
       this.no_of_chambers,
       this.total_capacity,
@@ -351,7 +351,7 @@ class _$WarehouseImpl implements _Warehouse {
       this.user_id,
       this.lat,
       this.lng,
-      this.warehouse_location});
+      this.warehouses_location});
 
   factory _$WarehouseImpl.fromJson(Map<String, dynamic> json) =>
       _$$WarehouseImplFromJson(json);
@@ -361,11 +361,11 @@ class _$WarehouseImpl implements _Warehouse {
   @override
   final String? warehouse_name;
   @override
-  final String? manage_email;
+  final String? warehouse_manager_email_id;
   @override
-  final String? warehouse_manager;
+  final String? warehouse_manager_name;
   @override
-  final String? phone;
+  final String? manager_phone_number;
   @override
   final String? country_code;
   @override
@@ -393,11 +393,11 @@ class _$WarehouseImpl implements _Warehouse {
   @override
   final double? lng;
   @override
-  final String? warehouse_location;
+  final String? warehouses_location;
 
   @override
   String toString() {
-    return 'Warehouse(id: $id, warehouse_name: $warehouse_name, manage_email: $manage_email, warehouse_manager: $warehouse_manager, phone: $phone, country_code: $country_code, no_of_chambers: $no_of_chambers, total_capacity: $total_capacity, no_of_docks: $no_of_docks, no_of_gates: $no_of_gates, slug: $slug, status: $status, created_at: $created_at, update_at: $update_at, deleted_at: $deleted_at, user_id: $user_id, lat: $lat, lng: $lng, warehouse_location: $warehouse_location)';
+    return 'Warehouse(id: $id, warehouse_name: $warehouse_name, warehouse_manager_email_id: $warehouse_manager_email_id, warehouse_manager_name: $warehouse_manager_name, manager_phone_number: $manager_phone_number, country_code: $country_code, no_of_chambers: $no_of_chambers, total_capacity: $total_capacity, no_of_docks: $no_of_docks, no_of_gates: $no_of_gates, slug: $slug, status: $status, created_at: $created_at, update_at: $update_at, deleted_at: $deleted_at, user_id: $user_id, lat: $lat, lng: $lng, warehouses_location: $warehouses_location)';
   }
 
   @override
@@ -408,11 +408,14 @@ class _$WarehouseImpl implements _Warehouse {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.warehouse_name, warehouse_name) ||
                 other.warehouse_name == warehouse_name) &&
-            (identical(other.manage_email, manage_email) ||
-                other.manage_email == manage_email) &&
-            (identical(other.warehouse_manager, warehouse_manager) ||
-                other.warehouse_manager == warehouse_manager) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.warehouse_manager_email_id,
+                    warehouse_manager_email_id) ||
+                other.warehouse_manager_email_id ==
+                    warehouse_manager_email_id) &&
+            (identical(other.warehouse_manager_name, warehouse_manager_name) ||
+                other.warehouse_manager_name == warehouse_manager_name) &&
+            (identical(other.manager_phone_number, manager_phone_number) ||
+                other.manager_phone_number == manager_phone_number) &&
             (identical(other.country_code, country_code) ||
                 other.country_code == country_code) &&
             (identical(other.no_of_chambers, no_of_chambers) ||
@@ -434,8 +437,8 @@ class _$WarehouseImpl implements _Warehouse {
             (identical(other.user_id, user_id) || other.user_id == user_id) &&
             (identical(other.lat, lat) || other.lat == lat) &&
             (identical(other.lng, lng) || other.lng == lng) &&
-            (identical(other.warehouse_location, warehouse_location) ||
-                other.warehouse_location == warehouse_location));
+            (identical(other.warehouses_location, warehouses_location) ||
+                other.warehouses_location == warehouses_location));
   }
 
   @JsonKey(ignore: true)
@@ -444,9 +447,9 @@ class _$WarehouseImpl implements _Warehouse {
         runtimeType,
         id,
         warehouse_name,
-        manage_email,
-        warehouse_manager,
-        phone,
+        warehouse_manager_email_id,
+        warehouse_manager_name,
+        manager_phone_number,
         country_code,
         no_of_chambers,
         total_capacity,
@@ -460,7 +463,7 @@ class _$WarehouseImpl implements _Warehouse {
         user_id,
         lat,
         lng,
-        warehouse_location
+        warehouses_location
       ]);
 
   @JsonKey(ignore: true)
@@ -481,9 +484,9 @@ abstract class _Warehouse implements Warehouse {
   const factory _Warehouse(
       {final int? id,
       final String? warehouse_name,
-      final String? manage_email,
-      final String? warehouse_manager,
-      final String? phone,
+      final String? warehouse_manager_email_id,
+      final String? warehouse_manager_name,
+      final String? manager_phone_number,
       final String? country_code,
       final int? no_of_chambers,
       final int? total_capacity,
@@ -497,7 +500,7 @@ abstract class _Warehouse implements Warehouse {
       final int? user_id,
       final double? lat,
       final double? lng,
-      final String? warehouse_location}) = _$WarehouseImpl;
+      final String? warehouses_location}) = _$WarehouseImpl;
 
   factory _Warehouse.fromJson(Map<String, dynamic> json) =
       _$WarehouseImpl.fromJson;
@@ -507,11 +510,11 @@ abstract class _Warehouse implements Warehouse {
   @override
   String? get warehouse_name;
   @override
-  String? get manage_email;
+  String? get warehouse_manager_email_id;
   @override
-  String? get warehouse_manager;
+  String? get warehouse_manager_name;
   @override
-  String? get phone;
+  String? get manager_phone_number;
   @override
   String? get country_code;
   @override
@@ -539,7 +542,7 @@ abstract class _Warehouse implements Warehouse {
   @override
   double? get lng;
   @override
-  String? get warehouse_location;
+  String? get warehouses_location;
   @override
   @JsonKey(ignore: true)
   _$$WarehouseImplCopyWith<_$WarehouseImpl> get copyWith =>

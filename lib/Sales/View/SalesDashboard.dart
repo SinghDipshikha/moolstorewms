@@ -7,6 +7,7 @@ import 'package:moolwmsstore/Sales/View/addCompany.dart';
 import 'package:moolwmsstore/Sales/View/companyList.dart';
 import 'package:moolwmsstore/Sales/View/poList.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
+import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 ////@RoutePage()
@@ -178,7 +179,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
                     CurvedLineConatainer(
                       title: "Create Ticket",
                       onTap: () {
-                        Get.to( Createticket(), id: salesNavigationKey);
+                        Get.to(const Createticket(), id: salesNavigationKey);
                       },
                     ),
                     CurvedLineConatainer(
@@ -250,83 +251,89 @@ class _SalesDashboardState extends State<SalesDashboard> {
               ],
             )),
             GetBuilder<SalesController>(builder: (salesController) {
+               if (salesController.isOwner) {
+                return const OwnerSwitchRoleButton();
+              }
               if (salesController.user.person_type != null) {
                 if (salesController.user.person_type!.isNotEmpty) {
-                  return DropdownButtonFormField2<String>(
-                    //  isExpanded: true,
+                  if (salesController.user.person_type!.length > 1) {
+                    return DropdownButtonFormField2<String>(
+                      //  isExpanded: true,
 
-                    decoration: InputDecoration(
-                      // Add Horizontal padding using menuItemStyleData.padding so it matches
-                      // the menu padding when button's width is not specified.
-                      contentPadding: const EdgeInsets.symmetric(
-                          vertical: 16, horizontal: 12),
-                      border: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.transparent),
-                        borderRadius: BorderRadius.circular(15),
+                      decoration: InputDecoration(
+                        // Add Horizontal padding using menuItemStyleData.padding so it matches
+                        // the menu padding when button's width is not specified.
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 16, horizontal: 12),
+                        border: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Colors.transparent),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        // Add more decoration..
                       ),
-                      // Add more decoration..
-                    ),
-                    hint: const Text('Switch Role',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontFamily: 'SF Pro Text',
-                          fontWeight: FontWeight.w500,
-                          //height: 0,
-                          letterSpacing: -0.64,
-                        )),
-                    items: salesController.user.person_type!.map((item) {
-                      return DropdownMenuItem<String>(
-                        value: item["person_type"].toString(),
-                        child: Text(
-                          item["person_type"].toString(),
-                          style: const TextStyle(
+                      hint: const Text('Switch Role',
+                          style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
                             fontFamily: 'SF Pro Text',
                             fontWeight: FontWeight.w500,
                             //height: 0,
                             letterSpacing: -0.64,
+                          )),
+                      items: salesController.user.person_type!.map((item) {
+                        return DropdownMenuItem<String>(
+                          value: item["person_type"].toString(),
+                          child: Text(
+                            item["person_type"].toString(),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontFamily: 'SF Pro Text',
+                              fontWeight: FontWeight.w500,
+                              //height: 0,
+                              letterSpacing: -0.64,
+                            ),
                           ),
+                        );
+                      }).toList(),
+                      validator: (value) {
+                        if (value == null) {
+                          return 'Switch Role';
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        if (value != null) {
+                          salesController.switchRole(value);
+                        }
+                        // Logger().i(value);
+                        //Do something when selected item is changed.
+                      },
+                      onSaved: (value) {
+                        // selectedValue = value.toString();
+                      },
+                      buttonStyleData: const ButtonStyleData(
+                        //decoration: BoxDecoration(color: Colors.white),
+                        overlayColor: MaterialStatePropertyAll(Colors.white),
+                      ),
+                      iconStyleData: const IconStyleData(
+                        icon: Icon(
+                          Icons.arrow_drop_down,
+                          color: Colors.white,
                         ),
-                      );
-                    }).toList(),
-                    validator: (value) {
-                      if (value == null) {
-                        return 'Switch Role';
-                      }
-                      return null;
-                    },
-                    onChanged: (value) {
-                      if (value != null) {
-                        salesController.switchRole(value);
-                      }
-                      // Logger().i(value);
-                      //Do something when selected item is changed.
-                    },
-                    onSaved: (value) {
-                      // selectedValue = value.toString();
-                    },
-                    buttonStyleData: const ButtonStyleData(
-                      //decoration: BoxDecoration(color: Colors.white),
-                      overlayColor: MaterialStatePropertyAll(Colors.white),
-                    ),
-                    iconStyleData: const IconStyleData(
-                      icon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Colors.white,
+                        iconSize: 24,
                       ),
-                      iconSize: 24,
-                    ),
-                    dropdownStyleData: DropdownStyleData(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
+                      dropdownStyleData: DropdownStyleData(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
                       ),
-                    ),
-                    menuItemStyleData: const MenuItemStyleData(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                    ),
-                  ).paddingSymmetric(horizontal: 12, vertical: 12);
+                      menuItemStyleData: const MenuItemStyleData(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                      ),
+                    ).paddingSymmetric(horizontal: 12, vertical: 12);
+                  }
                 }
               }
               return Container();

@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -6,6 +7,7 @@ import 'package:moolwmsstore/Owner/View/Employee/AddEmployee.dart';
 import 'package:moolwmsstore/Owner/View/Employee/EmployeeList.dart';
 import 'package:moolwmsstore/Owner/View/WarehouseList.dart';
 import 'package:moolwmsstore/Owner/View/addWarehouse.dart';
+import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -212,40 +214,40 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                     //     ),
                   ],
                 ),
-                ListTile(
-                  leading: Image.asset(
-                    "assets/icons/Sales Icon (R).png",
-                    height: 28,
-                  ),
-                  title: const Text(
-                    'Sales',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color(0xFFA7A7A7),
-                      fontSize: 16,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  onTap: () {},
-                ),
-                ListTile(
-                  leading: Image.asset(
-                    "assets/icons/HR Icon (R).png",
-                    height: 28,
-                  ),
-                  title: const Text(
-                    'HR',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color(0xFFA7A7A7),
-                      fontSize: 16,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  onTap: () {},
-                ),
+                // ListTile(
+                //   leading: Image.asset(
+                //     "assets/icons/Sales Icon (R).png",
+                //     height: 28,
+                //   ),
+                //   title: const Text(
+                //     'Sales',
+                //     textAlign: TextAlign.left,
+                //     style: TextStyle(
+                //       color: Color(0xFFA7A7A7),
+                //       fontSize: 16,
+                //       fontFamily: 'SF Pro Text',
+                //       fontWeight: FontWeight.w500,
+                //     ),
+                //   ),
+                //   onTap: () {},
+                // ),
+                // ListTile(
+                //   leading: Image.asset(
+                //     "assets/icons/HR Icon (R).png",
+                //     height: 28,
+                //   ),
+                //   title: const Text(
+                //     'HR',
+                //     textAlign: TextAlign.left,
+                //     style: TextStyle(
+                //       color: Color(0xFFA7A7A7),
+                //       fontSize: 16,
+                //       fontFamily: 'SF Pro Text',
+                //       fontWeight: FontWeight.w500,
+                //     ),
+                //   ),
+                //   onTap: () {},
+                // ),
                 ExpansionTile(
                   collapsedShape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12)),
@@ -295,6 +297,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                 ),
               ],
             )),
+           OwnerSwitchRoleButton(),
             InkWell(
               onTap: () {
                 Get.find<OwnerController>().ownerLogout();

@@ -10,9 +10,6 @@ class Splash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.sizeOf(context).height;
-    final double width = MediaQuery.sizeOf(context).width;
-
     return GetBuilder<AuthController>(initState: (state) {
       Get.find<AuthController>().splash();
     }, builder: (context) {
@@ -38,6 +35,7 @@ class Splash extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(100.0),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Container(
                                 width: 100,
@@ -51,9 +49,7 @@ class Splash extends StatelessWidget {
                                 ),
                               ),
                               const Gap(10),
-                              const SizedBox(
-                                width: 298,
-                                height: 46,
+                              const Center(
                                 child: Text.rich(
                                   TextSpan(
                                     children: [

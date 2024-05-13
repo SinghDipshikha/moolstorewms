@@ -16,6 +16,8 @@ import 'package:moolwmsstore/Security%20Guard/repository/securityGuardRepo.dart'
 class SecurityGuardController extends GetxController {
   final SecurityGuardRepo secGaurdRepo;
   final ApiClient apiClient;
+  bool isOwner;
+
   SecGuardDetail? secGuardDetail;
   AddVisitorBySecurityGaurd? addVisitorDetails;
   GetAllVisitorBySecurityGaurd? allVisitorsDetails;
@@ -32,7 +34,8 @@ class SecurityGuardController extends GetxController {
   SecurityGuardController(
       {required this.secGaurdRepo,
       required this.apiClient,
-      required this.user});
+      required this.user,
+      this.isOwner = false});
 
   void verifyEmployee() {
     secGaurdRepo

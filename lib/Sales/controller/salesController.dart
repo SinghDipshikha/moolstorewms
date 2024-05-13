@@ -15,8 +15,9 @@ import 'package:restart_app/restart_app.dart';
 class SalesController extends GetxController {
   final SalesRepo salesRepo;
   final ApiClient apiClient;
+  bool isOwner ;
   SalesController(
-      {required this.salesRepo, required this.apiClient, required this.user});
+      {required this.salesRepo, required this.apiClient, required this.user ,this.isOwner = false});
 
   User user;
 

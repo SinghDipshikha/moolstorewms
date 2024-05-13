@@ -6,6 +6,7 @@ import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/View/demo.dart';
 import 'package:moolwmsstore/Hr/View/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
+import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 class HrDashboard extends StatefulWidget {
@@ -267,6 +268,10 @@ class _HrDashboardState extends State<HrDashboard> {
               ],
             )),
             GetBuilder<HRController>(builder: (hrController) {
+              if (hrController.isOwner) {
+                return const OwnerSwitchRoleButton();
+              }
+
               if (hrController.user.person_type != null) {
                 if (hrController.user.person_type!.isNotEmpty) {
                   return DropdownButtonFormField2<String>(

@@ -55,6 +55,7 @@ class _DipshikaAppState extends State<DipshikaApp> {
           return GetMaterialApp(
             //  home: const FloorLayoutDesiging(),
             // home: const TestQr(),
+            //    home: SignUp(),
             home: const Auth(),
             // home: const AddEmployeeCareerDetails(),
             //home: ChamberDesign(),

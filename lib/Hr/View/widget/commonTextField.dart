@@ -37,6 +37,7 @@ class CommanTextField extends StatelessWidget {
     this.keyboardType,
     this.padding,
     this.validator,
+
   });
 
   @override

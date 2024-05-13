@@ -21,6 +21,7 @@ Company _$CompanyFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Company {
   int? get id => throw _privateConstructorUsedError;
+  int? get sellerCompanyDetailsID => throw _privateConstructorUsedError;
   int? get user_id => throw _privateConstructorUsedError;
   int? get seller_company_id => throw _privateConstructorUsedError;
   String? get phone_no => throw _privateConstructorUsedError;
@@ -45,6 +46,7 @@ abstract class $CompanyCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
+      int? sellerCompanyDetailsID,
       int? user_id,
       int? seller_company_id,
       String? phone_no,
@@ -72,6 +74,7 @@ class _$CompanyCopyWithImpl<$Res, $Val extends Company>
   @override
   $Res call({
     Object? id = freezed,
+    Object? sellerCompanyDetailsID = freezed,
     Object? user_id = freezed,
     Object? seller_company_id = freezed,
     Object? phone_no = freezed,
@@ -88,6 +91,10 @@ class _$CompanyCopyWithImpl<$Res, $Val extends Company>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      sellerCompanyDetailsID: freezed == sellerCompanyDetailsID
+          ? _value.sellerCompanyDetailsID
+          : sellerCompanyDetailsID // ignore: cast_nullable_to_non_nullable
               as int?,
       user_id: freezed == user_id
           ? _value.user_id
@@ -146,6 +153,7 @@ abstract class _$$CompanyImplCopyWith<$Res> implements $CompanyCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
+      int? sellerCompanyDetailsID,
       int? user_id,
       int? seller_company_id,
       String? phone_no,
@@ -171,6 +179,7 @@ class __$$CompanyImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? sellerCompanyDetailsID = freezed,
     Object? user_id = freezed,
     Object? seller_company_id = freezed,
     Object? phone_no = freezed,
@@ -187,6 +196,10 @@ class __$$CompanyImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      sellerCompanyDetailsID: freezed == sellerCompanyDetailsID
+          ? _value.sellerCompanyDetailsID
+          : sellerCompanyDetailsID // ignore: cast_nullable_to_non_nullable
               as int?,
       user_id: freezed == user_id
           ? _value.user_id
@@ -241,6 +254,7 @@ class __$$CompanyImplCopyWithImpl<$Res>
 class _$CompanyImpl implements _Company {
   const _$CompanyImpl(
       {this.id,
+      this.sellerCompanyDetailsID,
       this.user_id,
       this.seller_company_id,
       this.phone_no,
@@ -258,6 +272,8 @@ class _$CompanyImpl implements _Company {
 
   @override
   final int? id;
+  @override
+  final int? sellerCompanyDetailsID;
   @override
   final int? user_id;
   @override
@@ -283,7 +299,7 @@ class _$CompanyImpl implements _Company {
 
   @override
   String toString() {
-    return 'Company(id: $id, user_id: $user_id, seller_company_id: $seller_company_id, phone_no: $phone_no, address: $address, state: $state, gst_no: $gst_no, company_name: $company_name, created_at: $created_at, updated_at: $updated_at, deleted_at: $deleted_at, status: $status)';
+    return 'Company(id: $id, sellerCompanyDetailsID: $sellerCompanyDetailsID, user_id: $user_id, seller_company_id: $seller_company_id, phone_no: $phone_no, address: $address, state: $state, gst_no: $gst_no, company_name: $company_name, created_at: $created_at, updated_at: $updated_at, deleted_at: $deleted_at, status: $status)';
   }
 
   @override
@@ -292,6 +308,8 @@ class _$CompanyImpl implements _Company {
         (other.runtimeType == runtimeType &&
             other is _$CompanyImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.sellerCompanyDetailsID, sellerCompanyDetailsID) ||
+                other.sellerCompanyDetailsID == sellerCompanyDetailsID) &&
             (identical(other.user_id, user_id) || other.user_id == user_id) &&
             (identical(other.seller_company_id, seller_company_id) ||
                 other.seller_company_id == seller_company_id) &&
@@ -316,6 +334,7 @@ class _$CompanyImpl implements _Company {
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      sellerCompanyDetailsID,
       user_id,
       seller_company_id,
       phone_no,
@@ -345,6 +364,7 @@ class _$CompanyImpl implements _Company {
 abstract class _Company implements Company {
   const factory _Company(
       {final int? id,
+      final int? sellerCompanyDetailsID,
       final int? user_id,
       final int? seller_company_id,
       final String? phone_no,
@@ -361,6 +381,8 @@ abstract class _Company implements Company {
 
   @override
   int? get id;
+  @override
+  int? get sellerCompanyDetailsID;
   @override
   int? get user_id;
   @override

@@ -77,7 +77,7 @@ class AuthController extends GetxController {
       sharedPreferences.setString(
           AppConstants.orgCode, dbconnect!.organiosationCode.toString());
       Get.find<ApiClient>().updateHeader();
-      // Logger().i(user);
+
       Get.find<ApiClient>().postData('verifyOrgByCode',
           {"org_code": dbconnect!.organiosationCode}).then((value) {
         if (value.data["message"] == "Organisation Details Present") {
@@ -185,12 +185,14 @@ class AuthController extends GetxController {
   }
 
   onSignInPressed() {
-    if (dbconnect != null) {
-      checkOrganisationCode(
-          organiosationCode: dbconnect!.organiosationCode.toString());
-    } else {
-      Get.to(OrganisationCode(), id: authNavigationKey);
-    }
+    Get.to(OrganisationCode(), id: authNavigationKey);
+
+    // if (dbconnect != null) {
+    //   checkOrganisationCode(
+    //       organiosationCode: dbconnect!.organiosationCode.toString());
+    // } else {
+    //   Get.to(OrganisationCode(), id: authNavigationKey);
+    // }
   }
 
   checkOrganisationCode({required String organiosationCode}) async {
