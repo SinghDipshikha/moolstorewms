@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:moolwmsstore/Sales/View/common/commonTextField.dart';
 import 'package:moolwmsstore/View/common/tagContainer.dart';
 import 'package:number_text_input_formatter/number_text_input_formatter.dart';
+// import 'package:number_text_input_formatter/number_text_input_formatter.dart';
 
 class EnterProduct extends StatefulWidget {
 
