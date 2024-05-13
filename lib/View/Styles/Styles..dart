@@ -148,7 +148,7 @@ class Snacks {
     Get.showSnackbar(GetSnackBar(
       duration: const Duration(milliseconds: 1000),
       animationDuration: const Duration(milliseconds: 500),
-      snackPosition: SnackPosition.BOTTOM,
+      snackStyle: SnackStyle.GROUNDED,
       messageText: Text(
         text,
         style: const TextStyle(

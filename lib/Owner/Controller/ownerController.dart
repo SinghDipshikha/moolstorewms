@@ -5,12 +5,23 @@ import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/Model/personType.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Common%20Data/repository/ownerRepo.dart';
+import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
+import 'package:moolwmsstore/Hr/HumanResource.dart';
+import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
 import 'package:moolwmsstore/Owner/Model/addWarehouseField.dart';
 import 'package:moolwmsstore/Owner/Model/employee.dart';
 import 'package:moolwmsstore/Owner/Model/warehouse.dart';
+import 'package:moolwmsstore/Owner/Owner.dart';
+import 'package:moolwmsstore/Sales/Sales.dart';
+import 'package:moolwmsstore/Sales/controller/salesController.dart';
+import 'package:moolwmsstore/Sales/repo/salesRepo.dart';
+import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
+import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/globals.dart';
 import 'package:restart_app/restart_app.dart';
+
+import '../../Security Guard/repository/securityGuardRepo.dart';
 
 class OwnerController extends GetxController {
   final OwnerRepo ownerRepo;
@@ -142,6 +153,10 @@ class OwnerController extends GetxController {
     });
   }
 
+
+getAddChamberFierlds(){
+  apiClient.getData("");
+}
   //owner/getAllEmployeesByOrg
 
   getAllEmployeesByOrg() {
@@ -154,6 +169,56 @@ class OwnerController extends GetxController {
         update();
       }
     });
+  }
+
+  List otherRoles = ["Owner", "Sales", "HR", "Security Guard"];
+
+  switchRole(String role) {
+    if (role == "Owner") {
+      Get.offAll(const Owner());
+    }
+    if (role == "Security Guard") {
+      Get.lazyPut(() => SecurityGuardRepo(
+          sharedPreferences: Get.find(), apiClient: Get.find()));
+      Get.lazyPut(
+        () => SecurityGuardController(
+          isOwner: true,
+          user: user,
+          secGaurdRepo: Get.find<SecurityGuardRepo>(),
+          apiClient: Get.find<ApiClient>(),
+        ),
+      );
+
+      Get.offAll(const SecurityGuard());
+    }
+    if (role == "HR") {
+      Get.lazyPut(
+          () => HrRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
+      Get.lazyPut(
+        () => HRController(
+          isOwner: true,
+          user: user,
+          hrRepo: Get.find<HrRepo>(),
+          apiClient: Get.find<ApiClient>(),
+        ),
+      );
+
+      Get.offAll(const HumanResouce());
+    }
+    if (role == "Sales") {
+      Get.lazyPut(() =>
+          SalesRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
+      Get.lazyPut(
+        () => SalesController(
+          isOwner: true,
+          user: user,
+          salesRepo: Get.find<SalesRepo>(),
+          apiClient: Get.find<ApiClient>(),
+        ),
+      );
+
+      Get.offAll(const Sales());
+    }
   }
 
   ownerLogout() async {

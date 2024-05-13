@@ -13,7 +13,7 @@ import 'package:moolwmsstore/Security%20Guard/View/Vehicle/vehicleList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Visitor/addVisitor.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Visitor/visitorList.dart';
 import 'package:moolwmsstore/utils/globals.dart';
-
+import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
 class SecurityGuardDashBoard extends StatefulWidget {
   const SecurityGuardDashBoard({super.key});
 
@@ -294,6 +294,9 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
             )),
             GetBuilder<SecurityGuardController>(
                 builder: (securityGuardController) {
+                    if (securityGuardController.isOwner) {
+                return const OwnerSwitchRoleButton();
+              }
               if (securityGuardController.user.person_type != null) {
                 if (securityGuardController.user.person_type!.isNotEmpty) {
                   return DropdownButtonFormField2<String>(

@@ -14,8 +14,9 @@ import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
 class HRController extends GetxController {
   final HrRepo hrRepo;
   final ApiClient apiClient;
+     bool isOwner;
   HRController(
-      {required this.hrRepo, required this.apiClient, required this.user});
+      {required this.hrRepo, required this.apiClient, required this.user,this.isOwner =false});
   User user;
   List<AddCareerDetail> carrierDetails = [const AddCareerDetail()];
   var myHrID;

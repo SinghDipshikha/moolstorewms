@@ -15,10 +15,10 @@ class ViewWarehouseDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     Map data = {
       // "Warehouse Name": warehouse?.warehouse_name ?? "",
-      "Warehouse Location": warehouse?.warehouse_location ?? "",
-      "Manager Name": warehouse?.warehouse_manager ?? "",
-      "Mobile Number": warehouse?.phone ?? "",
-      "Email ID": warehouse?.manage_email ?? "",
+      "Warehouse Location": warehouse?.warehouses_location ?? "",
+      "Manager Name": warehouse?.warehouse_manager_name ?? "",
+      "Mobile Number": warehouse?.manager_phone_number ?? "",
+      "Email ID": warehouse?.warehouse_manager_email_id ?? "",
       "No. of Chambers": warehouse?.no_of_chambers ?? "",
       "Total Capacity": warehouse?.total_capacity ?? "",
       "No. of Docks": warehouse?.no_of_docks ?? "",
@@ -150,7 +150,7 @@ class ViewWarehouseDetails extends StatelessWidget {
 
                 return Container(
                   width: 169,
-                  height: index < 2 ? 80 : 60,
+                  // height: index < 2 ? 80 : 60,
                   decoration: ShapeDecoration(
                     color: const Color(0xFFFAF9FF),
                     shape: RoundedRectangleBorder(

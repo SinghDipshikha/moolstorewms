@@ -18,6 +18,8 @@ import 'package:moolwmsstore/View/Styles/Styles..dart';
 class SecurityGuardController extends GetxController {
   final SecurityGuardRepo secGaurdRepo;
   final ApiClient apiClient;
+  bool isOwner;
+
   SecGuardDetail? secGuardDetail;
   AddVisitorBySecurityGaurd? addVisitorDetails;
   Visitor? allVisitorsDetails;
@@ -36,7 +38,8 @@ class SecurityGuardController extends GetxController {
   SecurityGuardController(
       {required this.secGaurdRepo,
       required this.apiClient,
-      required this.user});
+      required this.user,
+      this.isOwner = false});
 
   void verifyEmployee() {
     secGaurdRepo

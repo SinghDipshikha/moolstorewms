@@ -183,7 +183,7 @@ class WarehouseList extends StatelessWidget {
                               flex: 2,
                               child: Text(
                                 ownerController.searchWarehouses[i]
-                                        .warehouse_manager ??
+                                        .warehouse_manager_name ??
                                     '',
                                 style: const TextStyle(
                                   color: Color(0xFF353535),

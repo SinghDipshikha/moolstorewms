@@ -10,9 +10,9 @@ _$WarehouseImpl _$$WarehouseImplFromJson(Map<String, dynamic> json) =>
     _$WarehouseImpl(
       id: json['id'] as int?,
       warehouse_name: json['warehouse_name'] as String?,
-      manage_email: json['manage_email'] as String?,
-      warehouse_manager: json['warehouse_manager'] as String?,
-      phone: json['phone'] as String?,
+      warehouse_manager_email_id: json['warehouse_manager_email_id'] as String?,
+      warehouse_manager_name: json['warehouse_manager_name'] as String?,
+      manager_phone_number: json['manager_phone_number'] as String?,
       country_code: json['country_code'] as String?,
       no_of_chambers: json['no_of_chambers'] as int?,
       total_capacity: json['total_capacity'] as int?,
@@ -30,16 +30,16 @@ _$WarehouseImpl _$$WarehouseImplFromJson(Map<String, dynamic> json) =>
       user_id: json['user_id'] as int?,
       lat: (json['lat'] as num?)?.toDouble(),
       lng: (json['lng'] as num?)?.toDouble(),
-      warehouse_location: json['warehouse_location'] as String?,
+      warehouses_location: json['warehouses_location'] as String?,
     );
 
 Map<String, dynamic> _$$WarehouseImplToJson(_$WarehouseImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'warehouse_name': instance.warehouse_name,
-      'manage_email': instance.manage_email,
-      'warehouse_manager': instance.warehouse_manager,
-      'phone': instance.phone,
+      'warehouse_manager_email_id': instance.warehouse_manager_email_id,
+      'warehouse_manager_name': instance.warehouse_manager_name,
+      'manager_phone_number': instance.manager_phone_number,
       'country_code': instance.country_code,
       'no_of_chambers': instance.no_of_chambers,
       'total_capacity': instance.total_capacity,
@@ -53,5 +53,5 @@ Map<String, dynamic> _$$WarehouseImplToJson(_$WarehouseImpl instance) =>
       'user_id': instance.user_id,
       'lat': instance.lat,
       'lng': instance.lng,
-      'warehouse_location': instance.warehouse_location,
+      'warehouses_location': instance.warehouses_location,
     };
