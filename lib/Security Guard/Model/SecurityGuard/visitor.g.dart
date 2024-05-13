@@ -1,24 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'allPersonsInfo.dart';
+part of 'visitor.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GetAllPersonsBySecurityGaurdImpl _$$GetAllPersonsBySecurityGaurdImplFromJson(
+_$GetAllVisitorBySecurityGaurdImpl _$$GetAllVisitorBySecurityGaurdImplFromJson(
         Map<String, dynamic> json) =>
-    _$GetAllPersonsBySecurityGaurdImpl(
+    _$GetAllVisitorBySecurityGaurdImpl(
       id: json['id'] as int?,
       ticket_generate_by: json['ticket_generate_by'] as int?,
-      open_visit_ticket_number: json['open_visit_ticket_number'] as String?,
+      ticket_verify_by: json['ticket_verify_by'] as int?,
+      visit_ticket_number: json['visit_ticket_number'] as String?,
       visitor_name: json['visitor_name'] as String?,
       visitor_ph_number: json['visitor_ph_number'] as String?,
-      does_have_vehicle: json['does_have_vehicle'] as String?,
-      vehicle_number: json['vehicle_number'] as String?,
+      purpose_of_visit: json['purpose_of_visit'] as String?,
+      id_proof: json['id_proof'] as String?,
+      warehouse_id: json['warehouse_id'] as int?,
       in_out_status: json['in_out_status'] as String?,
-      material_inside: json['material_inside'] as String?,
-      products_data: json['products_data'] as String?,
+      remarks: json['remarks'] as String?,
       status: json['status'],
       created_at: json['created_at'] == null
           ? null
@@ -26,19 +27,20 @@ _$GetAllPersonsBySecurityGaurdImpl _$$GetAllPersonsBySecurityGaurdImplFromJson(
       updated_at: json['updated_at'],
     );
 
-Map<String, dynamic> _$$GetAllPersonsBySecurityGaurdImplToJson(
-        _$GetAllPersonsBySecurityGaurdImpl instance) =>
+Map<String, dynamic> _$$GetAllVisitorBySecurityGaurdImplToJson(
+        _$GetAllVisitorBySecurityGaurdImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'ticket_generate_by': instance.ticket_generate_by,
-      'open_visit_ticket_number': instance.open_visit_ticket_number,
+      'ticket_verify_by': instance.ticket_verify_by,
+      'visit_ticket_number': instance.visit_ticket_number,
       'visitor_name': instance.visitor_name,
       'visitor_ph_number': instance.visitor_ph_number,
-      'does_have_vehicle': instance.does_have_vehicle,
-      'vehicle_number': instance.vehicle_number,
+      'purpose_of_visit': instance.purpose_of_visit,
+      'id_proof': instance.id_proof,
+      'warehouse_id': instance.warehouse_id,
       'in_out_status': instance.in_out_status,
-      'material_inside': instance.material_inside,
-      'products_data': instance.products_data,
+      'remarks': instance.remarks,
       'status': instance.status,
       'created_at': instance.created_at?.toIso8601String(),
       'updated_at': instance.updated_at,

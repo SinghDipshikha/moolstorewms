@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
-import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allTicketList.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/ticket.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart';
 import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
@@ -176,7 +176,7 @@ class _MaterialListScreenState extends State<MaterialListScreen> {
             ),
             Expanded(
               child: GetBuilder<SecurityGuardController>(initState: (state) {
-                Get.find<SecurityGuardController>().getAllTicketList();
+                Get.find<SecurityGuardController>().getAllVisitorList();
               }, builder: (securityGuardController) {
                 return securityGuardController.allTicketList.isEmpty
                     ? const Center(
@@ -193,7 +193,7 @@ class _MaterialListScreenState extends State<MaterialListScreen> {
                         // shrinkWrap: true,
                         itemCount: securityGuardController.allTicketList.length,
                         itemBuilder: (context, i) {
-                          GetAllTicketListBySecurityGuard entry =
+                          Ticket entry =
                               securityGuardController.allTicketList[i];
                           return Padding(
                             padding: const EdgeInsets.all(8.0),

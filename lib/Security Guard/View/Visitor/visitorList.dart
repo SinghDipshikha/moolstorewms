@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
-import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allVisitorsInfo.dart';
-import 'package:moolwmsstore/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart';
-import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/visitor.dart';
+import 'package:moolwmsstore/Security%20Guard/View/securityGuarddashboard.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 //@RoutePage()
 class VisitorListScreen extends StatefulWidget {
@@ -46,16 +46,17 @@ class _VisitorListScreenState extends State<VisitorListScreen> {
         color: const Color(0xFF5A57FF),
         textColor: Colors.white,
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const RegistrationTypeOptions(),
-          ));
+          // Navigator.of(context).push(MaterialPageRoute(
+          //   builder: (context) => const RegistrationTypeOptions(),
+          // ));
         },
       ),
       appBar: CommonAppBar(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const SecurityGuardDashBoard(),
-          ));
+          Get.to(const SecurityGuardDashBoard(), id: securityGuardNavigation);
+          // Navigator.of(context).push(MaterialPageRoute(
+          //   builder: (context) => const SecurityGuardDashBoard(),
+          // ));
         },
         title: 'Visitor List',
         actions: const [],
@@ -177,7 +178,7 @@ class _VisitorListScreenState extends State<VisitorListScreen> {
             ),
             Expanded(
               child: GetBuilder<SecurityGuardController>(initState: (state) {
-                Get.find<SecurityGuardController>().getAllVisitorsInfo();
+                Get.find<SecurityGuardController>().getAllVisitorList();
               }, builder: (securityGuardController) {
                 return securityGuardController.allVisitorList.isEmpty
                     ? const Center(
@@ -195,7 +196,7 @@ class _VisitorListScreenState extends State<VisitorListScreen> {
                         itemCount:
                             securityGuardController.allVisitorList.length,
                         itemBuilder: (context, i) {
-                          GetAllVisitorBySecurityGaurd entry =
+                          Visitor entry =
                               securityGuardController.allVisitorList[i];
                           return Padding(
                             padding: const EdgeInsets.all(8.0),

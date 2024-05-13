@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Visitor/visitorCheckedInSuccessfully.dart';
 import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
@@ -42,39 +45,8 @@ class _AddVisitorState extends State<AddVisitor> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
-              child: Container(
-                width: 358,
-                height: 39,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                    side: const BorderSide(width: 1, color: Color(0x195A57FF)),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
-                child: const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Visitor ID : 54321',
-                      style: TextStyle(
-                        color: Color(0xFFACACAC),
-                        fontSize: 16,
-                        fontFamily: 'SF Pro Display',
-                        fontWeight: FontWeight.w400,
-                        height: 0,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
             const Gap(10),
-            CommanTextFieldUpdated(
+            CommanTextFieldUpdated2(
               labelText: "Full Name",
               hintText: "Full Name",
               obscureText: false,
@@ -83,16 +55,12 @@ class _AddVisitorState extends State<AddVisitor> {
                   return 'Please enter your visitor name.';
                 }
 
-                if (!GlobalValidator.isValidUsername(value)) {
-                  return 'Please enter a valid visitor name.';
-                }
-
                 return null;
               },
               onChanged: (value) {},
             ).paddingAll(8),
             const Gap(10),
-            CommanTextFieldUpdated(
+            CommanTextFieldUpdated2(
               labelText: "Mobile Number",
               hintText: "Mobile Number",
               obscureText: false,
@@ -147,7 +115,7 @@ class _AddVisitorState extends State<AddVisitor> {
               ),
             ),
             const Gap(10),
-            CommanTextFieldUpdated(
+            CommanTextFieldUpdated2(
               labelText: "Purpose of Visit",
               hintText: "Purpose of Visit",
               obscureText: false,
@@ -212,8 +180,24 @@ void _showPopup(BuildContext context) {
                     ),
                     const Gap(10),
                     InkWell(
-                      onTap: () {
-                        _showPopupForDocuments(context);
+                      onTap: () async {
+                        // await authCont.pickImageFromGallery().then((file) {
+                        //   if (file != null) {
+                        //     authCont
+                        //         .uploadFile(
+                        //             empFace: file,
+                        //             folderName: widget.folderName ?? 'pancard')
+                        //         .then((linkUrl) {
+                        //       widget.getUrl(linkUrl ?? '');
+                        //       print('url : $linkUrl');
+                        //       if (linkUrl != null) {
+                        //         setState(() {
+                        //           _selectedImage = file;
+                        //         });
+                        //       }
+                        //     });
+                        //   }
+                        // });
                       },
                       child: Container(
                         width: 275,
@@ -358,4 +342,91 @@ void _showPopupForDocuments(BuildContext context) {
       );
     },
   );
+}
+
+// List<CameraDescription> cameras = [];
+
+// Future<void> main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   cameras = await availableCameras();
+//   if (cameras.isEmpty) {
+//     print('No cameras available');
+
+//     return;
+//   }
+//   runApp(const MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Camera Demo',
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//       ),
+//       home: const CameraScreen(),
+//     );
+//   }
+// }
+
+// class CameraScreen extends StatefulWidget {
+//   const CameraScreen({super.key});
+
+//   @override
+//   _CameraScreenState createState() => _CameraScreenState();
+// }
+
+// class _CameraScreenState extends State<CameraScreen> {
+//   late CameraController _cameraController;
+
+//   late Future<void> _cameraInitializer;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     if (cameras.isEmpty) {
+//       print('No cameras available');
+
+//       return;
+//     }
+//     _cameraController = CameraController(cameras.first, ResolutionPreset.high);
+//     _cameraInitializer = _cameraController.initialize();
+//   }
+
+//   @override
+//   void dispose() {
+//     _cameraController.dispose();
+//     super.dispose();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Stack(
+//         children: [
+//           FutureBuilder(
+//             future: _cameraInitializer,
+//             builder: (context, snapshot) {
+//               if (snapshot.connectionState == ConnectionState.done) {
+//                 return CameraPreview(_cameraController);
+//               } else {
+//                 return const Center(
+//                   child: CircularProgressIndicator(),
+//                 );
+//               }
+//             },
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+Future<File?> captureImage() async {
+  final returnedImage =
+      await ImagePicker().pickImage(source: ImageSource.camera);
+  final File file = File(returnedImage!.path);
+  return file;
 }

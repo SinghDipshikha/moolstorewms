@@ -1,11 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'allTicketList.freezed.dart';
-part 'allTicketList.g.dart';
+part 'ticket.freezed.dart';
+part 'ticket.g.dart';
 
 @freezed
-class GetAllTicketListBySecurityGuard with _$GetAllTicketListBySecurityGuard {
-  const factory GetAllTicketListBySecurityGuard({
+class Ticket with _$Ticket {
+  const factory Ticket({
     int? id,
     int? ticket_generate_by,
     String? ticket_verify_by,
@@ -21,6 +21,5 @@ class GetAllTicketListBySecurityGuard with _$GetAllTicketListBySecurityGuard {
     dynamic updated_at,
   }) = _GetAllTicketListBySecurityGuard;
 
-  factory GetAllTicketListBySecurityGuard.fromJson(Map<String, Object?> json) =>
-      _$GetAllTicketListBySecurityGuardFromJson(json);
+  factory Ticket.fromJson(Map<String, Object?> json) => _$TicketFromJson(json);
 }

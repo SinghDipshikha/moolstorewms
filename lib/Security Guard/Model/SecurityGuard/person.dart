@@ -1,11 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'allPersonsInfo.freezed.dart';
-part 'allPersonsInfo.g.dart';
+part 'person.freezed.dart';
+part 'person.g.dart';
 
 @freezed
-class GetAllPersonsBySecurityGaurd with _$GetAllPersonsBySecurityGaurd {
-  const factory GetAllPersonsBySecurityGaurd({
+class Person with _$Person {
+  const factory Person({
     int? id,
     int? ticket_generate_by,
     String? open_visit_ticket_number,
@@ -21,6 +21,5 @@ class GetAllPersonsBySecurityGaurd with _$GetAllPersonsBySecurityGaurd {
     dynamic updated_at,
   }) = _GetAllPersonsBySecurityGaurd;
 
-  factory GetAllPersonsBySecurityGaurd.fromJson(Map<String, Object?> json) =>
-      _$GetAllPersonsBySecurityGaurdFromJson(json);
+  factory Person.fromJson(Map<String, Object?> json) => _$PersonFromJson(json);
 }

@@ -47,6 +47,7 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
         title: 'Scan QR',
         leftIcon: 'assets/icons/qr_icon.png',
         color: const Color(0xFF5A57FF),
+        textColor: Colors.white,
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => const RegistrationTypeOptions(),
