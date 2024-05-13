@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
-import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allTicketList.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/ticket.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart';
 import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
@@ -42,6 +42,7 @@ class _TicketListScreenState extends State<TicketListScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       floatingActionButton: CustomFloatingActionButton(
         title: 'Verify',
+        textColor: Colors.white,
         //  leftIcon: 'assets/icons/qr_icon.png',
         color: const Color(0xFF5A57FF),
         onTap: () {
@@ -193,7 +194,7 @@ class _TicketListScreenState extends State<TicketListScreen> {
                         // shrinkWrap: true,
                         itemCount: securityGuardController.allTicketList.length,
                         itemBuilder: (context, i) {
-                          GetAllTicketListBySecurityGuard entry =
+                          Ticket entry =
                               securityGuardController.allTicketList[i];
                           return Padding(
                             padding: const EdgeInsets.all(8.0),

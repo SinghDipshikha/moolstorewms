@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'allTicketList.dart';
+part of 'ticket.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,13 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-GetAllTicketListBySecurityGuard _$GetAllTicketListBySecurityGuardFromJson(
-    Map<String, dynamic> json) {
+Ticket _$TicketFromJson(Map<String, dynamic> json) {
   return _GetAllTicketListBySecurityGuard.fromJson(json);
 }
 
 /// @nodoc
-mixin _$GetAllTicketListBySecurityGuard {
+mixin _$Ticket {
   int? get id => throw _privateConstructorUsedError;
   int? get ticket_generate_by => throw _privateConstructorUsedError;
   String? get ticket_verify_by => throw _privateConstructorUsedError;
@@ -37,17 +36,13 @@ mixin _$GetAllTicketListBySecurityGuard {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GetAllTicketListBySecurityGuardCopyWith<GetAllTicketListBySecurityGuard>
-      get copyWith => throw _privateConstructorUsedError;
+  $TicketCopyWith<Ticket> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GetAllTicketListBySecurityGuardCopyWith<$Res> {
-  factory $GetAllTicketListBySecurityGuardCopyWith(
-          GetAllTicketListBySecurityGuard value,
-          $Res Function(GetAllTicketListBySecurityGuard) then) =
-      _$GetAllTicketListBySecurityGuardCopyWithImpl<$Res,
-          GetAllTicketListBySecurityGuard>;
+abstract class $TicketCopyWith<$Res> {
+  factory $TicketCopyWith(Ticket value, $Res Function(Ticket) then) =
+      _$TicketCopyWithImpl<$Res, Ticket>;
   @useResult
   $Res call(
       {int? id,
@@ -66,10 +61,9 @@ abstract class $GetAllTicketListBySecurityGuardCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GetAllTicketListBySecurityGuardCopyWithImpl<$Res,
-        $Val extends GetAllTicketListBySecurityGuard>
-    implements $GetAllTicketListBySecurityGuardCopyWith<$Res> {
-  _$GetAllTicketListBySecurityGuardCopyWithImpl(this._value, this._then);
+class _$TicketCopyWithImpl<$Res, $Val extends Ticket>
+    implements $TicketCopyWith<$Res> {
+  _$TicketCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -152,7 +146,7 @@ class _$GetAllTicketListBySecurityGuardCopyWithImpl<$Res,
 
 /// @nodoc
 abstract class _$$GetAllTicketListBySecurityGuardImplCopyWith<$Res>
-    implements $GetAllTicketListBySecurityGuardCopyWith<$Res> {
+    implements $TicketCopyWith<$Res> {
   factory _$$GetAllTicketListBySecurityGuardImplCopyWith(
           _$GetAllTicketListBySecurityGuardImpl value,
           $Res Function(_$GetAllTicketListBySecurityGuardImpl) then) =
@@ -177,8 +171,7 @@ abstract class _$$GetAllTicketListBySecurityGuardImplCopyWith<$Res>
 
 /// @nodoc
 class __$$GetAllTicketListBySecurityGuardImplCopyWithImpl<$Res>
-    extends _$GetAllTicketListBySecurityGuardCopyWithImpl<$Res,
-        _$GetAllTicketListBySecurityGuardImpl>
+    extends _$TicketCopyWithImpl<$Res, _$GetAllTicketListBySecurityGuardImpl>
     implements _$$GetAllTicketListBySecurityGuardImplCopyWith<$Res> {
   __$$GetAllTicketListBySecurityGuardImplCopyWithImpl(
       _$GetAllTicketListBySecurityGuardImpl _value,
@@ -311,7 +304,7 @@ class _$GetAllTicketListBySecurityGuardImpl
 
   @override
   String toString() {
-    return 'GetAllTicketListBySecurityGuard(id: $id, ticket_generate_by: $ticket_generate_by, ticket_verify_by: $ticket_verify_by, visit_ticket_number: $visit_ticket_number, visitor_name: $visitor_name, visitor_ph_number: $visitor_ph_number, purpose_of_visit: $purpose_of_visit, id_proof: $id_proof, in_out_status: $in_out_status, remarks: $remarks, status: $status, created_at: $created_at, updated_at: $updated_at)';
+    return 'Ticket(id: $id, ticket_generate_by: $ticket_generate_by, ticket_verify_by: $ticket_verify_by, visit_ticket_number: $visit_ticket_number, visitor_name: $visitor_name, visitor_ph_number: $visitor_ph_number, purpose_of_visit: $purpose_of_visit, id_proof: $id_proof, in_out_status: $in_out_status, remarks: $remarks, status: $status, created_at: $created_at, updated_at: $updated_at)';
   }
 
   @override
@@ -378,8 +371,7 @@ class _$GetAllTicketListBySecurityGuardImpl
   }
 }
 
-abstract class _GetAllTicketListBySecurityGuard
-    implements GetAllTicketListBySecurityGuard {
+abstract class _GetAllTicketListBySecurityGuard implements Ticket {
   const factory _GetAllTicketListBySecurityGuard(
       {final int? id,
       final int? ticket_generate_by,

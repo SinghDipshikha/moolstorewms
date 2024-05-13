@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addVisitor.dart';
-import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allPersonsInfo.dart';
-import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allTicketList.dart';
-import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allVisitorsInfo.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/employeeEntry.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/person.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/secGuardDetail.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/singlePersonDetail.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/ticket.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/visitor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SecurityGuardRepo {
@@ -64,7 +64,6 @@ class SecurityGuardRepo {
   }
 
   Future<AddVisitorBySecurityGaurd?> addVisitor({
-    required var visitorId,
     required var ticketGeneratedBy,
     required var visitorName,
     required var visitorPhoneNumber,
@@ -74,7 +73,6 @@ class SecurityGuardRepo {
   }) async {
     Response res =
         await apiClient.postData("visitor/addVisitorBySecurityGuard", {
-      "id": visitorId,
       "ticket_generate_by": ticketGeneratedBy,
       "visitor_name": visitorName,
       "visitor_ph_number": visitorPhoneNumber,
@@ -88,26 +86,27 @@ class SecurityGuardRepo {
     return null;
   }
 
-  Future<GetAllVisitorBySecurityGaurd?> getAllVisitorsData({
+  Future<Visitor?> getAllVisitorsData({
     required var recordsPerPage,
     required var next,
   }) async {
     Response res = await apiClient.getData(
-        "ticket/getAllTicketsList?recordsPerPage=$recordsPerPage&$next=$next");
+        "visitor/getAllVisitors?recordsPerPage=$recordsPerPage&$next=$next");
     if (res.data["message"] == "Visitor details fetched Successfully!") {
-      return GetAllVisitorBySecurityGaurd.fromJson(res.data["result"]);
+      return Visitor.fromJson(res.data["result"]);
     }
     return null;
   }
 
-  Future<GetAllPersonsBySecurityGaurd?> getAllPersonsData({
+  Future<Person?> getAllPersonsData({
     required var recordsPerPage,
     required var next,
   }) async {
-    Response res = await apiClient.getData(
-        "person/getAllPersons?recordsPerPage=$recordsPerPage&$next=$next");
-    if (res.data["message"] == "Person details fetched Successfully!") {
-      return GetAllPersonsBySecurityGaurd.fromJson(res.data["result"]);
+    Response res = await apiClient.postData(
+        "person/getAllTicketsList?recordsPerPage=$recordsPerPage&$next=$next",
+        {});
+    if (res.data["message"] == "Ticket details fetched Successfully!") {
+      return null;
     }
     return null;
   }
@@ -139,10 +138,14 @@ class SecurityGuardRepo {
     return null;
   }
 
-  Future<GetAllTicketListBySecurityGuard?> getAllTicketList() async {
+  Future<Ticket?> getAllTicketList({
+    required var recordsPerPage,
+    required var next,
+  }) async {
     Response res = await apiClient.getData("ticket/getAllTicketsList");
     if (res.data["message"] == "Data Retrieved Successfully!") {
-      return GetAllTicketListBySecurityGuard.fromJson(res.data["result"]);
+      // return Ticket.fromJson(res.data["result"]);
+      return null;
     }
     return null;
   }

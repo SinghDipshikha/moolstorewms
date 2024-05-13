@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'allPersonsInfo.dart';
+part of 'person.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,13 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-GetAllPersonsBySecurityGaurd _$GetAllPersonsBySecurityGaurdFromJson(
-    Map<String, dynamic> json) {
+Person _$PersonFromJson(Map<String, dynamic> json) {
   return _GetAllPersonsBySecurityGaurd.fromJson(json);
 }
 
 /// @nodoc
-mixin _$GetAllPersonsBySecurityGaurd {
+mixin _$Person {
   int? get id => throw _privateConstructorUsedError;
   int? get ticket_generate_by => throw _privateConstructorUsedError;
   String? get open_visit_ticket_number => throw _privateConstructorUsedError;
@@ -37,17 +36,13 @@ mixin _$GetAllPersonsBySecurityGaurd {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GetAllPersonsBySecurityGaurdCopyWith<GetAllPersonsBySecurityGaurd>
-      get copyWith => throw _privateConstructorUsedError;
+  $PersonCopyWith<Person> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GetAllPersonsBySecurityGaurdCopyWith<$Res> {
-  factory $GetAllPersonsBySecurityGaurdCopyWith(
-          GetAllPersonsBySecurityGaurd value,
-          $Res Function(GetAllPersonsBySecurityGaurd) then) =
-      _$GetAllPersonsBySecurityGaurdCopyWithImpl<$Res,
-          GetAllPersonsBySecurityGaurd>;
+abstract class $PersonCopyWith<$Res> {
+  factory $PersonCopyWith(Person value, $Res Function(Person) then) =
+      _$PersonCopyWithImpl<$Res, Person>;
   @useResult
   $Res call(
       {int? id,
@@ -66,10 +61,9 @@ abstract class $GetAllPersonsBySecurityGaurdCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GetAllPersonsBySecurityGaurdCopyWithImpl<$Res,
-        $Val extends GetAllPersonsBySecurityGaurd>
-    implements $GetAllPersonsBySecurityGaurdCopyWith<$Res> {
-  _$GetAllPersonsBySecurityGaurdCopyWithImpl(this._value, this._then);
+class _$PersonCopyWithImpl<$Res, $Val extends Person>
+    implements $PersonCopyWith<$Res> {
+  _$PersonCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -152,7 +146,7 @@ class _$GetAllPersonsBySecurityGaurdCopyWithImpl<$Res,
 
 /// @nodoc
 abstract class _$$GetAllPersonsBySecurityGaurdImplCopyWith<$Res>
-    implements $GetAllPersonsBySecurityGaurdCopyWith<$Res> {
+    implements $PersonCopyWith<$Res> {
   factory _$$GetAllPersonsBySecurityGaurdImplCopyWith(
           _$GetAllPersonsBySecurityGaurdImpl value,
           $Res Function(_$GetAllPersonsBySecurityGaurdImpl) then) =
@@ -177,8 +171,7 @@ abstract class _$$GetAllPersonsBySecurityGaurdImplCopyWith<$Res>
 
 /// @nodoc
 class __$$GetAllPersonsBySecurityGaurdImplCopyWithImpl<$Res>
-    extends _$GetAllPersonsBySecurityGaurdCopyWithImpl<$Res,
-        _$GetAllPersonsBySecurityGaurdImpl>
+    extends _$PersonCopyWithImpl<$Res, _$GetAllPersonsBySecurityGaurdImpl>
     implements _$$GetAllPersonsBySecurityGaurdImplCopyWith<$Res> {
   __$$GetAllPersonsBySecurityGaurdImplCopyWithImpl(
       _$GetAllPersonsBySecurityGaurdImpl _value,
@@ -311,7 +304,7 @@ class _$GetAllPersonsBySecurityGaurdImpl
 
   @override
   String toString() {
-    return 'GetAllPersonsBySecurityGaurd(id: $id, ticket_generate_by: $ticket_generate_by, open_visit_ticket_number: $open_visit_ticket_number, visitor_name: $visitor_name, visitor_ph_number: $visitor_ph_number, does_have_vehicle: $does_have_vehicle, vehicle_number: $vehicle_number, in_out_status: $in_out_status, material_inside: $material_inside, products_data: $products_data, status: $status, created_at: $created_at, updated_at: $updated_at)';
+    return 'Person(id: $id, ticket_generate_by: $ticket_generate_by, open_visit_ticket_number: $open_visit_ticket_number, visitor_name: $visitor_name, visitor_ph_number: $visitor_ph_number, does_have_vehicle: $does_have_vehicle, vehicle_number: $vehicle_number, in_out_status: $in_out_status, material_inside: $material_inside, products_data: $products_data, status: $status, created_at: $created_at, updated_at: $updated_at)';
   }
 
   @override
@@ -380,8 +373,7 @@ class _$GetAllPersonsBySecurityGaurdImpl
   }
 }
 
-abstract class _GetAllPersonsBySecurityGaurd
-    implements GetAllPersonsBySecurityGaurd {
+abstract class _GetAllPersonsBySecurityGaurd implements Person {
   const factory _GetAllPersonsBySecurityGaurd(
       {final int? id,
       final int? ticket_generate_by,

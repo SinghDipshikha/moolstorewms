@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
-import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/allPersonsInfo.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/person.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart';
 import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 //@RoutePage()
 class PersonsListScreen extends StatefulWidget {
@@ -46,16 +47,16 @@ class _PersonsListScreenState extends State<PersonsListScreen> {
         color: const Color(0xFF5A57FF),
         textColor: Colors.white,
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const RegistrationTypeOptions(),
-          ));
+           Get.to(const RegistrationTypeOptions(),
+                        id: securityGuardNavigation);
+          
         },
       ),
       appBar: CommonAppBar(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const SecurityGuardDashBoard(),
-          ));
+              Get.to(const SecurityGuardDashBoard(),
+                        id: securityGuardNavigation);
+        
         },
         title: 'Persons List',
         actions: const [],
@@ -179,7 +180,7 @@ class _PersonsListScreenState extends State<PersonsListScreen> {
               child: GetBuilder<SecurityGuardController>(initState: (state) {
                 Get.find<SecurityGuardController>().getAllPersonssInfo();
               }, builder: (securityGuardController) {
-                return securityGuardController.allVisitorList.isEmpty
+                return securityGuardController.allPersonList.isEmpty
                     ? const Center(
                         child: Text(
                           'No data found',
@@ -194,7 +195,7 @@ class _PersonsListScreenState extends State<PersonsListScreen> {
                         // shrinkWrap: true,
                         itemCount: securityGuardController.allPersonList.length,
                         itemBuilder: (context, i) {
-                          GetAllPersonsBySecurityGaurd entry =
+                          Person entry =
                               securityGuardController.allPersonList[i];
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
