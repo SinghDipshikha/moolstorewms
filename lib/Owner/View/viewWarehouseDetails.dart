@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Owner/Model/warehouse.dart';
 import 'package:moolwmsstore/Owner/View/addChamber.dart';
-import 'package:moolwmsstore/Owner/View/chamberList.dart';
+import 'package:moolwmsstore/Owner/View/Chamber/chamberList.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 ////@RoutePage()
@@ -30,7 +30,7 @@ class ViewWarehouseDetails extends StatelessWidget {
         "title": "Chamber",
         "icon": "assets/icons/sccscscs.png",
         "onviewPressed": () {
-          Get.to(const ChamberList(), id: ownerNavigationKey);
+          Get.to( ChamberList(  warehouse_id: warehouse!.id,), id: ownerNavigationKey);
         },
         "onAddpressed": () {
           Get.to(

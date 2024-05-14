@@ -1,4 +1,3 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -9,7 +8,6 @@ import 'package:moolwmsstore/Owner/View/WarehouseList.dart';
 import 'package:moolwmsstore/Owner/View/addWarehouse.dart';
 import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
 import 'package:moolwmsstore/utils/globals.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 
 ////@RoutePage()
 class OwnerDashboard extends StatefulWidget {
@@ -20,6 +18,22 @@ class OwnerDashboard extends StatefulWidget {
 }
 
 class _OwnerDashboardState extends State<OwnerDashboard> {
+  @override
+  DateTime? _selectedDate;
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null && picked != _selectedDate) {
+      setState(() {
+        _selectedDate = picked;
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -37,553 +51,1280 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        //  width: context.isPhone ? MediaQuery.sizeOf(context).width - 100 : 400,
-        surfaceTintColor: const Color.fromARGB(255, 22, 22, 22),
-        backgroundColor: const Color.fromARGB(255, 22, 22, 22),
-        child: Column(
-          //padding: EdgeInsets.zero,
-          children: [
-            GetBuilder<OwnerController>(builder: (ownerController) {
-              return Theme(
-                data: Theme.of(context).copyWith(
-                  dividerTheme:
-                      const DividerThemeData(color: Colors.transparent),
-                ),
-                child: DrawerHeader(
-                    curve: Curves.bounceOut,
-                    decoration: const BoxDecoration(
-                        border: Border(bottom: BorderSide.none)),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 100,
-                          height: 100,
-                          decoration: const ShapeDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                  "https://via.placeholder.com/100x100"),
-                              fit: BoxFit.fill,
-                            ),
-                            shape: OvalBorder(
-                              side: BorderSide(
-                                width: 2,
-                                strokeAlign: BorderSide.strokeAlignOutside,
-                                color: Color(0x195A57FF),
+        backgroundColor: Colors.black,
+        drawer: Drawer(
+          //  width: context.isPhone ? MediaQuery.sizeOf(context).width - 100 : 400,
+          surfaceTintColor: const Color.fromARGB(255, 22, 22, 22),
+          backgroundColor: const Color.fromARGB(255, 22, 22, 22),
+          child: Column(
+            //padding: EdgeInsets.zero,
+            children: [
+              GetBuilder<OwnerController>(builder: (ownerController) {
+                return Theme(
+                  data: Theme.of(context).copyWith(
+                    dividerTheme:
+                        const DividerThemeData(color: Colors.transparent),
+                  ),
+                  child: DrawerHeader(
+                      curve: Curves.bounceOut,
+                      decoration: const BoxDecoration(
+                          border: Border(bottom: BorderSide.none)),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 100,
+                            height: 100,
+                            decoration: const ShapeDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                    "https://via.placeholder.com/100x100"),
+                                fit: BoxFit.fill,
+                              ),
+                              shape: OvalBorder(
+                                side: BorderSide(
+                                  width: 2,
+                                  strokeAlign: BorderSide.strokeAlignOutside,
+                                  color: Color(0x195A57FF),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        const Gap(12),
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      '${ownerController.user.first_name}',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontFamily: 'SF Pro Text',
-                                        fontWeight: FontWeight.w500,
-                                        // //height: 0,
-                                        // letterSpacing: -0.80,
+                          const Gap(12),
+                          Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        '${ownerController.user.first_name}',
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontFamily: 'SF Pro Text',
+                                          fontWeight: FontWeight.w500,
+                                          // //height: 0,
+                                          // letterSpacing: -0.80,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
                                       ),
-                                      overflow: TextOverflow.ellipsis,
                                     ),
+                                    const Gap(12),
+                                    //  const Spacer(),
+                                    Image.asset(
+                                      "assets/icons/candle.png",
+                                      height: 22,
+                                    )
+                                  ],
+                                ),
+                                if (ownerController.user.last_name != null)
+                                  Text(
+                                    ownerController.user.last_name ?? "",
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontFamily: 'SF Pro Text',
+                                      fontWeight: FontWeight.w500,
+                                      // //height: 0,
+                                      // letterSpacing: -0.80,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                  const Gap(12),
-                                  //  const Spacer(),
-                                  Image.asset(
-                                    "assets/icons/candle.png",
-                                    height: 22,
-                                  )
-                                ],
-                              ),
-                              if (ownerController.user.last_name != null)
                                 Text(
-                                  ownerController.user.last_name ?? "",
+                                  ownerController.user.email ?? "",
                                   style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
+                                    color: Color(0xFFACACAC),
+                                    fontSize: 14,
                                     fontFamily: 'SF Pro Text',
-                                    fontWeight: FontWeight.w500,
+                                    fontWeight: FontWeight.w300,
                                     // //height: 0,
-                                    // letterSpacing: -0.80,
+                                    // letterSpacing: -0.56,
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
-                              Text(
-                                ownerController.user.email ?? "",
-                                style: const TextStyle(
-                                  color: Color(0xFFACACAC),
-                                  fontSize: 14,
-                                  fontFamily: 'SF Pro Text',
-                                  fontWeight: FontWeight.w300,
-                                  // //height: 0,
-                                  // letterSpacing: -0.56,
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              const Text(
-                                'Owner',
-                                style: TextStyle(
-                                  color: Color(0xFFFF5789),
-                                  fontSize: 16,
-                                  fontFamily: 'SF Pro Text',
-                                  fontWeight: FontWeight.w500,
-                                  // //height: 0,
-                                  // letterSpacing: -0.64,
-                                ),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    )),
-              );
-            }),
-            Expanded(
-                child: ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                ListTile(
-                  leading: Image.asset(
-                    "assets/icons/grid-3.png",
-                    height: 28,
-                  ),
-                  title: const Text(
-                    'Dashboard',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color(0xFFA7A7A7),
-                      fontSize: 16,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  onTap: () {},
-                ),
-                ExpansionTile(
-                  collapsedShape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                  iconColor: Colors.white,
-                  collapsedIconColor: Colors.white,
-                  shape: Border.all(
-                    color: const Color.fromARGB(255, 22, 22, 22),
-                  ),
-                  leading: Image.asset(
-                    "assets/icons/New House Icon (R).png",
-                    height: 28,
-                  ),
-                  title: const Text(
-                    'Warehouse',
-                    style: TextStyle(
-                      color: Color(0xFFACACAC),
-                      fontSize: 16,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w500,
-                      // //height: 0,
-                      letterSpacing: -0.64,
-                    ),
-                  ),
-                  children: [
-                    CurvedLineConatainer(
-                      title: "Add Warehouse",
-                      onTap: () {
-                        Get.to(const AddWarehouse(), id: ownerNavigationKey);
-                      },
-                    ),
-                    CurvedLineConatainer(
-                      title: "View Warehouse",
-                      isShowextendedLine: false,
-                      onTap: () {
-                        Get.find<OwnerController>().setloadingtrue();
-                        Get.to(const WarehouseList(), id: ownerNavigationKey);
-                        // WarehouseList
-                      },
-                    ),
-                    // CurvedLineConatainer(title: "dcdc"),
-                    // CurvedLineConatainer(
-                    //   title: "dcdc",
-                    //   isShowextendedLine: false,
-                    //     ),
-                  ],
-                ),
-                // ListTile(
-                //   leading: Image.asset(
-                //     "assets/icons/Sales Icon (R).png",
-                //     height: 28,
-                //   ),
-                //   title: const Text(
-                //     'Sales',
-                //     textAlign: TextAlign.left,
-                //     style: TextStyle(
-                //       color: Color(0xFFA7A7A7),
-                //       fontSize: 16,
-                //       fontFamily: 'SF Pro Text',
-                //       fontWeight: FontWeight.w500,
-                //     ),
-                //   ),
-                //   onTap: () {},
-                // ),
-                // ListTile(
-                //   leading: Image.asset(
-                //     "assets/icons/HR Icon (R).png",
-                //     height: 28,
-                //   ),
-                //   title: const Text(
-                //     'HR',
-                //     textAlign: TextAlign.left,
-                //     style: TextStyle(
-                //       color: Color(0xFFA7A7A7),
-                //       fontSize: 16,
-                //       fontFamily: 'SF Pro Text',
-                //       fontWeight: FontWeight.w500,
-                //     ),
-                //   ),
-                //   onTap: () {},
-                // ),
-                ExpansionTile(
-                  collapsedShape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                  iconColor: Colors.white,
-                  collapsedIconColor: Colors.white,
-                  shape: Border.all(
-                    color: const Color.fromARGB(255, 22, 22, 22),
-                  ),
-                  leading: Image.asset(
-                    "assets/icons/Staff Profile Icons (R).png",
-                    height: 28,
-                  ),
-                  title: const Text(
-                    'Staff',
-                    style: TextStyle(
-                      color: Color(0xFFACACAC),
-                      fontSize: 16,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w500,
-                      // //height: 0,
-                      letterSpacing: -0.64,
-                    ),
-                  ),
-                  children: [
-                    CurvedLineConatainer(
-                      title: "Add Staff",
-                      onTap: () {
-                        Get.to(AddEmployee(), id: ownerNavigationKey);
-                      },
-                    ),
-                    CurvedLineConatainer(
-                      title: "Staff List",
-                      isShowextendedLine: false,
-                      onTap: () {
-                        Get.to(const EmployeeList(), id: ownerNavigationKey);
-                        // Get.find<OwnerController>().setloadingtrue();
-                        // Get.to(const WarehouseList(), id: ownerNavigationKey);
-                        // WarehouseList
-                      },
-                    ),
-                    // CurvedLineConatainer(title: "dcdc"),
-                    // CurvedLineConatainer(
-                    //   title: "dcdc",
-                    //   isShowextendedLine: false,
-                    //     ),
-                  ],
-                ),
-              ],
-            )),
-           OwnerSwitchRoleButton(),
-            InkWell(
-              onTap: () {
-                Get.find<OwnerController>().ownerLogout();
-              },
-              child: Container(
-                height: 60,
-                decoration: ShapeDecoration(
-                  color: const Color(0xFF383838),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    Image.asset(
-                      "assets/icons/export.png",
+                                const Text(
+                                  'Owner',
+                                  style: TextStyle(
+                                    color: Color(0xFFFF5789),
+                                    fontSize: 16,
+                                    fontFamily: 'SF Pro Text',
+                                    fontWeight: FontWeight.w500,
+                                    // //height: 0,
+                                    // letterSpacing: -0.64,
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      )),
+                );
+              }),
+              Expanded(
+                  child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  ListTile(
+                    leading: Image.asset(
+                      "assets/icons/grid-3.png",
                       height: 28,
-                    ).paddingSymmetric(horizontal: 12),
-                    const Text(
-                      'Logout',
-                      textAlign: TextAlign.center,
+                    ),
+                    title: const Text(
+                      'Dashboard',
+                      textAlign: TextAlign.left,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Color(0xFFA7A7A7),
                         fontSize: 16,
                         fontFamily: 'SF Pro Text',
                         fontWeight: FontWeight.w500,
-                        //height: 0,
+                      ),
+                    ),
+                    onTap: () {},
+                  ),
+                  ExpansionTile(
+                    collapsedShape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                    iconColor: Colors.white,
+                    collapsedIconColor: Colors.white,
+                    shape: Border.all(
+                      color: const Color.fromARGB(255, 22, 22, 22),
+                    ),
+                    leading: Image.asset(
+                      "assets/icons/New House Icon (R).png",
+                      height: 28,
+                    ),
+                    title: const Text(
+                      'Warehouse',
+                      style: TextStyle(
+                        color: Color(0xFFACACAC),
+                        fontSize: 16,
+                        fontFamily: 'SF Pro Text',
+                        fontWeight: FontWeight.w500,
+                        // //height: 0,
                         letterSpacing: -0.64,
                       ),
-                    )
-                  ],
-                ),
-              ).paddingSymmetric(
-                horizontal: 12,
-              ),
-            ),
-            const Gap(60),
-          ],
-        ),
-      ),
-      appBar: AppBar(
-        centerTitle: false,
-        backgroundColor: const Color(0xFF232323),
-        title: const Text(
-          'Dashboard',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontFamily: 'SF Pro Text',
-            fontWeight: FontWeight.w500,
-            //height: 0,
-            letterSpacing: -0.80,
-          ),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
-            child: Wrap(
-              // alignment: WrapAlignment.,
-              runSpacing: 20,
-              spacing: 20,
-              children: List.generate(9, (index) {
-                if (index == 1) {
-                  return Container(
-                    width: 400,
-                    height: 240,
-                    decoration: ShapeDecoration(
-                      gradient: const LinearGradient(
-                        begin: Alignment(0.00, -1.00),
-                        end: Alignment(0, 1),
-                        colors: [Color(0xFF373737), Colors.black],
+                    ),
+                    children: [
+                      CurvedLineConatainer(
+                        title: "Add Warehouse",
+                        onTap: () {
+                          Get.to(const AddWarehouse(), id: ownerNavigationKey);
+                        },
                       ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                      CurvedLineConatainer(
+                        title: "View Warehouse",
+                        isShowextendedLine: false,
+                        onTap: () {
+                          Get.find<OwnerController>().setloadingtrue();
+                          Get.to(const WarehouseList(), id: ownerNavigationKey);
+                          // WarehouseList
+                        },
+                      ),
+                      // CurvedLineConatainer(title: "dcdc"),
+                      // CurvedLineConatainer(
+                      //   title: "dcdc",
+                      //   isShowextendedLine: false,
+                      //     ),
+                    ],
+                  ),
+                  // ListTile(
+                  //   leading: Image.asset(
+                  //     "assets/icons/Sales Icon (R).png",
+                  //     height: 28,
+                  //   ),
+                  //   title: const Text(
+                  //     'Sales',
+                  //     textAlign: TextAlign.left,
+                  //     style: TextStyle(
+                  //       color: Color(0xFFA7A7A7),
+                  //       fontSize: 16,
+                  //       fontFamily: 'SF Pro Text',
+                  //       fontWeight: FontWeight.w500,
+                  //     ),
+                  //   ),
+                  //   onTap: () {},
+                  // ),
+                  // ListTile(
+                  //   leading: Image.asset(
+                  //     "assets/icons/HR Icon (R).png",
+                  //     height: 28,
+                  //   ),
+                  //   title: const Text(
+                  //     'HR',
+                  //     textAlign: TextAlign.left,
+                  //     style: TextStyle(
+                  //       color: Color(0xFFA7A7A7),
+                  //       fontSize: 16,
+                  //       fontFamily: 'SF Pro Text',
+                  //       fontWeight: FontWeight.w500,
+                  //     ),
+                  //   ),
+                  //   onTap: () {},
+                  // ),
+                  ExpansionTile(
+                    collapsedShape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                    iconColor: Colors.white,
+                    collapsedIconColor: Colors.white,
+                    shape: Border.all(
+                      color: const Color.fromARGB(255, 22, 22, 22),
+                    ),
+                    leading: Image.asset(
+                      "assets/icons/Staff Profile Icons (R).png",
+                      height: 28,
+                    ),
+                    title: const Text(
+                      'Staff',
+                      style: TextStyle(
+                        color: Color(0xFFACACAC),
+                        fontSize: 16,
+                        fontFamily: 'SF Pro Text',
+                        fontWeight: FontWeight.w500,
+                        // //height: 0,
+                        letterSpacing: -0.64,
                       ),
                     ),
-                    child: Row(
-                      children: [
-                        const Gap(20),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'Vehicle\nMovement',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20.57,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              Expanded(
-                                child: Container(),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Container(
-                                    width: 12,
-                                    height: 12,
-                                    decoration: const BoxDecoration(
-                                        color: Colors.white),
-                                  ),
-                                  const Gap(10),
-                                  const Text(
-                                    'Inward',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 17.14,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    width: 12,
-                                    height: 12,
-                                    decoration: const BoxDecoration(
-                                        color: Color(0xFF9B9B9B)),
-                                  ),
-                                  const Gap(10),
-                                  const Text(
-                                    'Outward',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 17.14,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                            child: Column(
-                          children: [
-                            SizedBox(
-                              height: 200,
-                              width: 200,
-                              child:
-                                  Stack(alignment: Alignment.center, children: [
-                                CircularPercentIndicator(
-                                  animation: true,
-                                  reverse: true,
-                                  lineWidth: 40,
-                                  percent: 0.5,
-                                  radius: 80.0,
-                                  circularStrokeCap: CircularStrokeCap.butt,
-                                  progressColor: const Color(0xB2D3D3D3),
-                                  backgroundColor: Colors.transparent,
-                                ),
-                                CircularPercentIndicator(
-                                  animation: true,
-                                  //reverse: true,
-                                  lineWidth: 40,
-                                  radius: 80.0,
-                                  circularStrokeCap: CircularStrokeCap.butt,
-                                  progressColor: Colors.white,
-                                  percent: 0.75,
-                                  backgroundColor: Colors.transparent,
-                                ),
-                              ]),
-                            )
-                          ],
-                        ))
-                      ],
-                    ),
-                  );
-                }
-                return Container(
-                  width: 400,
-                  height: 240,
+                    children: [
+                      CurvedLineConatainer(
+                        title: "Add Staff",
+                        onTap: () {
+                          Get.to(AddEmployee(), id: ownerNavigationKey);
+                        },
+                      ),
+                      CurvedLineConatainer(
+                        title: "Staff List",
+                        isShowextendedLine: false,
+                        onTap: () {
+                          Get.to(const EmployeeList(), id: ownerNavigationKey);
+                          // Get.find<OwnerController>().setloadingtrue();
+                          // Get.to(const WarehouseList(), id: ownerNavigationKey);
+                          // WarehouseList
+                        },
+                      ),
+                      // CurvedLineConatainer(title: "dcdc"),
+                      // CurvedLineConatainer(
+                      //   title: "dcdc",
+                      //   isShowextendedLine: false,
+                      //     ),
+                    ],
+                  ),
+                ],
+              )),
+              const OwnerSwitchRoleButton(),
+              InkWell(
+                onTap: () {
+                  Get.find<OwnerController>().ownerLogout();
+                },
+                child: Container(
+                  height: 60,
                   decoration: ShapeDecoration(
-                    gradient: const LinearGradient(
-                      begin: Alignment(0.00, -1.00),
-                      end: Alignment(0, 1),
-                      colors: [Color(0xFF373737), Colors.black],
-                    ),
+                    color: const Color(0xFF383838),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   child: Row(
                     children: [
-                      const Gap(20),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'No. of\nWarehouses',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.57,
-                                fontWeight: FontWeight.w700,
-                              ),
+                      Image.asset(
+                        "assets/icons/export.png",
+                        height: 28,
+                      ).paddingSymmetric(horizontal: 12),
+                      const Text(
+                        'Logout',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: 'SF Pro Text',
+                          fontWeight: FontWeight.w500,
+                          //height: 0,
+                          letterSpacing: -0.64,
+                        ),
+                      )
+                    ],
+                  ),
+                ).paddingSymmetric(
+                  horizontal: 12,
+                ),
+              ),
+              const Gap(60),
+            ],
+          ),
+        ),
+        appBar: AppBar(
+          centerTitle: false,
+          backgroundColor: const Color(0xFF232323),
+          title: const Text(
+            'Dashboard',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontFamily: 'SF Pro Text',
+              fontWeight: FontWeight.w500,
+              //height: 0,
+              letterSpacing: -0.80,
+            ),
+          ),
+        ),
+        // body: SingleChildScrollView(
+        //   child: Padding(
+        //       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+        //       child: Wrap(
+        //         // alignment: WrapAlignment.,
+        //         runSpacing: 20,
+        //         spacing: 20,
+        //         children: List.generate(9, (index) {
+        //           if (index == 1) {
+        //             return Container(
+        //               width: 400,
+        //               height: 240,
+        //               decoration: ShapeDecoration(
+        //                 gradient: const LinearGradient(
+        //                   begin: Alignment(0.00, -1.00),
+        //                   end: Alignment(0, 1),
+        //                   colors: [Color(0xFF373737), Colors.black],
+        //                 ),
+        //                 shape: RoundedRectangleBorder(
+        //                   borderRadius: BorderRadius.circular(10),
+        //                 ),
+        //               ),
+        //               child: Row(
+        //                 children: [
+        //                   const Gap(20),
+        //                   Padding(
+        //                     padding: const EdgeInsets.symmetric(vertical: 20),
+        //                     child: Column(
+        //                       crossAxisAlignment: CrossAxisAlignment.start,
+        //                       children: [
+        //                         const Text(
+        //                           'Vehicle\nMovement',
+        //                           style: TextStyle(
+        //                             color: Colors.white,
+        //                             fontSize: 20.57,
+        //                             fontWeight: FontWeight.w700,
+        //                           ),
+        //                         ),
+        //                         Expanded(
+        //                           child: Container(),
+        //                         ),
+        //                         Row(
+        //                           mainAxisSize: MainAxisSize.min,
+        //                           children: [
+        //                             Container(
+        //                               width: 12,
+        //                               height: 12,
+        //                               decoration: const BoxDecoration(
+        //                                   color: Colors.white),
+        //                             ),
+        //                             const Gap(10),
+        //                             const Text(
+        //                               'Inward',
+        //                               style: TextStyle(
+        //                                 color: Colors.white,
+        //                                 fontSize: 17.14,
+        //                                 fontWeight: FontWeight.w500,
+        //                               ),
+        //                             ),
+        //                           ],
+        //                         ),
+        //                         Row(
+        //                           children: [
+        //                             Container(
+        //                               width: 12,
+        //                               height: 12,
+        //                               decoration: const BoxDecoration(
+        //                                   color: Color(0xFF9B9B9B)),
+        //                             ),
+        //                             const Gap(10),
+        //                             const Text(
+        //                               'Outward',
+        //                               style: TextStyle(
+        //                                 color: Colors.white,
+        //                                 fontSize: 17.14,
+        //                                 fontWeight: FontWeight.w500,
+        //                               ),
+        //                             ),
+        //                           ],
+        //                         )
+        //                       ],
+        //                     ),
+        //                   ),
+        //                   Expanded(
+        //                       child: Column(
+        //                     children: [
+        //                       SizedBox(
+        //                         height: 200,
+        //                         width: 200,
+        //                         child:
+        //                             Stack(alignment: Alignment.center, children: [
+        //                           CircularPercentIndicator(
+        //                             animation: true,
+        //                             reverse: true,
+        //                             lineWidth: 40,
+        //                             percent: 0.5,
+        //                             radius: 80.0,
+        //                             circularStrokeCap: CircularStrokeCap.butt,
+        //                             progressColor: const Color(0xB2D3D3D3),
+        //                             backgroundColor: Colors.transparent,
+        //                           ),
+        //                           CircularPercentIndicator(
+        //                             animation: true,
+        //                             //reverse: true,
+        //                             lineWidth: 40,
+        //                             radius: 80.0,
+        //                             circularStrokeCap: CircularStrokeCap.butt,
+        //                             progressColor: Colors.white,
+        //                             percent: 0.75,
+        //                             backgroundColor: Colors.transparent,
+        //                           ),
+        //                         ]),
+        //                       )
+        //                     ],
+        //                   ))
+        //                 ],
+        //               ),
+        //             );
+        //           }
+        //           return Container(
+        //             width: 400,
+        //             height: 240,
+        //             decoration: ShapeDecoration(
+        //               gradient: const LinearGradient(
+        //                 begin: Alignment(0.00, -1.00),
+        //                 end: Alignment(0, 1),
+        //                 colors: [Color(0xFF373737), Colors.black],
+        //               ),
+        //               shape: RoundedRectangleBorder(
+        //                 borderRadius: BorderRadius.circular(10),
+        //               ),
+        //             ),
+        //             child: Row(
+        //               children: [
+        //                 const Gap(20),
+        //                 Padding(
+        //                   padding: const EdgeInsets.symmetric(vertical: 20),
+        //                   child: Column(
+        //                     crossAxisAlignment: CrossAxisAlignment.start,
+        //                     children: [
+        //                       const Text(
+        //                         'No. of\nWarehouses',
+        //                         style: TextStyle(
+        //                           color: Colors.white,
+        //                           fontSize: 20.57,
+        //                           fontWeight: FontWeight.w700,
+        //                         ),
+        //                       ),
+        //                       Expanded(
+        //                         child: Container(),
+        //                       ),
+        //                       Row(
+        //                         mainAxisSize: MainAxisSize.min,
+        //                         children: [
+        //                           Container(
+        //                             width: 12,
+        //                             height: 12,
+        //                             decoration:
+        //                                 const BoxDecoration(color: Colors.white),
+        //                           ),
+        //                           const Gap(10),
+        //                           const Text(
+        //                             'Added',
+        //                             style: TextStyle(
+        //                               color: Colors.white,
+        //                               fontSize: 17.14,
+        //                               fontWeight: FontWeight.w500,
+        //                             ),
+        //                           ),
+        //                         ],
+        //                       ),
+        //                       Row(
+        //                         children: [
+        //                           Container(
+        //                             width: 12,
+        //                             height: 12,
+        //                             decoration: const BoxDecoration(
+        //                                 color: Color(0xFF9B9B9B)),
+        //                           ),
+        //                           const Gap(10),
+        //                           const Text(
+        //                             'Deleted',
+        //                             style: TextStyle(
+        //                               color: Colors.white,
+        //                               fontSize: 17.14,
+        //                               fontWeight: FontWeight.w500,
+        //                             ),
+        //                           ),
+        //                         ],
+        //                       )
+        //                     ],
+        //                   ),
+        //                 ),
+        //                 Expanded(
+        //                     child: Column(
+        //                   children: [
+        //                     SizedBox(
+        //                       height: 200,
+        //                       width: 200,
+        //                       child:
+        //                           Stack(alignment: Alignment.center, children: [
+        //                         CircularPercentIndicator(
+        //                           animation: true,
+        //                           reverse: true,
+        //                           lineWidth: 40,
+        //                           percent: 0.5,
+        //                           radius: 50.0,
+        //                           circularStrokeCap: CircularStrokeCap.butt,
+        //                           progressColor: const Color(0xB2D3D3D3),
+        //                           backgroundColor: Colors.transparent,
+        //                         ),
+        //                         CircularPercentIndicator(
+        //                           reverse: true,
+        //                           lineWidth: 40,
+        //                           radius: 80.0,
+        //                           circularStrokeCap: CircularStrokeCap.butt,
+        //                           progressColor: Colors.white,
+        //                           percent: 0.75,
+        //                           backgroundColor: Colors.transparent,
+        //                         ),
+        //                       ]),
+        //                     )
+        //                   ],
+        //                 ))
+        //               ],
+        //             ),
+        //           );
+        //         }),
+        //       )),
+        // ),
+
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                const Gap(10),
+                Container(
+                    width: 380,
+                    height: 93,
+                    decoration: ShapeDecoration(
+                      gradient: LinearGradient(
+                        begin: const Alignment(0.00, -1.00),
+                        end: const Alignment(0, 1),
+                        colors: [
+                          Colors.white.withOpacity(0.10000000149011612),
+                          Colors.white.withOpacity(0.10000000149011612)
+                        ],
+                      ),
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(width: 1, color: Colors.white),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              top: 12.0,
                             ),
-                            Expanded(
-                              child: Container(),
-                            ),
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  width: 12,
-                                  height: 12,
-                                  decoration:
-                                      const BoxDecoration(color: Colors.white),
+                                  width: 42,
+                                  height: 42,
+                                  decoration: const ShapeDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                          "assets/images/warehouseOwner.png"),
+                                      fit: BoxFit.fill,
+                                    ),
+                                    shape: OvalBorder(
+                                      side: BorderSide(
+                                        width: 2,
+                                        strokeAlign:
+                                            BorderSide.strokeAlignOutside,
+                                        color: Color(0x195A57FF),
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                                const Gap(10),
                                 const Text(
-                                  'Added',
+                                  'Warehouses',
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 17.14,
+                                    fontSize: 18,
+                                    fontFamily: 'SF Pro Display',
                                     fontWeight: FontWeight.w500,
+                                    height: 0,
                                   ),
                                 ),
                               ],
                             ),
-                            Row(
-                              children: [
-                                Container(
-                                  width: 12,
-                                  height: 12,
-                                  decoration: const BoxDecoration(
-                                      color: Color(0xFF9B9B9B)),
-                                ),
-                                const Gap(10),
-                                const Text(
-                                  'Deleted',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 17.14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
+                          ),
+                          const Text(
+                            '02',
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 60,
+                              fontFamily: 'SF Pro Display',
+                              fontWeight: FontWeight.w600,
+                              height: 0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )),
+                const Gap(10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        _selectDate(context);
+                      },
+                      child: Container(
+                        height: 30,
+                        decoration: ShapeDecoration(
+                          color: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                              width: 1,
+                              color:
+                                  Colors.white.withOpacity(0.30000001192092896),
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          shadows: const [
+                            BoxShadow(
+                              color: Color(0x0C000000),
+                              blurRadius: 4,
+                              offset: Offset(3, 4),
+                              spreadRadius: 0,
                             )
                           ],
                         ),
+                        child: Row(
+                          children: [
+                            const Gap(20),
+                            const Icon(
+                              Icons.arrow_back_ios,
+                              color: Color(0xFFACACAC),
+                              size: 20,
+                            ),
+                            const Gap(20),
+                            Text(
+                              _selectedDate == null
+                                  ? 'All Time'
+                                  : _selectedDate.toString(),
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                color: Color(0xFFACACAC),
+                                fontSize: 14,
+                                fontFamily: 'SF Pro Text',
+                                fontWeight: FontWeight.w400,
+                                //height: 0,
+                                letterSpacing: -0.56,
+                              ),
+                            ),
+                            const Gap(20),
+                            const Icon(
+                              Icons.arrow_forward_ios,
+                              color: Color(0xFFACACAC),
+                              size: 20,
+                            ),
+                            const Gap(20),
+                          ],
+                        ),
                       ),
-                      Expanded(
-                          child: Column(
-                        children: [
-                          SizedBox(
-                            height: 200,
-                            width: 200,
-                            child:
-                                Stack(alignment: Alignment.center, children: [
-                              CircularPercentIndicator(
-                                animation: true,
-                                reverse: true,
-                                lineWidth: 40,
-                                percent: 0.5,
-                                radius: 50.0,
-                                circularStrokeCap: CircularStrokeCap.butt,
-                                progressColor: const Color(0xB2D3D3D3),
-                                backgroundColor: Colors.transparent,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        _selectDate(context);
+                      },
+                      child: Container(
+                        height: 30,
+                        decoration: ShapeDecoration(
+                          color: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                              width: 1,
+                              color:
+                                  Colors.white.withOpacity(0.30000001192092896),
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          shadows: const [
+                            BoxShadow(
+                              color: Color(0x0C000000),
+                              blurRadius: 4,
+                              offset: Offset(3, 4),
+                              spreadRadius: 0,
+                            )
+                          ],
+                        ),
+                        child: Row(
+                          children: [
+                            const Gap(20),
+                            const Icon(
+                              Icons.arrow_back_ios,
+                              color: Color(0xFFACACAC),
+                              size: 20,
+                            ),
+                            const Gap(20),
+                            Text(
+                              _selectedDate == null
+                                  ? 'All Time'
+                                  : _selectedDate.toString(),
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                color: Color(0xFFACACAC),
+                                fontSize: 14,
+                                fontFamily: 'SF Pro Text',
+                                fontWeight: FontWeight.w400,
+                                //height: 0,
+                                letterSpacing: -0.56,
                               ),
-                              CircularPercentIndicator(
-                                reverse: true,
-                                lineWidth: 40,
-                                radius: 80.0,
-                                circularStrokeCap: CircularStrokeCap.butt,
-                                progressColor: Colors.white,
-                                percent: 0.75,
-                                backgroundColor: Colors.transparent,
-                              ),
-                            ]),
-                          )
-                        ],
-                      ))
-                    ],
+                            ),
+                            const Gap(20),
+                            const Icon(
+                              Icons.arrow_forward_ios,
+                              color: Color(0xFFACACAC),
+                              size: 20,
+                            ),
+                            const Gap(20),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const Gap(20),
+                Container(
+                  width: 380,
+                  height: 100,
+                  decoration: ShapeDecoration(
+                    gradient: LinearGradient(
+                      begin: const Alignment(0.00, -1.00),
+                      end: const Alignment(0, 1),
+                      colors: [
+                        Colors.white.withOpacity(0.10000000149011612),
+                        Colors.white.withOpacity(0.10000000149011612)
+                      ],
+                    ),
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(width: 1, color: Colors.white),
+                      borderRadius: BorderRadius.circular(25),
+                    ),
                   ),
-                );
-              }),
-            )),
-      ),
-    );
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 12.0,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 42,
+                                height: 42,
+                                decoration: const BoxDecoration(
+                                  color: Colors.black,
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        "assets/images/materialOwner.png"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              const Text(
+                                'Material',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w500,
+                                  height: 0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Row(
+                          children: [
+                            Text(
+                              '14',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 32,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w600,
+                                height: 0,
+                              ),
+                            ),
+                            Gap(50),
+                            Text(
+                              '12',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 32,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w600,
+                                height: 0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Gap(20),
+                Container(
+                  width: 380,
+                  height: 100,
+                  decoration: ShapeDecoration(
+                    gradient: LinearGradient(
+                      begin: const Alignment(0.00, -1.00),
+                      end: const Alignment(0, 1),
+                      colors: [
+                        Colors.white.withOpacity(0.10000000149011612),
+                        Colors.white.withOpacity(0.10000000149011612)
+                      ],
+                    ),
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(width: 1, color: Colors.white),
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 12.0,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 42,
+                                height: 42,
+                                decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        "assets/images/Person Icon (R) Dash.png"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              const Text(
+                                'Person',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w500,
+                                  height: 0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Row(
+                          children: [
+                            Text(
+                              '14',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 32,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w600,
+                                height: 0,
+                              ),
+                            ),
+                            Gap(50),
+                            Text(
+                              '12',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 32,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w600,
+                                height: 0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Gap(20),
+                Container(
+                  width: 380,
+                  height: 100,
+                  decoration: ShapeDecoration(
+                    gradient: LinearGradient(
+                      begin: const Alignment(0.00, -1.00),
+                      end: const Alignment(0, 1),
+                      colors: [
+                        Colors.white.withOpacity(0.10000000149011612),
+                        Colors.white.withOpacity(0.10000000149011612)
+                      ],
+                    ),
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(width: 1, color: Colors.white),
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 12.0,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 42,
+                                height: 42,
+                                decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        "assets/images/Vehicle Icon (R).png"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              const Text(
+                                'Vehicle',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w500,
+                                  height: 0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Row(
+                          children: [
+                            Text(
+                              '14',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 32,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w600,
+                                height: 0,
+                              ),
+                            ),
+                            Gap(50),
+                            Text(
+                              '12',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 32,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w600,
+                                height: 0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Gap(20),
+                Container(
+                  width: 380,
+                  height: 100,
+                  decoration: ShapeDecoration(
+                    gradient: LinearGradient(
+                      begin: const Alignment(0.00, -1.00),
+                      end: const Alignment(0, 1),
+                      colors: [
+                        Colors.white.withOpacity(0.10000000149011612),
+                        Colors.white.withOpacity(0.10000000149011612)
+                      ],
+                    ),
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(width: 1, color: Colors.white),
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 12.0,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 42,
+                                height: 42,
+                                decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        "assets/images/Dashboard Icons (R).png"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              const Text(
+                                'Visitor',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w500,
+                                  height: 0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Row(
+                          children: [
+                            Text(
+                              '14',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 32,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w600,
+                                height: 0,
+                              ),
+                            ),
+                            Gap(50),
+                            Text(
+                              '12',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 32,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w600,
+                                height: 0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Gap(20),
+                Container(
+                  width: 380,
+                  height: 100,
+                  decoration: ShapeDecoration(
+                    gradient: LinearGradient(
+                      begin: const Alignment(0.00, -1.00),
+                      end: const Alignment(0, 1),
+                      colors: [
+                        Colors.white.withOpacity(0.10000000149011612),
+                        Colors.white.withOpacity(0.10000000149011612)
+                      ],
+                    ),
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(width: 1, color: Colors.white),
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 12.0,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 42,
+                                height: 42,
+                                decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        "assets/images/Dashboard Icons (R).png"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              const Text(
+                                'Visitor',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w500,
+                                  height: 0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Row(
+                          children: [
+                            Text(
+                              '14',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 32,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w600,
+                                height: 0,
+                              ),
+                            ),
+                            Gap(50),
+                            Text(
+                              '12',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 32,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w600,
+                                height: 0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Gap(20),
+                Container(
+                  width: 380,
+                  height: 100,
+                  decoration: ShapeDecoration(
+                    gradient: LinearGradient(
+                      begin: const Alignment(0.00, -1.00),
+                      end: const Alignment(0, 1),
+                      colors: [
+                        Colors.white.withOpacity(0.10000000149011612),
+                        Colors.white.withOpacity(0.10000000149011612)
+                      ],
+                    ),
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(width: 1, color: Colors.white),
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 12.0,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 42,
+                                height: 42,
+                                decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        "assets/images/Dashboard Icons (R).png"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              const Text(
+                                'Visitor',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w500,
+                                  height: 0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Row(
+                          children: [
+                            Text(
+                              '14',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 32,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w600,
+                                height: 0,
+                              ),
+                            ),
+                            Gap(50),
+                            Text(
+                              '12',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 32,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w600,
+                                height: 0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ));
   }
 }
 

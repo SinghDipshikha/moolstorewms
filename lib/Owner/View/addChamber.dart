@@ -81,6 +81,8 @@ class AddChamberView extends StatelessWidget {
                           ),
                           const Gap(8),
                           CommanTextField(
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [NumberTextInputFormatter()],
                             validator: (val) {
                               if (val == null || val.isEmpty) {
                                 {
@@ -90,25 +92,45 @@ class AddChamberView extends StatelessWidget {
                                 return null;
                               }
                             },
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [NumberTextInputFormatter()],
                             onChanged: (p0) {
                               ownerController.addChamberModel = ownerController
                                   .addChamberModel
-                                  .copyWith(chamber_capacity: int.parse(p0));
+                                  .copyWith(floor_number: int.parse(p0));
                             },
-                            suffixIcon: const Text(
-                              'SQ. FT',
-                              style: TextStyle(
-                                color: Color(0xFFACACAC),
-                                fontSize: 12,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w300,
-                              ),
-                            ).paddingOnly(top: 14),
-                            labelText: 'Chamber Capacity',
+                            labelText: 'Floor Number',
                             containerColor: Colors.white,
-                          )
+                            // hintText: 'Enter chambers number',
+                          ),
+                          const Gap(8),
+                          // CommanTextField(
+                          //   validator: (val) {
+                          //     if (val == null || val.isEmpty) {
+                          //       {
+                          //         return 'required';
+                          //       }
+                          //     } else {
+                          //       return null;
+                          //     }
+                          //   },
+                          //   keyboardType: TextInputType.number,
+                          //   inputFormatters: [NumberTextInputFormatter()],
+                          //   onChanged: (p0) {
+                          //     ownerController.addChamberModel = ownerController
+                          //         .addChamberModel
+                          //         .copyWith(chamber_capacity: int.parse(p0));
+                          //   },
+                          //   suffixIcon: const Text(
+                          //     'SQ. FT',
+                          //     style: TextStyle(
+                          //       color: Color(0xFFACACAC),
+                          //       fontSize: 12,
+                          //       fontFamily: 'SF Pro Display',
+                          //       fontWeight: FontWeight.w300,
+                          //     ),
+                          //   ).paddingOnly(top: 14),
+                          //   labelText: 'Chamber Capacity',
+                          //   containerColor: Colors.white,
+                          // )
                         ],
                       )).paddingAll(12),
                       StyledContainer(
@@ -532,20 +554,115 @@ class AddChamberView extends StatelessWidget {
                           const Gap(8),
                         ],
                       )).paddingAll(12),
+                      // StyledContainer(
+                      //     child: Column(
+                      //   children: [
+                      //     Center(
+                      //       child: const Text(
+                      //         'Pallet Storage Unit Dimensions (MM)',
+                      //         style: TextStyle(
+                      //           color: Color(0xFFACACAC),
+                      //           fontSize: 16,
+                      //           fontFamily: 'SF Pro Display',
+                      //           fontWeight: FontWeight.w400,
+                      //         ),
+                      //       ).paddingAll(12),
+                      //     ),
+                      //     CommanTextField(
+                      //       validator: (val) {
+                      //         if (val == null || val.isEmpty) {
+                      //           {
+                      //             return 'required';
+                      //           }
+                      //         } else {
+                      //           return null;
+                      //         }
+                      //       },
+                      //       keyboardType: TextInputType.number,
+                      //       inputFormatters: [NumberTextInputFormatter()],
+                      //       onChanged: (p0) {
+                      //         ownerController.addChamberModel =
+                      //             ownerController.addChamberModel.copyWith(
+                      //                 pallet_dimension_length: int.parse(p0));
+                      //       },
+                      //       labelText: 'Length',
+                      //       containerColor: Colors.white,
+                      //       suffixIcon: const Text(
+                      //         'MM',
+                      //         style: TextStyle(
+                      //           color: Color(0xFFACACAC),
+                      //           fontSize: 12,
+                      //           fontFamily: 'SF Pro Display',
+                      //           fontWeight: FontWeight.w300,
+                      //         ),
+                      //       ).paddingOnly(top: 14),
+                      //     ),
+                      //     const Gap(8),
+                      //     CommanTextField(
+                      //       validator: (val) {
+                      //         if (val == null || val.isEmpty) {
+                      //           {
+                      //             return 'required';
+                      //           }
+                      //         } else {
+                      //           return null;
+                      //         }
+                      //       },
+                      //       keyboardType: TextInputType.number,
+                      //       inputFormatters: [NumberTextInputFormatter()],
+                      //       onChanged: (p0) {
+                      //         ownerController.addChamberModel =
+                      //             ownerController.addChamberModel.copyWith(
+                      //                 pallet_dimension_breadth: int.parse(p0));
+                      //       },
+                      //       labelText: 'Breadth',
+                      //       containerColor: Colors.white,
+                      //       suffixIcon: const Text(
+                      //         'MM',
+                      //         style: TextStyle(
+                      //           color: Color(0xFFACACAC),
+                      //           fontSize: 12,
+                      //           fontFamily: 'SF Pro Display',
+                      //           fontWeight: FontWeight.w300,
+                      //         ),
+                      //       ).paddingOnly(top: 14),
+                      //     ),
+                      //     const Gap(8),
+                      //     CommanTextField(
+                      //       validator: (val) {
+                      //         if (val == null || val.isEmpty) {
+                      //           {
+                      //             return 'required';
+                      //           }
+                      //         } else {
+                      //           return null;
+                      //         }
+                      //       },
+                      //       keyboardType: TextInputType.number,
+                      //       inputFormatters: [NumberTextInputFormatter()],
+                      //       onChanged: (p0) {
+                      //         ownerController.addChamberModel =
+                      //             ownerController.addChamberModel.copyWith(
+                      //                 pallet_dimension_height: int.parse(p0));
+                      //       },
+                      //       labelText: 'Height',
+                      //       containerColor: Colors.white,
+                      //       suffixIcon: const Text(
+                      //         'MM',
+                      //         style: TextStyle(
+                      //           color: Color(0xFFACACAC),
+                      //           fontSize: 12,
+                      //           fontFamily: 'SF Pro Display',
+                      //           fontWeight: FontWeight.w300,
+                      //         ),
+                      //       ).paddingOnly(top: 14),
+                      //     ),
+                      //     const Gap(8),
+                      //   ],
+                      // )).paddingAll(12),
                       StyledContainer(
                           child: Column(
                         children: [
-                          Center(
-                            child: const Text(
-                              'Pallet Storage Unit Dimensions (MM)',
-                              style: TextStyle(
-                                color: Color(0xFFACACAC),
-                                fontSize: 16,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ).paddingAll(12),
-                          ),
                           CommanTextField(
                             validator: (val) {
                               if (val == null || val.isEmpty) {
@@ -556,109 +673,14 @@ class AddChamberView extends StatelessWidget {
                                 return null;
                               }
                             },
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [NumberTextInputFormatter()],
-                            onChanged: (p0) {
-                              ownerController.addChamberModel =
-                                  ownerController.addChamberModel.copyWith(
-                                      pallet_dimension_length: int.parse(p0));
-                            },
-                            labelText: 'Length',
-                            containerColor: Colors.white,
-                            suffixIcon: const Text(
-                              'MM',
-                              style: TextStyle(
-                                color: Color(0xFFACACAC),
-                                fontSize: 12,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w300,
-                              ),
-                            ).paddingOnly(top: 14),
-                          ),
-                          const Gap(8),
-                          CommanTextField(
-                            validator: (val) {
-                              if (val == null || val.isEmpty) {
-                                {
-                                  return 'required';
-                                }
-                              } else {
-                                return null;
-                              }
-                            },
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [NumberTextInputFormatter()],
-                            onChanged: (p0) {
-                              ownerController.addChamberModel =
-                                  ownerController.addChamberModel.copyWith(
-                                      pallet_dimension_breadth: int.parse(p0));
-                            },
-                            labelText: 'Breadth',
-                            containerColor: Colors.white,
-                            suffixIcon: const Text(
-                              'MM',
-                              style: TextStyle(
-                                color: Color(0xFFACACAC),
-                                fontSize: 12,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w300,
-                              ),
-                            ).paddingOnly(top: 14),
-                          ),
-                          const Gap(8),
-                          CommanTextField(
-                            validator: (val) {
-                              if (val == null || val.isEmpty) {
-                                {
-                                  return 'required';
-                                }
-                              } else {
-                                return null;
-                              }
-                            },
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [NumberTextInputFormatter()],
-                            onChanged: (p0) {
-                              ownerController.addChamberModel =
-                                  ownerController.addChamberModel.copyWith(
-                                      pallet_dimension_height: int.parse(p0));
-                            },
-                            labelText: 'Height',
-                            containerColor: Colors.white,
-                            suffixIcon: const Text(
-                              'MM',
-                              style: TextStyle(
-                                color: Color(0xFFACACAC),
-                                fontSize: 12,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w300,
-                              ),
-                            ).paddingOnly(top: 14),
-                          ),
-                          const Gap(8),
-                        ],
-                      )).paddingAll(12),
-                      StyledContainer(
-                          child: Column(
-                        children: [
-                          CommanTextField(
-                            validator: (val) {
-                              if (val == null || val.isEmpty) {
-                                {
-                                  return 'required';
-                                }
-                              } else {
-                                return null;
-                              }
-                            },
-                            labelText: 'Movement Height',
+                            labelText: 'Total Pallets',
                             containerColor: Colors.white,
                             keyboardType: TextInputType.number,
                             inputFormatters: [NumberTextInputFormatter()],
                             onChanged: (p0) {
                               ownerController.addChamberModel = ownerController
                                   .addChamberModel
-                                  .copyWith(movement_height: int.parse(p0));
+                                  .copyWith(pallate_count: int.parse(p0));
                             },
                           ),
                           const Gap(8),
@@ -677,9 +699,9 @@ class AddChamberView extends StatelessWidget {
                             onChanged: (p0) {
                               ownerController.addChamberModel = ownerController
                                   .addChamberModel
-                                  .copyWith(no_of_floors: int.parse(p0));
+                                  .copyWith(stacking_level: int.parse(p0));
                             },
-                            labelText: 'Stacking / No of Floors',
+                            labelText: 'Stacking Levels',
                             containerColor: Colors.white,
                           ),
                           const Gap(8),
@@ -817,112 +839,112 @@ class AddChamberView extends StatelessWidget {
                           )
                         ],
                       )).paddingAll(12),
-                      StyledContainer(
-                          child: Column(
-                        children: [
-                          Center(
-                            child: const Text(
-                              'Chamber Dimensions (M)',
-                              style: TextStyle(
-                                color: Color(0xFFACACAC),
-                                fontSize: 16,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ).paddingAll(12),
-                          ),
-                          CommanTextField(
-                            validator: (val) {
-                              if (val == null || val.isEmpty) {
-                                {
-                                  return 'required';
-                                }
-                              } else {
-                                return null;
-                              }
-                            },
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [NumberTextInputFormatter()],
-                            onChanged: (p0) {
-                              ownerController.addChamberModel = ownerController
-                                  .addChamberModel
-                                  .copyWith(chamber_length: int.parse(p0));
-                            },
-                            labelText: 'Length',
-                            containerColor: Colors.white,
-                            suffixIcon: const Text(
-                              'M',
-                              style: TextStyle(
-                                color: Color(0xFFACACAC),
-                                fontSize: 12,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w300,
-                              ),
-                            ).paddingOnly(top: 14),
-                          ),
-                          const Gap(8),
-                          CommanTextField(
-                            validator: (val) {
-                              if (val == null || val.isEmpty) {
-                                {
-                                  return 'required';
-                                }
-                              } else {
-                                return null;
-                              }
-                            },
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [NumberTextInputFormatter()],
-                            onChanged: (p0) {
-                              ownerController.addChamberModel = ownerController
-                                  .addChamberModel
-                                  .copyWith(chamber_breadth: int.parse(p0));
-                            },
-                            labelText: 'Breadth',
-                            containerColor: Colors.white,
-                            suffixIcon: const Text(
-                              'M',
-                              style: TextStyle(
-                                color: Color(0xFFACACAC),
-                                fontSize: 12,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w300,
-                              ),
-                            ).paddingOnly(top: 14),
-                          ),
-                          const Gap(8),
-                          CommanTextField(
-                            validator: (val) {
-                              if (val == null || val.isEmpty) {
-                                {
-                                  return 'required';
-                                }
-                              } else {
-                                return null;
-                              }
-                            },
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [NumberTextInputFormatter()],
-                            onChanged: (p0) {
-                              ownerController.addChamberModel = ownerController
-                                  .addChamberModel
-                                  .copyWith(chamber_height: int.parse(p0));
-                            },
-                            labelText: 'Height',
-                            containerColor: Colors.white,
-                            suffixIcon: const Text(
-                              'M',
-                              style: TextStyle(
-                                color: Color(0xFFACACAC),
-                                fontSize: 12,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w300,
-                              ),
-                            ).paddingOnly(top: 14),
-                          ),
-                          const Gap(8),
-                        ],
-                      )).paddingAll(12),
+                      // StyledContainer(
+                      //     child: Column(
+                      //   children: [
+                      //     Center(
+                      //       child: const Text(
+                      //         'Chamber Dimensions (M)',
+                      //         style: TextStyle(
+                      //           color: Color(0xFFACACAC),
+                      //           fontSize: 16,
+                      //           fontFamily: 'SF Pro Display',
+                      //           fontWeight: FontWeight.w400,
+                      //         ),
+                      //       ).paddingAll(12),
+                      //     ),
+                      //     CommanTextField(
+                      //       validator: (val) {
+                      //         if (val == null || val.isEmpty) {
+                      //           {
+                      //             return 'required';
+                      //           }
+                      //         } else {
+                      //           return null;
+                      //         }
+                      //       },
+                      //       keyboardType: TextInputType.number,
+                      //       inputFormatters: [NumberTextInputFormatter()],
+                      //       onChanged: (p0) {
+                      //         ownerController.addChamberModel = ownerController
+                      //             .addChamberModel
+                      //             .copyWith(chamber_length: int.parse(p0));
+                      //       },
+                      //       labelText: 'Length',
+                      //       containerColor: Colors.white,
+                      //       suffixIcon: const Text(
+                      //         'M',
+                      //         style: TextStyle(
+                      //           color: Color(0xFFACACAC),
+                      //           fontSize: 12,
+                      //           fontFamily: 'SF Pro Display',
+                      //           fontWeight: FontWeight.w300,
+                      //         ),
+                      //       ).paddingOnly(top: 14),
+                      //     ),
+                      //     const Gap(8),
+                      //     CommanTextField(
+                      //       validator: (val) {
+                      //         if (val == null || val.isEmpty) {
+                      //           {
+                      //             return 'required';
+                      //           }
+                      //         } else {
+                      //           return null;
+                      //         }
+                      //       },
+                      //       keyboardType: TextInputType.number,
+                      //       inputFormatters: [NumberTextInputFormatter()],
+                      //       onChanged: (p0) {
+                      //         ownerController.addChamberModel = ownerController
+                      //             .addChamberModel
+                      //             .copyWith(chamber_breadth: int.parse(p0));
+                      //       },
+                      //       labelText: 'Breadth',
+                      //       containerColor: Colors.white,
+                      //       suffixIcon: const Text(
+                      //         'M',
+                      //         style: TextStyle(
+                      //           color: Color(0xFFACACAC),
+                      //           fontSize: 12,
+                      //           fontFamily: 'SF Pro Display',
+                      //           fontWeight: FontWeight.w300,
+                      //         ),
+                      //       ).paddingOnly(top: 14),
+                      //     ),
+                      //     const Gap(8),
+                      //     CommanTextField(
+                      //       validator: (val) {
+                      //         if (val == null || val.isEmpty) {
+                      //           {
+                      //             return 'required';
+                      //           }
+                      //         } else {
+                      //           return null;
+                      //         }
+                      //       },
+                      //       keyboardType: TextInputType.number,
+                      //       inputFormatters: [NumberTextInputFormatter()],
+                      //       onChanged: (p0) {
+                      //         ownerController.addChamberModel = ownerController
+                      //             .addChamberModel
+                      //             .copyWith(chamber_height: int.parse(p0));
+                      //       },
+                      //       labelText: 'Height',
+                      //       containerColor: Colors.white,
+                      //       suffixIcon: const Text(
+                      //         'M',
+                      //         style: TextStyle(
+                      //           color: Color(0xFFACACAC),
+                      //           fontSize: 12,
+                      //           fontFamily: 'SF Pro Display',
+                      //           fontWeight: FontWeight.w300,
+                      //         ),
+                      //       ).paddingOnly(top: 14),
+                      //     ),
+                      //     const Gap(8),
+                      //   ],
+                      // )).paddingAll(12),
                       CustomButton(
                         title: "Submit",
                         onTap: () {

@@ -8,7 +8,8 @@ import 'package:moolwmsstore/Common%20Data/repository/ownerRepo.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
-import 'package:moolwmsstore/Owner/Model/addChamber.dart';
+import 'package:moolwmsstore/Owner/Model/Chamber/addChamber.dart';
+import 'package:moolwmsstore/Owner/Model/Chamber/chamber.dart';
 import 'package:moolwmsstore/Owner/Model/addWarehouseField.dart';
 import 'package:moolwmsstore/Owner/Model/employee.dart';
 import 'package:moolwmsstore/Owner/Model/warehouse.dart';
@@ -79,7 +80,12 @@ class OwnerController extends GetxController {
       }
     });
   }
+List<Chamber> chambers =[];
+getChambersByWarehouse( var warehouseId){
+  apiClient.getData("owner/getWarehousesChamberById/$warehouseId").then((value) {
 
+  });
+}
   getAddWarehouseFields() async {
     await apiClient.getData('dynamic/getAllWareHouseValues').then((value) {
       if (value.data["message"] == "Values found") {

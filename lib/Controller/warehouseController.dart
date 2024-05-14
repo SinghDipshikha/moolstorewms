@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Controller/userController.dart';
-import 'package:moolwmsstore/Owner/Model/addChamber.dart';
+import 'package:moolwmsstore/Owner/Model/Chamber/addChamber.dart';
 import 'package:moolwmsstore/Owner/Model/warehouse.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Common%20Data/repository/warehouseRepo.dart';

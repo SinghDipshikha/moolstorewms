@@ -12,8 +12,9 @@ import 'package:moolwmsstore/Security%20Guard/View/Tickets/ticketList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Vehicle/vehicleList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Visitor/addVisitor.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Visitor/visitorList.dart';
-import 'package:moolwmsstore/utils/globals.dart';
 import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
+import 'package:moolwmsstore/utils/globals.dart';
+
 class SecurityGuardDashBoard extends StatefulWidget {
   const SecurityGuardDashBoard({super.key});
 
@@ -254,7 +255,7 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                     color: const Color.fromARGB(255, 22, 22, 22),
                   ),
                   leading: Image.asset(
-                    "assets/images/ticketVector.png",
+                    "assets/images/visitorVector.png",
                     height: 28,
                   ),
                   title: const Text(
@@ -294,7 +295,7 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
             )),
             GetBuilder<SecurityGuardController>(
                 builder: (securityGuardController) {
-                    if (securityGuardController.isOwner) {
+              if (securityGuardController.isOwner) {
                 return const OwnerSwitchRoleButton();
               }
               if (securityGuardController.user.person_type != null) {
@@ -569,6 +570,8 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
             ],
           ),
           const Gap(20),
+          
+          
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -767,9 +770,9 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
               children: [
                 InkWell(
                   onTap: () {
-                    _showPopup(context);
-                    // Get.to(const AddTicketScreen(),
-                    //     id: securityGuardNavigation);
+                    // _showPopup(context);
+                    Get.to(const CreateTicketPopUp(),
+                        id: securityGuardNavigation);
                   },
                   child: Container(
                     width: 171,
@@ -1350,71 +1353,341 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
   }
 }
 
-void _showPopup(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        backgroundColor: Colors.transparent,
-        content: SingleChildScrollView(
-          child: ListBody(
-            children: <Widget>[
-              Container(
-                width: 358,
-                height: 292,
-                decoration: ShapeDecoration(
-                  color: const Color(0xFFFAF9FF),
-                  shape: RoundedRectangleBorder(
-                    side: const BorderSide(width: 1, color: Color(0x195A57FF)),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
+// void _showPopup(BuildContext context) {
+//   bool isCheckedMaterial = false;
+//   bool isCheckedVehicle = false;
+//   showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return AlertDialog(
+//         backgroundColor: Colors.transparent,
+//         content: SingleChildScrollView(
+//           child: ListBody(
+//             children: <Widget>[
+//               Container(
+//                 width: 358,
+//                 height: 292,
+//                 decoration: ShapeDecoration(
+//                   color: const Color(0xFFFAF9FF),
+//                   shape: RoundedRectangleBorder(
+//                     side: const BorderSide(width: 1, color: Color(0x195A57FF)),
+//                     borderRadius: BorderRadius.circular(20),
+//                   ),
+//                 ),
+//                 child: Column(
+//                   children: [
+//                     const Gap(20),
+//                     const Center(
+//                       child: Text(
+//                         'Create Ticket',
+//                         style: TextStyle(
+//                           color: Color(0xFF5A57FF),
+//                           fontSize: 18,
+//                           fontFamily: 'SF Pro Display',
+//                           fontWeight: FontWeight.w600,
+//                           height: 0,
+//                         ),
+//                       ),
+//                     ),
+//                     const Gap(20),
+//                     Container(
+//                       width: 283,
+//                       height: 52,
+//                       padding: const EdgeInsets.symmetric(
+//                           horizontal: 8, vertical: 6),
+//                       decoration: ShapeDecoration(
+//                         color: Colors.white,
+//                         shape: RoundedRectangleBorder(
+//                           side: const BorderSide(
+//                               width: 1, color: Color(0x195A57FF)),
+//                           borderRadius: BorderRadius.circular(10),
+//                         ),
+//                       ),
+//                       child: Row(children: [
+//                         Container(
+//                           width: 20,
+//                           height: 20,
+//                           decoration: const BoxDecoration(
+//                             image: DecorationImage(
+//                               image: AssetImage("assets/images/car.png"),
+//                               fit: BoxFit.fill,
+//                             ),
+//                           ),
+//                         ),
+//                         const Gap(10),
+//                         const Text(
+//                           'Do you have a Vehicle?',
+//                           style: TextStyle(
+//                             color: Color(0xFF353535),
+//                             fontSize: 18,
+//                             fontFamily: 'SF Pro Display',
+//                             fontWeight: FontWeight.w400,
+//                             height: 0,
+//                           ),
+//                         ),
+//                         const Gap(5),
+//                         Checkbox(
+//                           value: isCheckedVehicle,
+//                           onChanged: (value) {
+//                             // setState(() {
+//                             //   isCheckedVehicle = value!;
+//                             // });
+//                           },
+//                           side: const BorderSide(
+//                             color: Colors.grey,
+//                             width: 1.5,
+//                           ),
+//                         ),
+//                       ]),
+//                     ),
+//                     const Gap(20),
+//                     Container(
+//                       width: 283,
+//                       height: 52,
+//                       padding: const EdgeInsets.symmetric(
+//                           horizontal: 8, vertical: 6),
+//                       decoration: ShapeDecoration(
+//                         color: Colors.white,
+//                         shape: RoundedRectangleBorder(
+//                           side: const BorderSide(
+//                               width: 1, color: Color(0x195A57FF)),
+//                           borderRadius: BorderRadius.circular(10),
+//                         ),
+//                       ),
+//                       child: Row(children: [
+//                         Container(
+//                           width: 20,
+//                           height: 20,
+//                           decoration: const BoxDecoration(
+//                             image: DecorationImage(
+//                               image: AssetImage("assets/images/box.png"),
+//                               fit: BoxFit.fill,
+//                             ),
+//                           ),
+//                         ),
+//                         const Gap(10),
+//                         const Text(
+//                           'Do you have Material?',
+//                           style: TextStyle(
+//                             color: Color.fromRGBO(53, 53, 53, 1),
+//                             fontSize: 18,
+//                             fontFamily: 'SF Pro Display',
+//                             fontWeight: FontWeight.w400,
+//                             height: 0,
+//                           ),
+//                         ),
+//                         const Gap(5),
+//                         Checkbox(
+//                           value: isCheckedVehicle,
+//                           onChanged: (value) {
+//                             // setState(() {
+//                             //   isCheckedVehicle = value!;
+//                             // });
+//                           },
+//                           side: const BorderSide(
+//                             color: Colors.grey,
+//                             width: 1.5,
+//                           ),
+//                         ),
+//                       ]),
+//                     ),
+//                     const Gap(20),
+//                     Container(
+//                       width: 282,
+//                       height: 45,
+//                       decoration: ShapeDecoration(
+//                         color: const Color(0xFF5A57FF),
+//                         shape: RoundedRectangleBorder(
+//                           borderRadius: BorderRadius.circular(20),
+//                         ),
+//                       ),
+//                       child: const Center(
+//                         child: Text(
+//                           'Proceed',
+//                           style: TextStyle(
+//                             color: Colors.white,
+//                             fontSize: 18,
+//                             fontFamily: 'SF Pro Display',
+//                             fontWeight: FontWeight.w600,
+//                             height: 0,
+//                           ),
+//                         ),
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//         actions: const <Widget>[],
+//       );
+
+//     },
+//   );
+// }
+
+class CreateTicketPopUp extends StatefulWidget {
+  const CreateTicketPopUp({super.key});
+
+  @override
+  State<CreateTicketPopUp> createState() => _CreateTicketPopUpState();
+}
+
+class _CreateTicketPopUpState extends State<CreateTicketPopUp> {
+  @override
+  bool isCheckedMaterial = false;
+
+  bool isCheckedVehicle = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      backgroundColor: Colors.transparent,
+      content: SingleChildScrollView(
+        child: ListBody(
+          children: <Widget>[
+            Container(
+              width: 358,
+              height: 292,
+              decoration: ShapeDecoration(
+                color: const Color(0xFFFAF9FF),
+                shape: RoundedRectangleBorder(
+                  side: const BorderSide(width: 1, color: Color(0x195A57FF)),
+                  borderRadius: BorderRadius.circular(20),
                 ),
-                child: Column(
-                  children: [
-                    const Gap(20),
-                    Container(
-                      width: 283,
-                      height: 52,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 6),
-                      decoration: ShapeDecoration(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          side: const BorderSide(
-                              width: 1, color: Color(0x195A57FF)),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+              ),
+              child: Column(
+                children: [
+                  const Gap(20),
+                  const Center(
+                    child: Text(
+                      'Create Ticket',
+                      style: TextStyle(
+                        color: Color(0xFF5A57FF),
+                        fontSize: 18,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w600,
+                        height: 0,
                       ),
-                      child: const Row(children: [
-                        Text(
-                          'Do you have a Vehicle?',
-                          style: TextStyle(
-                            color: Color(0xFF353535),
-                            fontSize: 18,
-                            fontFamily: 'SF Pro Display',
-                            fontWeight: FontWeight.w400,
-                            height: 0,
+                    ),
+                  ),
+                  const Gap(20),
+                  Container(
+                    width: 283,
+                    height: 52,
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                    decoration: ShapeDecoration(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(
+                            width: 1, color: Color(0x195A57FF)),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: Row(children: [
+                      Container(
+                        width: 20,
+                        height: 20,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage("assets/images/car.png"),
+                            fit: BoxFit.fill,
                           ),
                         ),
-                      ]),
-                    ),
-                    const Gap(20),
-                    Container(
-                      width: 283,
-                      height: 52,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 6),
-                      decoration: ShapeDecoration(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          side: const BorderSide(
-                              width: 1, color: Color(0x195A57FF)),
-                          borderRadius: BorderRadius.circular(10),
+                      ),
+                      const Gap(10),
+                      const Text(
+                        'Do you have a Vehicle?',
+                        style: TextStyle(
+                          color: Color(0xFF353535),
+                          fontSize: 18,
+                          fontFamily: 'SF Pro Display',
+                          fontWeight: FontWeight.w400,
+                          height: 0,
                         ),
                       ),
+                      const Gap(5),
+                      Checkbox(
+                        value: isCheckedVehicle,
+                        activeColor: const Color(0xFF5A57FF),
+                        onChanged: (value) {
+                          setState(() {
+                            isCheckedVehicle = value!;
+                          });
+                        },
+                        side: const BorderSide(
+                          color: Colors.grey,
+                          width: 1.5,
+                        ),
+                      ),
+                    ]),
+                  ),
+                  const Gap(20),
+                  Container(
+                    width: 283,
+                    height: 52,
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                    decoration: ShapeDecoration(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(
+                            width: 1, color: Color(0x195A57FF)),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                    const Gap(20),
-                    Container(
+                    child: Row(children: [
+                      Container(
+                        width: 20,
+                        height: 20,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage("assets/images/box.png"),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                      const Gap(10),
+                      const Text(
+                        'Do you have Material?',
+                        style: TextStyle(
+                          color: Color.fromRGBO(53, 53, 53, 1),
+                          fontSize: 18,
+                          fontFamily: 'SF Pro Display',
+                          fontWeight: FontWeight.w400,
+                          height: 0,
+                        ),
+                      ),
+                      const Gap(5),
+                      Checkbox(
+                        value: isCheckedMaterial,
+                        activeColor: const Color(0xFF5A57FF),
+                        onChanged: (value) {
+                          setState(() {
+                            isCheckedMaterial = value!;
+                          });
+                        },
+                        side: const BorderSide(
+                          color: Colors.grey,
+                          width: 1.5,
+                        ),
+                      ),
+                    ]),
+                  ),
+                  const Gap(20),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                      if (isCheckedVehicle || isCheckedMaterial) {
+                        Get.to(const AddTicketScreen(),
+                            id: securityGuardNavigation);
+                      } else {
+                        Get.to(const AddVisitor(), id: securityGuardNavigation);
+                      }
+                    },
+                    child: Container(
                       width: 282,
                       height: 45,
                       decoration: ShapeDecoration(
@@ -1436,16 +1709,16 @@ void _showPopup(BuildContext context) {
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-        actions: const <Widget>[],
-      );
-    },
-  );
+      ),
+      actions: const <Widget>[],
+    );
+  }
 }
 
 class CurvedLineConatainer extends StatelessWidget {

@@ -24,7 +24,7 @@ class HRController extends GetxController {
 
   void addCareerDetails() {
     hrRepo.addCareerDetails(
-        userID: 2, ownerID: 2, carrierDetails: carrierDetails);
+        userID: user.id, ownerID: 2, carrierDetails: carrierDetails);
   }
 
    List<Widget> navigationAccordingStatus = [

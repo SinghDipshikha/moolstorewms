@@ -6,11 +6,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
-
 import 'package:moolwmsstore/helper/messages.dart';
+import 'package:moolwmsstore/test.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
-import 'package:moolwmsstore/Auth/Auth.dart';
+
 import 'helper/get_di.dart' as di;
 
 Future<void> main() async {
@@ -55,7 +55,7 @@ class _DipshikaAppState extends State<DipshikaApp> {
           return GetMaterialApp(
             //  home: const FloorLayoutDesiging(),
             // home: const TestQr(),
-            home: const Auth(),
+            home: const TableExampleApp(),
             // home: const AddEmployeeCareerDetails(),
             //home: ChamberDesign(),
             debugShowCheckedModeBanner: false,

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:moolwmsstore/Owner/Model/addChamber.dart';
+import 'package:moolwmsstore/Owner/Model/Chamber/addChamber.dart';
 import 'package:moolwmsstore/Owner/Model/addWarehouse.dart';
 import 'package:moolwmsstore/Owner/Model/warehouse.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';

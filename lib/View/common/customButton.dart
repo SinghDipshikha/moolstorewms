@@ -26,7 +26,6 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-  
       borderRadius: BorderRadius.all(Radius.circular(radius ?? 60)),
       onTap: onTap,
       child: Stack(

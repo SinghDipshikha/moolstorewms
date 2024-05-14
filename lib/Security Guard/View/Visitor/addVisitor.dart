@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:moolwmsstore/Hr/constants/validations.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Visitor/visitorCheckedInSuccessfully.dart';
 import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
@@ -65,13 +64,13 @@ class _AddVisitorState extends State<AddVisitor> {
               hintText: "Mobile Number",
               obscureText: false,
               validator: (value) {
-                if (value!.isEmpty) {
-                  return 'Please enter your mobile number.';
-                }
+                // if (value!.isEmpty) {
+                //   return 'Please enter your mobile number.';
+                // }
 
-                if (!GlobalValidator.isValidMobileNumber(value)) {
-                  return 'Please enter a valid mobile number.';
-                }
+                // if (!GlobalValidator.isValidMobileNumber(value)) {
+                //   return 'Please enter a valid mobile number.';
+                // }
 
                 return null;
               },
