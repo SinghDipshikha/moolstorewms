@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
 
 class CommanTextField extends StatelessWidget {
   bool? obscureText;
@@ -42,78 +41,77 @@ class CommanTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child:
-
-            // context.isPhone
-            //     ?
-
-            Column(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          child: Text(
-            "$labelText",
-            style: const TextStyle(
-              color: Color(0xFFACACAC),
-              fontSize: 16,
-              fontFamily: 'SF Pro Display',
-              fontWeight: FontWeight.w400,
-            ),
+        Text.rich(
+          TextSpan(
+            children: [
+              TextSpan(
+                text: "$labelText",
+                style: const TextStyle(
+                  color: Color(0xFFACACAC),
+                  fontSize: 16,
+                  fontFamily: 'SF Pro Display',
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              // const TextSpan(
+              //   text: '*',
+              //   style: TextStyle(
+              //       fontSize: 16,
+              //       fontFamily: 'SF Pro Display',
+              //       fontWeight: FontWeight.w400,
+              //       color: Colors.red),
+              // ),
+            ],
           ),
         ),
         const Gap(8),
-        Container(
-          height: 40.0,
-          decoration: BoxDecoration(
-              color: containerColor ?? const Color(0xFFFAF9FF),
-              borderRadius: const BorderRadius.all(Radius.circular(5))),
-          child: TextFormField(
-            maxLines: maxLines,
-            textCapitalization: textCapitalization ?? TextCapitalization.none,
-            onTapOutside: (event) {
-              FocusManager.instance.primaryFocus?.unfocus();
-            },
-            onChanged: onChanged,
-            onFieldSubmitted: (value) {
-              FocusManager.instance.primaryFocus?.unfocus();
-            },
-            keyboardType: keyboardType,
-            controller: controller,
-            validator: validator,
-            inputFormatters: inputFormatters,
-            obscureText: obscureText ?? false,
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.only(left: 8),
-              focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: Color.fromARGB(255, 27, 23, 251), width: 0.4),
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: Color.fromARGB(255, 169, 153, 246), width: 0.2),
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              hintText: hintText,
-              hintStyle: const TextStyle(
-                color: Color(0xFFACACAC),
-                fontSize: 14,
-                fontFamily: 'SF Pro Display',
-                fontWeight: FontWeight.w400,
-              ),
-              suffixIcon: suffixIcon,
-              prefixIcon: prefixIcon,
-              border: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red, width: 0.1),
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              errorStyle: const TextStyle(fontSize: 18),
+        TextFormField(
+          maxLines: maxLines,
+          textCapitalization: textCapitalization ?? TextCapitalization.none,
+          onTapOutside: (event) {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+          onChanged: onChanged,
+          onFieldSubmitted: (value) {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+          keyboardType: keyboardType,
+          controller: controller,
+          validator: validator,
+          inputFormatters: inputFormatters,
+          obscureText: obscureText ?? false,
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: containerColor ?? const Color(0xFFFAF9FF),
+            // contentPadding: const EdgeInsets.only(left: 8),
+            focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(
+                    color: Color.fromARGB(255, 27, 23, 251), width: 0.4),
+                borderRadius: BorderRadius.all(Radius.circular(5))),
+            enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(
+                    color: Color.fromARGB(255, 169, 153, 246), width: 0.2),
+                borderRadius: BorderRadius.all(Radius.circular(5))),
+            hintText: hintText,
+            hintStyle: const TextStyle(
+              color: Color(0xFFACACAC),
+              fontSize: 14,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w400,
             ),
-          ).paddingSymmetric(
-            vertical: 0,
-            horizontal: 4,
+            suffixIcon: suffixIcon,
+            prefixIcon: prefixIcon,
+            border: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.red, width: 0.1),
+                borderRadius: BorderRadius.all(Radius.circular(5))),
+            errorStyle: const TextStyle(fontSize: 18),
           ),
         ),
       ],
-    ));
+    );
   }
 }
