@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/Hr/View/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonAppBar.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 ////@RoutePage()
 class AddEmployeeBankDetails extends StatefulWidget {
@@ -29,6 +31,9 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
       child: Scaffold(
         appBar: CommonAppBar(
           title: 'Bank Details',
+          onTap: () {
+            Get.to(const HrEmployeeList(), id: hrNavigationKey);
+          },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: CustomFloatingActionButton(

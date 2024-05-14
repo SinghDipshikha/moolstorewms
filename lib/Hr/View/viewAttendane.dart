@@ -10,30 +10,36 @@ import 'package:moolwmsstore/Hr/View/addEmployeeDocuments.dart';
 import 'package:moolwmsstore/Hr/View/addEmployeeEducationQualificationDetails.dart';
 import 'package:moolwmsstore/Hr/View/addEmployeePersonalDetails.dart';
 import 'package:moolwmsstore/Hr/View/addedStaffScreen.dart';
-import 'package:moolwmsstore/Hr/View/hrDashboard.dart';
-import 'package:moolwmsstore/Owner/View/Common/customButton.dart';
-import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
-class HrEmployeeList extends StatelessWidget {
-  const HrEmployeeList({super.key});
+class ViewAttendanceList extends StatelessWidget {
+  const ViewAttendanceList({super.key});
 
   @override
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HRController>(initState: (state) {
-      Get.find<HRController>().getAllEmployeesByOrg();
+      // Get.find<HRController>().getAllEmployeesByOrg();
     }, builder: (hrController) {
       return Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: CustomButton(
-          title: 'Add New Staff',
-        ).paddingSymmetric(horizontal: 12),
-        appBar: CommonAppBar(
-          title: 'Personal Details',
-          onTap: () {
-            Get.to(const HrDashboard(), id: hrNavigationKey);
-          },
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        // floatingActionButton: CustomButton(
+          // onTap: () {
+          //   Get.to(const HrDashboard(), id: hrNavigationKey);
+          // },
+        //   title: '',
+        // ).paddingSymmetric(horizontal: 12),
+        appBar: AppBar(
+          title: const Text(
+            'Attendance List',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w500,
+              ////height: 0,
+            ),
+          ),
         ),
         body: Column(
           children: [
@@ -78,7 +84,7 @@ class HrEmployeeList extends StatelessWidget {
                 const Expanded(
                   flex: 1,
                   child: Text(
-                    "Staff Name",
+                    "Name",
                     style: TextStyle(
                       color: Color(0xFF5A57FF),
                       fontSize: 12,

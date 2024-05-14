@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/View/demo.dart';
 import 'package:moolwmsstore/Hr/View/staffList.dart';
+import 'package:moolwmsstore/Hr/View/viewAttendane.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
 import 'package:moolwmsstore/utils/globals.dart';
@@ -178,10 +179,10 @@ class _HrDashboardState extends State<HrDashboard> {
                     ),
                   ),
                   children: [
-                    CurvedLineConatainer(
-                      title: "Add Staff",
-                      onTap: () {},
-                    ),
+                    // CurvedLineConatainer(
+                    //   title: "Add Staff",
+                    //   onTap: () {},
+                    // ),
                     CurvedLineConatainer(
                       title: "View Staff",
                       isShowextendedLine: false,
@@ -482,6 +483,10 @@ class _HrDashboardState extends State<HrDashboard> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: CommonButton(
+                        onTap: () {
+                          Get.to(const ViewAttendanceList(),
+                              id: hrNavigationKey);
+                        },
                         color: const Color(0xFF5A57FF),
                         textColor: Colors.white,
                         title: 'View Attendance',

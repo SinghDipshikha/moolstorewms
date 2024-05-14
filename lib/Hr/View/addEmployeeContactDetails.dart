@@ -2,11 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/Hr/View/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonDropDown.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 //import 'package:moolwmsstore/routes/approutes.gr.dart';
 
 ////@RoutePage()
@@ -48,6 +50,9 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
       child: Scaffold(
         appBar: CommonAppBar(
           title: 'Contact Details',
+          onTap:(){
+            Get.to(const HrEmployeeList(), id: hrNavigationKey);
+          }
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: CustomFloatingActionButton(

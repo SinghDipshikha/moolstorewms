@@ -6,11 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:moolwmsstore/Hr/View/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonAppBar.dart';
 // import 'package:image_picker_web/image_picker_web.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 ////@RoutePage()
 class AddEmployeeDocumentsDetails extends StatefulWidget {
@@ -30,8 +32,10 @@ class _AddEmployeeDocumentsDetailsState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppBar(
-        title: 'Bank Details',
-      ),
+          title: 'Documents',
+          onTap: () {
+            Get.to(const HrEmployeeList(), id: hrNavigationKey);
+          }),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: CustomFloatingActionButton(
         title: 'Next',
@@ -141,7 +145,8 @@ class _AddEmployeeDocumentsDetailsState
                       CommanTextFieldForDocuments(
                         labelText: 'Experience Letter',
                         //documentType: 'Upload Experience Letter',
-                      ),  CommanTextFieldForDocuments(
+                      ),
+                      CommanTextFieldForDocuments(
                         labelText: 'Bank Receipt',
                         //documentType: 'Upload Experience Letter',
                       )
