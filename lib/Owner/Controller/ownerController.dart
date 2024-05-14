@@ -8,10 +8,12 @@ import 'package:moolwmsstore/Common%20Data/repository/ownerRepo.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
+import 'package:moolwmsstore/Owner/Model/addChamber.dart';
 import 'package:moolwmsstore/Owner/Model/addWarehouseField.dart';
 import 'package:moolwmsstore/Owner/Model/employee.dart';
 import 'package:moolwmsstore/Owner/Model/warehouse.dart';
 import 'package:moolwmsstore/Owner/Owner.dart';
+import 'package:moolwmsstore/Owner/View/OwnerDashboard.dart';
 import 'package:moolwmsstore/Sales/Sales.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/Sales/repo/salesRepo.dart';
@@ -39,7 +41,9 @@ class OwnerController extends GetxController {
   List<Employee> employees = [];
   bool loading = false;
   String countrydialCode = "+91";
+  String? selectedTempType;
 
+  AddChamber addChamberModel = const AddChamber();
   setloadingtrue() {
     loading = true;
     update();
@@ -153,10 +157,44 @@ class OwnerController extends GetxController {
     });
   }
 
+  // List<ChamberField> addChamberFields = [];
+  // Map submitChamberBody = {};
+  // getAddChamberFields() {
+  //   loading = true;
 
-getAddChamberFierlds(){
-  apiClient.getData("");
-}
+  //   apiClient.getData("dynamic/getOwnerAddChamberBasicDetails").then((value) {
+  //     if (value.data["message"] == "Values found") {
+  //       List<ChamberField> c = [];
+  //       List x = value.data["result"];
+  //       for (var element in x) {
+  //         if (element["isShow"] == 1) {
+  //           c.add(ChamberField.fromJson(element));
+  //           submitChamberBody[element["field_name"]] = null;
+  //         }
+  //       }
+  //       addChamberFields = c;
+
+  //       loading = false;
+  //       update();
+  //     }
+  //   });
+  // }
+
+  addChamber() async {
+    loading = true;
+    update();
+    await apiClient
+        .postData("owner/addChamberHouse", addChamberModel.toJson())
+        .then((value) {
+      if (value.data["result"] == "Chamber Added Successfully") {
+        addChamberModel = const AddChamber();
+        Snacks.greenSnack("Chamber Added Successfully");
+        Get.off(const OwnerDashboard(), id: ownerNavigationKey);
+      }
+    });
+    loading = false;
+    update();
+  }
   //owner/getAllEmployeesByOrg
 
   getAllEmployeesByOrg() {

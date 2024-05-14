@@ -27,7 +27,7 @@ mixin _$ChamberField {
   String? get invalid_message => throw _privateConstructorUsedError;
   dynamic get value => throw _privateConstructorUsedError;
   String? get regex => throw _privateConstructorUsedError;
-  List<dynamic>? get selected_values => throw _privateConstructorUsedError;
+  List<dynamic>? get selectedValues => throw _privateConstructorUsedError;
   int? get required => throw _privateConstructorUsedError;
   int? get isShow => throw _privateConstructorUsedError;
 
@@ -51,7 +51,7 @@ abstract class $ChamberFieldCopyWith<$Res> {
       String? invalid_message,
       dynamic value,
       String? regex,
-      List<dynamic>? selected_values,
+      List<dynamic>? selectedValues,
       int? required,
       int? isShow});
 }
@@ -76,7 +76,7 @@ class _$ChamberFieldCopyWithImpl<$Res, $Val extends ChamberField>
     Object? invalid_message = freezed,
     Object? value = freezed,
     Object? regex = freezed,
-    Object? selected_values = freezed,
+    Object? selectedValues = freezed,
     Object? required = freezed,
     Object? isShow = freezed,
   }) {
@@ -109,9 +109,9 @@ class _$ChamberFieldCopyWithImpl<$Res, $Val extends ChamberField>
           ? _value.regex
           : regex // ignore: cast_nullable_to_non_nullable
               as String?,
-      selected_values: freezed == selected_values
-          ? _value.selected_values
-          : selected_values // ignore: cast_nullable_to_non_nullable
+      selectedValues: freezed == selectedValues
+          ? _value.selectedValues
+          : selectedValues // ignore: cast_nullable_to_non_nullable
               as List<dynamic>?,
       required: freezed == required
           ? _value.required
@@ -141,7 +141,7 @@ abstract class _$$ChamberFieldImplCopyWith<$Res>
       String? invalid_message,
       dynamic value,
       String? regex,
-      List<dynamic>? selected_values,
+      List<dynamic>? selectedValues,
       int? required,
       int? isShow});
 }
@@ -164,7 +164,7 @@ class __$$ChamberFieldImplCopyWithImpl<$Res>
     Object? invalid_message = freezed,
     Object? value = freezed,
     Object? regex = freezed,
-    Object? selected_values = freezed,
+    Object? selectedValues = freezed,
     Object? required = freezed,
     Object? isShow = freezed,
   }) {
@@ -197,9 +197,9 @@ class __$$ChamberFieldImplCopyWithImpl<$Res>
           ? _value.regex
           : regex // ignore: cast_nullable_to_non_nullable
               as String?,
-      selected_values: freezed == selected_values
-          ? _value._selected_values
-          : selected_values // ignore: cast_nullable_to_non_nullable
+      selectedValues: freezed == selectedValues
+          ? _value._selectedValues
+          : selectedValues // ignore: cast_nullable_to_non_nullable
               as List<dynamic>?,
       required: freezed == required
           ? _value.required
@@ -224,10 +224,10 @@ class _$ChamberFieldImpl implements _ChamberField {
       this.invalid_message,
       this.value,
       this.regex,
-      final List<dynamic>? selected_values,
+      final List<dynamic>? selectedValues,
       this.required,
       this.isShow})
-      : _selected_values = selected_values;
+      : _selectedValues = selectedValues;
 
   factory _$ChamberFieldImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChamberFieldImplFromJson(json);
@@ -246,12 +246,12 @@ class _$ChamberFieldImpl implements _ChamberField {
   final dynamic value;
   @override
   final String? regex;
-  final List<dynamic>? _selected_values;
+  final List<dynamic>? _selectedValues;
   @override
-  List<dynamic>? get selected_values {
-    final value = _selected_values;
+  List<dynamic>? get selectedValues {
+    final value = _selectedValues;
     if (value == null) return null;
-    if (_selected_values is EqualUnmodifiableListView) return _selected_values;
+    if (_selectedValues is EqualUnmodifiableListView) return _selectedValues;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -263,7 +263,7 @@ class _$ChamberFieldImpl implements _ChamberField {
 
   @override
   String toString() {
-    return 'ChamberField(id: $id, field_name: $field_name, type: $type, error_message_on_empt: $error_message_on_empt, invalid_message: $invalid_message, value: $value, regex: $regex, selected_values: $selected_values, required: $required, isShow: $isShow)';
+    return 'ChamberField(id: $id, field_name: $field_name, type: $type, error_message_on_empt: $error_message_on_empt, invalid_message: $invalid_message, value: $value, regex: $regex, selectedValues: $selectedValues, required: $required, isShow: $isShow)';
   }
 
   @override
@@ -282,7 +282,7 @@ class _$ChamberFieldImpl implements _ChamberField {
             const DeepCollectionEquality().equals(other.value, value) &&
             (identical(other.regex, regex) || other.regex == regex) &&
             const DeepCollectionEquality()
-                .equals(other._selected_values, _selected_values) &&
+                .equals(other._selectedValues, _selectedValues) &&
             (identical(other.required, required) ||
                 other.required == required) &&
             (identical(other.isShow, isShow) || other.isShow == isShow));
@@ -299,7 +299,7 @@ class _$ChamberFieldImpl implements _ChamberField {
       invalid_message,
       const DeepCollectionEquality().hash(value),
       regex,
-      const DeepCollectionEquality().hash(_selected_values),
+      const DeepCollectionEquality().hash(_selectedValues),
       required,
       isShow);
 
@@ -326,7 +326,7 @@ abstract class _ChamberField implements ChamberField {
       final String? invalid_message,
       final dynamic value,
       final String? regex,
-      final List<dynamic>? selected_values,
+      final List<dynamic>? selectedValues,
       final int? required,
       final int? isShow}) = _$ChamberFieldImpl;
 
@@ -348,7 +348,7 @@ abstract class _ChamberField implements ChamberField {
   @override
   String? get regex;
   @override
-  List<dynamic>? get selected_values;
+  List<dynamic>? get selectedValues;
   @override
   int? get required;
   @override
@@ -365,25 +365,25 @@ AddChamber _$AddChamberFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AddChamber {
-  int? get userId => throw _privateConstructorUsedError;
-  int? get warehouseId => throw _privateConstructorUsedError;
-  int? get chamberNumber => throw _privateConstructorUsedError;
-  String? get tempType => throw _privateConstructorUsedError;
-  int? get tempMinRange => throw _privateConstructorUsedError;
-  int? get tempMaxRange => throw _privateConstructorUsedError;
-  String? get typeOfRacking => throw _privateConstructorUsedError;
-  String? get refrigerationType => throw _privateConstructorUsedError;
-  int? get chamberCapacity => throw _privateConstructorUsedError;
-  int? get movementHeight => throw _privateConstructorUsedError;
-  int? get palletDimensionHeight => throw _privateConstructorUsedError;
-  int? get palletDimensionLength => throw _privateConstructorUsedError;
-  int? get palletDimensionBreadth => throw _privateConstructorUsedError;
-  int? get chamberHeight => throw _privateConstructorUsedError;
-  int? get chamberLength => throw _privateConstructorUsedError;
-  int? get chamberBreadth => throw _privateConstructorUsedError;
-  int? get noOfFloors => throw _privateConstructorUsedError;
-  int? get contolledAtmosphere => throw _privateConstructorUsedError;
-  int? get ozoneFilteration => throw _privateConstructorUsedError;
+  int? get user_id => throw _privateConstructorUsedError;
+  int? get warehouse_id => throw _privateConstructorUsedError;
+  dynamic get chamber_number => throw _privateConstructorUsedError;
+  String? get temp_type => throw _privateConstructorUsedError;
+  int? get temp_min_range => throw _privateConstructorUsedError;
+  int? get temp_max_range => throw _privateConstructorUsedError;
+  String? get type_of_racking => throw _privateConstructorUsedError;
+  String? get refrigeration_type => throw _privateConstructorUsedError;
+  int? get chamber_capacity => throw _privateConstructorUsedError;
+  int? get movement_height => throw _privateConstructorUsedError;
+  int? get pallet_dimension_height => throw _privateConstructorUsedError;
+  int? get pallet_dimension_length => throw _privateConstructorUsedError;
+  int? get pallet_dimension_breadth => throw _privateConstructorUsedError;
+  int? get chamber_height => throw _privateConstructorUsedError;
+  int? get chamber_length => throw _privateConstructorUsedError;
+  int? get chamber_breadth => throw _privateConstructorUsedError;
+  int? get no_of_floors => throw _privateConstructorUsedError;
+  int? get contolled_atmosphere => throw _privateConstructorUsedError;
+  int? get ozone_filteration => throw _privateConstructorUsedError;
   int? get humidifier => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -399,25 +399,25 @@ abstract class $AddChamberCopyWith<$Res> {
       _$AddChamberCopyWithImpl<$Res, AddChamber>;
   @useResult
   $Res call(
-      {int? userId,
-      int? warehouseId,
-      int? chamberNumber,
-      String? tempType,
-      int? tempMinRange,
-      int? tempMaxRange,
-      String? typeOfRacking,
-      String? refrigerationType,
-      int? chamberCapacity,
-      int? movementHeight,
-      int? palletDimensionHeight,
-      int? palletDimensionLength,
-      int? palletDimensionBreadth,
-      int? chamberHeight,
-      int? chamberLength,
-      int? chamberBreadth,
-      int? noOfFloors,
-      int? contolledAtmosphere,
-      int? ozoneFilteration,
+      {int? user_id,
+      int? warehouse_id,
+      dynamic chamber_number,
+      String? temp_type,
+      int? temp_min_range,
+      int? temp_max_range,
+      String? type_of_racking,
+      String? refrigeration_type,
+      int? chamber_capacity,
+      int? movement_height,
+      int? pallet_dimension_height,
+      int? pallet_dimension_length,
+      int? pallet_dimension_breadth,
+      int? chamber_height,
+      int? chamber_length,
+      int? chamber_breadth,
+      int? no_of_floors,
+      int? contolled_atmosphere,
+      int? ozone_filteration,
       int? humidifier});
 }
 
@@ -434,103 +434,103 @@ class _$AddChamberCopyWithImpl<$Res, $Val extends AddChamber>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = freezed,
-    Object? warehouseId = freezed,
-    Object? chamberNumber = freezed,
-    Object? tempType = freezed,
-    Object? tempMinRange = freezed,
-    Object? tempMaxRange = freezed,
-    Object? typeOfRacking = freezed,
-    Object? refrigerationType = freezed,
-    Object? chamberCapacity = freezed,
-    Object? movementHeight = freezed,
-    Object? palletDimensionHeight = freezed,
-    Object? palletDimensionLength = freezed,
-    Object? palletDimensionBreadth = freezed,
-    Object? chamberHeight = freezed,
-    Object? chamberLength = freezed,
-    Object? chamberBreadth = freezed,
-    Object? noOfFloors = freezed,
-    Object? contolledAtmosphere = freezed,
-    Object? ozoneFilteration = freezed,
+    Object? user_id = freezed,
+    Object? warehouse_id = freezed,
+    Object? chamber_number = freezed,
+    Object? temp_type = freezed,
+    Object? temp_min_range = freezed,
+    Object? temp_max_range = freezed,
+    Object? type_of_racking = freezed,
+    Object? refrigeration_type = freezed,
+    Object? chamber_capacity = freezed,
+    Object? movement_height = freezed,
+    Object? pallet_dimension_height = freezed,
+    Object? pallet_dimension_length = freezed,
+    Object? pallet_dimension_breadth = freezed,
+    Object? chamber_height = freezed,
+    Object? chamber_length = freezed,
+    Object? chamber_breadth = freezed,
+    Object? no_of_floors = freezed,
+    Object? contolled_atmosphere = freezed,
+    Object? ozone_filteration = freezed,
     Object? humidifier = freezed,
   }) {
     return _then(_value.copyWith(
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      user_id: freezed == user_id
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
               as int?,
-      warehouseId: freezed == warehouseId
-          ? _value.warehouseId
-          : warehouseId // ignore: cast_nullable_to_non_nullable
+      warehouse_id: freezed == warehouse_id
+          ? _value.warehouse_id
+          : warehouse_id // ignore: cast_nullable_to_non_nullable
               as int?,
-      chamberNumber: freezed == chamberNumber
-          ? _value.chamberNumber
-          : chamberNumber // ignore: cast_nullable_to_non_nullable
-              as int?,
-      tempType: freezed == tempType
-          ? _value.tempType
-          : tempType // ignore: cast_nullable_to_non_nullable
+      chamber_number: freezed == chamber_number
+          ? _value.chamber_number
+          : chamber_number // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      temp_type: freezed == temp_type
+          ? _value.temp_type
+          : temp_type // ignore: cast_nullable_to_non_nullable
               as String?,
-      tempMinRange: freezed == tempMinRange
-          ? _value.tempMinRange
-          : tempMinRange // ignore: cast_nullable_to_non_nullable
+      temp_min_range: freezed == temp_min_range
+          ? _value.temp_min_range
+          : temp_min_range // ignore: cast_nullable_to_non_nullable
               as int?,
-      tempMaxRange: freezed == tempMaxRange
-          ? _value.tempMaxRange
-          : tempMaxRange // ignore: cast_nullable_to_non_nullable
+      temp_max_range: freezed == temp_max_range
+          ? _value.temp_max_range
+          : temp_max_range // ignore: cast_nullable_to_non_nullable
               as int?,
-      typeOfRacking: freezed == typeOfRacking
-          ? _value.typeOfRacking
-          : typeOfRacking // ignore: cast_nullable_to_non_nullable
+      type_of_racking: freezed == type_of_racking
+          ? _value.type_of_racking
+          : type_of_racking // ignore: cast_nullable_to_non_nullable
               as String?,
-      refrigerationType: freezed == refrigerationType
-          ? _value.refrigerationType
-          : refrigerationType // ignore: cast_nullable_to_non_nullable
+      refrigeration_type: freezed == refrigeration_type
+          ? _value.refrigeration_type
+          : refrigeration_type // ignore: cast_nullable_to_non_nullable
               as String?,
-      chamberCapacity: freezed == chamberCapacity
-          ? _value.chamberCapacity
-          : chamberCapacity // ignore: cast_nullable_to_non_nullable
+      chamber_capacity: freezed == chamber_capacity
+          ? _value.chamber_capacity
+          : chamber_capacity // ignore: cast_nullable_to_non_nullable
               as int?,
-      movementHeight: freezed == movementHeight
-          ? _value.movementHeight
-          : movementHeight // ignore: cast_nullable_to_non_nullable
+      movement_height: freezed == movement_height
+          ? _value.movement_height
+          : movement_height // ignore: cast_nullable_to_non_nullable
               as int?,
-      palletDimensionHeight: freezed == palletDimensionHeight
-          ? _value.palletDimensionHeight
-          : palletDimensionHeight // ignore: cast_nullable_to_non_nullable
+      pallet_dimension_height: freezed == pallet_dimension_height
+          ? _value.pallet_dimension_height
+          : pallet_dimension_height // ignore: cast_nullable_to_non_nullable
               as int?,
-      palletDimensionLength: freezed == palletDimensionLength
-          ? _value.palletDimensionLength
-          : palletDimensionLength // ignore: cast_nullable_to_non_nullable
+      pallet_dimension_length: freezed == pallet_dimension_length
+          ? _value.pallet_dimension_length
+          : pallet_dimension_length // ignore: cast_nullable_to_non_nullable
               as int?,
-      palletDimensionBreadth: freezed == palletDimensionBreadth
-          ? _value.palletDimensionBreadth
-          : palletDimensionBreadth // ignore: cast_nullable_to_non_nullable
+      pallet_dimension_breadth: freezed == pallet_dimension_breadth
+          ? _value.pallet_dimension_breadth
+          : pallet_dimension_breadth // ignore: cast_nullable_to_non_nullable
               as int?,
-      chamberHeight: freezed == chamberHeight
-          ? _value.chamberHeight
-          : chamberHeight // ignore: cast_nullable_to_non_nullable
+      chamber_height: freezed == chamber_height
+          ? _value.chamber_height
+          : chamber_height // ignore: cast_nullable_to_non_nullable
               as int?,
-      chamberLength: freezed == chamberLength
-          ? _value.chamberLength
-          : chamberLength // ignore: cast_nullable_to_non_nullable
+      chamber_length: freezed == chamber_length
+          ? _value.chamber_length
+          : chamber_length // ignore: cast_nullable_to_non_nullable
               as int?,
-      chamberBreadth: freezed == chamberBreadth
-          ? _value.chamberBreadth
-          : chamberBreadth // ignore: cast_nullable_to_non_nullable
+      chamber_breadth: freezed == chamber_breadth
+          ? _value.chamber_breadth
+          : chamber_breadth // ignore: cast_nullable_to_non_nullable
               as int?,
-      noOfFloors: freezed == noOfFloors
-          ? _value.noOfFloors
-          : noOfFloors // ignore: cast_nullable_to_non_nullable
+      no_of_floors: freezed == no_of_floors
+          ? _value.no_of_floors
+          : no_of_floors // ignore: cast_nullable_to_non_nullable
               as int?,
-      contolledAtmosphere: freezed == contolledAtmosphere
-          ? _value.contolledAtmosphere
-          : contolledAtmosphere // ignore: cast_nullable_to_non_nullable
+      contolled_atmosphere: freezed == contolled_atmosphere
+          ? _value.contolled_atmosphere
+          : contolled_atmosphere // ignore: cast_nullable_to_non_nullable
               as int?,
-      ozoneFilteration: freezed == ozoneFilteration
-          ? _value.ozoneFilteration
-          : ozoneFilteration // ignore: cast_nullable_to_non_nullable
+      ozone_filteration: freezed == ozone_filteration
+          ? _value.ozone_filteration
+          : ozone_filteration // ignore: cast_nullable_to_non_nullable
               as int?,
       humidifier: freezed == humidifier
           ? _value.humidifier
@@ -549,25 +549,25 @@ abstract class _$$AddChamberImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? userId,
-      int? warehouseId,
-      int? chamberNumber,
-      String? tempType,
-      int? tempMinRange,
-      int? tempMaxRange,
-      String? typeOfRacking,
-      String? refrigerationType,
-      int? chamberCapacity,
-      int? movementHeight,
-      int? palletDimensionHeight,
-      int? palletDimensionLength,
-      int? palletDimensionBreadth,
-      int? chamberHeight,
-      int? chamberLength,
-      int? chamberBreadth,
-      int? noOfFloors,
-      int? contolledAtmosphere,
-      int? ozoneFilteration,
+      {int? user_id,
+      int? warehouse_id,
+      dynamic chamber_number,
+      String? temp_type,
+      int? temp_min_range,
+      int? temp_max_range,
+      String? type_of_racking,
+      String? refrigeration_type,
+      int? chamber_capacity,
+      int? movement_height,
+      int? pallet_dimension_height,
+      int? pallet_dimension_length,
+      int? pallet_dimension_breadth,
+      int? chamber_height,
+      int? chamber_length,
+      int? chamber_breadth,
+      int? no_of_floors,
+      int? contolled_atmosphere,
+      int? ozone_filteration,
       int? humidifier});
 }
 
@@ -582,103 +582,103 @@ class __$$AddChamberImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = freezed,
-    Object? warehouseId = freezed,
-    Object? chamberNumber = freezed,
-    Object? tempType = freezed,
-    Object? tempMinRange = freezed,
-    Object? tempMaxRange = freezed,
-    Object? typeOfRacking = freezed,
-    Object? refrigerationType = freezed,
-    Object? chamberCapacity = freezed,
-    Object? movementHeight = freezed,
-    Object? palletDimensionHeight = freezed,
-    Object? palletDimensionLength = freezed,
-    Object? palletDimensionBreadth = freezed,
-    Object? chamberHeight = freezed,
-    Object? chamberLength = freezed,
-    Object? chamberBreadth = freezed,
-    Object? noOfFloors = freezed,
-    Object? contolledAtmosphere = freezed,
-    Object? ozoneFilteration = freezed,
+    Object? user_id = freezed,
+    Object? warehouse_id = freezed,
+    Object? chamber_number = freezed,
+    Object? temp_type = freezed,
+    Object? temp_min_range = freezed,
+    Object? temp_max_range = freezed,
+    Object? type_of_racking = freezed,
+    Object? refrigeration_type = freezed,
+    Object? chamber_capacity = freezed,
+    Object? movement_height = freezed,
+    Object? pallet_dimension_height = freezed,
+    Object? pallet_dimension_length = freezed,
+    Object? pallet_dimension_breadth = freezed,
+    Object? chamber_height = freezed,
+    Object? chamber_length = freezed,
+    Object? chamber_breadth = freezed,
+    Object? no_of_floors = freezed,
+    Object? contolled_atmosphere = freezed,
+    Object? ozone_filteration = freezed,
     Object? humidifier = freezed,
   }) {
     return _then(_$AddChamberImpl(
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      user_id: freezed == user_id
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
               as int?,
-      warehouseId: freezed == warehouseId
-          ? _value.warehouseId
-          : warehouseId // ignore: cast_nullable_to_non_nullable
+      warehouse_id: freezed == warehouse_id
+          ? _value.warehouse_id
+          : warehouse_id // ignore: cast_nullable_to_non_nullable
               as int?,
-      chamberNumber: freezed == chamberNumber
-          ? _value.chamberNumber
-          : chamberNumber // ignore: cast_nullable_to_non_nullable
-              as int?,
-      tempType: freezed == tempType
-          ? _value.tempType
-          : tempType // ignore: cast_nullable_to_non_nullable
+      chamber_number: freezed == chamber_number
+          ? _value.chamber_number
+          : chamber_number // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      temp_type: freezed == temp_type
+          ? _value.temp_type
+          : temp_type // ignore: cast_nullable_to_non_nullable
               as String?,
-      tempMinRange: freezed == tempMinRange
-          ? _value.tempMinRange
-          : tempMinRange // ignore: cast_nullable_to_non_nullable
+      temp_min_range: freezed == temp_min_range
+          ? _value.temp_min_range
+          : temp_min_range // ignore: cast_nullable_to_non_nullable
               as int?,
-      tempMaxRange: freezed == tempMaxRange
-          ? _value.tempMaxRange
-          : tempMaxRange // ignore: cast_nullable_to_non_nullable
+      temp_max_range: freezed == temp_max_range
+          ? _value.temp_max_range
+          : temp_max_range // ignore: cast_nullable_to_non_nullable
               as int?,
-      typeOfRacking: freezed == typeOfRacking
-          ? _value.typeOfRacking
-          : typeOfRacking // ignore: cast_nullable_to_non_nullable
+      type_of_racking: freezed == type_of_racking
+          ? _value.type_of_racking
+          : type_of_racking // ignore: cast_nullable_to_non_nullable
               as String?,
-      refrigerationType: freezed == refrigerationType
-          ? _value.refrigerationType
-          : refrigerationType // ignore: cast_nullable_to_non_nullable
+      refrigeration_type: freezed == refrigeration_type
+          ? _value.refrigeration_type
+          : refrigeration_type // ignore: cast_nullable_to_non_nullable
               as String?,
-      chamberCapacity: freezed == chamberCapacity
-          ? _value.chamberCapacity
-          : chamberCapacity // ignore: cast_nullable_to_non_nullable
+      chamber_capacity: freezed == chamber_capacity
+          ? _value.chamber_capacity
+          : chamber_capacity // ignore: cast_nullable_to_non_nullable
               as int?,
-      movementHeight: freezed == movementHeight
-          ? _value.movementHeight
-          : movementHeight // ignore: cast_nullable_to_non_nullable
+      movement_height: freezed == movement_height
+          ? _value.movement_height
+          : movement_height // ignore: cast_nullable_to_non_nullable
               as int?,
-      palletDimensionHeight: freezed == palletDimensionHeight
-          ? _value.palletDimensionHeight
-          : palletDimensionHeight // ignore: cast_nullable_to_non_nullable
+      pallet_dimension_height: freezed == pallet_dimension_height
+          ? _value.pallet_dimension_height
+          : pallet_dimension_height // ignore: cast_nullable_to_non_nullable
               as int?,
-      palletDimensionLength: freezed == palletDimensionLength
-          ? _value.palletDimensionLength
-          : palletDimensionLength // ignore: cast_nullable_to_non_nullable
+      pallet_dimension_length: freezed == pallet_dimension_length
+          ? _value.pallet_dimension_length
+          : pallet_dimension_length // ignore: cast_nullable_to_non_nullable
               as int?,
-      palletDimensionBreadth: freezed == palletDimensionBreadth
-          ? _value.palletDimensionBreadth
-          : palletDimensionBreadth // ignore: cast_nullable_to_non_nullable
+      pallet_dimension_breadth: freezed == pallet_dimension_breadth
+          ? _value.pallet_dimension_breadth
+          : pallet_dimension_breadth // ignore: cast_nullable_to_non_nullable
               as int?,
-      chamberHeight: freezed == chamberHeight
-          ? _value.chamberHeight
-          : chamberHeight // ignore: cast_nullable_to_non_nullable
+      chamber_height: freezed == chamber_height
+          ? _value.chamber_height
+          : chamber_height // ignore: cast_nullable_to_non_nullable
               as int?,
-      chamberLength: freezed == chamberLength
-          ? _value.chamberLength
-          : chamberLength // ignore: cast_nullable_to_non_nullable
+      chamber_length: freezed == chamber_length
+          ? _value.chamber_length
+          : chamber_length // ignore: cast_nullable_to_non_nullable
               as int?,
-      chamberBreadth: freezed == chamberBreadth
-          ? _value.chamberBreadth
-          : chamberBreadth // ignore: cast_nullable_to_non_nullable
+      chamber_breadth: freezed == chamber_breadth
+          ? _value.chamber_breadth
+          : chamber_breadth // ignore: cast_nullable_to_non_nullable
               as int?,
-      noOfFloors: freezed == noOfFloors
-          ? _value.noOfFloors
-          : noOfFloors // ignore: cast_nullable_to_non_nullable
+      no_of_floors: freezed == no_of_floors
+          ? _value.no_of_floors
+          : no_of_floors // ignore: cast_nullable_to_non_nullable
               as int?,
-      contolledAtmosphere: freezed == contolledAtmosphere
-          ? _value.contolledAtmosphere
-          : contolledAtmosphere // ignore: cast_nullable_to_non_nullable
+      contolled_atmosphere: freezed == contolled_atmosphere
+          ? _value.contolled_atmosphere
+          : contolled_atmosphere // ignore: cast_nullable_to_non_nullable
               as int?,
-      ozoneFilteration: freezed == ozoneFilteration
-          ? _value.ozoneFilteration
-          : ozoneFilteration // ignore: cast_nullable_to_non_nullable
+      ozone_filteration: freezed == ozone_filteration
+          ? _value.ozone_filteration
+          : ozone_filteration // ignore: cast_nullable_to_non_nullable
               as int?,
       humidifier: freezed == humidifier
           ? _value.humidifier
@@ -692,74 +692,74 @@ class __$$AddChamberImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AddChamberImpl implements _AddChamber {
   const _$AddChamberImpl(
-      {this.userId,
-      this.warehouseId,
-      this.chamberNumber,
-      this.tempType,
-      this.tempMinRange,
-      this.tempMaxRange,
-      this.typeOfRacking,
-      this.refrigerationType,
-      this.chamberCapacity,
-      this.movementHeight,
-      this.palletDimensionHeight,
-      this.palletDimensionLength,
-      this.palletDimensionBreadth,
-      this.chamberHeight,
-      this.chamberLength,
-      this.chamberBreadth,
-      this.noOfFloors,
-      this.contolledAtmosphere,
-      this.ozoneFilteration,
+      {this.user_id,
+      this.warehouse_id,
+      this.chamber_number,
+      this.temp_type,
+      this.temp_min_range,
+      this.temp_max_range,
+      this.type_of_racking,
+      this.refrigeration_type,
+      this.chamber_capacity,
+      this.movement_height,
+      this.pallet_dimension_height,
+      this.pallet_dimension_length,
+      this.pallet_dimension_breadth,
+      this.chamber_height,
+      this.chamber_length,
+      this.chamber_breadth,
+      this.no_of_floors,
+      this.contolled_atmosphere,
+      this.ozone_filteration,
       this.humidifier});
 
   factory _$AddChamberImpl.fromJson(Map<String, dynamic> json) =>
       _$$AddChamberImplFromJson(json);
 
   @override
-  final int? userId;
+  final int? user_id;
   @override
-  final int? warehouseId;
+  final int? warehouse_id;
   @override
-  final int? chamberNumber;
+  final dynamic chamber_number;
   @override
-  final String? tempType;
+  final String? temp_type;
   @override
-  final int? tempMinRange;
+  final int? temp_min_range;
   @override
-  final int? tempMaxRange;
+  final int? temp_max_range;
   @override
-  final String? typeOfRacking;
+  final String? type_of_racking;
   @override
-  final String? refrigerationType;
+  final String? refrigeration_type;
   @override
-  final int? chamberCapacity;
+  final int? chamber_capacity;
   @override
-  final int? movementHeight;
+  final int? movement_height;
   @override
-  final int? palletDimensionHeight;
+  final int? pallet_dimension_height;
   @override
-  final int? palletDimensionLength;
+  final int? pallet_dimension_length;
   @override
-  final int? palletDimensionBreadth;
+  final int? pallet_dimension_breadth;
   @override
-  final int? chamberHeight;
+  final int? chamber_height;
   @override
-  final int? chamberLength;
+  final int? chamber_length;
   @override
-  final int? chamberBreadth;
+  final int? chamber_breadth;
   @override
-  final int? noOfFloors;
+  final int? no_of_floors;
   @override
-  final int? contolledAtmosphere;
+  final int? contolled_atmosphere;
   @override
-  final int? ozoneFilteration;
+  final int? ozone_filteration;
   @override
   final int? humidifier;
 
   @override
   String toString() {
-    return 'AddChamber(userId: $userId, warehouseId: $warehouseId, chamberNumber: $chamberNumber, tempType: $tempType, tempMinRange: $tempMinRange, tempMaxRange: $tempMaxRange, typeOfRacking: $typeOfRacking, refrigerationType: $refrigerationType, chamberCapacity: $chamberCapacity, movementHeight: $movementHeight, palletDimensionHeight: $palletDimensionHeight, palletDimensionLength: $palletDimensionLength, palletDimensionBreadth: $palletDimensionBreadth, chamberHeight: $chamberHeight, chamberLength: $chamberLength, chamberBreadth: $chamberBreadth, noOfFloors: $noOfFloors, contolledAtmosphere: $contolledAtmosphere, ozoneFilteration: $ozoneFilteration, humidifier: $humidifier)';
+    return 'AddChamber(user_id: $user_id, warehouse_id: $warehouse_id, chamber_number: $chamber_number, temp_type: $temp_type, temp_min_range: $temp_min_range, temp_max_range: $temp_max_range, type_of_racking: $type_of_racking, refrigeration_type: $refrigeration_type, chamber_capacity: $chamber_capacity, movement_height: $movement_height, pallet_dimension_height: $pallet_dimension_height, pallet_dimension_length: $pallet_dimension_length, pallet_dimension_breadth: $pallet_dimension_breadth, chamber_height: $chamber_height, chamber_length: $chamber_length, chamber_breadth: $chamber_breadth, no_of_floors: $no_of_floors, contolled_atmosphere: $contolled_atmosphere, ozone_filteration: $ozone_filteration, humidifier: $humidifier)';
   }
 
   @override
@@ -767,43 +767,46 @@ class _$AddChamberImpl implements _AddChamber {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AddChamberImpl &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.warehouseId, warehouseId) ||
-                other.warehouseId == warehouseId) &&
-            (identical(other.chamberNumber, chamberNumber) ||
-                other.chamberNumber == chamberNumber) &&
-            (identical(other.tempType, tempType) ||
-                other.tempType == tempType) &&
-            (identical(other.tempMinRange, tempMinRange) ||
-                other.tempMinRange == tempMinRange) &&
-            (identical(other.tempMaxRange, tempMaxRange) ||
-                other.tempMaxRange == tempMaxRange) &&
-            (identical(other.typeOfRacking, typeOfRacking) ||
-                other.typeOfRacking == typeOfRacking) &&
-            (identical(other.refrigerationType, refrigerationType) ||
-                other.refrigerationType == refrigerationType) &&
-            (identical(other.chamberCapacity, chamberCapacity) ||
-                other.chamberCapacity == chamberCapacity) &&
-            (identical(other.movementHeight, movementHeight) ||
-                other.movementHeight == movementHeight) &&
-            (identical(other.palletDimensionHeight, palletDimensionHeight) ||
-                other.palletDimensionHeight == palletDimensionHeight) &&
-            (identical(other.palletDimensionLength, palletDimensionLength) ||
-                other.palletDimensionLength == palletDimensionLength) &&
-            (identical(other.palletDimensionBreadth, palletDimensionBreadth) ||
-                other.palletDimensionBreadth == palletDimensionBreadth) &&
-            (identical(other.chamberHeight, chamberHeight) ||
-                other.chamberHeight == chamberHeight) &&
-            (identical(other.chamberLength, chamberLength) ||
-                other.chamberLength == chamberLength) &&
-            (identical(other.chamberBreadth, chamberBreadth) ||
-                other.chamberBreadth == chamberBreadth) &&
-            (identical(other.noOfFloors, noOfFloors) ||
-                other.noOfFloors == noOfFloors) &&
-            (identical(other.contolledAtmosphere, contolledAtmosphere) ||
-                other.contolledAtmosphere == contolledAtmosphere) &&
-            (identical(other.ozoneFilteration, ozoneFilteration) ||
-                other.ozoneFilteration == ozoneFilteration) &&
+            (identical(other.user_id, user_id) || other.user_id == user_id) &&
+            (identical(other.warehouse_id, warehouse_id) ||
+                other.warehouse_id == warehouse_id) &&
+            const DeepCollectionEquality()
+                .equals(other.chamber_number, chamber_number) &&
+            (identical(other.temp_type, temp_type) ||
+                other.temp_type == temp_type) &&
+            (identical(other.temp_min_range, temp_min_range) ||
+                other.temp_min_range == temp_min_range) &&
+            (identical(other.temp_max_range, temp_max_range) ||
+                other.temp_max_range == temp_max_range) &&
+            (identical(other.type_of_racking, type_of_racking) ||
+                other.type_of_racking == type_of_racking) &&
+            (identical(other.refrigeration_type, refrigeration_type) ||
+                other.refrigeration_type == refrigeration_type) &&
+            (identical(other.chamber_capacity, chamber_capacity) ||
+                other.chamber_capacity == chamber_capacity) &&
+            (identical(other.movement_height, movement_height) ||
+                other.movement_height == movement_height) &&
+            (identical(
+                    other.pallet_dimension_height, pallet_dimension_height) ||
+                other.pallet_dimension_height == pallet_dimension_height) &&
+            (identical(
+                    other.pallet_dimension_length, pallet_dimension_length) ||
+                other.pallet_dimension_length == pallet_dimension_length) &&
+            (identical(
+                    other.pallet_dimension_breadth, pallet_dimension_breadth) ||
+                other.pallet_dimension_breadth == pallet_dimension_breadth) &&
+            (identical(other.chamber_height, chamber_height) ||
+                other.chamber_height == chamber_height) &&
+            (identical(other.chamber_length, chamber_length) ||
+                other.chamber_length == chamber_length) &&
+            (identical(other.chamber_breadth, chamber_breadth) ||
+                other.chamber_breadth == chamber_breadth) &&
+            (identical(other.no_of_floors, no_of_floors) ||
+                other.no_of_floors == no_of_floors) &&
+            (identical(other.contolled_atmosphere, contolled_atmosphere) ||
+                other.contolled_atmosphere == contolled_atmosphere) &&
+            (identical(other.ozone_filteration, ozone_filteration) ||
+                other.ozone_filteration == ozone_filteration) &&
             (identical(other.humidifier, humidifier) ||
                 other.humidifier == humidifier));
   }
@@ -812,25 +815,25 @@ class _$AddChamberImpl implements _AddChamber {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        userId,
-        warehouseId,
-        chamberNumber,
-        tempType,
-        tempMinRange,
-        tempMaxRange,
-        typeOfRacking,
-        refrigerationType,
-        chamberCapacity,
-        movementHeight,
-        palletDimensionHeight,
-        palletDimensionLength,
-        palletDimensionBreadth,
-        chamberHeight,
-        chamberLength,
-        chamberBreadth,
-        noOfFloors,
-        contolledAtmosphere,
-        ozoneFilteration,
+        user_id,
+        warehouse_id,
+        const DeepCollectionEquality().hash(chamber_number),
+        temp_type,
+        temp_min_range,
+        temp_max_range,
+        type_of_racking,
+        refrigeration_type,
+        chamber_capacity,
+        movement_height,
+        pallet_dimension_height,
+        pallet_dimension_length,
+        pallet_dimension_breadth,
+        chamber_height,
+        chamber_length,
+        chamber_breadth,
+        no_of_floors,
+        contolled_atmosphere,
+        ozone_filteration,
         humidifier
       ]);
 
@@ -850,68 +853,68 @@ class _$AddChamberImpl implements _AddChamber {
 
 abstract class _AddChamber implements AddChamber {
   const factory _AddChamber(
-      {final int? userId,
-      final int? warehouseId,
-      final int? chamberNumber,
-      final String? tempType,
-      final int? tempMinRange,
-      final int? tempMaxRange,
-      final String? typeOfRacking,
-      final String? refrigerationType,
-      final int? chamberCapacity,
-      final int? movementHeight,
-      final int? palletDimensionHeight,
-      final int? palletDimensionLength,
-      final int? palletDimensionBreadth,
-      final int? chamberHeight,
-      final int? chamberLength,
-      final int? chamberBreadth,
-      final int? noOfFloors,
-      final int? contolledAtmosphere,
-      final int? ozoneFilteration,
+      {final int? user_id,
+      final int? warehouse_id,
+      final dynamic chamber_number,
+      final String? temp_type,
+      final int? temp_min_range,
+      final int? temp_max_range,
+      final String? type_of_racking,
+      final String? refrigeration_type,
+      final int? chamber_capacity,
+      final int? movement_height,
+      final int? pallet_dimension_height,
+      final int? pallet_dimension_length,
+      final int? pallet_dimension_breadth,
+      final int? chamber_height,
+      final int? chamber_length,
+      final int? chamber_breadth,
+      final int? no_of_floors,
+      final int? contolled_atmosphere,
+      final int? ozone_filteration,
       final int? humidifier}) = _$AddChamberImpl;
 
   factory _AddChamber.fromJson(Map<String, dynamic> json) =
       _$AddChamberImpl.fromJson;
 
   @override
-  int? get userId;
+  int? get user_id;
   @override
-  int? get warehouseId;
+  int? get warehouse_id;
   @override
-  int? get chamberNumber;
+  dynamic get chamber_number;
   @override
-  String? get tempType;
+  String? get temp_type;
   @override
-  int? get tempMinRange;
+  int? get temp_min_range;
   @override
-  int? get tempMaxRange;
+  int? get temp_max_range;
   @override
-  String? get typeOfRacking;
+  String? get type_of_racking;
   @override
-  String? get refrigerationType;
+  String? get refrigeration_type;
   @override
-  int? get chamberCapacity;
+  int? get chamber_capacity;
   @override
-  int? get movementHeight;
+  int? get movement_height;
   @override
-  int? get palletDimensionHeight;
+  int? get pallet_dimension_height;
   @override
-  int? get palletDimensionLength;
+  int? get pallet_dimension_length;
   @override
-  int? get palletDimensionBreadth;
+  int? get pallet_dimension_breadth;
   @override
-  int? get chamberHeight;
+  int? get chamber_height;
   @override
-  int? get chamberLength;
+  int? get chamber_length;
   @override
-  int? get chamberBreadth;
+  int? get chamber_breadth;
   @override
-  int? get noOfFloors;
+  int? get no_of_floors;
   @override
-  int? get contolledAtmosphere;
+  int? get contolled_atmosphere;
   @override
-  int? get ozoneFilteration;
+  int? get ozone_filteration;
   @override
   int? get humidifier;
   @override
