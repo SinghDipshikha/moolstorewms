@@ -148,6 +148,8 @@ class _PersonsListScreenState extends State<PersonsListScreen> {
                 ),
               ],
             ),
+           
+           
             const Gap(20),
             Row(
               children: List.generate(tags.length, (index) {

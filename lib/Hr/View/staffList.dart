@@ -31,8 +31,8 @@ class HrEmployeeList extends StatelessWidget {
         ).paddingSymmetric(horizontal: 12),
         appBar: CommonAppBar(
           title: 'Personal Details',
-          onTap: () {
-            Get.to(const HrDashboard(), id: hrNavigationKey);
+          onTap: (){
+             Get.to(const HrDashboard(), id: hrNavigationKey);
           },
         ),
         body: Column(
@@ -78,7 +78,7 @@ class HrEmployeeList extends StatelessWidget {
                 const Expanded(
                   flex: 1,
                   child: Text(
-                    "Staff Name",
+                    "Name",
                     style: TextStyle(
                       color: Color(0xFF5A57FF),
                       fontSize: 12,
