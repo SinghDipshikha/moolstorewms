@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
@@ -98,8 +100,6 @@ class SecurityGuardController extends GetxController {
     });
   }
 
-  
-
   void getAllPersonssInfo() {
     apiClient.postData(
         "person/getAllTicketsList?recordsPerPage=8&next=1", {}).then((value) {
@@ -115,7 +115,6 @@ class SecurityGuardController extends GetxController {
         update();
       }
     });
-   
   }
 
   void getSinglePersonDetails() {
@@ -183,29 +182,35 @@ class SecurityGuardController extends GetxController {
   }
 
   addTicketBySecurityGuard({
+    required int? ticketGeneratedBy,
     required String personName,
     required String mobileNumber,
     required String vehicleNumber,
-    required String driverName,
     required String productName,
     required String productQuantity,
-    required String productPrice,
+    required String productUnit,
+    required String doesHaveVehicle,
+    required String doesHaveMaterial,
+    required String status,
   }) {
     isloading = true;
     update();
     Get.find<ApiClient>().postData("person/createTicketBySecurityGuard", {
       {
-        "ticket_generate_by": 2,
-        "visitor_name": "Arun",
-        "visitor_ph_number": 9811966322,
-        "does_have_vehicle": "YES",
-        "vehicle_number": "DL-06 AH7654",
-        "material_inside": "YES",
+        "ticket_generate_by": ticketGeneratedBy,
+        "visitor_name": personName,
+        "visitor_ph_number": mobileNumber,
+        "does_have_vehicle": doesHaveVehicle,
+        "vehicle_number": vehicleNumber,
+        "material_inside": doesHaveMaterial,
         "products": [
-          {"product_name": "namaste india milk", "qty": 3, "unit": "10"},
-          {"product_name": "amul icecream", "unit": "10", "qty": 3}
+          {
+            "product_name": productName,
+            "qty": productQuantity,
+            "unit": productUnit
+          },
         ],
-        "in_out_status": "IN"
+        "in_out_status": status,
       }
     }).then((value) async {
       if (value.data["message"] == "Information Added") {

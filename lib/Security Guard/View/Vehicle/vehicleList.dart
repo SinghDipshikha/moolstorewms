@@ -4,10 +4,10 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/ticket.dart';
-import 'package:moolwmsstore/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart';
 import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 //@RoutePage()
 class VehicleListScreen extends StatefulWidget {
@@ -52,9 +52,7 @@ class _VehicleListScreenState extends State<VehicleListScreen> {
       ),
       appBar: CommonAppBar(
         onTap: () {
-          // Navigator.of(context).push(MaterialPageRoute(
-          //   builder: (context) => const SecurityGuardDashBoard(),
-          // ));
+          Get.to(const SecurityGuardDashBoard(), id: securityGuardNavigation);
         },
         title: 'Vehicle List',
         actions: const [],
