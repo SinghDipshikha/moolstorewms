@@ -59,6 +59,13 @@ dependencies:
   # flutter_native_splash: ^2.4.0
   camera: ^0.10.6
   two_dimensional_scrollables: ^0.2.1
+  interactive_viewer_2: ^0.0.8
+  material_table_view: ^4.0.2
+  widget_zoom: ^0.0.4
+  fast_color_picker: ^0.1.1
+  hexcolor: ^3.0.1
+  iglu_color_picker_flutter: ^1.0.5
+  easy_color_picker: ^1.0.0
 
   # flutter_spinkit: ^5.2.0
   # flutter_localization: ^0.2.0

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:moolwmsstore/Auth/Auth.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
 import 'package:moolwmsstore/helper/messages.dart';
 import 'package:moolwmsstore/test.dart';
@@ -53,9 +54,10 @@ class _DipshikaAppState extends State<DipshikaApp> {
         initState: (state) {},
         builder: (localizeController) {
           return GetMaterialApp(
-            //  home: const FloorLayoutDesiging(),
+            home: const Auth(),
+            //   home: const MyHomePage(),
             // home: const TestQr(),
-            home: const TableExampleApp(),
+            //  home: const TableExampleApp(),
             // home: const AddEmployeeCareerDetails(),
             //home: ChamberDesign(),
             debugShowCheckedModeBanner: false,

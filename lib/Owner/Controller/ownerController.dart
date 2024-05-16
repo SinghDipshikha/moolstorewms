@@ -80,12 +80,18 @@ class OwnerController extends GetxController {
       }
     });
   }
-List<Chamber> chambers =[];
-getChambersByWarehouse( var warehouseId){
-  apiClient.getData("owner/getWarehousesChamberById/$warehouseId").then((value) {
 
-  });
-}
+  Future<List<Chamber>?> getAllChamberByWareHouseId(var warehouseId) async {
+    var value = await apiClient
+        .getData("owner/getAllChamberByWareHouseId/$warehouseId");
+    if (value.data["message"] == "Chamber Detail for this warehouse") {
+      List result = value.data["result"];
+      return result.map((e) => Chamber.fromJson(e)).toList();
+    } else {
+      return null;
+    }
+  }
+
   getAddWarehouseFields() async {
     await apiClient.getData('dynamic/getAllWareHouseValues').then((value) {
       if (value.data["message"] == "Values found") {
