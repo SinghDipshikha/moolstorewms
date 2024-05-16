@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:moolwmsstore/Auth/Auth.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
 import 'package:moolwmsstore/Owner/View/OwnerDashboard.dart';
 import 'package:moolwmsstore/helper/messages.dart';

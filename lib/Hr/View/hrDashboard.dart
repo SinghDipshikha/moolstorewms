@@ -521,7 +521,7 @@ class _HrDashboardState extends State<HrDashboard> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Column(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -537,16 +537,29 @@ class _HrDashboardState extends State<HrDashboard> {
                                 ),
                               ),
                             ),
-                            const Gap(10),
-                            const Text(
-                              'Total Employee',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w500,
-                                height: 0,
-                              ),
+                            const Column(
+                              children: [
+                                Text(
+                                  'Total Employee',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontFamily: 'SF Pro Display',
+                                    fontWeight: FontWeight.w500,
+                                    height: 0,
+                                  ),
+                                ),
+                                Text(
+                                  '110',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24,
+                                    fontFamily: 'SF Pro Display',
+                                    fontWeight: FontWeight.w500,
+                                    height: 0,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -580,54 +593,35 @@ class _HrDashboardState extends State<HrDashboard> {
                         ),
                       ],
                     ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          '110',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                            fontFamily: 'SF Pro Display',
-                            fontWeight: FontWeight.w500,
-                            height: 0,
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(bottom: 20.0),
-                              child: Text(
-                                'Present\nWorkforce',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color(0xFFACACAC),
-                                  fontSize: 12,
-                                  fontFamily: 'SF Pro Display',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0,
-                                ),
-                              ),
-                            ),
-                            Gap(50),
-                            Padding(
-                              padding: EdgeInsets.only(bottom: 20.0),
-                              child: Text(
-                                'Absent\nWorkforce',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color(0xFFACACAC),
-                                  fontSize: 12,
-                                  fontFamily: 'SF Pro Display',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                    // Padding(
+                    //   padding: EdgeInsets.only(bottom: 20.0),
+                    //   child: Text(
+                    //     'Present\nWorkforce',
+                    //     textAlign: TextAlign.center,
+                    //     style: TextStyle(
+                    //       color: Color(0xFFACACAC),
+                    //       fontSize: 12,
+                    //       fontFamily: 'SF Pro Display',
+                    //       fontWeight: FontWeight.w400,
+                    //       height: 0,
+                    //     ),
+                    //   ),
+                    // ),
+                    // Gap(50),
+                    // Padding(
+                    //   padding: EdgeInsets.only(bottom: 20.0),
+                    //   child: Text(
+                    //     'Absent\nWorkforce',
+                    //     textAlign: TextAlign.center,
+                    //     style: TextStyle(
+                    //       color: Color(0xFFACACAC),
+                    //       fontSize: 12,
+                    //       fontFamily: 'SF Pro Display',
+                    //       fontWeight: FontWeight.w400,
+                    //       height: 0,
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
