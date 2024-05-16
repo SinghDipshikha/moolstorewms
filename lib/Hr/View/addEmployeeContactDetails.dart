@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/Hr/View/addEmployeeCareerDetails.dart';
 import 'package:moolwmsstore/Hr/View/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonDropDown.dart';
@@ -49,14 +50,16 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
       key: _formKey,
       child: Scaffold(
         appBar: CommonAppBar(
-          title: 'Contact Details',
-          onTap:(){
-            Get.to(const HrEmployeeList(), id: hrNavigationKey);
-          }
-        ),
+            title: 'Contact Details',
+            onTap: () {
+              Get.to(const HrEmployeeList(), id: hrNavigationKey);
+            }),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: CustomFloatingActionButton(
           title: 'Next',
+          onTap: () {
+            Get.to(const AddEmployeeCareerDetails(), id: hrNavigationKey);
+          },
         ),
         body: SingleChildScrollView(
           child: Center(
@@ -94,7 +97,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                           onChanged: (value) {
                             _address = value;
                           },
-                        ).paddingAll(8),
+                        ).paddingAll(2),
                         CommanTextField(
                           labelText: "State",
                           hintText: "State",
@@ -113,7 +116,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                           onChanged: (value) {
                             _state = value;
                           },
-                        ).paddingAll(8),
+                        ).paddingAll(2),
                         CommanTextField(
                           labelText: "City",
                           hintText: "City ",
@@ -132,7 +135,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                           onChanged: (value) {
                             _city = value;
                           },
-                        ).paddingAll(8),
+                        ).paddingAll(2),
                         CommanTextField(
                           labelText: "Pincode",
                           hintText: "Pincode",
@@ -151,7 +154,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                           onChanged: (value) {
                             _pincode = value;
                           },
-                        ).paddingAll(8),
+                        ).paddingAll(2),
                         Container(
                           constraints: context.isPhone
                               ? null
@@ -275,7 +278,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                           onChanged: (value) {
                             _mobileNumber = value;
                           },
-                        ).paddingAll(8),
+                        ).paddingAll(2),
                         CommanTextField(
                           labelText: "Emergency Contact Name",
                           hintText: "",
@@ -294,7 +297,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                           onChanged: (value) {
                             _contactName = value;
                           },
-                        ).paddingAll(8),
+                        ).paddingAll(2),
                         CommomDropDown(
                           labelText: "Languages",
                           list: languageDataList,

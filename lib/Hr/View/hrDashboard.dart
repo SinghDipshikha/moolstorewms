@@ -491,49 +491,147 @@ class _HrDashboardState extends State<HrDashboard> {
                         textColor: Colors.white,
                         title: 'View Attendance',
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
             ),
-            // const Gap(20),
-            // Container(
-            //   width: 358,
-            //   height: 173,
-            //   decoration: ShapeDecoration(
-            //     gradient: LinearGradient(
-            //       begin: const Alignment(1.00, 0.00),
-            //       end: const Alignment(-1, 0),
-            //       colors: [
-            //         Colors.white.withOpacity(0.10000000149011612),
-            //         Colors.white.withOpacity(0.10000000149011612)
-            //       ],
-            //     ),
-            //     shape: RoundedRectangleBorder(
-            //       side: const BorderSide(width: 1, color: Colors.white),
-            //       borderRadius: BorderRadius.circular(25),
-            //     ),
-            //   ),
-            // ),
-            // const Gap(20),
-            // Container(
-            //   width: 358,
-            //   height: 173,
-            //   decoration: ShapeDecoration(
-            //     gradient: LinearGradient(
-            //       begin: const Alignment(1.00, 0.00),
-            //       end: const Alignment(-1, 0),
-            //       colors: [
-            //         Colors.white.withOpacity(0.10000000149011612),
-            //         Colors.white.withOpacity(0.10000000149011612)
-            //       ],
-            //     ),
-            //     shape: RoundedRectangleBorder(
-            //       side: const BorderSide(width: 1, color: Colors.white),
-            //       borderRadius: BorderRadius.circular(25),
-            //     ),
-            //   ),
-            // ),
+            const Gap(20),
+            Container(
+              width: 358,
+              height: 166,
+              decoration: ShapeDecoration(
+                gradient: LinearGradient(
+                  begin: const Alignment(1.00, 0.00),
+                  end: const Alignment(-1, 0),
+                  colors: [
+                    Colors.white.withOpacity(0.10000000149011612),
+                    Colors.white.withOpacity(0.10000000149011612)
+                  ],
+                ),
+                shape: RoundedRectangleBorder(
+                  side: const BorderSide(width: 1, color: Colors.white),
+                  borderRadius: BorderRadius.circular(25),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Gap(20),
+                            Container(
+                              width: 60,
+                              height: 60,
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      "assets/images/hrDashBoardEmployee.png"),
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+                            const Gap(10),
+                            const Text(
+                              'Total Employee',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w500,
+                                height: 0,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const Row(
+                          children: [
+                            Text(
+                              '80',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 32,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w600,
+                                height: 0,
+                              ),
+                            ),
+                            Gap(70),
+                            Text(
+                              '30',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 32,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w600,
+                                height: 0,
+                              ),
+                            ),
+                            Gap(10)
+                          ],
+                        ),
+                      ],
+                    ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '110',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w500,
+                            height: 0,
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(bottom: 20.0),
+                              child: Text(
+                                'Present\nWorkforce',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color(0xFFACACAC),
+                                  fontSize: 12,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w400,
+                                  height: 0,
+                                ),
+                              ),
+                            ),
+                            Gap(50),
+                            Padding(
+                              padding: EdgeInsets.only(bottom: 20.0),
+                              child: Text(
+                                'Absent\nWorkforce',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color(0xFFACACAC),
+                                  fontSize: 12,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w400,
+                                  height: 0,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),

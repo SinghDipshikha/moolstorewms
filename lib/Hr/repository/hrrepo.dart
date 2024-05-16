@@ -36,26 +36,26 @@ Future<bool> addPersonalDetails(
       "owner_id": 2,
       "career_details": carrierDetails.map((e) => e.toJson()).toList()
     });
-    if (res.data["message"] == "Career details updated/added successfully") {
+    if (res.data["message"] == "Information Added") {
       return true;
     }
     return false;
   }
-Future<bool> addContactDetails(
-      {var hrID,
-      required var userID,
-      required var ownerID,
-      required List<AddCareerDetail> carrierDetails}) async {
-    Response res = await apiClient.postData("hr/addCareerDetails", {
-      "user_id": 2,
-      "owner_id": 2,
-      "career_details": carrierDetails.map((e) => e.toJson()).toList()
-    });
-    if (res.data["message"] == "Career details updated/added successfully") {
-      return true;
-    }
-    return false;
-  }
+// Future<bool> addContactDetails(
+//       {var hrID,
+//       required var userID,
+//       required var ownerID,
+//       required List<AddCareerDetail> carrierDetails}) async {
+//     Response res = await apiClient.postData("hr/addCareerDetails", {
+//       "user_id": 2,
+//       "owner_id": 2,
+//       "career_details": carrierDetails.map((e) => e.toJson()).toList()
+//     });
+//     if (res.data["message"] == "Career details updated/added successfully") {
+//       return true;
+//     }
+//     return false;
+//   }
 
 
 

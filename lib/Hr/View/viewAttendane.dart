@@ -11,7 +11,7 @@ class ViewAttendanceList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HRController>(initState: (state) {
-      Get.find<HRController>().getAllEmployeesByOrg();
+      Get.find<HRController>().getAllEmployeesByWarehouse();
     }, builder: (hrController) {
       return Scaffold(
         // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

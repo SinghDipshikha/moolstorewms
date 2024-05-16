@@ -605,81 +605,82 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
               children: [
                 const Gap(10),
                 Container(
-                    width: 380,
-                    height: 93,
-                    decoration: ShapeDecoration(
-                      gradient: LinearGradient(
-                        begin: const Alignment(0.00, -1.00),
-                        end: const Alignment(0, 1),
-                        colors: [
-                          Colors.white.withOpacity(0.10000000149011612),
-                          Colors.white.withOpacity(0.10000000149011612)
-                        ],
-                      ),
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(width: 1, color: Colors.white),
-                        borderRadius: BorderRadius.circular(25),
-                      ),
+                  width: 370,
+                  height: 140,
+                  decoration: ShapeDecoration(
+                    gradient: const LinearGradient(
+                      begin: Alignment(-1.00, -0.00),
+                      end: Alignment(1, 0),
+                      colors: [Color(0xFF5A57FF), Color(0xFF6A68FF)],
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 30.0, right: 30.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 12.0,
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(width: 1, color: Colors.white),
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.all(18.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Warehouses',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w500,
+                                height: 0,
+                              ),
                             ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: 42,
-                                  height: 42,
-                                  decoration: const ShapeDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                          "assets/images/warehouseOwner.png"),
-                                      fit: BoxFit.fill,
-                                    ),
-                                    shape: OvalBorder(
-                                      side: BorderSide(
-                                        width: 2,
-                                        strokeAlign:
-                                            BorderSide.strokeAlignOutside,
-                                        color: Color(0x195A57FF),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const Text(
-                                  'Warehouses',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontFamily: 'SF Pro Display',
-                                    fontWeight: FontWeight.w500,
-                                    height: 0,
-                                  ),
-                                ),
-                              ],
+                            Text(
+                              '10',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 54,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w500,
+                                height: 0,
+                              ),
                             ),
-                          ),
-                          const Text(
-                            '02',
-                            textAlign: TextAlign.right,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 60,
-                              fontFamily: 'SF Pro Display',
-                              fontWeight: FontWeight.w600,
-                              height: 0,
+                            Text(
+                              'Total No. of Warehouses',
+                              style: TextStyle(
+                                color: Color(0xFFC2C0FF),
+                                fontSize: 10,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w400,
+                                height: 0,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    )),
+                      const Gap(20),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: 169.64,
+                              height: 112,
+                              decoration: const BoxDecoration(
+                                color: Colors.transparent,
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      "assets/images/wareHouseImage.png"),
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 const Gap(10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -804,7 +805,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                     ),
                   ],
                 ),
-                const Gap(20),
+                const Gap(10),
                 Container(
                   width: 380,
                   height: 100,
@@ -828,9 +829,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(
-                            top: 12.0,
-                          ),
+                          padding: const EdgeInsets.all(12.0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -838,9 +837,18 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                               Container(
                                 width: 42,
                                 height: 42,
-                                decoration: const BoxDecoration(
-                                  color: Colors.black,
-                                  image: DecorationImage(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: const Alignment(0.00, -1.00),
+                                    end: const Alignment(0, 1),
+                                    colors: [
+                                      Colors.white
+                                          .withOpacity(0.10000000149011612),
+                                      Colors.white
+                                          .withOpacity(0.10000000149011612)
+                                    ],
+                                  ),
+                                  image: const DecorationImage(
                                     image: AssetImage(
                                         "assets/images/materialOwner.png"),
                                     fit: BoxFit.fill,
@@ -860,38 +868,70 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                             ],
                           ),
                         ),
-                        const Row(
-                          children: [
-                            Text(
-                              '14',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 32,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w600,
-                                height: 0,
+                        const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    'Material In',
+                                    style: TextStyle(
+                                      color: Color(0xFF8C8C8C),
+                                      fontSize: 16,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                  Gap(30),
+                                  Text(
+                                    '80',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                            Gap(50),
-                            Text(
-                              '12',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 32,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w600,
-                                height: 0,
-                              ),
-                            ),
-                          ],
+                              Row(
+                                children: [
+                                  Text(
+                                    'Material Out',
+                                    style: TextStyle(
+                                      color: Color(0xFF8C8C8C),
+                                      fontSize: 16,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                  Gap(20),
+                                  Text(
+                                    '80',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ],
                     ),
                   ),
                 ),
-                const Gap(20),
+                const Gap(10),
                 Container(
                   width: 380,
                   height: 100,
@@ -946,38 +986,70 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                             ],
                           ),
                         ),
-                        const Row(
-                          children: [
-                            Text(
-                              '14',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 32,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w600,
-                                height: 0,
+                        const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    'Person In',
+                                    style: TextStyle(
+                                      color: Color(0xFF8C8C8C),
+                                      fontSize: 16,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                  Gap(30),
+                                  Text(
+                                    '120',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                            Gap(50),
-                            Text(
-                              '12',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 32,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w600,
-                                height: 0,
-                              ),
-                            ),
-                          ],
+                              Row(
+                                children: [
+                                  Text(
+                                    'Person Out',
+                                    style: TextStyle(
+                                      color: Color(0xFF8C8C8C),
+                                      fontSize: 16,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                  Gap(20),
+                                  Text(
+                                    '80',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ],
                     ),
                   ),
                 ),
-                const Gap(20),
+                const Gap(10),
                 Container(
                   width: 380,
                   height: 100,
@@ -1014,7 +1086,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                 decoration: const BoxDecoration(
                                   image: DecorationImage(
                                     image: AssetImage(
-                                        "assets/images/Vehicle Icon (R).png"),
+                                        "assets/images/vehicleVector.png"),
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -1032,38 +1104,70 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                             ],
                           ),
                         ),
-                        const Row(
-                          children: [
-                            Text(
-                              '14',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 32,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w600,
-                                height: 0,
+                        const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    'Vehicle In',
+                                    style: TextStyle(
+                                      color: Color(0xFF8C8C8C),
+                                      fontSize: 16,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                  Gap(30),
+                                  Text(
+                                    '220',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                            Gap(50),
-                            Text(
-                              '12',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 32,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w600,
-                                height: 0,
-                              ),
-                            ),
-                          ],
+                              Row(
+                                children: [
+                                  Text(
+                                    'Vehicle Out',
+                                    style: TextStyle(
+                                      color: Color(0xFF8C8C8C),
+                                      fontSize: 16,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                  Gap(20),
+                                  Text(
+                                    '80',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ],
                     ),
                   ),
                 ),
-                const Gap(20),
+                const Gap(10),
                 Container(
                   width: 380,
                   height: 100,
@@ -1118,208 +1222,402 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                             ],
                           ),
                         ),
-                        const Row(
-                          children: [
-                            Text(
-                              '14',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 32,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w600,
-                                height: 0,
+                        const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    'Visitor In',
+                                    style: TextStyle(
+                                      color: Color(0xFF8C8C8C),
+                                      fontSize: 16,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                  Gap(30),
+                                  Text(
+                                    '50',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                            Gap(50),
-                            Text(
-                              '12',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 32,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w600,
-                                height: 0,
-                              ),
-                            ),
-                          ],
+                              Row(
+                                children: [
+                                  Text(
+                                    'Visitor Out',
+                                    style: TextStyle(
+                                      color: Color(0xFF8C8C8C),
+                                      fontSize: 16,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                  Gap(20),
+                                  Text(
+                                    '80',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ],
                     ),
                   ),
                 ),
-                const Gap(20),
-                Container(
-                  width: 380,
-                  height: 100,
-                  decoration: ShapeDecoration(
-                    gradient: LinearGradient(
-                      begin: const Alignment(0.00, -1.00),
-                      end: const Alignment(0, 1),
-                      colors: [
-                        Colors.white.withOpacity(0.10000000149011612),
-                        Colors.white.withOpacity(0.10000000149011612)
-                      ],
-                    ),
-                    shape: RoundedRectangleBorder(
-                      side: const BorderSide(width: 1, color: Colors.white),
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 30.0, right: 30.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            top: 12.0,
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 42,
-                                height: 42,
-                                decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                    image: AssetImage(
-                                        "assets/images/Dashboard Icons (R).png"),
-                                    fit: BoxFit.fill,
+                const Gap(10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      width: 180,
+                      height: 150,
+                      decoration: ShapeDecoration(
+                        gradient: LinearGradient(
+                          begin: const Alignment(0.00, -1.00),
+                          end: const Alignment(0, 1),
+                          colors: [
+                            Colors.white.withOpacity(0.10000000149011612),
+                            Colors.white.withOpacity(0.10000000149011612)
+                          ],
+                        ),
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(width: 1, color: Colors.white),
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Occupancy ',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w500,
+                                height: 0,
+                              ),
+                            ),
+                            const Gap(20),
+                            const Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Vacant',
+                                  style: TextStyle(
+                                    color: Color(0xFF8C8C8C),
+                                    fontSize: 10,
+                                    fontFamily: 'SF Pro Display',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0,
                                   ),
                                 ),
+                                Gap(60),
+                                Text(
+                                  '80%',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10,
+                                    fontFamily: 'SF Pro Display',
+                                    fontWeight: FontWeight.w700,
+                                    height: 0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Occupied',
+                                  style: TextStyle(
+                                    color: Color(0xFF8C8C8C),
+                                    fontSize: 10,
+                                    fontFamily: 'SF Pro Display',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0,
+                                  ),
+                                ),
+                                Gap(50),
+                                Text(
+                                  '80%',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10,
+                                    fontFamily: 'SF Pro Display',
+                                    fontWeight: FontWeight.w700,
+                                    height: 0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Gap(20),
+                            Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: 37,
+                                    height: 12,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 5, vertical: 2),
+                                    decoration: ShapeDecoration(
+                                      shape: RoundedRectangleBorder(
+                                        side: const BorderSide(
+                                            width: 0.50,
+                                            color: Color(0xFF2A2A2A)),
+                                        borderRadius: BorderRadius.circular(2),
+                                      ),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'Warehouse',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Color(0xFF595959),
+                                          fontSize: 7,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.w300,
+                                          height: 0,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 37,
+                                    height: 12,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 5, vertical: 2),
+                                    decoration: ShapeDecoration(
+                                      shape: RoundedRectangleBorder(
+                                        side: const BorderSide(
+                                            width: 0.50,
+                                            color: Color(0xFF2A2A2A)),
+                                        borderRadius: BorderRadius.circular(2),
+                                      ),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'Chamber',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Color(0xFF595959),
+                                          fontSize: 7,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.w300,
+                                          height: 0,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 37,
+                                    height: 12,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 5, vertical: 2),
+                                    decoration: ShapeDecoration(
+                                      shape: RoundedRectangleBorder(
+                                        side: const BorderSide(
+                                            width: 0.50,
+                                            color: Color(0xFF2A2A2A)),
+                                        borderRadius: BorderRadius.circular(2),
+                                      ),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'Pallete',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Color(0xFF595959),
+                                          fontSize: 7,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.w300,
+                                          height: 0,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              const Text(
-                                'Visitor',
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 180,
+                      height: 150,
+                      decoration: ShapeDecoration(
+                        gradient: LinearGradient(
+                          begin: const Alignment(0.00, -1.00),
+                          end: const Alignment(0, 1),
+                          colors: [
+                            Colors.white.withOpacity(0.10000000149011612),
+                            Colors.white.withOpacity(0.10000000149011612)
+                          ],
+                        ),
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(width: 1, color: Colors.white),
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Tickets',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w500,
+                                height: 0,
+                              ),
+                            ),
+                            const Center(
+                              child: Text(
+                                '40',
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 18,
+                                  fontSize: 54,
                                   fontFamily: 'SF Pro Display',
                                   fontWeight: FontWeight.w500,
                                   height: 0,
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                        const Row(
-                          children: [
-                            Text(
-                              '14',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 32,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w600,
-                                height: 0,
-                              ),
                             ),
-                            Gap(50),
-                            Text(
-                              '12',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 32,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w600,
-                                height: 0,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const Gap(20),
-                Container(
-                  width: 380,
-                  height: 100,
-                  decoration: ShapeDecoration(
-                    gradient: LinearGradient(
-                      begin: const Alignment(0.00, -1.00),
-                      end: const Alignment(0, 1),
-                      colors: [
-                        Colors.white.withOpacity(0.10000000149011612),
-                        Colors.white.withOpacity(0.10000000149011612)
-                      ],
-                    ),
-                    shape: RoundedRectangleBorder(
-                      side: const BorderSide(width: 1, color: Colors.white),
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 30.0, right: 30.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            top: 12.0,
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 42,
-                                height: 42,
-                                decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                    image: AssetImage(
-                                        "assets/images/Dashboard Icons (R).png"),
-                                    fit: BoxFit.fill,
+                            const Gap(10),
+                            Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: 37,
+                                    height: 12,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 5, vertical: 2),
+                                    decoration: ShapeDecoration(
+                                      shape: RoundedRectangleBorder(
+                                        side: const BorderSide(
+                                            width: 0.50,
+                                            color: Color(0xFF2A2A2A)),
+                                        borderRadius: BorderRadius.circular(2),
+                                      ),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'AllTickets',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Color(0xFF595959),
+                                          fontSize: 7,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.w300,
+                                          height: 0,
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                              const Text(
-                                'Visitor',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontFamily: 'SF Pro Display',
-                                  fontWeight: FontWeight.w500,
-                                  height: 0,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const Row(
-                          children: [
-                            Text(
-                              '14',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 32,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w600,
-                                height: 0,
-                              ),
-                            ),
-                            Gap(50),
-                            Text(
-                              '12',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 32,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w600,
-                                height: 0,
+                                  Container(
+                                    width: 37,
+                                    height: 12,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 5, vertical: 2),
+                                    decoration: ShapeDecoration(
+                                      shape: RoundedRectangleBorder(
+                                        side: const BorderSide(
+                                            width: 0.50,
+                                            color: Color(0xFF2A2A2A)),
+                                        borderRadius: BorderRadius.circular(2),
+                                      ),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'Sales',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Color(0xFF595959),
+                                          fontSize: 7,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.w300,
+                                          height: 0,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 37,
+                                    height: 12,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 5, vertical: 2),
+                                    decoration: ShapeDecoration(
+                                      shape: RoundedRectangleBorder(
+                                        side: const BorderSide(
+                                            width: 0.50,
+                                            color: Color(0xFF2A2A2A)),
+                                        borderRadius: BorderRadius.circular(2),
+                                      ),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'Security Guard',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Color(0xFF595959),
+                                          fontSize: 7,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.w300,
+                                          height: 0,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ],
             ),

@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/Model/addCareerDetail.dart';
+import 'package:moolwmsstore/Hr/View/addEmployeeEducationQualificationDetails.dart';
 import 'package:moolwmsstore/Hr/View/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonAppBar.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
@@ -54,14 +55,17 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
       key: _formKey,
       child: Scaffold(
         appBar: CommonAppBar(
-          title: 'Career Details',
-          onTap:(){
-            Get.to(const HrEmployeeList(), id: hrNavigationKey);
-          }
-        ),
+            title: 'Career Details',
+            onTap: () {
+              Get.to(const HrEmployeeList(), id: hrNavigationKey);
+            }),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: CustomFloatingActionButton(
           title: 'Next',
+          onTap: () {
+            Get.to(const AddEmployeeEducationQualificationDetails(),
+                id: hrNavigationKey);
+          },
         ),
         body: SingleChildScrollView(
           child: Center(
@@ -113,17 +117,17 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                         hRController.carrierDetails[0]
                                             .copyWith(name_of_employer: value);
                                   },
-                                ).paddingAll(8),
+                                ).paddingAll(4),
                                 CommanTextField(
                                   labelText: "Designation",
                                   hintText: "Designation",
                                   obscureText: false,
-                                ).paddingAll(8),
+                                ).paddingAll(4),
                                 CommanTextField(
                                   labelText: "Reporting To",
                                   hintText: "Reporting To ",
                                   obscureText: false,
-                                ).paddingAll(8),
+                                ).paddingAll(4),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
@@ -260,7 +264,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                   ],
                                 ),
                                 const Padding(
-                                  padding: EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(4.0),
                                   child: Text(
                                     'Monthly Salary',
                                     style: TextStyle(
@@ -289,7 +293,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                     return null;
                                   },
                                   onChanged: (value) {},
-                                ).paddingAll(8),
+                                ).paddingAll(4),
                                 CommanTextField(
                                   labelText: "Current/End",
                                   hintText: "₹",
@@ -307,7 +311,8 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                     return null;
                                   },
                                   onChanged: (value) {},
-                                ).paddingAll(8),
+                                ).paddingAll(4),
+                                
                                 InkWell(
                                   onTap: () {
                                     hRController.carrierDetails
@@ -316,30 +321,22 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                   },
                                   child: Row(
                                     children: [
-                                      SizedBox(
-                                        width: 28.39,
-                                        height: 28.39,
-                                        child: Stack(
-                                          children: [
-                                            Positioned(
-                                              left: 0,
-                                              top: 0,
-                                              child: Container(
-                                                width: 28.39,
-                                                height: 28.39,
-                                                decoration:
-                                                    const ShapeDecoration(
-                                                  color: Colors.black,
-                                                  shape: OvalBorder(),
-                                                ),
-                                                child: const Icon(
-                                                  Icons.add,
-                                                  color: Colors.white,
-                                                ),
-                                              ),
+                                      Stack(
+                                        children: [
+                                          Container(
+                                            width: 55,
+                                            height: 55,
+                                            decoration: const ShapeDecoration(
+                                              color: Color(0xFF5A57FF),
+                                              shape: OvalBorder(),
                                             ),
-                                          ],
-                                        ),
+                                            child: const Icon(
+                                              Icons.add,
+                                              color: Colors.white,
+                                              size: 50,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                       const Gap(5),
                                       const Text(
@@ -353,7 +350,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                         ),
                                       )
                                     ],
-                                  ).paddingAll(8),
+                                  ).paddingAll(4),
                                 )
                               ],
                             ),

@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Auth/widgets/commonTextField.dart';
-import 'package:moolwmsstore/Hr/constants/validations.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
@@ -54,16 +53,20 @@ class _AddTicketScreenState extends State<AddTicketScreen> {
                 onTap: () {
                   if (_formKey.currentState!.validate()) {
                     securityGuardController.addTicketBySecurityGuard(
-                      ticketGeneratedBy: user!.id,
+                      ticketGeneratedBy: 2,
                       personName: personName.text,
                       mobileNumber: mobileNumber.text,
                       doesHaveVehicle: 'YES',
                       vehicleNumber: vehicleNumber.text,
                       doesHaveMaterial: 'YES',
-                      productName: productName.text,
-                      productQuantity: productQuantity.text,
-                      productUnit: productPrice.text,
                       status: 'IN',
+                      products: [
+                        {
+                          "productName": productName.text,
+                          "productQuantity": productQuantity.text,
+                          "productUnit": productPrice.text,
+                        }
+                      ],
                     );
                   }
                 },
@@ -104,6 +107,8 @@ class _AddTicketScreenState extends State<AddTicketScreen> {
                           controller: mobileNumber,
                           textCapitalization: TextCapitalization.characters,
                           validator: (value) {
+                            return null;
+
                             // if (value!.isEmpty) {
                             //   return 'Please enter mobile number.';
                             // }

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'personaldetails.dart';
+part of 'personaldetailsResponse.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

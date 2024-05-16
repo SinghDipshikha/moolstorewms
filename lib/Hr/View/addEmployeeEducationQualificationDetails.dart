@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/Hr/View/addEmployeeReferralDetails.dart';
 import 'package:moolwmsstore/Hr/View/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonAppBar.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
@@ -42,6 +43,9 @@ class _AddEmployeeEducationQualificationDetailsState
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: CustomFloatingActionButton(
           title: 'Next',
+           onTap: (){
+             Get.to(const AddEmployeeReferralDetails(), id: hrNavigationKey);
+          },
         ),
         body: SingleChildScrollView(
           child: Center(

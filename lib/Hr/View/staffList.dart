@@ -11,7 +11,6 @@ import 'package:moolwmsstore/Hr/View/addEmployeeEducationQualificationDetails.da
 import 'package:moolwmsstore/Hr/View/addEmployeePersonalDetails.dart';
 import 'package:moolwmsstore/Hr/View/addedStaffScreen.dart';
 import 'package:moolwmsstore/Hr/View/hrDashboard.dart';
-import 'package:moolwmsstore/Owner/View/Common/customButton.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
@@ -22,17 +21,17 @@ class HrEmployeeList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HRController>(initState: (state) {
-      Get.find<HRController>().getAllEmployeesByOrg();
+      Get.find<HRController>().getAllEmployeesByWarehouse();
     }, builder: (hrController) {
       return Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: CustomButton(
-          title: 'Add New Staff',
-        ).paddingSymmetric(horizontal: 12),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        // floatingActionButton: CustomButton(
+        //   title: 'Add New Staff',
+        // ).paddingSymmetric(horizontal: 12),
         appBar: CommonAppBar(
-          title: 'Personal Details',
-          onTap: (){
-             Get.to(const HrDashboard(), id: hrNavigationKey);
+          title: 'Staff List',
+          onTap: () {
+            Get.to(const HrDashboard(), id: hrNavigationKey);
           },
         ),
         body: Column(
