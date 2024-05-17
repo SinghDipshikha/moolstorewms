@@ -597,12 +597,12 @@ class _HrDashboardState extends State<HrDashboard> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
-                                      'Present Workforce',
+                                      'Present\nWorkforce',
                                       style: TextStyle(
-                                        color: Color(0xFFACACAC),
-                                        fontSize: 8,
+                                        color: Colors.white,
+                                        fontSize: 10,
                                         fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     Text(
@@ -637,12 +637,12 @@ class _HrDashboardState extends State<HrDashboard> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
-                                      'Absent Workforce',
+                                      'Absent\nWorkforce',
                                       style: TextStyle(
-                                        color: Color(0xFFACACAC),
-                                        fontSize: 8,
+                                        color: Colors.white,
+                                        fontSize: 10,
                                         fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     Text(
@@ -784,10 +784,10 @@ class _HrDashboardState extends State<HrDashboard> {
                                     Text(
                                       'On Time',
                                       style: TextStyle(
-                                        color: Color(0xFFACACAC),
-                                        fontSize: 8,
+                                        color: Colors.white,
+                                        fontSize: 10,
                                         fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     Text(
@@ -824,10 +824,10 @@ class _HrDashboardState extends State<HrDashboard> {
                                     Text(
                                       'Late',
                                       style: TextStyle(
-                                        color: Color(0xFFACACAC),
-                                        fontSize: 8,
+                                        color: Colors.white,
+                                        fontSize: 10,
                                         fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     Text(
@@ -921,7 +921,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         color: Colors.white,
                                         fontSize: 18,
                                         fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     // Text(
@@ -957,10 +957,10 @@ class _HrDashboardState extends State<HrDashboard> {
                                     Text(
                                       'On-Site',
                                       style: TextStyle(
-                                        color: Color(0xFFACACAC),
-                                        fontSize: 8,
+                                        color: Colors.white,
+                                        fontSize: 10,
                                         fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     Text(
@@ -996,10 +996,10 @@ class _HrDashboardState extends State<HrDashboard> {
                                     Text(
                                       'Hybrid',
                                       style: TextStyle(
-                                        color: Color(0xFFACACAC),
-                                        fontSize: 8,
+                                        color: Colors.white,
+                                        fontSize: 10,
                                         fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     Text(
@@ -1035,10 +1035,10 @@ class _HrDashboardState extends State<HrDashboard> {
                                     Text(
                                       'Remote',
                                       style: TextStyle(
-                                        color: Color(0xFFACACAC),
-                                        fontSize: 8,
+                                        color: Colors.white,
+                                        fontSize: 10,
                                         fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     Text(
