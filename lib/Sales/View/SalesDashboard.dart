@@ -36,6 +36,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       drawer: Drawer(
         //  width: context.isPhone ? MediaQuery.sizeOf(context).width - 100 : 400,
         surfaceTintColor: const Color.fromARGB(255, 22, 22, 22),
@@ -380,8 +381,10 @@ class _SalesDashboardState extends State<SalesDashboard> {
         ),
       ),
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: false,
-        backgroundColor: const Color(0xFF232323),
+        //  backgroundColor: const Color(0xFF232323),
+        foregroundColor: Colors.white,
         title: const Text(
           'Sales Dashboard',
           style: TextStyle(
@@ -400,10 +403,9 @@ class _SalesDashboardState extends State<SalesDashboard> {
             children: [
               Expanded(
                 child: InkWell(
-                  onTap: () {
-                    
-                  },
+                  onTap: () {},
                   child: Container(
+                    alignment: Alignment.center,
                     height: 70,
                     decoration: ShapeDecoration(
                       gradient: const LinearGradient(
@@ -412,9 +414,19 @@ class _SalesDashboardState extends State<SalesDashboard> {
                         colors: [Color(0xFF5A57FF), Color(0xFF8C8AFF)],
                       ),
                       shape: RoundedRectangleBorder(
-                        side:
-                            const BorderSide(width: 1, color: Color(0xFF918FFA)),
+                        side: const BorderSide(
+                            width: 1, color: Color(0xFF918FFA)),
                         borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: const Text(
+                      'Create Ticket',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w500,
+                        height: 0,
                       ),
                     ),
                   ),
@@ -423,9 +435,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
               const Gap(10),
               Expanded(
                 child: InkWell(
-                  onTap: () {
-                    
-                  },
+                  onTap: () {},
                   child: Container(
                     height: 70,
                     decoration: ShapeDecoration(
@@ -435,8 +445,8 @@ class _SalesDashboardState extends State<SalesDashboard> {
                         colors: [Color(0xFFFF5789), Color(0xFFFF97B6)],
                       ),
                       shape: RoundedRectangleBorder(
-                        side:
-                            const BorderSide(width: 1, color: Color(0xFFFF85A9)),
+                        side: const BorderSide(
+                            width: 1, color: Color(0xFFFF85A9)),
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
