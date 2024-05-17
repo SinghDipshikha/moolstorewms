@@ -26,6 +26,7 @@ import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardControlle
 import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
 import 'package:moolwmsstore/Security%20Guard/repository/securityGuardRepo.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
+import 'package:moolwmsstore/common/controller/chamberController.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -110,6 +111,7 @@ class AuthController extends GetxController {
                         ownerRepo: Get.find<OwnerRepo>(),
                         apiClient: Get.find<ApiClient>()),
                     permanent: true);
+                Get.put(ChamberController(), permanent: true);
                 Future.delayed(const Duration(seconds: 2)).whenComplete(() {
                   Get.delete<AuthController>();
                   Get.offAll(const Owner());
@@ -356,7 +358,7 @@ class AuthController extends GetxController {
                   ownerRepo: Get.find<OwnerRepo>(),
                   apiClient: Get.find()),
               permanent: true);
-
+          Get.put(ChamberController(), permanent: true);
           Get.delete<AuthController>();
           Get.offAll(const Owner());
         }

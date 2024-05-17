@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/createticket.dart';
 import 'package:moolwmsstore/Sales/View/addCompany.dart';
 import 'package:moolwmsstore/Sales/View/companyList.dart';
@@ -19,23 +20,31 @@ class SalesDashboard extends StatefulWidget {
 }
 
 class _SalesDashboardState extends State<SalesDashboard> {
+  DateTime _selectedDate = DateTime.now();
+  final DateFormat formatter = DateFormat('yyyy-MM-dd');
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null && picked != _selectedDate) {
+      setState(() {
+        _selectedDate = picked;
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-    // showAnimatedDialog(
-    //     context: context,
-    //     builder: (context) {
-    //       return AlertDialog(
-    //         backgroundColor: Colors.black,
-    //         content: Image.asset("assets/icons/WareHouse Added Icon.png"),
-    //       );
-    //     });
   }
 
-  final double _indent = 33;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF232323),
       drawer: Drawer(
         //  width: context.isPhone ? MediaQuery.sizeOf(context).width - 100 : 400,
         surfaceTintColor: const Color.fromARGB(255, 22, 22, 22),
@@ -251,7 +260,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
               ],
             )),
             GetBuilder<SalesController>(builder: (salesController) {
-               if (salesController.isOwner) {
+              if (salesController.isOwner) {
                 return const OwnerSwitchRoleButton();
               }
               if (salesController.user.person_type != null) {
@@ -380,8 +389,10 @@ class _SalesDashboardState extends State<SalesDashboard> {
         ),
       ),
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: false,
-        backgroundColor: const Color(0xFF232323),
+        //  backgroundColor: const Color(0xFF232323),
+        foregroundColor: Colors.white,
         title: const Text(
           'Sales Dashboard',
           style: TextStyle(
@@ -394,15 +405,354 @@ class _SalesDashboardState extends State<SalesDashboard> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          height: Get.height * 0.8,
-          alignment: Alignment.center,
-          child: const Text(
-            "This is sales dashboard",
+      body: ListView(
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: InkWell(
+                  onTap: () {},
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 70,
+                    decoration: ShapeDecoration(
+                      gradient: const LinearGradient(
+                        begin: Alignment(-1.00, 0.00),
+                        end: Alignment(1, 0),
+                        colors: [Color(0xFF5A57FF), Color(0xFF8C8AFF)],
+                      ),
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(
+                            width: 1, color: Color(0xFF918FFA)),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: const Text(
+                      'Create Indent',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w500,
+                        height: 0,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const Gap(10),
+              Expanded(
+                child: InkWell(
+                  onTap: () {},
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 70,
+                    decoration: ShapeDecoration(
+                      gradient: const LinearGradient(
+                        begin: Alignment(-1.00, 0.00),
+                        end: Alignment(1, 0),
+                        colors: [Color(0xFFFF5789), Color(0xFFFF97B6)],
+                      ),
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(
+                            width: 1, color: Color(0xFFFF85A9)),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: const Text(
+                      'View Indents',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w500,
+                        height: 0,
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ],
           ),
-        ),
-      ),
+          InkWell(
+            onTap: () {
+              _selectDate(context);
+            },
+            child: Container(
+              decoration: ShapeDecoration(
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    width: 1,
+                    color: Colors.white.withOpacity(0.30000001192092896),
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: Text(
+                formatter.format(_selectedDate),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontFamily: 'SF Pro Text',
+                  fontWeight: FontWeight.w400,
+                  // height: 0,
+                  // letterSpacing: -0.56,
+                ),
+              ).paddingAll(12),
+            ).paddingSymmetric(vertical: 12),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
+            height: 180,
+            decoration: ShapeDecoration(
+              color: const Color(0xFF303030),
+              shape: RoundedRectangleBorder(
+                side: const BorderSide(
+                    width: 0.3, color: Color.fromARGB(255, 191, 190, 190)),
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                    // flex: 2,
+                    child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Indents',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Expanded(child: Container()),
+                    const Text(
+                      '120',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const Text(
+                      'Indents Created',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w400,
+                      ),
+                    )
+                  ],
+                )),
+                Expanded(
+                  //  flex: 1,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Image.asset(
+                        "assets/icons/handyman.png",
+                        height: 114,
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ).paddingSymmetric(vertical: 12),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
+            height: 180,
+            decoration: ShapeDecoration(
+              color: const Color(0xFF303030),
+              shape: RoundedRectangleBorder(
+                side: const BorderSide(
+                    width: 0.3, color: Color.fromARGB(255, 191, 190, 190)),
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                    // flex: 2,
+                    child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Visitor',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Expanded(child: Container()),
+                    Container(
+                      width: 200,
+                      height: 36,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 5),
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(width: 1, color: Colors.white),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Visitor In',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontFamily: 'SF Pro Display',
+                              fontWeight: FontWeight.w400,
+                              height: 0,
+                            ),
+                          ),
+                          SizedBox(width: 28),
+                          Text(
+                            '10',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontFamily: 'SF Pro Display',
+                              fontWeight: FontWeight.w500,
+                              height: 0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: 200,
+                      height: 36,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 5),
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(width: 1, color: Colors.white),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Visitor Out',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontFamily: 'SF Pro Display',
+                              fontWeight: FontWeight.w400,
+                              height: 0,
+                            ),
+                          ),
+                          SizedBox(width: 28),
+                          Text(
+                            '10',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontFamily: 'SF Pro Display',
+                              fontWeight: FontWeight.w500,
+                              height: 0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                 
+                  ],
+                )),
+                Expanded(
+                  //  flex: 1,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Image.asset(
+                        "assets/icons/karamChari.png",
+                        height: 144,
+                      ).paddingOnly(right: 10),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ).paddingSymmetric(vertical: 12),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
+            height: 180,
+            decoration: ShapeDecoration(
+              color: const Color(0xFF303030),
+              shape: RoundedRectangleBorder(
+                side: const BorderSide(
+                    width: 0.3, color: Color.fromARGB(255, 191, 190, 190)),
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                    // flex: 2,
+                    child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Company',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Expanded(child: Container()),
+                    const Text(
+                      '120',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const Text(
+                      'Companies Added',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w400,
+                      ),
+                    )
+                  ],
+                )),
+                Expanded(
+                  //  flex: 1,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Image.asset(
+                        "assets/icons/pta nhi.png",
+                        height: 144,
+                      ).paddingOnly(right: 10),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ).paddingSymmetric(vertical: 12),
+        ],
+      ).paddingSymmetric(vertical: 12, horizontal: 16),
     );
   }
 }

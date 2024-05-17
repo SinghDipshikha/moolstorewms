@@ -8,7 +8,8 @@ import 'package:moolwmsstore/Common%20Data/repository/ownerRepo.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
-import 'package:moolwmsstore/Owner/Model/addChamber.dart';
+import 'package:moolwmsstore/Owner/Model/Chamber/addChamber.dart';
+import 'package:moolwmsstore/Owner/Model/Chamber/chamber.dart';
 import 'package:moolwmsstore/Owner/Model/addWarehouseField.dart';
 import 'package:moolwmsstore/Owner/Model/employee.dart';
 import 'package:moolwmsstore/Owner/Model/warehouse.dart';
@@ -78,6 +79,17 @@ class OwnerController extends GetxController {
         update();
       }
     });
+  }
+
+  Future<List<Chamber>?> getAllChamberByWareHouseId(var warehouseId) async {
+    var value = await apiClient
+        .getData("owner/getAllChamberByWareHouseId/$warehouseId");
+    if (value.data["message"] == "Chamber Detail for this warehouse") {
+      List result = value.data["result"];
+      return result.map((e) => Chamber.fromJson(e)).toList();
+    } else {
+      return null;
+    }
   }
 
   getAddWarehouseFields() async {
@@ -218,42 +230,42 @@ class OwnerController extends GetxController {
     if (role == "Security Guard") {
       Get.lazyPut(() => SecurityGuardRepo(
           sharedPreferences: Get.find(), apiClient: Get.find()));
-      Get.lazyPut(
-        () => SecurityGuardController(
-          isOwner: true,
-          user: user,
-          secGaurdRepo: Get.find<SecurityGuardRepo>(),
-          apiClient: Get.find<ApiClient>(),
-        ),
-      );
+      Get.put(
+          SecurityGuardController(
+            isOwner: true,
+            user: user,
+            secGaurdRepo: Get.find<SecurityGuardRepo>(),
+            apiClient: Get.find<ApiClient>(),
+          ),
+          permanent: true);
 
       Get.offAll(const SecurityGuard());
     }
     if (role == "HR") {
       Get.lazyPut(
           () => HrRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
-      Get.lazyPut(
-        () => HRController(
-          isOwner: true,
-          user: user,
-          hrRepo: Get.find<HrRepo>(),
-          apiClient: Get.find<ApiClient>(),
-        ),
-      );
+      Get.put(
+          HRController(
+            isOwner: true,
+            user: user,
+            hrRepo: Get.find<HrRepo>(),
+            apiClient: Get.find<ApiClient>(),
+          ),
+          permanent: true);
 
       Get.offAll(const HumanResouce());
     }
     if (role == "Sales") {
       Get.lazyPut(() =>
           SalesRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
-      Get.lazyPut(
-        () => SalesController(
-          isOwner: true,
-          user: user,
-          salesRepo: Get.find<SalesRepo>(),
-          apiClient: Get.find<ApiClient>(),
-        ),
-      );
+      Get.put(
+          SalesController(
+            isOwner: true,
+            user: user,
+            salesRepo: Get.find<SalesRepo>(),
+            apiClient: Get.find<ApiClient>(),
+          ),
+          permanent: true);
 
       Get.offAll(const Sales());
     }

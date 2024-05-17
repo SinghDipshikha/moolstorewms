@@ -381,7 +381,9 @@ mixin _$AddChamber {
   int? get chamber_height => throw _privateConstructorUsedError;
   int? get chamber_length => throw _privateConstructorUsedError;
   int? get chamber_breadth => throw _privateConstructorUsedError;
-  int? get no_of_floors => throw _privateConstructorUsedError;
+  int? get pallate_count => throw _privateConstructorUsedError;
+  int? get stacking_level => throw _privateConstructorUsedError;
+  int? get floor_number => throw _privateConstructorUsedError;
   int? get contolled_atmosphere => throw _privateConstructorUsedError;
   int? get ozone_filteration => throw _privateConstructorUsedError;
   int? get humidifier => throw _privateConstructorUsedError;
@@ -415,7 +417,9 @@ abstract class $AddChamberCopyWith<$Res> {
       int? chamber_height,
       int? chamber_length,
       int? chamber_breadth,
-      int? no_of_floors,
+      int? pallate_count,
+      int? stacking_level,
+      int? floor_number,
       int? contolled_atmosphere,
       int? ozone_filteration,
       int? humidifier});
@@ -450,7 +454,9 @@ class _$AddChamberCopyWithImpl<$Res, $Val extends AddChamber>
     Object? chamber_height = freezed,
     Object? chamber_length = freezed,
     Object? chamber_breadth = freezed,
-    Object? no_of_floors = freezed,
+    Object? pallate_count = freezed,
+    Object? stacking_level = freezed,
+    Object? floor_number = freezed,
     Object? contolled_atmosphere = freezed,
     Object? ozone_filteration = freezed,
     Object? humidifier = freezed,
@@ -520,9 +526,17 @@ class _$AddChamberCopyWithImpl<$Res, $Val extends AddChamber>
           ? _value.chamber_breadth
           : chamber_breadth // ignore: cast_nullable_to_non_nullable
               as int?,
-      no_of_floors: freezed == no_of_floors
-          ? _value.no_of_floors
-          : no_of_floors // ignore: cast_nullable_to_non_nullable
+      pallate_count: freezed == pallate_count
+          ? _value.pallate_count
+          : pallate_count // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stacking_level: freezed == stacking_level
+          ? _value.stacking_level
+          : stacking_level // ignore: cast_nullable_to_non_nullable
+              as int?,
+      floor_number: freezed == floor_number
+          ? _value.floor_number
+          : floor_number // ignore: cast_nullable_to_non_nullable
               as int?,
       contolled_atmosphere: freezed == contolled_atmosphere
           ? _value.contolled_atmosphere
@@ -565,7 +579,9 @@ abstract class _$$AddChamberImplCopyWith<$Res>
       int? chamber_height,
       int? chamber_length,
       int? chamber_breadth,
-      int? no_of_floors,
+      int? pallate_count,
+      int? stacking_level,
+      int? floor_number,
       int? contolled_atmosphere,
       int? ozone_filteration,
       int? humidifier});
@@ -598,7 +614,9 @@ class __$$AddChamberImplCopyWithImpl<$Res>
     Object? chamber_height = freezed,
     Object? chamber_length = freezed,
     Object? chamber_breadth = freezed,
-    Object? no_of_floors = freezed,
+    Object? pallate_count = freezed,
+    Object? stacking_level = freezed,
+    Object? floor_number = freezed,
     Object? contolled_atmosphere = freezed,
     Object? ozone_filteration = freezed,
     Object? humidifier = freezed,
@@ -668,9 +686,17 @@ class __$$AddChamberImplCopyWithImpl<$Res>
           ? _value.chamber_breadth
           : chamber_breadth // ignore: cast_nullable_to_non_nullable
               as int?,
-      no_of_floors: freezed == no_of_floors
-          ? _value.no_of_floors
-          : no_of_floors // ignore: cast_nullable_to_non_nullable
+      pallate_count: freezed == pallate_count
+          ? _value.pallate_count
+          : pallate_count // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stacking_level: freezed == stacking_level
+          ? _value.stacking_level
+          : stacking_level // ignore: cast_nullable_to_non_nullable
+              as int?,
+      floor_number: freezed == floor_number
+          ? _value.floor_number
+          : floor_number // ignore: cast_nullable_to_non_nullable
               as int?,
       contolled_atmosphere: freezed == contolled_atmosphere
           ? _value.contolled_atmosphere
@@ -708,7 +734,9 @@ class _$AddChamberImpl implements _AddChamber {
       this.chamber_height,
       this.chamber_length,
       this.chamber_breadth,
-      this.no_of_floors,
+      this.pallate_count,
+      this.stacking_level,
+      this.floor_number,
       this.contolled_atmosphere,
       this.ozone_filteration,
       this.humidifier});
@@ -749,7 +777,11 @@ class _$AddChamberImpl implements _AddChamber {
   @override
   final int? chamber_breadth;
   @override
-  final int? no_of_floors;
+  final int? pallate_count;
+  @override
+  final int? stacking_level;
+  @override
+  final int? floor_number;
   @override
   final int? contolled_atmosphere;
   @override
@@ -759,7 +791,7 @@ class _$AddChamberImpl implements _AddChamber {
 
   @override
   String toString() {
-    return 'AddChamber(user_id: $user_id, warehouse_id: $warehouse_id, chamber_number: $chamber_number, temp_type: $temp_type, temp_min_range: $temp_min_range, temp_max_range: $temp_max_range, type_of_racking: $type_of_racking, refrigeration_type: $refrigeration_type, chamber_capacity: $chamber_capacity, movement_height: $movement_height, pallet_dimension_height: $pallet_dimension_height, pallet_dimension_length: $pallet_dimension_length, pallet_dimension_breadth: $pallet_dimension_breadth, chamber_height: $chamber_height, chamber_length: $chamber_length, chamber_breadth: $chamber_breadth, no_of_floors: $no_of_floors, contolled_atmosphere: $contolled_atmosphere, ozone_filteration: $ozone_filteration, humidifier: $humidifier)';
+    return 'AddChamber(user_id: $user_id, warehouse_id: $warehouse_id, chamber_number: $chamber_number, temp_type: $temp_type, temp_min_range: $temp_min_range, temp_max_range: $temp_max_range, type_of_racking: $type_of_racking, refrigeration_type: $refrigeration_type, chamber_capacity: $chamber_capacity, movement_height: $movement_height, pallet_dimension_height: $pallet_dimension_height, pallet_dimension_length: $pallet_dimension_length, pallet_dimension_breadth: $pallet_dimension_breadth, chamber_height: $chamber_height, chamber_length: $chamber_length, chamber_breadth: $chamber_breadth, pallate_count: $pallate_count, stacking_level: $stacking_level, floor_number: $floor_number, contolled_atmosphere: $contolled_atmosphere, ozone_filteration: $ozone_filteration, humidifier: $humidifier)';
   }
 
   @override
@@ -801,8 +833,12 @@ class _$AddChamberImpl implements _AddChamber {
                 other.chamber_length == chamber_length) &&
             (identical(other.chamber_breadth, chamber_breadth) ||
                 other.chamber_breadth == chamber_breadth) &&
-            (identical(other.no_of_floors, no_of_floors) ||
-                other.no_of_floors == no_of_floors) &&
+            (identical(other.pallate_count, pallate_count) ||
+                other.pallate_count == pallate_count) &&
+            (identical(other.stacking_level, stacking_level) ||
+                other.stacking_level == stacking_level) &&
+            (identical(other.floor_number, floor_number) ||
+                other.floor_number == floor_number) &&
             (identical(other.contolled_atmosphere, contolled_atmosphere) ||
                 other.contolled_atmosphere == contolled_atmosphere) &&
             (identical(other.ozone_filteration, ozone_filteration) ||
@@ -831,7 +867,9 @@ class _$AddChamberImpl implements _AddChamber {
         chamber_height,
         chamber_length,
         chamber_breadth,
-        no_of_floors,
+        pallate_count,
+        stacking_level,
+        floor_number,
         contolled_atmosphere,
         ozone_filteration,
         humidifier
@@ -869,7 +907,9 @@ abstract class _AddChamber implements AddChamber {
       final int? chamber_height,
       final int? chamber_length,
       final int? chamber_breadth,
-      final int? no_of_floors,
+      final int? pallate_count,
+      final int? stacking_level,
+      final int? floor_number,
       final int? contolled_atmosphere,
       final int? ozone_filteration,
       final int? humidifier}) = _$AddChamberImpl;
@@ -910,7 +950,11 @@ abstract class _AddChamber implements AddChamber {
   @override
   int? get chamber_breadth;
   @override
-  int? get no_of_floors;
+  int? get pallate_count;
+  @override
+  int? get stacking_level;
+  @override
+  int? get floor_number;
   @override
   int? get contolled_atmosphere;
   @override

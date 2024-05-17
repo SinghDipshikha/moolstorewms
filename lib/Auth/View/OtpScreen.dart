@@ -77,6 +77,7 @@ class _OtpScreenState extends State<OtpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: InkWell(
         onTap: submitOtp,
@@ -88,7 +89,7 @@ class _OtpScreenState extends State<OtpScreen> {
             gradient: const LinearGradient(
               begin: Alignment(1.00, 0.00),
               end: Alignment(-1, 0),
-              colors: [Color(0xFFFD578A), Color(0xFF5B57FE)],
+              colors: [Color(0xFF2D2D2D), Color(0xFF1F1F1F)],
             ),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -172,7 +173,7 @@ class _OtpScreenState extends State<OtpScreen> {
               ),
             ),
             OTPTextFieldV2(
-              spaceBetween: 4,
+              spaceBetween: 2,
               // contentPadding:
               //     const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
               otpFieldStyle: OtpFieldStyle(
