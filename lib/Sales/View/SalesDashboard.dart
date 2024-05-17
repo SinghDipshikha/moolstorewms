@@ -420,7 +420,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
                       ),
                     ),
                     child: const Text(
-                      'Create Ticket',
+                      'Create Indent',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
@@ -437,6 +437,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
                 child: InkWell(
                   onTap: () {},
                   child: Container(
+                    alignment: Alignment.center,
                     height: 70,
                     decoration: ShapeDecoration(
                       gradient: const LinearGradient(
@@ -448,6 +449,16 @@ class _SalesDashboardState extends State<SalesDashboard> {
                         side: const BorderSide(
                             width: 1, color: Color(0xFFFF85A9)),
                         borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: const Text(
+                      'View Indents',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w500,
+                        height: 0,
                       ),
                     ),
                   ),
