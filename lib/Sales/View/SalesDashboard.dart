@@ -44,7 +44,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color(0xFF232323),
       drawer: Drawer(
         //  width: context.isPhone ? MediaQuery.sizeOf(context).width - 100 : 400,
         surfaceTintColor: const Color.fromARGB(255, 22, 22, 22),
@@ -502,57 +502,255 @@ class _SalesDashboardState extends State<SalesDashboard> {
             ).paddingSymmetric(vertical: 12),
           ),
           Container(
+            padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
             height: 180,
             decoration: ShapeDecoration(
               color: const Color(0xFF303030),
               shape: RoundedRectangleBorder(
-                side: const BorderSide(width: 1, color: Colors.white),
+                side: const BorderSide(
+                    width: 0.3, color: Color.fromARGB(255, 191, 190, 190)),
                 borderRadius: BorderRadius.circular(20),
               ),
             ),
             child: Row(
               children: [
                 Expanded(
-                    flex: 2,
+                    // flex: 2,
                     child: Column(
-                      children: [
-                        const Text(
-                          'Tickets',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                            fontFamily: 'SF Pro Display',
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        Expanded(child: Container()),
-                        const Text(
-                          '120',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 22,
-                            fontFamily: 'SF Pro Display',
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        const Text(
-                          'Tickets Created',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: 'SF Pro Display',
-                            fontWeight: FontWeight.w400,
-                          ),
-                        )
-                      ],
-                    )),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Indents',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Expanded(child: Container()),
+                    const Text(
+                      '120',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const Text(
+                      'Indents Created',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w400,
+                      ),
+                    )
+                  ],
+                )),
                 Expanded(
-                  flex: 1,
-                  child: Image.asset("assets/icons/handyman.png"),
+                  //  flex: 1,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Image.asset(
+                        "assets/icons/handyman.png",
+                        height: 114,
+                      ),
+                    ],
+                  ),
                 )
               ],
-            ).paddingSymmetric(vertical: 14, horizontal: 12),
-          )
+            ),
+          ).paddingSymmetric(vertical: 12),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
+            height: 180,
+            decoration: ShapeDecoration(
+              color: const Color(0xFF303030),
+              shape: RoundedRectangleBorder(
+                side: const BorderSide(
+                    width: 0.3, color: Color.fromARGB(255, 191, 190, 190)),
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                    // flex: 2,
+                    child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Visitor',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Expanded(child: Container()),
+                    Container(
+                      width: 200,
+                      height: 36,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 5),
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(width: 1, color: Colors.white),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Visitor In',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontFamily: 'SF Pro Display',
+                              fontWeight: FontWeight.w400,
+                              height: 0,
+                            ),
+                          ),
+                          SizedBox(width: 28),
+                          Text(
+                            '10',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontFamily: 'SF Pro Display',
+                              fontWeight: FontWeight.w500,
+                              height: 0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: 200,
+                      height: 36,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 5),
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(width: 1, color: Colors.white),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Visitor Out',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontFamily: 'SF Pro Display',
+                              fontWeight: FontWeight.w400,
+                              height: 0,
+                            ),
+                          ),
+                          SizedBox(width: 28),
+                          Text(
+                            '10',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontFamily: 'SF Pro Display',
+                              fontWeight: FontWeight.w500,
+                              height: 0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                 
+                  ],
+                )),
+                Expanded(
+                  //  flex: 1,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Image.asset(
+                        "assets/icons/karamChari.png",
+                        height: 144,
+                      ).paddingOnly(right: 10),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ).paddingSymmetric(vertical: 12),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
+            height: 180,
+            decoration: ShapeDecoration(
+              color: const Color(0xFF303030),
+              shape: RoundedRectangleBorder(
+                side: const BorderSide(
+                    width: 0.3, color: Color.fromARGB(255, 191, 190, 190)),
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                    // flex: 2,
+                    child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Company',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Expanded(child: Container()),
+                    const Text(
+                      '120',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const Text(
+                      'Companies Added',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w400,
+                      ),
+                    )
+                  ],
+                )),
+                Expanded(
+                  //  flex: 1,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Image.asset(
+                        "assets/icons/pta nhi.png",
+                        height: 144,
+                      ).paddingOnly(right: 10),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ).paddingSymmetric(vertical: 12),
         ],
       ).paddingSymmetric(vertical: 12, horizontal: 16),
     );

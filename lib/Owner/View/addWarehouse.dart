@@ -30,11 +30,11 @@ class AddWarehouse extends StatelessWidget {
         Get.find<OwnerController>().getAddWarehouseFields();
       }, builder: (ownerController) {
         final formKey = GlobalKey<FormState>();
-        return SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(14.0),
-            child: Form(
-              key: formKey,
+        return Padding(
+          padding: const EdgeInsets.all(14.0),
+          child: Form(
+            key: formKey,
+            child: SingleChildScrollView(
               child: Column(
                 children: [
                   Padding(
