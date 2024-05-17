@@ -230,42 +230,42 @@ class OwnerController extends GetxController {
     if (role == "Security Guard") {
       Get.lazyPut(() => SecurityGuardRepo(
           sharedPreferences: Get.find(), apiClient: Get.find()));
-      Get.lazyPut(
-        () => SecurityGuardController(
-          isOwner: true,
-          user: user,
-          secGaurdRepo: Get.find<SecurityGuardRepo>(),
-          apiClient: Get.find<ApiClient>(),
-        ),
-      );
+      Get.put(
+          SecurityGuardController(
+            isOwner: true,
+            user: user,
+            secGaurdRepo: Get.find<SecurityGuardRepo>(),
+            apiClient: Get.find<ApiClient>(),
+          ),
+          permanent: true);
 
       Get.offAll(const SecurityGuard());
     }
     if (role == "HR") {
       Get.lazyPut(
           () => HrRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
-      Get.lazyPut(
-        () => HRController(
-          isOwner: true,
-          user: user,
-          hrRepo: Get.find<HrRepo>(),
-          apiClient: Get.find<ApiClient>(),
-        ),
-      );
+      Get.put(
+          HRController(
+            isOwner: true,
+            user: user,
+            hrRepo: Get.find<HrRepo>(),
+            apiClient: Get.find<ApiClient>(),
+          ),
+          permanent: true);
 
       Get.offAll(const HumanResouce());
     }
     if (role == "Sales") {
       Get.lazyPut(() =>
           SalesRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
-      Get.lazyPut(
-        () => SalesController(
-          isOwner: true,
-          user: user,
-          salesRepo: Get.find<SalesRepo>(),
-          apiClient: Get.find<ApiClient>(),
-        ),
-      );
+      Get.put(
+          SalesController(
+            isOwner: true,
+            user: user,
+            salesRepo: Get.find<SalesRepo>(),
+            apiClient: Get.find<ApiClient>(),
+          ),
+          permanent: true);
 
       Get.offAll(const Sales());
     }

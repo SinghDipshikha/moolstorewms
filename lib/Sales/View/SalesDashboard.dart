@@ -251,7 +251,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
               ],
             )),
             GetBuilder<SalesController>(builder: (salesController) {
-               if (salesController.isOwner) {
+              if (salesController.isOwner) {
                 return const OwnerSwitchRoleButton();
               }
               if (salesController.user.person_type != null) {
@@ -394,15 +394,59 @@ class _SalesDashboardState extends State<SalesDashboard> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          height: Get.height * 0.8,
-          alignment: Alignment.center,
-          child: const Text(
-            "This is sales dashboard",
-          ),
-        ),
-      ),
+      body: ListView(
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: InkWell(
+                  onTap: () {
+                    
+                  },
+                  child: Container(
+                    height: 70,
+                    decoration: ShapeDecoration(
+                      gradient: const LinearGradient(
+                        begin: Alignment(-1.00, 0.00),
+                        end: Alignment(1, 0),
+                        colors: [Color(0xFF5A57FF), Color(0xFF8C8AFF)],
+                      ),
+                      shape: RoundedRectangleBorder(
+                        side:
+                            const BorderSide(width: 1, color: Color(0xFF918FFA)),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const Gap(10),
+              Expanded(
+                child: InkWell(
+                  onTap: () {
+                    
+                  },
+                  child: Container(
+                    height: 70,
+                    decoration: ShapeDecoration(
+                      gradient: const LinearGradient(
+                        begin: Alignment(-1.00, 0.00),
+                        end: Alignment(1, 0),
+                        colors: [Color(0xFFFF5789), Color(0xFFFF97B6)],
+                      ),
+                      shape: RoundedRectangleBorder(
+                        side:
+                            const BorderSide(width: 1, color: Color(0xFFFF85A9)),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          )
+        ],
+      ).paddingSymmetric(vertical: 12, horizontal: 16),
     );
   }
 }
