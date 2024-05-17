@@ -62,237 +62,6 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
             ),
           ),
         ),
-        // body: SingleChildScrollView(
-        //   child: Padding(
-        //       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
-        //       child: Wrap(
-        //         // alignment: WrapAlignment.,
-        //         runSpacing: 20,
-        //         spacing: 20,
-        //         children: List.generate(9, (index) {
-        //           if (index == 1) {
-        //             return Container(
-        //               width: 400,
-        //               height: 240,
-        //               decoration: ShapeDecoration(
-        //                 gradient: const LinearGradient(
-        //                   begin: Alignment(0.00, -1.00),
-        //                   end: Alignment(0, 1),
-        //                   colors: [Color(0xFF373737), Colors.black],
-        //                 ),
-        //                 shape: RoundedRectangleBorder(
-        //                   borderRadius: BorderRadius.circular(10),
-        //                 ),
-        //               ),
-        //               child: Row(
-        //                 children: [
-        //                   const Gap(20),
-        //                   Padding(
-        //                     padding: const EdgeInsets.symmetric(vertical: 20),
-        //                     child: Column(
-        //                       crossAxisAlignment: CrossAxisAlignment.start,
-        //                       children: [
-        //                         const Text(
-        //                           'Vehicle\nMovement',
-        //                           style: TextStyle(
-        //                             color: Colors.white,
-        //                             fontSize: 20.57,
-        //                             fontWeight: FontWeight.w700,
-        //                           ),
-        //                         ),
-        //                         Expanded(
-        //                           child: Container(),
-        //                         ),
-        //                         Row(
-        //                           mainAxisSize: MainAxisSize.min,
-        //                           children: [
-        //                             Container(
-        //                               width: 12,
-        //                               height: 12,
-        //                               decoration: const BoxDecoration(
-        //                                   color: Colors.white),
-        //                             ),
-        //                             const Gap(10),
-        //                             const Text(
-        //                               'Inward',
-        //                               style: TextStyle(
-        //                                 color: Colors.white,
-        //                                 fontSize: 17.14,
-        //                                 fontWeight: FontWeight.w500,
-        //                               ),
-        //                             ),
-        //                           ],
-        //                         ),
-        //                         Row(
-        //                           children: [
-        //                             Container(
-        //                               width: 12,
-        //                               height: 12,
-        //                               decoration: const BoxDecoration(
-        //                                   color: Color(0xFF9B9B9B)),
-        //                             ),
-        //                             const Gap(10),
-        //                             const Text(
-        //                               'Outward',
-        //                               style: TextStyle(
-        //                                 color: Colors.white,
-        //                                 fontSize: 17.14,
-        //                                 fontWeight: FontWeight.w500,
-        //                               ),
-        //                             ),
-        //                           ],
-        //                         )
-        //                       ],
-        //                     ),
-        //                   ),
-        //                   Expanded(
-        //                       child: Column(
-        //                     children: [
-        //                       SizedBox(
-        //                         height: 200,
-        //                         width: 200,
-        //                         child:
-        //                             Stack(alignment: Alignment.center, children: [
-        //                           CircularPercentIndicator(
-        //                             animation: true,
-        //                             reverse: true,
-        //                             lineWidth: 40,
-        //                             percent: 0.5,
-        //                             radius: 80.0,
-        //                             circularStrokeCap: CircularStrokeCap.butt,
-        //                             progressColor: const Color(0xB2D3D3D3),
-        //                             backgroundColor: Colors.transparent,
-        //                           ),
-        //                           CircularPercentIndicator(
-        //                             animation: true,
-        //                             //reverse: true,
-        //                             lineWidth: 40,
-        //                             radius: 80.0,
-        //                             circularStrokeCap: CircularStrokeCap.butt,
-        //                             progressColor: Colors.white,
-        //                             percent: 0.75,
-        //                             backgroundColor: Colors.transparent,
-        //                           ),
-        //                         ]),
-        //                       )
-        //                     ],
-        //                   ))
-        //                 ],
-        //               ),
-        //             );
-        //           }
-        //           return Container(
-        //             width: 400,
-        //             height: 240,
-        //             decoration: ShapeDecoration(
-        //               gradient: const LinearGradient(
-        //                 begin: Alignment(0.00, -1.00),
-        //                 end: Alignment(0, 1),
-        //                 colors: [Color(0xFF373737), Colors.black],
-        //               ),
-        //               shape: RoundedRectangleBorder(
-        //                 borderRadius: BorderRadius.circular(10),
-        //               ),
-        //             ),
-        //             child: Row(
-        //               children: [
-        //                 const Gap(20),
-        //                 Padding(
-        //                   padding: const EdgeInsets.symmetric(vertical: 20),
-        //                   child: Column(
-        //                     crossAxisAlignment: CrossAxisAlignment.start,
-        //                     children: [
-        //                       const Text(
-        //                         'No. of\nWarehouses',
-        //                         style: TextStyle(
-        //                           color: Colors.white,
-        //                           fontSize: 20.57,
-        //                           fontWeight: FontWeight.w700,
-        //                         ),
-        //                       ),
-        //                       Expanded(
-        //                         child: Container(),
-        //                       ),
-        //                       Row(
-        //                         mainAxisSize: MainAxisSize.min,
-        //                         children: [
-        //                           Container(
-        //                             width: 12,
-        //                             height: 12,
-        //                             decoration:
-        //                                 const BoxDecoration(color: Colors.white),
-        //                           ),
-        //                           const Gap(10),
-        //                           const Text(
-        //                             'Added',
-        //                             style: TextStyle(
-        //                               color: Colors.white,
-        //                               fontSize: 17.14,
-        //                               fontWeight: FontWeight.w500,
-        //                             ),
-        //                           ),
-        //                         ],
-        //                       ),
-        //                       Row(
-        //                         children: [
-        //                           Container(
-        //                             width: 12,
-        //                             height: 12,
-        //                             decoration: const BoxDecoration(
-        //                                 color: Color(0xFF9B9B9B)),
-        //                           ),
-        //                           const Gap(10),
-        //                           const Text(
-        //                             'Deleted',
-        //                             style: TextStyle(
-        //                               color: Colors.white,
-        //                               fontSize: 17.14,
-        //                               fontWeight: FontWeight.w500,
-        //                             ),
-        //                           ),
-        //                         ],
-        //                       )
-        //                     ],
-        //                   ),
-        //                 ),
-        //                 Expanded(
-        //                     child: Column(
-        //                   children: [
-        //                     SizedBox(
-        //                       height: 200,
-        //                       width: 200,
-        //                       child:
-        //                           Stack(alignment: Alignment.center, children: [
-        //                         CircularPercentIndicator(
-        //                           animation: true,
-        //                           reverse: true,
-        //                           lineWidth: 40,
-        //                           percent: 0.5,
-        //                           radius: 50.0,
-        //                           circularStrokeCap: CircularStrokeCap.butt,
-        //                           progressColor: const Color(0xB2D3D3D3),
-        //                           backgroundColor: Colors.transparent,
-        //                         ),
-        //                         CircularPercentIndicator(
-        //                           reverse: true,
-        //                           lineWidth: 40,
-        //                           radius: 80.0,
-        //                           circularStrokeCap: CircularStrokeCap.butt,
-        //                           progressColor: Colors.white,
-        //                           percent: 0.75,
-        //                           backgroundColor: Colors.transparent,
-        //                         ),
-        //                       ]),
-        //                     )
-        //                   ],
-        //                 ))
-        //               ],
-        //             ),
-        //           );
-        //         }),
-        //       )),
-        // ),
-
         body: SingleChildScrollView(
           child: Center(
             child: Column(
@@ -497,14 +266,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                   width: 380,
                   height: 100,
                   decoration: ShapeDecoration(
-                    gradient: LinearGradient(
-                      begin: const Alignment(0.00, -1.00),
-                      end: const Alignment(0, 1),
-                      colors: [
-                        Colors.white.withOpacity(0.10000000149011612),
-                        Colors.white.withOpacity(0.10000000149011612)
-                      ],
-                    ),
+                    color: const Color(0xFF303030),
                     shape: RoundedRectangleBorder(
                       side: const BorderSide(width: 1, color: Colors.white),
                       borderRadius: BorderRadius.circular(25),
@@ -523,10 +285,9 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                               width: 42,
                               height: 42,
                               decoration: const BoxDecoration(
-                                color: Color.fromARGB(255, 22, 22, 22),
+                                color: Color(0xFF303030),
                                 image: DecorationImage(
-                                  image: AssetImage(
-                                      "assets/images/materialOwner.png"),
+                                  image: AssetImage("assets/images/box.png"),
                                   fit: BoxFit.fill,
                                 ),
                               ),
@@ -606,14 +367,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                   width: 380,
                   height: 100,
                   decoration: ShapeDecoration(
-                    gradient: LinearGradient(
-                      begin: const Alignment(0.00, -1.00),
-                      end: const Alignment(0, 1),
-                      colors: [
-                        Colors.white.withOpacity(0.10000000149011612),
-                        Colors.white.withOpacity(0.10000000149011612)
-                      ],
-                    ),
+                    color: const Color(0xFF303030),
                     shape: RoundedRectangleBorder(
                       side: const BorderSide(width: 1, color: Colors.white),
                       borderRadius: BorderRadius.circular(25),
@@ -713,14 +467,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                   width: 380,
                   height: 100,
                   decoration: ShapeDecoration(
-                    gradient: LinearGradient(
-                      begin: const Alignment(0.00, -1.00),
-                      end: const Alignment(0, 1),
-                      colors: [
-                        Colors.white.withOpacity(0.10000000149011612),
-                        Colors.white.withOpacity(0.10000000149011612)
-                      ],
-                    ),
+                    color: const Color(0xFF303030),
                     shape: RoundedRectangleBorder(
                       side: const BorderSide(width: 1, color: Colors.white),
                       borderRadius: BorderRadius.circular(25),
@@ -815,14 +562,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                   width: 380,
                   height: 100,
                   decoration: ShapeDecoration(
-                    gradient: LinearGradient(
-                      begin: const Alignment(0.00, -1.00),
-                      end: const Alignment(0, 1),
-                      colors: [
-                        Colors.white.withOpacity(0.10000000149011612),
-                        Colors.white.withOpacity(0.10000000149011612)
-                      ],
-                    ),
+                    color: const Color(0xFF303030),
                     shape: RoundedRectangleBorder(
                       side: const BorderSide(width: 1, color: Colors.white),
                       borderRadius: BorderRadius.circular(25),
@@ -877,7 +617,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
-                              Gap(30),
+                              Gap(40),
                               Text(
                                 '50',
                                 style: TextStyle(
@@ -900,7 +640,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
-                              Gap(20),
+                              Gap(30),
                               Text(
                                 '80',
                                 style: TextStyle(
@@ -925,14 +665,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                       width: 180,
                       height: 150,
                       decoration: ShapeDecoration(
-                        gradient: LinearGradient(
-                          begin: const Alignment(0.00, -1.00),
-                          end: const Alignment(0, 1),
-                          colors: [
-                            Colors.white.withOpacity(0.10000000149011612),
-                            Colors.white.withOpacity(0.10000000149011612)
-                          ],
-                        ),
+                        color: const Color(0xFF303030),
                         shape: RoundedRectangleBorder(
                           side: const BorderSide(width: 1, color: Colors.white),
                           borderRadius: BorderRadius.circular(25),
@@ -1017,7 +750,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                   children: [
                                     Container(
                                       width: 50,
-                                      height: 12,
+                                      height: 20,
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 2),
                                       decoration: ShapeDecoration(
@@ -1037,14 +770,14 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                             color: Color(0xFF595959),
                                             fontSize: 7,
                                             fontFamily: 'SF Pro Display',
-                                            fontWeight: FontWeight.w300,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),
                                     ),
                                     Container(
-                                      width: 37,
-                                      height: 12,
+                                      width: 50,
+                                      height: 20,
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 2),
                                       decoration: ShapeDecoration(
@@ -1064,14 +797,14 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                             color: Color(0xFF595959),
                                             fontSize: 7,
                                             fontFamily: 'SF Pro Display',
-                                            fontWeight: FontWeight.w300,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),
                                     ),
                                     Container(
-                                      width: 37,
-                                      height: 12,
+                                      width: 40,
+                                      height: 20,
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 2),
                                       decoration: ShapeDecoration(
@@ -1085,17 +818,18 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                       ),
                                       child: const Center(
                                         child: Text(
-                                          'Pallete',
+                                          'Pallet',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             color: Color(0xFF595959),
                                             fontSize: 7,
                                             fontFamily: 'SF Pro Display',
-                                            fontWeight: FontWeight.w300,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),
                                     ),
+                                    const Gap(8),
                                   ],
                                 ),
                               ],
@@ -1108,14 +842,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                       width: 180,
                       height: 150,
                       decoration: ShapeDecoration(
-                        gradient: LinearGradient(
-                          begin: const Alignment(0.00, -1.00),
-                          end: const Alignment(0, 1),
-                          colors: [
-                            Colors.white.withOpacity(0.10000000149011612),
-                            Colors.white.withOpacity(0.10000000149011612)
-                          ],
-                        ),
+                        color: const Color(0xFF303030),
                         shape: RoundedRectangleBorder(
                           side: const BorderSide(width: 1, color: Colors.white),
                           borderRadius: BorderRadius.circular(25),
@@ -1151,7 +878,6 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                   ),
                                 ),
                               ),
-                              const Gap(10),
                               Padding(
                                 padding: const EdgeInsets.all(4.0),
                                 child: Row(
@@ -1160,7 +886,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      width: 37,
+                                      width: 50,
                                       height: 12,
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 2),
@@ -1181,7 +907,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                             color: Color(0xFF595959),
                                             fontSize: 7,
                                             fontFamily: 'SF Pro Display',
-                                            fontWeight: FontWeight.w300,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),
@@ -1208,13 +934,13 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                             color: Color(0xFF595959),
                                             fontSize: 7,
                                             fontFamily: 'SF Pro Display',
-                                            fontWeight: FontWeight.w300,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),
                                     ),
                                     Container(
-                                      width: 37,
+                                      width: 60,
                                       height: 12,
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 2),
@@ -1235,7 +961,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                             color: Color(0xFF595959),
                                             fontSize: 7,
                                             fontFamily: 'SF Pro Display',
-                                            fontWeight: FontWeight.w300,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),

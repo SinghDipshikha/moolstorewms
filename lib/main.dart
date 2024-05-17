@@ -51,19 +51,9 @@ class _DipshikaAppState extends State<DipshikaApp> {
         data: MediaQuery.of(context)
             .copyWith(textScaler: const TextScaler.linear(0.9)),
         child: GetMaterialApp(
-          // builder: (context, child) {
-          //   return MediaQuery(
-          //     data: MediaQuery.of(context)
-          //         .copyWith(textScaler: const TextScaler.linear(1.0)),
-          //     child: const Auth(),
-          //   );
-          // },
+      
           home: const Auth(),
-          //   home: const MyHomePage(),
-          // home: const TestQr(),
-          //  home: const TableExampleApp(),
-          // home: const AddEmployeeCareerDetails(),
-          //home: ChamberDesign(),
+   
           debugShowCheckedModeBanner: false,
           locale: localizeController.locale,
           fallbackLocale: Locale(

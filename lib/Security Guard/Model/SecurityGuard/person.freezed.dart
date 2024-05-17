@@ -21,18 +21,10 @@ Person _$PersonFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Person {
   int? get id => throw _privateConstructorUsedError;
-  int? get ticket_generate_by => throw _privateConstructorUsedError;
-  String? get open_visit_ticket_number => throw _privateConstructorUsedError;
-  String? get visitor_name => throw _privateConstructorUsedError;
-  String? get visitor_ph_number => throw _privateConstructorUsedError;
-  String? get does_have_vehicle => throw _privateConstructorUsedError;
-  String? get vehicle_number => throw _privateConstructorUsedError;
-  String? get in_out_status => throw _privateConstructorUsedError;
-  String? get material_inside => throw _privateConstructorUsedError;
-  String? get products_data => throw _privateConstructorUsedError;
-  dynamic get status => throw _privateConstructorUsedError;
+  String? get person_name => throw _privateConstructorUsedError;
+  String? get person_phone => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
   DateTime? get created_at => throw _privateConstructorUsedError;
-  dynamic get updated_at => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,18 +38,10 @@ abstract class $PersonCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
-      int? ticket_generate_by,
-      String? open_visit_ticket_number,
-      String? visitor_name,
-      String? visitor_ph_number,
-      String? does_have_vehicle,
-      String? vehicle_number,
-      String? in_out_status,
-      String? material_inside,
-      String? products_data,
-      dynamic status,
-      DateTime? created_at,
-      dynamic updated_at});
+      String? person_name,
+      String? person_phone,
+      String? status,
+      DateTime? created_at});
 }
 
 /// @nodoc
@@ -74,72 +58,32 @@ class _$PersonCopyWithImpl<$Res, $Val extends Person>
   @override
   $Res call({
     Object? id = freezed,
-    Object? ticket_generate_by = freezed,
-    Object? open_visit_ticket_number = freezed,
-    Object? visitor_name = freezed,
-    Object? visitor_ph_number = freezed,
-    Object? does_have_vehicle = freezed,
-    Object? vehicle_number = freezed,
-    Object? in_out_status = freezed,
-    Object? material_inside = freezed,
-    Object? products_data = freezed,
+    Object? person_name = freezed,
+    Object? person_phone = freezed,
     Object? status = freezed,
     Object? created_at = freezed,
-    Object? updated_at = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      ticket_generate_by: freezed == ticket_generate_by
-          ? _value.ticket_generate_by
-          : ticket_generate_by // ignore: cast_nullable_to_non_nullable
-              as int?,
-      open_visit_ticket_number: freezed == open_visit_ticket_number
-          ? _value.open_visit_ticket_number
-          : open_visit_ticket_number // ignore: cast_nullable_to_non_nullable
+      person_name: freezed == person_name
+          ? _value.person_name
+          : person_name // ignore: cast_nullable_to_non_nullable
               as String?,
-      visitor_name: freezed == visitor_name
-          ? _value.visitor_name
-          : visitor_name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      visitor_ph_number: freezed == visitor_ph_number
-          ? _value.visitor_ph_number
-          : visitor_ph_number // ignore: cast_nullable_to_non_nullable
-              as String?,
-      does_have_vehicle: freezed == does_have_vehicle
-          ? _value.does_have_vehicle
-          : does_have_vehicle // ignore: cast_nullable_to_non_nullable
-              as String?,
-      vehicle_number: freezed == vehicle_number
-          ? _value.vehicle_number
-          : vehicle_number // ignore: cast_nullable_to_non_nullable
-              as String?,
-      in_out_status: freezed == in_out_status
-          ? _value.in_out_status
-          : in_out_status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      material_inside: freezed == material_inside
-          ? _value.material_inside
-          : material_inside // ignore: cast_nullable_to_non_nullable
-              as String?,
-      products_data: freezed == products_data
-          ? _value.products_data
-          : products_data // ignore: cast_nullable_to_non_nullable
+      person_phone: freezed == person_phone
+          ? _value.person_phone
+          : person_phone // ignore: cast_nullable_to_non_nullable
               as String?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       created_at: freezed == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updated_at: freezed == updated_at
-          ? _value.updated_at
-          : updated_at // ignore: cast_nullable_to_non_nullable
-              as dynamic,
     ) as $Val);
   }
 }
@@ -155,18 +99,10 @@ abstract class _$$GetAllPersonsBySecurityGaurdImplCopyWith<$Res>
   @useResult
   $Res call(
       {int? id,
-      int? ticket_generate_by,
-      String? open_visit_ticket_number,
-      String? visitor_name,
-      String? visitor_ph_number,
-      String? does_have_vehicle,
-      String? vehicle_number,
-      String? in_out_status,
-      String? material_inside,
-      String? products_data,
-      dynamic status,
-      DateTime? created_at,
-      dynamic updated_at});
+      String? person_name,
+      String? person_phone,
+      String? status,
+      DateTime? created_at});
 }
 
 /// @nodoc
@@ -182,72 +118,32 @@ class __$$GetAllPersonsBySecurityGaurdImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? ticket_generate_by = freezed,
-    Object? open_visit_ticket_number = freezed,
-    Object? visitor_name = freezed,
-    Object? visitor_ph_number = freezed,
-    Object? does_have_vehicle = freezed,
-    Object? vehicle_number = freezed,
-    Object? in_out_status = freezed,
-    Object? material_inside = freezed,
-    Object? products_data = freezed,
+    Object? person_name = freezed,
+    Object? person_phone = freezed,
     Object? status = freezed,
     Object? created_at = freezed,
-    Object? updated_at = freezed,
   }) {
     return _then(_$GetAllPersonsBySecurityGaurdImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      ticket_generate_by: freezed == ticket_generate_by
-          ? _value.ticket_generate_by
-          : ticket_generate_by // ignore: cast_nullable_to_non_nullable
-              as int?,
-      open_visit_ticket_number: freezed == open_visit_ticket_number
-          ? _value.open_visit_ticket_number
-          : open_visit_ticket_number // ignore: cast_nullable_to_non_nullable
+      person_name: freezed == person_name
+          ? _value.person_name
+          : person_name // ignore: cast_nullable_to_non_nullable
               as String?,
-      visitor_name: freezed == visitor_name
-          ? _value.visitor_name
-          : visitor_name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      visitor_ph_number: freezed == visitor_ph_number
-          ? _value.visitor_ph_number
-          : visitor_ph_number // ignore: cast_nullable_to_non_nullable
-              as String?,
-      does_have_vehicle: freezed == does_have_vehicle
-          ? _value.does_have_vehicle
-          : does_have_vehicle // ignore: cast_nullable_to_non_nullable
-              as String?,
-      vehicle_number: freezed == vehicle_number
-          ? _value.vehicle_number
-          : vehicle_number // ignore: cast_nullable_to_non_nullable
-              as String?,
-      in_out_status: freezed == in_out_status
-          ? _value.in_out_status
-          : in_out_status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      material_inside: freezed == material_inside
-          ? _value.material_inside
-          : material_inside // ignore: cast_nullable_to_non_nullable
-              as String?,
-      products_data: freezed == products_data
-          ? _value.products_data
-          : products_data // ignore: cast_nullable_to_non_nullable
+      person_phone: freezed == person_phone
+          ? _value.person_phone
+          : person_phone // ignore: cast_nullable_to_non_nullable
               as String?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       created_at: freezed == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updated_at: freezed == updated_at
-          ? _value.updated_at
-          : updated_at // ignore: cast_nullable_to_non_nullable
-              as dynamic,
     ));
   }
 }
@@ -258,18 +154,10 @@ class _$GetAllPersonsBySecurityGaurdImpl
     implements _GetAllPersonsBySecurityGaurd {
   const _$GetAllPersonsBySecurityGaurdImpl(
       {this.id,
-      this.ticket_generate_by,
-      this.open_visit_ticket_number,
-      this.visitor_name,
-      this.visitor_ph_number,
-      this.does_have_vehicle,
-      this.vehicle_number,
-      this.in_out_status,
-      this.material_inside,
-      this.products_data,
+      this.person_name,
+      this.person_phone,
       this.status,
-      this.created_at,
-      this.updated_at});
+      this.created_at});
 
   factory _$GetAllPersonsBySecurityGaurdImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -278,33 +166,17 @@ class _$GetAllPersonsBySecurityGaurdImpl
   @override
   final int? id;
   @override
-  final int? ticket_generate_by;
+  final String? person_name;
   @override
-  final String? open_visit_ticket_number;
+  final String? person_phone;
   @override
-  final String? visitor_name;
-  @override
-  final String? visitor_ph_number;
-  @override
-  final String? does_have_vehicle;
-  @override
-  final String? vehicle_number;
-  @override
-  final String? in_out_status;
-  @override
-  final String? material_inside;
-  @override
-  final String? products_data;
-  @override
-  final dynamic status;
+  final String? status;
   @override
   final DateTime? created_at;
-  @override
-  final dynamic updated_at;
 
   @override
   String toString() {
-    return 'Person(id: $id, ticket_generate_by: $ticket_generate_by, open_visit_ticket_number: $open_visit_ticket_number, visitor_name: $visitor_name, visitor_ph_number: $visitor_ph_number, does_have_vehicle: $does_have_vehicle, vehicle_number: $vehicle_number, in_out_status: $in_out_status, material_inside: $material_inside, products_data: $products_data, status: $status, created_at: $created_at, updated_at: $updated_at)';
+    return 'Person(id: $id, person_name: $person_name, person_phone: $person_phone, status: $status, created_at: $created_at)';
   }
 
   @override
@@ -313,49 +185,19 @@ class _$GetAllPersonsBySecurityGaurdImpl
         (other.runtimeType == runtimeType &&
             other is _$GetAllPersonsBySecurityGaurdImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.ticket_generate_by, ticket_generate_by) ||
-                other.ticket_generate_by == ticket_generate_by) &&
-            (identical(
-                    other.open_visit_ticket_number, open_visit_ticket_number) ||
-                other.open_visit_ticket_number == open_visit_ticket_number) &&
-            (identical(other.visitor_name, visitor_name) ||
-                other.visitor_name == visitor_name) &&
-            (identical(other.visitor_ph_number, visitor_ph_number) ||
-                other.visitor_ph_number == visitor_ph_number) &&
-            (identical(other.does_have_vehicle, does_have_vehicle) ||
-                other.does_have_vehicle == does_have_vehicle) &&
-            (identical(other.vehicle_number, vehicle_number) ||
-                other.vehicle_number == vehicle_number) &&
-            (identical(other.in_out_status, in_out_status) ||
-                other.in_out_status == in_out_status) &&
-            (identical(other.material_inside, material_inside) ||
-                other.material_inside == material_inside) &&
-            (identical(other.products_data, products_data) ||
-                other.products_data == products_data) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
+            (identical(other.person_name, person_name) ||
+                other.person_name == person_name) &&
+            (identical(other.person_phone, person_phone) ||
+                other.person_phone == person_phone) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.created_at, created_at) ||
-                other.created_at == created_at) &&
-            const DeepCollectionEquality()
-                .equals(other.updated_at, updated_at));
+                other.created_at == created_at));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      ticket_generate_by,
-      open_visit_ticket_number,
-      visitor_name,
-      visitor_ph_number,
-      does_have_vehicle,
-      vehicle_number,
-      in_out_status,
-      material_inside,
-      products_data,
-      const DeepCollectionEquality().hash(status),
-      created_at,
-      const DeepCollectionEquality().hash(updated_at));
+      runtimeType, id, person_name, person_phone, status, created_at);
 
   @JsonKey(ignore: true)
   @override
@@ -376,18 +218,10 @@ class _$GetAllPersonsBySecurityGaurdImpl
 abstract class _GetAllPersonsBySecurityGaurd implements Person {
   const factory _GetAllPersonsBySecurityGaurd(
       {final int? id,
-      final int? ticket_generate_by,
-      final String? open_visit_ticket_number,
-      final String? visitor_name,
-      final String? visitor_ph_number,
-      final String? does_have_vehicle,
-      final String? vehicle_number,
-      final String? in_out_status,
-      final String? material_inside,
-      final String? products_data,
-      final dynamic status,
-      final DateTime? created_at,
-      final dynamic updated_at}) = _$GetAllPersonsBySecurityGaurdImpl;
+      final String? person_name,
+      final String? person_phone,
+      final String? status,
+      final DateTime? created_at}) = _$GetAllPersonsBySecurityGaurdImpl;
 
   factory _GetAllPersonsBySecurityGaurd.fromJson(Map<String, dynamic> json) =
       _$GetAllPersonsBySecurityGaurdImpl.fromJson;
@@ -395,29 +229,13 @@ abstract class _GetAllPersonsBySecurityGaurd implements Person {
   @override
   int? get id;
   @override
-  int? get ticket_generate_by;
+  String? get person_name;
   @override
-  String? get open_visit_ticket_number;
+  String? get person_phone;
   @override
-  String? get visitor_name;
-  @override
-  String? get visitor_ph_number;
-  @override
-  String? get does_have_vehicle;
-  @override
-  String? get vehicle_number;
-  @override
-  String? get in_out_status;
-  @override
-  String? get material_inside;
-  @override
-  String? get products_data;
-  @override
-  dynamic get status;
+  String? get status;
   @override
   DateTime? get created_at;
-  @override
-  dynamic get updated_at;
   @override
   @JsonKey(ignore: true)
   _$$GetAllPersonsBySecurityGaurdImplCopyWith<

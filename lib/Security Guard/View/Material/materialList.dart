@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
-import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/ticket.dart';
-import 'package:moolwmsstore/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/material.dart';
 import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
-import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 
 //@RoutePage()
 class MaterialListScreen extends StatefulWidget {
@@ -20,36 +18,24 @@ class MaterialListScreen extends StatefulWidget {
 class _MaterialListScreenState extends State<MaterialListScreen> {
   @override
   final List tags = [
-    {"title": "Ticket Id", "flex": 1},
-    {"title": "Vehicle No.", "flex": 2},
-    {"title": "Driver Name", "flex": 2},
+    {"title": "Product Name", "flex": 1},
+    {"title": "Qunatity", "flex": 2},
+    {"title": "Date & Time", "flex": 2},
     {
       "title": "Status",
       "flex": 1,
     },
   ];
   final List dataList = [
-    {"title": "#TC-130", "flex": 1},
-    {"title": "MH XY- 1234", "flex": 2},
-    {"title": "Alec Benjamin", "flex": 2},
+    {"title": "K. Printer", "flex": 1},
+    {"title": "1200 Pcs", "flex": 2},
+    {"title": "24-06-2023 10:35 AM", "flex": 2},
     {"title": "icon", "flex": 1},
-    {"title": "icon2", "flex": 1},
   ];
   bool isSelected = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      floatingActionButton: CustomFloatingActionButton(
-        title: 'Verify',
-        //  leftIcon: 'assets/icons/qr_icon.png',
-        color: const Color(0xFF5A57FF),
-        onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const RegistrationTypeOptions(),
-          ));
-        },
-      ),
       appBar: CommonAppBar(
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
@@ -146,7 +132,7 @@ class _MaterialListScreenState extends State<MaterialListScreen> {
                 ),
               ],
             ),
-            const Gap(20),
+            const Gap(10),
             Row(
               children: List.generate(tags.length, (index) {
                 if (tags[index]["title"] == "icon") {
@@ -161,7 +147,7 @@ class _MaterialListScreenState extends State<MaterialListScreen> {
                   );
                 }
                 return Padding(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(15),
                   child: Expanded(
                       flex: tags[index]["flex"],
                       child: Text(
@@ -176,9 +162,9 @@ class _MaterialListScreenState extends State<MaterialListScreen> {
             ),
             Expanded(
               child: GetBuilder<SecurityGuardController>(initState: (state) {
-                Get.find<SecurityGuardController>().getAllVisitorList();
+                Get.find<SecurityGuardController>().getAllMaterialList();
               }, builder: (securityGuardController) {
-                return securityGuardController.allTicketList.isEmpty
+                return securityGuardController.allMaterialList.isEmpty
                     ? const Center(
                         child: Text(
                           'No data found',
@@ -191,10 +177,11 @@ class _MaterialListScreenState extends State<MaterialListScreen> {
                       )
                     : ListView.builder(
                         // shrinkWrap: true,
-                        itemCount: securityGuardController.allTicketList.length,
+                        itemCount:
+                            securityGuardController.allMaterialList.length,
                         itemBuilder: (context, i) {
-                          Ticket entry =
-                              securityGuardController.allTicketList[i];
+                          MaterialEntry entry =
+                              securityGuardController.allMaterialList[i];
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
@@ -214,11 +201,12 @@ class _MaterialListScreenState extends State<MaterialListScreen> {
                                 child: Row(
                                   children:
                                       List.generate(dataList.length, (index) {
-                                    if (dataList[index]["title"] == "#TC-130") {
+                                    if (dataList[index]["title"] ==
+                                        "K. Printer") {
                                       return Expanded(
                                           flex: dataList[index]["flex"],
                                           child: Text(
-                                            entry.visit_ticket_number ?? "",
+                                            entry.product_name ?? "",
                                             style: const TextStyle(
                                               color: Color(0xFF353535),
                                               fontSize: 12,
@@ -230,11 +218,11 @@ class _MaterialListScreenState extends State<MaterialListScreen> {
                                           ));
                                     }
                                     if (dataList[index]["title"] ==
-                                        "MH XY- 1234") {
+                                        "1200 Pcs") {
                                       return Expanded(
                                           flex: dataList[index]["flex"],
                                           child: Text(
-                                            entry.visitor_ph_number ?? "",
+                                            entry.qty.toString() ?? "",
                                             style: const TextStyle(
                                               color: Color(0xFF353535),
                                               fontSize: 12,
@@ -246,7 +234,7 @@ class _MaterialListScreenState extends State<MaterialListScreen> {
                                           ));
                                     }
                                     if (dataList[index]["title"] ==
-                                        "Alec Benjamin") {
+                                        "24-06-2023 10:35 AM") {
                                       return Expanded(
                                           flex: dataList[index]["flex"],
                                           child: Text(

@@ -5,10 +5,12 @@ import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Sales/Sales.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addVisitor.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/employeeEntry.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/material.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/person.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/secGuardDetail.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/singlePersonDetail.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/ticket.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/vehicle.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/visitor.dart';
 import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Tickets/ticketVerify.dart';
@@ -29,7 +31,8 @@ class SecurityGuardController extends GetxController {
 
   List<Visitor> allVisitorList = [];
   List<Ticket> allTicketList = [];
-
+  List<MaterialEntry> allMaterialList = [];
+  List<VehicleEntry> allVehicleList = [];
   List<Person> allPersonList = [];
   bool? isCheckIn;
   User user;
@@ -99,10 +102,9 @@ class SecurityGuardController extends GetxController {
   }
 
   void getAllPersonssInfo() {
-    apiClient.postData(
-        "person/getAllTicketsList?recordsPerPage=8&next=1", {}).then((value) {
-      if (value.data["message"] == "Ticket details fetched Successfully!") {
-        Snacks.greenSnack("Ticket details fetched Successfully!");
+    apiClient.postData("person/list", {}).then((value) {
+      if (value.data["message"] == "Data Retrieved Successfully!") {
+        Snacks.greenSnack("Data Retrieved Successfully!");
         List x = value.data["result"];
         allPersonList = x.map((e) => Person.fromJson(e)).toList();
         print(allVisitorList);
@@ -271,6 +273,46 @@ class SecurityGuardController extends GetxController {
         isloading = false;
         update();
         Snacks.redSnack("Failed to add");
+      }
+    });
+  }
+
+  void getAllMaterialList() {
+    apiClient
+        .getData(
+      "material/list",
+    )
+        .then((value) {
+      if (value.data["message"] == "Data Retrieved Successfully!") {
+        Snacks.greenSnack("Data Retrieved Successfully!");
+        List x = value.data["result"];
+        allMaterialList = x.map((e) => MaterialEntry.fromJson(e)).toList();
+        print(allMaterialList);
+        isloading = false;
+        update();
+      } else {
+        isloading = false;
+        update();
+      }
+    });
+  }
+
+  void getAllVehicleList() {
+    apiClient
+        .getData(
+      "vehicle/list",
+    )
+        .then((value) {
+      if (value.data["message"] == "Data Retrieved Successfully!") {
+        Snacks.greenSnack("Data Retrieved Successfully!");
+        List x = value.data["result"];
+        allVehicleList = x.map((e) => VehicleEntry.fromJson(e)).toList();
+        print(allMaterialList);
+        isloading = false;
+        update();
+      } else {
+        isloading = false;
+        update();
       }
     });
   }
