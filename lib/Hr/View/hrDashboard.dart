@@ -941,7 +941,7 @@ class _HrDashboardState extends State<HrDashboard> {
                             Padding(
                               padding: const EdgeInsets.only(left: 8.0),
                               child: Container(
-                                width: 100,
+                                width: 120,
                                 decoration: ShapeDecoration(
                                   shape: RoundedRectangleBorder(
                                     side: const BorderSide(
@@ -980,7 +980,7 @@ class _HrDashboardState extends State<HrDashboard> {
                             Padding(
                               padding: const EdgeInsets.only(left: 8.0),
                               child: Container(
-                                width: 100,
+                                width: 120,
                                 decoration: ShapeDecoration(
                                   shape: RoundedRectangleBorder(
                                     side: const BorderSide(
@@ -1019,7 +1019,7 @@ class _HrDashboardState extends State<HrDashboard> {
                             Padding(
                               padding: const EdgeInsets.only(left: 8.0),
                               child: Container(
-                                width: 100,
+                                width: 120,
                                 decoration: ShapeDecoration(
                                   shape: RoundedRectangleBorder(
                                     side: const BorderSide(
