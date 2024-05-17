@@ -38,7 +38,7 @@ class _AddEmployeeDocumentsDetailsState
           }),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: CustomFloatingActionButton(
-        title: 'Next',
+        title: 'Submit',
       ),
       body: SingleChildScrollView(
         child: Center(

@@ -27,7 +27,7 @@ class ChamberController extends GetxController {
   addX() {
     loading = true;
     update();
-    Future.delayed(const Duration(seconds: 1)).whenComplete(() {
+    Future.delayed(const Duration(milliseconds: 200)).whenComplete(() {
       loading = false;
       update();
     });

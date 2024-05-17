@@ -21,16 +21,25 @@ class OrganisationCode extends StatelessWidget {
         ),
       ),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
         body: Form(
           key: formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Center(
-                  child: Image.asset("assets/images/Group 1000010596.png")
-                      .paddingSymmetric(horizontal: 16, vertical: 12)),
+                child: Image.asset(
+                  "assets/icons/MoolCode Logo.png",
+                  height: 102,
+                ),
+              ).paddingSymmetric(horizontal: 16, vertical: 26),
+              Center(
+                  child: Image.asset(
+                "assets/icons/Sales Illustration.png",
+                height: 240,
+              ).paddingSymmetric(horizontal: 16, vertical: 12)),
               const Text(
                 'Organisation Number',
                 style: TextStyle(
@@ -55,6 +64,8 @@ class OrganisationCode extends StatelessWidget {
                 },
                 onFieldSubmitted: (value) {
                   FocusManager.instance.primaryFocus?.unfocus();
+                  Get.find<AuthController>().checkOrganisationCode(
+                      organiosationCode: controller!.text.toString());
                 },
                 style: const TextStyle(
                   color: Colors.yellow,

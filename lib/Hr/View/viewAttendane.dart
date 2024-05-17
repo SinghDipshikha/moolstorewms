@@ -2,15 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
-import 'package:moolwmsstore/Hr/View/addEmployeeBankDetails.dart';
-import 'package:moolwmsstore/Hr/View/addEmployeeCareerDetails.dart';
-import 'package:moolwmsstore/Hr/View/addEmployeeDocuments.dart';
-import 'package:moolwmsstore/Hr/View/addEmployeeEducationQualificationDetails.dart';
-import 'package:moolwmsstore/Hr/View/addEmployeePersonalDetails.dart';
-import 'package:moolwmsstore/Hr/View/addedStaffScreen.dart';
-import 'package:moolwmsstore/utils/globals.dart';
 
 class ViewAttendanceList extends StatelessWidget {
   const ViewAttendanceList({super.key});
@@ -19,14 +11,14 @@ class ViewAttendanceList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HRController>(initState: (state) {
-      // Get.find<HRController>().getAllEmployeesByOrg();
+      Get.find<HRController>().getAllEmployeesByWarehouse();
     }, builder: (hrController) {
       return Scaffold(
         // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         // floatingActionButton: CustomButton(
-          // onTap: () {
-          //   Get.to(const HrDashboard(), id: hrNavigationKey);
-          // },
+        // onTap: () {
+        //   Get.to(const HrDashboard(), id: hrNavigationKey);
+        // },
         //   title: '',
         // ).paddingSymmetric(horizontal: 12),
         appBar: AppBar(
@@ -43,45 +35,91 @@ class ViewAttendanceList extends StatelessWidget {
         ),
         body: Column(
           children: [
-            TextField(
-              onChanged: (value) {},
-              onTapOutside: (event) {
-                FocusManager.instance.primaryFocus?.unfocus();
-              },
-              onSubmitted: (value) {
-                FocusManager.instance.primaryFocus?.unfocus();
-              },
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontFamily: 'SF Pro Display',
-                fontWeight: FontWeight.w400,
-              ),
-              decoration: InputDecoration(
-                  labelText: "Search",
-                  labelStyle: const TextStyle(
-                    color: Color(0xFFACACAC),
-                    fontSize: 16,
-                    fontFamily: 'SF Pro Display',
-                    fontWeight: FontWeight.w400,
-                  ),
-                  contentPadding: EdgeInsets.zero,
-                  prefixIcon: Image.asset(
-                    "assets/icons/Search Icon.png",
-                    height: 8,
-                    color: const Color(0xFFACACAC),
-                  ).paddingAll(12),
-                  focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFF5A57FF)),
-                      borderRadius: BorderRadius.all(Radius.circular(18))),
-                  enabledBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFACACAC)),
-                      borderRadius: BorderRadius.all(Radius.circular(18)))),
-            ),
-            const Gap(10),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const Expanded(
+                Container(
+                  width: 169,
+                  height: 39,
+                  padding: const EdgeInsets.only(
+                    top: 10,
+                    left: 30,
+                    right: 10,
+                    bottom: 10,
+                  ),
+                  decoration: ShapeDecoration(
+                    shape: RoundedRectangleBorder(
+                      side:
+                          const BorderSide(width: 1, color: Color(0x195A57FF)),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Sort By',
+                        style: TextStyle(
+                          color: Color(0xFFACACAC),
+                          fontSize: 16,
+                          fontFamily: 'SF Pro Display',
+                          fontWeight: FontWeight.w400,
+                          height: 0,
+                        ),
+                      ),
+                      Icon(
+                        Icons.sort,
+                        color: Color(0xFFACACAC),
+                        size: 20,
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: 169,
+                  height: 39,
+                  padding: const EdgeInsets.only(
+                    top: 10,
+                    left: 30,
+                    right: 10,
+                    bottom: 10,
+                  ),
+                  decoration: ShapeDecoration(
+                    shape: RoundedRectangleBorder(
+                      side:
+                          const BorderSide(width: 1, color: Color(0x195A57FF)),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Search',
+                        style: TextStyle(
+                          color: Color(0xFFACACAC),
+                          fontSize: 16,
+                          fontFamily: 'SF Pro Display',
+                          fontWeight: FontWeight.w400,
+                          height: 0,
+                        ),
+                      ),
+                      Icon(
+                        Icons.search,
+                        color: Color(0xFFACACAC),
+                        size: 20,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Expanded(
                   flex: 1,
                   child: Text(
                     "Name",
@@ -95,21 +133,7 @@ class ViewAttendanceList extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Expanded(
-                  flex: 1,
-                  child: Text(
-                    "Mobile No.",
-                    style: TextStyle(
-                      color: Color(0xFF5A57FF),
-                      fontSize: 12,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w400,
-                      //height: 0,
-                      letterSpacing: -0.48,
-                    ),
-                  ),
-                ),
-                const Expanded(
+                Expanded(
                   flex: 1,
                   child: Text(
                     "Designation",
@@ -123,22 +147,36 @@ class ViewAttendanceList extends StatelessWidget {
                     ),
                   ),
                 ),
-                IconButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.more_horiz,
-                      color: Colors.white,
-                    )),
-                IconButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.more_horiz,
-                      color: Colors.white,
-                    ))
+                Expanded(
+                  flex: 1,
+                  child: Text(
+                    "Entry Time",
+                    style: TextStyle(
+                      color: Color(0xFF5A57FF),
+                      fontSize: 12,
+                      fontFamily: 'SF Pro Text',
+                      fontWeight: FontWeight.w400,
+                      //height: 0,
+                      letterSpacing: -0.48,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Text(
+                    "Status",
+                    style: TextStyle(
+                      color: Color(0xFF5A57FF),
+                      fontSize: 12,
+                      fontFamily: 'SF Pro Text',
+                      fontWeight: FontWeight.w400,
+                      //height: 0,
+                      letterSpacing: -0.48,
+                    ),
+                  ),
+                ),
               ],
-            ).paddingSymmetric(horizontal: 12),
+            ).paddingSymmetric(horizontal: 12, vertical: 10),
             Expanded(
                 child: ListView.builder(
                     itemCount: hrController.employees.length,
@@ -167,17 +205,7 @@ class ViewAttendanceList extends StatelessWidget {
                                     fontWeight: FontWeight.w500,
                                   ),
                                 )),
-                            Expanded(
-                                flex: 1,
-                                child: Text(
-                                  hrController.employees[i].mobile ?? "",
-                                  style: const TextStyle(
-                                    color: Color(0xFF353535),
-                                    fontSize: 10,
-                                    fontFamily: 'SF Pro Text',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                )),
+
                             // const Gap(4),
                             Expanded(
                                 flex: 1,
@@ -194,6 +222,65 @@ class ViewAttendanceList extends StatelessWidget {
                                     fontWeight: FontWeight.w500,
                                   ),
                                 )),
+
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: 20,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 4),
+                                decoration: ShapeDecoration(
+                                  color: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                        width: 1, color: Color(0x195A57FF)),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                ),
+                                child: const Text(
+                                  '10 : 05 : 50 AM',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Color(0xFF353535),
+                                    fontSize: 10,
+                                    fontFamily: 'SF Pro Display',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const Gap(10),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: 20,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 4),
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFD2FFF1),
+                                  shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                        width: 1, color: Color(0x1902A676)),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                ),
+                                child: const Center(
+                                  child: Text(
+                                    'On Time',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color(0xFF02A676),
+                                      fontSize: 10,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+
                             IconButton(
                                 padding: EdgeInsets.zero,
                                 onPressed: () {},
@@ -201,81 +288,6 @@ class ViewAttendanceList extends StatelessWidget {
                                   "assets/icons/Eye.png",
                                   height: 20,
                                 )),
-
-                            hrController.employees[i].isBankDetails == 0 ||
-                                    hrController.employees[i].isCareerDetails ==
-                                        0 ||
-                                    hrController
-                                            .employees[i].isDocumentDetails ==
-                                        0 ||
-                                    hrController.employees[i].isUserDetails ==
-                                        0 ||
-                                    hrController
-                                            .employees[i].isEducationDetails ==
-                                        0
-                                ? IconButton(
-                                    padding: EdgeInsets.zero,
-                                    onPressed: () {
-                                      hrController.navigationAccordingStatus
-                                          .clear();
-                                      hrController.navigationAccordingStatus
-                                          .add(const AddedStaffScreen());
-
-                                      if (hrController
-                                              .employees[i].isBankDetails ==
-                                          0) {
-                                        hrController.navigationAccordingStatus
-                                            .add(
-                                                const AddEmployeeBankDetails());
-                                      }
-                                      if (hrController
-                                              .employees[i].isCareerDetails ==
-                                          0) {
-                                        hrController.navigationAccordingStatus
-                                            .add(
-                                                const AddEmployeeCareerDetails());
-                                      }
-                                      if (hrController
-                                              .employees[i].isDocumentDetails ==
-                                          0) {
-                                        hrController.navigationAccordingStatus.add(
-                                            const AddEmployeeDocumentsDetails());
-                                      }
-                                      if (hrController
-                                              .employees[i].isUserDetails ==
-                                          0) {
-                                        hrController.navigationAccordingStatus.add(
-                                            const AddEmployeePersonalDetails());
-                                      }
-                                      if (hrController
-                                              .employees[i].isDocumentDetails ==
-                                          0) {
-                                        hrController.navigationAccordingStatus.add(
-                                            const AddEmployeeEducationQualificationDetails());
-                                      }
-                                      Logger().i(hrController
-                                          .navigationAccordingStatus);
-
-                                      Get.to(
-                                          hrController
-                                                  .navigationAccordingStatus[
-                                              hrController
-                                                      .navigationAccordingStatus
-                                                      .length -
-                                                  1],
-                                          id: hrNavigationKey);
-                                    },
-                                    icon: Image.asset(
-                                      "assets/images/hrIcon2.png",
-                                      height: 20,
-                                    ))
-                                : IconButton(
-                                    padding: EdgeInsets.zero,
-                                    onPressed: () {},
-                                    icon: Image.asset(
-                                      "assets/images/hrIcon.png",
-                                      height: 20,
-                                    )),
                           ],
                         ),
                       ).paddingSymmetric(vertical: 4);

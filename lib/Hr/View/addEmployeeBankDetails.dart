@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/Hr/View/addEmployeeDocuments.dart';
 import 'package:moolwmsstore/Hr/View/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonAppBar.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
@@ -38,6 +39,9 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: CustomFloatingActionButton(
           title: 'Next',
+          onTap: (){
+            Get.to(const AddEmployeeDocumentsDetails(), id: hrNavigationKey);
+          },
         ),
         body: SingleChildScrollView(
           child: Center(

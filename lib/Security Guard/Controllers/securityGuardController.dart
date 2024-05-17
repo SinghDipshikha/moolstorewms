@@ -179,17 +179,65 @@ class SecurityGuardController extends GetxController {
     });
   }
 
+//   addTicketBySecurityGuard({
+//     required int? ticketGeneratedBy,
+//     required String personName,
+//     required String mobileNumber,
+//     required String vehicleNumber,
+//     //  List<Map<String, String>> products = [{
+
+//     //  },{}],
+//  // required String productName,
+//     // required String productQuantity,
+//     // required String productUnit,
+//     required String doesHaveVehicle,
+//     required String doesHaveMaterial,
+//     required String status,
+//   }) {
+//     isloading = true;
+//     update();
+//     Get.find<ApiClient>().postData("person/createTicketBySecurityGuard", {
+//       {
+//         "ticket_generate_by": ticketGeneratedBy,
+//         "visitor_name": personName,
+//         "visitor_ph_number": mobileNumber,
+//         "does_have_vehicle": doesHaveVehicle,
+//         "vehicle_number": vehicleNumber,
+//         "material_inside": doesHaveMaterial,
+//         "products": [
+//           {
+//             "product_name": productName,
+//             "qty": productQuantity,
+//             "unit": productUnit
+//           },
+//         ],
+//         "in_out_status": status,
+//       }
+//     }).then((value) async {
+//       if (value.data["message"] == "Information Added") {
+//         value.data["result"][0]["id"];
+
+//         Snacks.greenSnack("Ticket Added Successfully");
+//         isloading = false;
+//         Get.offAll(
+//           const TicketEntryReviewScreen(),
+//         );
+//       } else if (value.data["message"] == "Failed to add") {
+//         isloading = false;
+//         update();
+//         Snacks.redSnack("Failed to add");
+//       }
+//     });
+//   }
   addTicketBySecurityGuard({
     required int? ticketGeneratedBy,
     required String personName,
     required String mobileNumber,
     required String vehicleNumber,
-    required String productName,
-    required String productQuantity,
-    required String productUnit,
     required String doesHaveVehicle,
     required String doesHaveMaterial,
     required String status,
+    required List<Map<String, String>> products, // Updated parameter
   }) {
     isloading = true;
     update();
@@ -201,17 +249,17 @@ class SecurityGuardController extends GetxController {
         "does_have_vehicle": doesHaveVehicle,
         "vehicle_number": vehicleNumber,
         "material_inside": doesHaveMaterial,
-        "products": [
-          {
-            "product_name": productName,
-            "qty": productQuantity,
-            "unit": productUnit
-          },
-        ],
+        "products": products.map((product) {
+          return {
+            "product_name": product['productName'],
+            "qty": product['productQuantity'],
+            "unit": product['productUnit']
+          };
+        }).toList(),
         "in_out_status": status,
       }
     }).then((value) async {
-      if (value.data["message"] == "Information Added") {
+      if (value.data["message"] == "Vehicle Checked IN successfully") {
         value.data["result"][0]["id"];
 
         Snacks.greenSnack("Ticket Added Successfully");
