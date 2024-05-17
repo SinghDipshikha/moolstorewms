@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
-import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/ticket.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/vehicle.dart';
 import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
-import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 //@RoutePage()
@@ -39,17 +38,6 @@ class _VehicleListScreenState extends State<VehicleListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      floatingActionButton: CustomFloatingActionButton(
-        title: 'Verify',
-        //  leftIcon: 'assets/icons/qr_icon.png',
-        color: const Color(0xFF5A57FF),
-        onTap: () {
-          // Navigator.of(context).push(MaterialPageRoute(
-          //   builder: (context) => const RegistrationTypeOptions(),
-          // ));
-        },
-      ),
       appBar: CommonAppBar(
         onTap: () {
           Get.to(const SecurityGuardDashBoard(), id: securityGuardNavigation);
@@ -174,9 +162,9 @@ class _VehicleListScreenState extends State<VehicleListScreen> {
             ),
             Expanded(
               child: GetBuilder<SecurityGuardController>(initState: (state) {
-                Get.find<SecurityGuardController>().getAllVisitorList();
+                Get.find<SecurityGuardController>().getAllVehicleList();
               }, builder: (securityGuardController) {
-                return securityGuardController.allTicketList.isEmpty
+                return securityGuardController.allVehicleList.isEmpty
                     ? const Center(
                         child: Text(
                           'No data found',
@@ -189,10 +177,11 @@ class _VehicleListScreenState extends State<VehicleListScreen> {
                       )
                     : ListView.builder(
                         // shrinkWrap: true,
-                        itemCount: securityGuardController.allTicketList.length,
+                        itemCount:
+                            securityGuardController.allVehicleList.length,
                         itemBuilder: (context, i) {
-                          Ticket entry =
-                              securityGuardController.allTicketList[i];
+                          VehicleEntry entry =
+                              securityGuardController.allVehicleList[i];
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
@@ -217,7 +206,7 @@ class _VehicleListScreenState extends State<VehicleListScreen> {
                                       return Expanded(
                                           flex: dataList[index]["flex"],
                                           child: Text(
-                                            entry.visitor_ph_number ?? "",
+                                            entry.vehicle_number ?? "",
                                             style: const TextStyle(
                                               color: Color(0xFF353535),
                                               fontSize: 12,
@@ -233,18 +222,18 @@ class _VehicleListScreenState extends State<VehicleListScreen> {
                                       return Expanded(
                                           flex: dataList[index]["flex"],
                                           child: Text(
-                                            entry.created_at.toString() ??
-                                                "${DateTime.now()}",
+                                            entry.driver_name ?? "",
                                             style: const TextStyle(
-                                              color: Color(0xFFCCCCCC),
-                                              fontSize: 10,
+                                              color: Color(0xFF353535),
+                                              fontSize: 12,
                                               fontFamily: 'SF Pro Text',
-                                              fontWeight: FontWeight.w400,
+                                              fontWeight: FontWeight.w500,
                                               //height: 0,
-                                              letterSpacing: -0.40,
+                                              letterSpacing: -0.48,
                                             ),
                                           ));
                                     }
+
                                     if (dataList[index]["title"] ==
                                         "20-06-202301:29 PM") {
                                       return Expanded(

@@ -34,7 +34,7 @@ class CommomDropDown extends StatelessWidget {
                     children: [
                       TextSpan(
                         text: "$labelText",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
                         ),
@@ -50,10 +50,10 @@ class CommomDropDown extends StatelessWidget {
               ),
               Container(
                 width: 350,
-                decoration: ShapeDecoration(
+                decoration: const ShapeDecoration(
                   color: Colors.white,
                   shape: RoundedRectangleBorder(),
-                  shadows: const [
+                  shadows: [
                     BoxShadow(
                       color: Color(0x0C000000),
                       blurRadius: 4,
@@ -119,17 +119,17 @@ class CommomDropDown extends StatelessWidget {
             ],
           )
         : Container(
-            constraints: BoxConstraints(maxWidth: 500),
+            constraints: const BoxConstraints(maxWidth: 500),
             child: Row(
               children: [
-                Container(
+                SizedBox(
                   width: 220,
                   child: Text.rich(
                     TextSpan(
                       children: [
                         TextSpan(
                           text: "$labelText",
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
                           ),
@@ -145,10 +145,10 @@ class CommomDropDown extends StatelessWidget {
                 ),
                 Expanded(
                   child: Container(
-                    decoration: ShapeDecoration(
+                    decoration: const ShapeDecoration(
                       color: Colors.white,
                       shape: RoundedRectangleBorder(),
-                      shadows: const [
+                      shadows: [
                         BoxShadow(
                           color: Color(0x0C000000),
                           blurRadius: 4,
@@ -303,6 +303,123 @@ class CommomDropDownBlackTheme extends StatelessWidget {
                 .toList(),
             value: selectedValue,
             onChanged: onChanged,
+            dropdownStyleData: DropdownStyleData(
+              direction: DropdownDirection.right,
+              maxHeight: 1000,
+              width: 200,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(14),
+              ),
+              offset: const Offset(-20, 0),
+              scrollbarTheme: ScrollbarThemeData(
+                radius: const Radius.circular(40),
+                thickness: MaterialStateProperty.all(6),
+                thumbVisibility: MaterialStateProperty.all(true),
+              ),
+            ),
+            menuItemStyleData: const MenuItemStyleData(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class CommomDropDownDynamic extends StatelessWidget {
+  List<dynamic> list;
+  String? selectedValue;
+  String? labelText;
+  String? hintText;
+  bool shadow;
+  // Widget? y = Container();
+  void Function(dynamic)? onChanged;
+  CommomDropDownDynamic({
+    super.key,
+    required this.list,
+    required this.selectedValue,
+    required this.onChanged,
+    required this.labelText,
+    required this.hintText,
+    this.shadow = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          child: Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(
+                  text: "$labelText",
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                TextSpan(
+                  text: '*',
+                  style: TextStyles.bodyMedium(context)
+                      .copyWith(color: Colors.red),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Container(
+          width: 350,
+          decoration: const ShapeDecoration(
+            color: Colors.white,
+            shape: RoundedRectangleBorder(),
+            shadows: [
+              BoxShadow(
+                color: Color(0x0C000000),
+                blurRadius: 4,
+                offset: Offset(3, 4),
+                spreadRadius: 0,
+              )
+            ],
+          ),
+          padding: const EdgeInsets.only(right: 16, left: 10),
+          child: DropdownButton2<dynamic>(
+            underline: Container(),
+            alignment: Alignment.centerLeft,
+            // isDense: true,
+            isExpanded: true,
+            hint: Padding(
+              padding: const EdgeInsets.only(left: 5),
+              child: Text(
+                hintText ?? '',
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            items: list
+                .map((dynamic item) => DropdownMenuItem<dynamic>(
+                      alignment: Alignment.centerLeft,
+                      value: item,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 5),
+                        child: Text(item,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                            )),
+                      ),
+                    ))
+                .toSet()
+                .toList(),
+            value: selectedValue,
+            onChanged: onChanged,
+
             dropdownStyleData: DropdownStyleData(
               direction: DropdownDirection.right,
               maxHeight: 1000,

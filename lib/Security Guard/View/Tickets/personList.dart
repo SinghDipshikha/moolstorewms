@@ -4,10 +4,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/person.dart';
-import 'package:moolwmsstore/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart';
 import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
-import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 //@RoutePage()
@@ -40,23 +38,9 @@ class _PersonsListScreenState extends State<PersonsListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      floatingActionButton: CustomFloatingActionButton(
-        title: 'Verify',
-        //  leftIcon: 'assets/icons/qr_icon.png',
-        color: const Color(0xFF5A57FF),
-        textColor: Colors.white,
-        onTap: () {
-           Get.to(const RegistrationTypeOptions(),
-                        id: securityGuardNavigation);
-          
-        },
-      ),
       appBar: CommonAppBar(
         onTap: () {
-              Get.to(const SecurityGuardDashBoard(),
-                        id: securityGuardNavigation);
-        
+          Get.to(const SecurityGuardDashBoard(), id: securityGuardNavigation);
         },
         title: 'Persons List',
         actions: const [],
@@ -148,8 +132,6 @@ class _PersonsListScreenState extends State<PersonsListScreen> {
                 ),
               ],
             ),
-           
-           
             const Gap(20),
             Row(
               children: List.generate(tags.length, (index) {
@@ -223,7 +205,7 @@ class _PersonsListScreenState extends State<PersonsListScreen> {
                                       return Expanded(
                                           flex: dataList[index]["flex"],
                                           child: Text(
-                                            entry.visitor_name ?? "",
+                                            entry.person_name ?? "",
                                             style: const TextStyle(
                                               color: Color(0xFF353535),
                                               fontSize: 12,
@@ -239,7 +221,7 @@ class _PersonsListScreenState extends State<PersonsListScreen> {
                                       return Expanded(
                                           flex: dataList[index]["flex"],
                                           child: Text(
-                                            entry.visitor_ph_number ?? "",
+                                            entry.person_phone ?? "",
                                             style: const TextStyle(
                                               color: Color(0xFF353535),
                                               fontSize: 12,
