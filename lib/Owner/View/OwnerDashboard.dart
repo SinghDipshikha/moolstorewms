@@ -829,7 +829,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                               width: 42,
                               height: 42,
                               decoration: const BoxDecoration(
-                                color: Color.fromARGB(255, 22, 22, 22),
+                                color: Colors.black,
                                 image: DecorationImage(
                                   image: AssetImage(
                                       "assets/images/materialOwner.png"),
