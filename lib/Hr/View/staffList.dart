@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
+import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/View/addEmployeeBankDetails.dart';
 import 'package:moolwmsstore/Hr/View/addEmployeeCareerDetails.dart';
@@ -11,6 +12,7 @@ import 'package:moolwmsstore/Hr/View/addEmployeeEducationQualificationDetails.da
 import 'package:moolwmsstore/Hr/View/addEmployeePersonalDetails.dart';
 import 'package:moolwmsstore/Hr/View/addedStaffScreen.dart';
 import 'package:moolwmsstore/Hr/View/hrDashboard.dart';
+import 'package:moolwmsstore/Hr/View/widget/commonDropDown.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
@@ -18,10 +20,14 @@ class HrEmployeeList extends StatelessWidget {
   const HrEmployeeList({super.key});
 
   @override
-  @override
+ 
+  
   Widget build(BuildContext context) {
     return GetBuilder<HRController>(initState: (state) {
       Get.find<HRController>().getAllEmployeesByWarehouse();
+      User ?user;
+    List<dynamic>? shiftsDataList = user!.warehouse!;
+  String? selectedShift = 'Shift1';
     }, builder: (hrController) {
       return Scaffold(
         // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -36,6 +42,7 @@ class HrEmployeeList extends StatelessWidget {
         ),
         body: Column(
           children: [
+            CommomDropDown(list: [], selectedValue: '', onChanged: (v) {  }, labelText: '', hintText: '',),
             TextField(
               onChanged: (value) {},
               onTapOutside: (event) {
