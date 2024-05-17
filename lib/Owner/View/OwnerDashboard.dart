@@ -55,7 +55,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
         drawer: Drawer(
           //  width: context.isPhone ? MediaQuery.sizeOf(context).width - 100 : 400,
           surfaceTintColor: const Color.fromARGB(255, 22, 22, 22),
-          backgroundColor: Colors.black,
+          backgroundColor: const Color.fromARGB(255, 22, 22, 22),
           child: Column(
             //padding: EdgeInsets.zero,
             children: [
@@ -828,18 +828,9 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                             Container(
                               width: 42,
                               height: 42,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: const Alignment(0.00, -1.00),
-                                  end: const Alignment(0, 1),
-                                  colors: [
-                                    Colors.white
-                                        .withOpacity(0.10000000149011612),
-                                    Colors.white
-                                        .withOpacity(0.10000000149011612)
-                                  ],
-                                ),
-                                image: const DecorationImage(
+                              decoration: const BoxDecoration(
+                                color: Color.fromARGB(255, 22, 22, 22),
+                                image: DecorationImage(
                                   image: AssetImage(
                                       "assets/images/materialOwner.png"),
                                   fit: BoxFit.fill,
@@ -1565,6 +1556,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                     ),
                   ],
                 ),
+                const Gap(40)
               ],
             ),
           ),
