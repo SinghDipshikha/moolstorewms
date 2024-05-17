@@ -42,7 +42,7 @@ class HrEmployeeList extends StatelessWidget {
         ),
         body: Column(
           children: [
-            CommomDropDown(list: [], selectedValue: '', onChanged: (v) {  }, labelText: '', hintText: '',),
+            //CommomDropDown(list: shiftsDataList, selectedValue: selectedShift, onChanged: (v) {  }, labelText: '', hintText: '',),
             TextField(
               onChanged: (value) {},
               onTapOutside: (event) {
