@@ -55,7 +55,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
         drawer: Drawer(
           //  width: context.isPhone ? MediaQuery.sizeOf(context).width - 100 : 400,
           surfaceTintColor: const Color.fromARGB(255, 22, 22, 22),
-          backgroundColor: const Color.fromARGB(255, 22, 22, 22),
+          backgroundColor: Colors.black,
           child: Column(
             //padding: EdgeInsets.zero,
             children: [

@@ -12,7 +12,6 @@ import 'package:moolwmsstore/Hr/View/addEmployeeEducationQualificationDetails.da
 import 'package:moolwmsstore/Hr/View/addEmployeePersonalDetails.dart';
 import 'package:moolwmsstore/Hr/View/addedStaffScreen.dart';
 import 'package:moolwmsstore/Hr/View/hrDashboard.dart';
-import 'package:moolwmsstore/Hr/View/widget/commonDropDown.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
@@ -20,14 +19,12 @@ class HrEmployeeList extends StatelessWidget {
   const HrEmployeeList({super.key});
 
   @override
- 
-  
   Widget build(BuildContext context) {
     return GetBuilder<HRController>(initState: (state) {
       Get.find<HRController>().getAllEmployeesByWarehouse();
-      User ?user;
-    List<dynamic>? shiftsDataList = user!.warehouse!;
-  String? selectedShift = 'Shift1';
+      User? user;
+      List<dynamic>? shiftsDataList = user!.warehouse!;
+      String? selectedShift;
     }, builder: (hrController) {
       return Scaffold(
         // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -42,7 +39,7 @@ class HrEmployeeList extends StatelessWidget {
         ),
         body: Column(
           children: [
-            //CommomDropDown(list: shiftsDataList, selectedValue: selectedShift, onChanged: (v) {  }, labelText: '', hintText: '',),
+            //    CommomDropDown(list: shiftsDataList, selectedValue: selectedShift, onChanged: (v) {  }, labelText: '', hintText: '',),
             TextField(
               onChanged: (value) {},
               onTapOutside: (event) {

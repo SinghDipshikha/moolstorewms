@@ -29,7 +29,7 @@ class _HrDashboardState extends State<HrDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF232323),
+      backgroundColor: Colors.black,
       appBar: AppBar(
         centerTitle: false,
         title: const Text(
@@ -400,16 +400,115 @@ class _HrDashboardState extends State<HrDashboard> {
           ],
         ),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            const Gap(20),
-            InkWell(
-              onTap: () {
-                Get.to(const DemoScreen(), id: hrNavigationKey);
-              },
-              child: Container(
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              const Gap(20),
+              InkWell(
+                onTap: () {
+                  Get.to(const DemoScreen(), id: hrNavigationKey);
+                },
+                child: Container(
+                  width: 370,
+                  decoration: ShapeDecoration(
+                    gradient: LinearGradient(
+                      begin: const Alignment(1.00, 0.00),
+                      end: const Alignment(-1, 0),
+                      colors: [
+                        Colors.white.withOpacity(0.10000000149011612),
+                        Colors.white.withOpacity(0.10000000149011612)
+                      ],
+                    ),
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(width: 1, color: Colors.white),
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Gap(20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Today',
+                            style: TextStyle(
+                              color: Color(0xFFEDEDFC),
+                              fontSize: 32,
+                              fontFamily: 'SF Pro Display',
+                              fontWeight: FontWeight.w400,
+                              //height: 0,
+                            ),
+                          ),
+                          Container(
+                            width: 124,
+                            height: 38,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 6),
+                            decoration: ShapeDecoration(
+                              color: const Color(0xFF2C2C2C),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            child: const Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '09 : 41 AM',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 22,
+                                    fontFamily: 'SF Pro Display',
+                                    fontWeight: FontWeight.w400,
+                                    //height: 0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 40.0, top: 20),
+                        child: Text(
+                          '18th March, 2024',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w400,
+                            height: 0.05,
+                          ),
+                        ),
+                      ),
+                      const Gap(20),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: CommonButton(
+                          onTap: () {
+                            Get.to(const ViewAttendanceList(),
+                                id: hrNavigationKey);
+                          },
+                          color: const Color(0xFF5A57FF),
+                          textColor: Colors.white,
+                          title: 'View Attendance',
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const Gap(20),
+              Container(
                 width: 370,
+                height: 166,
                 decoration: ShapeDecoration(
                   gradient: LinearGradient(
                     begin: const Alignment(1.00, 0.00),
@@ -428,651 +527,566 @@ class _HrDashboardState extends State<HrDashboard> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Gap(20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Today',
-                          style: TextStyle(
-                            color: Color(0xFFEDEDFC),
-                            fontSize: 32,
-                            fontFamily: 'SF Pro Display',
-                            fontWeight: FontWeight.w400,
-                            //height: 0,
-                          ),
-                        ),
-                        Container(
-                          width: 124,
-                          height: 38,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 6),
-                          decoration: ShapeDecoration(
-                            color: const Color(0xFF2C2C2C),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: const Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                '09 : 41 AM',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 22,
-                                  fontFamily: 'SF Pro Display',
-                                  fontWeight: FontWeight.w400,
-                                  //height: 0,
+                              const Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Gap(10),
+                                  // Container(
+                                  //   width: 60,
+                                  //   height: 60,
+                                  //   decoration: const BoxDecoration(
+                                  //     image: DecorationImage(
+                                  //       image: AssetImage(
+                                  //           "assets/images/hrDashBoardEmployee.png"),
+                                  //       fit: BoxFit.fill,
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  // const Gap(5),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Total Employee',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      Text(
+                                        '110',
+                                        style: TextStyle(
+                                          color: Color(0xFF918FFA),
+                                          fontSize: 24,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const Gap(5),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Container(
+                                  width: 120,
+                                  height: 39,
+                                  decoration: ShapeDecoration(
+                                    shape: RoundedRectangleBorder(
+                                      side: const BorderSide(
+                                          width: 1, color: Colors.white),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                  ),
+                                  child: const Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Present\nWorkforce',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        '80',
+                                        style: TextStyle(
+                                          color: Color(0xFF918FFA),
+                                          fontSize: 24,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              const Gap(5),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Container(
+                                  width: 120,
+                                  height: 39,
+                                  decoration: ShapeDecoration(
+                                    shape: RoundedRectangleBorder(
+                                      side: const BorderSide(
+                                          width: 1, color: Colors.white),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                  ),
+                                  child: const Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Absent\nWorkforce',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        '80',
+                                        style: TextStyle(
+                                          color: Color(0xFF918FFA),
+                                          fontSize: 24,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
                           ),
                         ),
+                        Container(
+                          width: 134.48,
+                          height: 106.82,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image:
+                                  AssetImage("assets/images/totalEmployee.png"),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ).paddingOnly(right: 10),
                       ],
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 40.0, top: 20),
-                      child: Text(
-                        '18th March, 2024',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                          height: 0.05,
+                  ],
+                ),
+              ),
+              const Gap(20),
+              Container(
+                width: 370,
+                height: 166,
+                decoration: ShapeDecoration(
+                  gradient: LinearGradient(
+                    begin: const Alignment(1.00, 0.00),
+                    end: const Alignment(-1, 0),
+                    colors: [
+                      Colors.white.withOpacity(0.10000000149011612),
+                      Colors.white.withOpacity(0.10000000149011612)
+                    ],
+                  ),
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(width: 1, color: Colors.white),
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Gap(5),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Gap(10),
+                                  // Container(
+                                  //   width: 60,
+                                  //   height: 60,
+                                  //   decoration: const BoxDecoration(
+                                  //     image: DecorationImage(
+                                  //       image: AssetImage(
+                                  //           "assets/images/arrival.png"),
+                                  //       fit: BoxFit.fill,
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  // const Gap(5),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                        'Arrivals',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      CommomDropDownBlackTheme(
+                                        labelText: "Select Gate",
+                                        list: shiftsDataList,
+                                        onChanged: (v) {
+                                          setState(() {
+                                            selectedShift = v;
+                                          });
+                                        },
+                                        selectedValue: selectedShift,
+                                        hintText: 'Select Gate',
+                                      ),
+                                      // Text(
+                                      //   '110',
+                                      //   style: TextStyle(
+                                      //     color: Colors.white,
+                                      //     fontSize: 24,
+                                      //     fontFamily: 'SF Pro Display',
+                                      //     fontWeight: FontWeight.w500,
+                                      //   ),
+                                      // ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const Gap(5),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Container(
+                                  width: 120,
+                                  height: 39,
+                                  decoration: ShapeDecoration(
+                                    shape: RoundedRectangleBorder(
+                                      side: const BorderSide(
+                                          width: 1, color: Colors.white),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                  ),
+                                  child: const Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'On Time',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        '80',
+                                        style: TextStyle(
+                                          color: Color(0xFF918FFA),
+                                          fontSize: 24,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              const Gap(5),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Container(
+                                  width: 120,
+                                  height: 39,
+                                  decoration: ShapeDecoration(
+                                    shape: RoundedRectangleBorder(
+                                      side: const BorderSide(
+                                          width: 1, color: Colors.white),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                  ),
+                                  child: const Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Late',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        '80',
+                                        style: TextStyle(
+                                          color: Color(0xFF918FFA),
+                                          fontSize: 24,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
+                        Container(
+                          width: 134.48,
+                          height: 106.82,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image:
+                                  AssetImage("assets/images/arrivalCounts.png"),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ).paddingOnly(right: 10),
+                      ],
                     ),
-                    const Gap(20),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: CommonButton(
-                        onTap: () {
-                          Get.to(const ViewAttendanceList(),
-                              id: hrNavigationKey);
-                        },
-                        color: const Color(0xFF5A57FF),
-                        textColor: Colors.white,
-                        title: 'View Attendance',
-                      ),
+                  ],
+                ),
+              ),
+              const Gap(20),
+              Container(
+                width: 370,
+                height: 201,
+                decoration: ShapeDecoration(
+                  gradient: LinearGradient(
+                    begin: const Alignment(1.00, 0.00),
+                    end: const Alignment(-1, 0),
+                    colors: [
+                      Colors.white.withOpacity(0.10000000149011612),
+                      Colors.white.withOpacity(0.10000000149011612)
+                    ],
+                  ),
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(width: 1, color: Colors.white),
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Gap(10),
+                              const Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Gap(20),
+                                  // Container(
+                                  //   width: 60,
+                                  //   height: 60,
+                                  //   decoration: const BoxDecoration(
+                                  //     image: DecorationImage(
+                                  //       image: AssetImage(
+                                  //           "assets/images/shifts.png"),
+                                  //       fit: BoxFit.fill,
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  // const Gap(5),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Shifts',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      // Text(
+                                      //   '110',
+                                      //   style: TextStyle(
+                                      //     color: Colors.white,
+                                      //     fontSize: 24,
+                                      //     fontFamily: 'SF Pro Display',
+                                      //     fontWeight: FontWeight.w500,
+                                      //   ),
+                                      // ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const Gap(5),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Container(
+                                  width: 120,
+                                  decoration: ShapeDecoration(
+                                    shape: RoundedRectangleBorder(
+                                      side: const BorderSide(
+                                          width: 1, color: Colors.white),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                  ),
+                                  child: const Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'On-Site',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        '80',
+                                        style: TextStyle(
+                                          color: Color(0xFF918FFA),
+                                          fontSize: 24,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              const Gap(5),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Container(
+                                  width: 120,
+                                  decoration: ShapeDecoration(
+                                    shape: RoundedRectangleBorder(
+                                      side: const BorderSide(
+                                          width: 1, color: Colors.white),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                  ),
+                                  child: const Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Hybrid',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        '80',
+                                        style: TextStyle(
+                                          color: Color(0xFF918FFA),
+                                          fontSize: 24,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              const Gap(5),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Container(
+                                  width: 120,
+                                  decoration: ShapeDecoration(
+                                    shape: RoundedRectangleBorder(
+                                      side: const BorderSide(
+                                          width: 1, color: Colors.white),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                  ),
+                                  child: const Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Remote',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        '80',
+                                        style: TextStyle(
+                                          color: Color(0xFF918FFA),
+                                          fontSize: 24,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: 134.48,
+                          height: 106.82,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image:
+                                  AssetImage("assets/images/shiftsCount.png"),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ).paddingOnly(right: 10),
+                      ],
                     ),
                   ],
                 ),
               ),
-            ),
-            const Gap(20),
-            Container(
-              width: 370,
-              height: 166,
-              decoration: ShapeDecoration(
-                gradient: LinearGradient(
-                  begin: const Alignment(1.00, 0.00),
-                  end: const Alignment(-1, 0),
-                  colors: [
-                    Colors.white.withOpacity(0.10000000149011612),
-                    Colors.white.withOpacity(0.10000000149011612)
-                  ],
-                ),
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(width: 1, color: Colors.white),
-                  borderRadius: BorderRadius.circular(25),
-                ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Gap(10),
-                                // Container(
-                                //   width: 60,
-                                //   height: 60,
-                                //   decoration: const BoxDecoration(
-                                //     image: DecorationImage(
-                                //       image: AssetImage(
-                                //           "assets/images/hrDashBoardEmployee.png"),
-                                //       fit: BoxFit.fill,
-                                //     ),
-                                //   ),
-                                // ),
-                                // const Gap(5),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Total Employee',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                    Text(
-                                      '110',
-                                      style: TextStyle(
-                                        color: Color(0xFF918FFA),
-                                        fontSize: 24,
-                                        fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            const Gap(5),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Container(
-                                width: 120,
-                                height: 39,
-                                decoration: ShapeDecoration(
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                        width: 1, color: Colors.white),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                ),
-                                child: const Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Present\nWorkforce',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      '80',
-                                      style: TextStyle(
-                                        color: Color(0xFF918FFA),
-                                        fontSize: 24,
-                                        fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const Gap(5),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Container(
-                                width: 120,
-                                height: 39,
-                                decoration: ShapeDecoration(
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                        width: 1, color: Colors.white),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                ),
-                                child: const Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Absent\nWorkforce',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      '80',
-                                      style: TextStyle(
-                                        color: Color(0xFF918FFA),
-                                        fontSize: 24,
-                                        fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: 134.48,
-                        height: 106.82,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image:
-                                AssetImage("assets/images/totalEmployee.png"),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ).paddingOnly(right: 10),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const Gap(20),
-            Container(
-              width: 370,
-              height: 166,
-              decoration: ShapeDecoration(
-                gradient: LinearGradient(
-                  begin: const Alignment(1.00, 0.00),
-                  end: const Alignment(-1, 0),
-                  colors: [
-                    Colors.white.withOpacity(0.10000000149011612),
-                    Colors.white.withOpacity(0.10000000149011612)
-                  ],
-                ),
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(width: 1, color: Colors.white),
-                  borderRadius: BorderRadius.circular(25),
-                ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Gap(5),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Gap(10),
-                                // Container(
-                                //   width: 60,
-                                //   height: 60,
-                                //   decoration: const BoxDecoration(
-                                //     image: DecorationImage(
-                                //       image: AssetImage(
-                                //           "assets/images/arrival.png"),
-                                //       fit: BoxFit.fill,
-                                //     ),
-                                //   ),
-                                // ),
-                                // const Gap(5),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text(
-                                      'Arrivals',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                    CommomDropDownBlackTheme(
-                                      labelText: "Select Gate",
-                                      list: shiftsDataList,
-                                      onChanged: (v) {
-                                        setState(() {
-                                          selectedShift = v;
-                                        });
-                                      },
-                                      selectedValue: selectedShift,
-                                      hintText: 'Select Gate',
-                                    ),
-                                    // Text(
-                                    //   '110',
-                                    //   style: TextStyle(
-                                    //     color: Colors.white,
-                                    //     fontSize: 24,
-                                    //     fontFamily: 'SF Pro Display',
-                                    //     fontWeight: FontWeight.w500,
-                                    //   ),
-                                    // ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            const Gap(5),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Container(
-                                width: 120,
-                                height: 39,
-                                decoration: ShapeDecoration(
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                        width: 1, color: Colors.white),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                ),
-                                child: const Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'On Time',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      '80',
-                                      style: TextStyle(
-                                        color: Color(0xFF918FFA),
-                                        fontSize: 24,
-                                        fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const Gap(5),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Container(
-                                width: 120,
-                                height: 39,
-                                decoration: ShapeDecoration(
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                        width: 1, color: Colors.white),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                ),
-                                child: const Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Late',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      '80',
-                                      style: TextStyle(
-                                        color: Color(0xFF918FFA),
-                                        fontSize: 24,
-                                        fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: 134.48,
-                        height: 106.82,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image:
-                                AssetImage("assets/images/arrivalCounts.png"),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ).paddingOnly(right: 10),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const Gap(20),
-            Container(
-              width: 370,
-              height: 201,
-              decoration: ShapeDecoration(
-                gradient: LinearGradient(
-                  begin: const Alignment(1.00, 0.00),
-                  end: const Alignment(-1, 0),
-                  colors: [
-                    Colors.white.withOpacity(0.10000000149011612),
-                    Colors.white.withOpacity(0.10000000149011612)
-                  ],
-                ),
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(width: 1, color: Colors.white),
-                  borderRadius: BorderRadius.circular(25),
-                ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Gap(10),
-                            const Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Gap(20),
-                                // Container(
-                                //   width: 60,
-                                //   height: 60,
-                                //   decoration: const BoxDecoration(
-                                //     image: DecorationImage(
-                                //       image: AssetImage(
-                                //           "assets/images/shifts.png"),
-                                //       fit: BoxFit.fill,
-                                //     ),
-                                //   ),
-                                // ),
-                                // const Gap(5),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Shifts',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    // Text(
-                                    //   '110',
-                                    //   style: TextStyle(
-                                    //     color: Colors.white,
-                                    //     fontSize: 24,
-                                    //     fontFamily: 'SF Pro Display',
-                                    //     fontWeight: FontWeight.w500,
-                                    //   ),
-                                    // ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            const Gap(5),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Container(
-                                width: 120,
-                                decoration: ShapeDecoration(
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                        width: 1, color: Colors.white),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                ),
-                                child: const Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'On-Site',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      '80',
-                                      style: TextStyle(
-                                        color: Color(0xFF918FFA),
-                                        fontSize: 24,
-                                        fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const Gap(5),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Container(
-                                width: 120,
-                                decoration: ShapeDecoration(
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                        width: 1, color: Colors.white),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                ),
-                                child: const Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Hybrid',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      '80',
-                                      style: TextStyle(
-                                        color: Color(0xFF918FFA),
-                                        fontSize: 24,
-                                        fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const Gap(5),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Container(
-                                width: 120,
-                                decoration: ShapeDecoration(
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                        width: 1, color: Colors.white),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                ),
-                                child: const Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Remote',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      '80',
-                                      style: TextStyle(
-                                        color: Color(0xFF918FFA),
-                                        fontSize: 24,
-                                        fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: 134.48,
-                        height: 106.82,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("assets/images/shiftsCount.png"),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ).paddingOnly(right: 10),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
+              const Gap(20),
+            ],
+          ),
         ),
       ),
     );
