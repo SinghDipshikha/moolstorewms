@@ -1183,7 +1183,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
-                              Gap(30),
+                              Gap(40),
                               Text(
                                 '50',
                                 style: TextStyle(
@@ -1206,7 +1206,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
-                              Gap(20),
+                              Gap(30),
                               Text(
                                 '80',
                                 style: TextStyle(
@@ -1323,7 +1323,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                   children: [
                                     Container(
                                       width: 50,
-                                      height: 12,
+                                      height: 20,
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 2),
                                       decoration: ShapeDecoration(
@@ -1349,8 +1349,8 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                       ),
                                     ),
                                     Container(
-                                      width: 37,
-                                      height: 12,
+                                      width: 50,
+                                      height: 20,
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 2),
                                       decoration: ShapeDecoration(
@@ -1376,8 +1376,8 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                       ),
                                     ),
                                     Container(
-                                      width: 37,
-                                      height: 12,
+                                      width: 40,
+                                      height: 20,
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 2),
                                       decoration: ShapeDecoration(
@@ -1391,7 +1391,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                       ),
                                       child: const Center(
                                         child: Text(
-                                          'Pallete',
+                                          'Pallet',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             color: Color(0xFF595959),
@@ -1402,6 +1402,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                         ),
                                       ),
                                     ),
+                                    const Gap(8),
                                   ],
                                 ),
                               ],
@@ -1457,7 +1458,6 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                   ),
                                 ),
                               ),
-                              const Gap(10),
                               Padding(
                                 padding: const EdgeInsets.all(4.0),
                                 child: Row(
@@ -1466,7 +1466,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      width: 37,
+                                      width: 50,
                                       height: 12,
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 2),
@@ -1520,7 +1520,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                       ),
                                     ),
                                     Container(
-                                      width: 37,
+                                      width: 60,
                                       height: 12,
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 2),
