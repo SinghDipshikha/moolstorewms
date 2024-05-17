@@ -1327,7 +1327,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                 const Gap(20),
                                 Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceAround,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(

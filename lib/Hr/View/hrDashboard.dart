@@ -7,6 +7,7 @@ import 'package:moolwmsstore/Hr/View/demo.dart';
 import 'package:moolwmsstore/Hr/View/staffList.dart';
 import 'package:moolwmsstore/Hr/View/viewAttendane.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
+import 'package:moolwmsstore/Hr/View/widget/commonDropDown.dart';
 import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
@@ -18,6 +19,13 @@ class HrDashboard extends StatefulWidget {
 }
 
 class _HrDashboardState extends State<HrDashboard> {
+  @override
+  List<String> shiftsDataList = [
+    'Shift1',
+    'Shift2',
+    'Shift3',
+  ];
+  String? selectedShift = 'Shift1';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -527,24 +535,24 @@ class _HrDashboardState extends State<HrDashboard> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Gap(20),
-                                Container(
-                                  width: 60,
-                                  height: 60,
-                                  decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                          "assets/images/hrDashBoardEmployee.png"),
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
-                                ),
-                                const Gap(5),
-                                const Column(
+                                Gap(10),
+                                // Container(
+                                //   width: 60,
+                                //   height: 60,
+                                //   decoration: const BoxDecoration(
+                                //     image: DecorationImage(
+                                //       image: AssetImage(
+                                //           "assets/images/hrDashBoardEmployee.png"),
+                                //       fit: BoxFit.fill,
+                                //     ),
+                                //   ),
+                                // ),
+                                // const Gap(5),
+                                Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -700,28 +708,29 @@ class _HrDashboardState extends State<HrDashboard> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            const Gap(5),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Gap(20),
-                                Container(
-                                  width: 60,
-                                  height: 60,
-                                  decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                          "assets/images/arrival.png"),
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
-                                ),
-                                const Gap(5),
-                                const Column(
+                                const Gap(10),
+                                // Container(
+                                //   width: 60,
+                                //   height: 60,
+                                //   decoration: const BoxDecoration(
+                                //     image: DecorationImage(
+                                //       image: AssetImage(
+                                //           "assets/images/arrival.png"),
+                                //       fit: BoxFit.fill,
+                                //     ),
+                                //   ),
+                                // ),
+                                // const Gap(5),
+                                Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Arrivals',
                                       style: TextStyle(
                                         color: Colors.white,
@@ -729,6 +738,17 @@ class _HrDashboardState extends State<HrDashboard> {
                                         fontFamily: 'SF Pro Display',
                                         fontWeight: FontWeight.w500,
                                       ),
+                                    ),
+                                    CommomDropDownBlackTheme(
+                                      labelText: "Select Gate",
+                                      list: shiftsDataList,
+                                      onChanged: (v) {
+                                        setState(() {
+                                          selectedShift = v;
+                                        });
+                                      },
+                                      selectedValue: selectedShift,
+                                      hintText: 'Select Gate',
                                     ),
                                     // Text(
                                     //   '110',
@@ -873,24 +893,25 @@ class _HrDashboardState extends State<HrDashboard> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
+                            const Gap(10),
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Gap(20),
-                                Container(
-                                  width: 60,
-                                  height: 60,
-                                  decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                          "assets/images/shifts.png"),
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
-                                ),
-                                const Gap(5),
-                                const Column(
+                                Gap(20),
+                                // Container(
+                                //   width: 60,
+                                //   height: 60,
+                                //   decoration: const BoxDecoration(
+                                //     image: DecorationImage(
+                                //       image: AssetImage(
+                                //           "assets/images/shifts.png"),
+                                //       fit: BoxFit.fill,
+                                //     ),
+                                //   ),
+                                // ),
+                                // const Gap(5),
+                                Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
