@@ -29,7 +29,7 @@ class _HrDashboardState extends State<HrDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color(0xFF232323),
       appBar: AppBar(
         centerTitle: false,
         title: const Text(
