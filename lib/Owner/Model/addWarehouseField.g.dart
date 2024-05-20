@@ -9,7 +9,7 @@ part of 'addWarehouseField.dart';
 _$AddWarehiuseFieldImpl _$$AddWarehiuseFieldImplFromJson(
         Map<String, dynamic> json) =>
     _$AddWarehiuseFieldImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       field_name: json['field_name'] as String,
       type: json['type'] as String?,
       error_message_on_empt: json['error_message_on_empt'] as String?,
@@ -17,8 +17,8 @@ _$AddWarehiuseFieldImpl _$$AddWarehiuseFieldImplFromJson(
       value: json['value'],
       regex: json['regex'] as String?,
       selected_values: json['selected_values'] as List<dynamic>?,
-      required: json['required'] as int?,
-      isShow: json['isShow'] as int?,
+      required: (json['required'] as num?)?.toInt(),
+      isShow: (json['isShow'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$AddWarehiuseFieldImplToJson(

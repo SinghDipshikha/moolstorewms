@@ -8,18 +8,18 @@ part of 'warehouse.dart';
 
 _$WarehouseImpl _$$WarehouseImplFromJson(Map<String, dynamic> json) =>
     _$WarehouseImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       warehouse_name: json['warehouse_name'] as String?,
       warehouse_manager_email_id: json['warehouse_manager_email_id'] as String?,
       warehouse_manager_name: json['warehouse_manager_name'] as String?,
       manager_phone_number: json['manager_phone_number'] as String?,
       country_code: json['country_code'] as String?,
-      no_of_chambers: json['no_of_chambers'] as int?,
-      total_capacity: json['total_capacity'] as int?,
-      no_of_docks: json['no_of_docks'] as int?,
-      no_of_gates: json['no_of_gates'] as int?,
+      no_of_chambers: (json['no_of_chambers'] as num?)?.toInt(),
+      total_capacity: (json['total_capacity'] as num?)?.toInt(),
+      no_of_docks: (json['no_of_docks'] as num?)?.toInt(),
+      no_of_gates: (json['no_of_gates'] as num?)?.toInt(),
       slug: json['slug'],
-      status: json['status'] as int?,
+      status: (json['status'] as num?)?.toInt(),
       created_at: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),
@@ -27,7 +27,7 @@ _$WarehouseImpl _$$WarehouseImplFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTime.parse(json['update_at'] as String),
       deleted_at: json['deleted_at'],
-      user_id: json['user_id'] as int?,
+      user_id: (json['user_id'] as num?)?.toInt(),
       lat: (json['lat'] as num?)?.toDouble(),
       lng: (json['lng'] as num?)?.toDouble(),
       warehouses_location: json['warehouses_location'] as String?,

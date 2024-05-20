@@ -8,10 +8,10 @@ part of 'company.dart';
 
 _$CompanyImpl _$$CompanyImplFromJson(Map<String, dynamic> json) =>
     _$CompanyImpl(
-      id: json['id'] as int?,
-      sellerCompanyDetailsID: json['sellerCompanyDetailsID'] as int?,
-      user_id: json['user_id'] as int?,
-      seller_company_id: json['seller_company_id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
+      sellerCompanyDetailsID: (json['sellerCompanyDetailsID'] as num?)?.toInt(),
+      user_id: (json['user_id'] as num?)?.toInt(),
+      seller_company_id: (json['seller_company_id'] as num?)?.toInt(),
       phone_no: json['phone_no'] as String?,
       address: json['address'] as String?,
       state: json['state'] as String?,

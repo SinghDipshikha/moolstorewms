@@ -8,7 +8,7 @@ part of 'designation.dart';
 
 _$DesignationImpl _$$DesignationImplFromJson(Map<String, dynamic> json) =>
     _$DesignationImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
     );
 

@@ -8,27 +8,27 @@ part of 'secGuardDetail.dart';
 
 _$SecGuardDetailImpl _$$SecGuardDetailImplFromJson(Map<String, dynamic> json) =>
     _$SecGuardDetailImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       employee_id: json['employee_id'] as String?,
       first_name: json['first_name'] as String?,
       last_name: json['last_name'] as String?,
       email: json['email'],
-      phone: json['phone'] as int?,
+      phone: (json['phone'] as num?)?.toInt(),
       password: json['password'],
       slug: json['slug'],
       verification_code: json['verification_code'],
       gender: json['gender'],
       avatar: json['avatar'],
-      status: json['status'] as int?,
+      status: (json['status'] as num?)?.toInt(),
       created_at: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),
       updated_at: json['updated_at'],
       deleted_at: json['deleted_at'],
       language_id: json['language_id'],
-      role_id: json['role_id'] as int?,
-      designation_id: json['designation_id'] as int?,
-      warehouse_id: json['warehouse_id'] as int?,
+      role_id: (json['role_id'] as num?)?.toInt(),
+      designation_id: (json['designation_id'] as num?)?.toInt(),
+      warehouse_id: (json['warehouse_id'] as num?)?.toInt(),
       designation: json['designation'] as String?,
     );
 

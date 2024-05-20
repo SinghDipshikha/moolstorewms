@@ -9,15 +9,15 @@ part of 'visitor.dart';
 _$GetAllVisitorBySecurityGaurdImpl _$$GetAllVisitorBySecurityGaurdImplFromJson(
         Map<String, dynamic> json) =>
     _$GetAllVisitorBySecurityGaurdImpl(
-      id: json['id'] as int?,
-      ticket_generate_by: json['ticket_generate_by'] as int?,
-      ticket_verify_by: json['ticket_verify_by'] as int?,
+      id: (json['id'] as num?)?.toInt(),
+      ticket_generate_by: (json['ticket_generate_by'] as num?)?.toInt(),
+      ticket_verify_by: (json['ticket_verify_by'] as num?)?.toInt(),
       visit_ticket_number: json['visit_ticket_number'] as String?,
       visitor_name: json['visitor_name'] as String?,
       visitor_ph_number: json['visitor_ph_number'] as String?,
       purpose_of_visit: json['purpose_of_visit'] as String?,
       id_proof: json['id_proof'] as String?,
-      warehouse_id: json['warehouse_id'] as int?,
+      warehouse_id: (json['warehouse_id'] as num?)?.toInt(),
       in_out_status: json['in_out_status'] as String?,
       remarks: json['remarks'] as String?,
       status: json['status'],

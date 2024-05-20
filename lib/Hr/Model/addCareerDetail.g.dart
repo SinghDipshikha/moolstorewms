@@ -9,7 +9,7 @@ part of 'addCareerDetail.dart';
 _$AddCareerDetailImpl _$$AddCareerDetailImplFromJson(
         Map<String, dynamic> json) =>
     _$AddCareerDetailImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       name_of_employer: json['name_of_employer'] as String?,
       designation: json['designation'] as String?,
       phone_no: json['phone_no'] as String?,
@@ -19,8 +19,8 @@ _$AddCareerDetailImpl _$$AddCareerDetailImplFromJson(
       employment_date_to: json['employment_date_to'] == null
           ? null
           : DateTime.parse(json['employment_date_to'] as String),
-      monthly_salary_start: json['monthly_salary_start'] as int?,
-      monthly_salary_end: json['monthly_salary_end'] as int?,
+      monthly_salary_start: (json['monthly_salary_start'] as num?)?.toInt(),
+      monthly_salary_end: (json['monthly_salary_end'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$AddCareerDetailImplToJson(

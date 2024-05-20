@@ -9,7 +9,7 @@ part of 'addWarehouse.dart';
 _$AddWarehouseFieldImpl _$$AddWarehouseFieldImplFromJson(
         Map<String, dynamic> json) =>
     _$AddWarehouseFieldImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       field_name: json['field_name'] as String,
       type: json['type'] as String?,
       error_message_on_empt: json['error_message_on_empt'] as String?,
@@ -17,8 +17,8 @@ _$AddWarehouseFieldImpl _$$AddWarehouseFieldImplFromJson(
       value: json['value'],
       regex: json['regex'] as String?,
       selected_values: json['selected_values'] as List<dynamic>?,
-      required: json['required'] as int?,
-      isShow: json['isShow'] as int?,
+      required: (json['required'] as num?)?.toInt(),
+      isShow: (json['isShow'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$AddWarehouseFieldImplToJson(
@@ -39,18 +39,18 @@ Map<String, dynamic> _$$AddWarehouseFieldImplToJson(
 _$AddWarehouseImpl _$$AddWarehouseImplFromJson(Map<String, dynamic> json) =>
     _$AddWarehouseImpl(
       warehouse_name: json['warehouse_name'] as String?,
-      user_id: json['user_id'] as int?,
+      user_id: (json['user_id'] as num?)?.toInt(),
       warehouse_locationtion: json['warehouse_locationtion'] as String?,
       lat: (json['lat'] as num?)?.toDouble(),
       lng: (json['lng'] as num?)?.toDouble(),
       manage_email: json['manage_email'] as String?,
       warehouse_managerger: json['warehouse_managerger'] as String?,
-      phone: json['phone'] as int?,
+      phone: (json['phone'] as num?)?.toInt(),
       country_code: json['country_code'] as String?,
-      no_of_chambers: json['no_of_chambers'] as int?,
-      total_capacity: json['total_capacity'] as int?,
-      no_of_docks: json['no_of_docks'] as int?,
-      no_of_gates: json['no_of_gates'] as int?,
+      no_of_chambers: (json['no_of_chambers'] as num?)?.toInt(),
+      total_capacity: (json['total_capacity'] as num?)?.toInt(),
+      no_of_docks: (json['no_of_docks'] as num?)?.toInt(),
+      no_of_gates: (json['no_of_gates'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$AddWarehouseImplToJson(_$AddWarehouseImpl instance) =>

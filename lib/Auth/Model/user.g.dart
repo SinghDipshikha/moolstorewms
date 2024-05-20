@@ -70,8 +70,8 @@ class UserAdapter extends TypeAdapter<User> {
 
 _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       first_name: json['first_name'] as String?,
-      role_id: json['role_id'] as int?,
-      id: json['id'] as int?,
+      role_id: (json['role_id'] as num?)?.toInt(),
+      id: (json['id'] as num?)?.toInt(),
       last_name: json['last_name'] as String?,
       email: json['email'] as String?,
       phone: json['phone'],

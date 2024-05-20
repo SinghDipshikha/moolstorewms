@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'employee.dart';
+part of 'staff.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$EmployeeImpl _$$EmployeeImplFromJson(Map<String, dynamic> json) =>
-    _$EmployeeImpl(
+_$StaffEntryImpl _$$StaffEntryImplFromJson(Map<String, dynamic> json) =>
+    _$StaffEntryImpl(
       name: json['name'] as String?,
       mobile: json['mobile'] as String?,
       employeeId: json['employeeId'] as String?,
@@ -18,7 +18,6 @@ _$EmployeeImpl _$$EmployeeImplFromJson(Map<String, dynamic> json) =>
       personType: (json['personType'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      isShow: (json['isShow'] as num?)?.toInt(),
       isBankDetails: (json['isBankDetails'] as num?)?.toInt(),
       isCareerDetails: (json['isCareerDetails'] as num?)?.toInt(),
       isEducationDetails: (json['isEducationDetails'] as num?)?.toInt(),
@@ -26,7 +25,7 @@ _$EmployeeImpl _$$EmployeeImplFromJson(Map<String, dynamic> json) =>
       isDocumentDetails: (json['isDocumentDetails'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$EmployeeImplToJson(_$EmployeeImpl instance) =>
+Map<String, dynamic> _$$StaffEntryImplToJson(_$StaffEntryImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'mobile': instance.mobile,
@@ -34,7 +33,6 @@ Map<String, dynamic> _$$EmployeeImplToJson(_$EmployeeImpl instance) =>
       'warehouseId': instance.warehouseId,
       'timestamp': instance.timestamp?.toIso8601String(),
       'personType': instance.personType,
-      'isShow': instance.isShow,
       'isBankDetails': instance.isBankDetails,
       'isCareerDetails': instance.isCareerDetails,
       'isEducationDetails': instance.isEducationDetails,

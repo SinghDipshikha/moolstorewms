@@ -2,27 +2,17 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
-import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
-import 'package:moolwmsstore/Hr/View/addEmployeeBankDetails.dart';
-import 'package:moolwmsstore/Hr/View/addEmployeeCareerDetails.dart';
-import 'package:moolwmsstore/Hr/View/addEmployeeDocuments.dart';
-import 'package:moolwmsstore/Hr/View/addEmployeeEducationQualificationDetails.dart';
-import 'package:moolwmsstore/Hr/View/addEmployeePersonalDetails.dart';
-import 'package:moolwmsstore/Hr/View/addedStaffScreen.dart';
 import 'package:moolwmsstore/Hr/View/hrDashboard.dart';
-import 'package:moolwmsstore/Hr/View/widget/commonDropDown.dart';
+import 'package:moolwmsstore/Hr/View/shiftAssign.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
-class HrEmployeeList extends StatelessWidget {
-  const HrEmployeeList({super.key});
+class ShiftInfo extends StatelessWidget {
+  const ShiftInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
- 
-   
     String? selectedShift;
     return GetBuilder<HRController>(initState: (state) {
       Get.find<HRController>().getAllStaffList();
@@ -33,7 +23,7 @@ class HrEmployeeList extends StatelessWidget {
         //   title: 'Add New Staff',
         // ).paddingSymmetric(horizontal: 12),
         appBar: CommonAppBar(
-          title: 'Staff List',
+          title: 'Staff',
           onTap: () {
             Get.to(const HrDashboard(), id: hrNavigationKey);
           },
@@ -88,7 +78,7 @@ class HrEmployeeList extends StatelessWidget {
                 const Expanded(
                   flex: 1,
                   child: Text(
-                    "Name",
+                    "Staff Name",
                     style: TextStyle(
                       color: Color(0xFF5A57FF),
                       fontSize: 12,
@@ -102,7 +92,7 @@ class HrEmployeeList extends StatelessWidget {
                 const Expanded(
                   flex: 1,
                   child: Text(
-                    "Mobile No.",
+                    "Shift Assigned",
                     style: TextStyle(
                       color: Color(0xFF5A57FF),
                       fontSize: 12,
@@ -148,7 +138,6 @@ class HrEmployeeList extends StatelessWidget {
                     itemCount: hrController.employees.length,
                     itemBuilder: (context, i) {
                       return Container(
-                        //height: 40,
                         decoration: ShapeDecoration(
                           color: const Color(0xFFFAF9FF),
                           shape: RoundedRectangleBorder(
@@ -160,11 +149,12 @@ class HrEmployeeList extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                         child: Row(
                           children: [
-                            Expanded(
+                            const Expanded(
                                 flex: 1,
                                 child: Text(
-                                  hrController.employees[i].name ?? "",
-                                  style: const TextStyle(
+                                  // hrController.employees[i].name ?? "",
+                                  "",
+                                  style: TextStyle(
                                     color: Color(0xFF353535),
                                     fontSize: 10,
                                     fontFamily: 'SF Pro Text',
@@ -172,26 +162,48 @@ class HrEmployeeList extends StatelessWidget {
                                   ),
                                 )),
                             Expanded(
-                                flex: 1,
-                                child: Text(
-                                  hrController.employees[i].mobile ?? "",
-                                  style: const TextStyle(
-                                    color: Color(0xFF353535),
-                                    fontSize: 10,
-                                    fontFamily: 'SF Pro Text',
-                                    fontWeight: FontWeight.w500,
+                              flex: 1,
+                              child: InkWell(
+                                onTap: () {
+                                  Get.to(const AssignShift(),
+                                      id: hrNavigationKey);
+                                },
+                                child: Container(
+                                  height: 24,
+                                  decoration: ShapeDecoration(
+                                    color: const Color(0xFF5A57FF),
+                                    shape: RoundedRectangleBorder(
+                                      side: const BorderSide(
+                                          width: 1, color: Color(0x192647C8)),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
                                   ),
-                                )),
-                            // const Gap(4),
-                            Expanded(
+                                  child: const Center(
+                                    child: Text(
+                                      'Click to Assign',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 10,
+                                        fontFamily: 'SF Pro Display',
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const Gap(20),
+                            const Expanded(
                                 flex: 1,
                                 child: Text(
-                                  hrController.employees[i].personType
-                                          .toString()
-                                          .replaceAll("[", "")
-                                          .replaceAll("]", "") ??
-                                      "",
-                                  style: const TextStyle(
+                                  // hrController.employees[i].personType
+                                  //         .toString()
+                                  //         .replaceAll("[", "")
+                                  //         .replaceAll("]", "") ??
+                                  //     "",
+                                  '',
+                                  style: TextStyle(
                                     color: Color(0xFF353535),
                                     fontSize: 10,
                                     fontFamily: 'SF Pro Text',
@@ -205,81 +217,6 @@ class HrEmployeeList extends StatelessWidget {
                                   "assets/icons/Eye.png",
                                   height: 20,
                                 )),
-
-                            hrController.employees[i].isBankDetails == 0 ||
-                                    hrController.employees[i].isCareerDetails ==
-                                        0 ||
-                                    hrController
-                                            .employees[i].isDocumentDetails ==
-                                        0 ||
-                                    hrController.employees[i].isUserDetails ==
-                                        0 ||
-                                    hrController
-                                            .employees[i].isEducationDetails ==
-                                        0
-                                ? IconButton(
-                                    padding: EdgeInsets.zero,
-                                    onPressed: () {
-                                      hrController.navigationAccordingStatus
-                                          .clear();
-                                      hrController.navigationAccordingStatus
-                                          .add(const AddedStaffScreen());
-
-                                      if (hrController
-                                              .employees[i].isBankDetails ==
-                                          0) {
-                                        hrController.navigationAccordingStatus
-                                            .add(
-                                                const AddEmployeeBankDetails());
-                                      }
-                                      if (hrController
-                                              .employees[i].isCareerDetails ==
-                                          0) {
-                                        hrController.navigationAccordingStatus
-                                            .add(
-                                                const AddEmployeeCareerDetails());
-                                      }
-                                      if (hrController
-                                              .employees[i].isDocumentDetails ==
-                                          0) {
-                                        hrController.navigationAccordingStatus.add(
-                                            const AddEmployeeDocumentsDetails());
-                                      }
-                                      if (hrController
-                                              .employees[i].isUserDetails ==
-                                          0) {
-                                        hrController.navigationAccordingStatus.add(
-                                            const AddEmployeePersonalDetails());
-                                      }
-                                      if (hrController
-                                              .employees[i].isDocumentDetails ==
-                                          0) {
-                                        hrController.navigationAccordingStatus.add(
-                                            const AddEmployeeEducationQualificationDetails());
-                                      }
-                                      Logger().i(hrController
-                                          .navigationAccordingStatus);
-
-                                      Get.to(
-                                          hrController
-                                                  .navigationAccordingStatus[
-                                              hrController
-                                                      .navigationAccordingStatus
-                                                      .length -
-                                                  1],
-                                          id: hrNavigationKey);
-                                    },
-                                    icon: Image.asset(
-                                      "assets/images/hrIcon2.png",
-                                      height: 20,
-                                    ))
-                                : IconButton(
-                                    padding: EdgeInsets.zero,
-                                    onPressed: () {},
-                                    icon: Image.asset(
-                                      "assets/images/hrIcon.png",
-                                      height: 20,
-                                    )),
                           ],
                         ),
                       ).paddingSymmetric(vertical: 4);

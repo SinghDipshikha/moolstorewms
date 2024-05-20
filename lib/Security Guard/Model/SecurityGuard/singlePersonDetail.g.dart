@@ -9,8 +9,8 @@ part of 'singlePersonDetail.dart';
 _$GetSinglePersonDetailsImpl _$$GetSinglePersonDetailsImplFromJson(
         Map<String, dynamic> json) =>
     _$GetSinglePersonDetailsImpl(
-      id: json['id'] as int?,
-      ticket_generate_by: json['ticket_generate_by'] as int?,
+      id: (json['id'] as num?)?.toInt(),
+      ticket_generate_by: (json['ticket_generate_by'] as num?)?.toInt(),
       open_visit_ticket_number: json['open_visit_ticket_number'] as String?,
       visitor_name: json['visitor_name'] as String?,
       visitor_ph_number: json['visitor_ph_number'] as String?,

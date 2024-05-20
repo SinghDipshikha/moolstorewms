@@ -18,7 +18,7 @@ _$EmployeeImpl _$$EmployeeImplFromJson(Map<String, dynamic> json) =>
       personType: (json['personType'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      isShow: json['isShow'] as int?,
+      isShow: (json['isShow'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$EmployeeImplToJson(_$EmployeeImpl instance) =>

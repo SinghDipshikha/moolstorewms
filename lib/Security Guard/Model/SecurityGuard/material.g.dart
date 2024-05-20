@@ -10,12 +10,12 @@ _$GetAllMaterialEntryBySecurityGaurdImpl
     _$$GetAllMaterialEntryBySecurityGaurdImplFromJson(
             Map<String, dynamic> json) =>
         _$GetAllMaterialEntryBySecurityGaurdImpl(
-          id: json['id'] as int?,
+          id: (json['id'] as num?)?.toInt(),
           vehicle_number: json['vehicle_number'] as String?,
           driver_name: json['driver_name'] as String?,
           product_name: json['product_name'] as String?,
-          qty: json['qty'] as int?,
-          unit: json['unit'] as int?,
+          qty: (json['qty'] as num?)?.toInt(),
+          unit: (json['unit'] as num?)?.toInt(),
           expiry_date: json['expiry_date'] == null
               ? null
               : DateTime.parse(json['expiry_date'] as String),
