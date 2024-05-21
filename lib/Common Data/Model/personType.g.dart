@@ -8,7 +8,7 @@ part of 'personType.dart';
 
 _$PersonTypeImpl _$$PersonTypeImplFromJson(Map<String, dynamic> json) =>
     _$PersonTypeImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       person_type: json['person_type'] as String?,
     );
 

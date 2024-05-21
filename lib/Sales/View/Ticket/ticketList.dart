@@ -11,16 +11,15 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Sales/View/widgets/customButton.dart';
+import 'package:moolwmsstore/Sales/View/Ticket/indentInOut.dart';
+import 'package:moolwmsstore/Sales/View/Ticket/viewindent.dart';
+import 'package:moolwmsstore/Sales/View/common/widgets/customButton.dart';
+import 'package:moolwmsstore/Sales/controller/salesController.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
-class PoList extends StatefulWidget {
-  const PoList({super.key});
+class TicketList extends StatelessWidget {
+  const TicketList({super.key});
 
-  @override
-  _PoListState createState() => _PoListState();
-}
-
-class _PoListState extends State<PoList> {
   @override
   Widget build(BuildContext context) {
     final List tags = [
@@ -32,7 +31,7 @@ class _PoListState extends State<PoList> {
       {"title": "Date & Time", "flex": 1},
       {"title": "In/Out", "flex": 1},
       {"title": "Info", "flex": 1},
-      {"title": "icon", "flex": 1},
+      // {"title": "icon", "flex": 1},
     ];
 
     return Scaffold(
@@ -59,277 +58,287 @@ class _PoListState extends State<PoList> {
           ),
         ),
       ),
-      body: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          Column(
-            children: [
-              const Gap(20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 40,
-                    width: 170,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(
-                          color: const Color(0xFF5A57FF).withOpacity(0.4)),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/icons/Filter (R).png',
-                          height: 19,
-                        ),
-                        const SizedBox(
-                          width: 12,
-                        ),
-                        const Text(
-                          'Filter',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color(0xFFA7A7A7),
-                            fontSize: 16,
-                            fontFamily: 'SF Pro Text',
-                            fontWeight: FontWeight.w500,
-                            //height: 0,
-                            letterSpacing: -0.64,
+      body: GetBuilder<SalesController>(initState: (state) {
+        Get.find<SalesController>().getAllIndents();
+      }, builder: (salesController) {
+        return Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            Column(
+              children: [
+                const Gap(20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 40,
+                      width: 170,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        border: Border.all(
+                            color: const Color(0xFF5A57FF).withOpacity(0.4)),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/icons/Filter (R).png',
+                            height: 19,
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                  const Gap(20),
-                  Container(
-                    height: 40,
-                    width: 170,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(
-                          width: 1,
-                          color: const Color(0xFF5A57FF).withOpacity(0.4)),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/icons/search-normal.png',
-                          height: 19,
-                        ),
-                        const SizedBox(
-                          width: 12,
-                        ),
-                        const Text(
-                          'Search',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color(0xFFA7A7A7),
-                            fontSize: 16,
-                            fontFamily: 'SF Pro Text',
-                            fontWeight: FontWeight.w500,
-                            //height: 0,
-                            letterSpacing: -0.64,
+                          const SizedBox(
+                            width: 12,
                           ),
-                        )
-                      ],
+                          const Text(
+                            'Filter',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color(0xFFA7A7A7),
+                              fontSize: 16,
+                              fontFamily: 'SF Pro Text',
+                              fontWeight: FontWeight.w500,
+                              //height: 0,
+                              letterSpacing: -0.64,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  )
-                ],
-              ),
-              const Gap(30),
-              Row(
-                children: List.generate(tags.length, (index) {
-                  if (tags[index]["title"] == "Info") {
-                    return IconButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: () {},
-                        icon: Text(
-                          tags[index]["title"],
-                          style: const TextStyle(
-                            color: Color(0xFF5A57FF),
-                            fontSize: 12,
-                            fontFamily: 'SF Pro Text',
-                            fontWeight: FontWeight.w400,
-                            //height: 0,
-                            letterSpacing: -0.48,
+                    const Gap(20),
+                    Container(
+                      height: 40,
+                      width: 170,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        border: Border.all(
+                            width: 1,
+                            color: const Color(0xFF5A57FF).withOpacity(0.4)),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/icons/search-normal.png',
+                            height: 19,
                           ),
-                        ));
-                  }
-                  if (tags[index]["title"] == "icon") {
-                    return IconButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.more_horiz,
-                          color: Colors.white,
-                        ));
-                  }
-                  if (tags[index]["title"] == "In/Out") {
-                    return IconButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: () {},
-                        icon: Text(
-                          tags[index]["title"],
-                          style: const TextStyle(
-                            color: Color(0xFF5A57FF),
-                            fontSize: 12,
-                            fontFamily: 'SF Pro Text',
-                            fontWeight: FontWeight.w400,
-                            //height: 0,
-                            letterSpacing: -0.48,
+                          const SizedBox(
+                            width: 12,
                           ),
-                        ));
-                  }
-
-                  return Expanded(
-                      flex: tags[index]["flex"],
-                      child: Text(
-                        tags[index]["title"],
-                        style: const TextStyle(
-                          color: Color(0xFF5A57FF),
-                          fontSize: 12,
-                          fontFamily: 'SF Pro Text',
-                          fontWeight: FontWeight.w400,
-                          //height: 0,
-                          letterSpacing: -0.48,
-                        ),
-                      ));
-                }),
-              ).paddingSymmetric(horizontal: 20),
-              Expanded(
-                  child: ListView.builder(itemBuilder: (context, listIndex) {
-                return Container(
-                  height: 70,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFFFAF9FF),
-                    shape: RoundedRectangleBorder(
-                      side:
-                          const BorderSide(width: 1, color: Color(0x195A57FF)),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Row(
-                    children: List.generate(tags.length, (index) {
-                      if (tags[index]["title"] == "Info") {
-                        return IconButton(
-                            padding: EdgeInsets.zero,
-                            onPressed: () {},
-                            icon: Image.asset(
-                              "assets/icons/Eye.png",
-                              height: 22,
-                            ));
-                      }
-                      if (tags[index]["title"] == "In/Out") {
-                        return IconButton(
-                            padding: EdgeInsets.zero,
-                            onPressed: () {},
-                            icon: Image.asset(
-                              "assets/icons/check_in.png",
-                              height: 32,
-                            ));
-                      }
-                      if (tags[index]["title"] == "icon") {
-                        return IconButton(
-                            padding: EdgeInsets.zero,
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.more_vert,
-                              color: Colors.black,
-                            ));
-                      }
-                      if (tags[index]["title"] == 'Ticket ID') {
-                        return Expanded(
-                            flex: tags[index]["flex"],
-                            child: const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Text(
-                                'Ticket ID',
-                                style: TextStyle(
-                                  color: Color(0xFF353535),
-                                  fontSize: 12,
-                                  fontFamily: 'SF Pro Text',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ));
-                      }
-                      if (tags[index]["title"] == 'Shipped To') {
-                        return Expanded(
-                            flex: tags[index]["flex"],
-                            child: const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Text(
-                                'Shipped To',
-                                style: TextStyle(
-                                  color: Color(0xFF353535),
-                                  fontSize: 12,
-                                  fontFamily: 'SF Pro Text',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ));
-                      }
-                      if (tags[index]["title"] == "Date & Time") {
-                        return Expanded(
-                            flex: tags[index]["flex"],
-                            child: const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Text(
-                                "Date & Time",
-                                style: TextStyle(
-                                  color: Color(0xFF353535),
-                                  fontSize: 12,
-                                  fontFamily: 'SF Pro Text',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ));
-                      }
-
-                      return Expanded(
-                          flex: tags[index]["flex"],
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Text(
-                              "contents[index][" "]",
-                              style: TextStyle(
-                                color: Color(0xFF353535),
-                                fontSize: 12,
-                                fontFamily: 'SF Pro Text',
-                                fontWeight: FontWeight.w500,
-                              ),
+                          const Text(
+                            'Search',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color(0xFFA7A7A7),
+                              fontSize: 16,
+                              fontFamily: 'SF Pro Text',
+                              fontWeight: FontWeight.w500,
+                              //height: 0,
+                              letterSpacing: -0.64,
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                const Gap(30),
+                Row(
+                  children: List.generate(tags.length, (index) {
+                    if (tags[index]["title"] == "Info") {
+                      return IconButton(
+                          padding: EdgeInsets.zero,
+                          onPressed: () {},
+                          icon: Text(
+                            tags[index]["title"],
+                            style: const TextStyle(
+                              color: Color(0xFF5A57FF),
+                              fontSize: 12,
+                              fontFamily: 'SF Pro Text',
+                              fontWeight: FontWeight.w400,
+                              //height: 0,
+                              letterSpacing: -0.48,
                             ),
                           ));
-                    }),
-                  ),
-                ).paddingSymmetric(vertical: 4, horizontal: 10);
-              })),
-            ],
-          ),
-          Container(
-            height: Get.height * 0.2,
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                  Colors.white.withOpacity(0.3),
-                  Colors.white,
-                  Colors.white,
-                ])),
-          ),
-        ],
-      ),
+                    }
+                    // if (tags[index]["title"] == "icon") {
+                    //   return IconButton(
+                    //       padding: EdgeInsets.zero,
+                    //       onPressed: () {},
+                    //       icon: const Icon(
+                    //         Icons.more_horiz,
+                    //         color: Colors.white,
+                    //       ));
+                    // }
+                    if (tags[index]["title"] == "In/Out") {
+                      return IconButton(
+                          padding: EdgeInsets.zero,
+                          onPressed: () {},
+                          icon: Text(
+                            tags[index]["title"],
+                            style: const TextStyle(
+                              color: Color(0xFF5A57FF),
+                              fontSize: 12,
+                              fontFamily: 'SF Pro Text',
+                              fontWeight: FontWeight.w400,
+                              //height: 0,
+                              letterSpacing: -0.48,
+                            ),
+                          ));
+                    }
+
+                    return Expanded(
+                        flex: tags[index]["flex"],
+                        child: Text(
+                          tags[index]["title"],
+                          style: const TextStyle(
+                            color: Color(0xFF5A57FF),
+                            fontSize: 12,
+                            fontFamily: 'SF Pro Text',
+                            fontWeight: FontWeight.w400,
+                            //height: 0,
+                            letterSpacing: -0.48,
+                          ),
+                        ));
+                  }),
+                ).paddingSymmetric(horizontal: 20),
+                Expanded(
+                    child: ListView.builder(itemBuilder: (context, listIndex) {
+                  return Container(
+                    height: 70,
+                    decoration: ShapeDecoration(
+                      color: const Color(0xFFFAF9FF),
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(
+                            width: 1, color: Color(0x195A57FF)),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Row(
+                      children: List.generate(tags.length, (index) {
+                        if (tags[index]["title"] == "Info") {
+                          return IconButton(
+                              padding: EdgeInsets.zero,
+                              onPressed: () {
+                                Get.to(const Viewindent(),
+                                    id: salesNavigationKey);
+                              },
+                              icon: Image.asset(
+                                "assets/icons/Eye.png",
+                                height: 22,
+                              ));
+                        }
+                        if (tags[index]["title"] == "In/Out") {
+                          return IconButton(
+                              padding: EdgeInsets.zero,
+                              onPressed: () {
+                                Get.to(const IndentInOut(),
+                                    id: salesNavigationKey);
+                              },
+                              icon: Image.asset(
+                                "assets/icons/check_in.png",
+                                height: 32,
+                              ));
+                        }
+                        if (tags[index]["title"] == "icon") {
+                          return IconButton(
+                              padding: EdgeInsets.zero,
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.more_vert,
+                                color: Colors.black,
+                              ));
+                        }
+                        if (tags[index]["title"] == 'Ticket ID') {
+                          return Expanded(
+                              flex: tags[index]["flex"],
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Text(
+                                  'Ticket ID',
+                                  style: TextStyle(
+                                    color: Color(0xFF353535),
+                                    fontSize: 12,
+                                    fontFamily: 'SF Pro Text',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ));
+                        }
+                        if (tags[index]["title"] == 'Shipped To') {
+                          return Expanded(
+                              flex: tags[index]["flex"],
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Text(
+                                  'Shipped To',
+                                  style: TextStyle(
+                                    color: Color(0xFF353535),
+                                    fontSize: 12,
+                                    fontFamily: 'SF Pro Text',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ));
+                        }
+                        if (tags[index]["title"] == "Date & Time") {
+                          return Expanded(
+                              flex: tags[index]["flex"],
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Text(
+                                  "Date & Time",
+                                  style: TextStyle(
+                                    color: Color(0xFF353535),
+                                    fontSize: 12,
+                                    fontFamily: 'SF Pro Text',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ));
+                        }
+
+                        return Expanded(
+                            flex: tags[index]["flex"],
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Text(
+                                "contents[index][" "]",
+                                style: TextStyle(
+                                  color: Color(0xFF353535),
+                                  fontSize: 12,
+                                  fontFamily: 'SF Pro Text',
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ));
+                      }),
+                    ),
+                  ).paddingSymmetric(vertical: 4, horizontal: 10);
+                })),
+              ],
+            ),
+            Container(
+              height: Get.height * 0.2,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                    Colors.white.withOpacity(0.3),
+                    Colors.white,
+                    Colors.white,
+                  ])),
+            ),
+          ],
+        );
+      }),
     );
   }
 }
 
 // ////@RoutePage()
-// class PoList extends StatelessWidget {
-//   PoList({super.key});
+// class  TicketList extends StatelessWidget {
+//    TicketList({super.key});
 
 //   final DateFormat formatter = DateFormat('dd-MM-yyyy');
 //   final DateFormat timeformatter = DateFormat.jms();
@@ -538,7 +547,7 @@ class _PoListState extends State<PoList> {
 //               )),
 //           const Gap(4),
 //           GetBuilder<SalesController>(initState: (state) {
-//             Get.find<SalesController>().getPoList();
+//             Get.find<SalesController>().get TicketList();
 //           }, builder: (salesController) {
 //             return Expanded(
 //                 child: ListView.builder(

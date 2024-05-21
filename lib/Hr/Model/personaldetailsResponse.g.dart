@@ -9,7 +9,7 @@ part of 'personaldetailsResponse.dart';
 _$PersonalDetailsImpl _$$PersonalDetailsImplFromJson(
         Map<String, dynamic> json) =>
     _$PersonalDetailsImpl(
-      user_id: json['user_id'] as int?,
+      user_id: (json['user_id'] as num?)?.toInt(),
       pan_card: json['pan_card'] as String?,
       gst_number: json['gst_number'] as String?,
       blood_group: json['blood_group'] as String?,

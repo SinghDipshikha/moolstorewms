@@ -18,12 +18,12 @@ _$EmployeeImpl _$$EmployeeImplFromJson(Map<String, dynamic> json) =>
       personType: (json['personType'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      isShow: json['isShow'] as int?,
-      isBankDetails: json['isBankDetails'] as int?,
-      isCareerDetails: json['isCareerDetails'] as int?,
-      isEducationDetails: json['isEducationDetails'] as int?,
-      isUserDetails: json['isUserDetails'] as int?,
-      isDocumentDetails: json['isDocumentDetails'] as int?,
+      isShow: (json['isShow'] as num?)?.toInt(),
+      isBankDetails: (json['isBankDetails'] as num?)?.toInt(),
+      isCareerDetails: (json['isCareerDetails'] as num?)?.toInt(),
+      isEducationDetails: (json['isEducationDetails'] as num?)?.toInt(),
+      isUserDetails: (json['isUserDetails'] as num?)?.toInt(),
+      isDocumentDetails: (json['isDocumentDetails'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$EmployeeImplToJson(_$EmployeeImpl instance) =>

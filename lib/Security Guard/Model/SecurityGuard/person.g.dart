@@ -9,7 +9,7 @@ part of 'person.dart';
 _$GetAllPersonsBySecurityGaurdImpl _$$GetAllPersonsBySecurityGaurdImplFromJson(
         Map<String, dynamic> json) =>
     _$GetAllPersonsBySecurityGaurdImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       person_name: json['person_name'] as String?,
       person_phone: json['person_phone'] as String?,
       status: json['status'] as String?,

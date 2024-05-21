@@ -9,8 +9,8 @@ part of 'visitorDetailsByVisitorId.dart';
 _$GetVisitorDetailsByVisitorImpl _$$GetVisitorDetailsByVisitorImplFromJson(
         Map<String, dynamic> json) =>
     _$GetVisitorDetailsByVisitorImpl(
-      id: json['id'] as int?,
-      ticket_generate_by: json['ticket_generate_by'] as int?,
+      id: (json['id'] as num?)?.toInt(),
+      ticket_generate_by: (json['ticket_generate_by'] as num?)?.toInt(),
       ticket_verify_by: json['ticket_verify_by'],
       visit_ticket_number: json['visit_ticket_number'] as String?,
       visitor_name: json['visitor_name'] as String?,

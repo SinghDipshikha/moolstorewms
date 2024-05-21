@@ -2,37 +2,51 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TagContainer extends StatelessWidget {
-  TagContainer({super.key, required this.child, required this.title});
+  TagContainer(
+      {super.key,
+      required this.child,
+      required this.title,
+      this.topRightWidget});
   Widget child;
+  Widget? topRightWidget;
+
   String title;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          padding: const EdgeInsets.only(top: 10),
-          // alignment: Alignment.center,
-          height: 54,
-          decoration: const ShapeDecoration(
-            color: Color(0xFF5A57FF),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.only(top: 10),
+              // alignment: Alignment.center,
+              height: 54,
+              decoration: const ShapeDecoration(
+                color: Color(0xFF5A57FF),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                ),
               ),
+              child: Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontFamily: 'SF Pro Display',
+                  fontWeight: FontWeight.w600,
+                  //height: 0,
+                ),
+              ).paddingSymmetric(horizontal: 18),
             ),
-          ),
-          child: Text(
-            title,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-              fontFamily: 'SF Pro Display',
-              fontWeight: FontWeight.w600,
-              //height: 0,
-            ),
-          ).paddingSymmetric(horizontal: 18),
+            
+            topRightWidget ?? Container()
+          ],
         ),
         Container(
           width: double.infinity,
@@ -44,7 +58,7 @@ class TagContainer extends StatelessWidget {
             ),
           ),
           child: child,
-        ).paddingOnly(top: 36)
+        ).paddingOnly(top: 38)
       ],
     );
   }

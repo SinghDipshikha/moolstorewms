@@ -8,16 +8,16 @@ part of 'PurchaseOrder.dart';
 
 _$PurchaseOrderImpl _$$PurchaseOrderImplFromJson(Map<String, dynamic> json) =>
     _$PurchaseOrderImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       order_number: json['order_number'] as String?,
       call_from_seller_companany_details:
-          json['call_from_seller_companany_details'] as int?,
+          (json['call_from_seller_companany_details'] as num?)?.toInt(),
       ship_from_seller_companany_details:
-          json['ship_from_seller_companany_details'] as int?,
+          (json['ship_from_seller_companany_details'] as num?)?.toInt(),
       bill_to_seller_companany_details:
-          json['bill_to_seller_companany_details'] as int?,
+          (json['bill_to_seller_companany_details'] as num?)?.toInt(),
       ship_to_seller_companany_details:
-          json['ship_to_seller_companany_details'] as int?,
+          (json['ship_to_seller_companany_details'] as num?)?.toInt(),
       vehicle_types: json['vehicle_types'] as String?,
       vehicle_number: json['vehicle_number'] as String?,
       person_identity: json['person_identity'] as String?,
@@ -25,8 +25,8 @@ _$PurchaseOrderImpl _$$PurchaseOrderImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       persons: json['persons'] as String?,
       description: json['description'] as String?,
-      total_tax: json['total_tax'] as int?,
-      total: json['total'] as int?,
+      total_tax: (json['total_tax'] as num?)?.toInt(),
+      total: (json['total'] as num?)?.toInt(),
       expiry_date: json['expiry_date'] == null
           ? null
           : DateTime.parse(json['expiry_date'] as String),

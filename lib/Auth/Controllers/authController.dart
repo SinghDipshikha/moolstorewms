@@ -198,6 +198,8 @@ class AuthController extends GetxController {
   }
 
   checkOrganisationCode({required String organiosationCode}) async {
+    loading = true;
+update();
     Get.find<ApiClient>().postData(
         'verifyOrgByCode', {"org_code": organiosationCode}).then((value) {
       if (value.data["message"] == "Organisation Details Present") {
@@ -227,6 +229,7 @@ class AuthController extends GetxController {
             Get.find<ApiClient>().updateHeader();
 
             box.put("dbkey", dbconnect);
+            loading = false;
 
             //  Get.snackbar("Organisation Details Present", "Hooraaayyyyy!!!!!");
             Get.to(

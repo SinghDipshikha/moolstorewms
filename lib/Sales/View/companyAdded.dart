@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Sales/View/SalesDashboard.dart';
 import 'package:moolwmsstore/Sales/View/companyList.dart';
-import 'package:moolwmsstore/Sales/View/widgets/customButton.dart';
+import 'package:moolwmsstore/Sales/View/common/widgets/customButton.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 class CompanyAdded extends StatelessWidget {

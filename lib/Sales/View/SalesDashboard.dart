@@ -4,9 +4,9 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/createticket.dart';
+import 'package:moolwmsstore/Sales/View/Ticket/ticketList.dart';
 import 'package:moolwmsstore/Sales/View/addCompany.dart';
 import 'package:moolwmsstore/Sales/View/companyList.dart';
-import 'package:moolwmsstore/Sales/View/poList.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
 import 'package:moolwmsstore/utils/globals.dart';
@@ -195,7 +195,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
                       title: "View Ticket List",
                       isShowextendedLine: false,
                       onTap: () {
-                        Get.to(const PoList(), id: salesNavigationKey);
+                        Get.to(const TicketList(), id: salesNavigationKey);
                         // Get.find<OwnerController>().setloadingtrue();
                         // Get.to(const WarehouseList(), id: ownerNavigationKey);
                         // WarehouseList
@@ -411,7 +411,9 @@ class _SalesDashboardState extends State<SalesDashboard> {
             children: [
               Expanded(
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(const Createticket(), id: salesNavigationKey);
+                  },
                   child: Container(
                     alignment: Alignment.center,
                     height: 70,
@@ -443,7 +445,9 @@ class _SalesDashboardState extends State<SalesDashboard> {
               const Gap(10),
               Expanded(
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(const TicketList(), id: salesNavigationKey);
+                  },
                   child: Container(
                     alignment: Alignment.center,
                     height: 70,
@@ -670,7 +674,6 @@ class _SalesDashboardState extends State<SalesDashboard> {
                         ],
                       ),
                     ),
-                 
                   ],
                 )),
                 Expanded(

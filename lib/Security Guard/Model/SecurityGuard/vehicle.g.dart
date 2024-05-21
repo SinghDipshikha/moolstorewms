@@ -10,14 +10,14 @@ _$GetAllVehicleEntryBySecurityGaurdImpl
     _$$GetAllVehicleEntryBySecurityGaurdImplFromJson(
             Map<String, dynamic> json) =>
         _$GetAllVehicleEntryBySecurityGaurdImpl(
-          id: json['id'] as int?,
+          id: (json['id'] as num?)?.toInt(),
           driver_name: json['driver_name'] as String?,
           owner_name: json['owner_name'] as String?,
           driver_phone: json['driver_phone'] as String?,
           vehicle_number: json['vehicle_number'] as String?,
           vehicle_types: json['vehicle_types'] as String?,
           product_name: json['product_name'] as String?,
-          qty: json['qty'] as int?,
+          qty: (json['qty'] as num?)?.toInt(),
           status: json['status'],
           created_at: json['created_at'] == null
               ? null

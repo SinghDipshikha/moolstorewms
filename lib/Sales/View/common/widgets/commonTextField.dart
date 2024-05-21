@@ -66,53 +66,49 @@ class CommonTextField extends StatelessWidget {
         const Gap(
           8,
         ),
-        Container(
-          height: 40.0,
-          decoration: BoxDecoration(
-              color: containerColor ?? const Color(0xFFFAF9FF),
-              borderRadius: const BorderRadius.all(Radius.circular(5.7))),
-          child: TextFormField(
-            expands: true,
-            maxLines: maxLines,
-            textCapitalization: textCapitalization ?? TextCapitalization.none,
-            onTapOutside: (event) {
-              FocusManager.instance.primaryFocus?.unfocus();
-            },
-            onChanged: onChanged,
-            onFieldSubmitted: (value) {
-              FocusManager.instance.primaryFocus?.unfocus();
-            },
-            keyboardType: keyboardType,
-            controller: controller,
-            validator: validator,
-            inputFormatters: inputFormatters,
-            obscureText: obscureText ?? false,
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.only(left: 8),
-              focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: Color.fromARGB(255, 27, 23, 251), width: 0.4),
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: Color.fromARGB(255, 169, 153, 246), width: 0.2),
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              hintText: hintText,
-              hintStyle: const TextStyle(
-                color: Color(0xFFACACAC),
-                fontSize: 14,
-                fontFamily: 'SF Pro Display',
-                fontWeight: FontWeight.w400,
-              ),
-              suffixIcon: suffixIcon,
-              prefixIcon: prefixIcon,
-              border: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red, width: 0.1),
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              errorStyle: const TextStyle(fontSize: 18),
+        TextFormField(
+          maxLines: maxLines,
+          textCapitalization: textCapitalization ?? TextCapitalization.none,
+          onTapOutside: (event) {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+          onChanged: onChanged,
+          onFieldSubmitted: (value) {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+          keyboardType: keyboardType,
+          controller: controller,
+          validator: validator,
+          inputFormatters: inputFormatters,
+          obscureText: obscureText ?? false,
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.only(left: 8),
+            filled: true,
+            fillColor: containerColor ?? const Color(0xFFFAF9FF),
+            // contentPadding: const EdgeInsets.only(left: 8),
+            focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(
+                    color: Color.fromARGB(255, 27, 23, 251), width: 0.4),
+                borderRadius: BorderRadius.all(Radius.circular(5))),
+            enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(
+                    color: Color.fromARGB(255, 169, 153, 246), width: 0.2),
+                borderRadius: BorderRadius.all(Radius.circular(5))),
+            hintText: hintText,
+            hintStyle: const TextStyle(
+              color: Color(0xFFACACAC),
+              fontSize: 14,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w400,
             ),
+            suffixIcon: suffixIcon,
+            prefixIcon: prefixIcon,
+            border: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.red, width: 0.1),
+                borderRadius: BorderRadius.all(Radius.circular(5))),
+            errorStyle: const TextStyle(fontSize: 14),
           ),
-        ),
+        )
       ],
     );
   }

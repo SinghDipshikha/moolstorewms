@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Sales/Model/company.dart';
+import 'package:moolwmsstore/Sales/Model/enterProduct.dart';
 import 'package:moolwmsstore/Sales/Sales.dart';
 import 'package:moolwmsstore/Sales/View/companyAdded.dart';
 import 'package:moolwmsstore/Sales/repo/salesRepo.dart';
@@ -15,9 +17,12 @@ import 'package:restart_app/restart_app.dart';
 class SalesController extends GetxController {
   final SalesRepo salesRepo;
   final ApiClient apiClient;
-  bool isOwner ;
+  bool isOwner;
   SalesController(
-      {required this.salesRepo, required this.apiClient, required this.user ,this.isOwner = false});
+      {required this.salesRepo,
+      required this.apiClient,
+      required this.user,
+      this.isOwner = false});
 
   User user;
 
@@ -36,6 +41,14 @@ class SalesController extends GetxController {
   //     }
   //   });
   // }
+
+  getAllIndents() {
+    apiClient.getData("user/getAllPoList").then((value) {
+      Logger().i(value.data);
+    });
+  }
+
+  List<EnterProduct> ticketProducts = [const EnterProduct()];
   List<Company> comapnies = [];
   getCompanyList() {
     loading = true;
@@ -47,6 +60,27 @@ class SalesController extends GetxController {
         update();
       }
     });
+  }
+
+  Future<bool> createIndent(
+      {required String poId, required int warehouseid}) async {
+    var value = await apiClient.postData("/user/createPurchaseOrder", {
+      "user_id": 1,
+      "company_details": [
+        {"call_from": callFromCompany!.sellerCompanyDetailsID},
+        {"shipped_from": shippedFromCompany!.sellerCompanyDetailsID},
+        {"bill_to": billToCompany!.sellerCompanyDetailsID},
+        {"shipped_to": shippedToCompany!.sellerCompanyDetailsID}
+      ],
+      "products": ticketProducts.map((e) => e.toJson()).toList(),
+      "purchase_order_id": poId,
+      "warehouse_id": warehouseid
+    });
+    if (value.data["message"] == "cc") {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   Future<List<Company>?> searchComapny(String s) async {
