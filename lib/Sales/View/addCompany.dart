@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Sales/Model/company.dart';
-import 'package:moolwmsstore/Sales/View/widgets/customButton.dart';
+import 'package:moolwmsstore/Sales/View/common/widgets/customButton.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';
 import 'package:moolwmsstore/utils/textutils.dart';

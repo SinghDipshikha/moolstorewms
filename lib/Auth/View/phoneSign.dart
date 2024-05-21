@@ -156,6 +156,7 @@ class PhoneSign extends StatelessWidget {
                                 }
                                 return null;
                               },
+                              style: const TextStyle(color: Colors.white),
                               controller: controller,
                               maxLength: 10,
                               keyboardType: TextInputType.phone,
@@ -167,6 +168,7 @@ class PhoneSign extends StatelessWidget {
                               ],
                               // keyboardType: TextInputType.number,
                               decoration: InputDecoration(
+
                                   // isDense: true,
                                   alignLabelWithHint: true,
                                   // contentPadding: const EdgeInsets.all(0),

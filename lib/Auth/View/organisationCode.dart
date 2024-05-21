@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Auth/Controllers/authController.dart';
 
@@ -83,49 +84,58 @@ class OrganisationCode extends StatelessWidget {
                         borderSide: BorderSide(color: Colors.white))),
               ).paddingOnly(bottom: 20),
               // const Gap(20),
-              Center(
-                child: InkWell(
-                  onTap: () {
-                    if (formKey.currentState?.validate() ?? false) {
-                      Get.find<AuthController>().checkOrganisationCode(
-                          organiosationCode: controller!.text.toString());
-                    }
+              GetBuilder<AuthController>(builder: (authController) {
+                return authController.loading
+                    ? const Center(
+                        child: SpinKitDoubleBounce(
+                          color: Colors.white,
+                        ),
+                      )
+                    : Center(
+                        child: InkWell(
+                          onTap: () {
+                            if (formKey.currentState?.validate() ?? false) {
+                              Get.find<AuthController>().checkOrganisationCode(
+                                  organiosationCode:
+                                      controller!.text.toString());
+                            }
 
-                    //  Get.snackbar("cdhbdhcb", "dhbchd");
-                    //  context.
-                  },
-                  child: Container(
-                    alignment: Alignment.center,
-                    // width: 358,
-                    height: 45,
-                    decoration: ShapeDecoration(
-                      color: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      shadows: const [
-                        BoxShadow(
-                          color: Color(0x19000000),
-                          blurRadius: 2,
-                          offset: Offset(0, 2),
-                          spreadRadius: 0,
-                        )
-                      ],
-                    ),
-                    child: const Text(
-                      'Check',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF353535),
-                        fontSize: 16,
-                        fontFamily: 'SF Pro Display',
-                        fontWeight: FontWeight.w600,
-                        height: 0.12,
-                        letterSpacing: 0.32,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+                            //  Get.snackbar("cdhbdhcb", "dhbchd");
+                            //  context.
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            // width: 358,
+                            height: 45,
+                            decoration: ShapeDecoration(
+                              color: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5)),
+                              shadows: const [
+                                BoxShadow(
+                                  color: Color(0x19000000),
+                                  blurRadius: 2,
+                                  offset: Offset(0, 2),
+                                  spreadRadius: 0,
+                                )
+                              ],
+                            ),
+                            child: const Text(
+                              'Check',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFF353535),
+                                fontSize: 16,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w600,
+                                height: 0.12,
+                                letterSpacing: 0.32,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+              }),
             ],
           ).paddingSymmetric(horizontal: 20),
         ),

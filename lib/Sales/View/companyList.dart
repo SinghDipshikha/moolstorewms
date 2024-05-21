@@ -4,7 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Sales/View/addCompany.dart';
 import 'package:moolwmsstore/Sales/View/companyDetail.dart';
-import 'package:moolwmsstore/Sales/View/widgets/customButton.dart';
+import 'package:moolwmsstore/Sales/View/common/widgets/customButton.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 

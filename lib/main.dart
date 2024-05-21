@@ -51,9 +51,7 @@ class _DipshikaAppState extends State<DipshikaApp> {
         data: MediaQuery.of(context)
             .copyWith(textScaler: const TextScaler.linear(0.9)),
         child: GetMaterialApp(
-      
           home: const Auth(),
-   
           debugShowCheckedModeBanner: false,
           locale: localizeController.locale,
           fallbackLocale: Locale(
@@ -69,13 +67,13 @@ class _DipshikaAppState extends State<DipshikaApp> {
             scaffoldBackgroundColor: Colors.white,
             hintColor: const Color.fromARGB(255, 202, 204, 206),
             colorScheme: const ColorScheme(
-              brightness: Brightness.light,
+              brightness: Brightness.dark,
               primary: Color(0xFF5A57FF),
-              onPrimary: Colors.white,
+              onPrimary: Colors.black,
               primaryContainer: Color(0xff00882F),
               onPrimaryContainer: Colors.white,
               secondary: Color(0xffE4723C),
-              onSecondary: Colors.black,
+              onSecondary: Colors.white,
               secondaryContainer: Color(0xffFFDD9A),
               onSecondaryContainer: Color(0xff412408),
               error: Colors.red,
@@ -85,7 +83,7 @@ class _DipshikaAppState extends State<DipshikaApp> {
               background: Color(0xff121212),
               onBackground: Colors.white,
               surface: Color(0xff1D1D1D),
-              onSurface: Colors.white,
+              onSurface: Colors.black,
               surfaceVariant: Color(0xff49454F),
               onSurfaceVariant: Colors.white,
               outline: Color(0xff857E92),

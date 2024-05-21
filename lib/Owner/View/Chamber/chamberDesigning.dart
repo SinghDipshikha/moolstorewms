@@ -9,7 +9,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Owner/Model/Chamber/chamber.dart';
 import 'package:moolwmsstore/Owner/View/Common/ownerCommon.dart';
-import 'package:moolwmsstore/Sales/View/common/commonTextField.dart';
+import 'package:moolwmsstore/Sales/View/common/widgets/commonTextField.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/common/controller/chamberController.dart';
 import 'package:zoom_widget/zoom_widget.dart';
