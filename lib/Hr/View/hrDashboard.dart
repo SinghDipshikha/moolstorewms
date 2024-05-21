@@ -4,8 +4,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/View/demo.dart';
+import 'package:moolwmsstore/Hr/View/shiftsAssignList.dart';
 import 'package:moolwmsstore/Hr/View/staffList.dart';
-import 'package:moolwmsstore/Hr/View/viewAttendane.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonDropDown.dart';
 import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
@@ -207,6 +207,25 @@ class _HrDashboardState extends State<HrDashboard> {
                 ),
                 ListTile(
                   leading: Image.asset(
+                    "assets/images/shift.png",
+                    height: 28,
+                  ),
+                  title: const Text(
+                    'Shift',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: Color(0xFFA7A7A7),
+                      fontSize: 16,
+                      fontFamily: 'SF Pro Text',
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  onTap: () {
+                    Get.to(const ShiftInfo(), id: hrNavigationKey);
+                  },
+                ),
+                ListTile(
+                  leading: Image.asset(
                     "assets/images/messageVector.png",
                     height: 28,
                   ),
@@ -338,7 +357,7 @@ class _HrDashboardState extends State<HrDashboard> {
                     },
                     buttonStyleData: const ButtonStyleData(
                       //decoration: BoxDecoration(color: Colors.white),
-                      overlayColor: MaterialStatePropertyAll(Colors.white),
+                      overlayColor: WidgetStatePropertyAll(Colors.white),
                     ),
                     iconStyleData: const IconStyleData(
                       icon: Icon(
@@ -492,10 +511,10 @@ class _HrDashboardState extends State<HrDashboard> {
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: CommonButton(
-                          onTap: () {
-                            Get.to(const ViewAttendanceList(),
-                                id: hrNavigationKey);
-                          },
+                          // onTap: () {
+                          //   Get.to(const ViewAttendanceList(),
+                          //       id: hrNavigationKey);
+                          // },
                           color: const Color(0xFF5A57FF),
                           textColor: Colors.white,
                           title: 'View Attendance',

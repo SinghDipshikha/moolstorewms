@@ -23,3 +23,5 @@ class Employee with _$Employee {
   factory Employee.fromJson(Map<String, Object?> json) =>
       _$EmployeeFromJson(json);
 }
+
+

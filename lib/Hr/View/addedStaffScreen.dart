@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:moolwmsstore/Hr/View/hrDashboard.dart';
+
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
+import 'package:moolwmsstore/utils/globals.dart';
+
+
 
 class AddedStaffScreen extends StatefulWidget {
   const AddedStaffScreen({super.key});
@@ -42,6 +48,10 @@ class _AddedStaffScreenState extends State<AddedStaffScreen> {
                         title: 'Home',
                         color: const Color(0xFF5A57FF),
                         textColor: Colors.white,
+                        onTap: () {
+                          Get.to(const HrDashboard(),
+                              id: securityGuardNavigation);
+                        },
                       ),
                     )
                   ],

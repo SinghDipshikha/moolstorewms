@@ -102,12 +102,12 @@ class SecurityGuardController extends GetxController {
   }
 
   void getAllPersonssInfo() {
-    apiClient.postData("person/list", {}).then((value) {
+    apiClient.getData("person/list").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         Snacks.greenSnack("Data Retrieved Successfully!");
         List x = value.data["result"];
         allPersonList = x.map((e) => Person.fromJson(e)).toList();
-        print(allVisitorList);
+
         isloading = false;
         update();
       } else {

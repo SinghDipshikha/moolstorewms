@@ -7,6 +7,7 @@ import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Hr/Model/addCareerDetail.dart';
 import 'package:moolwmsstore/Hr/Model/employee.dart';
 import 'package:moolwmsstore/Hr/Model/personalDetailsRequest.dart';
+import 'package:moolwmsstore/Hr/Model/staff.dart';
 import 'package:moolwmsstore/Hr/View/addedStaffScreen.dart';
 import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
 import 'package:moolwmsstore/Owner/Model/addWarehouse.dart';
@@ -15,7 +16,6 @@ import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 
 class HRController extends GetxController {
-
   final HrRepo hrRepo;
   final ApiClient apiClient;
   bool isLoading = false;
@@ -24,14 +24,14 @@ class HRController extends GetxController {
       {required this.hrRepo,
       required this.apiClient,
       required this.user,
-
       this.isOwner = false});
   User user;
   List<AddCareerDetail> carrierDetails = [const AddCareerDetail()];
   var myHrID;
-  
-  PersonalDetailsRequest addPersonalDetailModel = const PersonalDetailsRequest();
-  List<Employee> employees = [];
+
+  PersonalDetailsRequest addPersonalDetailModel =
+      const PersonalDetailsRequest();
+  List<StaffEntry> employees = [];
   AddWarehouse? warehouse;
   void addCareerDetails() {
     hrRepo.addCareerDetails(
@@ -53,12 +53,12 @@ class HRController extends GetxController {
       Get.offAll(const Sales());
     }
   }
- 
-  getAllEmployeesByWarehouse( ) {
-    apiClient.getData("owner/getAllEmployeesByWarehouseId/$warehouse").then((value) {
-      if (value.data["message"] == "All Employees found") {
+
+  getAllStaffList() {
+    apiClient.getData("hr/staffList").then((value) {
+      if (value.data["message"] == "Staff Data Retrieved Successfully!") {
         List x = value.data["result"];
-        employees = x.map((e) => Employee.fromJson(e)).toList();
+        employees = x.map((e) => StaffEntry.fromJson(e)).toList();
         Logger().i(employees);
 
         update();
