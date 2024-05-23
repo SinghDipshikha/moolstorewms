@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Owner/View/OwnerDashboard.dart';
 import 'package:moolwmsstore/Sales/View/SalesDashboard.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
@@ -14,9 +13,9 @@ class Sales extends StatelessWidget {
             // initialRoute: RouteTable.splash,
             // key: navigatorKeyokoko1,
             key: Get.nestedKey(salesNavigationKey),
-            pages: const [
+            pages: [
               MaterialPage(
-                key: ValueKey('SalesDashboard'),
+                key: const ValueKey('SalesDashboard'),
                 child: SalesDashboard(),
               )
             ],
@@ -36,9 +35,9 @@ class Sales extends StatelessWidget {
                   constraints: const BoxConstraints(maxWidth: 600),
                   child: GetNavigator(
                     key: Get.nestedKey(salesNavigationKey),
-                    pages: const [
+                    pages: [
                       MaterialPage(
-                        key: ValueKey('SalesDashboard'),
+                        key: const ValueKey('SalesDashboard'),
                         child: SalesDashboard(),
                       )
                     ],

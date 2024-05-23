@@ -28,7 +28,7 @@ class CompanyAdded extends StatelessWidget {
           const Gap(12),
           CustomButton(
             onTap: () {
-              Get.off(const SalesDashboard(), id: salesNavigationKey);
+              Get.off( SalesDashboard(), id: salesNavigationKey);
             },
             title: "Home",
           ).paddingSymmetric(horizontal: 12),

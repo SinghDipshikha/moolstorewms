@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:gif_view/gif_view.dart';
 import 'package:moolwmsstore/Auth/Controllers/authController.dart';
 
 // @GetXRoutePage("/splash")
@@ -38,17 +39,23 @@ class Splash extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
-                                  width: 100,
-                                  height: 100,
-                                  decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                          "assets/images/splashLogo.png"),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
+                                GifView.asset(
+                                  'assets/gifs/logo.gif',
+                                  height: 160,
+                                  width: 160,
+                                  frameRate: 30, // default is 15 FPS
                                 ),
+                                // Container(
+                                //   width: 100,
+                                //   height: 100,
+                                //   decoration: const BoxDecoration(
+                                //     image: DecorationImage(
+                                //       image: AssetImage(
+                                //           "assets/images/splashLogo.png"),
+                                //       fit: BoxFit.cover,
+                                //     ),
+                                //   ),
+                                // ),
                                 const Gap(10),
                                 const Center(
                                   child: Text.rich(

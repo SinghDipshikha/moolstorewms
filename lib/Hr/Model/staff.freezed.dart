@@ -190,7 +190,10 @@ class __$$StaffEntryImplCopyWithImpl<$Res>
           ? _value.employeeId
           : employeeId // ignore: cast_nullable_to_non_nullable
               as String?,
-      warehouseId: freezed == warehouseId ? _value.warehouseId! : warehouseId,
+      warehouseId: freezed == warehouseId
+          ? _value.warehouseId
+          : warehouseId // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       timestamp: freezed == timestamp
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable

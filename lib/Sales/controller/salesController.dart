@@ -1,9 +1,13 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:logger/logger.dart';
+import 'package:intl/intl.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
+import 'package:moolwmsstore/Sales/Model/Indent/checkInSubmit.dart';
+import 'package:moolwmsstore/Sales/Model/Indent/indentElement.dart';
+import 'package:moolwmsstore/Sales/Model/Indent/initialProduct.dart';
+import 'package:moolwmsstore/Sales/Model/Indent/viewIndentModel.dart';
 import 'package:moolwmsstore/Sales/Model/company.dart';
 import 'package:moolwmsstore/Sales/Model/enterProduct.dart';
 import 'package:moolwmsstore/Sales/Sales.dart';
@@ -32,19 +36,78 @@ class SalesController extends GetxController {
   Company? billToCompany;
   Company? shippedFromCompany;
   Company? shippedToCompany;
-  // List<PurchaseOrder> purchaseOrders = [];
-  // getPoList() {
-  //   salesRepo.getAllPoList().then((value) {
-  //     if (value != null) {
-  //       purchaseOrders = value;
-  //       update();
-  //     }
-  //   });
-  // }
+
+  DateTime? checkIndateTime;
+  DateTime dashBoardSelectedDate = DateTime.now();
+
+  List<IndentElement> indentElements = [];
+  List<InitialProduct> initialProducts = [];
+  CheckInModel? checkInModel;
+  List<Map<String, int>> initialProductsqty = [];
+
+  DateFormat formatter = DateFormat('yyyy-MM-dd');
+  Map dashboardData = {
+    "VisitorCount": {"InCount": 0, "OutCount": 0},
+    "TicketCount": 0,
+    "CompanyCount": 0,
+  };
+
+  salesDashBoardApi() async {
+    loading = true;
+    update();
+    await apiClient
+        .getData(
+            "user/dashboard?date=${formatter.format(dashBoardSelectedDate)}")
+        .then((value) {
+      if (value.data["message"] == "Dashboard Details found") {
+        dashboardData = value.data["result"];
+        loading = false;
+        update();
+      }
+    });
+    update();
+  }
+
+  getInitialProductsofIndent({required String indentId}) async {
+    loading = true;
+
+    if (indentId == "") {
+      return;
+    }
+    await apiClient
+        .getData("user/getProductDetailsOfTicket/$indentId")
+        .then((value) {
+      if (value.data["message"] ==
+          "Product details fetched successfully for given ticket id") {
+        initialProductsqty.clear();
+        initialProducts = (value.data["result"] as List)
+            .map((e) => InitialProduct.fromJson(e))
+            .toList();
+
+        for (var e in initialProducts) {
+          initialProductsqty.add({"product_id": e.product_id as int, "qty": 0});
+        }
+
+        checkInModel = const CheckInModel().copyWith(
+            warehouse_id: initialProducts[0].warehouse_id,
+            vehicle_details: const VehicleDetails(),
+            products: initialProductsqty);
+      }
+    });
+    loading = false;
+    update();
+  }
 
   getAllIndents() {
-    apiClient.getData("user/getAllPoList").then((value) {
-      Logger().i(value.data);
+    loading = true;
+    apiClient.postData("user/getAllPoList", {"keyword": ""}).then((value) {
+      if (value.data["message"] == "Data Retrieved Successfully!") {
+        indentElements = (value.data["result"] as List)
+            .map((e) => IndentElement.fromJson(e))
+            .toList();
+        loading = false;
+        update();
+      }
     });
   }
 
@@ -54,8 +117,9 @@ class SalesController extends GetxController {
     loading = true;
     apiClient.postData("company/companylist", {"keyword": ""}).then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
-        List x = value.data["result"];
-        comapnies = x.map((e) => Company.fromJson(e)).toList();
+        comapnies = (value.data["result"] as List)
+            .map((e) => Company.fromJson(e))
+            .toList();
         loading = false;
         update();
       }
@@ -64,7 +128,7 @@ class SalesController extends GetxController {
 
   Future<bool> createIndent(
       {required String poId, required int warehouseid}) async {
-    var value = await apiClient.postData("/user/createPurchaseOrder", {
+    var value = await apiClient.postData("user/createPurchaseOrder", {
       "user_id": 1,
       "company_details": [
         {"call_from": callFromCompany!.sellerCompanyDetailsID},
@@ -73,14 +137,53 @@ class SalesController extends GetxController {
         {"shipped_to": shippedToCompany!.sellerCompanyDetailsID}
       ],
       "products": ticketProducts.map((e) => e.toJson()).toList(),
-      "purchase_order_id": poId,
+      "order_number": poId,
       "warehouse_id": warehouseid
     });
-    if (value.data["message"] == "cc") {
+    if (value.data["message"] ==
+        "Successfully Created Purchase Order and Ticket id is Assigned") {
       return true;
     } else {
       return false;
     }
+  }
+
+  createIndentChecIn() {
+    List<Map<String, int>> a = [];
+    for (var e in initialProductsqty) {
+      if (e["qty"] != 0) {
+        a.add(e);
+      }
+    }
+    checkInModel = checkInModel!.copyWith(products: a);
+
+    apiClient
+        .postData("user/createTicketCheckIn", checkInModel!.toJson())
+        .then((v) {
+      if (v.data["result"] == "Checkin Created for given Products") {
+        Get.back(id: salesNavigationKey);
+        // Get.off(TicketList(), id: salesNavigationKey);
+        Snacks.greenSnack("Checkin Created for given Products");
+      }
+    });
+  }
+
+  IndentViewModel? indent;
+  viewindent({required String indentId}) async {
+    if (indentId == "") {
+      return;
+    }
+    loading = true;
+
+    await apiClient
+        .getData("ticket/viewTicket?ticket_id=$indentId")
+        .then((value) {
+      if (value.data["message"] == "Data Retrieved Successfully!") {
+        indent = IndentViewModel.fromJson(value.data["result"][0]);
+      }
+      loading = false;
+      update();
+    });
   }
 
   Future<List<Company>?> searchComapny(String s) async {

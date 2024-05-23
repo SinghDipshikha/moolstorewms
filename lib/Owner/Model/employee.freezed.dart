@@ -22,8 +22,8 @@ Employee _$EmployeeFromJson(Map<String, dynamic> json) {
 mixin _$Employee {
   String? get name => throw _privateConstructorUsedError;
   String? get mobile => throw _privateConstructorUsedError;
-  String? get employeeId => throw _privateConstructorUsedError;
-  dynamic get warehouseId => throw _privateConstructorUsedError;
+  String? get employeeID => throw _privateConstructorUsedError;
+  dynamic get warehouseID => throw _privateConstructorUsedError;
   DateTime? get timestamp => throw _privateConstructorUsedError;
   List<String>? get personType => throw _privateConstructorUsedError;
   int? get isShow => throw _privateConstructorUsedError;
@@ -42,8 +42,8 @@ abstract class $EmployeeCopyWith<$Res> {
   $Res call(
       {String? name,
       String? mobile,
-      String? employeeId,
-      dynamic warehouseId,
+      String? employeeID,
+      dynamic warehouseID,
       DateTime? timestamp,
       List<String>? personType,
       int? isShow});
@@ -64,8 +64,8 @@ class _$EmployeeCopyWithImpl<$Res, $Val extends Employee>
   $Res call({
     Object? name = freezed,
     Object? mobile = freezed,
-    Object? employeeId = freezed,
-    Object? warehouseId = freezed,
+    Object? employeeID = freezed,
+    Object? warehouseID = freezed,
     Object? timestamp = freezed,
     Object? personType = freezed,
     Object? isShow = freezed,
@@ -79,13 +79,13 @@ class _$EmployeeCopyWithImpl<$Res, $Val extends Employee>
           ? _value.mobile
           : mobile // ignore: cast_nullable_to_non_nullable
               as String?,
-      employeeId: freezed == employeeId
-          ? _value.employeeId
-          : employeeId // ignore: cast_nullable_to_non_nullable
+      employeeID: freezed == employeeID
+          ? _value.employeeID
+          : employeeID // ignore: cast_nullable_to_non_nullable
               as String?,
-      warehouseId: freezed == warehouseId
-          ? _value.warehouseId
-          : warehouseId // ignore: cast_nullable_to_non_nullable
+      warehouseID: freezed == warehouseID
+          ? _value.warehouseID
+          : warehouseID // ignore: cast_nullable_to_non_nullable
               as dynamic,
       timestamp: freezed == timestamp
           ? _value.timestamp
@@ -114,8 +114,8 @@ abstract class _$$EmployeeImplCopyWith<$Res>
   $Res call(
       {String? name,
       String? mobile,
-      String? employeeId,
-      dynamic warehouseId,
+      String? employeeID,
+      dynamic warehouseID,
       DateTime? timestamp,
       List<String>? personType,
       int? isShow});
@@ -134,8 +134,8 @@ class __$$EmployeeImplCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? mobile = freezed,
-    Object? employeeId = freezed,
-    Object? warehouseId = freezed,
+    Object? employeeID = freezed,
+    Object? warehouseID = freezed,
     Object? timestamp = freezed,
     Object? personType = freezed,
     Object? isShow = freezed,
@@ -149,13 +149,13 @@ class __$$EmployeeImplCopyWithImpl<$Res>
           ? _value.mobile
           : mobile // ignore: cast_nullable_to_non_nullable
               as String?,
-      employeeId: freezed == employeeId
-          ? _value.employeeId
-          : employeeId // ignore: cast_nullable_to_non_nullable
+      employeeID: freezed == employeeID
+          ? _value.employeeID
+          : employeeID // ignore: cast_nullable_to_non_nullable
               as String?,
-      warehouseId: freezed == warehouseId
-          ? _value.warehouseId
-          : warehouseId // ignore: cast_nullable_to_non_nullable
+      warehouseID: freezed == warehouseID
+          ? _value.warehouseID
+          : warehouseID // ignore: cast_nullable_to_non_nullable
               as dynamic,
       timestamp: freezed == timestamp
           ? _value.timestamp
@@ -179,8 +179,8 @@ class _$EmployeeImpl implements _Employee {
   const _$EmployeeImpl(
       {this.name,
       this.mobile,
-      this.employeeId,
-      this.warehouseId,
+      this.employeeID,
+      this.warehouseID,
       this.timestamp,
       final List<String>? personType,
       this.isShow})
@@ -194,9 +194,9 @@ class _$EmployeeImpl implements _Employee {
   @override
   final String? mobile;
   @override
-  final String? employeeId;
+  final String? employeeID;
   @override
-  final dynamic warehouseId;
+  final dynamic warehouseID;
   @override
   final DateTime? timestamp;
   final List<String>? _personType;
@@ -214,7 +214,7 @@ class _$EmployeeImpl implements _Employee {
 
   @override
   String toString() {
-    return 'Employee(name: $name, mobile: $mobile, employeeId: $employeeId, warehouseId: $warehouseId, timestamp: $timestamp, personType: $personType, isShow: $isShow)';
+    return 'Employee(name: $name, mobile: $mobile, employeeID: $employeeID, warehouseID: $warehouseID, timestamp: $timestamp, personType: $personType, isShow: $isShow)';
   }
 
   @override
@@ -224,10 +224,10 @@ class _$EmployeeImpl implements _Employee {
             other is _$EmployeeImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.mobile, mobile) || other.mobile == mobile) &&
-            (identical(other.employeeId, employeeId) ||
-                other.employeeId == employeeId) &&
+            (identical(other.employeeID, employeeID) ||
+                other.employeeID == employeeID) &&
             const DeepCollectionEquality()
-                .equals(other.warehouseId, warehouseId) &&
+                .equals(other.warehouseID, warehouseID) &&
             (identical(other.timestamp, timestamp) ||
                 other.timestamp == timestamp) &&
             const DeepCollectionEquality()
@@ -241,8 +241,8 @@ class _$EmployeeImpl implements _Employee {
       runtimeType,
       name,
       mobile,
-      employeeId,
-      const DeepCollectionEquality().hash(warehouseId),
+      employeeID,
+      const DeepCollectionEquality().hash(warehouseID),
       timestamp,
       const DeepCollectionEquality().hash(_personType),
       isShow);
@@ -265,8 +265,8 @@ abstract class _Employee implements Employee {
   const factory _Employee(
       {final String? name,
       final String? mobile,
-      final String? employeeId,
-      final dynamic warehouseId,
+      final String? employeeID,
+      final dynamic warehouseID,
       final DateTime? timestamp,
       final List<String>? personType,
       final int? isShow}) = _$EmployeeImpl;
@@ -279,9 +279,9 @@ abstract class _Employee implements Employee {
   @override
   String? get mobile;
   @override
-  String? get employeeId;
+  String? get employeeID;
   @override
-  dynamic get warehouseId;
+  dynamic get warehouseID;
   @override
   DateTime? get timestamp;
   @override

@@ -3,26 +3,6 @@ import 'package:moolwmsstore/Common%20Data/Model/LanaguageModel.dart';
 
 // DateFormat.yMd().add_jm()        -> 7/10/1996 5:08 PM
 class AppConstants {
-  static List<String> roles = [
-    // "Head of Operations",
-    // "Regional Manager",
-    // "Senior Manager",
-    // "Plant Manager",
-    // "Assistant Manager",
-    // "Senior Supervisor",
-    // "Supervisor",
-    // "Dock Supervisor",
-    // "Intern",
-    "Security Guard",
-    "HR",
-    //   "Plant Helper",
-    //   "Senior Plant Operator",
-    //   "MultiSkilled Engineer",
-    //   "Electrician",
-    //   "MHE Operator",
-    //   "Super Admin",
-    //   "Corporate / Owner",
-  ];
   static const String token = 'token';
   static const String orgCode = 'org-code';
   static const String baseUrl = 'https://api.moolwms.com/';

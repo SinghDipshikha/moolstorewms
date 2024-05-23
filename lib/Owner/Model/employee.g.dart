@@ -10,8 +10,8 @@ _$EmployeeImpl _$$EmployeeImplFromJson(Map<String, dynamic> json) =>
     _$EmployeeImpl(
       name: json['name'] as String?,
       mobile: json['mobile'] as String?,
-      employeeId: json['employeeId'] as String?,
-      warehouseId: json['warehouseId'],
+      employeeID: json['employeeID'] as String?,
+      warehouseID: json['warehouseID'],
       timestamp: json['timestamp'] == null
           ? null
           : DateTime.parse(json['timestamp'] as String),
@@ -25,8 +25,8 @@ Map<String, dynamic> _$$EmployeeImplToJson(_$EmployeeImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'mobile': instance.mobile,
-      'employeeId': instance.employeeId,
-      'warehouseId': instance.warehouseId,
+      'employeeID': instance.employeeID,
+      'warehouseID': instance.warehouseID,
       'timestamp': instance.timestamp?.toIso8601String(),
       'personType': instance.personType,
       'isShow': instance.isShow,
