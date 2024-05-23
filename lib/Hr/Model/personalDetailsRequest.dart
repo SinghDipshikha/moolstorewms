@@ -6,16 +6,20 @@ part 'personalDetailsRequest.g.dart';
 @freezed
 class PersonalDetailsRequest with _$PersonalDetailsRequest {
   const factory PersonalDetailsRequest({
-    String? user_id,
-    String? pan_card,
+    int? user_id,
+    int? updated_by,
     String? gst_number,
+    String? gender,
+    String? dob,
     String? blood_group,
-    int? gate_id,
+    String? email,
+    String? aadhaar_number,
     String? pf_number,
+    String? pan_card,
     String? esic_number,
     String? have_passport,
     String? passport_number,
-    DateTime? passport_expiry_date,
+    String? passport_expiry_date,
     String? have_disability,
     String? disability_describe,
     String? address,
@@ -25,6 +29,7 @@ class PersonalDetailsRequest with _$PersonalDetailsRequest {
     String? emergency_contact_no,
     String? emergency_contact_person,
     String? mailing_address_diffrent,
+    String? mailing_address,
   }) = _PersonalDetailsRequest;
 
   factory PersonalDetailsRequest.fromJson(Map<String, Object?> json) =>

@@ -768,17 +768,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
-<<<<<<< HEAD
-  macros:
-    dependency: transitive
-    description:
-      name: macros
-      sha256: a8403c89b36483b4cbf9f1fcd24562f483cb34a5c9bf101cf2b0d8a083cf1239
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.0-main.5"
-=======
->>>>>>> fa71f230dd0943e45dbd7470f879f012d17c9389
   matcher:
     dependency: transitive
     description:

@@ -19,6 +19,7 @@ class CommanTextField extends StatelessWidget {
   TextCapitalization? textCapitalization;
   double? borderRadius;
   int? maxLines;
+  bool isNumber;
 
   CommanTextField({
     super.key,
@@ -37,7 +38,7 @@ class CommanTextField extends StatelessWidget {
     this.keyboardType,
     this.padding,
     this.validator,
-
+    this.isNumber = false,
   });
 
   @override
@@ -99,7 +100,8 @@ class CommanTextField extends StatelessWidget {
                 keyboardType: keyboardType,
                 controller: controller,
                 validator: validator,
-                inputFormatters: inputFormatters,
+                inputFormatters:
+                    isNumber ? [FilteringTextInputFormatter.digitsOnly] : [],
                 obscureText: obscureText ?? false,
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.only(left: 8),

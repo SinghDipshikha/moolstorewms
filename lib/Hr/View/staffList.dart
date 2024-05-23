@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
-import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/View/addEmployeeBankDetails.dart';
 import 'package:moolwmsstore/Hr/View/addEmployeeCareerDetails.dart';
@@ -12,7 +11,6 @@ import 'package:moolwmsstore/Hr/View/addEmployeeEducationQualificationDetails.da
 import 'package:moolwmsstore/Hr/View/addEmployeePersonalDetails.dart';
 import 'package:moolwmsstore/Hr/View/addedStaffScreen.dart';
 import 'package:moolwmsstore/Hr/View/hrDashboard.dart';
-import 'package:moolwmsstore/Hr/View/widget/commonDropDown.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
@@ -21,8 +19,6 @@ class HrEmployeeList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
- 
-   
     String? selectedShift;
     return GetBuilder<HRController>(initState: (state) {
       Get.find<HRController>().getAllStaffList();
@@ -245,17 +241,18 @@ class HrEmployeeList extends StatelessWidget {
                                         hrController.navigationAccordingStatus.add(
                                             const AddEmployeeDocumentsDetails());
                                       }
-                                      if (hrController
-                                              .employees[i].isUserDetails ==
-                                          0) {
-                                        hrController.navigationAccordingStatus.add(
-                                            const AddEmployeePersonalDetails());
-                                      }
+
                                       if (hrController
                                               .employees[i].isDocumentDetails ==
                                           0) {
                                         hrController.navigationAccordingStatus.add(
                                             const AddEmployeeEducationQualificationDetails());
+                                      }
+                                      if (hrController
+                                              .employees[i].isUserDetails ==
+                                          0) {
+                                        hrController.navigationAccordingStatus.add(
+                                            const AddEmployeePersonalDetails());
                                       }
                                       Logger().i(hrController
                                           .navigationAccordingStatus);
