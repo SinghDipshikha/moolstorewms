@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:gif_view/gif_view.dart';
 import 'package:moolwmsstore/Auth/Controllers/authController.dart';
 import 'package:moolwmsstore/Auth/View/phoneSign.dart';
 //import 'package:moolwmsstore/routes/approutes.gr.dart';
@@ -18,9 +19,11 @@ class SignInUp extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              "assets/icons/Layer_5.png",
-              height: 82,
+            GifView.asset(
+              'assets/gifs/logo.gif',
+              height: 160,
+              width: 160,
+              frameRate: 30, // default is 15 FPS
             ),
             const Gap(20),
             const Text(

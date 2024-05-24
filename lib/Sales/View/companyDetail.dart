@@ -32,7 +32,7 @@ class CompanyDetail extends StatelessWidget {
       floatingActionButton: CustomButton(
         onTap: () {
           Get.back();
-          Get.off(const SalesDashboard(), id: salesNavigationKey);
+          Get.off( SalesDashboard(), id: salesNavigationKey);
         },
         colors: const [Color(0xFF5A57FF), Color(0xFF5A57FF)],
         title: 'Home',

@@ -1,45 +1,26 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/createticket.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/ticketList.dart';
+import 'package:moolwmsstore/Sales/View/Visiitors/addVistor.dart';
+import 'package:moolwmsstore/Sales/View/Visiitors/visitorsList.dart';
 import 'package:moolwmsstore/Sales/View/addCompany.dart';
 import 'package:moolwmsstore/Sales/View/companyList.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
 import 'package:moolwmsstore/utils/globals.dart';
+import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 
 ////@RoutePage()
-class SalesDashboard extends StatefulWidget {
-  const SalesDashboard({super.key});
+class SalesDashboard extends StatelessWidget {
+  SalesDashboard({super.key});
 
-  @override
-  State<SalesDashboard> createState() => _SalesDashboardState();
-}
-
-class _SalesDashboardState extends State<SalesDashboard> {
-  DateTime _selectedDate = DateTime.now();
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2101),
-    );
-    if (picked != null && picked != _selectedDate) {
-      setState(() {
-        _selectedDate = picked;
-      });
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -170,11 +151,12 @@ class _SalesDashboardState extends State<SalesDashboard> {
                     color: const Color.fromARGB(255, 22, 22, 22),
                   ),
                   leading: Image.asset(
-                    "assets/icons/PO Icon (R).png",
+                    "assets/icons/Indent.png",
                     height: 28,
+                    color: HexColor("#ACACAC"),
                   ),
                   title: const Text(
-                    'Ticket',
+                    'Indent',
                     style: TextStyle(
                       color: Color(0xFFACACAC),
                       fontSize: 16,
@@ -186,16 +168,16 @@ class _SalesDashboardState extends State<SalesDashboard> {
                   ),
                   children: [
                     CurvedLineConatainer(
-                      title: "Create Ticket",
+                      title: "Create Indent",
                       onTap: () {
                         Get.to(const Createticket(), id: salesNavigationKey);
                       },
                     ),
                     CurvedLineConatainer(
-                      title: "View Ticket List",
+                      title: "View Indent List",
                       isShowextendedLine: false,
                       onTap: () {
-                        Get.to(const TicketList(), id: salesNavigationKey);
+                        Get.to(TicketList(), id: salesNavigationKey);
                         // Get.find<OwnerController>().setloadingtrue();
                         // Get.to(const WarehouseList(), id: ownerNavigationKey);
                         // WarehouseList
@@ -219,7 +201,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
                   leading: Image.asset(
                     // "assets/icons/Staff Profile Icons (R).png",PO Icon (R).png
                     "assets/icons/Company Icon (R).png",
-
+                    color: HexColor("#ACACAC"),
                     height: 28,
                   ),
                   title: const Text(
@@ -245,6 +227,55 @@ class _SalesDashboardState extends State<SalesDashboard> {
                       isShowextendedLine: false,
                       onTap: () {
                         Get.to(const CompanyList(), id: salesNavigationKey);
+                        // Get.find<OwnerController>().setloadingtrue();
+                        // Get.to(const WarehouseList(), id: ownerNavigationKey);
+                        // WarehouseList
+                      },
+                    ),
+                    // CurvedLineConatainer(title: "dcdc"),
+                    // CurvedLineConatainer(
+                    //   title: "dcdc",
+                    //   isShowextendedLine: false,
+                    //     ),
+                  ],
+                ),
+                ExpansionTile(
+                  collapsedShape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                  iconColor: Colors.white,
+                  collapsedIconColor: Colors.white,
+                  shape: Border.all(
+                    color: const Color.fromARGB(255, 22, 22, 22),
+                  ),
+                  leading: Image.asset(
+                    // "assets/icons/Staff Profile Icons (R).png",PO Icon (R).png
+                    "assets/icons/visitors.png",
+                    color: HexColor("#ACACAC"),
+                    height: 28,
+                  ),
+                  title: const Text(
+                    'Visitor',
+                    style: TextStyle(
+                      color: Color(0xFFACACAC),
+                      fontSize: 16,
+                      fontFamily: 'SF Pro Text',
+                      fontWeight: FontWeight.w500,
+                      // //height: 0,
+                      letterSpacing: -0.64,
+                    ),
+                  ),
+                  children: [
+                    CurvedLineConatainer(
+                      title: "Add Visitor",
+                      onTap: () {
+                        Get.to( AddVistor(), id: salesNavigationKey);
+                      },
+                    ),
+                    CurvedLineConatainer(
+                      title: "Visitor List",
+                      isShowextendedLine: false,
+                      onTap: () {
+                        Get.to(const VisitorsList(), id: salesNavigationKey);
                         // Get.find<OwnerController>().setloadingtrue();
                         // Get.to(const WarehouseList(), id: ownerNavigationKey);
                         // WarehouseList
@@ -324,7 +355,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
                       },
                       buttonStyleData: const ButtonStyleData(
                         //decoration: BoxDecoration(color: Colors.white),
-                        overlayColor: MaterialStatePropertyAll(Colors.white),
+                        overlayColor: WidgetStatePropertyAll(Colors.white),
                       ),
                       iconStyleData: const IconStyleData(
                         icon: Icon(
@@ -446,7 +477,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
               Expanded(
                 child: InkWell(
                   onTap: () {
-                    Get.to(const TicketList(), id: salesNavigationKey);
+                    Get.to(TicketList(), id: salesNavigationKey);
                   },
                   child: Container(
                     alignment: Alignment.center,
@@ -478,33 +509,113 @@ class _SalesDashboardState extends State<SalesDashboard> {
               )
             ],
           ),
-          InkWell(
-            onTap: () {
-              _selectDate(context);
-            },
-            child: Container(
-              decoration: ShapeDecoration(
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(
-                    width: 1,
-                    color: Colors.white.withOpacity(0.30000001192092896),
+          const Gap(12),
+          GetBuilder<SalesController>(initState: (state) {
+            Get.find<SalesController>().salesDashBoardApi();
+          }, builder: (salesController) {
+            Future<void> selectDate(BuildContext context) async {
+              // await showDatePicker(
+              //           context: context,
+              //           initialDate: DateTime.now(),
+              //           firstDate: DateTime(2000),
+              //           lastDate: DateTime(2101),
+              //         );
+
+              showOmniDateTimePicker(
+                theme: ThemeData(
+                    primaryColor: const Color(0xFF5A57FF),
+                    textTheme: const TextTheme(
+                      displayLarge: TextStyle(color: Colors.black),
+                      displayMedium: TextStyle(color: Colors.black),
+                      displaySmall: TextStyle(color: Colors.black),
+                      headlineLarge: TextStyle(color: Colors.black),
+                      headlineMedium: TextStyle(color: Colors.black),
+                      headlineSmall: TextStyle(color: Colors.black),
+                      titleLarge: TextStyle(color: Colors.black),
+                      titleMedium: TextStyle(color: Colors.black),
+                      titleSmall: TextStyle(color: Colors.black),
+                      bodyLarge: TextStyle(color: Colors.black),
+                      bodyMedium: TextStyle(color: Colors.black),
+                      bodySmall: TextStyle(color: Colors.black),
+                      labelLarge: TextStyle(color: Colors.black),
+                      labelMedium: TextStyle(color: Colors.black),
+                      labelSmall: TextStyle(color: Colors.black),
+                    )),
+                context: context,
+                initialDate: salesController.checkIndateTime ?? DateTime.now(),
+                firstDate: DateTime(1600).subtract(const Duration(days: 3652)),
+                lastDate: DateTime.now().add(
+                  const Duration(days: 3652),
+                ),
+                is24HourMode: false,
+                type: OmniDateTimePickerType.date,
+                isShowSeconds: false,
+                minutesInterval: 1,
+                secondsInterval: 1,
+                borderRadius: const BorderRadius.all(Radius.circular(16)),
+                constraints: const BoxConstraints(
+                  maxWidth: 350,
+                  maxHeight: 650,
+                ),
+                transitionBuilder: (context, anim1, anim2, child) {
+                  return FadeTransition(
+                    opacity: anim1.drive(
+                      Tween(
+                        begin: 0,
+                        end: 1,
+                      ),
+                    ),
+                    child: child,
+                  );
+                },
+                transitionDuration: const Duration(milliseconds: 200),
+                barrierDismissible: true,
+                selectableDayPredicate: (dateTime) {
+                  // Disable 25th Feb 2023
+                  if (dateTime == DateTime(2023, 2, 25)) {
+                    return false;
+                  } else {
+                    return true;
+                  }
+                },
+              ).then((v) {
+                if (v != null) {
+                  if (v != salesController.dashBoardSelectedDate) {
+                    salesController.dashBoardSelectedDate = v;
+                    salesController.salesDashBoardApi();
+                  }
+                }
+              });
+            }
+
+            return InkWell(
+              onTap: () {
+                selectDate(context);
+              },
+              child: Container(
+                decoration: ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      width: 1,
+                      color: Colors.white.withOpacity(0.30000001192092896),
+                    ),
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  borderRadius: BorderRadius.circular(10),
                 ),
-              ),
-              child: Text(
-                formatter.format(_selectedDate),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                  fontFamily: 'SF Pro Text',
-                  fontWeight: FontWeight.w400,
-                  // height: 0,
-                  // letterSpacing: -0.56,
-                ),
-              ).paddingAll(12),
-            ).paddingSymmetric(vertical: 12),
-          ),
+                child: Text(
+                  formatter.format(salesController.dashBoardSelectedDate),
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontFamily: 'SF Pro Text',
+                    fontWeight: FontWeight.w400,
+                    // height: 0,
+                    // letterSpacing: -0.56,
+                  ),
+                ).paddingAll(12),
+              ).paddingSymmetric(vertical: 12),
+            );
+          }),
           Container(
             padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
             height: 180,
@@ -533,15 +644,22 @@ class _SalesDashboardState extends State<SalesDashboard> {
                       ),
                     ),
                     Expanded(child: Container()),
-                    const Text(
-                      '120',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontFamily: 'SF Pro Display',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                    GetBuilder<SalesController>(builder: (salesController) {
+                      if (salesController.loading) {
+                        return const SpinKitWave(
+                          color: Colors.white,
+                        );
+                      }
+                      return Text(
+                        "${salesController.dashboardData["TicketCount"] ?? "--"}",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontFamily: 'SF Pro Display',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      );
+                    }),
                     const Text(
                       'Indents Created',
                       style: TextStyle(
@@ -607,11 +725,11 @@ class _SalesDashboardState extends State<SalesDashboard> {
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             'Visitor In',
                             style: TextStyle(
                               color: Colors.white,
@@ -621,17 +739,25 @@ class _SalesDashboardState extends State<SalesDashboard> {
                               height: 0,
                             ),
                           ),
-                          SizedBox(width: 28),
-                          Text(
-                            '10',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22,
-                              fontFamily: 'SF Pro Display',
-                              fontWeight: FontWeight.w500,
-                              height: 0,
-                            ),
-                          ),
+                          const SizedBox(width: 28),
+                          GetBuilder<SalesController>(
+                              builder: (salesController) {
+                            if (salesController.loading) {
+                              return const SpinKitWave(
+                                color: Colors.white,
+                              );
+                            }
+                            return Text(
+                              "${salesController.dashboardData["VisitorCount"]["InCount"] ?? "--"}",
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 22,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w500,
+                                height: 0,
+                              ),
+                            );
+                          }),
                         ],
                       ),
                     ),
@@ -646,11 +772,11 @@ class _SalesDashboardState extends State<SalesDashboard> {
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             'Visitor Out',
                             style: TextStyle(
                               color: Colors.white,
@@ -660,17 +786,25 @@ class _SalesDashboardState extends State<SalesDashboard> {
                               height: 0,
                             ),
                           ),
-                          SizedBox(width: 28),
-                          Text(
-                            '10',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22,
-                              fontFamily: 'SF Pro Display',
-                              fontWeight: FontWeight.w500,
-                              height: 0,
-                            ),
-                          ),
+                          const SizedBox(width: 28),
+                          GetBuilder<SalesController>(
+                              builder: (salesController) {
+                            if (salesController.loading) {
+                              return const SpinKitWave(
+                                color: Colors.white,
+                              );
+                            }
+                            return Text(
+                              "${salesController.dashboardData["VisitorCount"]["OutCount"] ?? "--"}",
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 22,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w500,
+                                height: 0,
+                              ),
+                            );
+                          }),
                         ],
                       ),
                     ),
@@ -719,15 +853,23 @@ class _SalesDashboardState extends State<SalesDashboard> {
                       ),
                     ),
                     Expanded(child: Container()),
-                    const Text(
-                      '120',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontFamily: 'SF Pro Display',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                    GetBuilder<SalesController>(builder: (salesController) {
+                      if (salesController.loading) {
+                        return const SpinKitWave(
+                          color: Colors.white,
+                        );
+                      }
+                      return Text(
+                        "${salesController.dashboardData["CompanyCount"] ?? "--"}",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontFamily: 'SF Pro Display',
+                          fontWeight: FontWeight.w500,
+                          height: 0,
+                        ),
+                      );
+                    }),
                     const Text(
                       'Companies Added',
                       style: TextStyle(

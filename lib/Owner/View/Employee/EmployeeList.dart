@@ -4,6 +4,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
 import 'package:moolwmsstore/Owner/View/Common/customButton.dart';
+import 'package:moolwmsstore/Owner/View/Employee/viewEmployee.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 class EmployeeList extends StatelessWidget {
   const EmployeeList({super.key});
@@ -186,7 +188,24 @@ class EmployeeList extends StatelessWidget {
                                 )),
                             IconButton(
                                 padding: EdgeInsets.zero,
-                                onPressed: () {},
+                                onPressed: () {
+                                  if (ownerController.employees[i].personType
+                                          ?.contains("owner") ??
+                                      false) {
+                                    Get.to(
+                                        ViewEmployee(
+                                          owner: ownerController.employees[i],
+                                        ),
+                                        id: ownerNavigationKey);
+                                  } else {
+                                    Get.to(
+                                        ViewEmployee(
+                                          employeeId: ownerController
+                                              .employees[i].employeeID,
+                                        ),
+                                        id: ownerNavigationKey);
+                                  }
+                                },
                                 icon: Image.asset(
                                   "assets/icons/Eye.png",
                                   height: 20,

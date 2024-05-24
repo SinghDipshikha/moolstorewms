@@ -7,11 +7,13 @@ import 'package:moolwmsstore/Sales/Model/company.dart';
 import 'package:moolwmsstore/Sales/Model/enterProduct.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/addCompanyDialog.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/enterProduct.dart';
+import 'package:moolwmsstore/Sales/View/Ticket/ticketList.dart';
 import 'package:moolwmsstore/Sales/View/common/widgets/salesCommonWidgets.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/tagContainer.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 import 'package:throttling/throttling.dart';
 // import 'package:throttling/throttling.dart';
 
@@ -26,6 +28,7 @@ class _CreateticketState extends State<Createticket> {
   TextEditingController poId = TextEditingController();
   bool creatingTicket = false;
   final _formKey = GlobalKey<FormState>();
+  int selectedWarehouseId = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -185,7 +188,7 @@ class _CreateticketState extends State<Createticket> {
                             child: Row(
                               children: [
                                 Text(
-                                  "$item",
+                                  "${item["warehouse_name"]}",
                                   style: const TextStyle(
                                     color: Colors.black,
                                   ),
@@ -214,7 +217,9 @@ class _CreateticketState extends State<Createticket> {
                           return null;
                         },
                         onChanged: (value) {
-                          if (value != null) {}
+                          if (value != null) {
+                            selectedWarehouseId = value["id"];
+                          }
                         },
                         onSaved: (value) {
                           // ownerController.selectedTempType = value;
@@ -222,7 +227,7 @@ class _CreateticketState extends State<Createticket> {
                         },
                         buttonStyleData: const ButtonStyleData(
                           //decoration: BoxDecoration(color: Colors.white),
-                          overlayColor: MaterialStatePropertyAll(Colors.white),
+                          overlayColor: WidgetStatePropertyAll(Colors.white),
                         ),
                         iconStyleData: IconStyleData(
                           icon: const Icon(
@@ -249,9 +254,15 @@ class _CreateticketState extends State<Createticket> {
                               creatingTicket = true;
                             });
                             salesController
-                                .createIndent(poId: poId.text, warehouseid: 2)
+                                .createIndent(
+                                    poId: poId.text,
+                                    warehouseid: selectedWarehouseId)
                                 .then((value) {
-                              if (value == false) {
+                              if (value) {
+                                Get.off(TicketList(), id: salesNavigationKey);
+                                Snacks.greenSnack(
+                                    "Successfully Created Purchase Order and Ticket id is Assigned");
+                              } else {
                                 setState(() {
                                   creatingTicket = false;
                                 });

@@ -5,6 +5,7 @@ import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/dbConnect.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Auth/Repository/authRepo.dart';
+import 'package:moolwmsstore/Auth/View/Blocked.dart';
 import 'package:moolwmsstore/Auth/View/OtpScreen.dart';
 import 'package:moolwmsstore/Auth/View/organisationCode.dart';
 import 'package:moolwmsstore/Auth/View/phoneSign.dart';
@@ -101,73 +102,95 @@ class AuthController extends GetxController {
                 Get.to(const SignInUp(), id: authNavigationKey);
                 return;
               }
-              if (user?.role_id == 1) {
-                Get.lazyPut(() => OwnerRepo(
-                    sharedPreferences: Get.find(),
-                    apiClient: Get.find<ApiClient>()));
-                Get.put(
-                    OwnerController(
-                        user: user as User,
-                        ownerRepo: Get.find<OwnerRepo>(),
-                        apiClient: Get.find<ApiClient>()),
-                    permanent: true);
-                Get.put(ChamberController(), permanent: true);
-                Future.delayed(const Duration(seconds: 2)).whenComplete(() {
-                  Get.delete<AuthController>();
-                  Get.offAll(const Owner());
-                });
-              }
-              if (user?.role_id == 2) {
-                for (var element in user!.person_type!) {
-                  if (element["person_type"] == "security-guard") {
-                    Get.lazyPut(() => SecurityGuardRepo(
-                        sharedPreferences: Get.find(), apiClient: Get.find()));
-                    Get.put(
-                        SecurityGuardController(
-                          user: user as User,
-                          secGaurdRepo: Get.find<SecurityGuardRepo>(),
-                          apiClient: Get.find<ApiClient>(),
-                        ),
-                        permanent: true);
-                  }
-                  if (element["person_type"] == "sales") {
-                    Get.lazyPut(() => SalesRepo(
-                        sharedPreferences: Get.find(), apiClient: Get.find()));
-                    Get.put(
-                        SalesController(
-                            user: user as User,
-                            salesRepo: Get.find<SalesRepo>(),
-                            apiClient: Get.find<ApiClient>()),
-                        permanent: true);
-                  }
-                  if (element["person_type"] == "hr") {
-                    Get.lazyPut(() => HrRepo(
-                        sharedPreferences: Get.find(), apiClient: Get.find()));
-                    Get.put(
-                        HRController(
-                            user: user as User,
-                            hrRepo: Get.find<HrRepo>(),
-                            apiClient: Get.find<ApiClient>()),
-                        permanent: true);
-                  }
+
+              Get.find<ApiClient>()
+                  .getData("user/userInfo/${user!.id}")
+                  .then((v) {
+                if (v.data["result"]["user"]["status"] == 0) {
+                  Get.offAll(const Blocked());
+                  return;
                 }
-                if (user!.person_type?[0] != null) {
+
+                if (user?.role_id == 1) {
+                  user =
+                      user!.copyWith(warehouse: v.data["result"]["warehouse"]);
                   Logger().i(user);
-                  if (user!.person_type?[0]["person_type"] ==
-                      "security-guard") {
+                  Get.lazyPut(() => OwnerRepo(
+                      sharedPreferences: Get.find(),
+                      apiClient: Get.find<ApiClient>()));
+                  Get.put(
+                      OwnerController(
+                          user: user as User,
+                          ownerRepo: Get.find<OwnerRepo>(),
+                          apiClient: Get.find<ApiClient>()),
+                      permanent: true);
+                  Get.put(ChamberController(), permanent: true);
+                  Future.delayed(const Duration(seconds: 2)).whenComplete(() {
                     Get.delete<AuthController>();
-                    Get.offAll(const SecurityGuard());
+                    Get.offAll(const Owner());
+                  });
+                }
+
+                if (user?.role_id == 2) {
+                  user = user!.copyWith(
+                    warehouse: v.data["result"]["warehouse"],
+                    person_type: v.data["result"]["person_type"],
+                  );
+                  Logger().i(user);
+
+                  for (var element in user!.person_type!) {
+                    if (element["person_type"] == "security-guard") {
+                      Get.lazyPut(() => SecurityGuardRepo(
+                          sharedPreferences: Get.find(),
+                          apiClient: Get.find()));
+                      Get.put(
+                          SecurityGuardController(
+                            user: user as User,
+                            secGaurdRepo: Get.find<SecurityGuardRepo>(),
+                            apiClient: Get.find<ApiClient>(),
+                          ),
+                          permanent: true);
+                    }
+                    if (element["person_type"] == "sales") {
+                      Get.lazyPut(() => SalesRepo(
+                          sharedPreferences: Get.find(),
+                          apiClient: Get.find()));
+                      Get.put(
+                          SalesController(
+                              user: user as User,
+                              salesRepo: Get.find<SalesRepo>(),
+                              apiClient: Get.find<ApiClient>()),
+                          permanent: true);
+                    }
+                    if (element["person_type"] == "hr") {
+                      Get.lazyPut(() => HrRepo(
+                          sharedPreferences: Get.find(),
+                          apiClient: Get.find()));
+                      Get.put(
+                          HRController(
+                              user: user as User,
+                              hrRepo: Get.find<HrRepo>(),
+                              apiClient: Get.find<ApiClient>()),
+                          permanent: true);
+                    }
                   }
-                  if (user!.person_type?[0]["person_type"] == "sales") {
-                    Get.delete<AuthController>();
-                    Get.offAll(const Sales());
-                  }
-                  if (user!.person_type?[0]["person_type"] == "hr") {
-                    Get.delete<AuthController>();
-                    Get.offAll(const HumanResouce());
+                  if (user!.person_type?[0] != null) {
+                    if (user!.person_type?[0]["person_type"] ==
+                        "security-guard") {
+                      Get.delete<AuthController>();
+                      Get.offAll(const SecurityGuard());
+                    }
+                    if (user!.person_type?[0]["person_type"] == "sales") {
+                      Get.delete<AuthController>();
+                      Get.offAll(const Sales());
+                    }
+                    if (user!.person_type?[0]["person_type"] == "hr") {
+                      Get.delete<AuthController>();
+                      Get.offAll(const HumanResouce());
+                    }
                   }
                 }
-              }
+              });
             } else {
               Snacks.redSnack("Something went wrong");
             }
@@ -188,18 +211,11 @@ class AuthController extends GetxController {
 
   onSignInPressed() {
     Get.to(OrganisationCode(), id: authNavigationKey);
-
-    // if (dbconnect != null) {
-    //   checkOrganisationCode(
-    //       organiosationCode: dbconnect!.organiosationCode.toString());
-    // } else {
-    //   Get.to(OrganisationCode(), id: authNavigationKey);
-    // }
   }
 
   checkOrganisationCode({required String organiosationCode}) async {
     loading = true;
-update();
+    update();
     Get.find<ApiClient>().postData(
         'verifyOrgByCode', {"org_code": organiosationCode}).then((value) {
       if (value.data["message"] == "Organisation Details Present") {

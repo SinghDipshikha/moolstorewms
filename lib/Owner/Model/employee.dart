@@ -8,8 +8,8 @@ class Employee with _$Employee {
   const factory Employee({
     String? name,
     String? mobile,
-    String? employeeId,
-    dynamic warehouseId,
+    String? employeeID,
+    dynamic warehouseID,
     DateTime? timestamp,
     List<String>? personType,
     int? isShow,
