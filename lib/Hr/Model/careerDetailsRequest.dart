@@ -8,9 +8,9 @@ class CareerDetailsRequest with _$CareerDetailsRequest {
   const factory CareerDetailsRequest({
     String? name_of_employer,
     String? designation,
-    String? phone_no,
-    DateTime? employment_date_from,
-    DateTime? employment_date_to,
+    String? reporting_to,
+    String? employment_date_from,
+    String? employment_date_to,
     int? monthly_salary_start,
     int? monthly_salary_end,
   }) = _CareerDetailsRequest;

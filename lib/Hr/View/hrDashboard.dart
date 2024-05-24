@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
+import 'package:moolwmsstore/Hr/View/createShift.dart';
 import 'package:moolwmsstore/Hr/View/demo.dart';
 import 'package:moolwmsstore/Hr/View/shiftsAssignList.dart';
 import 'package:moolwmsstore/Hr/View/staffList.dart';
@@ -205,24 +206,49 @@ class _HrDashboardState extends State<HrDashboard> {
                     //     ),
                   ],
                 ),
-                ListTile(
+                ExpansionTile(
+                  collapsedShape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                  iconColor: Colors.white,
+                  collapsedIconColor: Colors.white,
+                  shape: Border.all(
+                    color: const Color.fromARGB(255, 22, 22, 22),
+                  ),
                   leading: Image.asset(
-                    "assets/images/shift.png",
+                    "assets/images/peopleVector.png",
                     height: 28,
                   ),
                   title: const Text(
                     'Shift',
-                    textAlign: TextAlign.left,
                     style: TextStyle(
-                      color: Color(0xFFA7A7A7),
+                      color: Color(0xFFACACAC),
                       fontSize: 16,
                       fontFamily: 'SF Pro Text',
                       fontWeight: FontWeight.w500,
+                      // //height: 0,
+                      letterSpacing: -0.64,
                     ),
                   ),
-                  onTap: () {
-                    Get.to(const ShiftInfo(), id: hrNavigationKey);
-                  },
+                  children: [
+                    // CurvedLineConatainer(
+                    //   title: "Add Staff",
+                    //   onTap: () {},
+                    // ),
+                    CurvedLineConatainer(
+                      title: "Create Shift",
+                      isShowextendedLine: false,
+                      onTap: () {
+                        Get.to(const CreateShiftScreen(), id: hrNavigationKey);
+                      },
+                    ),
+                    CurvedLineConatainer(
+                      title: "Shift List",
+                      isShowextendedLine: false,
+                      onTap: () {
+                        Get.to(const ShiftInfo(), id: hrNavigationKey);
+                      },
+                    ),
+                  ],
                 ),
                 ListTile(
                   leading: Image.asset(

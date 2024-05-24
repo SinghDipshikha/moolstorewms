@@ -64,6 +64,9 @@ class _DipshikaAppState extends State<DipshikaApp> {
             dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch},
           ),
           theme: ThemeData(
+            // dialogTheme: const DialogTheme(
+            //     backgroundColor: Colors.white,
+            //     contentTextStyle: TextStyle(color: Colors.white)),
             scaffoldBackgroundColor: Colors.white,
             hintColor: const Color.fromARGB(255, 202, 204, 206),
             colorScheme: const ColorScheme(

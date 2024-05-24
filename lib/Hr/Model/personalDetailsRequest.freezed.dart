@@ -21,16 +21,20 @@ PersonalDetailsRequest _$PersonalDetailsRequestFromJson(
 
 /// @nodoc
 mixin _$PersonalDetailsRequest {
-  String? get user_id => throw _privateConstructorUsedError;
-  String? get pan_card => throw _privateConstructorUsedError;
+  int? get user_id => throw _privateConstructorUsedError;
+  int? get updated_by => throw _privateConstructorUsedError;
   String? get gst_number => throw _privateConstructorUsedError;
+  String? get gender => throw _privateConstructorUsedError;
+  String? get dob => throw _privateConstructorUsedError;
   String? get blood_group => throw _privateConstructorUsedError;
-  int? get gate_id => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get aadhaar_number => throw _privateConstructorUsedError;
   String? get pf_number => throw _privateConstructorUsedError;
+  String? get pan_card => throw _privateConstructorUsedError;
   String? get esic_number => throw _privateConstructorUsedError;
   String? get have_passport => throw _privateConstructorUsedError;
   String? get passport_number => throw _privateConstructorUsedError;
-  DateTime? get passport_expiry_date => throw _privateConstructorUsedError;
+  String? get passport_expiry_date => throw _privateConstructorUsedError;
   String? get have_disability => throw _privateConstructorUsedError;
   String? get disability_describe => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
@@ -40,6 +44,7 @@ mixin _$PersonalDetailsRequest {
   String? get emergency_contact_no => throw _privateConstructorUsedError;
   String? get emergency_contact_person => throw _privateConstructorUsedError;
   String? get mailing_address_diffrent => throw _privateConstructorUsedError;
+  String? get mailing_address => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,16 +59,20 @@ abstract class $PersonalDetailsRequestCopyWith<$Res> {
       _$PersonalDetailsRequestCopyWithImpl<$Res, PersonalDetailsRequest>;
   @useResult
   $Res call(
-      {String? user_id,
-      String? pan_card,
+      {int? user_id,
+      int? updated_by,
       String? gst_number,
+      String? gender,
+      String? dob,
       String? blood_group,
-      int? gate_id,
+      String? email,
+      String? aadhaar_number,
       String? pf_number,
+      String? pan_card,
       String? esic_number,
       String? have_passport,
       String? passport_number,
-      DateTime? passport_expiry_date,
+      String? passport_expiry_date,
       String? have_disability,
       String? disability_describe,
       String? address,
@@ -72,7 +81,8 @@ abstract class $PersonalDetailsRequestCopyWith<$Res> {
       int? pincode,
       String? emergency_contact_no,
       String? emergency_contact_person,
-      String? mailing_address_diffrent});
+      String? mailing_address_diffrent,
+      String? mailing_address});
 }
 
 /// @nodoc
@@ -90,11 +100,15 @@ class _$PersonalDetailsRequestCopyWithImpl<$Res,
   @override
   $Res call({
     Object? user_id = freezed,
-    Object? pan_card = freezed,
+    Object? updated_by = freezed,
     Object? gst_number = freezed,
+    Object? gender = freezed,
+    Object? dob = freezed,
     Object? blood_group = freezed,
-    Object? gate_id = freezed,
+    Object? email = freezed,
+    Object? aadhaar_number = freezed,
     Object? pf_number = freezed,
+    Object? pan_card = freezed,
     Object? esic_number = freezed,
     Object? have_passport = freezed,
     Object? passport_number = freezed,
@@ -108,31 +122,48 @@ class _$PersonalDetailsRequestCopyWithImpl<$Res,
     Object? emergency_contact_no = freezed,
     Object? emergency_contact_person = freezed,
     Object? mailing_address_diffrent = freezed,
+    Object? mailing_address = freezed,
   }) {
     return _then(_value.copyWith(
       user_id: freezed == user_id
           ? _value.user_id
           : user_id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pan_card: freezed == pan_card
-          ? _value.pan_card
-          : pan_card // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
+      updated_by: freezed == updated_by
+          ? _value.updated_by
+          : updated_by // ignore: cast_nullable_to_non_nullable
+              as int?,
       gst_number: freezed == gst_number
           ? _value.gst_number
           : gst_number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gender: freezed == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dob: freezed == dob
+          ? _value.dob
+          : dob // ignore: cast_nullable_to_non_nullable
               as String?,
       blood_group: freezed == blood_group
           ? _value.blood_group
           : blood_group // ignore: cast_nullable_to_non_nullable
               as String?,
-      gate_id: freezed == gate_id
-          ? _value.gate_id
-          : gate_id // ignore: cast_nullable_to_non_nullable
-              as int?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      aadhaar_number: freezed == aadhaar_number
+          ? _value.aadhaar_number
+          : aadhaar_number // ignore: cast_nullable_to_non_nullable
+              as String?,
       pf_number: freezed == pf_number
           ? _value.pf_number
           : pf_number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pan_card: freezed == pan_card
+          ? _value.pan_card
+          : pan_card // ignore: cast_nullable_to_non_nullable
               as String?,
       esic_number: freezed == esic_number
           ? _value.esic_number
@@ -149,7 +180,7 @@ class _$PersonalDetailsRequestCopyWithImpl<$Res,
       passport_expiry_date: freezed == passport_expiry_date
           ? _value.passport_expiry_date
           : passport_expiry_date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       have_disability: freezed == have_disability
           ? _value.have_disability
           : have_disability // ignore: cast_nullable_to_non_nullable
@@ -186,6 +217,10 @@ class _$PersonalDetailsRequestCopyWithImpl<$Res,
           ? _value.mailing_address_diffrent
           : mailing_address_diffrent // ignore: cast_nullable_to_non_nullable
               as String?,
+      mailing_address: freezed == mailing_address
+          ? _value.mailing_address
+          : mailing_address // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -200,16 +235,20 @@ abstract class _$$PersonalDetailsRequestImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? user_id,
-      String? pan_card,
+      {int? user_id,
+      int? updated_by,
       String? gst_number,
+      String? gender,
+      String? dob,
       String? blood_group,
-      int? gate_id,
+      String? email,
+      String? aadhaar_number,
       String? pf_number,
+      String? pan_card,
       String? esic_number,
       String? have_passport,
       String? passport_number,
-      DateTime? passport_expiry_date,
+      String? passport_expiry_date,
       String? have_disability,
       String? disability_describe,
       String? address,
@@ -218,7 +257,8 @@ abstract class _$$PersonalDetailsRequestImplCopyWith<$Res>
       int? pincode,
       String? emergency_contact_no,
       String? emergency_contact_person,
-      String? mailing_address_diffrent});
+      String? mailing_address_diffrent,
+      String? mailing_address});
 }
 
 /// @nodoc
@@ -235,11 +275,15 @@ class __$$PersonalDetailsRequestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? user_id = freezed,
-    Object? pan_card = freezed,
+    Object? updated_by = freezed,
     Object? gst_number = freezed,
+    Object? gender = freezed,
+    Object? dob = freezed,
     Object? blood_group = freezed,
-    Object? gate_id = freezed,
+    Object? email = freezed,
+    Object? aadhaar_number = freezed,
     Object? pf_number = freezed,
+    Object? pan_card = freezed,
     Object? esic_number = freezed,
     Object? have_passport = freezed,
     Object? passport_number = freezed,
@@ -253,31 +297,48 @@ class __$$PersonalDetailsRequestImplCopyWithImpl<$Res>
     Object? emergency_contact_no = freezed,
     Object? emergency_contact_person = freezed,
     Object? mailing_address_diffrent = freezed,
+    Object? mailing_address = freezed,
   }) {
     return _then(_$PersonalDetailsRequestImpl(
       user_id: freezed == user_id
           ? _value.user_id
           : user_id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pan_card: freezed == pan_card
-          ? _value.pan_card
-          : pan_card // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
+      updated_by: freezed == updated_by
+          ? _value.updated_by
+          : updated_by // ignore: cast_nullable_to_non_nullable
+              as int?,
       gst_number: freezed == gst_number
           ? _value.gst_number
           : gst_number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gender: freezed == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dob: freezed == dob
+          ? _value.dob
+          : dob // ignore: cast_nullable_to_non_nullable
               as String?,
       blood_group: freezed == blood_group
           ? _value.blood_group
           : blood_group // ignore: cast_nullable_to_non_nullable
               as String?,
-      gate_id: freezed == gate_id
-          ? _value.gate_id
-          : gate_id // ignore: cast_nullable_to_non_nullable
-              as int?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      aadhaar_number: freezed == aadhaar_number
+          ? _value.aadhaar_number
+          : aadhaar_number // ignore: cast_nullable_to_non_nullable
+              as String?,
       pf_number: freezed == pf_number
           ? _value.pf_number
           : pf_number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pan_card: freezed == pan_card
+          ? _value.pan_card
+          : pan_card // ignore: cast_nullable_to_non_nullable
               as String?,
       esic_number: freezed == esic_number
           ? _value.esic_number
@@ -294,7 +355,7 @@ class __$$PersonalDetailsRequestImplCopyWithImpl<$Res>
       passport_expiry_date: freezed == passport_expiry_date
           ? _value.passport_expiry_date
           : passport_expiry_date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       have_disability: freezed == have_disability
           ? _value.have_disability
           : have_disability // ignore: cast_nullable_to_non_nullable
@@ -331,6 +392,10 @@ class __$$PersonalDetailsRequestImplCopyWithImpl<$Res>
           ? _value.mailing_address_diffrent
           : mailing_address_diffrent // ignore: cast_nullable_to_non_nullable
               as String?,
+      mailing_address: freezed == mailing_address
+          ? _value.mailing_address
+          : mailing_address // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -340,11 +405,15 @@ class __$$PersonalDetailsRequestImplCopyWithImpl<$Res>
 class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
   const _$PersonalDetailsRequestImpl(
       {this.user_id,
-      this.pan_card,
+      this.updated_by,
       this.gst_number,
+      this.gender,
+      this.dob,
       this.blood_group,
-      this.gate_id,
+      this.email,
+      this.aadhaar_number,
       this.pf_number,
+      this.pan_card,
       this.esic_number,
       this.have_passport,
       this.passport_number,
@@ -357,23 +426,32 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
       this.pincode,
       this.emergency_contact_no,
       this.emergency_contact_person,
-      this.mailing_address_diffrent});
+      this.mailing_address_diffrent,
+      this.mailing_address});
 
   factory _$PersonalDetailsRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$PersonalDetailsRequestImplFromJson(json);
 
   @override
-  final String? user_id;
+  final int? user_id;
   @override
-  final String? pan_card;
+  final int? updated_by;
   @override
   final String? gst_number;
   @override
+  final String? gender;
+  @override
+  final String? dob;
+  @override
   final String? blood_group;
   @override
-  final int? gate_id;
+  final String? email;
+  @override
+  final String? aadhaar_number;
   @override
   final String? pf_number;
+  @override
+  final String? pan_card;
   @override
   final String? esic_number;
   @override
@@ -381,7 +459,7 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
   @override
   final String? passport_number;
   @override
-  final DateTime? passport_expiry_date;
+  final String? passport_expiry_date;
   @override
   final String? have_disability;
   @override
@@ -400,10 +478,12 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
   final String? emergency_contact_person;
   @override
   final String? mailing_address_diffrent;
+  @override
+  final String? mailing_address;
 
   @override
   String toString() {
-    return 'PersonalDetailsRequest(user_id: $user_id, pan_card: $pan_card, gst_number: $gst_number, blood_group: $blood_group, gate_id: $gate_id, pf_number: $pf_number, esic_number: $esic_number, have_passport: $have_passport, passport_number: $passport_number, passport_expiry_date: $passport_expiry_date, have_disability: $have_disability, disability_describe: $disability_describe, address: $address, state: $state, city: $city, pincode: $pincode, emergency_contact_no: $emergency_contact_no, emergency_contact_person: $emergency_contact_person, mailing_address_diffrent: $mailing_address_diffrent)';
+    return 'PersonalDetailsRequest(user_id: $user_id, updated_by: $updated_by, gst_number: $gst_number, gender: $gender, dob: $dob, blood_group: $blood_group, email: $email, aadhaar_number: $aadhaar_number, pf_number: $pf_number, pan_card: $pan_card, esic_number: $esic_number, have_passport: $have_passport, passport_number: $passport_number, passport_expiry_date: $passport_expiry_date, have_disability: $have_disability, disability_describe: $disability_describe, address: $address, state: $state, city: $city, pincode: $pincode, emergency_contact_no: $emergency_contact_no, emergency_contact_person: $emergency_contact_person, mailing_address_diffrent: $mailing_address_diffrent, mailing_address: $mailing_address)';
   }
 
   @override
@@ -412,15 +492,21 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
         (other.runtimeType == runtimeType &&
             other is _$PersonalDetailsRequestImpl &&
             (identical(other.user_id, user_id) || other.user_id == user_id) &&
-            (identical(other.pan_card, pan_card) ||
-                other.pan_card == pan_card) &&
+            (identical(other.updated_by, updated_by) ||
+                other.updated_by == updated_by) &&
             (identical(other.gst_number, gst_number) ||
                 other.gst_number == gst_number) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.dob, dob) || other.dob == dob) &&
             (identical(other.blood_group, blood_group) ||
                 other.blood_group == blood_group) &&
-            (identical(other.gate_id, gate_id) || other.gate_id == gate_id) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.aadhaar_number, aadhaar_number) ||
+                other.aadhaar_number == aadhaar_number) &&
             (identical(other.pf_number, pf_number) ||
                 other.pf_number == pf_number) &&
+            (identical(other.pan_card, pan_card) ||
+                other.pan_card == pan_card) &&
             (identical(other.esic_number, esic_number) ||
                 other.esic_number == esic_number) &&
             (identical(other.have_passport, have_passport) ||
@@ -444,7 +530,9 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
                 other.emergency_contact_person == emergency_contact_person) &&
             (identical(
                     other.mailing_address_diffrent, mailing_address_diffrent) ||
-                other.mailing_address_diffrent == mailing_address_diffrent));
+                other.mailing_address_diffrent == mailing_address_diffrent) &&
+            (identical(other.mailing_address, mailing_address) ||
+                other.mailing_address == mailing_address));
   }
 
   @JsonKey(ignore: true)
@@ -452,11 +540,15 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
   int get hashCode => Object.hashAll([
         runtimeType,
         user_id,
-        pan_card,
+        updated_by,
         gst_number,
+        gender,
+        dob,
         blood_group,
-        gate_id,
+        email,
+        aadhaar_number,
         pf_number,
+        pan_card,
         esic_number,
         have_passport,
         passport_number,
@@ -469,7 +561,8 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
         pincode,
         emergency_contact_no,
         emergency_contact_person,
-        mailing_address_diffrent
+        mailing_address_diffrent,
+        mailing_address
       ]);
 
   @JsonKey(ignore: true)
@@ -489,16 +582,20 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
 
 abstract class _PersonalDetailsRequest implements PersonalDetailsRequest {
   const factory _PersonalDetailsRequest(
-      {final String? user_id,
-      final String? pan_card,
+      {final int? user_id,
+      final int? updated_by,
       final String? gst_number,
+      final String? gender,
+      final String? dob,
       final String? blood_group,
-      final int? gate_id,
+      final String? email,
+      final String? aadhaar_number,
       final String? pf_number,
+      final String? pan_card,
       final String? esic_number,
       final String? have_passport,
       final String? passport_number,
-      final DateTime? passport_expiry_date,
+      final String? passport_expiry_date,
       final String? have_disability,
       final String? disability_describe,
       final String? address,
@@ -507,23 +604,32 @@ abstract class _PersonalDetailsRequest implements PersonalDetailsRequest {
       final int? pincode,
       final String? emergency_contact_no,
       final String? emergency_contact_person,
-      final String? mailing_address_diffrent}) = _$PersonalDetailsRequestImpl;
+      final String? mailing_address_diffrent,
+      final String? mailing_address}) = _$PersonalDetailsRequestImpl;
 
   factory _PersonalDetailsRequest.fromJson(Map<String, dynamic> json) =
       _$PersonalDetailsRequestImpl.fromJson;
 
   @override
-  String? get user_id;
+  int? get user_id;
   @override
-  String? get pan_card;
+  int? get updated_by;
   @override
   String? get gst_number;
   @override
+  String? get gender;
+  @override
+  String? get dob;
+  @override
   String? get blood_group;
   @override
-  int? get gate_id;
+  String? get email;
+  @override
+  String? get aadhaar_number;
   @override
   String? get pf_number;
+  @override
+  String? get pan_card;
   @override
   String? get esic_number;
   @override
@@ -531,7 +637,7 @@ abstract class _PersonalDetailsRequest implements PersonalDetailsRequest {
   @override
   String? get passport_number;
   @override
-  DateTime? get passport_expiry_date;
+  String? get passport_expiry_date;
   @override
   String? get have_disability;
   @override
@@ -550,6 +656,8 @@ abstract class _PersonalDetailsRequest implements PersonalDetailsRequest {
   String? get emergency_contact_person;
   @override
   String? get mailing_address_diffrent;
+  @override
+  String? get mailing_address;
   @override
   @JsonKey(ignore: true)
   _$$PersonalDetailsRequestImplCopyWith<_$PersonalDetailsRequestImpl>

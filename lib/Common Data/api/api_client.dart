@@ -157,6 +157,22 @@ class ApiClient extends g.GetxService {
   //   }
   // }
 
+  Future<String?> uploadImage(XFile file) async {
+    String fileName = file.path.split('/').last;
+    FormData formData = FormData.fromMap({
+      "file": MultipartFile.fromBytes(await file.readAsBytes(),
+          filename: fileName.trim()),
+    });
+    Response value =
+        await _dio.post("${appBaseUrl!}file/upload", data: formData);
+    if (value.data["message"] == "Successfully uploaded 1 files!") {
+      Logger().i(value.data["files"][0]["location"]);
+      return value.data["files"][0]["location"];
+    } else {
+      return null;
+    }
+  }
+
   Response handleResponse(Response response) {
     dynamic body;
     Response response0 = Response(

@@ -67,6 +67,7 @@ class CommonTextField extends StatelessWidget {
           8,
         ),
         TextFormField(
+          maxLength: maxLength,
           maxLines: maxLines,
           textCapitalization: textCapitalization ?? TextCapitalization.none,
           onTapOutside: (event) {
@@ -82,6 +83,7 @@ class CommonTextField extends StatelessWidget {
           inputFormatters: inputFormatters,
           obscureText: obscureText ?? false,
           decoration: InputDecoration(
+            alignLabelWithHint: true,
             contentPadding: const EdgeInsets.only(left: 8),
             filled: true,
             fillColor: containerColor ?? const Color(0xFFFAF9FF),

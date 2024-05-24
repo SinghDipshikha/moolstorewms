@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
@@ -8,9 +9,11 @@ import 'package:moolwmsstore/Sales/Model/Indent/checkInSubmit.dart';
 import 'package:moolwmsstore/Sales/Model/Indent/indentElement.dart';
 import 'package:moolwmsstore/Sales/Model/Indent/initialProduct.dart';
 import 'package:moolwmsstore/Sales/Model/Indent/viewIndentModel.dart';
+import 'package:moolwmsstore/Sales/Model/Visitor/addVisitorModel.dart';
 import 'package:moolwmsstore/Sales/Model/company.dart';
 import 'package:moolwmsstore/Sales/Model/enterProduct.dart';
 import 'package:moolwmsstore/Sales/Sales.dart';
+import 'package:moolwmsstore/Sales/View/Visiitors/addVisitorSucces.dart';
 import 'package:moolwmsstore/Sales/View/companyAdded.dart';
 import 'package:moolwmsstore/Sales/repo/salesRepo.dart';
 import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
@@ -51,6 +54,26 @@ class SalesController extends GetxController {
     "TicketCount": 0,
     "CompanyCount": 0,
   };
+  AddVisitorModel addVisitorModel = const AddVisitorModel();
+  addVistor() async {
+    loading = true;
+    update();
+    addVisitorModel = addVisitorModel.copyWith(
+        visitor_generate_by: user.id, in_out_status: "IN");
+    await apiClient
+        .postData("user/addVisitorBySales", addVisitorModel.toJson())
+        .then((v) {
+      if (v.data["message"] == "Visitor Checked IN successfully") {
+        loading = false;
+        Get.off(const AddVisitorSucces(), id: salesNavigationKey);
+        addVisitorModel = const AddVisitorModel();
+      }
+    });
+    loading = false;
+    update();
+  }
+
+
 
   salesDashBoardApi() async {
     loading = true;
@@ -240,6 +263,17 @@ class SalesController extends GetxController {
     } else {
       return false;
     }
+  }
+
+  bool imageUploading = false;
+
+  Future<String?> uploadImage(XFile file) async {
+    imageUploading = true;
+    update();
+    String? x = await apiClient.uploadImage(file);
+    imageUploading = false;
+    update();
+    return x;
   }
 
   switchRole(String role) {

@@ -23,7 +23,7 @@ class ShiftInfo extends StatelessWidget {
         //   title: 'Add New Staff',
         // ).paddingSymmetric(horizontal: 12),
         appBar: CommonAppBar(
-          title: 'Staff',
+          title: 'Shift List',
           onTap: () {
             Get.to(const HrDashboard(), id: hrNavigationKey);
           },

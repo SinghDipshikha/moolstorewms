@@ -28,6 +28,7 @@ class _CreateticketState extends State<Createticket> {
   TextEditingController poId = TextEditingController();
   bool creatingTicket = false;
   final _formKey = GlobalKey<FormState>();
+  int selectedWarehouseId = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -216,7 +217,9 @@ class _CreateticketState extends State<Createticket> {
                           return null;
                         },
                         onChanged: (value) {
-                          if (value != null) {}
+                          if (value != null) {
+                            selectedWarehouseId = value["id"];
+                          }
                         },
                         onSaved: (value) {
                           // ownerController.selectedTempType = value;
@@ -251,11 +254,12 @@ class _CreateticketState extends State<Createticket> {
                               creatingTicket = true;
                             });
                             salesController
-                                .createIndent(poId: poId.text, warehouseid: 2)
+                                .createIndent(
+                                    poId: poId.text,
+                                    warehouseid: selectedWarehouseId)
                                 .then((value) {
                               if (value) {
-                                Get.off( TicketList(),
-                                    id: salesNavigationKey);
+                                Get.off(TicketList(), id: salesNavigationKey);
                                 Snacks.greenSnack(
                                     "Successfully Created Purchase Order and Ticket id is Assigned");
                               } else {

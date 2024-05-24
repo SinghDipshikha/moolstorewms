@@ -22,9 +22,9 @@ CareerDetailsRequest _$CareerDetailsRequestFromJson(Map<String, dynamic> json) {
 mixin _$CareerDetailsRequest {
   String? get name_of_employer => throw _privateConstructorUsedError;
   String? get designation => throw _privateConstructorUsedError;
-  String? get phone_no => throw _privateConstructorUsedError;
-  DateTime? get employment_date_from => throw _privateConstructorUsedError;
-  DateTime? get employment_date_to => throw _privateConstructorUsedError;
+  String? get reporting_to => throw _privateConstructorUsedError;
+  String? get employment_date_from => throw _privateConstructorUsedError;
+  String? get employment_date_to => throw _privateConstructorUsedError;
   int? get monthly_salary_start => throw _privateConstructorUsedError;
   int? get monthly_salary_end => throw _privateConstructorUsedError;
 
@@ -43,9 +43,9 @@ abstract class $CareerDetailsRequestCopyWith<$Res> {
   $Res call(
       {String? name_of_employer,
       String? designation,
-      String? phone_no,
-      DateTime? employment_date_from,
-      DateTime? employment_date_to,
+      String? reporting_to,
+      String? employment_date_from,
+      String? employment_date_to,
       int? monthly_salary_start,
       int? monthly_salary_end});
 }
@@ -66,7 +66,7 @@ class _$CareerDetailsRequestCopyWithImpl<$Res,
   $Res call({
     Object? name_of_employer = freezed,
     Object? designation = freezed,
-    Object? phone_no = freezed,
+    Object? reporting_to = freezed,
     Object? employment_date_from = freezed,
     Object? employment_date_to = freezed,
     Object? monthly_salary_start = freezed,
@@ -81,18 +81,18 @@ class _$CareerDetailsRequestCopyWithImpl<$Res,
           ? _value.designation
           : designation // ignore: cast_nullable_to_non_nullable
               as String?,
-      phone_no: freezed == phone_no
-          ? _value.phone_no
-          : phone_no // ignore: cast_nullable_to_non_nullable
+      reporting_to: freezed == reporting_to
+          ? _value.reporting_to
+          : reporting_to // ignore: cast_nullable_to_non_nullable
               as String?,
       employment_date_from: freezed == employment_date_from
           ? _value.employment_date_from
           : employment_date_from // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       employment_date_to: freezed == employment_date_to
           ? _value.employment_date_to
           : employment_date_to // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       monthly_salary_start: freezed == monthly_salary_start
           ? _value.monthly_salary_start
           : monthly_salary_start // ignore: cast_nullable_to_non_nullable
@@ -116,9 +116,9 @@ abstract class _$$CareerDetailsRequestImplCopyWith<$Res>
   $Res call(
       {String? name_of_employer,
       String? designation,
-      String? phone_no,
-      DateTime? employment_date_from,
-      DateTime? employment_date_to,
+      String? reporting_to,
+      String? employment_date_from,
+      String? employment_date_to,
       int? monthly_salary_start,
       int? monthly_salary_end});
 }
@@ -136,7 +136,7 @@ class __$$CareerDetailsRequestImplCopyWithImpl<$Res>
   $Res call({
     Object? name_of_employer = freezed,
     Object? designation = freezed,
-    Object? phone_no = freezed,
+    Object? reporting_to = freezed,
     Object? employment_date_from = freezed,
     Object? employment_date_to = freezed,
     Object? monthly_salary_start = freezed,
@@ -151,18 +151,18 @@ class __$$CareerDetailsRequestImplCopyWithImpl<$Res>
           ? _value.designation
           : designation // ignore: cast_nullable_to_non_nullable
               as String?,
-      phone_no: freezed == phone_no
-          ? _value.phone_no
-          : phone_no // ignore: cast_nullable_to_non_nullable
+      reporting_to: freezed == reporting_to
+          ? _value.reporting_to
+          : reporting_to // ignore: cast_nullable_to_non_nullable
               as String?,
       employment_date_from: freezed == employment_date_from
           ? _value.employment_date_from
           : employment_date_from // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       employment_date_to: freezed == employment_date_to
           ? _value.employment_date_to
           : employment_date_to // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       monthly_salary_start: freezed == monthly_salary_start
           ? _value.monthly_salary_start
           : monthly_salary_start // ignore: cast_nullable_to_non_nullable
@@ -181,7 +181,7 @@ class _$CareerDetailsRequestImpl implements _CareerDetailsRequest {
   const _$CareerDetailsRequestImpl(
       {this.name_of_employer,
       this.designation,
-      this.phone_no,
+      this.reporting_to,
       this.employment_date_from,
       this.employment_date_to,
       this.monthly_salary_start,
@@ -195,11 +195,11 @@ class _$CareerDetailsRequestImpl implements _CareerDetailsRequest {
   @override
   final String? designation;
   @override
-  final String? phone_no;
+  final String? reporting_to;
   @override
-  final DateTime? employment_date_from;
+  final String? employment_date_from;
   @override
-  final DateTime? employment_date_to;
+  final String? employment_date_to;
   @override
   final int? monthly_salary_start;
   @override
@@ -207,7 +207,7 @@ class _$CareerDetailsRequestImpl implements _CareerDetailsRequest {
 
   @override
   String toString() {
-    return 'CareerDetailsRequest(name_of_employer: $name_of_employer, designation: $designation, phone_no: $phone_no, employment_date_from: $employment_date_from, employment_date_to: $employment_date_to, monthly_salary_start: $monthly_salary_start, monthly_salary_end: $monthly_salary_end)';
+    return 'CareerDetailsRequest(name_of_employer: $name_of_employer, designation: $designation, reporting_to: $reporting_to, employment_date_from: $employment_date_from, employment_date_to: $employment_date_to, monthly_salary_start: $monthly_salary_start, monthly_salary_end: $monthly_salary_end)';
   }
 
   @override
@@ -219,8 +219,8 @@ class _$CareerDetailsRequestImpl implements _CareerDetailsRequest {
                 other.name_of_employer == name_of_employer) &&
             (identical(other.designation, designation) ||
                 other.designation == designation) &&
-            (identical(other.phone_no, phone_no) ||
-                other.phone_no == phone_no) &&
+            (identical(other.reporting_to, reporting_to) ||
+                other.reporting_to == reporting_to) &&
             (identical(other.employment_date_from, employment_date_from) ||
                 other.employment_date_from == employment_date_from) &&
             (identical(other.employment_date_to, employment_date_to) ||
@@ -237,7 +237,7 @@ class _$CareerDetailsRequestImpl implements _CareerDetailsRequest {
       runtimeType,
       name_of_employer,
       designation,
-      phone_no,
+      reporting_to,
       employment_date_from,
       employment_date_to,
       monthly_salary_start,
@@ -263,9 +263,9 @@ abstract class _CareerDetailsRequest implements CareerDetailsRequest {
   const factory _CareerDetailsRequest(
       {final String? name_of_employer,
       final String? designation,
-      final String? phone_no,
-      final DateTime? employment_date_from,
-      final DateTime? employment_date_to,
+      final String? reporting_to,
+      final String? employment_date_from,
+      final String? employment_date_to,
       final int? monthly_salary_start,
       final int? monthly_salary_end}) = _$CareerDetailsRequestImpl;
 
@@ -277,11 +277,11 @@ abstract class _CareerDetailsRequest implements CareerDetailsRequest {
   @override
   String? get designation;
   @override
-  String? get phone_no;
+  String? get reporting_to;
   @override
-  DateTime? get employment_date_from;
+  String? get employment_date_from;
   @override
-  DateTime? get employment_date_to;
+  String? get employment_date_to;
   @override
   int? get monthly_salary_start;
   @override
