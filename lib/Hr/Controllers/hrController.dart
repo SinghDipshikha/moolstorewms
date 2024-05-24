@@ -43,6 +43,7 @@ class HRController extends GetxController {
       const CareerDetailsRequest();
   List<StaffEntry> employees = [];
   List<PersonalDetailsResponse> getPersonalDetailsList = [];
+  List<AddCareerDetail> getCareerDetailsList = [];
   AddWarehouse? warehouse;
   // void addCareerDetails() {
   //   hrRepo.addCareerDetails(
@@ -77,6 +78,7 @@ class HRController extends GetxController {
     });
   }
 
+///////////////Add or Update Personal Details ////////////
   addPersonalDetails() async {
     isLoading = true;
     update();
@@ -101,6 +103,7 @@ class HRController extends GetxController {
     });
   }
 
+/////////// Get Personal Details/////////
   getPersonalDetails(var userId) {
     apiClient
         .getData(
@@ -122,6 +125,7 @@ class HRController extends GetxController {
     });
   }
 
+//////////////Add or Upddate Career Details/////////////
   Future<bool> addCareerDetails({
     required int userID,
     required int ownerID,
@@ -154,17 +158,18 @@ class HRController extends GetxController {
     }
   }
 
+/////////////////Get Career Details///////////////
   getCareerDetails(var userId) {
     apiClient
         .getData(
-      "hr/getBasicInformationById",
+      "/hr/getCareerDetailsByUserId/$userId",
     )
         .then((value) {
-      if (value.data["message"] == "items found") {
-        Snacks.greenSnack("Personal Details");
+      if (value.data["message"] == "career details found") {
+        Snacks.greenSnack("Career Details");
         List x = value.data["result"];
-        getPersonalDetailsList =
-            x.map((e) => PersonalDetailsResponse.fromJson(e)).toList();
+        getCareerDetailsList =
+            x.map((e) => AddCareerDetail.fromJson(e)).toList();
 
         isLoading = false;
         update();
