@@ -48,6 +48,8 @@ class IndentInOut extends StatelessWidget {
     }
   }
 
+  bool isPressed = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -468,7 +470,7 @@ class IndentInOut extends StatelessWidget {
                                     ),
                                   ),
                                   const Gap(26),
-                                  InkWell(
+                                  GestureDetector(
                                     onTap: () {
                                       if (!(salesController
                                               .initialProductsqty[i]["qty"] ==
@@ -483,6 +485,27 @@ class IndentInOut extends StatelessWidget {
                                       HapticFeedback.lightImpact();
                                       salesController.update();
                                     },
+                                    //   onLongPress: () async {
+                                    //     isPressed = true;
+                                    //     do {
+                                    // // for testing
+                                    //       if (!(salesController
+                                    //               .initialProductsqty[i]["qty"] ==
+                                    //           0)) {
+                                    //         salesController.initialProductsqty[i]
+                                    //             ["qty"] = (salesController
+                                    //                         .initialProductsqty[i]
+                                    //                     ["qty"] ??
+                                    //                 0) -
+                                    //             1;
+                                    //       }
+                                    //       HapticFeedback.lightImpact();
+                                    //       salesController.update();
+                                    //     } while (isPressed);
+                                    //   },
+                                    //   onLongPressEnd: (details) {
+                                    //     isPressed = false;
+                                    //   },
                                     child: Image.asset(
                                       "assets/icons/subtractBlue.png",
                                       height: 26,

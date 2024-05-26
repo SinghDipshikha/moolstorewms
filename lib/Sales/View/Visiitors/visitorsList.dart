@@ -54,12 +54,6 @@ class _VisitorsListState extends State<VisitorsList> {
           }
         }
         if (v.data["message"] == "No visitor found") {
-//         setState(() {
-//           if(pageKey == 0){
-//  visitorsFound = false;
-//           }
-
-//         });
 
           Snacks.redSnack(
             "No visitor found",

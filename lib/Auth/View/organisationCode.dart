@@ -66,7 +66,7 @@ class OrganisationCode extends StatelessWidget {
                 onFieldSubmitted: (value) {
                   FocusManager.instance.primaryFocus?.unfocus();
                   Get.find<AuthController>().checkOrganisationCode(
-                      organiosationCode: controller!.text.toString());
+                      organiosationCodee: controller!.text.toString());
                 },
                 style: const TextStyle(
                   color: Colors.yellow,
@@ -96,7 +96,7 @@ class OrganisationCode extends StatelessWidget {
                           onTap: () {
                             if (formKey.currentState?.validate() ?? false) {
                               Get.find<AuthController>().checkOrganisationCode(
-                                  organiosationCode:
+                                  organiosationCodee:
                                       controller!.text.toString());
                             }
 

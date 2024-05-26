@@ -213,9 +213,11 @@ class EmployeeList extends StatelessWidget {
                             IconButton(
                                 padding: EdgeInsets.zero,
                                 onPressed: () {},
-                                icon: const Icon(
-                                  Icons.more_horiz,
-                                  color: Colors.black,
+                                icon: Image.asset(
+                                  ownerController.employees[i].status == 1
+                                      ? "assets/icons/active.png"
+                                      : "assets/icons/inActive.png",
+                                  height: 22,
                                 ))
                           ],
                         ),

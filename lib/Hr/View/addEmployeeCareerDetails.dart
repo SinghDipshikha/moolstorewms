@@ -72,6 +72,24 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
   String? selectedLanguage = "Hindi";
   final _formKey = GlobalKey<FormState>();
   @override
+
+  Future<void> getCareerDetails() async {
+    final value = await Get.find<HRController>()
+        .getCareerDetails(Get.find<HRController>().user.id);
+    if (value.data["message"] == "career details found") {
+      List x = value.data["result"];
+      List<AddCareerDetail> getCareerDetailsList =
+          x.map((e) => AddCareerDetail.fromJson(e)).toList();
+      if (getCareerDetailsList.isNotEmpty) {
+        AddCareerDetail detailsResponse = getCareerDetailsList[0];
+        setState(() {
+          
+
+          Get.find<HRController>().isLoading = false;
+        });
+      }
+    }
+  }
   Widget build(BuildContext context) {
     return GetBuilder<HRController>(builder: (hrController) {
       return Form(

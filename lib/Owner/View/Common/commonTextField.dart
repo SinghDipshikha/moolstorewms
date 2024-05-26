@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 
-class CommanTextField extends StatelessWidget {
+class CommonTextField extends StatelessWidget {
   bool? obscureText;
   String? labelText;
   Widget? suffixIcon;
   Widget? prefixIcon;
   String? hintText;
   int? maxLength;
-  Color? containerColor;
   String? Function(String?)? validator;
   TextInputType? keyboardType;
   List<TextInputFormatter>? inputFormatters;
@@ -19,25 +18,27 @@ class CommanTextField extends StatelessWidget {
   TextCapitalization? textCapitalization;
   double? borderRadius;
   int? maxLines;
+  Color? containerColor;
 
-  CommanTextField(
-      {super.key,
-      this.labelText,
-      this.hintText,
-      this.textCapitalization,
-      this.borderRadius,
-      this.obscureText,
-      this.suffixIcon,
-      this.onChanged,
-      this.prefixIcon,
-      this.controller,
-      this.maxLength,
-      this.maxLines,
-      this.inputFormatters,
-      this.keyboardType,
-      this.padding,
-      this.validator,
-      this.containerColor});
+  CommonTextField({
+    this.containerColor,
+    super.key,
+    this.labelText,
+    this.hintText,
+    this.textCapitalization,
+    this.borderRadius,
+    this.obscureText,
+    this.suffixIcon,
+    this.onChanged,
+    this.prefixIcon,
+    this.controller,
+    this.maxLength,
+    this.maxLines,
+    this.inputFormatters,
+    this.keyboardType,
+    this.padding,
+    this.validator,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,31 +46,27 @@ class CommanTextField extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text.rich(
-          TextSpan(
-            children: [
-              TextSpan(
-                text: "$labelText",
-                style: const TextStyle(
-                  color: Color(0xFFACACAC),
-                  fontSize: 16,
-                  fontFamily: 'SF Pro Display',
-                  fontWeight: FontWeight.w400,
+        if (labelText != null)
+          Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(
+                  text: "$labelText",
+                  style: const TextStyle(
+                    color: Color(0xFF595959),
+                    fontSize: 16,
+                    fontFamily: 'SF Pro Display',
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
-              ),
-              // const TextSpan(
-              //   text: '*',
-              //   style: TextStyle(
-              //       fontSize: 16,
-              //       fontFamily: 'SF Pro Display',
-              //       fontWeight: FontWeight.w400,
-              //       color: Colors.red),
-              // ),
-            ],
+              ],
+            ),
           ),
+        const Gap(
+          8,
         ),
-        const Gap(8),
         TextFormField(
+          maxLength: maxLength,
           maxLines: maxLines,
           textCapitalization: textCapitalization ?? TextCapitalization.none,
           onTapOutside: (event) {
@@ -85,6 +82,8 @@ class CommanTextField extends StatelessWidget {
           inputFormatters: inputFormatters,
           obscureText: obscureText ?? false,
           decoration: InputDecoration(
+            alignLabelWithHint: true,
+            contentPadding: const EdgeInsets.only(left: 8),
             filled: true,
             fillColor: containerColor ?? const Color(0xFFFAF9FF),
             // contentPadding: const EdgeInsets.only(left: 8),
@@ -108,10 +107,12 @@ class CommanTextField extends StatelessWidget {
             border: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.red, width: 0.1),
                 borderRadius: BorderRadius.all(Radius.circular(5))),
-            errorStyle: const TextStyle(fontSize: 18),
+            errorStyle: const TextStyle(fontSize: 14),
           ),
-        ),
+        )
       ],
     );
   }
 }
+
+// 

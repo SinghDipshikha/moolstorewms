@@ -17,14 +17,19 @@ class _ViewEmployeeState extends State<ViewEmployee> {
   bool loading = true;
   @override
   void initState() {
-    Get.find<OwnerController>()
-        .apiClient
-        .getData("hr/staffListById/${widget.employeeId}")
-        .then((v) {
-      if (v.data["message"] == "Staff Data Retrieved Successfully!") {
-        v.data["result"][0];
-      }
-    });
+    if (widget.owner == null) {
+      Get.find<OwnerController>()
+          .apiClient
+          .getData("hr/staffListById/${widget.employeeId}")
+          .then((v) {
+        if (v.data["message"] == "Staff Data Retrieved Successfully!") {
+          v.data["result"][0];
+          setState(() {
+            loading = false;
+          });
+        }
+      });
+    }
     // TODO: implement initState
     super.initState();
   }

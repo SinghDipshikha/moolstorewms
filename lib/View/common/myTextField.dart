@@ -7,6 +7,7 @@ class MyTextField extends StatelessWidget {
   Widget? suffixIcon;
   Widget? prefixIcon;
   String? labelText;
+  String? hintText;
   int? maxLength;
   String? Function(String?)? validator;
   TextInputType? keyboardType;
@@ -34,6 +35,7 @@ class MyTextField extends StatelessWidget {
       this.inputFormatters,
       this.keyboardType,
       this.padding,
+      this.hintText,
       this.validator});
 
   @override
@@ -66,7 +68,7 @@ class MyTextField extends StatelessWidget {
           obscureText: obscureText ?? false,
           decoration: InputDecoration(
               // contentPadding: ,
-              hintText: labelText,
+              hintText: hintText,
               hintStyle: const TextStyle(
                 color: Color(0xFFACACAC),
                 fontSize: 12,

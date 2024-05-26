@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Owner/Model/warehouse.dart';
-import 'package:moolwmsstore/Owner/View/addChamber.dart';
+import 'package:moolwmsstore/Owner/View/Assets/assetEntry.dart';
+import 'package:moolwmsstore/Owner/View/Assets/assetsList.dart';
 import 'package:moolwmsstore/Owner/View/Chamber/chamberList.dart';
+import 'package:moolwmsstore/Owner/View/Employee/AddEmployee.dart';
+import 'package:moolwmsstore/Owner/View/Employee/EmployeeList.dart';
+import 'package:moolwmsstore/Owner/View/addChamber.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 ////@RoutePage()
@@ -30,7 +34,11 @@ class ViewWarehouseDetails extends StatelessWidget {
         "title": "Chamber",
         "icon": "assets/icons/sccscscs.png",
         "onviewPressed": () {
-          Get.to( ChamberList(  warehouse_id: warehouse!.id,), id: ownerNavigationKey);
+          Get.to(
+              ChamberList(
+                warehouse_id: warehouse!.id,
+              ),
+              id: ownerNavigationKey);
         },
         "onAddpressed": () {
           Get.to(
@@ -43,14 +51,22 @@ class ViewWarehouseDetails extends StatelessWidget {
       {
         "title": "Staff",
         "icon": "assets/icons/policeman-male 1.png",
-        "onviewPressed": () {},
-        "onAddpressed": () {}
+        "onviewPressed": () {
+          Get.to(const EmployeeList(), id: ownerNavigationKey);
+        },
+        "onAddpressed": () {
+          Get.to(AddEmployee(), id: ownerNavigationKey);
+        }
       },
       {
         "title": "Assets",
         "icon": "assets/icons/Asset.png",
-        "onviewPressed": () {},
-        "onAddpressed": () {}
+        "onviewPressed": () {
+          Get.to(const AssetsList(), id: ownerNavigationKey);
+        },
+        "onAddpressed": () {
+          Get.to(AssetEntry(), id: ownerNavigationKey);
+        }
       }
     ];
 
