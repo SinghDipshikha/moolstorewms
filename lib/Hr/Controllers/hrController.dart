@@ -4,12 +4,18 @@ import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
+import 'package:moolwmsstore/Hr/Model/addBankDetails.dart';
 import 'package:moolwmsstore/Hr/Model/addCareerDetail.dart';
+import 'package:moolwmsstore/Hr/Model/addEducationDetails.dart';
+import 'package:moolwmsstore/Hr/Model/addReferralDetails.dart';
+import 'package:moolwmsstore/Hr/Model/bankDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/careerDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/educationDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/personalDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/personaldetailsResponse.dart';
+import 'package:moolwmsstore/Hr/Model/referralDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/staff.dart';
+import 'package:moolwmsstore/Hr/View/addEmployeeBankDetails.dart';
 import 'package:moolwmsstore/Hr/View/addEmployeeCareerDetails.dart';
 import 'package:moolwmsstore/Hr/View/addEmployeeEducationQualificationDetails.dart';
 import 'package:moolwmsstore/Hr/View/addEmployeeReferralDetails.dart';
@@ -39,12 +45,19 @@ class HRController extends GetxController {
       const PersonalDetailsRequest();
   EducationDetailsRequest addEducationDetailsRequestModel =
       const EducationDetailsRequest();
+  ReferralDetailsRequest addReferralDetailRequestModel =
+      const ReferralDetailsRequest();
+  BankDetailsRequest addBankDetailsRequestModel = const BankDetailsRequest();
   CareerDetailsRequest addCareerDetailsRequestModel =
       const CareerDetailsRequest();
   List<StaffEntry> employees = [];
   List<PersonalDetailsResponse> getPersonalDetailsList = [];
   List<AddCareerDetail> getCareerDetailsList = [];
+  List<AddEducationDetail> getEducationDetailsList = [];
+  List<AddReferralDetail> getReferralDetailsList = [];
+  List<AddBankDetails> getBankDetailsList = [];
   AddWarehouse? warehouse;
+
   // void addCareerDetails() {
   //   hrRepo.addCareerDetails(
   //       userID: user.id, ownerID: 2, carrierDetails: carrierDetails);
@@ -104,12 +117,10 @@ class HRController extends GetxController {
   }
 
 /////////// Get Personal Details/////////
-  getPersonalDetails(var userId) {
-    apiClient
-        .getData(
-      "hr/getBasicInformationById",
-    )
-        .then((value) {
+  getPersonalDetails() {
+    apiClient.postData("hr/getBasicInformationById", {
+      {"user_id": 1}
+    }).then((value) {
       if (value.data["message"] == "items found") {
         Snacks.greenSnack("Personal Details");
         List x = value.data["result"];
@@ -180,6 +191,7 @@ class HRController extends GetxController {
     });
   }
 
+//////////////////////Add or Update Education Details//////////////
   addEducationDetails() async {
     isLoading = true;
     update();
@@ -205,21 +217,99 @@ class HRController extends GetxController {
     });
   }
 
+  ////////////////Get Eductaion Details///////////////////
+  getEducationDetails() {
+    apiClient.postData("/hr/getEducationInformationById", {
+      {"user_id": 2}
+    }).then((value) {
+      if (value.data["message"] == "items found") {
+        Snacks.greenSnack("Educational Details");
+        List x = value.data["result"];
+        getEducationDetailsList =
+            x.map((e) => AddEducationDetail.fromJson(e)).toList();
+
+        isLoading = false;
+        update();
+      } else {
+        isLoading = false;
+        update();
+      }
+    });
+  }
+
+////////////////Add and Update Referral Details////////////////////
   addReferralDetails() async {
     isLoading = true;
     update();
     await apiClient
         .postData(
-            "hr/getUserReferralsById", addPersonalDetailRequestModel.toJson())
+            "hr/getUserReferralsById", addReferralDetailRequestModel.toJson())
         .then((value) {
       if (value.data["message"] == "Employee Information Added") {
         print('Deepshikha');
-        addPersonalDetailRequestModel = const PersonalDetailsRequest();
+        addReferralDetailRequestModel = const ReferralDetailsRequest();
         Snacks.greenSnack("Personal Information Added");
 
         isLoading = false;
         update();
-        Get.to(const AddEmployeeCareerDetails(), id: hrNavigationKey);
+        Get.to(const AddEmployeeBankDetails(), id: hrNavigationKey);
+      }
+    });
+  }
+////////////Get Referral Details///////////////////
+
+  getReferralDetails() {
+    apiClient.postData("/hr/getUserReferralsById", {
+      {"user_id": 2}
+    }).then((value) {
+      if (value.data["message"] == "items found") {
+        Snacks.greenSnack("Referral Details");
+        List x = value.data["result"];
+        getReferralDetailsList =
+            x.map((e) => AddReferralDetail.fromJson(e)).toList();
+
+        isLoading = false;
+        update();
+      } else {
+        isLoading = false;
+        update();
+      }
+    });
+  }
+
+  //////////Add Update Bank Details/////////////////////
+  addBankDetails() async {
+    isLoading = true;
+    update();
+    await apiClient
+        .postData("/hr/addBankDetails", addBankDetailsRequestModel.toJson())
+        .then((value) {
+      if (value.data["message"] == "information updated") {
+        addBankDetailsRequestModel = const BankDetailsRequest();
+        Snacks.greenSnack("Bank Information Added");
+
+        isLoading = false;
+        update();
+        // Get.to(const AddEmployeeCareerDetails(), id: hrNavigationKey);
+      }
+    });
+  }
+
+  /////////////Get Bank Details////////////////////////////////
+  getBankDetails() {
+    apiClient.postData("/hr/getBankDetailsById", {
+      {"user_id": 2}
+    }).then((value) {
+      if (value.data["message"] == "items found") {
+        Snacks.greenSnack("Bank Details");
+        List x = value.data["result"];
+        getBankDetailsList = x.map((e) => AddBankDetails.fromJson(e)).toList();
+
+        isLoading = false;
+        update();
+      } else {
+        isLoading = false;
+        update();
       }
     });
   }

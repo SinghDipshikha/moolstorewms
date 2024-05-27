@@ -81,8 +81,7 @@ class _AddEmployeeEducationQualificationDetailsState
               );
               Logger().i(hrController.addCareerDetailsRequestModel.toJson());
               hrController.addEducationDetails();
-              // print(hrController.addCareerDetailsRequestModel);
-              //}
+            
             },
           ),
           body: SingleChildScrollView(

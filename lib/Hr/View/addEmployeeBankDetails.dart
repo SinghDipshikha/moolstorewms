@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Hr/View/addEmployeeDocuments.dart';
+import 'package:logger/logger.dart';
+import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/View/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonAppBar.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
@@ -25,176 +26,200 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
   String _bankName = '';
   String _ifscCode = '';
   String _accountType = '';
+  final TextEditingController _accountNameController = TextEditingController();
+  final TextEditingController _accountNumberController =
+      TextEditingController();
+  final TextEditingController _ifscCodeController = TextEditingController();
+  final TextEditingController _bankNameController = TextEditingController();
+  final TextEditingController _branchController = TextEditingController();
+  final TextEditingController _accountTypeController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Scaffold(
-        appBar: CommonAppBar(
-          title: 'Bank Details',
-          onTap: () {
-            Get.to(const HrEmployeeList(), id: hrNavigationKey);
-          },
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: CustomFloatingActionButton(
-          title: 'Next',
-          onTap: (){
-            Get.to(const AddEmployeeDocumentsDetails(), id: hrNavigationKey);
-          },
-        ),
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: [
-                Stack(alignment: Alignment.topLeft, children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: context.isPhone
-                                ? Colors.transparent
-                                : Colors.black,
-                            width: 2)),
-                    width: double.infinity,
-                    child: Wrap(
-                      alignment: WrapAlignment.spaceBetween,
-                      spacing: 20,
-                      runSpacing: 20,
+    return GetBuilder<HRController>(builder: (hrController) {
+      return Form(
+        key: _formKey,
+        child: Scaffold(
+          appBar: CommonAppBar(
+            title: 'Bank Details',
+            onTap: () {
+              Get.to(const HrEmployeeList(), id: hrNavigationKey);
+            },
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: CustomFloatingActionButton(
+            title: 'Next',
+            onTap: () {
+              // if (_formKey.currentState?.validate() ?? false) {
+              hrController.addEducationDetailsRequestModel =
+                  hrController.addEducationDetailsRequestModel.copyWith();
+              Logger().i(hrController.addCareerDetailsRequestModel.toJson());
+              hrController.addEducationDetails();
+
+              //Get.to(const AddEmployeeDocumentsDetails(), id: hrNavigationKey);
+            },
+          ),
+          body: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                children: [
+                  Stack(alignment: Alignment.topLeft, children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: context.isPhone
+                                  ? Colors.transparent
+                                  : Colors.black,
+                              width: 2)),
+                      width: double.infinity,
+                      child: Wrap(
+                        alignment: WrapAlignment.spaceBetween,
+                        spacing: 20,
+                        runSpacing: 20,
+                        children: [
+                          CommanTextField(
+                            labelText: "Account Name",
+                            hintText: "Account Name ",
+                            obscureText: false,
+                            controller: _accountNameController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter your account name.';
+                              }
+
+                              if (!GlobalValidator.isValidAccountName(value)) {
+                                return 'Please enter a account name.';
+                              }
+
+                              return null;
+                            },
+                            onChanged: (value) {
+                              _accountName = value;
+                            },
+                          ).paddingAll(2),
+                          CommanTextField(
+                            labelText: "Account Number",
+                            hintText: "Account Number",
+                            obscureText: false,
+                            controller: _accountNumberController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter your account number.';
+                              }
+
+                              if (!GlobalValidator.isValidAccountNumber(
+                                  value)) {
+                                return 'Please enter a account number.';
+                              }
+
+                              return null;
+                            },
+                            onChanged: (value) {
+                              _accountNumber = value;
+                            },
+                          ).paddingAll(2),
+                          CommanTextField(
+                            labelText: "Bank Name",
+                            hintText: "Bank Name",
+                            obscureText: false,
+                            controller: _bankNameController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter your bank name';
+                              }
+
+                              if (!GlobalValidator.isValidBankName(value)) {
+                                return 'Please enter a bank name.';
+                              }
+
+                              return null;
+                            },
+                            onChanged: (value) {
+                              _bankName = value;
+                            },
+                          ).paddingAll(2),
+                          CommanTextField(
+                            labelText: "IFSC Number",
+                            hintText: "IFSC Number",
+                            obscureText: false,
+                            controller: _ifscCodeController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter your ifsc code.';
+                              }
+
+                              if (!GlobalValidator.isValidIFSCCode(value)) {
+                                return 'Please enter a ifsc code.';
+                              }
+
+                              return null;
+                            },
+                            onChanged: (value) {
+                              _ifscCode = value;
+                            },
+                          ).paddingAll(2),
+                          CommanTextField(
+                            labelText: "Account Type",
+                            hintText: "Account Type",
+                            obscureText: false,
+                            controller: _accountTypeController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter your account type.';
+                              }
+
+                              if (!GlobalValidator.isValidMonthlySalary(
+                                  value)) {
+                                return 'Please enter a account type.';
+                              }
+
+                              return null;
+                            },
+                            onChanged: (value) {
+                              _accountType = value;
+                            },
+                          ).paddingAll(2),
+                        ],
+                      ),
+                    ).paddingAll(20),
+                    context.isPhone
+                        ? Container()
+                        : Container(
+                            color: const Color(0xFFF7F7F7),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0).copyWith(),
+                              child: const Text(
+                                'Bank Details',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                            )).paddingOnly(left: 80),
+                  ]),
+                  if (!context.isPhone)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        CommanTextField(
-                          labelText: "Account Name",
-                          hintText: "Account Name ",
-                          obscureText: false,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Please enter your account name.';
+                        CommonPreviousButton(
+                          title: 'Previous',
+                        ),
+                        const Gap(20),
+                        CommonNextButton(
+                          title: 'Next',
+                          onTap: () {
+                            if (_formKey.currentState!.validate()) {
+                              _formKey.currentState!.save();
                             }
-
-                            if (!GlobalValidator.isValidAccountName(value)) {
-                              return 'Please enter a account name.';
-                            }
-
-                            return null;
                           },
-                          onChanged: (value) {
-                            _accountName = value;
-                          },
-                        ).paddingAll(2),
-                        CommanTextField(
-                          labelText: "Account Number",
-                          hintText: "Account Number",
-                          obscureText: false,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Please enter your account number.';
-                            }
-
-                            if (!GlobalValidator.isValidAccountNumber(value)) {
-                              return 'Please enter a account number.';
-                            }
-
-                            return null;
-                          },
-                          onChanged: (value) {
-                            _accountNumber = value;
-                          },
-                        ).paddingAll(2),
-                        CommanTextField(
-                          labelText: "Bank Name",
-                          hintText: "Bank Name",
-                          obscureText: false,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Please enter your bank name';
-                            }
-
-                            if (!GlobalValidator.isValidBankName(value)) {
-                              return 'Please enter a bank name.';
-                            }
-
-                            return null;
-                          },
-                          onChanged: (value) {
-                            _bankName = value;
-                          },
-                        ).paddingAll(2),
-                        CommanTextField(
-                          labelText: "IFSC Number",
-                          hintText: "IFSC Number",
-                          obscureText: false,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Please enter your ifsc code.';
-                            }
-
-                            if (!GlobalValidator.isValidIFSCCode(value)) {
-                              return 'Please enter a ifsc code.';
-                            }
-
-                            return null;
-                          },
-                          onChanged: (value) {
-                            _ifscCode = value;
-                          },
-                        ).paddingAll(2),
-                        CommanTextField(
-                          labelText: "Account Type",
-                          hintText: "Account Type",
-                          obscureText: false,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Please enter your account type.';
-                            }
-
-                            if (!GlobalValidator.isValidMonthlySalary(value)) {
-                              return 'Please enter a account type.';
-                            }
-
-                            return null;
-                          },
-                          onChanged: (value) {
-                            _accountType = value;
-                          },
-                        ).paddingAll(2),
+                        ),
                       ],
-                    ),
-                  ).paddingAll(20),
-                  context.isPhone
-                      ? Container()
-                      : Container(
-                          color: const Color(0xFFF7F7F7),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0).copyWith(),
-                            child: const Text(
-                              'Bank Details',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
-                          )).paddingOnly(left: 80),
-                ]),
-                if (!context.isPhone)
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CommonPreviousButton(
-                        title: 'Previous',
-                      ),
-                      const Gap(20),
-                      CommonNextButton(
-                        title: 'Next',
-                        onTap: () {
-                          if (_formKey.currentState!.validate()) {
-                            _formKey.currentState!.save();
-                          }
-                        },
-                      ),
-                    ],
-                  ).paddingAll(20)
-              ],
+                    ).paddingAll(20)
+                ],
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

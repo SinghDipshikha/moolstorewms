@@ -134,8 +134,7 @@ class _AddEmployeePersonalDetailsState
 
   @override
   Future<void> getPersonalDetails() async {
-    final value = await Get.find<HRController>()
-        .getPersonalDetails(Get.find<HRController>().user.id);
+    final value = await Get.find<HRController>().getPersonalDetails();
     if (value.data["message"] == "items found") {
       List x = value.data["result"];
       List<PersonalDetailsResponse> getPersonalDetailsList =

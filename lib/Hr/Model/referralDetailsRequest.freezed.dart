@@ -21,13 +21,13 @@ ReferralDetailsRequest _$ReferralDetailsRequestFromJson(
 
 /// @nodoc
 mixin _$ReferralDetailsRequest {
-  int? get userId => throw _privateConstructorUsedError;
-  int? get updatedBy => throw _privateConstructorUsedError;
+  int? get user_id => throw _privateConstructorUsedError;
+  int? get updated_by => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get company => throw _privateConstructorUsedError;
   String? get designation => throw _privateConstructorUsedError;
-  String? get emailId => throw _privateConstructorUsedError;
-  String? get mobileNumber => throw _privateConstructorUsedError;
+  String? get email_id => throw _privateConstructorUsedError;
+  String? get mobile_number => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,13 +43,13 @@ abstract class $ReferralDetailsRequestCopyWith<$Res> {
       _$ReferralDetailsRequestCopyWithImpl<$Res, ReferralDetailsRequest>;
   @useResult
   $Res call(
-      {int? userId,
-      int? updatedBy,
+      {int? user_id,
+      int? updated_by,
       String? name,
       String? company,
       String? designation,
-      String? emailId,
-      String? mobileNumber,
+      String? email_id,
+      String? mobile_number,
       String? address});
 }
 
@@ -67,23 +67,23 @@ class _$ReferralDetailsRequestCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = freezed,
-    Object? updatedBy = freezed,
+    Object? user_id = freezed,
+    Object? updated_by = freezed,
     Object? name = freezed,
     Object? company = freezed,
     Object? designation = freezed,
-    Object? emailId = freezed,
-    Object? mobileNumber = freezed,
+    Object? email_id = freezed,
+    Object? mobile_number = freezed,
     Object? address = freezed,
   }) {
     return _then(_value.copyWith(
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      user_id: freezed == user_id
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
               as int?,
-      updatedBy: freezed == updatedBy
-          ? _value.updatedBy
-          : updatedBy // ignore: cast_nullable_to_non_nullable
+      updated_by: freezed == updated_by
+          ? _value.updated_by
+          : updated_by // ignore: cast_nullable_to_non_nullable
               as int?,
       name: freezed == name
           ? _value.name
@@ -97,13 +97,13 @@ class _$ReferralDetailsRequestCopyWithImpl<$Res,
           ? _value.designation
           : designation // ignore: cast_nullable_to_non_nullable
               as String?,
-      emailId: freezed == emailId
-          ? _value.emailId
-          : emailId // ignore: cast_nullable_to_non_nullable
+      email_id: freezed == email_id
+          ? _value.email_id
+          : email_id // ignore: cast_nullable_to_non_nullable
               as String?,
-      mobileNumber: freezed == mobileNumber
-          ? _value.mobileNumber
-          : mobileNumber // ignore: cast_nullable_to_non_nullable
+      mobile_number: freezed == mobile_number
+          ? _value.mobile_number
+          : mobile_number // ignore: cast_nullable_to_non_nullable
               as String?,
       address: freezed == address
           ? _value.address
@@ -123,13 +123,13 @@ abstract class _$$ReferralDetailsRequestImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? userId,
-      int? updatedBy,
+      {int? user_id,
+      int? updated_by,
       String? name,
       String? company,
       String? designation,
-      String? emailId,
-      String? mobileNumber,
+      String? email_id,
+      String? mobile_number,
       String? address});
 }
 
@@ -146,23 +146,23 @@ class __$$ReferralDetailsRequestImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = freezed,
-    Object? updatedBy = freezed,
+    Object? user_id = freezed,
+    Object? updated_by = freezed,
     Object? name = freezed,
     Object? company = freezed,
     Object? designation = freezed,
-    Object? emailId = freezed,
-    Object? mobileNumber = freezed,
+    Object? email_id = freezed,
+    Object? mobile_number = freezed,
     Object? address = freezed,
   }) {
     return _then(_$ReferralDetailsRequestImpl(
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      user_id: freezed == user_id
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
               as int?,
-      updatedBy: freezed == updatedBy
-          ? _value.updatedBy
-          : updatedBy // ignore: cast_nullable_to_non_nullable
+      updated_by: freezed == updated_by
+          ? _value.updated_by
+          : updated_by // ignore: cast_nullable_to_non_nullable
               as int?,
       name: freezed == name
           ? _value.name
@@ -176,13 +176,13 @@ class __$$ReferralDetailsRequestImplCopyWithImpl<$Res>
           ? _value.designation
           : designation // ignore: cast_nullable_to_non_nullable
               as String?,
-      emailId: freezed == emailId
-          ? _value.emailId
-          : emailId // ignore: cast_nullable_to_non_nullable
+      email_id: freezed == email_id
+          ? _value.email_id
+          : email_id // ignore: cast_nullable_to_non_nullable
               as String?,
-      mobileNumber: freezed == mobileNumber
-          ? _value.mobileNumber
-          : mobileNumber // ignore: cast_nullable_to_non_nullable
+      mobile_number: freezed == mobile_number
+          ? _value.mobile_number
+          : mobile_number // ignore: cast_nullable_to_non_nullable
               as String?,
       address: freezed == address
           ? _value.address
@@ -196,22 +196,22 @@ class __$$ReferralDetailsRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ReferralDetailsRequestImpl implements _ReferralDetailsRequest {
   const _$ReferralDetailsRequestImpl(
-      {this.userId,
-      this.updatedBy,
+      {this.user_id,
+      this.updated_by,
       this.name,
       this.company,
       this.designation,
-      this.emailId,
-      this.mobileNumber,
+      this.email_id,
+      this.mobile_number,
       this.address});
 
   factory _$ReferralDetailsRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$ReferralDetailsRequestImplFromJson(json);
 
   @override
-  final int? userId;
+  final int? user_id;
   @override
-  final int? updatedBy;
+  final int? updated_by;
   @override
   final String? name;
   @override
@@ -219,15 +219,15 @@ class _$ReferralDetailsRequestImpl implements _ReferralDetailsRequest {
   @override
   final String? designation;
   @override
-  final String? emailId;
+  final String? email_id;
   @override
-  final String? mobileNumber;
+  final String? mobile_number;
   @override
   final String? address;
 
   @override
   String toString() {
-    return 'ReferralDetailsRequest(userId: $userId, updatedBy: $updatedBy, name: $name, company: $company, designation: $designation, emailId: $emailId, mobileNumber: $mobileNumber, address: $address)';
+    return 'ReferralDetailsRequest(user_id: $user_id, updated_by: $updated_by, name: $name, company: $company, designation: $designation, email_id: $email_id, mobile_number: $mobile_number, address: $address)';
   }
 
   @override
@@ -235,23 +235,24 @@ class _$ReferralDetailsRequestImpl implements _ReferralDetailsRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ReferralDetailsRequestImpl &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.updatedBy, updatedBy) ||
-                other.updatedBy == updatedBy) &&
+            (identical(other.user_id, user_id) || other.user_id == user_id) &&
+            (identical(other.updated_by, updated_by) ||
+                other.updated_by == updated_by) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.company, company) || other.company == company) &&
             (identical(other.designation, designation) ||
                 other.designation == designation) &&
-            (identical(other.emailId, emailId) || other.emailId == emailId) &&
-            (identical(other.mobileNumber, mobileNumber) ||
-                other.mobileNumber == mobileNumber) &&
+            (identical(other.email_id, email_id) ||
+                other.email_id == email_id) &&
+            (identical(other.mobile_number, mobile_number) ||
+                other.mobile_number == mobile_number) &&
             (identical(other.address, address) || other.address == address));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, userId, updatedBy, name, company,
-      designation, emailId, mobileNumber, address);
+  int get hashCode => Object.hash(runtimeType, user_id, updated_by, name,
+      company, designation, email_id, mobile_number, address);
 
   @JsonKey(ignore: true)
   @override
@@ -270,22 +271,22 @@ class _$ReferralDetailsRequestImpl implements _ReferralDetailsRequest {
 
 abstract class _ReferralDetailsRequest implements ReferralDetailsRequest {
   const factory _ReferralDetailsRequest(
-      {final int? userId,
-      final int? updatedBy,
+      {final int? user_id,
+      final int? updated_by,
       final String? name,
       final String? company,
       final String? designation,
-      final String? emailId,
-      final String? mobileNumber,
+      final String? email_id,
+      final String? mobile_number,
       final String? address}) = _$ReferralDetailsRequestImpl;
 
   factory _ReferralDetailsRequest.fromJson(Map<String, dynamic> json) =
       _$ReferralDetailsRequestImpl.fromJson;
 
   @override
-  int? get userId;
+  int? get user_id;
   @override
-  int? get updatedBy;
+  int? get updated_by;
   @override
   String? get name;
   @override
@@ -293,9 +294,9 @@ abstract class _ReferralDetailsRequest implements ReferralDetailsRequest {
   @override
   String? get designation;
   @override
-  String? get emailId;
+  String? get email_id;
   @override
-  String? get mobileNumber;
+  String? get mobile_number;
   @override
   String? get address;
   @override

@@ -40,6 +40,13 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
     }
   }
 
+  void initstate() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.find<SecurityGuardController>().getAllVehicleCount();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -357,7 +364,7 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                     },
                     buttonStyleData: const ButtonStyleData(
                       //decoration: BoxDecoration(color: Colors.white),
-                      overlayColor: MaterialStatePropertyAll(Colors.white),
+                      overlayColor: WidgetStatePropertyAll(Colors.white),
                     ),
                     iconStyleData: const IconStyleData(
                       icon: Icon(
@@ -1124,20 +1131,37 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        const Column(
+                        Column(
                           children: [
-                            Text(
-                              '12',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontFamily: 'SF Pro Text',
-                                fontWeight: FontWeight.w600,
-                                //height: 0,
-                                letterSpacing: -0.72,
-                              ),
-                            ),
-                            Text(
+                            GetBuilder<SecurityGuardController>(
+                                builder: (sgController) {
+                              if (sgController.isloading) {
+                                return const CircularProgressIndicator();
+                              } else if (sgController.allVehicleCount.isEmpty) {
+                                return const Text(
+                                  "No vehicles found",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontFamily: 'SF Pro Text',
+                                    fontWeight: FontWeight.w600,
+                                    letterSpacing: -0.72,
+                                  ),
+                                );
+                              } else {
+                                return Text(
+                                  "Vehicle Count: ${sgController.allVehicleCount.length}",
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontFamily: 'SF Pro Text',
+                                    fontWeight: FontWeight.w600,
+                                    letterSpacing: -0.72,
+                                  ),
+                                );
+                              }
+                            }),
+                            const Text(
                               'Vehicle In',
                               style: TextStyle(
                                 color: Colors.green,
