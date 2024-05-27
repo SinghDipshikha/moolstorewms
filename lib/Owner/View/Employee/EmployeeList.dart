@@ -8,19 +8,19 @@ import 'package:moolwmsstore/Owner/View/Employee/viewEmployee.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 class EmployeeList extends StatelessWidget {
-  const EmployeeList({super.key});
+  EmployeeList({super.key, this.warehouseId});
+  int? warehouseId;
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OwnerController>(initState: (state) {
-      Get.find<OwnerController>().getAllEmployeesByOrg();
+      if (warehouseId != null) {
+        Get.find<OwnerController>().getAllEmployeesByWareHouse(warehouseId!);
+      } else {
+        Get.find<OwnerController>().getAllEmployeesByOrg();
+      }
     }, builder: (ownerController) {
       return Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: CustomButton(
-          onTap: () {},
-          title: 'Add New Staff',
-        ).paddingSymmetric(horizontal: 12),
         appBar: AppBar(
           title: const Text(
             'Staff List',
@@ -194,12 +194,14 @@ class EmployeeList extends StatelessWidget {
                                       false) {
                                     Get.to(
                                         ViewEmployee(
+                                          warehouseId: warehouseId,
                                           owner: ownerController.employees[i],
                                         ),
                                         id: ownerNavigationKey);
                                   } else {
-                                    Get.to(
+                                    Get.off(
                                         ViewEmployee(
+                                          warehouseId: warehouseId,
                                           employeeId: ownerController
                                               .employees[i].employeeID,
                                         ),
@@ -222,7 +224,11 @@ class EmployeeList extends StatelessWidget {
                           ],
                         ),
                       ).paddingSymmetric(vertical: 4);
-                    }))
+                    })),
+            CustomButton(
+              onTap: () {},
+              title: 'Add New Staff',
+            ).paddingSymmetric(vertical: 12)
           ],
         ).paddingSymmetric(vertical: 16, horizontal: 12),
       );

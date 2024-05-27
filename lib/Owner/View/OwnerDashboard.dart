@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
 import 'package:moolwmsstore/Owner/View/Common/cc.dart';
 import 'package:moolwmsstore/Owner/View/widget/ownerDrawer.dart';
@@ -220,7 +219,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                         child: GetBuilder<OwnerController>(
                             builder: (ownerController) {
                           return DropdownButtonFormField2<Map>(
-                            value: ownerController.currentlySelectedWarehouse,
+                            // value: ownerController.currentlySelectedWarehouse,
                             decoration: InputDecoration(
                               focusedBorder: const OutlineInputBorder(
                                   gapPadding: 0,
@@ -246,7 +245,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                               ),
                             ),
                             hint: const Text(
-                              'Select Warehouse',
+                              'All Warehouses',
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 color: Colors.white,
@@ -255,7 +254,8 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
-                            items: ownerController.user.warehouse?.map((item) {
+                            items:
+                                ownerController.dashboardWarehouses.map((item) {
                               return DropdownMenuItem<Map>(
                                 value: item,
                                 child: Row(
@@ -284,9 +284,6 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                               if (value != null) {
                                 ownerController.changeDashBoardWarehouse(
                                     warehouse: value);
-
-                                Logger().i(
-                                    ownerController.currentlySelectedWarehouse);
 
                                 //  selectedWarehouseId = value["id"];
                               }
@@ -823,7 +820,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                       ),
                                       Gap(60),
                                       Text(
-                                        '80%',
+                                        '--%',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.white,
@@ -850,7 +847,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                                       ),
                                       Gap(50),
                                       Text(
-                                        '80%',
+                                        '--%',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.white,
@@ -962,6 +959,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                     const Gap(12),
                     Expanded(
                       child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
                         height: 150,
                         decoration: ShapeDecoration(
                           color: const Color(0xFF303030),
@@ -971,132 +969,119 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                             borderRadius: BorderRadius.circular(25),
                           ),
                         ),
-                        child: Row(
-                          children: [
-                            const Gap(20),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Gap(20),
-                                const Text(
-                                  'Tickets',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontFamily: 'SF Pro Display',
-                                    fontWeight: FontWeight.w500,
-                                    height: 0,
-                                  ),
+                        child: GetBuilder<OwnerController>(
+                            builder: (ownerController) {
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Gap(20),
+                              const Text(
+                                'Indents',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w500,
+                                  height: 0,
                                 ),
-                                const Center(
-                                  child: Text(
-                                    '40',
+                              ),
+                              Row(
+                                children: [
+                                  const Text(
+                                    'AllTickets',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 54,
+                                      color: Color(0xFF595959),
+                                      fontSize: 7,
                                       fontFamily: 'SF Pro Display',
-                                      fontWeight: FontWeight.w500,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width: 50,
-                                        height: 12,
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 5, vertical: 2),
-                                        decoration: ShapeDecoration(
-                                          shape: RoundedRectangleBorder(
-                                            side: const BorderSide(
-                                                width: 0.50,
-                                                color: Color(0xFF2A2A2A)),
-                                            borderRadius:
-                                                BorderRadius.circular(2),
+                                  const Spacer(),
+                                  ownerController
+                                          .isGetIndentWarehouseCountLoading
+                                      ? LoadingAnimationWidget
+                                          .staggeredDotsWave(
+                                          color: Colors.white,
+                                          size: 20,
+                                        )
+                                      : Text(
+                                          '${ownerController.allIndentCount}',
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 24,
+                                            fontFamily: 'SF Pro Display',
+                                            fontWeight: FontWeight.w400,
                                           ),
                                         ),
-                                        child: const Center(
-                                          child: Text(
-                                            'AllTickets',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: Color(0xFF595959),
-                                              fontSize: 7,
-                                              fontFamily: 'SF Pro Display',
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 37,
-                                        height: 12,
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 5, vertical: 2),
-                                        decoration: ShapeDecoration(
-                                          shape: RoundedRectangleBorder(
-                                            side: const BorderSide(
-                                                width: 0.50,
-                                                color: Color(0xFF2A2A2A)),
-                                            borderRadius:
-                                                BorderRadius.circular(2),
-                                          ),
-                                        ),
-                                        child: const Center(
-                                          child: Text(
-                                            'Sales',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: Color(0xFF595959),
-                                              fontSize: 7,
-                                              fontFamily: 'SF Pro Display',
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 60,
-                                        height: 12,
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 5, vertical: 2),
-                                        decoration: ShapeDecoration(
-                                          shape: RoundedRectangleBorder(
-                                            side: const BorderSide(
-                                                width: 0.50,
-                                                color: Color(0xFF2A2A2A)),
-                                            borderRadius:
-                                                BorderRadius.circular(2),
-                                          ),
-                                        ),
-                                        child: const Center(
-                                          child: Text(
-                                            'Security Guard',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: Color(0xFF595959),
-                                              fontSize: 7,
-                                              fontFamily: 'SF Pro Display',
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Sales',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color(0xFF595959),
+                                      fontSize: 7,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                                  const Spacer(),
+                                  ownerController
+                                          .isGetIndentWarehouseCountLoading
+                                      ? LoadingAnimationWidget
+                                          .staggeredDotsWave(
+                                          color: Colors.white,
+                                          size: 20,
+                                        )
+                                      : Text(
+                                          '${ownerController.salesIndentCount}',
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 24,
+                                            fontFamily: 'SF Pro Display',
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Security Guard',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color(0xFF595959),
+                                      fontSize: 7,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  ownerController
+                                          .isGetIndentWarehouseCountLoading
+                                      ? LoadingAnimationWidget
+                                          .staggeredDotsWave(
+                                          color: Colors.white,
+                                          size: 20,
+                                        )
+                                      : Text(
+                                          '${ownerController.sgIndentCount}',
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 24,
+                                            fontFamily: 'SF Pro Display',
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                ],
+                              ),
+                            ],
+                          );
+                        }),
                       ),
                     ),
                   ],

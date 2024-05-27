@@ -35,6 +35,11 @@ class OwnerController extends GetxController {
 
   @override
   void onInit() {
+    dashboardWarehouses.addAll(user.warehouse!.toList());
+    dashboardWarehouses.add({
+      "id": "",
+      "warehouse_name": "All Warehouses",
+    });
     // TODO: implement onInit
     super.onInit();
   }
@@ -52,7 +57,11 @@ class OwnerController extends GetxController {
   String? selectedTempType;
 
 // ******** DashBoard Apis ********//    result: {warehouseCount: 7, ticketCount: 16}
+  int? allIndentCount;
+  int? sgIndentCount;
+  int? salesIndentCount;
   Map? selectedDashboardWarehouse;
+  List dashboardWarehouses = [];
   int? warehouseCount;
   int? ticketCount;
   bool isGetIndentWarehouseCountLoading = true;
@@ -85,6 +94,8 @@ class OwnerController extends GetxController {
 
   changeDashBoardWarehouse({required Map warehouse}) {
     selectedDashboardWarehouse = warehouse;
+
+    Logger().i(selectedDashboardWarehouse);
     getticketWarehouseCount();
     getMaterialCount();
     getVehicleCount();
@@ -94,14 +105,14 @@ class OwnerController extends GetxController {
 
   getticketWarehouseCount() async {
     isGetIndentWarehouseCountLoading = true;
-
-    await apiClient
-        .getData(
-            "owner/dashboard?start_date=${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}&end_date=${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}")
-        .then((value) {
+    String afterUrl =
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}";
+    await apiClient.getData("owner/dashboard$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         warehouseCount = value.data["result"]["warehouseCount"];
-        ticketCount = value.data["result"]["ticketCount"];
+        allIndentCount = value.data["result"]["allIndentCount"];
+        sgIndentCount = value.data["result"]["sgIndentCount"];
+        salesIndentCount = value.data["result"]["salesIndentCount"];
         isGetIndentWarehouseCountLoading = false;
         update();
       }
@@ -110,11 +121,9 @@ class OwnerController extends GetxController {
 
   getMaterialCount() async {
     isGetMaterialCountLoading = true;
-
-    await apiClient
-        .getData(
-            "material/materialCount?start_date=${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}&end_date=${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}")
-        .then((value) {
+    String afterUrl =
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}";
+    await apiClient.getData("material/materialCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         materialCountIn = value.data["result"]["count_in"];
         materialCountOut = value.data["result"]["count_out"];
@@ -126,11 +135,9 @@ class OwnerController extends GetxController {
 
   getVehicleCount() async {
     isGetVehicleCountLoading = true;
-
-    await apiClient
-        .getData(
-            "vehicle/vehicalCount?start_date=${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}&end_date=${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}")
-        .then((value) {
+    String afterUrl =
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}";
+    await apiClient.getData("vehicle/vehicalCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         vehicleCountIn = value.data["result"]["count_in"];
         vehicleCountOut = value.data["result"]["count_out"];
@@ -142,11 +149,9 @@ class OwnerController extends GetxController {
 
   getVisitorCount() async {
     isGetVisitorCountLoading = true;
-
-    await apiClient
-        .getData(
-            "visitor/visitorCount?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}")
-        .then((value) {
+    String afterUrl =
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}";
+    await apiClient.getData("visitor/visitorCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         visitorCountIn = value.data["result"]["count_in"];
         visitorCountOut = value.data["result"]["count_out"];
@@ -158,11 +163,9 @@ class OwnerController extends GetxController {
 
   getPersonCount() async {
     isGetPersonCountLoading = true;
-
-    await apiClient
-        .getData(
-            "person/personCount?start_date=${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}&end_date=${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}")
-        .then((value) {
+    String afterUrl =
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}";
+    await apiClient.getData("person/personCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         personCountIn = value.data["result"]["count_in"];
         personCountOut = value.data["result"]["count_out"];
@@ -341,6 +344,17 @@ class OwnerController extends GetxController {
 
   getAllEmployeesByOrg() {
     apiClient.getData("owner/getAllEmployeesByOrg").then((value) {
+      if (value.data["message"] == "All Employees found") {
+        List x = value.data["result"];
+        employees = x.map((e) => Employee.fromJson(e)).toList();
+        Logger().i(employees);
+
+        update();
+      }
+    });
+  }
+  getAllEmployeesByWareHouse(int warehouseId) {
+    apiClient.getData("owner/getAllEmployeesByWarehouseId/$warehouseId").then((value) {
       if (value.data["message"] == "All Employees found") {
         List x = value.data["result"];
         employees = x.map((e) => Employee.fromJson(e)).toList();

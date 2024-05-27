@@ -52,7 +52,9 @@ class ViewWarehouseDetails extends StatelessWidget {
         "title": "Staff",
         "icon": "assets/icons/policeman-male 1.png",
         "onviewPressed": () {
-          Get.to(const EmployeeList(), id: ownerNavigationKey);
+          Get.to( EmployeeList(
+            warehouseId: warehouse!.id,
+          ), id: ownerNavigationKey);
         },
         "onAddpressed": () {
           Get.to(AddEmployee(), id: ownerNavigationKey);

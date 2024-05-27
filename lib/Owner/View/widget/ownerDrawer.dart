@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
 import 'package:moolwmsstore/Owner/View/Employee/AddEmployee.dart';
 import 'package:moolwmsstore/Owner/View/Employee/EmployeeList.dart';
+import 'package:moolwmsstore/Owner/View/OwnerDashboard.dart';
 import 'package:moolwmsstore/Owner/View/WarehouseList.dart';
 import 'package:moolwmsstore/Owner/View/addWarehouse.dart';
 import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
@@ -126,23 +127,26 @@ class OwnerDrawer extends StatelessWidget {
               child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              ListTile(
-                leading: Image.asset(
-                  "assets/icons/grid-3.png",
-                  height: 28,
-                ),
-                title: const Text(
-                  'Dashboard',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: Color(0xFFA7A7A7),
-                    fontSize: 16,
-                    fontFamily: 'SF Pro Text',
-                    fontWeight: FontWeight.w500,
+              if (!context.isPhone)
+                ListTile(
+                  leading: Image.asset(
+                    "assets/icons/grid-3.png",
+                    height: 28,
                   ),
+                  title: const Text(
+                    'Dashboard',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: Color(0xFFA7A7A7),
+                      fontSize: 16,
+                      fontFamily: 'SF Pro Text',
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  onTap: () {
+                    Get.off(const OwnerDashboard(), id: ownerNavigationKey);
+                  },
                 ),
-                onTap: () {},
-              ),
               ExpansionTile(
                 collapsedShape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
@@ -258,7 +262,7 @@ class OwnerDrawer extends StatelessWidget {
                     title: "Staff List",
                     isShowextendedLine: false,
                     onTap: () {
-                      Get.to(const EmployeeList(), id: ownerNavigationKey);
+                      Get.to( EmployeeList(), id: ownerNavigationKey);
                       // Get.find<OwnerController>().setloadingtrue();
                       // Get.to(const WarehouseList(), id: ownerNavigationKey);
                       // WarehouseList

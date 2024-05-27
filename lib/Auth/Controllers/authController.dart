@@ -63,8 +63,11 @@ class AuthController extends GetxController {
   String? number;
   bool loading = false;
 
-  afterSpalsh() {
-    Get.find<ApiClient>().getData("user/userInfo/${user!.id}").then((v) {
+  afterSpalsh() async {
+    await Get.find<ApiClient>()
+        .getData("user/userInfo/${user!.id}")
+        .whenComplete(() {})
+        .then((v) {
       if (v.data["result"]["user"]["status"] == 0) {
         Get.offAll(const Blocked());
         return;
