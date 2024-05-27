@@ -83,7 +83,13 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
       if (getCareerDetailsList.isNotEmpty) {
         AddCareerDetail detailsResponse = getCareerDetailsList[0];
         setState(() {
-          
+          _fullNameController.text = detailsResponse.name_of_employer!;
+          _designationController.text = detailsResponse.designation!;
+          _reportingToController.text = detailsResponse.reporting_to!;
+           // _monthlySalaryStartController.text = detailsResponse.monthly_salary_start;
+          // _monthlySalaryEndController.text = detailsResponse.monthly_salary_end;
+          _selectedDate = detailsResponse.employment_date_to!;
+          _selectedDate2 = detailsResponse.employment_date_from!;
 
           Get.find<HRController>().isLoading = false;
         });

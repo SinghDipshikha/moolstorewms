@@ -3,6 +3,7 @@ import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Sales/Sales.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addVehicleCount.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addVisitor.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/employeeEntry.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/material.dart';
@@ -33,6 +34,7 @@ class SecurityGuardController extends GetxController {
   List<Ticket> allTicketList = [];
   List<MaterialEntry> allMaterialList = [];
   List<VehicleEntry> allVehicleList = [];
+  List<VehicleCount> allVehicleCount = [];
   List<Person> allPersonList = [];
   bool? isCheckIn;
   User user;
@@ -43,6 +45,17 @@ class SecurityGuardController extends GetxController {
       required this.apiClient,
       required this.user,
       this.isOwner = false});
+
+  // void initstate() {
+  //   getAllVehicleCount();
+  // }
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    getAllVehicleCount();
+
+    super.onInit();
+  }
 
   void verifyEmployee() {
     secGaurdRepo
@@ -315,5 +328,85 @@ class SecurityGuardController extends GetxController {
         update();
       }
     });
+  }
+
+  getAllVehicleCount() {
+    apiClient
+        .getData(
+      "vehicle/vehicalCount",
+    )
+        .then((value) {
+      if (value.data["message"] == "Data Retrieved Successfully!") {
+        Snacks.greenSnack("Data Retrieved Successfully!");
+        List x = value.data["result"];
+        allVehicleCount = x.map((e) => VehicleCount.fromJson(e)).toList();
+        print('this is count $allVehicleCount');
+        isloading = false;
+        update();
+      } else {
+        isloading = false;
+        update();
+      }
+    });
+  }
+
+  void getAllVisitorCount() {
+    //   apiClient
+    //       .getData(
+    //     "vehicle/list",
+    //   )
+    //       .then((value) {
+    //     if (value.data["message"] == "Data Retrieved Successfully!") {
+    //       Snacks.greenSnack("Data Retrieved Successfully!");
+    //       List x = value.data["result"];
+    //       allVehicleList = x.map((e) => VehicleEntry.fromJson(e)).toList();
+    //       print(allMaterialList);
+    //       isloading = false;
+    //       update();
+    //     } else {
+    //       isloading = false;
+    //       update();
+    //     }
+    //   });
+  }
+
+  void getAllMaterialCount() {
+    // apiClient
+    //     .getData(
+    //   "vehicle/list",
+    // )
+    //     .then((value) {
+    //   if (value.data["message"] == "Data Retrieved Successfully!") {
+    //     Snacks.greenSnack("Data Retrieved Successfully!");
+    //     List x = value.data["result"];
+    //     allVehicleList = x.map((e) => VehicleEntry.fromJson(e)).toList();
+    //     print(allMaterialList);
+    //     isloading = false;
+    //     update();
+    //   } else {
+    //     isloading = false;
+    //     update();
+    //   }
+    // });
+  }
+
+  void getAllPersonCount() {
+    //   apiClient
+    //       .getData(
+    //     "vehicle/list",
+    //   )
+    //       .then((value) {
+    //     if (value.data["message"] == "Data Retrieved Successfully!") {
+    //       Snacks.greenSnack("Data Retrieved Successfully!");
+    //       List x = value.data["result"];
+    //       allVehicleList = x.map((e) => VehicleEntry.fromJson(e)).toList();
+    //       print(allMaterialList);
+    //       isloading = false;
+    //       update();
+    //     } else {
+    //       isloading = false;
+    //       update();
+    //     }
+    //   });
   }
 }
