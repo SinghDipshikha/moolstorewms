@@ -161,8 +161,7 @@ class _CreateticketState extends State<Createticket> {
                                   width: 0.2),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5))),
-                          // Add Horizontal padding using menuItemStyleData.padding so it matches
-                          // the menu padding when button's width is not specified.
+                      
                           contentPadding: const EdgeInsets.symmetric(
                               vertical: 0, horizontal: 0),
                           border: OutlineInputBorder(
@@ -170,7 +169,7 @@ class _CreateticketState extends State<Createticket> {
                                 const BorderSide(color: Colors.transparent),
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          // Add more decoration..
+                
                         ),
                         hint: const Text(
                           'Select Warehouse',

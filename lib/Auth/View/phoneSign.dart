@@ -149,6 +149,15 @@ class PhoneSign extends StatelessWidget {
                               },
                               onFieldSubmitted: (value) {
                                 FocusManager.instance.primaryFocus?.unfocus();
+                                if (value.length == 10) {
+                                  if (signUp) {
+                                    Get.find<AuthController>()
+                                        .sendSignUpOtp(countryCode + value);
+                                  } else {
+                                    Get.find<AuthController>()
+                                        .sendSignInOtp(countryCode + value);
+                                  }
+                                }
                               },
                               validator: (value) {
                                 if (value!.isEmpty) {
@@ -156,6 +165,7 @@ class PhoneSign extends StatelessWidget {
                                 }
                                 return null;
                               },
+
                               style: const TextStyle(color: Colors.white),
                               controller: controller,
                               maxLength: 10,

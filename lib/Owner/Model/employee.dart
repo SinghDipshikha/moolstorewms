@@ -11,6 +11,7 @@ class Employee with _$Employee {
     String? employeeID,
     dynamic warehouseID,
     DateTime? timestamp,
+    int? status,
     List<String>? personType,
     int? isShow,
   }) = _Employee;

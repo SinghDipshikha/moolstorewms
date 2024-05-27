@@ -25,6 +25,7 @@ mixin _$Employee {
   String? get employeeID => throw _privateConstructorUsedError;
   dynamic get warehouseID => throw _privateConstructorUsedError;
   DateTime? get timestamp => throw _privateConstructorUsedError;
+  int? get status => throw _privateConstructorUsedError;
   List<String>? get personType => throw _privateConstructorUsedError;
   int? get isShow => throw _privateConstructorUsedError;
 
@@ -45,6 +46,7 @@ abstract class $EmployeeCopyWith<$Res> {
       String? employeeID,
       dynamic warehouseID,
       DateTime? timestamp,
+      int? status,
       List<String>? personType,
       int? isShow});
 }
@@ -67,6 +69,7 @@ class _$EmployeeCopyWithImpl<$Res, $Val extends Employee>
     Object? employeeID = freezed,
     Object? warehouseID = freezed,
     Object? timestamp = freezed,
+    Object? status = freezed,
     Object? personType = freezed,
     Object? isShow = freezed,
   }) {
@@ -91,6 +94,10 @@ class _$EmployeeCopyWithImpl<$Res, $Val extends Employee>
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
       personType: freezed == personType
           ? _value.personType
           : personType // ignore: cast_nullable_to_non_nullable
@@ -117,6 +124,7 @@ abstract class _$$EmployeeImplCopyWith<$Res>
       String? employeeID,
       dynamic warehouseID,
       DateTime? timestamp,
+      int? status,
       List<String>? personType,
       int? isShow});
 }
@@ -137,6 +145,7 @@ class __$$EmployeeImplCopyWithImpl<$Res>
     Object? employeeID = freezed,
     Object? warehouseID = freezed,
     Object? timestamp = freezed,
+    Object? status = freezed,
     Object? personType = freezed,
     Object? isShow = freezed,
   }) {
@@ -161,6 +170,10 @@ class __$$EmployeeImplCopyWithImpl<$Res>
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
       personType: freezed == personType
           ? _value._personType
           : personType // ignore: cast_nullable_to_non_nullable
@@ -182,6 +195,7 @@ class _$EmployeeImpl implements _Employee {
       this.employeeID,
       this.warehouseID,
       this.timestamp,
+      this.status,
       final List<String>? personType,
       this.isShow})
       : _personType = personType;
@@ -199,6 +213,8 @@ class _$EmployeeImpl implements _Employee {
   final dynamic warehouseID;
   @override
   final DateTime? timestamp;
+  @override
+  final int? status;
   final List<String>? _personType;
   @override
   List<String>? get personType {
@@ -214,7 +230,7 @@ class _$EmployeeImpl implements _Employee {
 
   @override
   String toString() {
-    return 'Employee(name: $name, mobile: $mobile, employeeID: $employeeID, warehouseID: $warehouseID, timestamp: $timestamp, personType: $personType, isShow: $isShow)';
+    return 'Employee(name: $name, mobile: $mobile, employeeID: $employeeID, warehouseID: $warehouseID, timestamp: $timestamp, status: $status, personType: $personType, isShow: $isShow)';
   }
 
   @override
@@ -230,6 +246,7 @@ class _$EmployeeImpl implements _Employee {
                 .equals(other.warehouseID, warehouseID) &&
             (identical(other.timestamp, timestamp) ||
                 other.timestamp == timestamp) &&
+            (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality()
                 .equals(other._personType, _personType) &&
             (identical(other.isShow, isShow) || other.isShow == isShow));
@@ -244,6 +261,7 @@ class _$EmployeeImpl implements _Employee {
       employeeID,
       const DeepCollectionEquality().hash(warehouseID),
       timestamp,
+      status,
       const DeepCollectionEquality().hash(_personType),
       isShow);
 
@@ -268,6 +286,7 @@ abstract class _Employee implements Employee {
       final String? employeeID,
       final dynamic warehouseID,
       final DateTime? timestamp,
+      final int? status,
       final List<String>? personType,
       final int? isShow}) = _$EmployeeImpl;
 
@@ -284,6 +303,8 @@ abstract class _Employee implements Employee {
   dynamic get warehouseID;
   @override
   DateTime? get timestamp;
+  @override
+  int? get status;
   @override
   List<String>? get personType;
   @override

@@ -2,22 +2,24 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:moolwmsstore/Auth/Controllers/authController.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Auth/Repository/authRepo.dart';
 import 'package:moolwmsstore/Common%20Data/Model/LanaguageModel.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Common%20Data/repository/commonRepo.dart';
-import 'package:moolwmsstore/Common%20Data/repository/splashRepo.dart';
 import 'package:moolwmsstore/Controller/language_controller.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
-import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
-import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<Map<String, Map<String, String>>> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
+
+  Hive.registerAdapter(UserAdapter());
+
+  await Hive.openBox('authbox');
 
   Get.put(sharedPreferences);
   Get.put(
@@ -25,10 +27,7 @@ Future<Map<String, Map<String, String>>> init() async {
           appBaseUrl: AppConstants.baseUrl, sharedPreferences: Get.find()),
       permanent: true);
   Get.put(CommonRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
-  // Get.put(UserController());
-  // Repository
-  // Get.lazyPut(
-  //     () => SplashRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
+
   Get.lazyPut(
       () => AuthRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
   // Get.lazyPut(() =>
@@ -48,7 +47,7 @@ Future<Map<String, Map<String, String>>> init() async {
     () => LocalizationController(sharedPreferences: Get.find()),
   );
   Get.put(
-    AuthController(authRepo: Get.find(), ),
+    AuthController(authRepo: Get.find(), sharedPreferences: Get.find()),
   );
 
   // Get.put(WarehouseController(warehouseRepo: Get.find(), apiClient: Get.find()),

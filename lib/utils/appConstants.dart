@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:moolwmsstore/Common%20Data/Model/LanaguageModel.dart';
 
 // DateFormat.yMd().add_jm()        -> 7/10/1996 5:08 PM
 class AppConstants {
+  static DateFormat dateformatter = DateFormat('MMM d, yyyy');
+  static DateFormat timeformatter = DateFormat('h:mm a');
+  static DateFormat dayMonrhormatter = DateFormat('d MMM');
+  static DateFormat yearMonthDayformatter = DateFormat('yyyy-MM-dd');
+
   static const String token = 'token';
   static const String orgCode = 'org-code';
   static const String baseUrl = 'https://api.moolwms.com/';

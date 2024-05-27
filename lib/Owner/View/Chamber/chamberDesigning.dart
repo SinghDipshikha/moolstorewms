@@ -577,67 +577,67 @@ class ZoomWidget extends StatelessWidget {
   }
 }
 
-class GridTypeDialog extends StatefulWidget {
-  const GridTypeDialog({super.key});
+// class GridTypeDialog extends StatefulWidget {
+//   const GridTypeDialog({super.key});
 
-  @override
-  State<GridTypeDialog> createState() => _GridTypeDialogState();
-}
+//   @override
+//   State<GridTypeDialog> createState() => _GridTypeDialogState();
+// }
 
-class _GridTypeDialogState extends State<GridTypeDialog> {
-  Color _selectedColor = Colors.deepPurple;
-  String title = "";
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const Text(
-          "Select Color",
-          style: TextStyle(color: Colors.white),
-        ).paddingAll(12),
-        Center(
-            child: EasyColorPicker(
-                selected: _selectedColor,
-                onChanged: (color) => setState(() => _selectedColor = color))),
-        CommonTextField(
-          textCapitalization: TextCapitalization.words,
-          onChanged: (p0) {
-            setState(() {
-              title = p0;
-            });
-          },
-          labelText: "Enter grid type",
-        ),
-        const Gap(10),
-        // if (title != "")
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                  color: HexColor(_selectedColor.value.toRadixString(16)),
-                  borderRadius: BorderRadius.circular(4)),
-              height: 20,
-              width: 20,
-            ).paddingAll(8),
-            Text(
-              "Represents $title",
-              style: const TextStyle(color: Colors.white),
-              //  textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-        CustomButton(
-          title: "Submit",
-          onTap: () {
-            // Get.find<ChamberController>().addGridType(
-            //     title: title.trimRight().trimLeft(),
-            //     color: _selectedColor.value.toRadixString(16));
-          },
-        ).paddingSymmetric(vertical: 12)
-      ],
-    );
-  }
-}
+// class _GridTypeDialogState extends State<GridTypeDialog> {
+//   Color _selectedColor = Colors.deepPurple;
+//   String title = "";
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       mainAxisSize: MainAxisSize.min,
+//       children: [
+//         const Text(
+//           "Select Color",
+//           style: TextStyle(color: Colors.white),
+//         ).paddingAll(12),
+//         Center(
+//             child: EasyColorPicker(
+//                 selected: _selectedColor,
+//                 onChanged: (color) => setState(() => _selectedColor = color))),
+//         CommonTextField(
+//           textCapitalization: TextCapitalization.words,
+//           onChanged: (p0) {
+//             setState(() {
+//               title = p0;
+//             });
+//           },
+//           labelText: "Enter grid type",
+//         ),
+//         const Gap(10),
+//         // if (title != "")
+//         Row(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           crossAxisAlignment: CrossAxisAlignment.center,
+//           children: [
+//             Container(
+//               decoration: BoxDecoration(
+//                   color: HexColor(_selectedColor.value.toRadixString(16)),
+//                   borderRadius: BorderRadius.circular(4)),
+//               height: 20,
+//               width: 20,
+//             ).paddingAll(8),
+//             Text(
+//               "Represents $title",
+//               style: const TextStyle(color: Colors.white),
+//               //  textAlign: TextAlign.center,
+//             ),
+//           ],
+//         ),
+//         CustomButton(
+//           title: "Submit",
+//           onTap: () {
+//             // Get.find<ChamberController>().addGridType(
+//             //     title: title.trimRight().trimLeft(),
+//             //     color: _selectedColor.value.toRadixString(16));
+//           },
+//         ).paddingSymmetric(vertical: 12)
+//       ],
+//     );
+//   }
+// }

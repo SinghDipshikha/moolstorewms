@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Sales/Model/Indent/checkInSubmit.dart';
 import 'package:moolwmsstore/Sales/Model/Indent/indentElement.dart';
 import 'package:moolwmsstore/Sales/View/common/widgets/salesCommonWidgets.dart';
@@ -47,6 +48,8 @@ class IndentInOut extends StatelessWidget {
       salesController.createIndentChecIn();
     }
   }
+
+  bool isPressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -423,6 +426,8 @@ class IndentInOut extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: List.generate(
                             salesController.initialProducts.length, (i) {
+                          Logger().i(salesController.initialProducts[i]);
+
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
@@ -448,7 +453,7 @@ class IndentInOut extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                'Quantity In Warehouse : ${(salesController.initialProducts[i].ordered_qty ?? 0) - (salesController.initialProducts[i].qty_balance ?? 0)}',
+                                'Quantity In Warehouse : ${(salesController.initialProducts[i].ordered_qty ?? 0) - (salesController.initialProducts[i].qty_balance as int)}',
                                 style: const TextStyle(
                                   color: Color(0xFF353535),
                                   fontSize: 12,
@@ -468,20 +473,20 @@ class IndentInOut extends StatelessWidget {
                                     ),
                                   ),
                                   const Gap(26),
-                                  InkWell(
+                                  GestureDetector(
                                     onTap: () {
                                       if (!(salesController
                                               .initialProductsqty[i]["qty"] ==
                                           0)) {
                                         salesController.initialProductsqty[i]
                                             ["qty"] = (salesController
-                                                        .initialProductsqty[i]
-                                                    ["qty"] ??
-                                                0) -
+                                                    .initialProductsqty[i]
+                                                ["qty"] as int) -
                                             1;
-                                      }
-                                      HapticFeedback.lightImpact();
+                                                HapticFeedback.lightImpact();
                                       salesController.update();
+                                      }
+                                  
                                     },
                                     child: Image.asset(
                                       "assets/icons/subtractBlue.png",

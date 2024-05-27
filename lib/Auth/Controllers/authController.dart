@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:logger/logger.dart';
-import 'package:moolwmsstore/Auth/Model/dbConnect.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Auth/Repository/authRepo.dart';
 import 'package:moolwmsstore/Auth/View/Blocked.dart';
@@ -43,24 +41,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthController extends GetxController {
   final AuthRepo authRepo;
-
-  AuthController({
-    required this.authRepo,
-  });
+  final SharedPreferences sharedPreferences;
+  AuthController({required this.authRepo, required this.sharedPreferences});
 
   // var otpstate = OTP.init;
   late Box box;
   User? user;
-  late SharedPreferences sharedPreferences;
 
   @override
   Future<void> onInit() async {
-    SharedPreferences.getInstance().then((value) {
-      sharedPreferences = value;
-    });
-    Hive.registerAdapter(DbConnectAdapter());
-    Hive.registerAdapter(UserAdapter());
-    // TODO: implement onInit
+    organiosationCode = sharedPreferences.getString(AppConstants.orgCode);
+
     box = await Hive.openBox('authbox');
     super.onInit();
   }
@@ -68,140 +59,102 @@ class AuthController extends GetxController {
   String phoneNum = "";
   List<SignupField> fields = [];
 
-  DbConnect? dbconnect;
+  String? organiosationCode;
   String? number;
   bool loading = false;
+
+  afterSpalsh() async {
+    await Get.find<ApiClient>()
+        .getData("user/userInfo/${user!.id}")
+        .whenComplete(() {})
+        .then((v) {
+      if (v.data["result"]["user"]["status"] == 0) {
+        Get.offAll(const Blocked());
+        return;
+      }
+
+      if (user?.role_id == 1) {
+        user = user!.copyWith(warehouse: v.data["result"]["warehouse"]);
+
+        Get.lazyPut(() => OwnerRepo(
+            sharedPreferences: Get.find(), apiClient: Get.find<ApiClient>()));
+        Get.put(
+            OwnerController(
+                user: user as User,
+                ownerRepo: Get.find<OwnerRepo>(),
+                apiClient: Get.find<ApiClient>()),
+            permanent: true);
+        Get.put(ChamberController(), permanent: true);
+        Future.delayed(const Duration(seconds: 2)).whenComplete(() {
+          Get.delete<AuthController>();
+          Get.offAll(const Owner());
+        });
+      }
+
+      if (user?.role_id == 2) {
+        user = user!.copyWith(
+          warehouse: v.data["result"]["warehouse"],
+          person_type: v.data["result"]["person_type"],
+        );
+
+        for (var element in user!.person_type!) {
+          if (element["person_type"] == "security-guard") {
+            Get.lazyPut(() => SecurityGuardRepo(
+                sharedPreferences: Get.find(), apiClient: Get.find()));
+            Get.put(
+                SecurityGuardController(
+                  user: user as User,
+                  secGaurdRepo: Get.find<SecurityGuardRepo>(),
+                  apiClient: Get.find<ApiClient>(),
+                ),
+                permanent: true);
+          }
+          if (element["person_type"] == "sales") {
+            Get.lazyPut(() => SalesRepo(
+                sharedPreferences: Get.find(), apiClient: Get.find()));
+            Get.put(
+                SalesController(
+                    user: user as User,
+                    salesRepo: Get.find<SalesRepo>(),
+                    apiClient: Get.find<ApiClient>()),
+                permanent: true);
+          }
+          if (element["person_type"] == "hr") {
+            Get.lazyPut(() =>
+                HrRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
+            Get.put(
+                HRController(
+                    user: user as User,
+                    hrRepo: Get.find<HrRepo>(),
+                    apiClient: Get.find<ApiClient>()),
+                permanent: true);
+          }
+        }
+        if (user!.person_type?[0] != null) {
+          if (user!.person_type?[0]["person_type"] == "security-guard") {
+            Get.delete<AuthController>();
+            Get.offAll(const SecurityGuard());
+          }
+          if (user!.person_type?[0]["person_type"] == "sales") {
+            Get.delete<AuthController>();
+            Get.offAll(const Sales());
+          }
+          if (user!.person_type?[0]["person_type"] == "hr") {
+            Get.delete<AuthController>();
+            Get.offAll(const HumanResouce());
+          }
+        }
+      }
+    });
+  }
+
   splash() async {
-    dbconnect = box.get("dbkey");
     user = box.get("user");
 
-    if (user != null || dbconnect?.organiosationCode != null) {
-      sharedPreferences.setString(
-          AppConstants.orgCode, dbconnect!.organiosationCode.toString());
+    if (user != null && organiosationCode != null) {
+      sharedPreferences.setString(AppConstants.orgCode, organiosationCode!);
       Get.find<ApiClient>().updateHeader();
-
-      Get.find<ApiClient>().postData('verifyOrgByCode',
-          {"org_code": dbconnect!.organiosationCode}).then((value) {
-        if (value.data["message"] == "Organisation Details Present") {
-          Get.find<ApiClient>()
-              .postData(
-                  'dynamicDbConnect',
-                  {
-                    "config": {
-                      "host": value.data["data"]["database_host"],
-                      "user": value.data["data"]["database_username"],
-                      "password": value.data["data"]["database_password"],
-                      "database": value.data["data"]["database_name"],
-                    },
-                    "query": "SELECT * FROM users"
-                  },
-                  passhandlecheck: true)
-              .then((value1) {
-            if (value1.data is List) {
-              if (user == null) {
-                Get.to(const SignInUp(), id: authNavigationKey);
-                return;
-              }
-
-              Get.find<ApiClient>()
-                  .getData("user/userInfo/${user!.id}")
-                  .then((v) {
-                if (v.data["result"]["user"]["status"] == 0) {
-                  Get.offAll(const Blocked());
-                  return;
-                }
-
-                if (user?.role_id == 1) {
-                  user =
-                      user!.copyWith(warehouse: v.data["result"]["warehouse"]);
-                  Logger().i(user);
-                  Get.lazyPut(() => OwnerRepo(
-                      sharedPreferences: Get.find(),
-                      apiClient: Get.find<ApiClient>()));
-                  Get.put(
-                      OwnerController(
-                          user: user as User,
-                          ownerRepo: Get.find<OwnerRepo>(),
-                          apiClient: Get.find<ApiClient>()),
-                      permanent: true);
-                  Get.put(ChamberController(), permanent: true);
-                  Future.delayed(const Duration(seconds: 2)).whenComplete(() {
-                    Get.delete<AuthController>();
-                    Get.offAll(const Owner());
-                  });
-                }
-
-                if (user?.role_id == 2) {
-                  user = user!.copyWith(
-                    warehouse: v.data["result"]["warehouse"],
-                    person_type: v.data["result"]["person_type"],
-                  );
-                  Logger().i(user);
-
-                  for (var element in user!.person_type!) {
-                    if (element["person_type"] == "security-guard") {
-                      Get.lazyPut(() => SecurityGuardRepo(
-                          sharedPreferences: Get.find(),
-                          apiClient: Get.find()));
-                      Get.put(
-                          SecurityGuardController(
-                            user: user as User,
-                            secGaurdRepo: Get.find<SecurityGuardRepo>(),
-                            apiClient: Get.find<ApiClient>(),
-                          ),
-                          permanent: true);
-                    }
-                    if (element["person_type"] == "sales") {
-                      Get.lazyPut(() => SalesRepo(
-                          sharedPreferences: Get.find(),
-                          apiClient: Get.find()));
-                      Get.put(
-                          SalesController(
-                              user: user as User,
-                              salesRepo: Get.find<SalesRepo>(),
-                              apiClient: Get.find<ApiClient>()),
-                          permanent: true);
-                    }
-                    if (element["person_type"] == "hr") {
-                      Get.lazyPut(() => HrRepo(
-                          sharedPreferences: Get.find(),
-                          apiClient: Get.find()));
-                      Get.put(
-                          HRController(
-                              user: user as User,
-                              hrRepo: Get.find<HrRepo>(),
-                              apiClient: Get.find<ApiClient>()),
-                          permanent: true);
-                    }
-                  }
-                  if (user!.person_type?[0] != null) {
-                    if (user!.person_type?[0]["person_type"] ==
-                        "security-guard") {
-                      Get.delete<AuthController>();
-                      Get.offAll(const SecurityGuard());
-                    }
-                    if (user!.person_type?[0]["person_type"] == "sales") {
-                      Get.delete<AuthController>();
-                      Get.offAll(const Sales());
-                    }
-                    if (user!.person_type?[0]["person_type"] == "hr") {
-                      Get.delete<AuthController>();
-                      Get.offAll(const HumanResouce());
-                    }
-                  }
-                }
-              });
-            } else {
-              Snacks.redSnack("Something went wrong");
-            }
-          });
-        } else {
-          Snacks.redSnack("Something went wrong");
-          Future.delayed(const Duration(seconds: 2)).whenComplete(() {
-            Get.to(const SignInUp(), id: authNavigationKey);
-          });
-        }
-      });
+      afterSpalsh();
     } else {
       Future.delayed(const Duration(seconds: 2)).whenComplete(() {
         Get.to(const SignInUp(), id: authNavigationKey);
@@ -213,11 +166,11 @@ class AuthController extends GetxController {
     Get.to(OrganisationCode(), id: authNavigationKey);
   }
 
-  checkOrganisationCode({required String organiosationCode}) async {
+  checkOrganisationCode({required String organiosationCodee}) async {
     loading = true;
     update();
     Get.find<ApiClient>().postData(
-        'verifyOrgByCode', {"org_code": organiosationCode}).then((value) {
+        'verifyOrgByCode', {"org_code": organiosationCodee}).then((value) {
       if (value.data["message"] == "Organisation Details Present") {
         Get.find<ApiClient>()
             .postData(
@@ -234,20 +187,14 @@ class AuthController extends GetxController {
                 passhandlecheck: true)
             .then((value1) {
           if (value1.data is List) {
-            dbconnect = DbConnect(
-                // host: value.data["data"]["database_host"],
-                // user: value.data["data"]["database_username"],
-                // password: value.data["data"]["database_password"],
-                // database: value.data["data"]["database_name"],
-                organiosationCode: organiosationCode);
+            organiosationCode = organiosationCodee;
+
             sharedPreferences.setString(
-                AppConstants.orgCode, organiosationCode);
+                AppConstants.orgCode, organiosationCodee);
             Get.find<ApiClient>().updateHeader();
 
-            box.put("dbkey", dbconnect);
             loading = false;
 
-            //  Get.snackbar("Organisation Details Present", "Hooraaayyyyy!!!!!");
             Get.to(
                 PhoneSign(
                   signUp: false,
@@ -365,77 +312,10 @@ class AuthController extends GetxController {
     Get.find<ApiClient>().postData(
         "otp/verifySignInOtp", {"mobile": number, "otp": otp}).then((value) {
       if (value.data["result"]["role_id"] != null) {
-        if (value.data["result"]["role_id"] == 1) {
-          user = User.fromJson(value.data["result"]);
-          box.put("user", user);
+        user = User.fromJson(value.data["result"]);
+        box.put("user", user);
 
-          Get.lazyPut(() =>
-              OwnerRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
-          Get.put(
-              OwnerController(
-                  user: user as User,
-                  ownerRepo: Get.find<OwnerRepo>(),
-                  apiClient: Get.find()),
-              permanent: true);
-          Get.put(ChamberController(), permanent: true);
-          Get.delete<AuthController>();
-          Get.offAll(const Owner());
-        }
-
-        if (value.data["result"]["role_id"] == 2) {
-          user = User.fromJson(value.data["result"]);
-          box.put("user", user);
-          List x = value.data["result"]["person_type"];
-
-          for (var element in x) {
-            if (element["person_type"] == "security-guard") {
-              Get.lazyPut(() => SecurityGuardRepo(
-                  sharedPreferences: Get.find(), apiClient: Get.find()));
-              Get.put(
-                  SecurityGuardController(
-                    user: user as User,
-                    secGaurdRepo: Get.find<SecurityGuardRepo>(),
-                    apiClient: Get.find<ApiClient>(),
-                  ),
-                  permanent: true);
-            }
-            if (element["person_type"] == "sales") {
-              Get.lazyPut(() => SalesRepo(
-                  sharedPreferences: Get.find(), apiClient: Get.find()));
-              Get.put(
-                  SalesController(
-                      user: user as User,
-                      salesRepo: Get.find<SalesRepo>(),
-                      apiClient: Get.find<ApiClient>()),
-                  permanent: true);
-            }
-            if (element["person_type"] == "hr") {
-              Get.lazyPut(() =>
-                  HrRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
-              Get.put(
-                  HRController(
-                      user: user as User,
-                      hrRepo: Get.find<HrRepo>(),
-                      apiClient: Get.find<ApiClient>()),
-                  permanent: true);
-            }
-          }
-
-          if (user!.person_type?[0] != null) {
-            if (user!.person_type?[0]["person_type"] == "security-guard") {
-              Get.delete<AuthController>();
-              Get.offAll(const SecurityGuard());
-            }
-            if (user!.person_type?[0]["person_type"] == "sales") {
-              Get.delete<AuthController>();
-              Get.offAll(const Sales());
-            }
-            if (user!.person_type?[0]["person_type"] == "hr") {
-              Get.delete<AuthController>();
-              Get.offAll(const HumanResouce());
-            }
-          }
-        }
+        afterSpalsh();
       }
 
       if (value.data["message"] == "Invalid OTP") {

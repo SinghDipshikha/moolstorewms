@@ -58,7 +58,7 @@ class AddChamberView extends StatelessWidget {
                       StyledContainer(
                           child: Column(
                         children: [
-                          CommanTextField(
+                          CommonTextField(
                             keyboardType: TextInputType.number,
                             inputFormatters: [NumberTextInputFormatter()],
                             validator: (val) {
@@ -80,7 +80,7 @@ class AddChamberView extends StatelessWidget {
                             // hintText: 'Enter chambers number',
                           ),
                           const Gap(8),
-                          CommanTextField(
+                          CommonTextField(
                             keyboardType: TextInputType.number,
                             inputFormatters: [NumberTextInputFormatter()],
                             validator: (val) {
@@ -102,7 +102,7 @@ class AddChamberView extends StatelessWidget {
                             // hintText: 'Enter chambers number',
                           ),
                           const Gap(8),
-                          // CommanTextField(
+                          //  CommonTextField(
                           //   validator: (val) {
                           //     if (val == null || val.isEmpty) {
                           //       {
@@ -251,7 +251,7 @@ class AddChamberView extends StatelessWidget {
                             ],
                           ),
                           const Gap(8),
-                          CommanTextField(
+                          CommonTextField(
                             validator: (val) {
                               if (val == null || val.isEmpty) {
                                 {
@@ -283,7 +283,7 @@ class AddChamberView extends StatelessWidget {
                             containerColor: Colors.white,
                           ),
                           const Gap(8),
-                          CommanTextField(
+                           CommonTextField(
                             validator: (val) {
                               if (val == null || val.isEmpty) {
                                 {
@@ -568,7 +568,7 @@ class AddChamberView extends StatelessWidget {
                       //         ),
                       //       ).paddingAll(12),
                       //     ),
-                      //     CommanTextField(
+                      //      CommonTextField(
                       //       validator: (val) {
                       //         if (val == null || val.isEmpty) {
                       //           {
@@ -598,7 +598,7 @@ class AddChamberView extends StatelessWidget {
                       //       ).paddingOnly(top: 14),
                       //     ),
                       //     const Gap(8),
-                      //     CommanTextField(
+                      //      CommonTextField(
                       //       validator: (val) {
                       //         if (val == null || val.isEmpty) {
                       //           {
@@ -628,7 +628,7 @@ class AddChamberView extends StatelessWidget {
                       //       ).paddingOnly(top: 14),
                       //     ),
                       //     const Gap(8),
-                      //     CommanTextField(
+                      //      CommonTextField(
                       //       validator: (val) {
                       //         if (val == null || val.isEmpty) {
                       //           {
@@ -663,7 +663,7 @@ class AddChamberView extends StatelessWidget {
                       StyledContainer(
                           child: Column(
                         children: [
-                          CommanTextField(
+                           CommonTextField(
                             validator: (val) {
                               if (val == null || val.isEmpty) {
                                 {
@@ -684,7 +684,7 @@ class AddChamberView extends StatelessWidget {
                             },
                           ),
                           const Gap(8),
-                          CommanTextField(
+                           CommonTextField(
                             validator: (val) {
                               if (val == null || val.isEmpty) {
                                 {
@@ -853,7 +853,7 @@ class AddChamberView extends StatelessWidget {
                       //         ),
                       //       ).paddingAll(12),
                       //     ),
-                      //     CommanTextField(
+                      //      CommonTextField(
                       //       validator: (val) {
                       //         if (val == null || val.isEmpty) {
                       //           {
@@ -883,7 +883,7 @@ class AddChamberView extends StatelessWidget {
                       //       ).paddingOnly(top: 14),
                       //     ),
                       //     const Gap(8),
-                      //     CommanTextField(
+                      //      CommonTextField(
                       //       validator: (val) {
                       //         if (val == null || val.isEmpty) {
                       //           {
@@ -913,7 +913,7 @@ class AddChamberView extends StatelessWidget {
                       //       ).paddingOnly(top: 14),
                       //     ),
                       //     const Gap(8),
-                      //     CommanTextField(
+                      //      CommonTextField(
                       //       validator: (val) {
                       //         if (val == null || val.isEmpty) {
                       //           {
@@ -1211,7 +1211,7 @@ class AddChamberView extends StatelessWidget {
 //                               ).paddingOnly(top: 22);
 //                             }
 
-//                             return CommanTextField(
+//                             return  CommonTextField(
 //                               inputFormatters: const [],
 //                               textCapitalization: TextUtils.textCapitalization(
 //                                   ownerController.addChamberFields[index].type),

@@ -21,6 +21,7 @@ import 'package:moolwmsstore/Sales/repo/salesRepo.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
+import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 import 'package:restart_app/restart_app.dart';
 
@@ -31,6 +32,17 @@ class OwnerController extends GetxController {
   final ApiClient apiClient;
   OwnerController(
       {required this.ownerRepo, required this.apiClient, required this.user});
+
+  @override
+  void onInit() {
+    dashboardWarehouses.addAll(user.warehouse!.toList());
+    dashboardWarehouses.add({
+      "id": "",
+      "warehouse_name": "All Warehouses",
+    });
+    // TODO: implement onInit
+    super.onInit();
+  }
 
   User user;
   List<Warehouse> warehouses = [];
@@ -43,6 +55,127 @@ class OwnerController extends GetxController {
   bool loading = false;
   String countrydialCode = "+91";
   String? selectedTempType;
+
+// ******** DashBoard Apis ********//    result: {warehouseCount: 7, ticketCount: 16}
+  int? allIndentCount;
+  int? sgIndentCount;
+  int? salesIndentCount;
+  Map? selectedDashboardWarehouse;
+  List dashboardWarehouses = [];
+  int? warehouseCount;
+  int? ticketCount;
+  bool isGetIndentWarehouseCountLoading = true;
+  int? materialCountIn;
+  int? materialCountOut;
+  bool isGetMaterialCountLoading = true;
+  int? vehicleCountIn;
+  int? vehicleCountOut;
+  bool isGetVehicleCountLoading = true;
+  int? visitorCountIn;
+  int? visitorCountOut;
+  bool isGetVisitorCountLoading = true;
+  int? personCountIn;
+  int? personCountOut;
+  bool isGetPersonCountLoading = true;
+  Map? currentlySelectedWarehouse;
+  DateTime dashBoardStartDate =
+      DateTime.now().subtract(const Duration(days: 1));
+  DateTime dashBoardEndDate = DateTime.now();
+
+  changeDashBoardDate({required DateTime start, required DateTime end}) {
+    dashBoardStartDate = start;
+    dashBoardEndDate = end;
+    getticketWarehouseCount();
+    getMaterialCount();
+    getVehicleCount();
+    getVisitorCount();
+    getPersonCount();
+  }
+
+  changeDashBoardWarehouse({required Map warehouse}) {
+    selectedDashboardWarehouse = warehouse;
+
+    Logger().i(selectedDashboardWarehouse);
+    getticketWarehouseCount();
+    getMaterialCount();
+    getVehicleCount();
+    getVisitorCount();
+    getPersonCount();
+  }
+
+  getticketWarehouseCount() async {
+    isGetIndentWarehouseCountLoading = true;
+    String afterUrl =
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}";
+    await apiClient.getData("owner/dashboard$afterUrl").then((value) {
+      if (value.data["message"] == "Data Retrieved Successfully!") {
+        warehouseCount = value.data["result"]["warehouseCount"];
+        allIndentCount = value.data["result"]["allIndentCount"];
+        sgIndentCount = value.data["result"]["sgIndentCount"];
+        salesIndentCount = value.data["result"]["salesIndentCount"];
+        isGetIndentWarehouseCountLoading = false;
+        update();
+      }
+    });
+  }
+
+  getMaterialCount() async {
+    isGetMaterialCountLoading = true;
+    String afterUrl =
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}";
+    await apiClient.getData("material/materialCount$afterUrl").then((value) {
+      if (value.data["message"] == "Data Retrieved Successfully!") {
+        materialCountIn = value.data["result"]["count_in"];
+        materialCountOut = value.data["result"]["count_out"];
+        isGetMaterialCountLoading = false;
+        update();
+      }
+    });
+  }
+
+  getVehicleCount() async {
+    isGetVehicleCountLoading = true;
+    String afterUrl =
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}";
+    await apiClient.getData("vehicle/vehicalCount$afterUrl").then((value) {
+      if (value.data["message"] == "Data Retrieved Successfully!") {
+        vehicleCountIn = value.data["result"]["count_in"];
+        vehicleCountOut = value.data["result"]["count_out"];
+        isGetVehicleCountLoading = false;
+        update();
+      }
+    });
+  }
+
+  getVisitorCount() async {
+    isGetVisitorCountLoading = true;
+    String afterUrl =
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}";
+    await apiClient.getData("visitor/visitorCount$afterUrl").then((value) {
+      if (value.data["message"] == "Data Retrieved Successfully!") {
+        visitorCountIn = value.data["result"]["count_in"];
+        visitorCountOut = value.data["result"]["count_out"];
+        isGetVisitorCountLoading = false;
+        update();
+      }
+    });
+  }
+
+  getPersonCount() async {
+    isGetPersonCountLoading = true;
+    String afterUrl =
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}";
+    await apiClient.getData("person/personCount$afterUrl").then((value) {
+      if (value.data["message"] == "Data Retrieved Successfully!") {
+        personCountIn = value.data["result"]["count_in"];
+        personCountOut = value.data["result"]["count_out"];
+        isGetPersonCountLoading = false;
+        update();
+      }
+    });
+  }
+
+// ******** DashBoard Apis ********//
 
   AddChamber addChamberModel = const AddChamber();
   setloadingtrue() {
@@ -211,6 +344,17 @@ class OwnerController extends GetxController {
 
   getAllEmployeesByOrg() {
     apiClient.getData("owner/getAllEmployeesByOrg").then((value) {
+      if (value.data["message"] == "All Employees found") {
+        List x = value.data["result"];
+        employees = x.map((e) => Employee.fromJson(e)).toList();
+        Logger().i(employees);
+
+        update();
+      }
+    });
+  }
+  getAllEmployeesByWareHouse(int warehouseId) {
+    apiClient.getData("owner/getAllEmployeesByWarehouseId/$warehouseId").then((value) {
       if (value.data["message"] == "All Employees found") {
         List x = value.data["result"];
         employees = x.map((e) => Employee.fromJson(e)).toList();
