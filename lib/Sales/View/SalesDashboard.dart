@@ -1,10 +1,10 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/createticket.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/ticketList.dart';
 import 'package:moolwmsstore/Sales/View/Visiitors/addVistor.dart';
@@ -177,7 +177,7 @@ class SalesDashboard extends StatelessWidget {
                       title: "View Indent List",
                       isShowextendedLine: false,
                       onTap: () {
-                        Get.to(TicketList(), id: salesNavigationKey);
+                        Get.to(const TicketList(), id: salesNavigationKey);
                         // Get.find<OwnerController>().setloadingtrue();
                         // Get.to(const WarehouseList(), id: ownerNavigationKey);
                         // WarehouseList
@@ -268,7 +268,7 @@ class SalesDashboard extends StatelessWidget {
                     CurvedLineConatainer(
                       title: "Add Visitor",
                       onTap: () {
-                        Get.to( AddVistor(), id: salesNavigationKey);
+                        Get.to(AddVistor(), id: salesNavigationKey);
                       },
                     ),
                     CurvedLineConatainer(
@@ -477,7 +477,7 @@ class SalesDashboard extends StatelessWidget {
               Expanded(
                 child: InkWell(
                   onTap: () {
-                    Get.to(TicketList(), id: salesNavigationKey);
+                    Get.to(const TicketList(), id: salesNavigationKey);
                   },
                   child: Container(
                     alignment: Alignment.center,
@@ -646,8 +646,9 @@ class SalesDashboard extends StatelessWidget {
                     Expanded(child: Container()),
                     GetBuilder<SalesController>(builder: (salesController) {
                       if (salesController.loading) {
-                        return const SpinKitWave(
+                        return LoadingAnimationWidget.staggeredDotsWave(
                           color: Colors.white,
+                          size: 80,
                         );
                       }
                       return Text(
@@ -743,8 +744,9 @@ class SalesDashboard extends StatelessWidget {
                           GetBuilder<SalesController>(
                               builder: (salesController) {
                             if (salesController.loading) {
-                              return const SpinKitWave(
+                              return LoadingAnimationWidget.staggeredDotsWave(
                                 color: Colors.white,
+                                size: 30,
                               );
                             }
                             return Text(
@@ -790,8 +792,9 @@ class SalesDashboard extends StatelessWidget {
                           GetBuilder<SalesController>(
                               builder: (salesController) {
                             if (salesController.loading) {
-                              return const SpinKitWave(
+                              return LoadingAnimationWidget.staggeredDotsWave(
                                 color: Colors.white,
+                                size: 30,
                               );
                             }
                             return Text(
@@ -855,8 +858,9 @@ class SalesDashboard extends StatelessWidget {
                     Expanded(child: Container()),
                     GetBuilder<SalesController>(builder: (salesController) {
                       if (salesController.loading) {
-                        return const SpinKitWave(
+                        return LoadingAnimationWidget.staggeredDotsWave(
                           color: Colors.white,
+                          size: 80,
                         );
                       }
                       return Text(

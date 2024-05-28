@@ -31,9 +31,7 @@ mixin _$IndentViewModel {
   String? get bill_to_seller_companany => throw _privateConstructorUsedError;
   List<ProductsIndentViewModel>? get product_details =>
       throw _privateConstructorUsedError;
-  List<ChecksIndentViewModel>? get check_ins =>
-      throw _privateConstructorUsedError;
-  List<ChecksIndentViewModel>? get check_outs =>
+  List<ChecksIndentViewModel>? get check_in_out =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -59,8 +57,7 @@ abstract class $IndentViewModelCopyWith<$Res> {
       String? ship_to_seller_companany,
       String? bill_to_seller_companany,
       List<ProductsIndentViewModel>? product_details,
-      List<ChecksIndentViewModel>? check_ins,
-      List<ChecksIndentViewModel>? check_outs});
+      List<ChecksIndentViewModel>? check_in_out});
 }
 
 /// @nodoc
@@ -86,8 +83,7 @@ class _$IndentViewModelCopyWithImpl<$Res, $Val extends IndentViewModel>
     Object? ship_to_seller_companany = freezed,
     Object? bill_to_seller_companany = freezed,
     Object? product_details = freezed,
-    Object? check_ins = freezed,
-    Object? check_outs = freezed,
+    Object? check_in_out = freezed,
   }) {
     return _then(_value.copyWith(
       ticket_id: freezed == ticket_id
@@ -130,13 +126,9 @@ class _$IndentViewModelCopyWithImpl<$Res, $Val extends IndentViewModel>
           ? _value.product_details
           : product_details // ignore: cast_nullable_to_non_nullable
               as List<ProductsIndentViewModel>?,
-      check_ins: freezed == check_ins
-          ? _value.check_ins
-          : check_ins // ignore: cast_nullable_to_non_nullable
-              as List<ChecksIndentViewModel>?,
-      check_outs: freezed == check_outs
-          ? _value.check_outs
-          : check_outs // ignore: cast_nullable_to_non_nullable
+      check_in_out: freezed == check_in_out
+          ? _value.check_in_out
+          : check_in_out // ignore: cast_nullable_to_non_nullable
               as List<ChecksIndentViewModel>?,
     ) as $Val);
   }
@@ -161,8 +153,7 @@ abstract class _$$IndentViewModelImplCopyWith<$Res>
       String? ship_to_seller_companany,
       String? bill_to_seller_companany,
       List<ProductsIndentViewModel>? product_details,
-      List<ChecksIndentViewModel>? check_ins,
-      List<ChecksIndentViewModel>? check_outs});
+      List<ChecksIndentViewModel>? check_in_out});
 }
 
 /// @nodoc
@@ -186,8 +177,7 @@ class __$$IndentViewModelImplCopyWithImpl<$Res>
     Object? ship_to_seller_companany = freezed,
     Object? bill_to_seller_companany = freezed,
     Object? product_details = freezed,
-    Object? check_ins = freezed,
-    Object? check_outs = freezed,
+    Object? check_in_out = freezed,
   }) {
     return _then(_$IndentViewModelImpl(
       ticket_id: freezed == ticket_id
@@ -230,13 +220,9 @@ class __$$IndentViewModelImplCopyWithImpl<$Res>
           ? _value._product_details
           : product_details // ignore: cast_nullable_to_non_nullable
               as List<ProductsIndentViewModel>?,
-      check_ins: freezed == check_ins
-          ? _value._check_ins
-          : check_ins // ignore: cast_nullable_to_non_nullable
-              as List<ChecksIndentViewModel>?,
-      check_outs: freezed == check_outs
-          ? _value._check_outs
-          : check_outs // ignore: cast_nullable_to_non_nullable
+      check_in_out: freezed == check_in_out
+          ? _value._check_in_out
+          : check_in_out // ignore: cast_nullable_to_non_nullable
               as List<ChecksIndentViewModel>?,
     ));
   }
@@ -256,11 +242,9 @@ class _$IndentViewModelImpl implements _IndentViewModel {
       this.ship_to_seller_companany,
       this.bill_to_seller_companany,
       final List<ProductsIndentViewModel>? product_details,
-      final List<ChecksIndentViewModel>? check_ins,
-      final List<ChecksIndentViewModel>? check_outs})
+      final List<ChecksIndentViewModel>? check_in_out})
       : _product_details = product_details,
-        _check_ins = check_ins,
-        _check_outs = check_outs;
+        _check_in_out = check_in_out;
 
   factory _$IndentViewModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$IndentViewModelImplFromJson(json);
@@ -293,29 +277,19 @@ class _$IndentViewModelImpl implements _IndentViewModel {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<ChecksIndentViewModel>? _check_ins;
+  final List<ChecksIndentViewModel>? _check_in_out;
   @override
-  List<ChecksIndentViewModel>? get check_ins {
-    final value = _check_ins;
+  List<ChecksIndentViewModel>? get check_in_out {
+    final value = _check_in_out;
     if (value == null) return null;
-    if (_check_ins is EqualUnmodifiableListView) return _check_ins;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<ChecksIndentViewModel>? _check_outs;
-  @override
-  List<ChecksIndentViewModel>? get check_outs {
-    final value = _check_outs;
-    if (value == null) return null;
-    if (_check_outs is EqualUnmodifiableListView) return _check_outs;
+    if (_check_in_out is EqualUnmodifiableListView) return _check_in_out;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'IndentViewModel(ticket_id: $ticket_id, created_at: $created_at, first_name: $first_name, last_name: $last_name, call_from_seller_company: $call_from_seller_company, name: $name, ship_from_seller_companany: $ship_from_seller_companany, ship_to_seller_companany: $ship_to_seller_companany, bill_to_seller_companany: $bill_to_seller_companany, product_details: $product_details, check_ins: $check_ins, check_outs: $check_outs)';
+    return 'IndentViewModel(ticket_id: $ticket_id, created_at: $created_at, first_name: $first_name, last_name: $last_name, call_from_seller_company: $call_from_seller_company, name: $name, ship_from_seller_companany: $ship_from_seller_companany, ship_to_seller_companany: $ship_to_seller_companany, bill_to_seller_companany: $bill_to_seller_companany, product_details: $product_details, check_in_out: $check_in_out)';
   }
 
   @override
@@ -347,9 +321,7 @@ class _$IndentViewModelImpl implements _IndentViewModel {
             const DeepCollectionEquality()
                 .equals(other._product_details, _product_details) &&
             const DeepCollectionEquality()
-                .equals(other._check_ins, _check_ins) &&
-            const DeepCollectionEquality()
-                .equals(other._check_outs, _check_outs));
+                .equals(other._check_in_out, _check_in_out));
   }
 
   @JsonKey(ignore: true)
@@ -366,8 +338,7 @@ class _$IndentViewModelImpl implements _IndentViewModel {
       ship_to_seller_companany,
       bill_to_seller_companany,
       const DeepCollectionEquality().hash(_product_details),
-      const DeepCollectionEquality().hash(_check_ins),
-      const DeepCollectionEquality().hash(_check_outs));
+      const DeepCollectionEquality().hash(_check_in_out));
 
   @JsonKey(ignore: true)
   @override
@@ -396,8 +367,7 @@ abstract class _IndentViewModel implements IndentViewModel {
       final String? ship_to_seller_companany,
       final String? bill_to_seller_companany,
       final List<ProductsIndentViewModel>? product_details,
-      final List<ChecksIndentViewModel>? check_ins,
-      final List<ChecksIndentViewModel>? check_outs}) = _$IndentViewModelImpl;
+      final List<ChecksIndentViewModel>? check_in_out}) = _$IndentViewModelImpl;
 
   factory _IndentViewModel.fromJson(Map<String, dynamic> json) =
       _$IndentViewModelImpl.fromJson;
@@ -423,9 +393,7 @@ abstract class _IndentViewModel implements IndentViewModel {
   @override
   List<ProductsIndentViewModel>? get product_details;
   @override
-  List<ChecksIndentViewModel>? get check_ins;
-  @override
-  List<ChecksIndentViewModel>? get check_outs;
+  List<ChecksIndentViewModel>? get check_in_out;
   @override
   @JsonKey(ignore: true)
   _$$IndentViewModelImplCopyWith<_$IndentViewModelImpl> get copyWith =>

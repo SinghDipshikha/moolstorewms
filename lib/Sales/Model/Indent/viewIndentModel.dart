@@ -16,8 +16,8 @@ class IndentViewModel with _$IndentViewModel {
     String? ship_to_seller_companany,
     String? bill_to_seller_companany,
     List<ProductsIndentViewModel>? product_details,
-    List<ChecksIndentViewModel>? check_ins,
-    List<ChecksIndentViewModel>? check_outs,
+    List<ChecksIndentViewModel>? check_in_out,
+
   }) = _IndentViewModel;
 
   factory IndentViewModel.fromJson(Map<String, Object?> json) =>

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
-import 'package:moolwmsstore/View/Styles/Styles..dart';
 
 class CommonTextField extends StatelessWidget {
   bool? obscureText;
@@ -55,9 +53,10 @@ class CommonTextField extends StatelessWidget {
                 TextSpan(
                   text: "$labelText",
                   style: const TextStyle(
+                    color: Color(0xFF595959),
                     fontSize: 16,
+                    fontFamily: 'SF Pro Display',
                     fontWeight: FontWeight.w400,
-                    color: Color(0xFFACACAC),
                   ),
                 ),
               ],
@@ -67,6 +66,7 @@ class CommonTextField extends StatelessWidget {
           8,
         ),
         TextFormField(
+          textAlignVertical: TextAlignVertical.center,
           maxLength: maxLength,
           maxLines: maxLines,
           textCapitalization: textCapitalization ?? TextCapitalization.none,
@@ -83,6 +83,7 @@ class CommonTextField extends StatelessWidget {
           inputFormatters: inputFormatters,
           obscureText: obscureText ?? false,
           decoration: InputDecoration(
+            counterStyle: const TextStyle(color: Colors.black),
             alignLabelWithHint: true,
             contentPadding: const EdgeInsets.only(left: 8),
             filled: true,

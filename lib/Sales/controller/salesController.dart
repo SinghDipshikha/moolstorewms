@@ -73,8 +73,6 @@ class SalesController extends GetxController {
     update();
   }
 
-
-
   salesDashBoardApi() async {
     loading = true;
     update();
@@ -121,18 +119,10 @@ class SalesController extends GetxController {
     update();
   }
 
-  getAllIndents() {
-    loading = true;
-    apiClient.postData("user/getAllPoList", {"keyword": ""}).then((value) {
-      if (value.data["message"] == "Data Retrieved Successfully!") {
-        indentElements = (value.data["result"] as List)
-            .map((e) => IndentElement.fromJson(e))
-            .toList();
-        loading = false;
-        update();
-      }
-    });
-  }
+  // getAllIndents() {
+  //   loading = true;
+  //  ;
+  // }
 
   List<EnterProduct> ticketProducts = [const EnterProduct()];
   List<Company> comapnies = [];
@@ -151,6 +141,9 @@ class SalesController extends GetxController {
 
   Future<bool> createIndent(
       {required String poId, required int warehouseid}) async {
+
+
+        update();
     var value = await apiClient.postData("user/createPurchaseOrder", {
       "user_id": 1,
       "company_details": [
@@ -171,7 +164,10 @@ class SalesController extends GetxController {
     }
   }
 
+  bool creatingIndentCheck = false;
   createIndentChecIn() {
+    creatingIndentCheck = true;
+    update();
     List<Map<String, int>> a = [];
     for (var e in initialProductsqty) {
       if (e["qty"] != 0) {
@@ -184,9 +180,17 @@ class SalesController extends GetxController {
         .postData("user/createTicketCheckIn", checkInModel!.toJson())
         .then((v) {
       if (v.data["result"] == "Checkin Created for given Products") {
+        checkIndateTime = null;
+        checkInModel = null;
+        creatingIndentCheck = false;
         Get.back(id: salesNavigationKey);
         // Get.off(TicketList(), id: salesNavigationKey);
         Snacks.greenSnack("Checkin Created for given Products");
+      } else {
+        Snacks.redSnack("Something went wrong");
+
+        creatingIndentCheck = false;
+        update();
       }
     });
   }

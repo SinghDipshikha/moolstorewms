@@ -1,11 +1,9 @@
-import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Sales/Model/company.dart';
-import 'package:moolwmsstore/Sales/View/common/widgets/customButton.dart';
+import 'package:moolwmsstore/Sales/View/common/widgets/salesCommonWidgets.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
-import 'package:moolwmsstore/View/common/myTextField.dart';
 import 'package:moolwmsstore/utils/textutils.dart';
 
 class AddCompany extends StatelessWidget {
@@ -47,11 +45,7 @@ class AddCompany extends StatelessWidget {
                   address: address.text,
                   state: state.text,
                   gst_no: gstNum.text));
-
-            
             }
-
-            
           },
           title: "Submit",
         ).paddingSymmetric(horizontal: 12);
@@ -61,27 +55,7 @@ class AddCompany extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
           child: ListView(children: [
-            const Text(
-              'Company Name',
-              style: TextStyle(
-                color: Color(0xFF595959),
-                fontSize: 16,
-                fontFamily: 'SF Pro Display',
-                fontWeight: FontWeight.w400,
-                //height: 0,
-              ),
-            ),
-            const Gap(4),
-            MyTextField(
-              prefixIcon: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: Image.asset(
-                  'assets/icons/Company Icon (R) copy.png',
-                  height: 20,
-                  width: 20,
-                ),
-              ),
-              labelText: "Enter company name",
+            CommonTextField(
               validator: (val) {
                 if (val == null || val.isEmpty) {
                   {
@@ -93,29 +67,19 @@ class AddCompany extends StatelessWidget {
               },
               controller: companyName,
               textCapitalization: TextCapitalization.words,
-            ),
-            const Gap(12),
-            const Text(
-              'Address',
-              style: TextStyle(
-                color: Color(0xFF595959),
-                fontSize: 16,
-                fontFamily: 'SF Pro Display',
-                fontWeight: FontWeight.w400,
-                //height: 0,
-              ),
-            ),
-            const Gap(4),
-            MyTextField(
+              labelText: 'Company Name',
+              hintText: "Enter company name",
               prefixIcon: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Image.asset(
-                  'assets/icons/PO Icon Set 1 (R).png',
+                  'assets/icons/Company Icon (R) copy.png',
                   height: 20,
                   width: 20,
                 ),
               ),
-              labelText: "Enter company address",
+            ),
+            const Gap(12),
+            CommonTextField(
               validator: (val) {
                 if (val == null || val.isEmpty) {
                   {
@@ -127,29 +91,43 @@ class AddCompany extends StatelessWidget {
               },
               controller: address,
               textCapitalization: TextCapitalization.words,
-            ),
-            const Gap(12),
-            const Text(
-              'GST IN',
-              style: TextStyle(
-                color: Color(0xFF595959),
-                fontSize: 16,
-                fontFamily: 'SF Pro Display',
-                fontWeight: FontWeight.w400,
-                //height: 0,
-              ),
-            ),
-            const Gap(4),
-            MyTextField(
+              labelText: 'Address',
+              hintText: "Enter company address",
               prefixIcon: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Image.asset(
-                  'assets/icons/PO Icon Set 1 (R) (1).png',
+                  'assets/icons/PO Icon Set 1 (R).png',
                   height: 20,
                   width: 20,
                 ),
               ),
-              labelText: "Enter gst number",
+            ),
+            const Gap(12),
+            CommonTextField(
+              validator: (val) {
+                if (val == null || val.isEmpty) {
+                  {
+                    return "required";
+                  }
+                } else {
+                  return null;
+                }
+              },
+              controller: state,
+              textCapitalization: TextCapitalization.words,
+              labelText: 'State',
+              hintText: "Enter state",
+              prefixIcon: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Image.asset(
+                  'assets/icons/PO Icon Set 1 (R) copy.png',
+                  height: 20,
+                  width: 20,
+                ),
+              ),
+            ),
+            const Gap(12),
+            CommonTextField(
               validator: (val) {
                 if (val == null || val.isEmpty) {
                   {
@@ -163,81 +141,39 @@ class AddCompany extends StatelessWidget {
               },
               controller: gstNum,
               textCapitalization: TextCapitalization.characters,
-            ),
-            const Gap(12),
-            const Text(
-              'Phone Number',
-              style: TextStyle(
-                color: Color(0xFF595959),
-                fontSize: 16,
-                fontFamily: 'SF Pro Display',
-                fontWeight: FontWeight.w400,
-                //height: 0,
-              ),
-            ),
-            const Gap(4),
-            MyTextField(
-              validator: (val) {
-                if (val == null || val.isEmpty) {
-                  {
-                    return "required";
-                  }
-                } else {
-                  return null;
-                }
-              },
-              keyboardType: TextInputType.number,
-              labelText: 'Enter phone number',
-              prefixIcon: CountryCodePicker(
-                padding: EdgeInsets.zero,
-                onChanged: (x) {
-                  if (x.code != null) {
-                    countryCode = x.code;
-                    // ownerController.countrydialCode = x.dialCode!;
-                  }
-                },
-                initialSelection: 'IN',
-                favorite: const ['+91', 'IN'],
-
-                showCountryOnly: true,
-                // showOnlyCountryWhenClosed: true,
-                alignLeft: false,
-              ),
-              controller: phone,
-            ),
-            const Gap(12),
-            const Text(
-              'State',
-              style: TextStyle(
-                color: Color(0xFF595959),
-                fontSize: 16,
-                fontFamily: 'SF Pro Display',
-                fontWeight: FontWeight.w400,
-                //height: 0,
-              ),
-            ),
-            const Gap(4),
-            MyTextField(
+              labelText: 'GST IN',
+              hintText: "Enter gst number",
               prefixIcon: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Image.asset(
-                  'assets/icons/PO Icon Set 1 (R) copy.png',
+                  'assets/icons/PO Icon Set 1 (R).png',
                   height: 20,
                   width: 20,
                 ),
               ),
-              labelText: "Enter state",
+            ),
+            const Gap(12),
+            CommonTextField(
+              controller: phone,
+              keyboardType: TextInputType.phone,
+              maxLength: 10,
               validator: (val) {
                 if (val == null || val.isEmpty) {
                   {
                     return "required";
                   }
+                } else if (val.length < 10) {
+                  return 'Please enter a valid Phone number.';
                 } else {
                   return null;
                 }
               },
-              controller: state,
-              textCapitalization: TextCapitalization.words,
+              labelText: 'Phone Number',
+              hintText: 'Enter phone number',
+              prefixIcon: Image.asset(
+                "assets/icons/india.png",
+                height: 6,
+              ).paddingAll(12),
             ),
             const Gap(12),
           ]),
