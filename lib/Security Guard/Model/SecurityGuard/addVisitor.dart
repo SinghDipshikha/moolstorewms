@@ -17,8 +17,10 @@ class AddVisitorBySecurityGaurd with _$AddVisitorBySecurityGaurd {
     String? in_out_status,
     String? remarks,
     dynamic status,
+    String ? warehouse_id,
     DateTime? created_at,
     dynamic updated_at,
+    String ? ticket_validity,
   }) = _AddVisitorBySecurityGaurd;
 
   factory AddVisitorBySecurityGaurd.fromJson(Map<String, Object?> json) =>

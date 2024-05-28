@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
+import 'package:moolwmsstore/Hr/View/widget/cc.dart';
+import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonDropDown.dart';
 
 class CreateShiftScreen extends StatefulWidget {
@@ -11,6 +15,33 @@ class CreateShiftScreen extends StatefulWidget {
 
 class _CreateShiftScreenState extends State<CreateShiftScreen> {
   @override
+  TimeOfDay selectedTime = TimeOfDay.now();
+  TimeOfDay selectedTime2 = TimeOfDay.now();
+
+  Future<void> selectTime(BuildContext context) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+    );
+    if (picked != null && picked != selectedTime) {
+      setState(() {
+        selectedTime = picked;
+      });
+    }
+  }
+
+  Future<void> selectTime2(BuildContext context) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: selectedTime2,
+    );
+    if (picked != null && picked != selectedTime2) {
+      setState(() {
+        selectedTime2 = picked;
+      });
+    }
+  }
+
   List<String> warehouseDataList = [
     'Warehouse1',
     'Warehouse2',
@@ -19,19 +50,437 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
     'Warehouse5',
   ];
   String? selectedWarehouse = "Warehouse1";
+  List<String> shiftDataList = [
+    'Shift1',
+    'Shift2',
+    'Shift3',
+    'Shift4',
+    'Shift5',
+  ];
+  String? selectedShift = "Shift1";
+  void _showPopup(BuildContext context) {
+    List<String> shiftDataList = [
+      'Shift1',
+      'Shift2',
+      'Shift3',
+      'Shift4',
+      'Shift5',
+    ];
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              backgroundColor: Colors.white,
+              content: SingleChildScrollView(
+                child: ListBody(
+                  children: <Widget>[
+                    Center(
+                      child: Column(
+                        children: [
+                          const Text(
+                            'Add New Shift',
+                            style: TextStyle(
+                              color: Color(0xFF5A57FF),
+                              fontSize: 16,
+                              fontFamily: 'SF Pro Display',
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          const Text(
+                            'Shift Timing',
+                            style: TextStyle(
+                              color: Color(0xFFACACAC),
+                              fontSize: 16,
+                              fontFamily: 'SF Pro Display',
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      _selectTime(context);
+                                    },
+                                    child: Container(
+                                      width: 56.09,
+                                      height: 22,
+                                      padding: const EdgeInsets.only(
+                                        top: 1.87,
+                                        left: 5.61,
+                                        right: 11.22,
+                                        bottom: 1.87,
+                                      ),
+                                      decoration: ShapeDecoration(
+                                        color: const Color(0xFFFAF9FF),
+                                        shape: RoundedRectangleBorder(
+                                          side: const BorderSide(
+                                              width: 0.47,
+                                              color: Color(0x195A57FF)),
+                                          borderRadius:
+                                              BorderRadius.circular(3.74),
+                                        ),
+                                      ),
+                                      child: const Text(
+                                        '9:30',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Color(0xFF353535),
+                                          fontSize: 14.96,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 5),
+                                  Container(
+                                    width: 67.30,
+                                    height: 22,
+                                    decoration: ShapeDecoration(
+                                      color: const Color(0xFFFAF9FF),
+                                      shape: RoundedRectangleBorder(
+                                        side: const BorderSide(
+                                            width: 0.47,
+                                            color: Color(0x195A57FF)),
+                                        borderRadius:
+                                            BorderRadius.circular(3.74),
+                                      ),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          width: 29.91,
+                                          height: 18.33,
+                                          decoration: ShapeDecoration(
+                                            color: const Color(0xFF5A57FF),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(1.87),
+                                            ),
+                                          ),
+                                          child: const Center(
+                                            child: Text(
+                                              'AM',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 11.22,
+                                                fontFamily: 'SF Pro Display',
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          width: 29.91,
+                                          height: 18.33,
+                                          decoration: ShapeDecoration(
+                                            color: const Color(0xFFFAF9FF),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(1.87),
+                                            ),
+                                          ),
+                                          child: const Center(
+                                            child: Text(
+                                              'PM',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Color(0xFFACACAC),
+                                                fontSize: 11.22,
+                                                fontFamily: 'SF Pro Display',
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(width: 20),
+                              Row(
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                               
+                                    },
+                                    child: Container(
+                                      width: 56.09,
+                                      height: 22,
+                                      padding: const EdgeInsets.only(
+                                        top: 1.87,
+                                        left: 5.61,
+                                        right: 11.22,
+                                        bottom: 1.87,
+                                      ),
+                                      decoration: ShapeDecoration(
+                                        color: const Color(0xFFFAF9FF),
+                                        shape: RoundedRectangleBorder(
+                                          side: const BorderSide(
+                                              width: 0.47,
+                                              color: Color(0x195A57FF)),
+                                          borderRadius:
+                                              BorderRadius.circular(3.74),
+                                        ),
+                                      ),
+                                      child: const Text(
+                                        '9:30',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Color(0xFF353535),
+                                          fontSize: 14.96,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 5),
+                                  Container(
+                                    width: 67.30,
+                                    height: 22,
+                                    decoration: ShapeDecoration(
+                                      color: const Color(0xFFFAF9FF),
+                                      shape: RoundedRectangleBorder(
+                                        side: const BorderSide(
+                                            width: 0.47,
+                                            color: Color(0x195A57FF)),
+                                        borderRadius:
+                                            BorderRadius.circular(3.74),
+                                      ),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          width: 29.91,
+                                          height: 18.33,
+                                          decoration: ShapeDecoration(
+                                            color: const Color(0xFF5A57FF),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(1.87),
+                                            ),
+                                          ),
+                                          child: const Center(
+                                            child: Text(
+                                              'AM',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 11.22,
+                                                fontFamily: 'SF Pro Display',
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          width: 29.91,
+                                          height: 18.33,
+                                          decoration: ShapeDecoration(
+                                            color: const Color(0xFFFAF9FF),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(1.87),
+                                            ),
+                                          ),
+                                          child: const Center(
+                                            child: Text(
+                                              'PM',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Color(0xFFACACAC),
+                                                fontSize: 11.22,
+                                                fontFamily: 'SF Pro Display',
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 129,
+                                height: 40,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFCEFFF1),
+                                  shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                        width: 1, color: Color(0x7F04BF8A)),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                ),
+                                child: const Center(
+                                  child: Text(
+                                    'Check In',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color(0xFF04BF8A),
+                                      fontSize: 16,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 20),
+                              Container(
+                                width: 129,
+                                height: 40,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFFFE7E9),
+                                  shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                        width: 1, color: Color(0x7FE23744)),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                ),
+                                child: const Center(
+                                  child: Text(
+                                    'Check Out',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color(0xFFE23744),
+                                      fontSize: 16,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          CommomDropDown2(
+                            list: shiftDataList,
+                            hintText: 'Select Shift',
+                            onChanged: (v) {
+                              setState(() {
+                                selectedShift = v;
+                              });
+                            },
+                            selectedValue: selectedShift,
+                            labelText: "Select Warehouse",
+                          ),
+                          const Gap(20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 128,
+                                height: 45,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFE23744),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(100),
+                                  ),
+                                ),
+                                child: const Center(
+                                  child: Text(
+                                    'Cancel',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 20),
+                              Container(
+                                width: 128,
+                                height: 45,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFF019F8A),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(100),
+                                  ),
+                                ),
+                                child: const Center(
+                                  child: Text(
+                                    'Save',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              actions: const <Widget>[],
+            );
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  TimeOfDay _selectedTime = TimeOfDay.now();
+
+  Future<void> _selectTime(BuildContext context) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: _selectedTime,
+    );
+    if (picked != null && picked != _selectedTime) {
+      setState(() {
+        _selectedTime = picked;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: CustomFloatingActionButton(
+        title: 'Create Shift',
+        onTap: () => _showPopup(context),
+      ),
       appBar: AppBar(
         title: const Text(
           'Create Shift',
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: Center(
-        child: Column(
+      body: GetBuilder<HRController>(builder: (hrController) {
+        return Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Gap(20),
             CommomDropDown2(
@@ -55,15 +504,129 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                 fontWeight: FontWeight.w400,
               ),
             ),
-            Gap(20),
-            Row(children: [
-              Row(children: [],),Row(children: [
-                
-              ],)
-            ],)
+            const Gap(20),
+            Center(
+              child: Container(
+                width: 358,
+                height: 138,
+                decoration: ShapeDecoration(
+                  color: const Color(0xFFFAF9FF),
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(width: 1, color: Color(0x195A57FF)),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    const Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            'Shift Name',
+                            style: TextStyle(
+                              color: Color(0xFF5A57FF),
+                              fontSize: 12,
+                              fontFamily: 'SF Pro Text',
+                              fontWeight: FontWeight.w400,
+                              //height: 0,
+                              letterSpacing: -0.48,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            'Shift Start',
+                            style: TextStyle(
+                              color: Color(0xFF5A57FF),
+                              fontSize: 12,
+                              fontFamily: 'SF Pro Text',
+                              fontWeight: FontWeight.w400,
+                              //height: 0,
+                              letterSpacing: -0.48,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            'Shift End',
+                            style: TextStyle(
+                              color: Color(0xFF5A57FF),
+                              fontSize: 12,
+                              fontFamily: 'SF Pro Text',
+                              fontWeight: FontWeight.w400,
+                              //height: 0,
+                              letterSpacing: -0.48,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ).paddingSymmetric(horizontal: 12),
+                    Expanded(
+                        child: ListView.builder(
+                            itemCount: hrController.employees.length,
+                            itemBuilder: (context, i) {
+                              return Container(
+                                //height: 40,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFFAF9FF),
+                                  shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                        width: 1, color: Color(0x195A57FF)),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                ),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 12),
+                                child: const Row(
+                                  children: [
+                                    Expanded(
+                                        flex: 1,
+                                        child: Text(
+                                          '',
+                                          style: TextStyle(
+                                            color: Color(0xFF353535),
+                                            fontSize: 10,
+                                            fontFamily: 'SF Pro Text',
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        )),
+                                    Expanded(
+                                        flex: 1,
+                                        child: Text(
+                                          '',
+                                          style: TextStyle(
+                                            color: Color(0xFF353535),
+                                            fontSize: 10,
+                                            fontFamily: 'SF Pro Text',
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        )),
+                                    // const Gap(4),
+                                    Expanded(
+                                        flex: 1,
+                                        child: Text(
+                                          '',
+                                          style: TextStyle(
+                                            color: Color(0xFF353535),
+                                            fontSize: 10,
+                                            fontFamily: 'SF Pro Text',
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        )),
+                                  ],
+                                ),
+                              ).paddingSymmetric(vertical: 4);
+                            }))
+                  ],
+                ).paddingSymmetric(vertical: 16, horizontal: 12),
+              ),
+            ),
           ],
-        ),
-      ),
+        );
+      }),
     );
   }
 }

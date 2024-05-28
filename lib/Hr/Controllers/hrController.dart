@@ -173,7 +173,7 @@ class HRController extends GetxController {
   getCareerDetails(var userId) {
     apiClient
         .getData(
-      "/hr/getCareerDetailsByUserId/$userId",
+      "hr/getCareerDetailsByUserId/$userId",
     )
         .then((value) {
       if (value.data["message"] == "career details found") {
@@ -219,7 +219,7 @@ class HRController extends GetxController {
 
   ////////////////Get Eductaion Details///////////////////
   getEducationDetails() {
-    apiClient.postData("/hr/getEducationInformationById", {
+    apiClient.postData("hr/getEducationInformationById", {
       {"user_id": 2}
     }).then((value) {
       if (value.data["message"] == "items found") {
@@ -259,7 +259,7 @@ class HRController extends GetxController {
 ////////////Get Referral Details///////////////////
 
   getReferralDetails() {
-    apiClient.postData("/hr/getUserReferralsById", {
+    apiClient.postData("hr/getUserReferralsById", {
       {"user_id": 2}
     }).then((value) {
       if (value.data["message"] == "items found") {
@@ -282,7 +282,7 @@ class HRController extends GetxController {
     isLoading = true;
     update();
     await apiClient
-        .postData("/hr/addBankDetails", addBankDetailsRequestModel.toJson())
+        .postData("hr/addBankDetails", addBankDetailsRequestModel.toJson())
         .then((value) {
       if (value.data["message"] == "information updated") {
         addBankDetailsRequestModel = const BankDetailsRequest();
@@ -297,7 +297,7 @@ class HRController extends GetxController {
 
   /////////////Get Bank Details////////////////////////////////
   getBankDetails() {
-    apiClient.postData("/hr/getBankDetailsById", {
+    apiClient.postData("hr/getBankDetailsById", {
       {"user_id": 2}
     }).then((value) {
       if (value.data["message"] == "items found") {
@@ -308,6 +308,23 @@ class HRController extends GetxController {
         isLoading = false;
         update();
       } else {
+        isLoading = false;
+        update();
+      }
+    });
+  }
+
+  ////////////////Add Shift//////////////
+  addShift() async {
+    isLoading = true;
+    update();
+    await apiClient
+        .postData("hr/addShift", addBankDetailsRequestModel.toJson())
+        .then((value) {
+      if (value.data["message"] == "Data Retrieved Successfully!") {
+        addBankDetailsRequestModel = const BankDetailsRequest();
+        Snacks.greenSnack("Shift Added Successfully");
+
         isLoading = false;
         update();
       }
