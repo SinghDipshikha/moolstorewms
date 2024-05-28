@@ -24,11 +24,7 @@ _$IndentViewModelImpl _$$IndentViewModelImplFromJson(
           ?.map((e) =>
               ProductsIndentViewModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      check_ins: (json['check_ins'] as List<dynamic>?)
-          ?.map(
-              (e) => ChecksIndentViewModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      check_outs: (json['check_outs'] as List<dynamic>?)
+      check_in_out: (json['check_in_out'] as List<dynamic>?)
           ?.map(
               (e) => ChecksIndentViewModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -47,8 +43,7 @@ Map<String, dynamic> _$$IndentViewModelImplToJson(
       'ship_to_seller_companany': instance.ship_to_seller_companany,
       'bill_to_seller_companany': instance.bill_to_seller_companany,
       'product_details': instance.product_details,
-      'check_ins': instance.check_ins,
-      'check_outs': instance.check_outs,
+      'check_in_out': instance.check_in_out,
     };
 
 _$ChecksIndentViewModelImpl _$$ChecksIndentViewModelImplFromJson(

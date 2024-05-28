@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Sales/Model/Indent/checkInSubmit.dart';
 import 'package:moolwmsstore/Sales/Model/Indent/indentElement.dart';
@@ -41,6 +42,8 @@ class IndentInOut extends StatelessWidget {
       }
 
       salesController.checkInModel = salesController.checkInModel!.copyWith(
+          seller_purchase_order_id:
+              salesController.initialProducts[0].seller_purchase_order_id,
           vehicle_details: veh,
           // products: salesController.initialProductsqty,
           checkin_type: "IN",
@@ -426,7 +429,7 @@ class IndentInOut extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: List.generate(
                             salesController.initialProducts.length, (i) {
-                          Logger().i(salesController.initialProducts[i]);
+                         
 
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -483,10 +486,9 @@ class IndentInOut extends StatelessWidget {
                                                     .initialProductsqty[i]
                                                 ["qty"] as int) -
                                             1;
-                                                HapticFeedback.lightImpact();
-                                      salesController.update();
+                                        HapticFeedback.lightImpact();
+                                        salesController.update();
                                       }
-                                  
                                     },
                                     child: Image.asset(
                                       "assets/icons/subtractBlue.png",
@@ -528,8 +530,7 @@ class IndentInOut extends StatelessWidget {
                                       if (!(salesController
                                               .initialProductsqty[i]["qty"] ==
                                           (salesController.initialProducts[i]
-                                                  .qty_balance ??
-                                              0))) {
+                                              .qty_balance))) {
                                         salesController.initialProductsqty[i]
                                             ["qty"] = (salesController
                                                         .initialProductsqty[i]
@@ -641,29 +642,39 @@ class IndentInOut extends StatelessWidget {
                         ).paddingSymmetric(vertical: 4),
                       ],
                     ).paddingAll(12)),
-                InkWell(
-                  onTap: onSubmit,
-                  child: Container(
-                    alignment: Alignment.center,
-                    height: 50,
-                    decoration: ShapeDecoration(
-                      color: const Color(0xFF02A676),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                GetBuilder<SalesController>(builder: (salesController) {
+                  if (salesController.creatingIndentCheck) {
+                    return Center(
+                      child: LoadingAnimationWidget.staggeredDotsWave(
+                        color: const Color(0xFF5A57FF),
+                        size: 80,
                       ),
-                    ),
-                    child: const Text(
-                      'In',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontFamily: 'SF Pro Display',
-                        fontWeight: FontWeight.w600,
-                        height: 0,
+                    ).paddingSymmetric(vertical: 12);
+                  }
+                  return InkWell(
+                    onTap: onSubmit,
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 50,
+                      decoration: ShapeDecoration(
+                        color: const Color(0xFF02A676),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
                       ),
-                    ),
-                  ).paddingSymmetric(vertical: 22),
-                )
+                      child: const Text(
+                        'In',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontFamily: 'SF Pro Display',
+                          fontWeight: FontWeight.w600,
+                          height: 0,
+                        ),
+                      ),
+                    ).paddingSymmetric(vertical: 22),
+                  );
+                })
               ],
             ).paddingSymmetric(
                 vertical: Dimensions.vericalBodyPad,

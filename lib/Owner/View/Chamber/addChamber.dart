@@ -10,9 +10,9 @@
 
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:logger/web.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
 import 'package:moolwmsstore/Owner/View/Common/ownerCommon.dart';
@@ -45,9 +45,10 @@ class AddChamberView extends StatelessWidget {
     return GetBuilder<OwnerController>(builder: (ownerController) {
       return Scaffold(
         body: ownerController.loading
-            ? const Center(
-                child: SpinKitRipple(
-                  color: Color(0xFF5A57FF),
+            ? Center(
+                child: LoadingAnimationWidget.staggeredDotsWave(
+                  color: const Color(0xFF5A57FF),
+                  size: 80,
                 ),
               )
             : Form(
@@ -102,35 +103,6 @@ class AddChamberView extends StatelessWidget {
                             // hintText: 'Enter chambers number',
                           ),
                           const Gap(8),
-                          //  CommonTextField(
-                          //   validator: (val) {
-                          //     if (val == null || val.isEmpty) {
-                          //       {
-                          //         return 'required';
-                          //       }
-                          //     } else {
-                          //       return null;
-                          //     }
-                          //   },
-                          //   keyboardType: TextInputType.number,
-                          //   inputFormatters: [NumberTextInputFormatter()],
-                          //   onChanged: (p0) {
-                          //     ownerController.addChamberModel = ownerController
-                          //         .addChamberModel
-                          //         .copyWith(chamber_capacity: int.parse(p0));
-                          //   },
-                          //   suffixIcon: const Text(
-                          //     'SQ. FT',
-                          //     style: TextStyle(
-                          //       color: Color(0xFFACACAC),
-                          //       fontSize: 12,
-                          //       fontFamily: 'SF Pro Display',
-                          //       fontWeight: FontWeight.w300,
-                          //     ),
-                          //   ).paddingOnly(top: 14),
-                          //   labelText: 'Chamber Capacity',
-                          //   containerColor: Colors.white,
-                          // )
                         ],
                       )).paddingAll(12),
                       StyledContainer(
@@ -146,7 +118,7 @@ class AddChamberView extends StatelessWidget {
                                     TextSpan(
                                       text: 'Temperature Option',
                                       style: TextStyle(
-                                        color: Color(0xFFACACAC),
+                                        color: Color(0xFF595959),
                                         fontSize: 16,
                                         fontFamily: 'SF Pro Display',
                                         fontWeight: FontWeight.w400,
@@ -227,7 +199,7 @@ class AddChamberView extends StatelessWidget {
                                   buttonStyleData: const ButtonStyleData(
                                     //decoration: BoxDecoration(color: Colors.white),
                                     overlayColor:
-                                        MaterialStatePropertyAll(Colors.white),
+                                        WidgetStatePropertyAll(Colors.white),
                                   ),
                                   iconStyleData: IconStyleData(
                                     icon: const Icon(
@@ -261,12 +233,15 @@ class AddChamberView extends StatelessWidget {
                                 return null;
                               }
                             },
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [NumberTextInputFormatter()],
+                            inputFormatters: [
+                              NumberTextInputFormatter(allowNegative: true)
+                            ],
                             onChanged: (p0) {
-                              ownerController.addChamberModel = ownerController
-                                  .addChamberModel
-                                  .copyWith(temp_min_range: int.parse(p0));
+                              if (p0.isNum) {
+                                ownerController.addChamberModel =
+                                    ownerController.addChamberModel.copyWith(
+                                        temp_min_range: int.parse(p0));
+                              }
                             },
                             suffixIcon: Text(
                               ownerController.selectedTempType == "fahrenheit"
@@ -283,7 +258,7 @@ class AddChamberView extends StatelessWidget {
                             containerColor: Colors.white,
                           ),
                           const Gap(8),
-                           CommonTextField(
+                          CommonTextField(
                             validator: (val) {
                               if (val == null || val.isEmpty) {
                                 {
@@ -293,12 +268,16 @@ class AddChamberView extends StatelessWidget {
                                 return null;
                               }
                             },
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [NumberTextInputFormatter()],
+                            // keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              NumberTextInputFormatter(allowNegative: true)
+                            ],
                             onChanged: (p0) {
-                              ownerController.addChamberModel = ownerController
-                                  .addChamberModel
-                                  .copyWith(temp_max_range: int.parse(p0));
+                              if (p0.isNum) {
+                                ownerController.addChamberModel =
+                                    ownerController.addChamberModel.copyWith(
+                                        temp_max_range: int.parse(p0));
+                              }
                             },
                             suffixIcon: Text(
                               ownerController.selectedTempType == "fahrenheit"
@@ -329,7 +308,7 @@ class AddChamberView extends StatelessWidget {
                                     TextSpan(
                                       text: 'Racking Type',
                                       style: TextStyle(
-                                        color: Color(0xFFACACAC),
+                                        color: Color(0xFF595959),
                                         fontSize: 16,
                                         fontFamily: 'SF Pro Display',
                                         fontWeight: FontWeight.w400,
@@ -411,7 +390,7 @@ class AddChamberView extends StatelessWidget {
                                   buttonStyleData: const ButtonStyleData(
                                     //decoration: BoxDecoration(color: Colors.white),
                                     overlayColor:
-                                        MaterialStatePropertyAll(Colors.white),
+                                        WidgetStatePropertyAll(Colors.white),
                                   ),
                                   iconStyleData: IconStyleData(
                                     icon: const Icon(
@@ -445,7 +424,7 @@ class AddChamberView extends StatelessWidget {
                                     TextSpan(
                                       text: 'Refigration Type',
                                       style: TextStyle(
-                                        color: Color(0xFFACACAC),
+                                        color: Color(0xFF595959),
                                         fontSize: 16,
                                         fontFamily: 'SF Pro Display',
                                         fontWeight: FontWeight.w400,
@@ -528,7 +507,7 @@ class AddChamberView extends StatelessWidget {
                                   buttonStyleData: const ButtonStyleData(
                                     //decoration: BoxDecoration(color: Colors.white),
                                     overlayColor:
-                                        MaterialStatePropertyAll(Colors.white),
+                                        WidgetStatePropertyAll(Colors.white),
                                   ),
                                   iconStyleData: IconStyleData(
                                     icon: const Icon(
@@ -663,7 +642,7 @@ class AddChamberView extends StatelessWidget {
                       StyledContainer(
                           child: Column(
                         children: [
-                           CommonTextField(
+                          CommonTextField(
                             validator: (val) {
                               if (val == null || val.isEmpty) {
                                 {
@@ -684,7 +663,7 @@ class AddChamberView extends StatelessWidget {
                             },
                           ),
                           const Gap(8),
-                           CommonTextField(
+                          CommonTextField(
                             validator: (val) {
                               if (val == null || val.isEmpty) {
                                 {
@@ -839,112 +818,7 @@ class AddChamberView extends StatelessWidget {
                           )
                         ],
                       )).paddingAll(12),
-                      // StyledContainer(
-                      //     child: Column(
-                      //   children: [
-                      //     Center(
-                      //       child: const Text(
-                      //         'Chamber Dimensions (M)',
-                      //         style: TextStyle(
-                      //           color: Color(0xFFACACAC),
-                      //           fontSize: 16,
-                      //           fontFamily: 'SF Pro Display',
-                      //           fontWeight: FontWeight.w400,
-                      //         ),
-                      //       ).paddingAll(12),
-                      //     ),
-                      //      CommonTextField(
-                      //       validator: (val) {
-                      //         if (val == null || val.isEmpty) {
-                      //           {
-                      //             return 'required';
-                      //           }
-                      //         } else {
-                      //           return null;
-                      //         }
-                      //       },
-                      //       keyboardType: TextInputType.number,
-                      //       inputFormatters: [NumberTextInputFormatter()],
-                      //       onChanged: (p0) {
-                      //         ownerController.addChamberModel = ownerController
-                      //             .addChamberModel
-                      //             .copyWith(chamber_length: int.parse(p0));
-                      //       },
-                      //       labelText: 'Length',
-                      //       containerColor: Colors.white,
-                      //       suffixIcon: const Text(
-                      //         'M',
-                      //         style: TextStyle(
-                      //           color: Color(0xFFACACAC),
-                      //           fontSize: 12,
-                      //           fontFamily: 'SF Pro Display',
-                      //           fontWeight: FontWeight.w300,
-                      //         ),
-                      //       ).paddingOnly(top: 14),
-                      //     ),
-                      //     const Gap(8),
-                      //      CommonTextField(
-                      //       validator: (val) {
-                      //         if (val == null || val.isEmpty) {
-                      //           {
-                      //             return 'required';
-                      //           }
-                      //         } else {
-                      //           return null;
-                      //         }
-                      //       },
-                      //       keyboardType: TextInputType.number,
-                      //       inputFormatters: [NumberTextInputFormatter()],
-                      //       onChanged: (p0) {
-                      //         ownerController.addChamberModel = ownerController
-                      //             .addChamberModel
-                      //             .copyWith(chamber_breadth: int.parse(p0));
-                      //       },
-                      //       labelText: 'Breadth',
-                      //       containerColor: Colors.white,
-                      //       suffixIcon: const Text(
-                      //         'M',
-                      //         style: TextStyle(
-                      //           color: Color(0xFFACACAC),
-                      //           fontSize: 12,
-                      //           fontFamily: 'SF Pro Display',
-                      //           fontWeight: FontWeight.w300,
-                      //         ),
-                      //       ).paddingOnly(top: 14),
-                      //     ),
-                      //     const Gap(8),
-                      //      CommonTextField(
-                      //       validator: (val) {
-                      //         if (val == null || val.isEmpty) {
-                      //           {
-                      //             return 'required';
-                      //           }
-                      //         } else {
-                      //           return null;
-                      //         }
-                      //       },
-                      //       keyboardType: TextInputType.number,
-                      //       inputFormatters: [NumberTextInputFormatter()],
-                      //       onChanged: (p0) {
-                      //         ownerController.addChamberModel = ownerController
-                      //             .addChamberModel
-                      //             .copyWith(chamber_height: int.parse(p0));
-                      //       },
-                      //       labelText: 'Height',
-                      //       containerColor: Colors.white,
-                      //       suffixIcon: const Text(
-                      //         'M',
-                      //         style: TextStyle(
-                      //           color: Color(0xFFACACAC),
-                      //           fontSize: 12,
-                      //           fontFamily: 'SF Pro Display',
-                      //           fontWeight: FontWeight.w300,
-                      //         ),
-                      //       ).paddingOnly(top: 14),
-                      //     ),
-                      //     const Gap(8),
-                      //   ],
-                      // )).paddingAll(12),
+
                       CustomButton(
                         title: "Submit",
                         onTap: () {

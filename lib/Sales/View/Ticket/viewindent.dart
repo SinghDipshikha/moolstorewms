@@ -300,7 +300,7 @@ class Viewindent extends StatelessWidget {
                 ],
               ),
               ListView.builder(
-                itemCount: salesController.indent!.check_ins!.length,
+                itemCount: salesController.indent!.check_in_out!.length,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {

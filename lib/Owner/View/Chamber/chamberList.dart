@@ -8,12 +8,13 @@ import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
 import 'package:moolwmsstore/Owner/Model/Chamber/chamber.dart';
 import 'package:moolwmsstore/Owner/View/Chamber/chamberDesigning.dart';
 import 'package:moolwmsstore/Owner/View/Common/customButton.dart';
-import 'package:moolwmsstore/Owner/View/addChamber.dart';
+import 'package:moolwmsstore/Owner/View/Chamber/addChamber.dart';
 import 'package:moolwmsstore/common/controller/chamberController.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 ////@RoutePage()
 class ChamberList extends StatefulWidget {
+  
   ChamberList({super.key, required this.warehouse_id});
   var warehouse_id;
 

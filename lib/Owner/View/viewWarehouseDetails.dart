@@ -7,7 +7,7 @@ import 'package:moolwmsstore/Owner/View/Assets/assetsList.dart';
 import 'package:moolwmsstore/Owner/View/Chamber/chamberList.dart';
 import 'package:moolwmsstore/Owner/View/Employee/AddEmployee.dart';
 import 'package:moolwmsstore/Owner/View/Employee/EmployeeList.dart';
-import 'package:moolwmsstore/Owner/View/addChamber.dart';
+import 'package:moolwmsstore/Owner/View/Chamber/addChamber.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 ////@RoutePage()

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:moolwmsstore/Sales/Model/company.dart';
 import 'package:moolwmsstore/Sales/Model/enterProduct.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/addCompanyDialog.dart';
@@ -161,7 +162,6 @@ class _CreateticketState extends State<Createticket> {
                                   width: 0.2),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5))),
-                      
                           contentPadding: const EdgeInsets.symmetric(
                               vertical: 0, horizontal: 0),
                           border: OutlineInputBorder(
@@ -169,7 +169,6 @@ class _CreateticketState extends State<Createticket> {
                                 const BorderSide(color: Colors.transparent),
                             borderRadius: BorderRadius.circular(15),
                           ),
-                
                         ),
                         hint: const Text(
                           'Select Warehouse',
@@ -245,33 +244,43 @@ class _CreateticketState extends State<Createticket> {
                           padding: EdgeInsets.only(left: 6),
                         ),
                       ).paddingSymmetric(vertical: 12),
-                      CustomButton(
-                        title: "Submit",
-                        onTap: () {
-                          if (_formKey.currentState?.validate() ?? false) {
-                            setState(() {
-                              creatingTicket = true;
-                            });
-                            salesController
-                                .createIndent(
-                                    poId: poId.text,
-                                    warehouseid: selectedWarehouseId)
-                                .then((value) {
-                              if (value) {
-                                Get.off(TicketList(), id: salesNavigationKey);
-                                Snacks.greenSnack(
-                                    "Successfully Created Purchase Order and Ticket id is Assigned");
-                              } else {
-                                setState(() {
-                                  creatingTicket = false;
-                                });
-                              }
-                            });
-                          } else {
-                            Snacks.redSnack("Please fill required fields");
-                          }
-                        },
-                      ).paddingSymmetric(vertical: 12)
+                      creatingTicket
+                          ?  Center(
+                              child: LoadingAnimationWidget.staggeredDotsWave(
+                        color: const Color(0xFF5A57FF),
+                        size: 80,
+                      ),
+                            )
+                          : CustomButton(
+                              title: "Submit",
+                              onTap: () {
+                                if (_formKey.currentState?.validate() ??
+                                    false) {
+                                  setState(() {
+                                    creatingTicket = true;
+                                  });
+                                  salesController
+                                      .createIndent(
+                                          poId: poId.text,
+                                          warehouseid: selectedWarehouseId)
+                                      .then((value) {
+                                    if (value) {
+                                      Get.off(const TicketList(),
+                                          id: salesNavigationKey);
+                                      Snacks.greenSnack(
+                                          "Successfully Created Purchase Order and Ticket id is Assigned");
+                                    } else {
+                                      setState(() {
+                                        creatingTicket = false;
+                                      });
+                                    }
+                                  });
+                                } else {
+                                  Snacks.redSnack(
+                                      "Please fill required fields");
+                                }
+                              },
+                            ).paddingSymmetric(vertical: 12)
                     ],
                   ).paddingSymmetric(
                       horizontal: Dimensions.horizontalBodyPad,

@@ -9,10 +9,11 @@
 // import 'package:moolwmsstore/View/common/myTextField.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
+import 'package:moolwmsstore/Sales/Model/Indent/indentElement.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/createticket.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/indentInOut.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/viewindent.dart';
@@ -20,10 +21,47 @@ import 'package:moolwmsstore/Sales/View/common/widgets/customButton.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
-class TicketList extends StatelessWidget {
-  TicketList({super.key});
+class TicketList extends StatefulWidget {
+  const TicketList({super.key});
+
+  @override
+  State<TicketList> createState() => _TicketListState();
+}
+
+class _TicketListState extends State<TicketList> {
   final DateFormat formatter = DateFormat('dd-MM-yyyy');
+
   DateFormat timeformatter = DateFormat('h:mm a');
+
+  final PagingController<int, IndentElement> pagingController =
+      PagingController(firstPageKey: 1);
+
+  @override
+  @override
+  void initState() {
+    pagingController.addPageRequestListener((pageKey) {
+      Get.find<SalesController>().apiClient.postData(
+          "user/getAllPoList?recordsPerPage=20&next=$pageKey ",
+          {"keyword": "", "date": "", "warehouse_id": null}).then((v) {
+        if (v.data["message"] == "Data Retrieved Successfully!") {
+          List<IndentElement> newItems = (v.data["result"] as List)
+              .map((e) => IndentElement.fromJson(e))
+              .toList();
+          final isLastPage = newItems.length < 20;
+          if (isLastPage) {
+            pagingController.appendLastPage(newItems);
+          } else {
+            final nextPageKey = pageKey + newItems.length;
+            pagingController.appendPage(newItems, nextPageKey);
+          }
+        }
+      });
+    });
+    super.initState();
+  }
+
+  @override
+  bool loading = true;
   @override
   Widget build(BuildContext context) {
     final List tags = [
@@ -40,101 +78,23 @@ class TicketList extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        backgroundColor: const Color(0xFF232323),
-        title: const Text(
-          'Ticket List',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontFamily: 'SF Pro Text',
-            fontWeight: FontWeight.w500,
-            //height: 0,
-            letterSpacing: -0.80,
+        appBar: AppBar(
+          centerTitle: false,
+          backgroundColor: const Color(0xFF232323),
+          title: const Text(
+            'Ticket List',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontFamily: 'SF Pro Text',
+              fontWeight: FontWeight.w500,
+              //height: 0,
+              letterSpacing: -0.80,
+            ),
           ),
         ),
-      ),
-      body: GetBuilder<SalesController>(initState: (state) {
-        Get.find<SalesController>().getAllIndents();
-      }, builder: (salesController) {
-        return Column(
+        body: Column(
           children: [
-            // const Gap(20),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     Container(
-            //       height: 40,
-            //       width: 170,
-            //       decoration: BoxDecoration(
-            //         borderRadius: BorderRadius.circular(30),
-            //         border: Border.all(
-            //             color: const Color(0xFF5A57FF).withOpacity(0.4)),
-            //       ),
-            //       child: Row(
-            //         mainAxisAlignment: MainAxisAlignment.center,
-            //         children: [
-            //           Image.asset(
-            //             'assets/icons/Filter (R).png',
-            //             height: 19,
-            //           ),
-            //           const SizedBox(
-            //             width: 12,
-            //           ),
-            //           const Text(
-            //             'Filter',
-            //             textAlign: TextAlign.center,
-            //             style: TextStyle(
-            //               color: Color(0xFFA7A7A7),
-            //               fontSize: 16,
-            //               fontFamily: 'SF Pro Text',
-            //               fontWeight: FontWeight.w500,
-            //               //height: 0,
-            //               letterSpacing: -0.64,
-            //             ),
-            //           )
-            //         ],
-            //       ),
-            //     ),
-            //     const Gap(20),
-            //     Container(
-            //       height: 40,
-            //       width: 170,
-            //       decoration: BoxDecoration(
-            //         borderRadius: BorderRadius.circular(30),
-            //         border: Border.all(
-            //             width: 1,
-            //             color: const Color(0xFF5A57FF).withOpacity(0.4)),
-            //       ),
-            //       child: Row(
-            //         mainAxisAlignment: MainAxisAlignment.center,
-            //         children: [
-            //           Image.asset(
-            //             'assets/icons/search-normal.png',
-            //             height: 19,
-            //           ),
-            //           const SizedBox(
-            //             width: 12,
-            //           ),
-            //           const Text(
-            //             'Search',
-            //             textAlign: TextAlign.center,
-            //             style: TextStyle(
-            //               color: Color(0xFFA7A7A7),
-            //               fontSize: 16,
-            //               fontFamily: 'SF Pro Text',
-            //               fontWeight: FontWeight.w500,
-            //               //height: 0,
-            //               letterSpacing: -0.64,
-            //             ),
-            //           )
-            //         ],
-            //       ),
-            //     )
-            //   ],
-            // ),
-
             const Gap(14),
             Row(
               children: List.generate(tags.length, (index) {
@@ -152,15 +112,7 @@ class TicketList extends StatelessWidget {
                         ),
                       ));
                 }
-                // if (tags[index]["title"] == "icon") {
-                //   return IconButton(
-                //       padding: EdgeInsets.zero,
-                //       onPressed: () {},
-                //       icon: const Icon(
-                //         Icons.more_horiz,
-                //         color: Colors.white,
-                //       ));
-                // }
+
                 if (tags[index]["title"] == "In/Out") {
                   return IconButton(
                       padding: EdgeInsets.zero,
@@ -189,244 +141,194 @@ class TicketList extends StatelessWidget {
                     ));
               }),
             ).paddingSymmetric(horizontal: 20),
-            GetBuilder<SalesController>(builder: (salesController) {
-              if (salesController.loading) {
-                return const Expanded(
-                  child: Center(
-                    child: SpinKitDoubleBounce(
-                      color: Color(0xFF5A57FF),
+            Expanded(
+                child: PagedListView<int, IndentElement>(
+              pagingController: pagingController,
+              builderDelegate: PagedChildBuilderDelegate<IndentElement>(
+                itemBuilder: (context, item, index) {
+                  return Container(
+                    height: 70,
+                    decoration: ShapeDecoration(
+                      color: const Color(0xFFFAF9FF),
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(
+                            width: 1, color: Color(0x195A57FF)),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
                     ),
-                  ),
-                );
-              }
-              if (salesController.indentElements.isEmpty) {
-                return const Expanded(
-                  child: Center(
-                    child: Text("Indents are empty , Please Add more!"),
-                  ),
-                );
-              }
-              return Expanded(
-                  child: ListView.builder(
-                      itemCount: salesController.indentElements.length,
-                      itemBuilder: (context, listIndex) {
-                        return Container(
-                          height: 70,
-                          decoration: ShapeDecoration(
-                            color: const Color(0xFFFAF9FF),
-                            shape: RoundedRectangleBorder(
-                              side: const BorderSide(
-                                  width: 1, color: Color(0x195A57FF)),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                          ),
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          child: Row(
-                            children: List.generate(tags.length, (index) {
-                              if (tags[index]["title"] == "Info") {
-                                return IconButton(
-                                    padding: EdgeInsets.zero,
-                                    onPressed: () {
-                                      Get.to(
-                                          Viewindent(
-                                            indentElement: salesController
-                                                .indentElements[listIndex],
-                                          ),
-                                          id: salesNavigationKey);
-                                    },
-                                    icon: Image.asset(
-                                      "assets/icons/Eye.png",
-                                      height: 22,
-                                    ));
-                              }
-                              if (tags[index]["title"] == "In/Out") {
-                                return IconButton(
-                                    padding: EdgeInsets.zero,
-                                    onPressed: () {
-                                      Get.to(
-                                          IndentInOut(
-                                            indentElement: salesController
-                                                .indentElements[listIndex],
-                                          ),
-                                          id: salesNavigationKey);
-                                    },
-                                    icon: Image.asset(
-                                      "assets/icons/check_in.png",
-                                      height: 32,
-                                    ));
-                              }
-                              if (tags[index]["title"] == "icon") {
-                                return IconButton(
-                                    padding: EdgeInsets.zero,
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Icons.more_vert,
-                                      color: Colors.black,
-                                    ));
-                              }
-                              if (tags[index]["title"] == 'Ticket ID') {
-                                return Expanded(
-                                    flex: tags[index]["flex"],
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0),
-                                      child: Text(
-                                        salesController
-                                                .indentElements[listIndex]
-                                                .ticket_id ??
-                                            "--",
-                                        style: const TextStyle(
-                                          color: Color(0xFF353535),
-                                          fontSize: 10,
-                                          fontFamily: 'SF Pro Display',
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Row(
+                      children: List.generate(tags.length, (index) {
+                        if (tags[index]["title"] == "Info") {
+                          return IconButton(
+                              padding: EdgeInsets.zero,
+                              onPressed: () {
+                                Get.to(
+                                    Viewindent(
+                                      indentElement: item,
+                                    ),
+                                    id: salesNavigationKey);
+                              },
+                              icon: Image.asset(
+                                "assets/icons/Eye.png",
+                                height: 22,
+                              ));
+                        }
+                        if (tags[index]["title"] == "In/Out") {
+                          return IconButton(
+                              padding: EdgeInsets.zero,
+                              onPressed: () {
+                                Get.to(IndentInOut(indentElement: item),
+                                    id: salesNavigationKey);
+                              },
+                              icon: Image.asset(
+                                "assets/icons/check_in.png",
+                                height: 32,
+                              ));
+                        }
+                        if (tags[index]["title"] == "icon") {
+                          return IconButton(
+                              padding: EdgeInsets.zero,
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.more_vert,
+                                color: Colors.black,
+                              ));
+                        }
+                        if (tags[index]["title"] == 'Ticket ID') {
+                          return Expanded(
+                              flex: tags[index]["flex"],
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Text(
+                                  item.ticket_id ?? "--",
+                                  style: const TextStyle(
+                                    color: Color(0xFF353535),
+                                    fontSize: 10,
+                                    fontFamily: 'SF Pro Display',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ));
+                        }
+                        if (tags[index]["title"] == 'Order No.') {
+                          return Expanded(
+                              flex: tags[index]["flex"],
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Text(
+                                  item.order_number ?? "--",
+                                  style: const TextStyle(
+                                    color: Color(0xFF353535),
+                                    fontSize: 10,
+                                    fontFamily: 'SF Pro Display',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ));
+                        }
+                        if (tags[index]["title"] == 'Order No.') {
+                          return Expanded(
+                              flex: tags[index]["flex"],
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Text(
+                                  item.ticket_id ?? "--",
+                                  style: const TextStyle(
+                                    color: Color(0xFF353535),
+                                    fontSize: 10,
+                                    fontFamily: 'SF Pro Display',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ));
+                        }
+                        if (tags[index]["title"] == 'Shipped To') {
+                          return Expanded(
+                              flex: tags[index]["flex"],
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Text(
+                                  item.shipped_to_company ?? "--",
+                                  style: const TextStyle(
+                                    color: Color(0xFF353535),
+                                    fontSize: 10,
+                                    fontFamily: 'SF Pro Display',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ));
+                        }
+                        if (tags[index]["title"] == "Date & Time") {
+                          return Expanded(
+                              flex: tags[index]["flex"],
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      item.dateTime == null
+                                          ? "--"
+                                          : formatter.format(
+                                              item.dateTime as DateTime),
+                                      style: const TextStyle(
+                                        color: Color(0xFF353535),
+                                        fontSize: 10,
+                                        fontFamily: 'SF Pro Display',
+                                        fontWeight: FontWeight.w500,
                                       ),
-                                    ));
-                              }
-                              if (tags[index]["title"] == 'Order No.') {
-                                return Expanded(
-                                    flex: tags[index]["flex"],
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0),
-                                      child: Text(
-                                        salesController
-                                                .indentElements[listIndex]
-                                                .order_number ??
-                                            "--",
-                                        style: const TextStyle(
-                                          color: Color(0xFF353535),
-                                          fontSize: 10,
-                                          fontFamily: 'SF Pro Display',
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ));
-                              }
-                              if (tags[index]["title"] == 'Order No.') {
-                                return Expanded(
-                                    flex: tags[index]["flex"],
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0),
-                                      child: Text(
-                                        salesController
-                                                .indentElements[listIndex]
-                                                .ticket_id ??
-                                            "--",
-                                        style: const TextStyle(
-                                          color: Color(0xFF353535),
-                                          fontSize: 10,
-                                          fontFamily: 'SF Pro Display',
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ));
-                              }
-                              if (tags[index]["title"] == 'Shipped To') {
-                                return Expanded(
-                                    flex: tags[index]["flex"],
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0),
-                                      child: Text(
-                                        salesController
-                                                .indentElements[listIndex]
-                                                .shipped_to_company ??
-                                            "--",
-                                        style: const TextStyle(
-                                          color: Color(0xFF353535),
-                                          fontSize: 10,
-                                          fontFamily: 'SF Pro Display',
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ));
-                              }
-                              if (tags[index]["title"] == "Date & Time") {
-                                return Expanded(
-                                    flex: tags[index]["flex"],
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                    ),
+                                    Text.rich(
+                                      TextSpan(
                                         children: [
-                                          Text(
-                                            salesController
-                                                        .indentElements[
-                                                            listIndex]
-                                                        .dateTime ==
-                                                    null
+                                          TextSpan(
+                                            text: item.dateTime == null
                                                 ? "--"
-                                                : formatter.format(
-                                                    salesController
-                                                        .indentElements[
-                                                            listIndex]
-                                                        .dateTime as DateTime),
+                                                : timeformatter.format(
+                                                    item.dateTime as DateTime),
                                             style: const TextStyle(
                                               color: Color(0xFF353535),
                                               fontSize: 10,
                                               fontFamily: 'SF Pro Display',
                                               fontWeight: FontWeight.w500,
+                                              height: 0,
                                             ),
                                           ),
-                                          Text.rich(
-                                            TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text: salesController
-                                                              .indentElements[
-                                                                  listIndex]
-                                                              .dateTime ==
-                                                          null
-                                                      ? "--"
-                                                      : timeformatter.format(
-                                                          salesController
-                                                                  .indentElements[
-                                                                      listIndex]
-                                                                  .dateTime
-                                                              as DateTime),
-                                                  style: const TextStyle(
-                                                    color: Color(0xFF353535),
-                                                    fontSize: 10,
-                                                    fontFamily:
-                                                        'SF Pro Display',
-                                                    fontWeight: FontWeight.w500,
-                                                    height: 0,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            textAlign: TextAlign.center,
-                                          )
                                         ],
                                       ),
-                                    ));
-                              }
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ],
+                                ),
+                              ));
+                        }
 
-                              return Expanded(
-                                  flex: tags[index]["flex"],
-                                  child: const Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 8.0),
-                                    child: Text(
-                                      "contents[index][" "]",
-                                      style: TextStyle(
-                                        color: Color(0xFF353535),
-                                        fontSize: 12,
-                                        fontFamily: 'SF Pro Text',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ));
-                            }),
-                          ),
-                        ).paddingSymmetric(vertical: 4, horizontal: 10);
-                      }));
-            }),
+                        return Expanded(
+                            flex: tags[index]["flex"],
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Text(
+                                "contents[index][" "]",
+                                style: TextStyle(
+                                  color: Color(0xFF353535),
+                                  fontSize: 12,
+                                  fontFamily: 'SF Pro Text',
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ));
+                      }),
+                    ),
+                  ).paddingSymmetric(vertical: 4, horizontal: 10);
+                },
+              ),
+            )),
             Container(
               height: 100,
               decoration: BoxDecoration(
@@ -452,9 +354,7 @@ class TicketList extends StatelessWidget {
               ),
             ),
           ],
-        );
-      }),
-    );
+        ));
   }
 }
 
