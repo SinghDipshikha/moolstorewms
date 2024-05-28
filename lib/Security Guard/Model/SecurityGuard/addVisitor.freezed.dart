@@ -32,8 +32,10 @@ mixin _$AddVisitorBySecurityGaurd {
   String? get in_out_status => throw _privateConstructorUsedError;
   String? get remarks => throw _privateConstructorUsedError;
   dynamic get status => throw _privateConstructorUsedError;
+  String? get warehouse_id => throw _privateConstructorUsedError;
   DateTime? get created_at => throw _privateConstructorUsedError;
   dynamic get updated_at => throw _privateConstructorUsedError;
+  String? get ticket_validity => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -59,8 +61,10 @@ abstract class $AddVisitorBySecurityGaurdCopyWith<$Res> {
       String? in_out_status,
       String? remarks,
       dynamic status,
+      String? warehouse_id,
       DateTime? created_at,
-      dynamic updated_at});
+      dynamic updated_at,
+      String? ticket_validity});
 }
 
 /// @nodoc
@@ -88,8 +92,10 @@ class _$AddVisitorBySecurityGaurdCopyWithImpl<$Res,
     Object? in_out_status = freezed,
     Object? remarks = freezed,
     Object? status = freezed,
+    Object? warehouse_id = freezed,
     Object? created_at = freezed,
     Object? updated_at = freezed,
+    Object? ticket_validity = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -136,6 +142,10 @@ class _$AddVisitorBySecurityGaurdCopyWithImpl<$Res,
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      warehouse_id: freezed == warehouse_id
+          ? _value.warehouse_id
+          : warehouse_id // ignore: cast_nullable_to_non_nullable
+              as String?,
       created_at: freezed == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
@@ -144,6 +154,10 @@ class _$AddVisitorBySecurityGaurdCopyWithImpl<$Res,
           ? _value.updated_at
           : updated_at // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      ticket_validity: freezed == ticket_validity
+          ? _value.ticket_validity
+          : ticket_validity // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -169,8 +183,10 @@ abstract class _$$AddVisitorBySecurityGaurdImplCopyWith<$Res>
       String? in_out_status,
       String? remarks,
       dynamic status,
+      String? warehouse_id,
       DateTime? created_at,
-      dynamic updated_at});
+      dynamic updated_at,
+      String? ticket_validity});
 }
 
 /// @nodoc
@@ -197,8 +213,10 @@ class __$$AddVisitorBySecurityGaurdImplCopyWithImpl<$Res>
     Object? in_out_status = freezed,
     Object? remarks = freezed,
     Object? status = freezed,
+    Object? warehouse_id = freezed,
     Object? created_at = freezed,
     Object? updated_at = freezed,
+    Object? ticket_validity = freezed,
   }) {
     return _then(_$AddVisitorBySecurityGaurdImpl(
       id: freezed == id
@@ -245,6 +263,10 @@ class __$$AddVisitorBySecurityGaurdImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      warehouse_id: freezed == warehouse_id
+          ? _value.warehouse_id
+          : warehouse_id // ignore: cast_nullable_to_non_nullable
+              as String?,
       created_at: freezed == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
@@ -253,6 +275,10 @@ class __$$AddVisitorBySecurityGaurdImplCopyWithImpl<$Res>
           ? _value.updated_at
           : updated_at // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      ticket_validity: freezed == ticket_validity
+          ? _value.ticket_validity
+          : ticket_validity // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -272,8 +298,10 @@ class _$AddVisitorBySecurityGaurdImpl implements _AddVisitorBySecurityGaurd {
       this.in_out_status,
       this.remarks,
       this.status,
+      this.warehouse_id,
       this.created_at,
-      this.updated_at});
+      this.updated_at,
+      this.ticket_validity});
 
   factory _$AddVisitorBySecurityGaurdImpl.fromJson(Map<String, dynamic> json) =>
       _$$AddVisitorBySecurityGaurdImplFromJson(json);
@@ -301,13 +329,17 @@ class _$AddVisitorBySecurityGaurdImpl implements _AddVisitorBySecurityGaurd {
   @override
   final dynamic status;
   @override
+  final String? warehouse_id;
+  @override
   final DateTime? created_at;
   @override
   final dynamic updated_at;
+  @override
+  final String? ticket_validity;
 
   @override
   String toString() {
-    return 'AddVisitorBySecurityGaurd(id: $id, ticket_generate_by: $ticket_generate_by, ticket_verify_by: $ticket_verify_by, visit_ticket_number: $visit_ticket_number, visitor_name: $visitor_name, visitor_ph_number: $visitor_ph_number, purpose_of_visit: $purpose_of_visit, id_proof: $id_proof, in_out_status: $in_out_status, remarks: $remarks, status: $status, created_at: $created_at, updated_at: $updated_at)';
+    return 'AddVisitorBySecurityGaurd(id: $id, ticket_generate_by: $ticket_generate_by, ticket_verify_by: $ticket_verify_by, visit_ticket_number: $visit_ticket_number, visitor_name: $visitor_name, visitor_ph_number: $visitor_ph_number, purpose_of_visit: $purpose_of_visit, id_proof: $id_proof, in_out_status: $in_out_status, remarks: $remarks, status: $status, warehouse_id: $warehouse_id, created_at: $created_at, updated_at: $updated_at, ticket_validity: $ticket_validity)';
   }
 
   @override
@@ -334,10 +366,14 @@ class _$AddVisitorBySecurityGaurdImpl implements _AddVisitorBySecurityGaurd {
                 other.in_out_status == in_out_status) &&
             (identical(other.remarks, remarks) || other.remarks == remarks) &&
             const DeepCollectionEquality().equals(other.status, status) &&
+            (identical(other.warehouse_id, warehouse_id) ||
+                other.warehouse_id == warehouse_id) &&
             (identical(other.created_at, created_at) ||
                 other.created_at == created_at) &&
             const DeepCollectionEquality()
-                .equals(other.updated_at, updated_at));
+                .equals(other.updated_at, updated_at) &&
+            (identical(other.ticket_validity, ticket_validity) ||
+                other.ticket_validity == ticket_validity));
   }
 
   @JsonKey(ignore: true)
@@ -355,8 +391,10 @@ class _$AddVisitorBySecurityGaurdImpl implements _AddVisitorBySecurityGaurd {
       in_out_status,
       remarks,
       const DeepCollectionEquality().hash(status),
+      warehouse_id,
       created_at,
-      const DeepCollectionEquality().hash(updated_at));
+      const DeepCollectionEquality().hash(updated_at),
+      ticket_validity);
 
   @JsonKey(ignore: true)
   @override
@@ -386,8 +424,10 @@ abstract class _AddVisitorBySecurityGaurd implements AddVisitorBySecurityGaurd {
       final String? in_out_status,
       final String? remarks,
       final dynamic status,
+      final String? warehouse_id,
       final DateTime? created_at,
-      final dynamic updated_at}) = _$AddVisitorBySecurityGaurdImpl;
+      final dynamic updated_at,
+      final String? ticket_validity}) = _$AddVisitorBySecurityGaurdImpl;
 
   factory _AddVisitorBySecurityGaurd.fromJson(Map<String, dynamic> json) =
       _$AddVisitorBySecurityGaurdImpl.fromJson;
@@ -415,9 +455,13 @@ abstract class _AddVisitorBySecurityGaurd implements AddVisitorBySecurityGaurd {
   @override
   dynamic get status;
   @override
+  String? get warehouse_id;
+  @override
   DateTime? get created_at;
   @override
   dynamic get updated_at;
+  @override
+  String? get ticket_validity;
   @override
   @JsonKey(ignore: true)
   _$$AddVisitorBySecurityGaurdImplCopyWith<_$AddVisitorBySecurityGaurdImpl>

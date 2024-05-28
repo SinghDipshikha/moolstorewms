@@ -20,10 +20,12 @@ _$AddVisitorBySecurityGaurdImpl _$$AddVisitorBySecurityGaurdImplFromJson(
       in_out_status: json['in_out_status'] as String?,
       remarks: json['remarks'] as String?,
       status: json['status'],
+      warehouse_id: json['warehouse_id'] as String?,
       created_at: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),
       updated_at: json['updated_at'],
+      ticket_validity: json['ticket_validity'] as String?,
     );
 
 Map<String, dynamic> _$$AddVisitorBySecurityGaurdImplToJson(
@@ -40,6 +42,8 @@ Map<String, dynamic> _$$AddVisitorBySecurityGaurdImplToJson(
       'in_out_status': instance.in_out_status,
       'remarks': instance.remarks,
       'status': instance.status,
+      'warehouse_id': instance.warehouse_id,
       'created_at': instance.created_at?.toIso8601String(),
       'updated_at': instance.updated_at,
+      'ticket_validity': instance.ticket_validity,
     };

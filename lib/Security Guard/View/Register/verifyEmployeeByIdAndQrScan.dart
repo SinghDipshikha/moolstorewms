@@ -1,9 +1,12 @@
 //import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Register/qrViewScreen.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/registrationList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 //@RoutePage()
 class RegistrationTypeOptions extends StatefulWidget {
@@ -34,6 +37,10 @@ class _RegistrationTypeOptionsState extends State<RegistrationTypeOptions> {
           children: [
             const Gap(80),
             InkWell(
+              onTap: () {
+                Get.to(const QRCodeScannerScreen(),
+                    id: securityGuardNavigation);
+              },
               child: Container(
                 width: 317,
                 height: 75,
@@ -61,11 +68,7 @@ class _RegistrationTypeOptionsState extends State<RegistrationTypeOptions> {
                       ),
                     ),
                     InkWell(
-                      onTap: () {
-                        // Navigator.of(context).push(MaterialPageRoute(
-                        //   builder: (context) => QRScanScreen(),
-                        // ));
-                      },
+                      onTap: () {},
                       child: Container(
                         width: 40,
                         height: 40,
@@ -82,6 +85,8 @@ class _RegistrationTypeOptionsState extends State<RegistrationTypeOptions> {
                     ),
                   ],
                 ),
+           
+           
               ),
             ),
             const Gap(40),

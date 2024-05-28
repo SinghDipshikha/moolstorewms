@@ -1,56 +1,119 @@
-// import 'package:flutter/material.dart';
-// import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart';
+import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
+import 'package:qr_bar_code_scanner_dialog/qr_bar_code_scanner_dialog.dart';
 
-// class QRScanScreen extends StatefulWidget {
-//   @override
-//   State<StatefulWidget> createState() => _QRScanScreenState();
-// }
+import '../../../utils/globals.dart';
 
-// class _QRScanScreenState extends State<QRScanScreen> {
-//   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-//   late QRViewController controller;
-//   Barcode? result;
+void main() {
+  runApp(const QRCodeScannerScreen());
+}
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('QR Scanner'),
-//       ),
-//       body: Column(
-//         children: <Widget>[
-//           Expanded(
-//             flex: 5,
-//             child: QRView(
-//               key: qrKey,
-//               onQRViewCreated: _onQRViewCreated,
-//             ),
-//           ),
-//           Expanded(
-//             flex: 1,
-//             child: Center(
-//               child: (result != null)
-//                   ? Text('Result: ${result!.code}')
-//                   : Text('Scan a QR code'),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
+class QRCodeScannerScreen extends StatefulWidget {
+  const QRCodeScannerScreen({super.key});
 
-//   @override
-//   void dispose() {
-//     controller.dispose();
-//     super.dispose();
-//   }
+  @override
+  State<QRCodeScannerScreen> createState() => _QRCodeScannerScreenState();
+}
 
-//   void _onQRViewCreated(QRViewController controller) {
-//     this.controller = controller;
-//     controller.scannedDataStream.listen((scanData) {
-//       setState(() {
-//         result = scanData;
-//       });
-//     });
-//   }
-// }
+class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
+  final _qrBarCodeScannerDialogPlugin = QrBarCodeScannerDialog();
+  String? code;
+
+  @override
+  onInit() {
+    _qrBarCodeScannerDialogPlugin.getScannedQrBarCode(
+        context: context,
+        onCode: (code) {
+          setState(() {
+            this.code = code;
+          });
+        });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: CommonAppBar(
+          onTap: () {
+            Get.to(const RegistrationTypeOptions(),
+                id: securityGuardNavigation);
+            // Navigator.of(context).push(MaterialPageRoute(
+            //   builder: (context) => const SecurityGuardDashBoard(),
+            // ));
+          },
+          title: 'QR Scanner',
+          actions: const [],
+        ),
+        body: Builder(builder: (context) {
+          return Column(
+            children: [
+              const Gap(80),
+              Center(
+                child: InkWell(
+                  onTap: () {
+                    _qrBarCodeScannerDialogPlugin.getScannedQrBarCode(
+                        context: context,
+                        onCode: (code) {
+                          setState(() {
+                            this.code = code;
+                          });
+                        });
+                  },
+                  child: Container(
+                    width: 317,
+                    height: 75,
+                    decoration: ShapeDecoration(
+                      color: const Color(0xFF5A57FF),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(
+                              top: 15.0, left: 15.0, bottom: 15.0),
+                          child: Text(
+                            'QR Scanner',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontFamily: 'Nunito',
+                              fontWeight: FontWeight.w500,
+                              //height: 0,
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {},
+                          child: Container(
+                            width: 40,
+                            height: 40,
+                            decoration: ShapeDecoration(
+                              color: const Color(0xFF5A57FF),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5)),
+                              image: const DecorationImage(
+                                image: AssetImage("assets/icons/qr_icon.png"),
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          );
+        }),
+      ),
+    );
+  }
+}
