@@ -1,10 +1,11 @@
+import 'dart:async';
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/View/createShift.dart';
-import 'package:moolwmsstore/Hr/View/demo.dart';
 import 'package:moolwmsstore/Hr/View/shiftsAssignList.dart';
 import 'package:moolwmsstore/Hr/View/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
@@ -27,6 +28,23 @@ class _HrDashboardState extends State<HrDashboard> {
     'Shift3',
   ];
   String? selectedShift = 'Shift1';
+  @override
+  String _currentTime = '';
+  @override
+  
+  void onInit() {
+    super.initState();
+    _updateTime();
+    Timer.periodic(const Duration(seconds: 1), (Timer t) => _updateTime());
+  }
+
+  void _updateTime() {
+    final now = DateTime.now();
+    setState(() {
+      _currentTime = '${now.hour}:${now.minute}:${now.second}';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,7 +119,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                       fontFamily: 'SF Pro Text',
                                       fontWeight: FontWeight.w500,
                                       // //height: 0,
-                                      // letterSpacing: -0.80,
+                                      // letterSpacing: -0.--,
                                     ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -451,9 +469,7 @@ class _HrDashboardState extends State<HrDashboard> {
             children: [
               const Gap(20),
               InkWell(
-                onTap: () {
-                  Get.to(const DemoScreen(), id: hrNavigationKey);
-                },
+                onTap: () {},
                 child: Container(
                   width: 370,
                   decoration: ShapeDecoration(
@@ -500,14 +516,14 @@ class _HrDashboardState extends State<HrDashboard> {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
-                            child: const Row(
+                            child: Row(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  '09 : 41 AM',
-                                  style: TextStyle(
+                                  _currentTime,
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 22,
                                     fontFamily: 'SF Pro Display',
@@ -529,7 +545,7 @@ class _HrDashboardState extends State<HrDashboard> {
                             fontSize: 22,
                             fontFamily: 'SF Pro Display',
                             fontWeight: FontWeight.w400,
-                            height: 0.05,
+                          
                           ),
                         ),
                       ),
@@ -613,7 +629,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         ),
                                       ),
                                       Text(
-                                        '110',
+                                        '--',
                                         style: TextStyle(
                                           color: Color(0xFF918FFA),
                                           fontSize: 24,
@@ -654,7 +670,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         ),
                                       ),
                                       Text(
-                                        '80',
+                                        '--',
                                         style: TextStyle(
                                           color: Color(0xFF918FFA),
                                           fontSize: 24,
@@ -695,7 +711,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         ),
                                       ),
                                       Text(
-                                        '80',
+                                        '--',
                                         style: TextStyle(
                                           color: Color(0xFF918FFA),
                                           fontSize: 24,
@@ -801,7 +817,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         hintText: 'Select Gate',
                                       ),
                                       // Text(
-                                      //   '110',
+                                      //   '--',
                                       //   style: TextStyle(
                                       //     color: Colors.white,
                                       //     fontSize: 24,
@@ -842,7 +858,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         ),
                                       ),
                                       Text(
-                                        '80',
+                                        '--',
                                         style: TextStyle(
                                           color: Color(0xFF918FFA),
                                           fontSize: 24,
@@ -883,7 +899,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         ),
                                       ),
                                       Text(
-                                        '80',
+                                        '--',
                                         style: TextStyle(
                                           color: Color(0xFF918FFA),
                                           fontSize: 24,
@@ -978,7 +994,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         ),
                                       ),
                                       // Text(
-                                      //   '110',
+                                      //   '--',
                                       //   style: TextStyle(
                                       //     color: Colors.white,
                                       //     fontSize: 24,
@@ -1018,7 +1034,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         ),
                                       ),
                                       Text(
-                                        '80',
+                                        '--',
                                         style: TextStyle(
                                           color: Color(0xFF918FFA),
                                           fontSize: 24,
@@ -1058,7 +1074,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         ),
                                       ),
                                       Text(
-                                        '80',
+                                        '--',
                                         style: TextStyle(
                                           color: Color(0xFF918FFA),
                                           fontSize: 24,
@@ -1098,7 +1114,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         ),
                                       ),
                                       Text(
-                                        '80',
+                                        '--',
                                         style: TextStyle(
                                           color: Color(0xFF918FFA),
                                           fontSize: 24,
