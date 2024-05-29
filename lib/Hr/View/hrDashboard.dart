@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
-import 'package:moolwmsstore/Hr/View/createShift.dart';
-import 'package:moolwmsstore/Hr/View/demo.dart';
-import 'package:moolwmsstore/Hr/View/shiftsAssignList.dart';
-import 'package:moolwmsstore/Hr/View/staffList.dart';
+import 'package:moolwmsstore/Hr/View/Shfits/createShift.dart';
+import 'package:moolwmsstore/Hr/View/Staff/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonDropDown.dart';
 import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
@@ -27,6 +25,10 @@ class _HrDashboardState extends State<HrDashboard> {
     'Shift3',
   ];
   String? selectedShift = 'Shift1';
+  @override
+  @override
+  final String _currentTime = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,7 +103,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                       fontFamily: 'SF Pro Text',
                                       fontWeight: FontWeight.w500,
                                       // //height: 0,
-                                      // letterSpacing: -0.80,
+                                      // letterSpacing: -0.--,
                                     ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -241,13 +243,13 @@ class _HrDashboardState extends State<HrDashboard> {
                         Get.to(const CreateShiftScreen(), id: hrNavigationKey);
                       },
                     ),
-                    CurvedLineConatainer(
-                      title: "Shift List",
-                      isShowextendedLine: false,
-                      onTap: () {
-                        Get.to(const ShiftInfo(), id: hrNavigationKey);
-                      },
-                    ),
+                    // CurvedLineConatainer(
+                    //   title: "Shift List",
+                    //   isShowextendedLine: false,
+                    //   onTap: () {
+                    //     // Get.to(const ShiftInfo(), id: hrNavigationKey);
+                    //   },
+                    // ),
                   ],
                 ),
                 ListTile(
@@ -451,9 +453,7 @@ class _HrDashboardState extends State<HrDashboard> {
             children: [
               const Gap(20),
               InkWell(
-                onTap: () {
-                  Get.to(const DemoScreen(), id: hrNavigationKey);
-                },
+                onTap: () {},
                 child: Container(
                   width: 370,
                   decoration: ShapeDecoration(
@@ -529,7 +529,6 @@ class _HrDashboardState extends State<HrDashboard> {
                             fontSize: 22,
                             fontFamily: 'SF Pro Display',
                             fontWeight: FontWeight.w400,
-                            height: 0.05,
                           ),
                         ),
                       ),
@@ -613,7 +612,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         ),
                                       ),
                                       Text(
-                                        '110',
+                                        '--',
                                         style: TextStyle(
                                           color: Color(0xFF918FFA),
                                           fontSize: 24,
@@ -654,7 +653,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         ),
                                       ),
                                       Text(
-                                        '80',
+                                        '--',
                                         style: TextStyle(
                                           color: Color(0xFF918FFA),
                                           fontSize: 24,
@@ -695,7 +694,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         ),
                                       ),
                                       Text(
-                                        '80',
+                                        '--',
                                         style: TextStyle(
                                           color: Color(0xFF918FFA),
                                           fontSize: 24,
@@ -801,7 +800,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         hintText: 'Select Gate',
                                       ),
                                       // Text(
-                                      //   '110',
+                                      //   '--',
                                       //   style: TextStyle(
                                       //     color: Colors.white,
                                       //     fontSize: 24,
@@ -842,7 +841,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         ),
                                       ),
                                       Text(
-                                        '80',
+                                        '--',
                                         style: TextStyle(
                                           color: Color(0xFF918FFA),
                                           fontSize: 24,
@@ -883,7 +882,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         ),
                                       ),
                                       Text(
-                                        '80',
+                                        '--',
                                         style: TextStyle(
                                           color: Color(0xFF918FFA),
                                           fontSize: 24,
@@ -978,7 +977,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         ),
                                       ),
                                       // Text(
-                                      //   '110',
+                                      //   '--',
                                       //   style: TextStyle(
                                       //     color: Colors.white,
                                       //     fontSize: 24,
@@ -1018,7 +1017,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         ),
                                       ),
                                       Text(
-                                        '80',
+                                        '--',
                                         style: TextStyle(
                                           color: Color(0xFF918FFA),
                                           fontSize: 24,
@@ -1058,7 +1057,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         ),
                                       ),
                                       Text(
-                                        '80',
+                                        '--',
                                         style: TextStyle(
                                           color: Color(0xFF918FFA),
                                           fontSize: 24,
@@ -1098,7 +1097,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         ),
                                       ),
                                       Text(
-                                        '80',
+                                        '--',
                                         style: TextStyle(
                                           color: Color(0xFF918FFA),
                                           fontSize: 24,

@@ -7,7 +7,7 @@ import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/Model/personaldetailsResponse.dart';
-import 'package:moolwmsstore/Hr/View/staffList.dart';
+import 'package:moolwmsstore/Hr/View/Staff/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';

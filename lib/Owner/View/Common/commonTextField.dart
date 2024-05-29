@@ -82,6 +82,7 @@ class CommonTextField extends StatelessWidget {
           inputFormatters: inputFormatters,
           obscureText: obscureText ?? false,
           decoration: InputDecoration(
+            counterStyle: const TextStyle(color: Colors.black),
             alignLabelWithHint: true,
             contentPadding: const EdgeInsets.only(left: 8),
             filled: true,

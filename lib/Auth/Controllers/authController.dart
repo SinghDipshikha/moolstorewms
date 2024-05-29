@@ -244,6 +244,7 @@ class AuthController extends GetxController {
       {required String pan,
       required String email,
       required String company_name,
+      required String company_address,
       required String name}) {
     loading = true;
     update();
@@ -251,7 +252,7 @@ class AuthController extends GetxController {
       "pan_card": pan,
       "email": email,
       "phone_number": number,
-      "company_address": "",
+      "company_address": company_address,
       "company_name": company_name,
       "name": name
     }).then((value) async {
@@ -273,7 +274,6 @@ class AuthController extends GetxController {
       } else if (value.data["message"] == "Failed to add") {
         loading = false;
         update();
-        Snacks.redSnack("Failed to add");
       }
     });
     /* 

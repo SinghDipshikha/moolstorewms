@@ -1,12 +1,11 @@
-import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
-import 'package:moolwmsstore/Owner/View/Common/customButton.dart';
+import 'package:moolwmsstore/Owner/View/Common/ownerCommon.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
-import 'package:moolwmsstore/View/common/myTextField.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 
 class AddEmployee extends StatelessWidget {
@@ -50,18 +49,9 @@ class AddEmployee extends StatelessWidget {
             child: ListView(
               //   crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Employee Name',
-                  style: TextStyle(
-                    color: Color(0xFF595959),
-                    fontSize: 16,
-                    fontFamily: 'SF Pro Display',
-                    fontWeight: FontWeight.w400,
-                    //height: 0,
-                  ),
-                ),
                 const Gap(4),
-                MyTextField(
+                CommonTextField(
+                  labelText: 'Employee Name',
                   validator: (val) {
                     if (val == null || val.isEmpty) {
                       {
@@ -75,53 +65,47 @@ class AddEmployee extends StatelessWidget {
                   textCapitalization: TextCapitalization.words,
                 ),
                 const Gap(12),
-                const Text(
-                  'Mobile Number',
-                  style: TextStyle(
-                    color: Color(0xFF595959),
-                    fontSize: 16,
-                    fontFamily: 'SF Pro Display',
-                    fontWeight: FontWeight.w400,
-                    //height: 0,
-                  ),
-                ),
-                const Gap(4),
-                MyTextField(
+
+                CommonTextField(
+                  keyboardType: TextInputType.phone,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                  ],
+                  maxLength: 10,
+                  labelText: 'Mobile Number',
                   validator: (val) {
                     if (val == null || val.isEmpty) {
                       {
+                        if (val!.length < 10) {
+                          return 'Please enter valid Phone Number.';
+                        }
                         return "required";
                       }
                     } else {
                       return null;
                     }
                   },
-                  keyboardType: TextInputType.number,
-                  prefixIcon: CountryCodePicker(
-                    padding: EdgeInsets.zero,
-                    onChanged: (x) {
-                      if (x.code != null) {
-                        ownerController.countrydialCode = x.dialCode!;
-                      }
-                    },
-                    initialSelection: 'IN',
-                    favorite: const ['+91', 'IN'],
-
-                    showCountryOnly: true,
-                    // showOnlyCountryWhenClosed: true,
-                    alignLeft: false,
-                  ),
+                  prefixIcon: Image.asset(
+                    "assets/icons/india.png",
+                    height: 6,
+                  ).paddingAll(12),
                   controller: mobile,
                 ),
-                const Gap(12),
-                const Text(
-                  'Designation',
-                  style: TextStyle(
-                    color: Color(0xFF595959),
-                    fontSize: 16,
-                    fontFamily: 'SF Pro Display',
-                    fontWeight: FontWeight.w400,
-                    //height: 0,
+                const Gap(16),
+
+                const Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Designation',
+                        style: TextStyle(
+                          color: Color(0xFF595959),
+                          fontSize: 16,
+                          fontFamily: 'SF Pro Display',
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 // if (showError == true && ownerController.selectedRoles.isEmpty)
@@ -146,7 +130,6 @@ class AddEmployee extends StatelessWidget {
                               (index) {
                             return Container(
                               height: 40,
-                              width: 260,
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 10, vertical: 2),
                               decoration: BoxDecoration(
@@ -241,23 +224,29 @@ class AddEmployee extends StatelessWidget {
                               ),
                             );
                           }),
-                        ).paddingSymmetric(horizontal: 12);
+                        );
                       }
                       return const SpinKitRipple(
                         color: Color(0xFF5A57FF),
                       );
                     }),
                 const Gap(14),
-                const Text(
-                  'Select Warehouse',
-                  style: TextStyle(
-                    color: Color(0xFF595959),
-                    fontSize: 16,
-                    fontFamily: 'SF Pro Display',
-                    fontWeight: FontWeight.w400,
-                    //height: 0,
+                const Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Select Warehouse',
+                        style: TextStyle(
+                          color: Color(0xFF595959),
+                          fontSize: 16,
+                          fontFamily: 'SF Pro Display',
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
+
                 // if (showError == true &&
                 //     ownerController.selectedWarehouses.isEmpty)
                 //   const Text(
@@ -293,7 +282,6 @@ class AddEmployee extends StatelessWidget {
                           },
                           child: Container(
                             height: 40,
-                            width: 260,
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 2),
                             decoration: BoxDecoration(
@@ -377,7 +365,7 @@ class AddEmployee extends StatelessWidget {
                           ),
                         );
                       }),
-                    ).paddingSymmetric(horizontal: 12);
+                    );
                   }
                   return const SpinKitRipple(
                     color: Color(0xFF5A57FF),

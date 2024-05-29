@@ -14,12 +14,13 @@ import 'package:moolwmsstore/Hr/Model/educationDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/personalDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/personaldetailsResponse.dart';
 import 'package:moolwmsstore/Hr/Model/referralDetailsRequest.dart';
+import 'package:moolwmsstore/Hr/Model/shiftDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/staff.dart';
-import 'package:moolwmsstore/Hr/View/addEmployeeBankDetails.dart';
-import 'package:moolwmsstore/Hr/View/addEmployeeCareerDetails.dart';
-import 'package:moolwmsstore/Hr/View/addEmployeeEducationQualificationDetails.dart';
-import 'package:moolwmsstore/Hr/View/addEmployeeReferralDetails.dart';
-import 'package:moolwmsstore/Hr/View/addedStaffScreen.dart';
+import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeBankDetails.dart';
+import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeCareerDetails.dart';
+import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeEducationQualificationDetails.dart';
+import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeReferralDetails.dart';
+import 'package:moolwmsstore/Hr/View/Staff/addedStaffScreen.dart';
 import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
 import 'package:moolwmsstore/Owner/Model/addWarehouse.dart';
 import 'package:moolwmsstore/Sales/Sales.dart';
@@ -50,6 +51,7 @@ class HRController extends GetxController {
   BankDetailsRequest addBankDetailsRequestModel = const BankDetailsRequest();
   CareerDetailsRequest addCareerDetailsRequestModel =
       const CareerDetailsRequest();
+  ShiftDetailsRequest addShiftDetailsRequestModel = const ShiftDetailsRequest();
   List<StaffEntry> employees = [];
   List<PersonalDetailsResponse> getPersonalDetailsList = [];
   List<AddCareerDetail> getCareerDetailsList = [];
@@ -315,14 +317,15 @@ class HRController extends GetxController {
   }
 
   ////////////////Add Shift//////////////
-  addShift() async {
+
+  addShiftDetails() async {
     isLoading = true;
     update();
     await apiClient
         .postData("hr/addShift", addBankDetailsRequestModel.toJson())
         .then((value) {
-      if (value.data["message"] == "Data Retrieved Successfully!") {
-        addBankDetailsRequestModel = const BankDetailsRequest();
+      if (value.data["message"] == "Shift 2 added successfully!") {
+        addShiftDetailsRequestModel = const ShiftDetailsRequest();
         Snacks.greenSnack("Shift Added Successfully");
 
         isLoading = false;
