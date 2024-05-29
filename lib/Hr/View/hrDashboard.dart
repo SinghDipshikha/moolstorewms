@@ -1,13 +1,10 @@
-import 'dart:async';
-
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
-import 'package:moolwmsstore/Hr/View/createShift.dart';
-import 'package:moolwmsstore/Hr/View/shiftsAssignList.dart';
-import 'package:moolwmsstore/Hr/View/staffList.dart';
+import 'package:moolwmsstore/Hr/View/Shfits/createShift.dart';
+import 'package:moolwmsstore/Hr/View/Staff/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonDropDown.dart';
 import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
@@ -29,21 +26,8 @@ class _HrDashboardState extends State<HrDashboard> {
   ];
   String? selectedShift = 'Shift1';
   @override
-  String _currentTime = '';
   @override
-  
-  void onInit() {
-    super.initState();
-    _updateTime();
-    Timer.periodic(const Duration(seconds: 1), (Timer t) => _updateTime());
-  }
-
-  void _updateTime() {
-    final now = DateTime.now();
-    setState(() {
-      _currentTime = '${now.hour}:${now.minute}:${now.second}';
-    });
-  }
+  final String _currentTime = '';
 
   @override
   Widget build(BuildContext context) {
@@ -259,13 +243,13 @@ class _HrDashboardState extends State<HrDashboard> {
                         Get.to(const CreateShiftScreen(), id: hrNavigationKey);
                       },
                     ),
-                    CurvedLineConatainer(
-                      title: "Shift List",
-                      isShowextendedLine: false,
-                      onTap: () {
-                        Get.to(const ShiftInfo(), id: hrNavigationKey);
-                      },
-                    ),
+                    // CurvedLineConatainer(
+                    //   title: "Shift List",
+                    //   isShowextendedLine: false,
+                    //   onTap: () {
+                    //     // Get.to(const ShiftInfo(), id: hrNavigationKey);
+                    //   },
+                    // ),
                   ],
                 ),
                 ListTile(
@@ -516,14 +500,14 @@ class _HrDashboardState extends State<HrDashboard> {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
-                            child: Row(
+                            child: const Row(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  _currentTime,
-                                  style: const TextStyle(
+                                  '09 : 41 AM',
+                                  style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 22,
                                     fontFamily: 'SF Pro Display',
@@ -545,7 +529,6 @@ class _HrDashboardState extends State<HrDashboard> {
                             fontSize: 22,
                             fontFamily: 'SF Pro Display',
                             fontWeight: FontWeight.w400,
-                          
                           ),
                         ),
                       ),

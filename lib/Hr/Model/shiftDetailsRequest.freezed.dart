@@ -21,10 +21,10 @@ ShiftDetailsRequest _$ShiftDetailsRequestFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ShiftDetailsRequest {
   int? get id => throw _privateConstructorUsedError;
-  String? get added_by => throw _privateConstructorUsedError;
+  int? get added_by => throw _privateConstructorUsedError;
   String? get shift_name => throw _privateConstructorUsedError;
-  DateTime? get shift_check_in => throw _privateConstructorUsedError;
-  DateTime? get shift_check_out => throw _privateConstructorUsedError;
+  String? get shift_check_in => throw _privateConstructorUsedError;
+  String? get shift_check_out => throw _privateConstructorUsedError;
   String? get warehouse_id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,10 +41,10 @@ abstract class $ShiftDetailsRequestCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
-      String? added_by,
+      int? added_by,
       String? shift_name,
-      DateTime? shift_check_in,
-      DateTime? shift_check_out,
+      String? shift_check_in,
+      String? shift_check_out,
       String? warehouse_id});
 }
 
@@ -76,7 +76,7 @@ class _$ShiftDetailsRequestCopyWithImpl<$Res, $Val extends ShiftDetailsRequest>
       added_by: freezed == added_by
           ? _value.added_by
           : added_by // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       shift_name: freezed == shift_name
           ? _value.shift_name
           : shift_name // ignore: cast_nullable_to_non_nullable
@@ -84,11 +84,11 @@ class _$ShiftDetailsRequestCopyWithImpl<$Res, $Val extends ShiftDetailsRequest>
       shift_check_in: freezed == shift_check_in
           ? _value.shift_check_in
           : shift_check_in // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       shift_check_out: freezed == shift_check_out
           ? _value.shift_check_out
           : shift_check_out // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       warehouse_id: freezed == warehouse_id
           ? _value.warehouse_id
           : warehouse_id // ignore: cast_nullable_to_non_nullable
@@ -107,10 +107,10 @@ abstract class _$$ShiftDetailsRequestImplCopyWith<$Res>
   @useResult
   $Res call(
       {int? id,
-      String? added_by,
+      int? added_by,
       String? shift_name,
-      DateTime? shift_check_in,
-      DateTime? shift_check_out,
+      String? shift_check_in,
+      String? shift_check_out,
       String? warehouse_id});
 }
 
@@ -140,7 +140,7 @@ class __$$ShiftDetailsRequestImplCopyWithImpl<$Res>
       added_by: freezed == added_by
           ? _value.added_by
           : added_by // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       shift_name: freezed == shift_name
           ? _value.shift_name
           : shift_name // ignore: cast_nullable_to_non_nullable
@@ -148,11 +148,11 @@ class __$$ShiftDetailsRequestImplCopyWithImpl<$Res>
       shift_check_in: freezed == shift_check_in
           ? _value.shift_check_in
           : shift_check_in // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       shift_check_out: freezed == shift_check_out
           ? _value.shift_check_out
           : shift_check_out // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       warehouse_id: freezed == warehouse_id
           ? _value.warehouse_id
           : warehouse_id // ignore: cast_nullable_to_non_nullable
@@ -178,13 +178,13 @@ class _$ShiftDetailsRequestImpl implements _ShiftDetailsRequest {
   @override
   final int? id;
   @override
-  final String? added_by;
+  final int? added_by;
   @override
   final String? shift_name;
   @override
-  final DateTime? shift_check_in;
+  final String? shift_check_in;
   @override
-  final DateTime? shift_check_out;
+  final String? shift_check_out;
   @override
   final String? warehouse_id;
 
@@ -234,10 +234,10 @@ class _$ShiftDetailsRequestImpl implements _ShiftDetailsRequest {
 abstract class _ShiftDetailsRequest implements ShiftDetailsRequest {
   const factory _ShiftDetailsRequest(
       {final int? id,
-      final String? added_by,
+      final int? added_by,
       final String? shift_name,
-      final DateTime? shift_check_in,
-      final DateTime? shift_check_out,
+      final String? shift_check_in,
+      final String? shift_check_out,
       final String? warehouse_id}) = _$ShiftDetailsRequestImpl;
 
   factory _ShiftDetailsRequest.fromJson(Map<String, dynamic> json) =
@@ -246,13 +246,13 @@ abstract class _ShiftDetailsRequest implements ShiftDetailsRequest {
   @override
   int? get id;
   @override
-  String? get added_by;
+  int? get added_by;
   @override
   String? get shift_name;
   @override
-  DateTime? get shift_check_in;
+  String? get shift_check_in;
   @override
-  DateTime? get shift_check_out;
+  String? get shift_check_out;
   @override
   String? get warehouse_id;
   @override

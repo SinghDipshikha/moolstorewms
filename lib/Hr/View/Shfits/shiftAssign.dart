@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Hr/View/shiftsAssignList.dart';
+import 'package:moolwmsstore/Hr/View/Shfits/shiftsAssignList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonDropDown.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/utils/globals.dart';
@@ -29,7 +29,7 @@ class _AssignShiftState extends State<AssignShift> {
       appBar: CommonAppBar(
         title: 'Assign Shift',
         onTap: () {
-          Get.to(const ShiftInfo(), id: hrNavigationKey);
+          // Get.to(const ShiftInfo(), id: hrNavigationKey);
         },
       ),
       body: Column(

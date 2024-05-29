@@ -6,7 +6,7 @@ part 'addShiftDetails.g.dart';
 @freezed
 class AddShiftDetails with _$AddShiftDetails {
   const factory AddShiftDetails({
-     int ?id,
+    int ?id,
     int ?added_by,
     String? shift_name,
     String? shift_check_in,

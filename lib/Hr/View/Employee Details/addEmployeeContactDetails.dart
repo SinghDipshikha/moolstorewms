@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Hr/View/addEmployeeCareerDetails.dart';
-import 'package:moolwmsstore/Hr/View/staffList.dart';
+import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeCareerDetails.dart';
+import 'package:moolwmsstore/Hr/View/Staff/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonDropDown.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
