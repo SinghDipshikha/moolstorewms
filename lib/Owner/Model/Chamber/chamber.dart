@@ -47,6 +47,7 @@ class Chamber with _$Chamber {
     int? user_id,
     String? stacking_level,
     int? pallate_count,
+    int? is_layout,
     String? warehouse_name,
   }) = _Chamber;
 

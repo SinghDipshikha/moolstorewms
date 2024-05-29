@@ -54,6 +54,7 @@ _$ChamberImpl _$$ChamberImplFromJson(Map<String, dynamic> json) =>
       user_id: (json['user_id'] as num?)?.toInt(),
       stacking_level: json['stacking_level'] as String?,
       pallate_count: (json['pallate_count'] as num?)?.toInt(),
+      is_layout: (json['is_layout'] as num?)?.toInt(),
       warehouse_name: json['warehouse_name'] as String?,
     );
 
@@ -100,5 +101,6 @@ Map<String, dynamic> _$$ChamberImplToJson(_$ChamberImpl instance) =>
       'user_id': instance.user_id,
       'stacking_level': instance.stacking_level,
       'pallate_count': instance.pallate_count,
+      'is_layout': instance.is_layout,
       'warehouse_name': instance.warehouse_name,
     };
