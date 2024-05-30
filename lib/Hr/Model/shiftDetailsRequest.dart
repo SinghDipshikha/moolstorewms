@@ -11,7 +11,7 @@ class ShiftDetailsRequest with _$ShiftDetailsRequest {
     String? shift_name,
     String? shift_check_in,
     String? shift_check_out,
-    String? warehouse_id,
+    int? warehouse_id,
   }) = _ShiftDetailsRequest;
 
   factory ShiftDetailsRequest.fromJson(Map<String, Object?> json) =>

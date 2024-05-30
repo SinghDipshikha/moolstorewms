@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
@@ -8,6 +9,7 @@ import 'package:moolwmsstore/Hr/Model/addBankDetails.dart';
 import 'package:moolwmsstore/Hr/Model/addCareerDetail.dart';
 import 'package:moolwmsstore/Hr/Model/addEducationDetails.dart';
 import 'package:moolwmsstore/Hr/Model/addReferralDetails.dart';
+import 'package:moolwmsstore/Hr/Model/addShiftDetails.dart';
 import 'package:moolwmsstore/Hr/Model/bankDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/careerDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/educationDetailsRequest.dart';
@@ -27,6 +29,7 @@ import 'package:moolwmsstore/Sales/Sales.dart';
 import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/globals.dart';
+import 'package:restart_app/restart_app.dart';
 
 class HRController extends GetxController {
   final HrRepo hrRepo;
@@ -59,15 +62,23 @@ class HRController extends GetxController {
   List<AddReferralDetail> getReferralDetailsList = [];
   List<AddBankDetails> getBankDetailsList = [];
   AddWarehouse? warehouse;
-
-  // void addCareerDetails() {
-  //   hrRepo.addCareerDetails(
-  //       userID: user.id, ownerID: 2, carrierDetails: carrierDetails);
-  // }
+  List dashboardWarehouses = [];
+  List<AddShiftDetails> getShiftData = [];
+  Map? selectedWarehouse;
 
   List<Widget> navigationAccordingStatus = [
     const AddedStaffScreen(),
   ];
+  @override
+  void onInit() {
+    dashboardWarehouses.addAll(user.warehouse!.toList());
+    dashboardWarehouses.add({
+      "id": "",
+      "warehouse_name": "All Warehouses",
+    });
+
+    super.onInit();
+  }
 
   switchRole(String role) {
     if (role == "security-guard") {
@@ -79,6 +90,12 @@ class HRController extends GetxController {
     if (role == "sales") {
       Get.offAll(const Sales());
     }
+  }
+
+  changeCreateShiftWarehouse({required Map warehouse}) {
+    selectedWarehouse = warehouse;
+
+    Logger().i(selectedWarehouse);
   }
 
   getAllStaffList() {
@@ -322,15 +339,30 @@ class HRController extends GetxController {
     isLoading = true;
     update();
     await apiClient
-        .postData("hr/addShift", addBankDetailsRequestModel.toJson())
+        .postData("hr/addShift", addShiftDetailsRequestModel.toJson())
         .then((value) {
-      if (value.data["message"] == "Shift 2 added successfully!") {
+      String shiftName = getShiftData.isNotEmpty
+          ? getShiftData[0].shift_name!
+          : 'Unknown Shift';
+      if (value.data["message"] == "$shiftName added successfully!") {
         addShiftDetailsRequestModel = const ShiftDetailsRequest();
-        Snacks.greenSnack("Shift Added Successfully");
+
+    
+        getShiftData = (value.data["result"] as List).map((e) => AddShiftDetails.fromJson(e)).toList();
+
+        Snacks.greenSnack("Shift '$shiftName' Added Successfully");
 
         isLoading = false;
         update();
       }
     });
+  }
+
+  hrLogout() async {
+    var box = await Hive.openBox('authbox');
+    Get.find<HRController>().dispose();
+
+    box.clear();
+    Restart.restartApp();
   }
 }

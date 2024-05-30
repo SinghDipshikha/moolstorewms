@@ -25,7 +25,7 @@ mixin _$ShiftDetailsRequest {
   String? get shift_name => throw _privateConstructorUsedError;
   String? get shift_check_in => throw _privateConstructorUsedError;
   String? get shift_check_out => throw _privateConstructorUsedError;
-  String? get warehouse_id => throw _privateConstructorUsedError;
+  int? get warehouse_id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +45,7 @@ abstract class $ShiftDetailsRequestCopyWith<$Res> {
       String? shift_name,
       String? shift_check_in,
       String? shift_check_out,
-      String? warehouse_id});
+      int? warehouse_id});
 }
 
 /// @nodoc
@@ -92,7 +92,7 @@ class _$ShiftDetailsRequestCopyWithImpl<$Res, $Val extends ShiftDetailsRequest>
       warehouse_id: freezed == warehouse_id
           ? _value.warehouse_id
           : warehouse_id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
     ) as $Val);
   }
 }
@@ -111,7 +111,7 @@ abstract class _$$ShiftDetailsRequestImplCopyWith<$Res>
       String? shift_name,
       String? shift_check_in,
       String? shift_check_out,
-      String? warehouse_id});
+      int? warehouse_id});
 }
 
 /// @nodoc
@@ -156,7 +156,7 @@ class __$$ShiftDetailsRequestImplCopyWithImpl<$Res>
       warehouse_id: freezed == warehouse_id
           ? _value.warehouse_id
           : warehouse_id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
     ));
   }
 }
@@ -186,7 +186,7 @@ class _$ShiftDetailsRequestImpl implements _ShiftDetailsRequest {
   @override
   final String? shift_check_out;
   @override
-  final String? warehouse_id;
+  final int? warehouse_id;
 
   @override
   String toString() {
@@ -238,7 +238,7 @@ abstract class _ShiftDetailsRequest implements ShiftDetailsRequest {
       final String? shift_name,
       final String? shift_check_in,
       final String? shift_check_out,
-      final String? warehouse_id}) = _$ShiftDetailsRequestImpl;
+      final int? warehouse_id}) = _$ShiftDetailsRequestImpl;
 
   factory _ShiftDetailsRequest.fromJson(Map<String, dynamic> json) =
       _$ShiftDetailsRequestImpl.fromJson;
@@ -254,7 +254,7 @@ abstract class _ShiftDetailsRequest implements ShiftDetailsRequest {
   @override
   String? get shift_check_out;
   @override
-  String? get warehouse_id;
+  int? get warehouse_id;
   @override
   @JsonKey(ignore: true)
   _$$ShiftDetailsRequestImplCopyWith<_$ShiftDetailsRequestImpl> get copyWith =>
