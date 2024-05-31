@@ -173,11 +173,16 @@ class _AddEmployeePersonalDetailsState
   Widget build(BuildContext context) {
     return GetBuilder<HRController>(builder: (hrController) {
       return Scaffold(
-        appBar: CommonAppBar(
-          title: 'Personal Details',
-          onTap: () {
-            Get.to(const HrEmployeeList(), id: hrNavigationKey);
-          },
+        appBar: AppBar(
+          title: const Text(
+            'Personal Details',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: CustomFloatingActionButton(

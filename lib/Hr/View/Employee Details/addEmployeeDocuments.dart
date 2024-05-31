@@ -31,11 +31,17 @@ class _AddEmployeeDocumentsDetailsState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(
-          title: 'Documents',
-          onTap: () {
-            Get.to(const HrEmployeeList(), id: hrNavigationKey);
-          }),
+      appBar: AppBar(
+          title: const Text(
+            'Documents',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: CustomFloatingActionButton(
         title: 'Submit',

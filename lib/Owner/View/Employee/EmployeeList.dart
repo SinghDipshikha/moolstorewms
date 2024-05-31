@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
 import 'package:moolwmsstore/Owner/View/Common/customButton.dart';
+import 'package:moolwmsstore/Owner/View/Employee/AddEmployee.dart';
 import 'package:moolwmsstore/Owner/View/Employee/viewEmployee.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
@@ -226,7 +227,9 @@ class EmployeeList extends StatelessWidget {
                       ).paddingSymmetric(vertical: 4);
                     })),
             CustomButton(
-              onTap: () {},
+              onTap: () {
+                  Get.off(AddEmployee(), id: ownerNavigationKey);
+              },
               title: 'Add New Staff',
             ).paddingSymmetric(vertical: 12)
           ],

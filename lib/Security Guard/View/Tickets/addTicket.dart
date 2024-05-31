@@ -72,12 +72,17 @@ class _AddTicketScreenState extends State<AddTicketScreen> {
                 },
               );
       }),
-      appBar: CommonAppBar(
-        title: 'Add Ticket',
-        onTap: () {
-          Get.to(const SecurityGuardDashBoard(), id: securityGuardNavigation);
-        },
-      ),
+      appBar: AppBar(
+          title: const Text(
+            'Add Ticket',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(

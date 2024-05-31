@@ -21,15 +21,17 @@ class _RegistrationTypeOptionsState extends State<RegistrationTypeOptions> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(
-        title: 'My Screen',
-        actions: const [],
-        onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const RegistrationListScreen(),
-          ));
-        },
-      ),
+      appBar: AppBar(
+          title: const Text(
+            'My Screen',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

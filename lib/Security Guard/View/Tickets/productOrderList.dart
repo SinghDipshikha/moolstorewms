@@ -32,10 +32,17 @@ class _ProductListScreenState extends State<ProductListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(
-        title: 'Tickets List',
-        actions: const [],
-      ),
+      appBar: AppBar(
+          title: const Text(
+            'Ticket List',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

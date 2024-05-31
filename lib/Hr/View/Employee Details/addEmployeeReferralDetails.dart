@@ -42,10 +42,17 @@ class _AddEmployeeReferralDetailsState
       return Form(
         key: _formKey,
         child: Scaffold(
-          appBar: CommonAppBar(
-            title: 'Referral Details',
-            onTap: () {},
+         appBar: AppBar(
+          title: const Text(
+            'Referral Details',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w500,
+            ),
           ),
+        ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: CustomFloatingActionButton(

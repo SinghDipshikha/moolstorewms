@@ -36,15 +36,17 @@ class _MaterialListScreenState extends State<MaterialListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(
-        onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const SecurityGuardDashBoard(),
-          ));
-        },
-        title: 'Material List',
-        actions: const [],
-      ),
+      appBar: AppBar(
+          title: const Text(
+            'Material List',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

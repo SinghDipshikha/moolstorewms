@@ -13,8 +13,8 @@ import 'package:path_provider/path_provider.dart' as path_provider;
 import 'helper/get_di.dart' as di;
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-//  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  //FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   if (kIsWeb) {
     await Hive.initFlutter();
   } else {
@@ -51,6 +51,7 @@ class _DipshikaAppState extends State<DipshikaApp> {
         data: MediaQuery.of(context)
             .copyWith(textScaler: const TextScaler.linear(0.9)),
         child: GetMaterialApp(
+          // home: ViewVisitor(visitor: null),
           home: const Auth(),
           debugShowCheckedModeBanner: false,
           locale: localizeController.locale,

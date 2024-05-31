@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
@@ -25,6 +25,7 @@ import 'package:moolwmsstore/Security%20Guard/repository/securityGuardRepo.dart'
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/utils/globals.dart';
+import 'package:restart_app/restart_app.dart';
 
 class SecurityGuardController extends GetxController {
   final SecurityGuardRepo secGaurdRepo;
@@ -47,11 +48,11 @@ class SecurityGuardController extends GetxController {
   List<PersonCount> allPersonCount = [];
   List<VisitorCount> allVisitorCount = [];
   List<Person> allPersonList = [];
-  List dashboardWarehouses = [];
+
   bool? isCheckIn;
   User user;
   bool isloading = false;
-  Map? selectedDashboardWarehouse;
+
   int? materialCountIn;
   int? materialCountOut;
   bool isGetMaterialCountLoading = true;
@@ -77,9 +78,8 @@ class SecurityGuardController extends GetxController {
   }
 
   changeDashBoardWarehouse({required Map warehouse}) {
-    selectedDashboardWarehouse = warehouse;
+    currentlySelectedWarehouse = warehouse;
 
-    Logger().i(selectedDashboardWarehouse);
     getMaterialCount();
     getVehicleCount();
     getVisitorCount();
@@ -94,12 +94,9 @@ class SecurityGuardController extends GetxController {
 
   @override
   void onInit() {
-    dashboardWarehouses.addAll(user.warehouse!.toList());
-    dashboardWarehouses.add({
-      "id": "",
-      "warehouse_name": "All Warehouses",
-    });
-   getMaterialCount();
+    currentlySelectedWarehouse = user.warehouse![0];
+
+    getMaterialCount();
     getVehicleCount();
     getVisitorCount();
     getPersonCount();
@@ -107,6 +104,7 @@ class SecurityGuardController extends GetxController {
     super.onInit();
   }
 
+  Map? currentlySelectedWarehouse;
   void verifyEmployee() {
     secGaurdRepo
         .verifyEmployee(empId: 2, daterTime: DateTime.now(), gateId: 1)
@@ -212,7 +210,7 @@ class SecurityGuardController extends GetxController {
     }
   }
 
-   AddVisitorBySecurityGaurd addVisitorModel = const AddVisitorBySecurityGaurd();
+  AddVisitorBySecurityGaurd addVisitorModel = const AddVisitorBySecurityGaurd();
   addVistor() async {
     isCheckIn = true;
     update();
@@ -230,8 +228,9 @@ class SecurityGuardController extends GetxController {
     isGetPersonCountLoading = false;
     update();
   }
-    bool imageUploading = false;
- Future<String?> uploadImage(XFile file) async {
+
+  bool imageUploading = false;
+  Future<String?> uploadImage(XFile file) async {
     imageUploading = true;
     update();
     String? x = await apiClient.uploadImage(file);
@@ -239,22 +238,23 @@ class SecurityGuardController extends GetxController {
     update();
     return x;
   }
-  void getAllVisitorList() {
-    apiClient.postData(
-        "visitor/getAllVisitors?recordsPerPage=8&next=1", {}).then((value) {
-      if (value.data["message"] == "Visitor details fetched Successfully!") {
-        Snacks.greenSnack("Visitor details fetched Successfully!");
-        List x = value.data["result"];
-        allVisitorList = x.map((e) => Visitor.fromJson(e)).toList();
-        print(allVisitorList);
-        isloading = false;
-        update();
-      } else {
-        isloading = false;
-        update();
-      }
-    });
-  }
+
+  // void getAllVisitorList() {
+  //   apiClient.postData(
+  //       "visitor/getAllVisitors?recordsPerPage=8&next=1", {}).then((value) {
+  //     if (value.data["message"] == "Visitor details fetched Successfully!") {
+  //       Snacks.greenSnack("Visitor details fetched Successfully!");
+  //       List x = value.data["result"];
+  //       allVisitorList = x.map((e) => Visitor.fromJson(e)).toList();
+  //       print(allVisitorList);
+  //       isloading = false;
+  //       update();
+  //     } else {
+  //       isloading = false;
+  //       update();
+  //     }
+  //   });
+  // }
 
   List<Ticket> tickets = [];
   void getAllTicketList() {
@@ -410,7 +410,7 @@ class SecurityGuardController extends GetxController {
   getMaterialCount() async {
     isGetMaterialCountLoading = true;
     String afterUrl =
-        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}";
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!["warehouse_id"]}";
     await apiClient.getData("material/materialCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         materialCountIn = value.data["result"]["count_in"];
@@ -424,7 +424,7 @@ class SecurityGuardController extends GetxController {
   getVehicleCount() async {
     isGetVehicleCountLoading = true;
     String afterUrl =
-        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}";
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!["warehouse_id"]}";
     await apiClient.getData("vehicle/vehicalCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         vehicleCountIn = value.data["result"]["count_in"];
@@ -438,7 +438,7 @@ class SecurityGuardController extends GetxController {
   getVisitorCount() async {
     isGetVisitorCountLoading = true;
     String afterUrl =
-        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}";
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!["warehouse_id"]}";
     await apiClient.getData("visitor/visitorCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         visitorCountIn = value.data["result"]["count_in"];
@@ -452,7 +452,7 @@ class SecurityGuardController extends GetxController {
   getPersonCount() async {
     isGetPersonCountLoading = true;
     String afterUrl =
-        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}";
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!["warehouse_id"]}";
     await apiClient.getData("person/personCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         personCountIn = value.data["result"]["count_in"];
@@ -463,6 +463,29 @@ class SecurityGuardController extends GetxController {
     });
   }
 
+  updateProfilePic(XFile file) {
+    apiClient.uploadImage(file).then((v) {
+      if (v != null) {
+        apiClient.postData("avtar/addAvtar",
+            {"user_id": user.id, "profile": v}).then((v2) async {
+          if (v2.data["result"] == "Users Avatar add successfully") {
+            Snacks.greenSnack("Profile Pic updated successfully");
+            var box = await Hive.openBox('authbox');
+            user = user.copyWith(avatar: v);
+            update();
 
+            box.put("user", user);
+          }
+        });
+      }
+    });
+  }
 
+  logout() async {
+    var box = await Hive.openBox('authbox');
+    Get.find<SecurityGuardController>().dispose();
+
+    box.clear();
+    Restart.restartApp();
+  }
 }

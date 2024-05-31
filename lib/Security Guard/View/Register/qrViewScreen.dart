@@ -37,16 +37,16 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: CommonAppBar(
-          onTap: () {
-            Get.to(const RegistrationTypeOptions(),
-                id: securityGuardNavigation);
-            // Navigator.of(context).push(MaterialPageRoute(
-            //   builder: (context) => const SecurityGuardDashBoard(),
-            // ));
-          },
-          title: 'QR Scanner',
-          actions: const [],
+        appBar: AppBar(
+          title: const Text(
+            'QR Scanner',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
         ),
         body: Builder(builder: (context) {
           return Column(

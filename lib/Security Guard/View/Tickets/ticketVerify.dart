@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/Auth/widgets/commonTextField.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/checkedInSaved.dart';
-import 'package:moolwmsstore/Security%20Guard/View/Tickets/addTicket.dart';
-import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/View/common/tagContainer.dart';
 import 'package:moolwmsstore/utils/globals.dart';
@@ -36,12 +34,16 @@ class _TicketEntryReviewScreenState extends State<TicketEntryReviewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(
-        onTap: () {
-          Get.to(const AddTicketScreen(), id: securityGuardNavigation);
-        },
-        title: 'Verify Ticket',
-        actions: const [],
+      appBar: AppBar(
+        title: const Text(
+          'Verify Ticket',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontFamily: 'SF Pro Display',
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -398,7 +400,7 @@ class _TicketEntryReviewScreenState extends State<TicketEntryReviewScreen> {
                           ],
                         ),
                       ),
-                    const Gap(20), 
+                    const Gap(20),
                     if (isCheckedYesAddProduct && isCheckedYesMaterial)
                       TagContainer(
                           title: 'Product Name',

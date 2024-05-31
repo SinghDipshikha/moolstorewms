@@ -16,10 +16,17 @@ class _PageNotFoundScreenState extends State<PageNotFoundScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(
-        title: 'Enter Employee ID',
-        actions: const [],
-      ),
+      appBar: AppBar(
+          title: const Text(
+            'Enter Employee Id',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
       body: Column(
         children: [
           const Gap(30),

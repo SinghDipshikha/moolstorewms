@@ -54,15 +54,17 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
           ));
         },
       ),
-      appBar: CommonAppBar(
-        onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const SecurityGuardDashBoard(),
-          ));
-        },
-        title: 'Register List',
-        actions: const [],
-      ),
+      appBar:AppBar(
+          title: const Text(
+            'Register List',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

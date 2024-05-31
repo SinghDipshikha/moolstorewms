@@ -31,12 +31,17 @@ class _AddLabourState extends State<AddLabour> {
           // Get.to(const VisitorAddedSuccessfully(), id: securityGuardNavigation);
         },
       ),
-      appBar: CommonAppBar(
-        title: 'Add Labour',
-        onTap: () {
-          Get.to(const SecurityGuardDashBoard(), id: securityGuardNavigation);
-        },
-      ),
+      appBar: AppBar(
+          title: const Text(
+            'Add Labour',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(

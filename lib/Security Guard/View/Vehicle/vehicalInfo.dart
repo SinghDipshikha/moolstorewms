@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
-import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonTextField.dart';
 
 class VehicleInfoScreen extends StatefulWidget {
@@ -15,14 +13,16 @@ class _VehicleInfoScreenState extends State<VehicleInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(
-        onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const SecurityGuardDashBoard(),
-          ));
-        },
-        title: 'Vehicle Info',
-        actions: const [],
+      appBar: AppBar(
+        title: const Text(
+          'Vehicle Info',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontFamily: 'SF Pro Display',
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
       body: Center(
         child: Column(

@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeCareerDetails.dart';
-import 'package:moolwmsstore/Hr/View/Staff/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonDropDown.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
-import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 //import 'package:moolwmsstore/routes/approutes.gr.dart';
 
@@ -49,11 +47,17 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
     return Form(
       key: _formKey,
       child: Scaffold(
-        appBar: CommonAppBar(
-            title: 'Contact Details',
-            onTap: () {
-              Get.to(const HrEmployeeList(), id: hrNavigationKey);
-            }),
+        appBar: AppBar(
+          title: const Text(
+            'Contact Details',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: CustomFloatingActionButton(
           title: 'Next',

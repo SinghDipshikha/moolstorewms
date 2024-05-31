@@ -40,6 +40,7 @@ class OwnerController extends GetxController {
       "id": "",
       "warehouse_name": "All Warehouses",
     });
+    selectedTempType = "celsius";
     // TODO: implement onInit
     super.onInit();
   }
@@ -329,7 +330,11 @@ class OwnerController extends GetxController {
     loading = true;
     update();
     await apiClient
-        .postData("owner/addChamberHouse", addChamberModel.toJson())
+        .postData(
+            "owner/addChamberHouse",
+            addChamberModel
+                .copyWith(temp_type: selectedTempType ?? "celsius")
+                .toJson())
         .then((value) {
       if (value.data["result"] == "Chamber Added Successfully") {
         addChamberModel = const AddChamber();
@@ -353,8 +358,11 @@ class OwnerController extends GetxController {
       }
     });
   }
+
   getAllEmployeesByWareHouse(int warehouseId) {
-    apiClient.getData("owner/getAllEmployeesByWarehouseId/$warehouseId").then((value) {
+    apiClient
+        .getData("owner/getAllEmployeesByWarehouseId/$warehouseId")
+        .then((value) {
       if (value.data["message"] == "All Employees found") {
         List x = value.data["result"];
         employees = x.map((e) => Employee.fromJson(e)).toList();

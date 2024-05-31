@@ -63,6 +63,7 @@ mixin _$Chamber {
   int? get user_id => throw _privateConstructorUsedError;
   String? get stacking_level => throw _privateConstructorUsedError;
   int? get pallate_count => throw _privateConstructorUsedError;
+  int? get is_layout => throw _privateConstructorUsedError;
   String? get warehouse_name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -117,6 +118,7 @@ abstract class $ChamberCopyWith<$Res> {
       int? user_id,
       String? stacking_level,
       int? pallate_count,
+      int? is_layout,
       String? warehouse_name});
 }
 
@@ -174,6 +176,7 @@ class _$ChamberCopyWithImpl<$Res, $Val extends Chamber>
     Object? user_id = freezed,
     Object? stacking_level = freezed,
     Object? pallate_count = freezed,
+    Object? is_layout = freezed,
     Object? warehouse_name = freezed,
   }) {
     return _then(_value.copyWith(
@@ -341,6 +344,10 @@ class _$ChamberCopyWithImpl<$Res, $Val extends Chamber>
           ? _value.pallate_count
           : pallate_count // ignore: cast_nullable_to_non_nullable
               as int?,
+      is_layout: freezed == is_layout
+          ? _value.is_layout
+          : is_layout // ignore: cast_nullable_to_non_nullable
+              as int?,
       warehouse_name: freezed == warehouse_name
           ? _value.warehouse_name
           : warehouse_name // ignore: cast_nullable_to_non_nullable
@@ -398,6 +405,7 @@ abstract class _$$ChamberImplCopyWith<$Res> implements $ChamberCopyWith<$Res> {
       int? user_id,
       String? stacking_level,
       int? pallate_count,
+      int? is_layout,
       String? warehouse_name});
 }
 
@@ -453,6 +461,7 @@ class __$$ChamberImplCopyWithImpl<$Res>
     Object? user_id = freezed,
     Object? stacking_level = freezed,
     Object? pallate_count = freezed,
+    Object? is_layout = freezed,
     Object? warehouse_name = freezed,
   }) {
     return _then(_$ChamberImpl(
@@ -620,6 +629,10 @@ class __$$ChamberImplCopyWithImpl<$Res>
           ? _value.pallate_count
           : pallate_count // ignore: cast_nullable_to_non_nullable
               as int?,
+      is_layout: freezed == is_layout
+          ? _value.is_layout
+          : is_layout // ignore: cast_nullable_to_non_nullable
+              as int?,
       warehouse_name: freezed == warehouse_name
           ? _value.warehouse_name
           : warehouse_name // ignore: cast_nullable_to_non_nullable
@@ -673,6 +686,7 @@ class _$ChamberImpl implements _Chamber {
       this.user_id,
       this.stacking_level,
       this.pallate_count,
+      this.is_layout,
       this.warehouse_name});
 
   factory _$ChamberImpl.fromJson(Map<String, dynamic> json) =>
@@ -761,11 +775,13 @@ class _$ChamberImpl implements _Chamber {
   @override
   final int? pallate_count;
   @override
+  final int? is_layout;
+  @override
   final String? warehouse_name;
 
   @override
   String toString() {
-    return 'Chamber(id: $id, warehouse_id: $warehouse_id, chamber_number: $chamber_number, chamber_area: $chamber_area, floor_number: $floor_number, height_of_each_floor: $height_of_each_floor, temp_min_range: $temp_min_range, temp_max_range: $temp_max_range, temp_type: $temp_type, type_of_racking: $type_of_racking, capacity_meter: $capacity_meter, capacity_pallet: $capacity_pallet, pallet_dimension: $pallet_dimension, floor_area: $floor_area, staircase: $staircase, total_ante_chamber_area: $total_ante_chamber_area, ante_chamber_temp_range: $ante_chamber_temp_range, total_no_of_docks: $total_no_of_docks, total_office_space: $total_office_space, available_area_for_expansion: $available_area_for_expansion, processing_area_if_any: $processing_area_if_any, total_parking_space_available: $total_parking_space_available, type_of_docks: $type_of_docks, created_at: $created_at, updated_at: $updated_at, deleted_at: $deleted_at, chamber_capacity: $chamber_capacity, refrigeration_type: $refrigeration_type, pallet_dimension_height: $pallet_dimension_height, pallet_dimension_breadth: $pallet_dimension_breadth, pallet_dimension_length: $pallet_dimension_length, movement_height: $movement_height, controlled_atmosphere: $controlled_atmosphere, humidifier: $humidifier, ozone_filteration: $ozone_filteration, chamber_length: $chamber_length, chamber_breadth: $chamber_breadth, chamber_height: $chamber_height, user_id: $user_id, stacking_level: $stacking_level, pallate_count: $pallate_count, warehouse_name: $warehouse_name)';
+    return 'Chamber(id: $id, warehouse_id: $warehouse_id, chamber_number: $chamber_number, chamber_area: $chamber_area, floor_number: $floor_number, height_of_each_floor: $height_of_each_floor, temp_min_range: $temp_min_range, temp_max_range: $temp_max_range, temp_type: $temp_type, type_of_racking: $type_of_racking, capacity_meter: $capacity_meter, capacity_pallet: $capacity_pallet, pallet_dimension: $pallet_dimension, floor_area: $floor_area, staircase: $staircase, total_ante_chamber_area: $total_ante_chamber_area, ante_chamber_temp_range: $ante_chamber_temp_range, total_no_of_docks: $total_no_of_docks, total_office_space: $total_office_space, available_area_for_expansion: $available_area_for_expansion, processing_area_if_any: $processing_area_if_any, total_parking_space_available: $total_parking_space_available, type_of_docks: $type_of_docks, created_at: $created_at, updated_at: $updated_at, deleted_at: $deleted_at, chamber_capacity: $chamber_capacity, refrigeration_type: $refrigeration_type, pallet_dimension_height: $pallet_dimension_height, pallet_dimension_breadth: $pallet_dimension_breadth, pallet_dimension_length: $pallet_dimension_length, movement_height: $movement_height, controlled_atmosphere: $controlled_atmosphere, humidifier: $humidifier, ozone_filteration: $ozone_filteration, chamber_length: $chamber_length, chamber_breadth: $chamber_breadth, chamber_height: $chamber_height, user_id: $user_id, stacking_level: $stacking_level, pallate_count: $pallate_count, is_layout: $is_layout, warehouse_name: $warehouse_name)';
   }
 
   @override
@@ -854,6 +870,7 @@ class _$ChamberImpl implements _Chamber {
                 other.stacking_level == stacking_level) &&
             (identical(other.pallate_count, pallate_count) ||
                 other.pallate_count == pallate_count) &&
+            (identical(other.is_layout, is_layout) || other.is_layout == is_layout) &&
             (identical(other.warehouse_name, warehouse_name) || other.warehouse_name == warehouse_name));
   }
 
@@ -902,6 +919,7 @@ class _$ChamberImpl implements _Chamber {
         user_id,
         stacking_level,
         pallate_count,
+        is_layout,
         warehouse_name
       ]);
 
@@ -962,6 +980,7 @@ abstract class _Chamber implements Chamber {
       final int? user_id,
       final String? stacking_level,
       final int? pallate_count,
+      final int? is_layout,
       final String? warehouse_name}) = _$ChamberImpl;
 
   factory _Chamber.fromJson(Map<String, dynamic> json) = _$ChamberImpl.fromJson;
@@ -1048,6 +1067,8 @@ abstract class _Chamber implements Chamber {
   String? get stacking_level;
   @override
   int? get pallate_count;
+  @override
+  int? get is_layout;
   @override
   String? get warehouse_name;
   @override

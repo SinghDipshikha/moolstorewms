@@ -174,7 +174,9 @@ class OwnerDrawer extends StatelessWidget {
                   CurvedLineConatainer(
                     title: "Add Warehouse",
                     onTap: () {
-                      print("hdsbvchbvsdjbvsv");
+                      if (context.isPhone) {
+                        Navigator.of(context).pop();
+                      }
                       Get.to(const AddWarehouse(), id: ownerNavigationKey);
                     },
                   ),
@@ -182,6 +184,9 @@ class OwnerDrawer extends StatelessWidget {
                     title: "View Warehouse",
                     isShowextendedLine: false,
                     onTap: () {
+                      if (context.isPhone) {
+                        Navigator.of(context).pop();
+                      }
                       Get.find<OwnerController>().setloadingtrue();
                       Get.to(const WarehouseList(), id: ownerNavigationKey);
                       // WarehouseList
@@ -255,6 +260,9 @@ class OwnerDrawer extends StatelessWidget {
                   CurvedLineConatainer(
                     title: "Add Staff",
                     onTap: () {
+                      if (context.isPhone) {
+                        Navigator.of(context).pop();
+                      }
                       Get.to(AddEmployee(), id: ownerNavigationKey);
                     },
                   ),
@@ -262,17 +270,12 @@ class OwnerDrawer extends StatelessWidget {
                     title: "Staff List",
                     isShowextendedLine: false,
                     onTap: () {
-                      Get.to( EmployeeList(), id: ownerNavigationKey);
-                      // Get.find<OwnerController>().setloadingtrue();
-                      // Get.to(const WarehouseList(), id: ownerNavigationKey);
-                      // WarehouseList
+                      if (context.isPhone) {
+                        Navigator.of(context).pop();
+                      }
+                      Get.to(EmployeeList(), id: ownerNavigationKey);
                     },
                   ),
-                  // CurvedLineConatainer(title: "dcdc"),
-                  // CurvedLineConatainer(
-                  //   title: "dcdc",
-                  //   isShowextendedLine: false,
-                  //     ),
                 ],
               ),
             ],
