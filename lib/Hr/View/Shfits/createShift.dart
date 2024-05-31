@@ -433,12 +433,16 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                                                     _formatTimeOfDay(
                                                         _selectedTime2),
                                                 warehouse_id: hrController
-                                                        .selectedWarehouse![
+                                                        .selectedDashboardWarehouse![
                                                     "warehouse_id"]);
                                     Logger().i(hrController
                                         .addShiftDetailsRequestModel
                                         .toJson());
                                     hrController.addShiftDetails();
+                                    if (hrController.addShiftDetails() ==
+                                        true) {
+                                      Navigator.of(context).pop();
+                                    }
 
                                     print(hrController
                                         .addShiftDetailsRequestModel);
