@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
@@ -408,9 +409,10 @@ class SecurityGuardController extends GetxController {
   }
 
   getMaterialCount() async {
+    Logger().d(currentlySelectedWarehouse);
     isGetMaterialCountLoading = true;
     String afterUrl =
-        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!["warehouse_id"]}";
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!["id"]}";
     await apiClient.getData("material/materialCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         materialCountIn = value.data["result"]["count_in"];
@@ -424,7 +426,7 @@ class SecurityGuardController extends GetxController {
   getVehicleCount() async {
     isGetVehicleCountLoading = true;
     String afterUrl =
-        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!["warehouse_id"]}";
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!["id"]}";
     await apiClient.getData("vehicle/vehicalCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         vehicleCountIn = value.data["result"]["count_in"];
@@ -438,7 +440,7 @@ class SecurityGuardController extends GetxController {
   getVisitorCount() async {
     isGetVisitorCountLoading = true;
     String afterUrl =
-        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!["warehouse_id"]}";
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!["id"]}";
     await apiClient.getData("visitor/visitorCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         visitorCountIn = value.data["result"]["count_in"];
@@ -452,7 +454,7 @@ class SecurityGuardController extends GetxController {
   getPersonCount() async {
     isGetPersonCountLoading = true;
     String afterUrl =
-        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!["warehouse_id"]}";
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!["id"]}";
     await apiClient.getData("person/personCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         personCountIn = value.data["result"]["count_in"];

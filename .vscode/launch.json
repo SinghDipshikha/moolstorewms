@@ -8,7 +8,24 @@
 //             "name": "wms",
 //             "request": "launch",
 //             "type": "dart",
-//             "args": ["-d", "chrome","--web-port", "8001" ],
+//            // "args": ["-d", "chrome","--web-port", "8001" ],
+//             "args": ["--no-enable-impeller" ],
+//             //,"--web-renderer","html"
+//         },
+//         {
+//             "name": "wms Chrome",
+//             "request": "launch",
+//             "type": "dart",
+//             "args": [  "-d", "chrome","--web-port", "8001" ,"--no-enable-impeller" ],
+
+//             //,"--web-renderer","html"
+//         },
+//         {
+//             "name": "build web",
+//             "request": "launch",
+//             "type": "dart",
+//             "args": [  "-d", "chrome","--web-port", "8001" ,"--no-enable-impeller"  ,"--web-renderer canvaskit"],
+
 //             //,"--web-renderer","html"
 //         },
 //         {

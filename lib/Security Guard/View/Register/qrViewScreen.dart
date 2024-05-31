@@ -52,16 +52,33 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
           return Column(
             children: [
               const Gap(80),
+              // Container(
+              //   height: 400,
+              //   width: 600,
+              //   margin: const EdgeInsets.all(20),
+              //   padding: const EdgeInsets.all(2),
+              //   decoration: BoxDecoration(
+              //     color: Colors.white,
+              //     borderRadius: BorderRadius.circular(10),
+              //   ),
+              //   child: ScannerWidget(onScanSuccess: (code) {
+              //     if (code != null) {
+              //       // Navigator.pop(context);
+              //       // onScanSuccess(code);
+              //     }
+              //   }),
+              // ),
               Center(
                 child: InkWell(
                   onTap: () {
                     _qrBarCodeScannerDialogPlugin.getScannedQrBarCode(
-                        context: context,
-                        onCode: (code) {
-                          setState(() {
-                            this.code = code;
-                          });
+                      context: context,
+                      onCode: (code) {
+                        setState(() {
+                          this.code = code;
                         });
+                      },
+                    );
                   },
                   child: Container(
                     width: 317,
