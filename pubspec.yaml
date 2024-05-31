@@ -101,9 +101,7 @@ dev_dependencies:
   build_runner: ^2.4.8
   freezed: ^2.4.7
   json_serializable: ^6.7.1
-  flutter_launcher_icons:
-  # flutter_native_splash:
-  # getx_route_generator:
+
 flutter_launcher_icons:
   adaptive_icon_background: "#FFFFFF"
   remove_alpha_ios: true
@@ -123,24 +121,6 @@ flutter_native_splash:
   android: true
   ios: true
   web: true
-
-# assets/icons/Gif 1200px by 1200px.gif
-
-# flutter_native_splash:
-#   color: "#ffffff"
-#   image: assets/icons/Gif 1200px by 1200px.gif
-#   branding: assets/icons/Gif 1200px by 1200px.gif
-#   color_dark: "#121212"
-#   image_dark: assets/icons/Gif 1200px by 1200px.gif
-#   branding_dark: assets/icons/Gif 1200px by 1200px.gif
-
-#   android_12:
-#     image: assets/icons/Gif 1200px by 1200px.gif
-#     icon_background_color: "#ffffff"
-#     image_dark: assets/icons/Gif 1200px by 1200px.gif
-#     icon_background_color_dark: "#121212"
-
-#   web: true
 
 flutter:
   uses-material-design: true

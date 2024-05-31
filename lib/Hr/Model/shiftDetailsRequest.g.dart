@@ -14,7 +14,7 @@ _$ShiftDetailsRequestImpl _$$ShiftDetailsRequestImplFromJson(
       shift_name: json['shift_name'] as String?,
       shift_check_in: json['shift_check_in'] as String?,
       shift_check_out: json['shift_check_out'] as String?,
-      warehouse_id: json['warehouse_id'] as String?,
+      warehouse_id: (json['warehouse_id'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$ShiftDetailsRequestImplToJson(

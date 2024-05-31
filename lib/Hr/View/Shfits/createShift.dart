@@ -1,10 +1,11 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
-import 'package:moolwmsstore/Hr/View/widget/commonDropDown.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
 
 class CreateShiftScreen extends StatefulWidget {
@@ -19,7 +20,7 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
   TimeOfDay _selectedTime = TimeOfDay.now();
   TimeOfDay _selectedTime2 = TimeOfDay.now();
 
-  Future<void> _selectTimeMethod(BuildContext context, TimeOfDay initialTime,
+  Future<void> _selectTime(BuildContext context, TimeOfDay initialTime,
       void Function(TimeOfDay) onTimePicked) async {
     final TimeOfDay? picked = await showTimePicker(
       context: context,
@@ -32,17 +33,12 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
     }
   }
 
-  Future<void> _selectTimeMethod2(BuildContext context, TimeOfDay initialTime,
-      void Function(TimeOfDay) onTimePicked) async {
-    final TimeOfDay? picked = await showTimePicker(
-      context: context,
-      initialTime: initialTime,
-    );
-    if (picked != null && picked != initialTime) {
-      setState(() {
-        onTimePicked(picked);
-      });
-    }
+  String _formatTimeOfDay(TimeOfDay timeOfDay) {
+    final now = DateTime.now();
+    final dt = DateTime(
+        now.year, now.month, now.day, timeOfDay.hour, timeOfDay.minute);
+    final format = DateFormat('HH:mm:ss');
+    return format.format(dt);
   }
 
   final TextEditingController _shiftNameContoller = TextEditingController();
@@ -114,9 +110,7 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                                   children: [
                                     InkWell(
                                       onTap: () {
-                                        _selectTimeMethod(
-                                            context,
-                                            _selectedTime,
+                                        _selectTime(context, _selectedTime,
                                             (time) => _selectedTime = time);
                                       },
                                       child: Container(
@@ -139,7 +133,7 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                                           ),
                                         ),
                                         child: Text(
-                                          _selectedTime.format(context),
+                                          _formatTimeOfDay(_selectedTime),
                                           textAlign: TextAlign.center,
                                           style: const TextStyle(
                                             color: Color(0xFF353535),
@@ -222,9 +216,7 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                                   children: [
                                     InkWell(
                                       onTap: () {
-                                        _selectTimeMethod2(
-                                            context,
-                                            _selectedTime2,
+                                        _selectTime(context, _selectedTime2,
                                             (time) => _selectedTime2 = time);
                                       },
                                       child: Container(
@@ -247,7 +239,7 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                                           ),
                                         ),
                                         child: Text(
-                                          _selectedTime2.format(context),
+                                          _formatTimeOfDay(_selectedTime2),
                                           textAlign: TextAlign.center,
                                           style: const TextStyle(
                                             color: Color(0xFF353535),
@@ -431,10 +423,18 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                                     hrController.addShiftDetailsRequestModel =
                                         hrController.addShiftDetailsRequestModel
                                             .copyWith(
-                                      added_by: hrController.user.id,
-                                      shift_name: _shiftNameContoller.text,
-                                      shift_check_in: _selectedTime.toString(),
-                                    );
+                                                added_by: hrController.user.id,
+                                                shift_name:
+                                                    _shiftNameContoller.text,
+                                                shift_check_in:
+                                                    _formatTimeOfDay(
+                                                        _selectedTime),
+                                                shift_check_out:
+                                                    _formatTimeOfDay(
+                                                        _selectedTime2),
+                                                warehouse_id: hrController
+                                                        .selectedWarehouse![
+                                                    "warehouse_id"]);
                                     Logger().i(hrController
                                         .addShiftDetailsRequestModel
                                         .toJson());
@@ -504,16 +504,94 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Gap(20),
-            CommomDropDown2(
-              list: warehouseDataList,
-              hintText: 'Select Warehouse',
-              onChanged: (v) {
-                setState(() {
-                  selectedWarehouse = v;
-                });
-              },
-              selectedValue: selectedWarehouse,
-              labelText: "Select Warehouse",
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: SizedBox(
+                child: GetBuilder<HRController>(builder: (hrController) {
+                  return DropdownButtonFormField2<Map>(
+                    decoration: InputDecoration(
+                      focusedBorder: const OutlineInputBorder(
+                          gapPadding: 0,
+                          borderSide:
+                              BorderSide(color: Color(0x195E57FC), width: 0.4),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      enabledBorder: const OutlineInputBorder(
+                          gapPadding: 0,
+                          borderSide:
+                              BorderSide(color: Color(0x195E57FC), width: 1),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 0, horizontal: 0),
+                      border: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Color(0x195E57FC)),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    hint: const Text(
+                      'All Warehouses',
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    items: hrController.dashboardWarehouses.map((item) {
+                      return DropdownMenuItem<Map>(
+                        value: item,
+                        child: Row(
+                          children: [
+                            Text(
+                              "${item["warehouse_name"]}",
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w400,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
+                      );
+                    }).toList(),
+                    validator: (value) {
+                      if (value == null) {
+                        return 'Required';
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      if (value != null) {
+                        hrController.changeCreateShiftWarehouse(
+                            warehouse: value);
+                      }
+                    },
+                    onSaved: (value) {},
+                    buttonStyleData: const ButtonStyleData(
+                      padding: EdgeInsets.zero,
+                      overlayColor: WidgetStatePropertyAll(Colors.white),
+                    ),
+                    iconStyleData: IconStyleData(
+                      icon: const Icon(
+                        Icons.arrow_drop_down,
+                        color: Colors.black,
+                      ).paddingOnly(right: 10),
+                      iconSize: 24,
+                    ),
+                    dropdownStyleData: DropdownStyleData(
+                      padding: EdgeInsets.zero,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFAF9FF),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    menuItemStyleData: const MenuItemStyleData(
+                        padding: EdgeInsets.symmetric(horizontal: 8)),
+                  );
+                }),
+              ),
             ),
             const Gap(20),
             const Text(

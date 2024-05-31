@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
-import 'package:moolwmsstore/Hr/View/Shfits/createShift.dart';
+import 'package:moolwmsstore/Hr/View/Shfits/demmmoooo.dart';
 import 'package:moolwmsstore/Hr/View/Staff/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonDropDown.dart';
@@ -240,7 +240,7 @@ class _HrDashboardState extends State<HrDashboard> {
                       title: "Create Shift",
                       isShowextendedLine: false,
                       onTap: () {
-                        Get.to(const CreateShiftScreen(), id: hrNavigationKey);
+                        Get.to(WhatsAppShareScreen(), id: hrNavigationKey);
                       },
                     ),
                     // CurvedLineConatainer(
@@ -348,7 +348,6 @@ class _HrDashboardState extends State<HrDashboard> {
                           fontSize: 16,
                           fontFamily: 'SF Pro Text',
                           fontWeight: FontWeight.w500,
-                          //height: 0,
                           letterSpacing: -0.64,
                         )),
                     items: hrController.user.person_type!.map((item) {
@@ -361,7 +360,6 @@ class _HrDashboardState extends State<HrDashboard> {
                             fontSize: 16,
                             fontFamily: 'SF Pro Text',
                             fontWeight: FontWeight.w500,
-                            //height: 0,
                             letterSpacing: -0.64,
                           ),
                         ),
@@ -409,7 +407,7 @@ class _HrDashboardState extends State<HrDashboard> {
             }),
             InkWell(
               onTap: () {
-                // Get.find<OwnerController>().ownerLogout();
+                Get.find<HRController>().hrLogout();
               },
               child: Container(
                 height: 60,
