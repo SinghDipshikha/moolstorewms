@@ -131,6 +131,7 @@ class AddChamberView extends StatelessWidget {
                               Container(
                                 color: Colors.white,
                                 child: DropdownButtonFormField2<String>(
+                                  value: ownerController.selectedTempType,
                                   decoration: InputDecoration(
                                     focusedBorder: const OutlineInputBorder(
                                         borderSide: BorderSide(

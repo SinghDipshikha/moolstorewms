@@ -39,7 +39,7 @@ mixin _$User {
   @HiveField(8)
   List<dynamic>? get warehouse => throw _privateConstructorUsedError;
   @HiveField(9)
-  String? get profileURl => throw _privateConstructorUsedError;
+  String? get avatar => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -61,7 +61,7 @@ abstract class $UserCopyWith<$Res> {
       @HiveField(4) String? organiosationCode,
       @HiveField(7) List<dynamic>? person_type,
       @HiveField(8) List<dynamic>? warehouse,
-      @HiveField(9) String? profileURl});
+      @HiveField(9) String? avatar});
 }
 
 /// @nodoc
@@ -86,7 +86,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? organiosationCode = freezed,
     Object? person_type = freezed,
     Object? warehouse = freezed,
-    Object? profileURl = freezed,
+    Object? avatar = freezed,
   }) {
     return _then(_value.copyWith(
       first_name: freezed == first_name
@@ -125,9 +125,9 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.warehouse
           : warehouse // ignore: cast_nullable_to_non_nullable
               as List<dynamic>?,
-      profileURl: freezed == profileURl
-          ? _value.profileURl
-          : profileURl // ignore: cast_nullable_to_non_nullable
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -150,7 +150,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       @HiveField(4) String? organiosationCode,
       @HiveField(7) List<dynamic>? person_type,
       @HiveField(8) List<dynamic>? warehouse,
-      @HiveField(9) String? profileURl});
+      @HiveField(9) String? avatar});
 }
 
 /// @nodoc
@@ -172,7 +172,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? organiosationCode = freezed,
     Object? person_type = freezed,
     Object? warehouse = freezed,
-    Object? profileURl = freezed,
+    Object? avatar = freezed,
   }) {
     return _then(_$UserImpl(
       first_name: freezed == first_name
@@ -211,9 +211,9 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value._warehouse
           : warehouse // ignore: cast_nullable_to_non_nullable
               as List<dynamic>?,
-      profileURl: freezed == profileURl
-          ? _value.profileURl
-          : profileURl // ignore: cast_nullable_to_non_nullable
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -232,7 +232,7 @@ class _$UserImpl implements _User {
       @HiveField(4) this.organiosationCode,
       @HiveField(7) final List<dynamic>? person_type,
       @HiveField(8) final List<dynamic>? warehouse,
-      @HiveField(9) this.profileURl})
+      @HiveField(9) this.avatar})
       : _person_type = person_type,
         _warehouse = warehouse;
 
@@ -284,11 +284,11 @@ class _$UserImpl implements _User {
 
   @override
   @HiveField(9)
-  final String? profileURl;
+  final String? avatar;
 
   @override
   String toString() {
-    return 'User(first_name: $first_name, role_id: $role_id, id: $id, last_name: $last_name, email: $email, phone: $phone, organiosationCode: $organiosationCode, person_type: $person_type, warehouse: $warehouse, profileURl: $profileURl)';
+    return 'User(first_name: $first_name, role_id: $role_id, id: $id, last_name: $last_name, email: $email, phone: $phone, organiosationCode: $organiosationCode, person_type: $person_type, warehouse: $warehouse, avatar: $avatar)';
   }
 
   @override
@@ -310,8 +310,7 @@ class _$UserImpl implements _User {
                 .equals(other._person_type, _person_type) &&
             const DeepCollectionEquality()
                 .equals(other._warehouse, _warehouse) &&
-            (identical(other.profileURl, profileURl) ||
-                other.profileURl == profileURl));
+            (identical(other.avatar, avatar) || other.avatar == avatar));
   }
 
   @JsonKey(ignore: true)
@@ -327,7 +326,7 @@ class _$UserImpl implements _User {
       organiosationCode,
       const DeepCollectionEquality().hash(_person_type),
       const DeepCollectionEquality().hash(_warehouse),
-      profileURl);
+      avatar);
 
   @JsonKey(ignore: true)
   @override
@@ -354,7 +353,7 @@ abstract class _User implements User {
       @HiveField(4) final String? organiosationCode,
       @HiveField(7) final List<dynamic>? person_type,
       @HiveField(8) final List<dynamic>? warehouse,
-      @HiveField(9) final String? profileURl}) = _$UserImpl;
+      @HiveField(9) final String? avatar}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -387,7 +386,7 @@ abstract class _User implements User {
   List<dynamic>? get warehouse;
   @override
   @HiveField(9)
-  String? get profileURl;
+  String? get avatar;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>

@@ -26,7 +26,7 @@ class UserAdapter extends TypeAdapter<User> {
       organiosationCode: fields[4] as String?,
       person_type: (fields[7] as List?)?.cast<dynamic>(),
       warehouse: (fields[8] as List?)?.cast<dynamic>(),
-      profileURl: fields[9] as String?,
+      avatar: fields[9] as String?,
     );
   }
 
@@ -53,7 +53,7 @@ class UserAdapter extends TypeAdapter<User> {
       ..writeByte(8)
       ..write(obj.warehouse)
       ..writeByte(9)
-      ..write(obj.profileURl);
+      ..write(obj.avatar);
   }
 
   @override
@@ -81,7 +81,7 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       organiosationCode: json['organiosationCode'] as String?,
       person_type: json['person_type'] as List<dynamic>?,
       warehouse: json['warehouse'] as List<dynamic>?,
-      profileURl: json['profileURl'] as String?,
+      avatar: json['avatar'] as String?,
     );
 
 Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
@@ -95,5 +95,5 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'organiosationCode': instance.organiosationCode,
       'person_type': instance.person_type,
       'warehouse': instance.warehouse,
-      'profileURl': instance.profileURl,
+      'avatar': instance.avatar,
     };

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:moolwmsstore/Sales/Model/Visitor/visitorElement.dart';
+import 'package:moolwmsstore/Sales/View/Visiitors/viewVisitor.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
@@ -38,14 +39,14 @@ class _VisitorsListState extends State<VisitorsList> {
     pagingController.addPageRequestListener((pageKey) {
       // getVisitors(page: pageKey + 1, count: 16);
       Get.find<SalesController>().apiClient.postData(
-          "visitor/getAllVisitors?recordsPerPage=10&next=${pageKey + 1}",
+          "visitor/getAllVisitors?recordsPerPage=20&next=${pageKey + 1}",
           {"keyword": ""}).then((v) {
         // "message": "Visitor details fetched Successfully!",
         if (v.data["message"] == "Visitor details fetched Successfully!") {
           List<VisitorElement> newItems = (v.data["result"] as List)
               .map((e) => VisitorElement.fromJson(e))
               .toList();
-          final isLastPage = newItems.length < 10;
+          final isLastPage = newItems.length < 20;
           if (isLastPage) {
             pagingController.appendLastPage(newItems);
           } else {
@@ -54,7 +55,6 @@ class _VisitorsListState extends State<VisitorsList> {
           }
         }
         if (v.data["message"] == "No visitor found") {
-
           Snacks.redSnack(
             "No visitor found",
           );
@@ -169,10 +169,15 @@ class _VisitorsListState extends State<VisitorsList> {
                           flex: 1,
                           child: Text(item.in_out_status ?? "--",
                               style: headingstyle)),
-                      Image.asset(
-                        "assets/icons/eyeNew.png",
-                        height: 22,
-                        width: 20,
+                      InkWell(
+                        onTap: () {
+                          Get.to(ViewVisitor(visitor: item,));
+                        },
+                        child: Image.asset(
+                          "assets/icons/eyeNew.png",
+                          height: 22,
+                          width: 20,
+                        ),
                       )
                     ],
                   ).paddingSymmetric(horizontal: 12, vertical: 4),

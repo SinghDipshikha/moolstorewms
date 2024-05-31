@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:moolwmsstore/Auth/Auth.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
+import 'package:moolwmsstore/Sales/View/Visiitors/viewVisitor.dart';
 import 'package:moolwmsstore/helper/messages.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
@@ -13,8 +14,8 @@ import 'package:path_provider/path_provider.dart' as path_provider;
 import 'helper/get_di.dart' as di;
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-//  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  //FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   if (kIsWeb) {
     await Hive.initFlutter();
   } else {
@@ -51,7 +52,8 @@ class _DipshikaAppState extends State<DipshikaApp> {
         data: MediaQuery.of(context)
             .copyWith(textScaler: const TextScaler.linear(0.9)),
         child: GetMaterialApp(
-          home: const Auth(),
+          home: ViewVisitor(visitor: null),
+       //   home: const Auth(),
           debugShowCheckedModeBanner: false,
           locale: localizeController.locale,
           fallbackLocale: Locale(

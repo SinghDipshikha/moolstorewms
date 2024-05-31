@@ -25,6 +25,7 @@ import 'package:moolwmsstore/Security%20Guard/repository/securityGuardRepo.dart'
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/utils/globals.dart';
+import 'package:restart_app/restart_app.dart';
 
 class SecurityGuardController extends GetxController {
   final SecurityGuardRepo secGaurdRepo;
@@ -238,22 +239,22 @@ class SecurityGuardController extends GetxController {
     return x;
   }
 
-  void getAllVisitorList() {
-    apiClient.postData(
-        "visitor/getAllVisitors?recordsPerPage=8&next=1", {}).then((value) {
-      if (value.data["message"] == "Visitor details fetched Successfully!") {
-        Snacks.greenSnack("Visitor details fetched Successfully!");
-        List x = value.data["result"];
-        allVisitorList = x.map((e) => Visitor.fromJson(e)).toList();
-        print(allVisitorList);
-        isloading = false;
-        update();
-      } else {
-        isloading = false;
-        update();
-      }
-    });
-  }
+  // void getAllVisitorList() {
+  //   apiClient.postData(
+  //       "visitor/getAllVisitors?recordsPerPage=8&next=1", {}).then((value) {
+  //     if (value.data["message"] == "Visitor details fetched Successfully!") {
+  //       Snacks.greenSnack("Visitor details fetched Successfully!");
+  //       List x = value.data["result"];
+  //       allVisitorList = x.map((e) => Visitor.fromJson(e)).toList();
+  //       print(allVisitorList);
+  //       isloading = false;
+  //       update();
+  //     } else {
+  //       isloading = false;
+  //       update();
+  //     }
+  //   });
+  // }
 
   List<Ticket> tickets = [];
   void getAllTicketList() {
@@ -462,25 +463,29 @@ class SecurityGuardController extends GetxController {
     });
   }
 
+  updateProfilePic(XFile file) {
+    apiClient.uploadImage(file).then((v) {
+      if (v != null) {
+        apiClient.postData("avtar/addAvtar",
+            {"user_id": user.id, "profile": v}).then((v2) async {
+          if (v2.data["result"] == "Users Avatar add successfully") {
+            Snacks.greenSnack("Profile Pic updated successfully");
+            var box = await Hive.openBox('authbox');
+            user = user.copyWith(avatar: v);
+            update();
 
-
-  updateProfilePic( XFile file){
-apiClient.uploadImage(file).then((v){
-  if(v != null){
-    apiClient.postData("avtar/addAvtar", {
-"user_id":2,
-   "profile": v
-    }).then((v2) async {
-
-    var  box = await Hive.openBox('authbox');
-    user = user.copyWith(profileURl: "cdcd");
-    update();
-
-     box.put("user", user);
+            box.put("user", user);
+          }
+        });
+      }
     });
   }
-});
 
+  logout() async {
+    var box = await Hive.openBox('authbox');
+    Get.find<SecurityGuardController>().dispose();
 
+    box.clear();
+    Restart.restartApp();
   }
 }

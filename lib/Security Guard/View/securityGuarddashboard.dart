@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -74,8 +75,15 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                       children: [
                         InkWell(
                           onTap: () {
-                            picker.pickImage(
-                                source: ImageSource.gallery, imageQuality: 50);
+                            picker
+                                .pickImage(
+                                    source: ImageSource.gallery,
+                                    imageQuality: 50)
+                                .then((v) {
+                              if (v != null) {
+                                securityGuardController.updateProfilePic(v);
+                              }
+                            });
                           },
                           child: Stack(
                             alignment: Alignment.center,
@@ -95,23 +103,20 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                                   ),
                                 ),
                               ),
-                              Container(
-                                width: 80,
-                                height: 80,
-                                decoration: const ShapeDecoration(
-                                  color: Colors.transparent,
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                        "https://via.placeholder.com/100x100"),
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(112),
+                                child: SizedBox(
+                                  height: 80,
+                                  width: 80,
+                                  child: CachedNetworkImage(
                                     fit: BoxFit.cover,
-                                  ),
-                                  shape: OvalBorder(
-                                    side: BorderSide(
-                                      width: 0,
-                                      strokeAlign:
-                                          BorderSide.strokeAlignOutside,
-                                      color: Color(0x195A57FF),
-                                    ),
+                                    imageUrl:
+                                        securityGuardController.user.avatar ??
+                                            "",
+                                    placeholder: (context, url) =>
+                                        const CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
                                   ),
                                 ),
                               ),
@@ -526,7 +531,7 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
             }),
             InkWell(
               onTap: () {
-                // Get.find<securityGuardController>().ownerLogout();
+                Get.find<SecurityGuardController>().logout();
               },
               child: Container(
                 height: 60,
