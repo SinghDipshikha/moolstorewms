@@ -13,6 +13,9 @@ import 'package:moolwmsstore/Auth/View/welcome.dart';
 import 'package:moolwmsstore/Common%20Data/Model/Auth/signupfield.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Common%20Data/repository/ownerRepo.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsRepo.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/DMS.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
@@ -74,7 +77,9 @@ class AuthController extends GetxController {
       }
 
       if (user?.role_id == 1) {
-        user = user!.copyWith(warehouse: v.data["result"]["warehouse"]);
+        user = user!.copyWith(
+            warehouse: v.data["result"]["warehouse"],
+            avatar: v.data["result"]["user"]["avatar"]);
 
         Get.lazyPut(() => OwnerRepo(
             sharedPreferences: Get.find(), apiClient: Get.find<ApiClient>()));
@@ -93,9 +98,9 @@ class AuthController extends GetxController {
 
       if (user?.role_id == 2) {
         user = user!.copyWith(
-          warehouse: v.data["result"]["warehouse"],
-          person_type: v.data["result"]["person_type"],
-        );
+            warehouse: v.data["result"]["warehouse"],
+            person_type: v.data["result"]["person_type"],
+            avatar: v.data["result"]["user"]["avatar"]);
 
         for (var element in user!.person_type!) {
           if (element["person_type"] == "security-guard") {
@@ -129,6 +134,16 @@ class AuthController extends GetxController {
                     apiClient: Get.find<ApiClient>()),
                 permanent: true);
           }
+          if (element["person_type"] == "dock-supervisor") {
+            Get.lazyPut(() =>
+                Dmsrepo(sharedPreferences: Get.find(), apiClient: Get.find()));
+            Get.put(
+                DmsController(
+                    user: user as User,
+                    dmsRepo: Get.find<Dmsrepo>(),
+                    apiClient: Get.find<ApiClient>()),
+                permanent: true);
+          }
         }
         if (user!.person_type?[0] != null) {
           if (user!.person_type?[0]["person_type"] == "security-guard") {
@@ -142,6 +157,10 @@ class AuthController extends GetxController {
           if (user!.person_type?[0]["person_type"] == "hr") {
             Get.delete<AuthController>();
             Get.offAll(const HumanResouce());
+          }
+          if (user!.person_type?[0]["person_type"] == "dock-supervisor") {
+            Get.delete<AuthController>();
+            Get.offAll(const DMS());
           }
         }
       }

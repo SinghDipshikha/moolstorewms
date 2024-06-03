@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
 import 'package:moolwmsstore/Owner/View/Employee/AddEmployee.dart';
 import 'package:moolwmsstore/Owner/View/Employee/EmployeeList.dart';
@@ -11,8 +13,9 @@ import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 class OwnerDrawer extends StatelessWidget {
-  const OwnerDrawer({super.key});
+  OwnerDrawer({super.key});
 
+  final ImagePicker picker = ImagePicker();
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -32,22 +35,50 @@ class OwnerDrawer extends StatelessWidget {
                       border: Border(bottom: BorderSide.none)),
                   child: Row(
                     children: [
-                      Container(
-                        width: 100,
-                        height: 100,
-                        decoration: const ShapeDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(
-                                "https://via.placeholder.com/100x100"),
-                            fit: BoxFit.fill,
-                          ),
-                          shape: OvalBorder(
-                            side: BorderSide(
-                              width: 2,
-                              strokeAlign: BorderSide.strokeAlignOutside,
-                              color: Color(0x195A57FF),
+                      InkWell(
+                        onTap: () {
+                          picker
+                              .pickImage(
+                                  source: ImageSource.gallery, imageQuality: 50)
+                              .then((v) {
+                            if (v != null) {
+                              ownerController.updateProfilePic(v);
+                            }
+                          });
+                        },
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Container(
+                              height: 90,
+                              width: 90,
+                              decoration: const ShapeDecoration(
+                                color: Colors.transparent,
+                                shape: OvalBorder(
+                                  side: BorderSide(
+                                    width: 1,
+                                    strokeAlign: BorderSide.strokeAlignOutside,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(112),
+                              child: SizedBox(
+                                height: 80,
+                                width: 80,
+                                child: CachedNetworkImage(
+                                  fit: BoxFit.cover,
+                                  imageUrl: ownerController.user.avatar ?? "",
+                                  placeholder: (context, url) =>
+                                      const CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Icons.error),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       const Gap(12),

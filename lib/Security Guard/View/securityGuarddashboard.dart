@@ -5,10 +5,11 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Labour/addLabour.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Material/materialList.dart';
-import 'package:moolwmsstore/Security%20Guard/View/Register/qrViewScreen.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Register/isUserCheckedIn.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/registrationList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Tickets/addTicket.dart';
@@ -19,10 +20,12 @@ import 'package:moolwmsstore/Security%20Guard/View/Visitor/addVisitor.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Visitor/visitorList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/cc.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/smallCard.dart';
+import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:moolwmsstore/utils/globals.dart';
+import 'package:qr_bar_code_scanner_dialog/qr_bar_code_scanner_dialog.dart';
 
 class SecurityGuardDashBoard extends StatefulWidget {
   const SecurityGuardDashBoard({super.key});
@@ -34,6 +37,8 @@ class SecurityGuardDashBoard extends StatefulWidget {
 class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
   @override
   DateTime? _selectedDate;
+
+  final _qrBarCodeScannerDialogPlugin = QrBarCodeScannerDialog();
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -703,8 +708,35 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                   imagePath: "assets/images/scan_barcode.png",
                   title: 'Scan QR',
                   onTap: () {
-                    Get.to(const QRCodeScannerScreen(),
-                        id: securityGuardNavigation);
+                    _qrBarCodeScannerDialogPlugin.getScannedQrBarCode(
+                        context: context,
+                        onCode: (code) {
+                          String embededCode = "";
+                          String type = "";
+                          if (code!.contains("TYPE")) {
+                            code.split(",").forEach((v) {
+                              List x =
+                                  v.split(":").map((e) => e.trim()).toList();
+
+                              Logger().i(x[0] + x[1]);
+
+                              if (x[0] == "TYPE") {
+                                type = x[1];
+                              }
+                              if (x[0] == "CODE") {
+                                embededCode = x[1];
+                              }
+                            });
+
+                            if (type == "VISITOR") {
+                              Get.to(const IsUserCheckedInScreen(),
+                                  id: securityGuardNavigation);
+                            }
+                          } else {
+                            Snacks.redSnack(
+                                "This Qr does not belong to this moolcode");
+                          }
+                        });
                   },
                 ),
               ],

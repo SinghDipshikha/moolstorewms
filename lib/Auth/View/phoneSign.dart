@@ -154,6 +154,8 @@ class PhoneSign extends StatelessWidget {
                                     Get.find<AuthController>()
                                         .sendSignUpOtp(countryCode + value);
                                   } else {
+
+                                    
                                     Get.find<AuthController>()
                                         .sendSignInOtp(countryCode + value);
                                   }
@@ -162,6 +164,9 @@ class PhoneSign extends StatelessWidget {
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Please enter your Phone Number.';
+                                }
+                                if (value.length < 10) {
+                                  return 'Please enter correct Phone Number.';
                                 }
                                 return null;
                               },
@@ -179,7 +184,8 @@ class PhoneSign extends StatelessWidget {
                               ],
                               // keyboardType: TextInputType.number,
                               decoration: InputDecoration(
-                                 counterStyle: const TextStyle(color: Colors.white),
+                                  counterStyle:
+                                      const TextStyle(color: Colors.white),
 
                                   // isDense: true,
                                   alignLabelWithHint: true,

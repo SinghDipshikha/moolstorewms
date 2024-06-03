@@ -40,12 +40,12 @@ class HRController extends GetxController {
   final ApiClient apiClient;
   bool isLoading = false;
   bool isOwner;
+  User user;
   HRController(
       {required this.hrRepo,
       required this.apiClient,
       required this.user,
       this.isOwner = false});
-  User user;
   List<AddCareerDetail> carrierDetails = [const AddCareerDetail()];
   var myHrID;
 

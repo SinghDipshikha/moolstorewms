@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Owner/View/OwnerDashboard.dart';
 import 'package:moolwmsstore/Owner/View/widget/ownerDrawer.dart';
+import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 class Owner extends StatelessWidget {
@@ -26,7 +27,7 @@ class Owner extends StatelessWidget {
             // key: const Key("1"),
           )
         : Container(
-            color: Theme.of(context).scaffoldBackgroundColor,
+            color: AppColors.linkedInBGColor,
             child: Column(
               children: [
                 Container(
@@ -44,7 +45,7 @@ class Owner extends StatelessWidget {
                         child: ClipRRect(
                                 borderRadius: BorderRadius.circular(22),
                                 //  constraints: const BoxConstraints(maxHeight: 600),
-                                child: const OwnerDrawer())
+                                child: OwnerDrawer())
                             .paddingSymmetric(vertical: 44, horizontal: 10),
                       ),
                       Container(

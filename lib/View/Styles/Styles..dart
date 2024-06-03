@@ -116,7 +116,10 @@ class TextStyles {
 }
 
 class AppColors {
-  static Color primaryColor = const Color(0xFF161616);
+  static Color primaryColor = const Color(0xFF5A57FF);
+  static Color linkedInBGColor = Color.fromARGB(255, 202, 204, 206);
+  
+
   static Color scaffoldBackgroundColor = const Color(0xFFF7F7F7);
   static Color hint = const Color(0xFF595959);
 }

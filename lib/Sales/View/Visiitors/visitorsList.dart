@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:moolwmsstore/Sales/Model/Visitor/visitorElement.dart';
+import 'package:moolwmsstore/Sales/View/Visiitors/viewVisitor.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
@@ -170,7 +171,9 @@ class _VisitorsListState extends State<VisitorsList> {
                               style: headingstyle)),
                       InkWell(
                         onTap: () {
-                          //   Get.to(ViewVisitor(visitor: item,));
+                          Get.to(ViewVisitor(
+                            visitor: item,
+                          ));
                         },
                         child: Image.asset(
                           "assets/icons/eyeNew.png",

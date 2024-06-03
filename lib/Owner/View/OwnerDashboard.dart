@@ -5,9 +5,11 @@ import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
 import 'package:moolwmsstore/Owner/View/Common/cc.dart';
+import 'package:moolwmsstore/Owner/View/WarehouseList.dart';
 import 'package:moolwmsstore/Owner/View/widget/ownerDrawer.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 ////@RoutePage()
 class OwnerDashboard extends StatefulWidget {
@@ -30,7 +32,7 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black,
-        drawer: context.isPhone ? const OwnerDrawer() : null,
+        drawer: context.isPhone ? OwnerDrawer() : null,
         appBar: AppBar(
           centerTitle: false,
           backgroundColor: const Color(0xFF232323),
@@ -51,82 +53,88 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
             child: Column(
               children: [
                 const Gap(10),
-                Container(
-                  height: 140,
-                  decoration: ShapeDecoration(
-                    gradient: const LinearGradient(
-                      begin: Alignment(-1.00, -0.00),
-                      end: Alignment(1, 0),
-                      colors: [Color(0xFF5A57FF), Color(0xFF6A68FF)],
+                InkWell(
+                  onTap: () {
+                    Get.to(const WarehouseList(), id: ownerNavigationKey);
+                  },
+                  child: Container(
+                    height: 140,
+                    decoration: ShapeDecoration(
+                      gradient: const LinearGradient(
+                        begin: Alignment(-1.00, -0.00),
+                        end: Alignment(1, 0),
+                        colors: [Color(0xFF5A57FF), Color(0xFF6A68FF)],
+                      ),
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(width: 1, color: Colors.white),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
                     ),
-                    shape: RoundedRectangleBorder(
-                      side: const BorderSide(width: 1, color: Colors.white),
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                          children: [
-                            const Text(
-                              'Warehouses',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            GetBuilder<OwnerController>(initState: (state) {
-                              Get.find<OwnerController>()
-                                  .getticketWarehouseCount();
-                            }, builder: (ownerController) {
-                              if (ownerController
-                                  .isGetIndentWarehouseCountLoading) {
-                                return LoadingAnimationWidget.staggeredDotsWave(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Column(
+                            children: [
+                              const Text(
+                                'Warehouses',
+                                style: TextStyle(
                                   color: Colors.white,
-                                  size: 80,
-                                );
-                              }
-                              return Text(
-                                '${ownerController.warehouseCount ?? "--"}',
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 54,
+                                  fontSize: 16,
                                   fontFamily: 'SF Pro Display',
                                   fontWeight: FontWeight.w500,
                                 ),
-                              );
-                            }),
-                            const Text(
-                              'Total No. of Warehouses',
-                              style: TextStyle(
-                                color: Color(0xFFC2C0FF),
-                                fontSize: 10,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w400,
+                              ),
+                              GetBuilder<OwnerController>(initState: (state) {
+                                Get.find<OwnerController>()
+                                    .getticketWarehouseCount();
+                              }, builder: (ownerController) {
+                                if (ownerController
+                                    .isGetIndentWarehouseCountLoading) {
+                                  return LoadingAnimationWidget
+                                      .staggeredDotsWave(
+                                    color: Colors.white,
+                                    size: 80,
+                                  );
+                                }
+                                return Text(
+                                  '${ownerController.warehouseCount ?? "--"}',
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 54,
+                                    fontFamily: 'SF Pro Display',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                );
+                              }),
+                              const Text(
+                                'Total No. of Warehouses',
+                                style: TextStyle(
+                                  color: Color(0xFFC2C0FF),
+                                  fontSize: 10,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const Gap(20),
+                          Container(
+                            width: 169.64,
+                            height: 112,
+                            decoration: const BoxDecoration(
+                              color: Colors.transparent,
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    "assets/images/wareHouseImage.png"),
+                                fit: BoxFit.fill,
                               ),
                             ),
-                          ],
-                        ),
-                        const Gap(20),
-                        Container(
-                          width: 169.64,
-                          height: 112,
-                          decoration: const BoxDecoration(
-                            color: Colors.transparent,
-                            image: DecorationImage(
-                              image: AssetImage(
-                                  "assets/images/wareHouseImage.png"),
-                              fit: BoxFit.fill,
-                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -320,8 +328,6 @@ class _OwnerDashboardState extends State<OwnerDashboard> {
                     ),
                   ],
                 ),
-               
-               
                 const Gap(10),
                 Container(
                   height: 100,

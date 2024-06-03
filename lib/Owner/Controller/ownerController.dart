@@ -1,10 +1,14 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/Model/personType.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Common%20Data/repository/ownerRepo.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsRepo.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/DMS.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
@@ -373,11 +377,31 @@ class OwnerController extends GetxController {
     });
   }
 
-  List otherRoles = ["Owner", "Sales", "HR", "Security Guard"];
+  List otherRoles = [
+    "Owner",
+    "Sales",
+    "HR",
+    "Security Guard",
+    "Dock-supervisor"
+  ];
 
   switchRole(String role) {
     if (role == "Owner") {
       Get.offAll(const Owner());
+    }
+    if (role == "Dock-supervisor") {
+      Get.lazyPut(
+          () => Dmsrepo(sharedPreferences: Get.find(), apiClient: Get.find()));
+      Get.put(
+          DmsController(
+            isOwner: true,
+            user: user,
+            dmsRepo: Get.find<Dmsrepo>(),
+            apiClient: Get.find<ApiClient>(),
+          ),
+          permanent: true);
+
+      Get.offAll(const DMS());
     }
     if (role == "Security Guard") {
       Get.lazyPut(() => SecurityGuardRepo(
@@ -421,6 +445,25 @@ class OwnerController extends GetxController {
 
       Get.offAll(const Sales());
     }
+  }
+
+  updateProfilePic(XFile file) {
+    apiClient.uploadImage(file).then((v) {
+      if (v != null) {
+        Logger().i(v);
+        apiClient.postData("avtar/addAvtar",
+            {"user_id": user.id, "profile": v}).then((v2) async {
+          if (v2.data["result"] == "Users Avatar add successfully") {
+            Snacks.greenSnack("Profile Pic updated successfully");
+            var box = await Hive.openBox('authbox');
+            user = user.copyWith(avatar: v);
+            update();
+
+            box.put("user", user);
+          }
+        });
+      }
+    });
   }
 
   ownerLogout() async {

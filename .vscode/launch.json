@@ -1,27 +1,52 @@
-// {
-//     // Use IntelliSense to learn about possible attributes.
-//     // Hover to view descriptions of existing attributes.
-//     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-//     "version": "0.2.0",
-//     "configurations": [
-//         {
-//             "name": "wms",
-//             "request": "launch",
-//             "type": "dart",
-//             "args": ["-d", "chrome","--web-port", "8001" ],
-//             //,"--web-renderer","html"
-//         },
-//         {
-//             "name": "wms (profile mode)",
-//             "request": "launch",
-//             "type": "dart",
-//             "flutterMode": "profile"
-//         },
-//         {
-//             "name": "wms (release mode)",
-//             "request": "launch",
-//             "type": "dart",
-//             "flutterMode": "release"
-//         }
-//     ]
-// }
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        // {
+        //     "name": "wms",
+        //     "request": "launch",
+        //     "type": "dart",
+        //    // "args": ["-d", "chrome","--web-port", "8001" ],
+        //     "args": ["--no-enable-impeller" ],
+        //     //,"--web-renderer","html"
+        // },
+        {
+            "name": "wms Chrome",
+            "request": "launch",
+            "type": "dart",
+            "args": [  "-d", "chrome","--web-port", "8001" ,"--no-enable-impeller" ,"--web-renderer canvaskit"],
+
+            //,"--web-renderer","html"
+        },
+        {
+            "name": "wms SM A057F",
+            "request": "launch",
+            "type": "dart",
+            "args": [  "-d", "SM A057F"],
+
+            //,"--web-renderer","html"
+        },
+        {
+            "name": "build web",
+            "request": "launch",
+            "type": "dart",
+            "args": [  "-d", "chrome","--web-port", "8001" ,"--no-enable-impeller"  ,"--web-renderer canvaskit"],
+
+            //,"--web-renderer","html"
+        },
+        // {
+        //     "name": "wms (profile mode)",
+        //     "request": "launch",
+        //     "type": "dart",
+        //     "flutterMode": "profile"
+        // },
+        // {
+        //     "name": "wms (release mode)",
+        //     "request": "launch",
+        //     "type": "dart",
+        //     "flutterMode": "release"
+        // }
+    ]
+}
