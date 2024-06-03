@@ -54,10 +54,21 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
             title: 'Next',
             onTap: () {
               // if (_formKey.currentState?.validate() ?? false) {
-              hrController.addEducationDetailsRequestModel =
-                  hrController.addEducationDetailsRequestModel.copyWith();
+
+              hrController.addBankDetailsRequestModel =
+                  hrController.addBankDetailsRequestModel.copyWith(
+                id: 1,
+                user_id: 3,
+                updated_by: 3,
+                account_name: _accountNameController.text,
+                account_no: _accountNumberController.text,
+                ifsc_no: _ifscCodeController.text,
+                bank_name: _bankNameController.text,
+                account_type: _accountTypeController.text,
+                branch_name: _branchController.text,
+              );
               Logger().i(hrController.addCareerDetailsRequestModel.toJson());
-              hrController.addEducationDetails();
+              hrController.addBankDetails();
 
               //Get.to(const AddEmployeeDocumentsDetails(), id: hrNavigationKey);
             },

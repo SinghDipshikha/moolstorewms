@@ -20,6 +20,7 @@ StaffEntry _$StaffEntryFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$StaffEntry {
+  int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get mobile => throw _privateConstructorUsedError;
   String? get employeeId => throw _privateConstructorUsedError;
@@ -45,7 +46,8 @@ abstract class $StaffEntryCopyWith<$Res> {
       _$StaffEntryCopyWithImpl<$Res, StaffEntry>;
   @useResult
   $Res call(
-      {String? name,
+      {int? id,
+      String? name,
       String? mobile,
       String? employeeId,
       dynamic warehouseId,
@@ -71,6 +73,7 @@ class _$StaffEntryCopyWithImpl<$Res, $Val extends StaffEntry>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? mobile = freezed,
     Object? employeeId = freezed,
@@ -84,6 +87,10 @@ class _$StaffEntryCopyWithImpl<$Res, $Val extends StaffEntry>
     Object? isDocumentDetails = freezed,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -141,7 +148,8 @@ abstract class _$$StaffEntryImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? name,
+      {int? id,
+      String? name,
       String? mobile,
       String? employeeId,
       dynamic warehouseId,
@@ -165,6 +173,7 @@ class __$$StaffEntryImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? mobile = freezed,
     Object? employeeId = freezed,
@@ -178,6 +187,10 @@ class __$$StaffEntryImplCopyWithImpl<$Res>
     Object? isDocumentDetails = freezed,
   }) {
     return _then(_$StaffEntryImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -230,7 +243,8 @@ class __$$StaffEntryImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StaffEntryImpl implements _StaffEntry {
   const _$StaffEntryImpl(
-      {this.name,
+      {this.id,
+      this.name,
       this.mobile,
       this.employeeId,
       this.warehouseId,
@@ -246,6 +260,8 @@ class _$StaffEntryImpl implements _StaffEntry {
   factory _$StaffEntryImpl.fromJson(Map<String, dynamic> json) =>
       _$$StaffEntryImplFromJson(json);
 
+  @override
+  final int? id;
   @override
   final String? name;
   @override
@@ -279,7 +295,7 @@ class _$StaffEntryImpl implements _StaffEntry {
 
   @override
   String toString() {
-    return 'StaffEntry(name: $name, mobile: $mobile, employeeId: $employeeId, warehouseId: $warehouseId, timestamp: $timestamp, personType: $personType, isBankDetails: $isBankDetails, isCareerDetails: $isCareerDetails, isEducationDetails: $isEducationDetails, isUserDetails: $isUserDetails, isDocumentDetails: $isDocumentDetails)';
+    return 'StaffEntry(id: $id, name: $name, mobile: $mobile, employeeId: $employeeId, warehouseId: $warehouseId, timestamp: $timestamp, personType: $personType, isBankDetails: $isBankDetails, isCareerDetails: $isCareerDetails, isEducationDetails: $isEducationDetails, isUserDetails: $isUserDetails, isDocumentDetails: $isDocumentDetails)';
   }
 
   @override
@@ -287,6 +303,7 @@ class _$StaffEntryImpl implements _StaffEntry {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StaffEntryImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.mobile, mobile) || other.mobile == mobile) &&
             (identical(other.employeeId, employeeId) ||
@@ -313,6 +330,7 @@ class _$StaffEntryImpl implements _StaffEntry {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       name,
       mobile,
       employeeId,
@@ -341,7 +359,8 @@ class _$StaffEntryImpl implements _StaffEntry {
 
 abstract class _StaffEntry implements StaffEntry {
   const factory _StaffEntry(
-      {final String? name,
+      {final int? id,
+      final String? name,
       final String? mobile,
       final String? employeeId,
       final dynamic warehouseId,
@@ -356,6 +375,8 @@ abstract class _StaffEntry implements StaffEntry {
   factory _StaffEntry.fromJson(Map<String, dynamic> json) =
       _$StaffEntryImpl.fromJson;
 
+  @override
+  int? get id;
   @override
   String? get name;
   @override

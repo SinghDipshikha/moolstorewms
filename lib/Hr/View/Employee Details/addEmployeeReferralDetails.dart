@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
-import 'package:moolwmsstore/Hr/View/widget/commonAppBar.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
@@ -42,26 +41,35 @@ class _AddEmployeeReferralDetailsState
       return Form(
         key: _formKey,
         child: Scaffold(
-         appBar: AppBar(
-          title: const Text(
-            'Referral Details',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontFamily: 'SF Pro Display',
-              fontWeight: FontWeight.w500,
+          appBar: AppBar(
+            title: const Text(
+              'Referral Details',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontFamily: 'SF Pro Display',
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
-        ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: CustomFloatingActionButton(
             title: 'Next',
             onTap: () {
               hrController.addReferralDetailRequestModel =
-                  hrController.addReferralDetailRequestModel.copyWith();
+                  hrController.addReferralDetailRequestModel.copyWith(
+                      name: _referralNameController.text,
+                      company: _companyNameController.text,
+                      address: _addressController.text,
+                      designation: _designationController.text,
+                      mobile_number: _mobileNumberContoller.text,
+                      email_id: _emailController.text);
               Logger().i(hrController.addReferralDetailRequestModel.toJson());
-              hrController.addReferralDetails();
+              hrController.addReferralDetails(  userID: 1,
+                 
+                  updatedBy: 1,
+                  referralDetails: []);
 
               print(hrController.addReferralDetailRequestModel);
             },
