@@ -1,7 +1,6 @@
 //import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 
 //@RoutePage()
@@ -16,9 +15,16 @@ class _IsUserCheckedInScreenState extends State<IsUserCheckedInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(
-        title: 'Results',
-        actions: const [],
+      appBar: AppBar(
+        title: const Text(
+          'Results',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontFamily: 'SF Pro Display',
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
       body: Column(
         children: [

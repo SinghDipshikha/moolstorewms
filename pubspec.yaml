@@ -84,6 +84,7 @@ dependencies:
   # convert_widget_to_image: ^0.0.2
   share_plus: ^9.0.0
   qr_scanner_overlay: ^0.0.2
+  flutter_svg: ^2.0.10+1
 
   # lazy_load_scrollview: ^1.3.0
 

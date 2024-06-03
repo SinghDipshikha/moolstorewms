@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
-import 'package:moolwmsstore/Hr/View/Shfits/demmmoooo.dart';
+import 'package:moolwmsstore/Hr/View/Shfits/createShift.dart';
 import 'package:moolwmsstore/Hr/View/Staff/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonDropDown.dart';
@@ -240,7 +240,7 @@ class _HrDashboardState extends State<HrDashboard> {
                       title: "Create Shift",
                       isShowextendedLine: false,
                       onTap: () {
-                        Get.to(WhatsAppShareScreen(), id: hrNavigationKey);
+                        Get.to(const CreateShiftScreen(), id: hrNavigationKey);
                       },
                     ),
                     // CurvedLineConatainer(

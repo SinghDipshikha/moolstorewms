@@ -433,12 +433,16 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                                                     _formatTimeOfDay(
                                                         _selectedTime2),
                                                 warehouse_id: hrController
-                                                        .selectedWarehouse![
+                                                        .selectedDashboardWarehouse![
                                                     "warehouse_id"]);
                                     Logger().i(hrController
                                         .addShiftDetailsRequestModel
                                         .toJson());
                                     hrController.addShiftDetails();
+                                    if (hrController.addShiftDetails() ==
+                                        true) {
+                                      Navigator.of(context).pop();
+                                    }
 
                                     print(hrController
                                         .addShiftDetailsRequestModel);
@@ -492,12 +496,17 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
         title: 'Create Shift',
         onTap: () => _showPopup(context),
       ),
-      appBar: AppBar(
-        title: const Text(
-          'Create Shift',
-          style: TextStyle(color: Colors.white),
+       appBar: AppBar(
+          title: const Text(
+            'Create Shift',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
         ),
-      ),
       body: GetBuilder<HRController>(builder: (hrController) {
         return Column(
           mainAxisAlignment: MainAxisAlignment.start,

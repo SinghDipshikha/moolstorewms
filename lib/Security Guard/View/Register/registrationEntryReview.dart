@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/Auth/widgets/commonTextField.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/checkedInSaved.dart';
-import 'package:moolwmsstore/Security%20Guard/View/Register/registrationList.dart';
-import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/View/common/tagContainer.dart';
 import 'package:moolwmsstore/utils/globals.dart';
@@ -29,14 +27,16 @@ class _RegistrationEntryReviewScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(
-        onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const RegistrationListScreen(),
-          ));
-        },
-        title: 'Verify',
-        actions: const [],
+      appBar: AppBar(
+        title: const Text(
+          'Verify',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontFamily: 'SF Pro Display',
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Form(

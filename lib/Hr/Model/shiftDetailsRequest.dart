@@ -6,7 +6,6 @@ part 'shiftDetailsRequest.g.dart';
 @freezed
 class ShiftDetailsRequest with _$ShiftDetailsRequest {
   const factory ShiftDetailsRequest({
-    int? id,
     int? added_by,
     String? shift_name,
     String? shift_check_in,

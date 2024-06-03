@@ -3,12 +3,9 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
-import 'package:moolwmsstore/Hr/View/Staff/staffList.dart';
-import 'package:moolwmsstore/Hr/View/widget/commonAppBar.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
-import 'package:moolwmsstore/utils/globals.dart';
 
 ////@RoutePage()
 class AddEmployeeBankDetails extends StatefulWidget {
@@ -40,11 +37,16 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
       return Form(
         key: _formKey,
         child: Scaffold(
-          appBar: CommonAppBar(
-            title: 'Bank Details',
-            onTap: () {
-              Get.to(const HrEmployeeList(), id: hrNavigationKey);
-            },
+          appBar: AppBar(
+            title: const Text(
+              'Bank Details',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontFamily: 'SF Pro Display',
+                fontWeight: FontWeight.w500,
+              ),
+            ),
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,

@@ -205,6 +205,7 @@ class _OtpScreenState extends State<OtpScreen> {
               onCompleted: (pin) {
                 // setState(() {
                 otp = pin;
+                submitOtp();
                 //  });
               },
             ).paddingOnly(top: 40, bottom: 20),

@@ -171,7 +171,9 @@ class _VisitorsListState extends State<VisitorsList> {
                               style: headingstyle)),
                       InkWell(
                         onTap: () {
-                          Get.to(ViewVisitor(visitor: item,));
+                          Get.to(ViewVisitor(
+                            visitor: item,
+                          ));
                         },
                         child: Image.asset(
                           "assets/icons/eyeNew.png",

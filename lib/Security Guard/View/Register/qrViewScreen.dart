@@ -24,29 +24,27 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
 
   @override
   onInit() {
-    _qrBarCodeScannerDialogPlugin.getScannedQrBarCode(
-        context: context,
-        onCode: (code) {
-          setState(() {
-            this.code = code;
-          });
-        });
+    // _qrBarCodeScannerDialogPlugin.getScannedQrBarCode(
+    //     context: context,
+    //     onCode: (code) {
+        
+    //     });
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: CommonAppBar(
-          onTap: () {
-            Get.to(const RegistrationTypeOptions(),
-                id: securityGuardNavigation);
-            // Navigator.of(context).push(MaterialPageRoute(
-            //   builder: (context) => const SecurityGuardDashBoard(),
-            // ));
-          },
-          title: 'QR Scanner',
-          actions: const [],
+        appBar: AppBar(
+          title: const Text(
+            'QR Scanner',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
         ),
         body: Builder(builder: (context) {
           return Column(

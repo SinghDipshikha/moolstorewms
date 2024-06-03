@@ -38,13 +38,17 @@ class _PersonsListScreenState extends State<PersonsListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(
-        onTap: () {
-          Get.to(const SecurityGuardDashBoard(), id: securityGuardNavigation);
-        },
-        title: 'Persons List',
-        actions: const [],
-      ),
+      appBar: AppBar(
+          title: const Text(
+            'Persons List',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

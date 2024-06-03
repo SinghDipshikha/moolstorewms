@@ -52,11 +52,17 @@ class _AddEmployeeEducationQualificationDetailsState
       return Form(
         key: _formKey,
         child: Scaffold(
-          appBar: CommonAppBar(
-              title: 'Education Details',
-              onTap: () {
-                Get.to(const HrEmployeeList(), id: hrNavigationKey);
-              }),
+         appBar: AppBar(
+          title: const Text(
+            'Eductaion Details',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: CustomFloatingActionButton(

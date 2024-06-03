@@ -1,18 +1,15 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Sales/Model/Visitor/visitorElement.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
 
 class ViewVisitor extends StatefulWidget {
-  VisitorElement? visitor;
-  ViewVisitor({super.key, this.visitor});
+  VisitorElement visitor;
+  ViewVisitor({super.key, required this.visitor});
 
   @override
   State<ViewVisitor> createState() => _ViewVisitorState();
@@ -227,36 +224,28 @@ class _ViewVisitorState extends State<ViewVisitor> {
           // ),
 
           Center(
-            child: InkWell(
-              onTap: () {
-              
-                Logger().i("dhbhcbdhbcd");
-                controller.capture().then((v) async {
-                  XFile file = XFile.fromData(v!,
-                      name: 'image.jpg', mimeType: 'image/jpeg');
-                  Share.shareXFiles([file], text: 'Great picture');
-                });
-              },
-              child: WidgetsToImage(
-                controller: controller,
-                child: QrImageView(
-                  backgroundColor: Colors.white,
-                  data: 'This QR code has an embedded image as well',
-                  version: QrVersions.auto,
-                  size: 230,
-                  gapless: true,
-                  dataModuleStyle: const QrDataModuleStyle(
-                      dataModuleShape: QrDataModuleShape.circle,
-                      color: Colors.black),
-                  eyeStyle: const QrEyeStyle(
-                      eyeShape: QrEyeShape.circle, color: Colors.black),
-                ),
+            child: WidgetsToImage(
+              controller: controller,
+              child: QrImageView(
+                backgroundColor: Colors.white,
+                data:
+                    'TYPE : VISITOR , CODE : ${widget.visitor.visit_ticket_number}',
+                version: QrVersions.auto,
+                size: 230,
+                gapless: true,
+                dataModuleStyle: const QrDataModuleStyle(
+                    dataModuleShape: QrDataModuleShape.circle,
+                    color: Colors.black),
+                eyeStyle: const QrEyeStyle(
+                    eyeShape: QrEyeShape.circle, color: Colors.black),
               ),
             ),
           ).paddingSymmetric(vertical: 12),
           Center(
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  controller.capture();
+                },
                 icon: const Icon(
                   Icons.share,
                   color: Colors.black,

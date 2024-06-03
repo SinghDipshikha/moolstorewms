@@ -20,7 +20,6 @@ ShiftDetailsRequest _$ShiftDetailsRequestFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ShiftDetailsRequest {
-  int? get id => throw _privateConstructorUsedError;
   int? get added_by => throw _privateConstructorUsedError;
   String? get shift_name => throw _privateConstructorUsedError;
   String? get shift_check_in => throw _privateConstructorUsedError;
@@ -40,8 +39,7 @@ abstract class $ShiftDetailsRequestCopyWith<$Res> {
       _$ShiftDetailsRequestCopyWithImpl<$Res, ShiftDetailsRequest>;
   @useResult
   $Res call(
-      {int? id,
-      int? added_by,
+      {int? added_by,
       String? shift_name,
       String? shift_check_in,
       String? shift_check_out,
@@ -61,7 +59,6 @@ class _$ShiftDetailsRequestCopyWithImpl<$Res, $Val extends ShiftDetailsRequest>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? added_by = freezed,
     Object? shift_name = freezed,
     Object? shift_check_in = freezed,
@@ -69,10 +66,6 @@ class _$ShiftDetailsRequestCopyWithImpl<$Res, $Val extends ShiftDetailsRequest>
     Object? warehouse_id = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
       added_by: freezed == added_by
           ? _value.added_by
           : added_by // ignore: cast_nullable_to_non_nullable
@@ -106,8 +99,7 @@ abstract class _$$ShiftDetailsRequestImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
-      int? added_by,
+      {int? added_by,
       String? shift_name,
       String? shift_check_in,
       String? shift_check_out,
@@ -125,7 +117,6 @@ class __$$ShiftDetailsRequestImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? added_by = freezed,
     Object? shift_name = freezed,
     Object? shift_check_in = freezed,
@@ -133,10 +124,6 @@ class __$$ShiftDetailsRequestImplCopyWithImpl<$Res>
     Object? warehouse_id = freezed,
   }) {
     return _then(_$ShiftDetailsRequestImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
       added_by: freezed == added_by
           ? _value.added_by
           : added_by // ignore: cast_nullable_to_non_nullable
@@ -165,8 +152,7 @@ class __$$ShiftDetailsRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ShiftDetailsRequestImpl implements _ShiftDetailsRequest {
   const _$ShiftDetailsRequestImpl(
-      {this.id,
-      this.added_by,
+      {this.added_by,
       this.shift_name,
       this.shift_check_in,
       this.shift_check_out,
@@ -175,8 +161,6 @@ class _$ShiftDetailsRequestImpl implements _ShiftDetailsRequest {
   factory _$ShiftDetailsRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$ShiftDetailsRequestImplFromJson(json);
 
-  @override
-  final int? id;
   @override
   final int? added_by;
   @override
@@ -190,7 +174,7 @@ class _$ShiftDetailsRequestImpl implements _ShiftDetailsRequest {
 
   @override
   String toString() {
-    return 'ShiftDetailsRequest(id: $id, added_by: $added_by, shift_name: $shift_name, shift_check_in: $shift_check_in, shift_check_out: $shift_check_out, warehouse_id: $warehouse_id)';
+    return 'ShiftDetailsRequest(added_by: $added_by, shift_name: $shift_name, shift_check_in: $shift_check_in, shift_check_out: $shift_check_out, warehouse_id: $warehouse_id)';
   }
 
   @override
@@ -198,7 +182,6 @@ class _$ShiftDetailsRequestImpl implements _ShiftDetailsRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ShiftDetailsRequestImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.added_by, added_by) ||
                 other.added_by == added_by) &&
             (identical(other.shift_name, shift_name) ||
@@ -213,7 +196,7 @@ class _$ShiftDetailsRequestImpl implements _ShiftDetailsRequest {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, added_by, shift_name,
+  int get hashCode => Object.hash(runtimeType, added_by, shift_name,
       shift_check_in, shift_check_out, warehouse_id);
 
   @JsonKey(ignore: true)
@@ -233,8 +216,7 @@ class _$ShiftDetailsRequestImpl implements _ShiftDetailsRequest {
 
 abstract class _ShiftDetailsRequest implements ShiftDetailsRequest {
   const factory _ShiftDetailsRequest(
-      {final int? id,
-      final int? added_by,
+      {final int? added_by,
       final String? shift_name,
       final String? shift_check_in,
       final String? shift_check_out,
@@ -243,8 +225,6 @@ abstract class _ShiftDetailsRequest implements ShiftDetailsRequest {
   factory _ShiftDetailsRequest.fromJson(Map<String, dynamic> json) =
       _$ShiftDetailsRequestImpl.fromJson;
 
-  @override
-  int? get id;
   @override
   int? get added_by;
   @override

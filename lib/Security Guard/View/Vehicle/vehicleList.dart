@@ -4,9 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/vehicle.dart';
-import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
-import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
-import 'package:moolwmsstore/utils/globals.dart';
 
 //@RoutePage()
 class VehicleListScreen extends StatefulWidget {
@@ -38,12 +35,16 @@ class _VehicleListScreenState extends State<VehicleListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(
-        onTap: () {
-          Get.to(const SecurityGuardDashBoard(), id: securityGuardNavigation);
-        },
-        title: 'Vehicle List',
-        actions: const [],
+      appBar: AppBar(
+        title: const Text(
+          'Vehicle List',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontFamily: 'SF Pro Display',
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
       body: Center(
         child: Column(

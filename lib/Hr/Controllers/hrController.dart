@@ -22,6 +22,7 @@ import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeBankDetails.d
 import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeCareerDetails.dart';
 import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeEducationQualificationDetails.dart';
 import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeReferralDetails.dart';
+import 'package:moolwmsstore/Hr/View/Shfits/createShift.dart';
 import 'package:moolwmsstore/Hr/View/Staff/addedStaffScreen.dart';
 import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
 import 'package:moolwmsstore/Owner/Model/addWarehouse.dart';
@@ -36,12 +37,12 @@ class HRController extends GetxController {
   final ApiClient apiClient;
   bool isLoading = false;
   bool isOwner;
+  User user;
   HRController(
       {required this.hrRepo,
       required this.apiClient,
       required this.user,
       this.isOwner = false});
-  User user;
   List<AddCareerDetail> carrierDetails = [const AddCareerDetail()];
   var myHrID;
 
@@ -64,7 +65,7 @@ class HRController extends GetxController {
   AddWarehouse? warehouse;
   List dashboardWarehouses = [];
   List<AddShiftDetails> getShiftData = [];
-  Map? selectedWarehouse;
+  Map? selectedDashboardWarehouse;
 
   List<Widget> navigationAccordingStatus = [
     const AddedStaffScreen(),
@@ -93,9 +94,9 @@ class HRController extends GetxController {
   }
 
   changeCreateShiftWarehouse({required Map warehouse}) {
-    selectedWarehouse = warehouse;
+    selectedDashboardWarehouse = warehouse;
 
-    Logger().i(selectedWarehouse);
+    Logger().i(selectedDashboardWarehouse);
   }
 
   getAllStaffList() {
@@ -338,24 +339,37 @@ class HRController extends GetxController {
   addShiftDetails() async {
     isLoading = true;
     update();
-    await apiClient
-        .postData("hr/addShift", addShiftDetailsRequestModel.toJson())
-        .then((value) {
-      String shiftName = getShiftData.isNotEmpty
-          ? getShiftData[0].shift_name!
-          : 'Unknown Shift';
-      if (value.data["message"] == "$shiftName added successfully!") {
+    try {
+      var response = await apiClient.postData(
+          "hr/addShift", addShiftDetailsRequestModel.toJson());
+      var value = response.data;
+
+      if (value["status"] == true) {
         addShiftDetailsRequestModel = const ShiftDetailsRequest();
 
-    
-        getShiftData = (value.data["result"] as List).map((e) => AddShiftDetails.fromJson(e)).toList();
+        var result = value["result"];
+        if (result is List<dynamic>) {
+          getShiftData =
+              result.map((e) => AddShiftDetails.fromJson(e)).toList();
+        } else if (result is Map<String, dynamic>) {
+          getShiftData = [AddShiftDetails.fromJson(result)];
+        } else {
+          throw Exception('Unexpected JSON structure for "result"');
+        }
 
+        String shiftName = getShiftData.isNotEmpty
+            ? getShiftData[0].shift_name!
+            : 'Unknown Shift';
         Snacks.greenSnack("Shift '$shiftName' Added Successfully");
 
-        isLoading = false;
-        update();
+        Get.to(const CreateShiftScreen(), id: hrNavigationKey);
       }
-    });
+    } catch (e) {
+      print('Error: $e');
+    } finally {
+      isLoading = false;
+      update();
+    }
   }
 
   hrLogout() async {

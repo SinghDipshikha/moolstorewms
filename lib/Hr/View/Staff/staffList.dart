@@ -10,8 +10,6 @@ import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeDocuments.dar
 import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeEducationQualificationDetails.dart';
 import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeePersonalDetails.dart';
 import 'package:moolwmsstore/Hr/View/Staff/addedStaffScreen.dart';
-import 'package:moolwmsstore/Hr/View/hrDashboard.dart';
-import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 class HrEmployeeList extends StatelessWidget {
@@ -28,11 +26,16 @@ class HrEmployeeList extends StatelessWidget {
         // floatingActionButton: CustomButton(
         //   title: 'Add New Staff',
         // ).paddingSymmetric(horizontal: 12),
-        appBar: CommonAppBar(
-          title: 'Staff List',
-          onTap: () {
-            Get.to(const HrDashboard(), id: hrNavigationKey);
-          },
+        appBar: AppBar(
+          title: const Text(
+            'Staff List',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
         ),
         body: Column(
           children: [
@@ -283,8 +286,6 @@ class HrEmployeeList extends StatelessWidget {
                     }))
           ],
         ).paddingSymmetric(vertical: 16, horizontal: 12),
-     
-     
       );
     });
   }

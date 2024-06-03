@@ -101,11 +101,17 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
       return Form(
         key: _formKey,
         child: Scaffold(
-          appBar: CommonAppBar(
-              title: 'Career Details',
-              onTap: () {
-                Get.to(const HrEmployeeList(), id: hrNavigationKey);
-              }),
+          appBar: AppBar(
+          title: const Text(
+            'Career Details',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: CustomFloatingActionButton(

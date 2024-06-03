@@ -8,6 +8,7 @@ int hrNavigationKey = 3;
 int ownerNavigationKey = 4;
 int plantmanagerNavigationKey = 5;
 int salesNavigationKey = 6;
+int dmsNavigationKey = 6;
 //inal GlobalKey<ScaffoldMessengerState> snackbarKey =
 //     GlobalKey<ScaffoldMessengerState>();
 

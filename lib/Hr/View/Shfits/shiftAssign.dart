@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
-import 'package:moolwmsstore/Hr/View/Shfits/shiftsAssignList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonDropDown.dart';
-import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
-import 'package:moolwmsstore/utils/globals.dart';
 
 class AssignShift extends StatefulWidget {
   const AssignShift({super.key});
@@ -26,11 +22,16 @@ class _AssignShiftState extends State<AssignShift> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(
-        title: 'Assign Shift',
-        onTap: () {
-          // Get.to(const ShiftInfo(), id: hrNavigationKey);
-        },
+      appBar: AppBar(
+        title: const Text(
+          'Asign Shift',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontFamily: 'SF Pro Display',
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
       body: Column(
         children: [
