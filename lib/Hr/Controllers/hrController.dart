@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
@@ -9,6 +10,7 @@ import 'package:moolwmsstore/Hr/Model/addBankDetails.dart';
 import 'package:moolwmsstore/Hr/Model/addCareerDetail.dart';
 import 'package:moolwmsstore/Hr/Model/addEducationDetails.dart';
 import 'package:moolwmsstore/Hr/Model/addReferralDetails.dart';
+import 'package:moolwmsstore/Hr/Model/addShift.dart';
 import 'package:moolwmsstore/Hr/Model/addShiftDetails.dart';
 import 'package:moolwmsstore/Hr/Model/bankDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/careerDetailsRequest.dart';
@@ -20,6 +22,7 @@ import 'package:moolwmsstore/Hr/Model/shiftDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/staff.dart';
 import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeBankDetails.dart';
 import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeCareerDetails.dart';
+import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeDocuments.dart';
 import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeEducationQualificationDetails.dart';
 import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeReferralDetails.dart';
 import 'package:moolwmsstore/Hr/View/Shfits/createShift.dart';
@@ -55,31 +58,24 @@ class HRController extends GetxController {
   BankDetailsRequest addBankDetailsRequestModel = const BankDetailsRequest();
   CareerDetailsRequest addCareerDetailsRequestModel =
       const CareerDetailsRequest();
+  ReferralDetailsRequest addReferralDetailsRequestModel =
+      const ReferralDetailsRequest();
   ShiftDetailsRequest addShiftDetailsRequestModel = const ShiftDetailsRequest();
   List<StaffEntry> employees = [];
+  List<AddShift> allShifts = [];
   List<PersonalDetailsResponse> getPersonalDetailsList = [];
   List<AddCareerDetail> getCareerDetailsList = [];
   List<AddEducationDetail> getEducationDetailsList = [];
   List<AddReferralDetail> getReferralDetailsList = [];
   List<AddBankDetails> getBankDetailsList = [];
   AddWarehouse? warehouse;
-  List dashboardWarehouses = [];
+  List createShiftWarehouses = [];
   List<AddShiftDetails> getShiftData = [];
-  Map? selectedDashboardWarehouse;
+  Map? selectedWarehouse;
 
   List<Widget> navigationAccordingStatus = [
     const AddedStaffScreen(),
   ];
-  @override
-  void onInit() {
-    dashboardWarehouses.addAll(user.warehouse!.toList());
-    dashboardWarehouses.add({
-      "id": "",
-      "warehouse_name": "All Warehouses",
-    });
-
-    super.onInit();
-  }
 
   switchRole(String role) {
     if (role == "security-guard") {
@@ -93,10 +89,20 @@ class HRController extends GetxController {
     }
   }
 
-  changeCreateShiftWarehouse({required Map warehouse}) {
-    selectedDashboardWarehouse = warehouse;
+  bool imageUploading = false;
+  Future<String?> uploadImage(XFile file) async {
+    imageUploading = true;
+    update();
+    String? x = await apiClient.uploadImage(file);
+    imageUploading = false;
+    update();
+    return x;
+  }
 
-    Logger().i(selectedDashboardWarehouse);
+  changeCreateShiftWarehouse({required Map warehouse}) {
+    selectedWarehouse = warehouse;
+
+    Logger().i(selectedWarehouse);
   }
 
   getAllStaffList() {
@@ -137,9 +143,9 @@ class HRController extends GetxController {
   }
 
 /////////// Get Personal Details/////////
-  getPersonalDetails() {
+  getPersonalDetails(var userId) {
     apiClient.postData("hr/getBasicInformationById", {
-      {"user_id": 1}
+      {"user_id": userId}
     }).then((value) {
       if (value.data["message"] == "items found") {
         Snacks.greenSnack("Personal Details");
@@ -215,26 +221,32 @@ class HRController extends GetxController {
   addEducationDetails() async {
     isLoading = true;
     update();
-    await apiClient
-        .postData("hr/addEducationInformation",
-            addEducationDetailsRequestModel.toJson())
-        .then((value) {
-      if (value.data["message"] == "Information Added") {
+
+    try {
+      final response = await apiClient.postData(
+        "hr/addEducationInformation",
+        addEducationDetailsRequestModel.toJson(),
+      );
+
+      final message = response.data["message"];
+
+      if (message == "Information Added") {
         print('Deepshikha');
         addEducationDetailsRequestModel = const EducationDetailsRequest();
         Snacks.greenSnack("Education Information Added Successfully");
-        isLoading = false;
-        update();
         Get.to(const AddEmployeeReferralDetails(), id: hrNavigationKey);
-      }
-      if (value.data["message"] == "information update") {
+      } else if (message == "information updated") {
         addEducationDetailsRequestModel = const EducationDetailsRequest();
         Snacks.greenSnack("Education Information Updated Successfully");
-        isLoading = false;
-        update();
         Get.to(const AddEmployeeReferralDetails(), id: hrNavigationKey);
       }
-    });
+    } catch (error) {
+      Snacks.redSnack("Failed to add education information. Please try again.");
+      print("Error: $error");
+    } finally {
+      isLoading = false;
+      update();
+    }
   }
 
   ////////////////Get Eductaion Details///////////////////
@@ -258,24 +270,37 @@ class HRController extends GetxController {
   }
 
 ////////////////Add and Update Referral Details////////////////////
-  addReferralDetails() async {
+  Future<bool> addReferralDetails({
+    required int userID,
+    required List<ReferralDetailsRequest> referralDetails,
+    required int updatedBy,
+  }) async {
     isLoading = true;
     update();
-    await apiClient
-        .postData(
-            "hr/getUserReferralsById", addReferralDetailRequestModel.toJson())
-        .then((value) {
-      if (value.data["message"] == "Employee Information Added") {
-        print('Deepshikha');
-        addReferralDetailRequestModel = const ReferralDetailsRequest();
-        Snacks.greenSnack("Personal Information Added");
 
-        isLoading = false;
-        update();
-        Get.to(const AddEmployeeBankDetails(), id: hrNavigationKey);
-      }
-    });
+    final Map<String, dynamic> requestBody = {
+      "user_id": userID,
+      "updated_by": updatedBy,
+      "referral_details":
+          referralDetails.map((detail) => detail.toJson()).toList(),
+    };
+
+    final response =
+        await apiClient.postData("hr/addUserReferral", requestBody);
+
+    if (response.data["message"] == "Referral Information Added") {
+      print('Deepshikha');
+      Snacks.greenSnack("Personal Information Added");
+
+      update();
+      Get.to(const AddEmployeeBankDetails(), id: hrNavigationKey);
+      return true;
+    } else {
+      Snacks.redSnack("Failed to add referral information. Please try again.");
+      return false;
+    }
   }
+
 ////////////Get Referral Details///////////////////
 
   getReferralDetails() {
@@ -301,18 +326,31 @@ class HRController extends GetxController {
   addBankDetails() async {
     isLoading = true;
     update();
-    await apiClient
-        .postData("hr/addBankDetails", addBankDetailsRequestModel.toJson())
-        .then((value) {
-      if (value.data["message"] == "information updated") {
-        addBankDetailsRequestModel = const BankDetailsRequest();
-        Snacks.greenSnack("Bank Information Added");
 
-        isLoading = false;
-        update();
-        // Get.to(const AddEmployeeCareerDetails(), id: hrNavigationKey);
+    try {
+      final response = await apiClient.postData(
+        "hr/addBankDetails",
+        addBankDetailsRequestModel.toJson(),
+      );
+
+      final message = response.data["message"];
+
+      if (message == "Information Added") {
+        addBankDetailsRequestModel = const BankDetailsRequest();
+        Snacks.greenSnack("Bank Information Added Successfully");
+        Get.to(const AddEmployeeDocumentsDetails(), id: hrNavigationKey);
+      } else if (message == "information updated") {
+        addBankDetailsRequestModel = const BankDetailsRequest();
+        Snacks.greenSnack("Bank Information Updated Successfully");
+        Get.to(const AddEmployeeDocumentsDetails(), id: hrNavigationKey);
       }
-    });
+    } catch (error) {
+      Snacks.redSnack("Failed to add bank information. Please try again.");
+      print("Error: $error");
+    } finally {
+      isLoading = false;
+      update();
+    }
   }
 
   /////////////Get Bank Details////////////////////////////////
@@ -360,7 +398,7 @@ class HRController extends GetxController {
         String shiftName = getShiftData.isNotEmpty
             ? getShiftData[0].shift_name!
             : 'Unknown Shift';
-        Snacks.greenSnack("Shift '$shiftName' Added Successfully");
+        Snacks.greenSnack("$shiftName Shift Added Successfully");
 
         Get.to(const CreateShiftScreen(), id: hrNavigationKey);
       }
@@ -370,6 +408,18 @@ class HRController extends GetxController {
       isLoading = false;
       update();
     }
+  }
+
+  getAllShift(int? warehouseId) {
+    apiClient.getData("hr/getShiftByWarehouseId/$warehouseId").then((value) {
+      if (value.data["message"] == "Shift found") {
+        List x = value.data["result"];
+        allShifts = x.map((e) => AddShift.fromJson(e)).toList();
+        Logger().i(employees);
+
+        update();
+      }
+    });
   }
 
   hrLogout() async {

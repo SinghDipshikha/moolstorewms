@@ -7,12 +7,9 @@ import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/Model/personaldetailsResponse.dart';
-import 'package:moolwmsstore/Hr/View/Staff/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
-import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
-import 'package:moolwmsstore/utils/globals.dart';
 
 //import 'package:moolwmsstore/routes/approutes.gr.dart';
 
@@ -104,7 +101,7 @@ class _AddEmployeePersonalDetailsState
   @override
   void initstate() {
     super.initState();
-    getPersonalDetails();
+    // getPersonalDetails();
 
     dispose();
   }
@@ -132,42 +129,41 @@ class _AddEmployeePersonalDetailsState
     super.dispose();
   }
 
-  @override
-  Future<void> getPersonalDetails() async {
-    final value = await Get.find<HRController>().getPersonalDetails();
-    if (value.data["message"] == "items found") {
-      List x = value.data["result"];
-      List<PersonalDetailsResponse> getPersonalDetailsList =
-          x.map((e) => PersonalDetailsResponse.fromJson(e)).toList();
-      if (getPersonalDetailsList.isNotEmpty) {
-        PersonalDetailsResponse detailsResponse = getPersonalDetailsList[0];
-        setState(() {
-          _gstNoController.text = detailsResponse.gst_number!;
-          _gstNoController.text = detailsResponse.blood_group!;
-          _esicContoller.text = detailsResponse.esic_number!;
-          _passportNumberController.text = detailsResponse.passport_number!;
-          _disabilityDescribeContoller.text =
-              detailsResponse.disability_describe!;
-          _addressContoller.text = detailsResponse.address!;
-          _stateContoller.text = detailsResponse.state!;
-          _cityContoller.text = detailsResponse.city!;
-          _pincodeContoller.text = detailsResponse.pincode!;
-          _emergencyContactNoController.text =
-              detailsResponse.emergency_contact_no!;
-          _aadharCardContoller.text = detailsResponse.aadhaar_number!;
-          _emergencyContactPersonController.text =
-              detailsResponse.emergency_contact_person!;
-          _panCardNumberController.text = detailsResponse.pan_card!;
-          _passportNumberController.text = detailsResponse.passport_number!;
-          _mailingAddressContoller.text =
-              detailsResponse.mailing_address_diffrent!;
-          _emailController.text = detailsResponse.email!;
+  // Future<void> getPersonalDetails() async {
+  //   final value = await Get.find<HRController>().getPersonalDetails();
+  //   if (value.data["message"] == "items found") {
+  //     List x = value.data["result"];
+  //     List<PersonalDetailsResponse> getPersonalDetailsList =
+  //         x.map((e) => PersonalDetailsResponse.fromJson(e)).toList();
+  //     if (getPersonalDetailsList.isNotEmpty) {
+  //       PersonalDetailsResponse detailsResponse = getPersonalDetailsList[0];
+  //       setState(() {
+  //         _gstNoController.text = detailsResponse.gst_number!;
+  //         _gstNoController.text = detailsResponse.blood_group!;
+  //         _esicContoller.text = detailsResponse.esic_number!;
+  //         _passportNumberController.text = detailsResponse.passport_number!;
+  //         _disabilityDescribeContoller.text =
+  //             detailsResponse.disability_describe!;
+  //         _addressContoller.text = detailsResponse.address!;
+  //         _stateContoller.text = detailsResponse.state!;
+  //         _cityContoller.text = detailsResponse.city!;
+  //         _pincodeContoller.text = detailsResponse.pincode!;
+  //         _emergencyContactNoController.text =
+  //             detailsResponse.emergency_contact_no!;
+  //         _aadharCardContoller.text = detailsResponse.aadhaar_number!;
+  //         _emergencyContactPersonController.text =
+  //             detailsResponse.emergency_contact_person!;
+  //         _panCardNumberController.text = detailsResponse.pan_card!;
+  //         _passportNumberController.text = detailsResponse.passport_number!;
+  //         _mailingAddressContoller.text =
+  //             detailsResponse.mailing_address_diffrent!;
+  //         _emailController.text = detailsResponse.email!;
 
-          Get.find<HRController>().isLoading = false;
-        });
-      }
-    }
-  }
+  //         Get.find<HRController>().isLoading = false;
+  //       });
+  //     }
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -331,9 +327,9 @@ class _AddEmployeePersonalDetailsState
                               ).paddingAll(2),
                               CommanTextField(
                                 labelText: "Date of Birth",
-                                hintText: _selectedDate == null
-                                    ? 'Choose your DOB'
-                                    : _selectedDate.toString(),
+                                // hintText: _selectedDate == null
+                                //     ? 'Choose your DOB'
+                                //     : _selectedDate.toString(),
                                 suffixIcon: GestureDetector(
                                   child: const Icon(Icons.calendar_month,
                                       color: Color(0xFFACACAC)),
@@ -571,7 +567,7 @@ class _AddEmployeePersonalDetailsState
                                   labelText: "Passport Number",
                                   hintText: "Passport Number",
                                   obscureText: false,
-                                  controller: _panCardNumberController,
+                                  controller: _passportNumberController,
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return 'Please enter your Passport Number.';

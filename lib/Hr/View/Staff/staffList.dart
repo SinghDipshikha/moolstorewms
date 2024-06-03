@@ -17,6 +17,19 @@ class HrEmployeeList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyle subHeaderStyle = const TextStyle(
+      color: Color(0xFF5A57FF),
+      fontSize: 12,
+      fontFamily: 'SF Pro Text',
+      fontWeight: FontWeight.w400,
+    );
+    TextStyle headerStyle = const TextStyle(
+      color: Color(0xFF353535),
+      fontSize: 12,
+      fontFamily: 'SF Pro Text',
+      fontWeight: FontWeight.w500,
+    );
+
     String? selectedShift;
     return GetBuilder<HRController>(initState: (state) {
       Get.find<HRController>().getAllStaffList();
@@ -82,66 +95,38 @@ class HrEmployeeList extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(18)))),
             ),
             const Gap(10),
-            Row(
-              children: [
-                const Expanded(
+
+            Row(children: [
+              Expanded(
                   flex: 1,
-                  child: Text(
-                    "Name",
-                    style: TextStyle(
-                      color: Color(0xFF5A57FF),
-                      fontSize: 12,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w400,
-                      //height: 0,
-                      letterSpacing: -0.48,
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Name',
+                      style: subHeaderStyle,
                     ),
-                  ),
-                ),
-                const Expanded(
+                  )),
+              const Gap(3),
+              Expanded(
                   flex: 1,
-                  child: Text(
-                    "Mobile No.",
-                    style: TextStyle(
-                      color: Color(0xFF5A57FF),
-                      fontSize: 12,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w400,
-                      //height: 0,
-                      letterSpacing: -0.48,
+                  child: Container(
+                    child: Text(
+                      'Mobile no.,',
+                      style: subHeaderStyle,
                     ),
-                  ),
-                ),
-                const Expanded(
+                  )),
+              const Gap(3),
+              Expanded(
                   flex: 1,
-                  child: Text(
-                    "Designation",
-                    style: TextStyle(
-                      color: Color(0xFF5A57FF),
-                      fontSize: 12,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w400,
-                      //height: 0,
-                      letterSpacing: -0.48,
+                  child: Container(
+                    child: Text(
+                      'Designation,',
+                      style: subHeaderStyle,
                     ),
-                  ),
-                ),
-                IconButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.more_horiz,
-                      color: Colors.white,
-                    )),
-                IconButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.more_horiz,
-                      color: Colors.white,
-                    ))
-              ],
-            ).paddingSymmetric(horizontal: 12),
+                  )),
+              const Gap(3),
+            ]).paddingSymmetric(horizontal: 8),
+
             Expanded(
                 child: ListView.builder(
                     itemCount: hrController.employees.length,
@@ -162,48 +147,23 @@ class HrEmployeeList extends StatelessWidget {
                             Expanded(
                                 flex: 1,
                                 child: Text(
-                                  hrController.employees[i].name ?? "",
-                                  style: const TextStyle(
-                                    color: Color(0xFF353535),
-                                    fontSize: 10,
-                                    fontFamily: 'SF Pro Text',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                )),
+                                    hrController.employees[i].name ?? "",
+                                    style: headerStyle)),
                             Expanded(
                                 flex: 1,
                                 child: Text(
-                                  hrController.employees[i].mobile ?? "",
-                                  style: const TextStyle(
-                                    color: Color(0xFF353535),
-                                    fontSize: 10,
-                                    fontFamily: 'SF Pro Text',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                )),
+                                    hrController.employees[i].mobile ?? "",
+                                    style: headerStyle)),
                             // const Gap(4),
                             Expanded(
                                 flex: 1,
                                 child: Text(
-                                  hrController.employees[i].personType
-                                          .toString()
-                                          .replaceAll("[", "")
-                                          .replaceAll("]", "") ??
-                                      "",
-                                  style: const TextStyle(
-                                    color: Color(0xFF353535),
-                                    fontSize: 10,
-                                    fontFamily: 'SF Pro Text',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                )),
-                            IconButton(
-                                padding: EdgeInsets.zero,
-                                onPressed: () {},
-                                icon: Image.asset(
-                                  "assets/icons/Eye.png",
-                                  height: 20,
-                                )),
+                                    hrController.employees[i].personType
+                                            .toString()
+                                            .replaceAll("[", "")
+                                            .replaceAll("]", "") ??
+                                        "",
+                                    style: headerStyle)),
 
                             hrController.employees[i].isBankDetails == 0 ||
                                     hrController.employees[i].isCareerDetails ==
@@ -219,6 +179,9 @@ class HrEmployeeList extends StatelessWidget {
                                 ? IconButton(
                                     padding: EdgeInsets.zero,
                                     onPressed: () {
+                                      Get.find<HRController>()
+                                          .getPersonalDetails(
+                                              hrController.employees[i].employeeId);
                                       hrController.navigationAccordingStatus
                                           .clear();
                                       hrController.navigationAccordingStatus

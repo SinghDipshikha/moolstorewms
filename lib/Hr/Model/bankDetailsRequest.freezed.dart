@@ -22,10 +22,13 @@ BankDetailsRequest _$BankDetailsRequestFromJson(Map<String, dynamic> json) {
 mixin _$BankDetailsRequest {
   int? get id => throw _privateConstructorUsedError;
   int? get user_id => throw _privateConstructorUsedError;
+  int? get updated_by => throw _privateConstructorUsedError;
   String? get account_name => throw _privateConstructorUsedError;
   String? get ifsc_no => throw _privateConstructorUsedError;
   String? get bank_name => throw _privateConstructorUsedError;
   String? get account_no => throw _privateConstructorUsedError;
+  String? get account_type => throw _privateConstructorUsedError;
+  String? get branch_name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,10 +45,13 @@ abstract class $BankDetailsRequestCopyWith<$Res> {
   $Res call(
       {int? id,
       int? user_id,
+      int? updated_by,
       String? account_name,
       String? ifsc_no,
       String? bank_name,
-      String? account_no});
+      String? account_no,
+      String? account_type,
+      String? branch_name});
 }
 
 /// @nodoc
@@ -63,10 +69,13 @@ class _$BankDetailsRequestCopyWithImpl<$Res, $Val extends BankDetailsRequest>
   $Res call({
     Object? id = freezed,
     Object? user_id = freezed,
+    Object? updated_by = freezed,
     Object? account_name = freezed,
     Object? ifsc_no = freezed,
     Object? bank_name = freezed,
     Object? account_no = freezed,
+    Object? account_type = freezed,
+    Object? branch_name = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -76,6 +85,10 @@ class _$BankDetailsRequestCopyWithImpl<$Res, $Val extends BankDetailsRequest>
       user_id: freezed == user_id
           ? _value.user_id
           : user_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      updated_by: freezed == updated_by
+          ? _value.updated_by
+          : updated_by // ignore: cast_nullable_to_non_nullable
               as int?,
       account_name: freezed == account_name
           ? _value.account_name
@@ -92,6 +105,14 @@ class _$BankDetailsRequestCopyWithImpl<$Res, $Val extends BankDetailsRequest>
       account_no: freezed == account_no
           ? _value.account_no
           : account_no // ignore: cast_nullable_to_non_nullable
+              as String?,
+      account_type: freezed == account_type
+          ? _value.account_type
+          : account_type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      branch_name: freezed == branch_name
+          ? _value.branch_name
+          : branch_name // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -108,10 +129,13 @@ abstract class _$$BankDetailsRequestImplCopyWith<$Res>
   $Res call(
       {int? id,
       int? user_id,
+      int? updated_by,
       String? account_name,
       String? ifsc_no,
       String? bank_name,
-      String? account_no});
+      String? account_no,
+      String? account_type,
+      String? branch_name});
 }
 
 /// @nodoc
@@ -127,10 +151,13 @@ class __$$BankDetailsRequestImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? user_id = freezed,
+    Object? updated_by = freezed,
     Object? account_name = freezed,
     Object? ifsc_no = freezed,
     Object? bank_name = freezed,
     Object? account_no = freezed,
+    Object? account_type = freezed,
+    Object? branch_name = freezed,
   }) {
     return _then(_$BankDetailsRequestImpl(
       id: freezed == id
@@ -140,6 +167,10 @@ class __$$BankDetailsRequestImplCopyWithImpl<$Res>
       user_id: freezed == user_id
           ? _value.user_id
           : user_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      updated_by: freezed == updated_by
+          ? _value.updated_by
+          : updated_by // ignore: cast_nullable_to_non_nullable
               as int?,
       account_name: freezed == account_name
           ? _value.account_name
@@ -157,6 +188,14 @@ class __$$BankDetailsRequestImplCopyWithImpl<$Res>
           ? _value.account_no
           : account_no // ignore: cast_nullable_to_non_nullable
               as String?,
+      account_type: freezed == account_type
+          ? _value.account_type
+          : account_type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      branch_name: freezed == branch_name
+          ? _value.branch_name
+          : branch_name // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -167,10 +206,13 @@ class _$BankDetailsRequestImpl implements _BankDetailsRequest {
   const _$BankDetailsRequestImpl(
       {this.id,
       this.user_id,
+      this.updated_by,
       this.account_name,
       this.ifsc_no,
       this.bank_name,
-      this.account_no});
+      this.account_no,
+      this.account_type,
+      this.branch_name});
 
   factory _$BankDetailsRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$BankDetailsRequestImplFromJson(json);
@@ -180,6 +222,8 @@ class _$BankDetailsRequestImpl implements _BankDetailsRequest {
   @override
   final int? user_id;
   @override
+  final int? updated_by;
+  @override
   final String? account_name;
   @override
   final String? ifsc_no;
@@ -187,10 +231,14 @@ class _$BankDetailsRequestImpl implements _BankDetailsRequest {
   final String? bank_name;
   @override
   final String? account_no;
+  @override
+  final String? account_type;
+  @override
+  final String? branch_name;
 
   @override
   String toString() {
-    return 'BankDetailsRequest(id: $id, user_id: $user_id, account_name: $account_name, ifsc_no: $ifsc_no, bank_name: $bank_name, account_no: $account_no)';
+    return 'BankDetailsRequest(id: $id, user_id: $user_id, updated_by: $updated_by, account_name: $account_name, ifsc_no: $ifsc_no, bank_name: $bank_name, account_no: $account_no, account_type: $account_type, branch_name: $branch_name)';
   }
 
   @override
@@ -200,19 +248,25 @@ class _$BankDetailsRequestImpl implements _BankDetailsRequest {
             other is _$BankDetailsRequestImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.user_id, user_id) || other.user_id == user_id) &&
+            (identical(other.updated_by, updated_by) ||
+                other.updated_by == updated_by) &&
             (identical(other.account_name, account_name) ||
                 other.account_name == account_name) &&
             (identical(other.ifsc_no, ifsc_no) || other.ifsc_no == ifsc_no) &&
             (identical(other.bank_name, bank_name) ||
                 other.bank_name == bank_name) &&
             (identical(other.account_no, account_no) ||
-                other.account_no == account_no));
+                other.account_no == account_no) &&
+            (identical(other.account_type, account_type) ||
+                other.account_type == account_type) &&
+            (identical(other.branch_name, branch_name) ||
+                other.branch_name == branch_name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, user_id, account_name, ifsc_no, bank_name, account_no);
+  int get hashCode => Object.hash(runtimeType, id, user_id, updated_by,
+      account_name, ifsc_no, bank_name, account_no, account_type, branch_name);
 
   @JsonKey(ignore: true)
   @override
@@ -233,10 +287,13 @@ abstract class _BankDetailsRequest implements BankDetailsRequest {
   const factory _BankDetailsRequest(
       {final int? id,
       final int? user_id,
+      final int? updated_by,
       final String? account_name,
       final String? ifsc_no,
       final String? bank_name,
-      final String? account_no}) = _$BankDetailsRequestImpl;
+      final String? account_no,
+      final String? account_type,
+      final String? branch_name}) = _$BankDetailsRequestImpl;
 
   factory _BankDetailsRequest.fromJson(Map<String, dynamic> json) =
       _$BankDetailsRequestImpl.fromJson;
@@ -246,6 +303,8 @@ abstract class _BankDetailsRequest implements BankDetailsRequest {
   @override
   int? get user_id;
   @override
+  int? get updated_by;
+  @override
   String? get account_name;
   @override
   String? get ifsc_no;
@@ -253,6 +312,10 @@ abstract class _BankDetailsRequest implements BankDetailsRequest {
   String? get bank_name;
   @override
   String? get account_no;
+  @override
+  String? get account_type;
+  @override
+  String? get branch_name;
   @override
   @JsonKey(ignore: true)
   _$$BankDetailsRequestImplCopyWith<_$BankDetailsRequestImpl> get copyWith =>

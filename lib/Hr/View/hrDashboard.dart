@@ -252,75 +252,75 @@ class _HrDashboardState extends State<HrDashboard> {
                     // ),
                   ],
                 ),
-                ListTile(
-                  leading: Image.asset(
-                    "assets/images/messageVector.png",
-                    height: 28,
-                  ),
-                  title: const Text(
-                    'Messages',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color(0xFFA7A7A7),
-                      fontSize: 16,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  onTap: () {},
-                ),
-                ListTile(
-                  leading: Image.asset(
-                    "assets/images/calenderVector.png",
-                    height: 28,
-                  ),
-                  title: const Text(
-                    'Calender',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color(0xFFA7A7A7),
-                      fontSize: 16,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  onTap: () {},
-                ),
-                ExpansionTile(
-                  collapsedShape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                  iconColor: Colors.white,
-                  collapsedIconColor: Colors.white,
-                  shape: Border.all(
-                    color: const Color.fromARGB(255, 22, 22, 22),
-                  ),
-                  leading: Image.asset(
-                    "assets/images/reportVector.png",
-                    height: 28,
-                  ),
-                  title: const Text(
-                    'Report',
-                    style: TextStyle(
-                      color: Color(0xFFACACAC),
-                      fontSize: 16,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w500,
-                      // //height: 0,
-                      letterSpacing: -0.64,
-                    ),
-                  ),
-                  children: [
-                    CurvedLineConatainer(
-                      title: "Add report",
-                      onTap: () {},
-                    ),
-                    CurvedLineConatainer(
-                      title: "Report List",
-                      isShowextendedLine: false,
-                      onTap: () {},
-                    ),
-                  ],
-                ),
+                // ListTile(
+                //   leading: Image.asset(
+                //     "assets/images/messageVector.png",
+                //     height: 28,
+                //   ),
+                //   title: const Text(
+                //     'Messages',
+                //     textAlign: TextAlign.left,
+                //     style: TextStyle(
+                //       color: Color(0xFFA7A7A7),
+                //       fontSize: 16,
+                //       fontFamily: 'SF Pro Text',
+                //       fontWeight: FontWeight.w500,
+                //     ),
+                //   ),
+                //   onTap: () {},
+                // ),
+                // ListTile(
+                //   leading: Image.asset(
+                //     "assets/images/calenderVector.png",
+                //     height: 28,
+                //   ),
+                //   title: const Text(
+                //     'Calender',
+                //     textAlign: TextAlign.left,
+                //     style: TextStyle(
+                //       color: Color(0xFFA7A7A7),
+                //       fontSize: 16,
+                //       fontFamily: 'SF Pro Text',
+                //       fontWeight: FontWeight.w500,
+                //     ),
+                //   ),
+                //   onTap: () {},
+                // ),
+                // ExpansionTile(
+                //   collapsedShape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.circular(12)),
+                //   iconColor: Colors.white,
+                //   collapsedIconColor: Colors.white,
+                //   shape: Border.all(
+                //     color: const Color.fromARGB(255, 22, 22, 22),
+                //   ),
+                //   leading: Image.asset(
+                //     "assets/images/reportVector.png",
+                //     height: 28,
+                //   ),
+                //   title: const Text(
+                //     'Report',
+                //     style: TextStyle(
+                //       color: Color(0xFFACACAC),
+                //       fontSize: 16,
+                //       fontFamily: 'SF Pro Text',
+                //       fontWeight: FontWeight.w500,
+                //       // //height: 0,
+                //       letterSpacing: -0.64,
+                //     ),
+                //   ),
+                //   children: [
+                //     CurvedLineConatainer(
+                //       title: "Add report",
+                //       onTap: () {},
+                //     ),
+                //     CurvedLineConatainer(
+                //       title: "Report List",
+                //       isShowextendedLine: false,
+                //       onTap: () {},
+                //     ),
+                //   ],
+                // ),
               ],
             )),
             GetBuilder<HRController>(builder: (hrController) {

@@ -346,6 +346,9 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                                       );
                                     }),
                                   ),
+                               
+                               
+                               
                                 ),
                               ),
                             ),

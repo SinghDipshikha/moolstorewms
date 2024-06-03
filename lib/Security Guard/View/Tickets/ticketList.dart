@@ -241,6 +241,8 @@ class _TicketListScreenState extends State<TicketListScreen> {
                 )),
           ]).paddingSymmetric(horizontal: 8),
 
+        
+        
           Expanded(
               child: PagedListView<int, int>(
             padding: EdgeInsets.zero,

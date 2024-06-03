@@ -8,6 +8,7 @@ part of 'staff.dart';
 
 _$StaffEntryImpl _$$StaffEntryImplFromJson(Map<String, dynamic> json) =>
     _$StaffEntryImpl(
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
       mobile: json['mobile'] as String?,
       employeeId: json['employeeId'] as String?,
@@ -27,6 +28,7 @@ _$StaffEntryImpl _$$StaffEntryImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$StaffEntryImplToJson(_$StaffEntryImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'name': instance.name,
       'mobile': instance.mobile,
       'employeeId': instance.employeeId,
