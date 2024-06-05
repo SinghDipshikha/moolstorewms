@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart';
+
 abstract class GlobalValidator {
   // HrModuleValidator._();
 
@@ -25,14 +27,6 @@ abstract class GlobalValidator {
     final RegExp regex = RegExp(r"^[a-zA-Z0-9_]{3,15}$");
     return regex.hasMatch(username);
   }
-
-  // static bool isValidMobileNumber(String mobileNumber) {
-  //   if (mobileNumber.isEmpty) {
-  //     return false;
-  //   }
-  //   final RegExp regex = RegExp(r"^\(\d{3}\) \d{3}-\d{4}$");
-  //   return regex.hasMatch(mobileNumber);
-  // }
 
   static bool isValidMobileNumber(String mobileNumber) {
     if (mobileNumber.isEmpty) {
@@ -134,7 +128,6 @@ abstract class GlobalValidator {
     return regex.hasMatch(salary);
   }
 
-  // Validate passing year (four-digit number)
   static bool isValidPassingYear(String year) {
     if (year.isEmpty) {
       return false;
@@ -229,5 +222,106 @@ abstract class GlobalValidator {
     }
     final RegExp regex = RegExp(r"^[a-zA-Z\s\.,'-]+$");
     return regex.hasMatch(accountName);
+  }
+
+  // InputFormatters
+  static List<TextInputFormatter> emailInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z0-9_.+-@]"))];
+  }
+
+  static List<TextInputFormatter> mobileNumberInputFormatter() {
+    return [FilteringTextInputFormatter.digitsOnly];
+  }
+
+  static List<TextInputFormatter> passportNumberInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z0-9]"))];
+  }
+
+  static List<TextInputFormatter> pfNumberInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z0-9]"))];
+  }
+
+  static List<TextInputFormatter> aadharNumberInputFormatter() {
+    return [FilteringTextInputFormatter.digitsOnly];
+  }
+
+  static List<TextInputFormatter> panInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"[A-Z0-9]"))];
+  }
+
+  static List<TextInputFormatter> cityInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z\s]"))];
+  }
+
+  static List<TextInputFormatter> stateInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"[A-Za-z]"))];
+  }
+
+  static List<TextInputFormatter> pincodeInputFormatter() {
+    return [FilteringTextInputFormatter.digitsOnly];
+  }
+
+  static List<TextInputFormatter> esicInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z0-9]"))];
+  }
+
+  static List<TextInputFormatter> gateIDInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"Gate-\d{3,5}"))];
+  }
+
+  static List<TextInputFormatter> bloodGroupInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"(A|B|AB|O)[\+-]"))];
+  }
+
+  static List<TextInputFormatter> monthlySalaryInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"[0-9.]"))];
+  }
+
+  static List<TextInputFormatter> passingYearInputFormatter() {
+    return [FilteringTextInputFormatter.digitsOnly];
+  }
+
+  static List<TextInputFormatter> percentageGradeInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"[0-9.]"))];
+  }
+
+  static List<TextInputFormatter> schoolInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z\s\.,'-]"))];
+  }
+
+  static List<TextInputFormatter> educationBoardInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z\s\.,'-]"))];
+  }
+
+  static List<TextInputFormatter> highestQualificationInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z\s]"))];
+  }
+
+  static List<TextInputFormatter> specializationInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z\s\.,'-]"))];
+  }
+
+  static List<TextInputFormatter> collegeUniversityInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z\s\.,'-]"))];
+  }
+
+  static List<TextInputFormatter> accountNumberInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z0-9]"))];
+  }
+
+  static List<TextInputFormatter> ifscCodeInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"[A-Z0-9]"))];
+  }
+
+  static List<TextInputFormatter> bankNameInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z\s\.,'-]"))];
+  }
+
+  static List<TextInputFormatter> accountTypeInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z\s\.,'-]"))];
+  }
+
+  static List<TextInputFormatter> accountNameInputFormatter() {
+    return [FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z\s\.,'-]"))];
   }
 }

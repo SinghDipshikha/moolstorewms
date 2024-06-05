@@ -53,6 +53,8 @@ class _AddEmployeePersonalDetailsState
   final TextEditingController _mailingAddressContoller =
       TextEditingController();
   final TextEditingController _aadharCardContoller = TextEditingController();
+  final PersonalDetailsResponse _personalDetails =
+      const PersonalDetailsResponse();
   String _email = '';
   final String _mobileNumber = '';
   final String _gaurdName = '';
@@ -182,43 +184,44 @@ class _AddEmployeePersonalDetailsState
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: CustomFloatingActionButton(
-          title: 'Next',
-          onTap: () {
-            // if (_formKey.currentState?.validate() ?? false) {
-            hrController.addPersonalDetailRequestModel =
-                hrController.addPersonalDetailRequestModel.copyWith(
-              user_id: hrController.user.id,
-              updated_by: 2,
-              gst_number: _gstNoController.text,
-              gender: _genderController.text,
-              dob: _selectedDate.toString(),
-              blood_group: _bloodGroupContoller.text,
-              email: _emailController.text,
-              pf_number: _pfController.text,
-              pan_card: _panCardNumberController.text,
-              esic_number: _esicContoller.text,
-              have_passport: _isCheckedPassportYes ? "YES" : "NO",
-              passport_number: _passportNumberController.text,
-              passport_expiry_date: _selectedDate2.toString(),
-              have_disability: _isCheckedDisablityYes ? "YES" : "NO",
-              disability_describe: _disabilityDescribeContoller.text,
-              address: _addressContoller.text,
-              state: _stateContoller.text,
-              city: _cityContoller.text,
-              pincode: int.parse(_pincodeContoller.text),
-              emergency_contact_no: _emergencyContactNoController.text,
-              emergency_contact_person: _emergencyContactPersonController.text,
-              mailing_address_diffrent:
-                  _isCheckedMailingAddressYes ? "YES" : "NO",
-              mailing_address: _mailingAddressContoller.text,
-            );
-            Logger().i(hrController.addPersonalDetailRequestModel.toJson());
-            hrController.addPersonalDetails();
+            title: 'Next',
+            onTap: () {
+              // if (_formKey.currentState?.validate() ?? false) {
+              hrController.addPersonalDetailRequestModel =
+                  hrController.addPersonalDetailRequestModel.copyWith(
+                user_id: hrController.currentUserId,
+                updated_by: hrController.user.id,
+                gst_number: _gstNoController.text,
+                gender: _genderController.text,
+                dob: _selectedDate.toString(),
+                blood_group: _bloodGroupContoller.text,
+                email: _emailController.text,
+                pf_number: _pfController.text,
+                pan_card: _panCardNumberController.text,
+                esic_number: _esicContoller.text,
+                have_passport: _isCheckedPassportYes ? "YES" : "NO",
+                passport_number: _passportNumberController.text,
+                passport_expiry_date: _selectedDate2.toString(),
+                have_disability: _isCheckedDisablityYes ? "YES" : "NO",
+                disability_describe: _disabilityDescribeContoller.text,
+                address: _addressContoller.text,
+                state: _stateContoller.text,
+                city: _cityContoller.text,
+                pincode: int.parse(_pincodeContoller.text),
+                emergency_contact_no: _emergencyContactNoController.text,
+                emergency_contact_person:
+                    _emergencyContactPersonController.text,
+                mailing_address_diffrent:
+                    _isCheckedMailingAddressYes ? "YES" : "NO",
+                mailing_address: _mailingAddressContoller.text,
+              );
+              Logger().i(hrController.addPersonalDetailRequestModel.toJson());
+              hrController.addPersonalDetails();
 
-            print(hrController.addPersonalDetailRequestModel);
-            //}
-          },
-        ),
+              print(hrController.addPersonalDetailRequestModel);
+            }
+            // },
+            ),
         body: hrController.isLoading
             ? const Center(
                 child: SpinKitRipple(
@@ -339,11 +342,12 @@ class _AddEmployeePersonalDetailsState
                                 ),
                               ).paddingAll(2),
                               CommanTextField(
+                                inputFormatters:
+                                    GlobalValidator.bloodGroupInputFormatter(),
                                 labelText: "Blood Group",
                                 hintText: "Blood Group",
                                 obscureText: false,
                                 controller: _bloodGroupContoller,
-                                inputFormatters: const [],
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'Please enter your blood group.';
@@ -365,6 +369,8 @@ class _AddEmployeePersonalDetailsState
                                 hintText: "Email ID",
                                 obscureText: false,
                                 controller: _emailController,
+                                inputFormatters:
+                                    GlobalValidator.emailInputFormatter(),
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'Please enter your email address';
@@ -385,6 +391,8 @@ class _AddEmployeePersonalDetailsState
                                 hintText: "Aadhar Card",
                                 obscureText: false,
                                 controller: _aadharCardContoller,
+                                inputFormatters: GlobalValidator
+                                    .aadharNumberInputFormatter(),
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'Please enter your Aadhar Number';
@@ -405,6 +413,8 @@ class _AddEmployeePersonalDetailsState
                                 hintText: "PF Number",
                                 obscureText: false,
                                 controller: _pfController,
+                                inputFormatters:
+                                    GlobalValidator.pfNumberInputFormatter(),
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'Please enter your PF Number.';
@@ -425,6 +435,8 @@ class _AddEmployeePersonalDetailsState
                                 hintText: "PAN Number",
                                 obscureText: false,
                                 controller: _panCardNumberController,
+                                inputFormatters:
+                                    GlobalValidator.panInputFormatter(),
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'Please enter your PAN Number';
@@ -445,6 +457,8 @@ class _AddEmployeePersonalDetailsState
                                 hintText: "ESIC Number",
                                 obscureText: false,
                                 controller: _esicContoller,
+                                inputFormatters:
+                                    GlobalValidator.esicInputFormatter(),
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'Please enter your ESIC Number';
@@ -481,6 +495,8 @@ class _AddEmployeePersonalDetailsState
                                 hintText: "City",
                                 obscureText: false,
                                 controller: _cityContoller,
+                                inputFormatters:
+                                    GlobalValidator.cityInputFormatter(),
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'Please enter your city';
@@ -499,6 +515,8 @@ class _AddEmployeePersonalDetailsState
                                 hintText: "State",
                                 obscureText: false,
                                 controller: _stateContoller,
+                                inputFormatters:
+                                    GlobalValidator.stateInputFormatter(),
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'Please enter your state';
@@ -516,6 +534,8 @@ class _AddEmployeePersonalDetailsState
                                 labelText: "Pincode",
                                 hintText: "Pincode",
                                 obscureText: false,
+                                inputFormatters:
+                                    GlobalValidator.pincodeInputFormatter(),
                                 controller: _pincodeContoller,
                                 // isNumber: true,
                                 validator: (value) {
@@ -568,6 +588,8 @@ class _AddEmployeePersonalDetailsState
                                   hintText: "Passport Number",
                                   obscureText: false,
                                   controller: _passportNumberController,
+                                  inputFormatters: GlobalValidator
+                                      .passportNumberInputFormatter(),
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return 'Please enter your Passport Number.';
@@ -643,6 +665,8 @@ class _AddEmployeePersonalDetailsState
                                 hintText: "Emergency Contact Number",
                                 obscureText: false,
                                 controller: _emergencyContactNoController,
+                                inputFormatters: GlobalValidator
+                                    .mobileNumberInputFormatter(),
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'Please enter your number';
@@ -710,6 +734,8 @@ class _AddEmployeePersonalDetailsState
                                 labelText: "Mailing Address",
                                 hintText: "Mailing Address",
                                 obscureText: false,
+                                inputFormatters:
+                                    GlobalValidator.emailInputFormatter(),
                                 controller: _mailingAddressDiffrentContoller,
                               ).paddingAll(2),
                               const Gap(80),

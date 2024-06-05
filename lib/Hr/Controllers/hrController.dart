@@ -72,6 +72,7 @@ class HRController extends GetxController {
   List createShiftWarehouses = [];
   List<AddShiftDetails> getShiftData = [];
   Map? selectedWarehouse;
+  int? currentUserId;
 
   List<Widget> navigationAccordingStatus = [
     const AddedStaffScreen(),
@@ -129,10 +130,11 @@ class HRController extends GetxController {
         print('Deepshikha');
         addPersonalDetailRequestModel = const PersonalDetailsRequest();
         isLoading = false;
-        // List x = value.data.data["result"];
-        // getPersonalDetails =
-        //     x.map((e) => PersonalDetailsResponse.fromJson(e)).toList();
-        // Logger().i(getPersonalDetails);
+        List x = value.data.data["result"];
+        getPersonalDetailsList =
+            x.map((e) => PersonalDetailsResponse.fromJson(e)).toList();
+
+        Logger().i(getPersonalDetails);
         Snacks.greenSnack("Personal Information Added");
 
         isLoading = false;
@@ -144,12 +146,11 @@ class HRController extends GetxController {
 
 /////////// Get Personal Details/////////
   getPersonalDetails(var userId) {
-    apiClient.postData("hr/getBasicInformationById", {
-      {"user_id": userId}
-    }).then((value) {
+    apiClient.postData("hr/getBasicInformationById", {"user_id": userId}).then(
+        (value) {
       if (value.data["message"] == "items found") {
         Snacks.greenSnack("Personal Details");
-        List x = value.data["result"];
+        List<dynamic> x = value.data["result"];
         getPersonalDetailsList =
             x.map((e) => PersonalDetailsResponse.fromJson(e)).toList();
 
@@ -159,15 +160,18 @@ class HRController extends GetxController {
         isLoading = false;
         update();
       }
+    }).catchError((error) {
+      isLoading = false;
+      update();
+      print("Error: $error");
     });
   }
 
 //////////////Add or Upddate Career Details/////////////
   Future<bool> addCareerDetails({
-    required int userID,
-    required int ownerID,
+    required int? userID,
     required List<CareerDetailsRequest> careerDetails,
-    required int updatedBy,
+    required int? updatedBy,
   }) async {
     isLoading = true;
     update();
@@ -175,7 +179,6 @@ class HRController extends GetxController {
     final Map<String, dynamic> requestBody = {
       "user_id": userID,
       "updated_by": updatedBy,
-      "owner_id": ownerID,
       "career_details": careerDetails.map((detail) => detail.toJson()).toList(),
     };
 
@@ -250,30 +253,35 @@ class HRController extends GetxController {
   }
 
   ////////////////Get Eductaion Details///////////////////
-  getEducationDetails() {
-    apiClient.postData("hr/getEducationInformationById", {
-      {"user_id": 2}
-    }).then((value) {
+  getEducationDetails(var userId) {
+    isLoading = true;
+    update();
+
+    apiClient.postData(
+        "hr/getEducationInformationById", {"user_id": userId}).then((value) {
       if (value.data["message"] == "items found") {
         Snacks.greenSnack("Educational Details");
-        List x = value.data["result"];
+        List<dynamic> x = value.data["result"];
         getEducationDetailsList =
             x.map((e) => AddEducationDetail.fromJson(e)).toList();
-
-        isLoading = false;
-        update();
       } else {
-        isLoading = false;
-        update();
+        Snacks.redSnack("No educational details found.");
       }
+      isLoading = false;
+      update();
+    }).catchError((error) {
+      isLoading = false;
+      update();
+      print("Error: $error");
+      Snacks.redSnack("Failed to fetch educational details.");
     });
   }
 
 ////////////////Add and Update Referral Details////////////////////
   Future<bool> addReferralDetails({
-    required int userID,
+    required int? userID,
     required List<ReferralDetailsRequest> referralDetails,
-    required int updatedBy,
+    required int? updatedBy,
   }) async {
     isLoading = true;
     update();
@@ -290,7 +298,7 @@ class HRController extends GetxController {
 
     if (response.data["message"] == "Referral Information Added") {
       print('Deepshikha');
-      Snacks.greenSnack("Personal Information Added");
+      Snacks.greenSnack("Referral Information Added");
 
       update();
       Get.to(const AddEmployeeBankDetails(), id: hrNavigationKey);
@@ -337,10 +345,14 @@ class HRController extends GetxController {
 
       if (message == "Information Added") {
         addBankDetailsRequestModel = const BankDetailsRequest();
+        List x = response.data["result"];
+        getBankDetailsList = x.map((e) => AddBankDetails.fromJson(e)).toList();
         Snacks.greenSnack("Bank Information Added Successfully");
         Get.to(const AddEmployeeDocumentsDetails(), id: hrNavigationKey);
       } else if (message == "information updated") {
         addBankDetailsRequestModel = const BankDetailsRequest();
+        List x = response.data["result"];
+        getBankDetailsList = x.map((e) => AddBankDetails.fromJson(e)).toList();
         Snacks.greenSnack("Bank Information Updated Successfully");
         Get.to(const AddEmployeeDocumentsDetails(), id: hrNavigationKey);
       }
@@ -354,9 +366,9 @@ class HRController extends GetxController {
   }
 
   /////////////Get Bank Details////////////////////////////////
-  getBankDetails() {
+  getBankDetails(var userId) {
     apiClient.postData("hr/getBankDetailsById", {
-      {"user_id": 2}
+      {"user_id": userId}
     }).then((value) {
       if (value.data["message"] == "items found") {
         Snacks.greenSnack("Bank Details");
@@ -429,4 +441,31 @@ class HRController extends GetxController {
     box.clear();
     Restart.restartApp();
   }
+
+  // addDocuments() async {
+  //   isLoading = true;
+  //   update();
+  //   try {
+  //     final response = await apiClient.postData(
+  //       "hr/addDocs",
+  //       addDocumentRequestModel.toJson(),
+  //     );
+
+  //     if (response.data["message"] == "Document Information Added") {
+  //       addDocumentRequestModel =
+  //           const DocumentRequestModel(); 
+  //       isLoading = false;
+
+  //       Snacks.greenSnack("Document Information Added");
+
+  //       isLoading = false;
+  //       update();
+  //     }
+  //   } catch (error) {
+  //     print('Error: $error');
+
+  //     isLoading = false;
+  //     update();
+  //   }
+  // }
 }

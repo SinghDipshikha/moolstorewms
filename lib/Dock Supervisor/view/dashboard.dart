@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Dock%20Supervisor/view/dmsDrawer.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/View/dmsDrawer.dart';
 
 class DMSDashboard extends StatelessWidget {
   const DMSDashboard({super.key});

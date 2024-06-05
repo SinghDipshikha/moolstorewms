@@ -5,12 +5,9 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/Model/addCareerDetail.dart';
-import 'package:moolwmsstore/Hr/View/Staff/staffList.dart';
-import 'package:moolwmsstore/Hr/View/widget/commonAppBar.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
-import 'package:moolwmsstore/utils/globals.dart';
 // import 'package:moolwmsstore/View/auth/Model/Hr/addCareerDetail.dart';
 // //import 'package:moolwmsstore/routes/approutes.gr.dart';
 
@@ -40,6 +37,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
       TextEditingController();
   final TextEditingController _monthlySalaryEndController =
       TextEditingController();
+  final AddCareerDetail _careerDetails = const AddCareerDetail();
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -72,7 +70,6 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
   String? selectedLanguage = "Hindi";
   final _formKey = GlobalKey<FormState>();
   @override
-
   Future<void> getCareerDetails() async {
     final value = await Get.find<HRController>()
         .getCareerDetails(Get.find<HRController>().user.id);
@@ -86,7 +83,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
           _fullNameController.text = detailsResponse.name_of_employer!;
           _designationController.text = detailsResponse.designation!;
           _reportingToController.text = detailsResponse.reporting_to!;
-           // _monthlySalaryStartController.text = detailsResponse.monthly_salary_start;
+          // _monthlySalaryStartController.text = detailsResponse.monthly_salary_start;
           // _monthlySalaryEndController.text = detailsResponse.monthly_salary_end;
           _selectedDate = detailsResponse.employment_date_to!;
           _selectedDate2 = detailsResponse.employment_date_from!;
@@ -96,48 +93,50 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
       }
     }
   }
+
+  @override
   Widget build(BuildContext context) {
     return GetBuilder<HRController>(builder: (hrController) {
       return Form(
         key: _formKey,
         child: Scaffold(
           appBar: AppBar(
-          title: const Text(
-            'Career Details',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontFamily: 'SF Pro Display',
-              fontWeight: FontWeight.w500,
+            title: const Text(
+              'Career Details',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontFamily: 'SF Pro Display',
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
-        ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: CustomFloatingActionButton(
             title: 'Next',
             onTap: () {
-              // if (_formKey.currentState?.validate() ?? false) {
-              hrController.addCareerDetailsRequestModel =
-                  hrController.addCareerDetailsRequestModel.copyWith(
-                name_of_employer: _fullNameController.text,
-                designation: _designationController.text,
-                reporting_to: _reportingToController.text,
-                monthly_salary_start:
-                    int.parse(_monthlySalaryStartController.text),
-                monthly_salary_end: int.parse(_monthlySalaryEndController.text),
-                employment_date_to: _selectedDate.toString(),
-                employment_date_from: _selectedDate2.toString(),
-              );
-              Logger().i(hrController.addCareerDetailsRequestModel.toJson());
-              hrController.addCareerDetails(
-                  userID: 1,
-                  ownerID: 2,
-                  updatedBy: 1,
-                  careerDetails: [hrController.addCareerDetailsRequestModel]);
+              if (_formKey.currentState?.validate() ?? false) {
+                hrController.addCareerDetailsRequestModel =
+                    hrController.addCareerDetailsRequestModel.copyWith(
+                  name_of_employer: _fullNameController.text,
+                  designation: _designationController.text,
+                  reporting_to: _reportingToController.text,
+                  monthly_salary_start:
+                      int.parse(_monthlySalaryStartController.text),
+                  monthly_salary_end:
+                      int.parse(_monthlySalaryEndController.text),
+                  employment_date_to: _selectedDate.toString(),
+                  employment_date_from: _selectedDate2.toString(),
+                );
+                Logger().i(hrController.addCareerDetailsRequestModel.toJson());
+                hrController.addCareerDetails(
+                    userID: hrController.currentUserId,
+                    updatedBy: hrController.user.id,
+                    careerDetails: [hrController.addCareerDetailsRequestModel]);
 
-              print(hrController.addCareerDetailsRequestModel);
-              //}
+                print(hrController.addCareerDetailsRequestModel);
+              }
             },
           ),
           body: SingleChildScrollView(
@@ -365,6 +364,8 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                     hintText: "₹",
                                     obscureText: false,
                                     controller: _monthlySalaryStartController,
+                                    inputFormatters: GlobalValidator
+                                        .monthlySalaryInputFormatter(),
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return 'Please enter your monthly salary.';
@@ -384,6 +385,8 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                     hintText: "₹",
                                     obscureText: false,
                                     controller: _monthlySalaryEndController,
+                                    inputFormatters: GlobalValidator
+                                        .monthlySalaryInputFormatter(),
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return 'Please enter your monthly salary.';
@@ -456,31 +459,6 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                     )).paddingOnly(left: 80),
                           ]);
                         }),
-                    if (!context.isPhone)
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CommonPreviousButton(
-                            onTap: () {
-                              Get.back();
-                            },
-                            title: 'Previous',
-                          ),
-                          const Gap(20),
-                          CommonNextButton(
-                            title: 'Next',
-                            onTap: () {
-                              // if (_formKey.currentState!.validate()) {
-                              //   _formKey.currentState!.save();
-
-                              //   // print('Valid email: $_email');
-                              // }
-                              // context.pushRoute(
-                              //     const AddEmployeeReferralDetails());
-                            },
-                          ),
-                        ],
-                      ).paddingAll(20)
                   ],
                 );
               }),

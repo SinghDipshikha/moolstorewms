@@ -4,12 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
-import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonTextField.dart';
-
-import '../../../utils/globals.dart';
 
 class AddLabour extends StatefulWidget {
   const AddLabour({super.key});
@@ -32,113 +28,110 @@ class _AddLabourState extends State<AddLabour> {
         },
       ),
       appBar: AppBar(
-          title: const Text(
-            'Add Labour',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontFamily: 'SF Pro Display',
-              fontWeight: FontWeight.w500,
-            ),
+        title: const Text(
+          'Add Labour',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontFamily: 'SF Pro Display',
+            fontWeight: FontWeight.w500,
           ),
         ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Gap(10),
-            CommanTextFieldUpdated2(
-              labelText: "Full Name",
-              hintText: "Full Name",
-              obscureText: false,
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return 'Please enter your visitor name.';
-                }
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Gap(10),
+          CommanTextFieldUpdated2(
+            labelText: "Full Name",
+            hintText: "Full Name",
+            obscureText: false,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Please enter your visitor name.';
+              }
 
-                return null;
-              },
-              onChanged: (value) {},
-            ).paddingAll(8),
-            const Gap(10),
-            CommanTextFieldUpdated2(
-              labelText: "Mobile Number",
-              hintText: "Mobile Number",
-              obscureText: false,
-              validator: (value) {
-                // if (value!.isEmpty) {
-                //   return 'Please enter your mobile number.';
-                // }
+              return null;
+            },
+            onChanged: (value) {},
+          ).paddingAll(8),
+          const Gap(10),
+          CommanTextFieldUpdated2(
+            labelText: "Mobile Number",
+            hintText: "Mobile Number",
+            obscureText: false,
+            validator: (value) {
+              // if (value!.isEmpty) {
+              //   return 'Please enter your mobile number.';
+              // }
 
-                // if (!GlobalValidator.isValidMobileNumber(value)) {
-                //   return 'Please enter a valid mobile number.';
-                // }
+              // if (!GlobalValidator.isValidMobileNumber(value)) {
+              //   return 'Please enter a valid mobile number.';
+              // }
 
-                return null;
-              },
-              onChanged: (value) {},
-            ).paddingAll(8),
-            const Gap(10),
-            const Text(
-              "ID Proof",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                color: Color(0xFFACACAC),
-              ),
-            ).paddingOnly(left: 10),
-            InkWell(
-              onTap: () {
-                _showPopup(context);
-              },
-              child: Center(
-                child: Container(
-                  width: 358,
-                  height: 75,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFF5A57FF),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Upload ID Image',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontFamily: 'SF Pro Display',
-                        fontWeight: FontWeight.bold,
-                        height: 0,
-                      ),
+              return null;
+            },
+            onChanged: (value) {},
+          ).paddingAll(8),
+          const Gap(10),
+          const Text(
+            "ID Proof",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: Color(0xFFACACAC),
+            ),
+          ).paddingOnly(left: 10),
+          InkWell(
+            onTap: () {
+              _showPopup(context);
+            },
+            child: Center(
+              child: Container(
+                width: 358,
+                height: 75,
+                decoration: ShapeDecoration(
+                  color: const Color(0xFF5A57FF),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5)),
+                ),
+                child: const Center(
+                  child: Text(
+                    'Upload ID Image',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontFamily: 'SF Pro Display',
+                      fontWeight: FontWeight.bold,
+                      height: 0,
                     ),
                   ),
-                ).paddingOnly(left: 10),
-              ),
+                ),
+              ).paddingOnly(left: 10),
             ),
-            const Gap(10),
-            CommanTextFieldUpdated2(
-              labelText: "Purpose of Visit",
-              hintText: "Purpose of Visit",
-              obscureText: false,
-              validator: (value) {
-                return null;
+          ),
+          const Gap(10),
+          CommanTextFieldUpdated2(
+            labelText: "Purpose of Visit",
+            hintText: "Purpose of Visit",
+            obscureText: false,
+            validator: (value) {
+              return null;
 
-                // if (value!.isEmpty) {
-                //   return 'Please enter your mobile number.';
-                // }
+              // if (value!.isEmpty) {
+              //   return 'Please enter your mobile number.';
+              // }
 
-                // if (!GlobalValidator.isValidUsername(value)) {
-                //   return 'Please enter a valid mobile number.';
-                // }
+              // if (!GlobalValidator.isValidUsername(value)) {
+              //   return 'Please enter a valid mobile number.';
+              // }
 
-                // return null;
-              },
-              onChanged: (value) {},
-            ).paddingAll(8),
-          ],
-        ),
+              // return null;
+            },
+            onChanged: (value) {},
+          ).paddingAll(8),
+        ],
       ),
     );
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:moolwmsstore/Hr/View/hrDashboard.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -8,10 +10,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future.delayed(const Duration(seconds: 5), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HrDashboard()),
-      );
+      Get.to(const HrDashboard(), id: hrNavigationKey);
     });
 
     return Scaffold(

@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
+import 'package:moolwmsstore/Hr/Model/addBankDetails.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
@@ -30,6 +31,11 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
   final TextEditingController _bankNameController = TextEditingController();
   final TextEditingController _branchController = TextEditingController();
   final TextEditingController _accountTypeController = TextEditingController();
+  final AddBankDetails _addBankDetails = const AddBankDetails();
+  @override
+  oninit() {
+    int? userId = Get.find<HRController>().currentUserId;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,13 +59,12 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
           floatingActionButton: CustomFloatingActionButton(
             title: 'Next',
             onTap: () {
-              // if (_formKey.currentState?.validate() ?? false) {
-
+              //if (_formKey.currentState?.validate() ?? false) {
               hrController.addBankDetailsRequestModel =
                   hrController.addBankDetailsRequestModel.copyWith(
-                id: 1,
-                user_id: 3,
-                updated_by: 3,
+                id: hrController.currentUserId,
+                user_id: hrController.currentUserId,
+                updated_by: hrController.user.id,
                 account_name: _accountNameController.text,
                 account_no: _accountNumberController.text,
                 ifsc_no: _ifscCodeController.text,
@@ -71,6 +76,7 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
               hrController.addBankDetails();
 
               //Get.to(const AddEmployeeDocumentsDetails(), id: hrNavigationKey);
+              //  }
             },
           ),
           body: SingleChildScrollView(
@@ -96,6 +102,8 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
                             hintText: "Account Name ",
                             obscureText: false,
                             controller: _accountNameController,
+                            inputFormatters:
+                                GlobalValidator.accountNameInputFormatter(),
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please enter your account name.';
@@ -116,6 +124,8 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
                             hintText: "Account Number",
                             obscureText: false,
                             controller: _accountNumberController,
+                            inputFormatters:
+                                GlobalValidator.accountNumberInputFormatter(),
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please enter your account number.';
@@ -137,6 +147,8 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
                             hintText: "Bank Name",
                             obscureText: false,
                             controller: _bankNameController,
+                            inputFormatters:
+                                GlobalValidator.bankNameInputFormatter(),
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please enter your bank name';
@@ -157,6 +169,8 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
                             hintText: "IFSC Number",
                             obscureText: false,
                             controller: _ifscCodeController,
+                            inputFormatters:
+                                GlobalValidator.ifscCodeInputFormatter(),
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please enter your ifsc code.';
@@ -177,6 +191,8 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
                             hintText: "Account Type",
                             obscureText: false,
                             controller: _accountTypeController,
+                            inputFormatters:
+                                GlobalValidator.accountTypeInputFormatter(),
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please enter your account type.';

@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
+import 'package:moolwmsstore/Hr/Model/addReferralDetails.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
@@ -34,7 +35,7 @@ class _AddEmployeeReferralDetailsState
   final TextEditingController _designationController = TextEditingController();
   final TextEditingController _mobileNumberContoller = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-
+  final AddReferralDetail _addReferralDetail = const AddReferralDetail();
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HRController>(builder: (hrController) {
@@ -55,25 +56,29 @@ class _AddEmployeeReferralDetailsState
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: CustomFloatingActionButton(
-            title: 'Next',
-            onTap: () {
-              hrController.addReferralDetailRequestModel =
-                  hrController.addReferralDetailRequestModel.copyWith(
-                      name: _referralNameController.text,
-                      company: _companyNameController.text,
-                      address: _addressController.text,
-                      designation: _designationController.text,
-                      mobile_number: _mobileNumberContoller.text,
-                      email_id: _emailController.text);
-              Logger().i(hrController.addReferralDetailRequestModel.toJson());
-              hrController.addReferralDetails(  userID: 1,
-                 
-                  updatedBy: 1,
-                  referralDetails: []);
+              title: 'Next',
+              onTap: () {
+                //    if (_formKey.currentState?.validate() ?? false) {
+                hrController.addReferralDetailRequestModel =
+                    hrController.addReferralDetailRequestModel.copyWith(
+                        name: _referralNameController.text,
+                        company: _companyNameController.text,
+                        address: _addressController.text,
+                        designation: _designationController.text,
+                        mobile_number: _mobileNumberContoller.text,
+                        email_id: _emailController.text);
+                Logger().i(hrController.addReferralDetailRequestModel.toJson());
+                hrController.addReferralDetails(
+                    userID: hrController.currentUserId,
+                    updatedBy: hrController.user.id,
+                    referralDetails: [
+                      hrController.addReferralDetailRequestModel
+                    ]);
 
-              print(hrController.addReferralDetailRequestModel);
-            },
-          ),
+                print(hrController.addReferralDetailRequestModel);
+
+                /// }
+              }),
           body: SingleChildScrollView(
             child: Center(
               child: Column(
@@ -173,6 +178,8 @@ class _AddEmployeeReferralDetailsState
                           hintText: "Mobile Number",
                           obscureText: false,
                           controller: _mobileNumberContoller,
+                          inputFormatters:
+                              GlobalValidator.mobileNumberInputFormatter(),
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Please enter your mobile number.';
@@ -193,6 +200,8 @@ class _AddEmployeeReferralDetailsState
                           hintText: "Email ID",
                           obscureText: false,
                           controller: _emailController,
+                          inputFormatters:
+                              GlobalValidator.emailInputFormatter(),
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Please enter your email address';

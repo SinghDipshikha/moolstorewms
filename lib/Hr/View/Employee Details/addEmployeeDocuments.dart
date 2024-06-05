@@ -1,13 +1,21 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
+
+class DocumentImage {
+  final String label;
+  Uint8List? image;
+
+  DocumentImage({required this.label, this.image});
+}
 
 class AddEmployeeDocumentsDetails extends StatefulWidget {
   const AddEmployeeDocumentsDetails({super.key});
@@ -20,16 +28,16 @@ class AddEmployeeDocumentsDetails extends StatefulWidget {
 class _AddEmployeeDocumentsDetailsState
     extends State<AddEmployeeDocumentsDetails> {
   final ImagePicker picker = ImagePicker();
-  Map<String, Uint8List?> documentImages = {
-    'Profile Picture': null,
-    'PAN Card': null,
-    'Aadhar Card (Front)': null,
-    'Aadhar Card (Back)': null,
-    'Degree Certificate': null,
-    'Cancelled Cheque': null,
-    'Experience Letter': null,
-    'Bank Receipt': null,
-  };
+  final List<DocumentImage> documentImages = [
+    DocumentImage(label: 'Profile Picture'),
+    DocumentImage(label: 'PAN Card'),
+    DocumentImage(label: 'Aadhar Card (Front)'),
+    DocumentImage(label: 'Aadhar Card (Back)'),
+    DocumentImage(label: 'Degree Certificate'),
+    DocumentImage(label: 'Cancelled Cheque'),
+    DocumentImage(label: 'Experience Letter'),
+    DocumentImage(label: 'Bank Receipt'),
+  ];
 
   Future<void> pickImage(String documentType) async {
     final pickedFile = await picker.pickImage(
@@ -39,15 +47,46 @@ class _AddEmployeeDocumentsDetailsState
     if (pickedFile != null) {
       final bytes = await pickedFile.readAsBytes();
       setState(() {
-        documentImages[documentType] = bytes;
+        documentImages.firstWhere((doc) => doc.label == documentType).image =
+            bytes;
       });
     }
   }
 
+  Map<String, String> extractDocumentData(String labelText) {
+    String? imagePath = documentImages
+                .firstWhere((doc) => doc.label == labelText)
+                .image !=
+            null
+        ? 'https://example.com/uploads/${labelText.replaceAll(' ', '_')}.png'
+        : null;
+
+    return {
+      labelText.toLowerCase().replaceAll(' ', '_'): imagePath ?? "",
+    };
+  }
+
+  void submitForm() {
+    List<Map<String, String>> labelNames =
+        documentImages.map((doc) => extractDocumentData(doc.label)).toList();
+
+    Map<String, dynamic> postBody = {
+      "user_id": 3,
+      "file_path": "https://example.com/uploads/",
+      "file_type": "png",
+      "label_name": labelNames,
+      "updated_by": 2
+    };
+
+    print(jsonEncode(postBody));
+  }
+
   Widget buildDocumentField(String labelText) {
-    return Column(
-      children: [
-        documentImages[labelText] != null
+    return GetBuilder<HRController>(
+      builder: (hrController) {
+        final document =
+            documentImages.firstWhere((doc) => doc.label == labelText);
+        return document.image != null
             ? DottedBorder(
                 borderType: BorderType.RRect,
                 radius: const Radius.circular(12),
@@ -58,9 +97,9 @@ class _AddEmployeeDocumentsDetailsState
                     children: [
                       SizedBox(
                         height: 200,
-                        width: 220,
+                        // width: 220,
                         child: Image.memory(
-                          documentImages[labelText]!,
+                          document.image!,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -71,7 +110,7 @@ class _AddEmployeeDocumentsDetailsState
                           padding: EdgeInsets.zero,
                           onPressed: () {
                             setState(() {
-                              documentImages[labelText] = null;
+                              document.image = null;
                             });
                           },
                           icon: const Icon(
@@ -85,12 +124,14 @@ class _AddEmployeeDocumentsDetailsState
                 ),
               ).paddingOnly(bottom: 10)
             : InkWell(
-                onTap: () => pickImage(labelText),
+                onTap: () {
+                  pickImage(labelText);
+                },
                 child: CommanTextFieldForDocuments(
                   labelText: labelText,
                 ),
-              ),
-      ],
+              );
+      },
     );
   }
 
@@ -110,67 +151,21 @@ class _AddEmployeeDocumentsDetailsState
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: CustomFloatingActionButton(
-        title: 'Submit',
+        title: 'Next',
+        onTap: () {
+          submitForm();
+        },
       ),
       body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              Stack(alignment: Alignment.topLeft, children: [
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color:
-                          context.isPhone ? Colors.transparent : Colors.black,
-                      width: 2,
-                    ),
-                  ),
-                  width: double.infinity,
-                  child: Wrap(
-                    alignment: WrapAlignment.spaceBetween,
-                    spacing: 10,
-                    runSpacing: 10,
-                    children: documentImages.keys
-                        .map((key) => buildDocumentField(key))
-                        .toList(),
-                  ),
-                ).paddingAll(20),
-                context.isPhone
-                    ? Container()
-                    : Container(
-                        color: const Color(0xFFF7F7F7),
-                        child: const Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Text(
-                            'Documents',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                        )).paddingOnly(left: 80),
-              ]),
-              if (!context.isPhone)
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CommonPreviousButton(
-                      onTap: () {
-                        // context.back();
-                      },
-                      title: 'Previous',
-                    ),
-                    const Gap(20),
-                    CommonNextButton(
-                      title: 'Next',
-                      onTap: () {
-                        // if (_formKey.currentState!.validate()) {
-                        //   _formKey.currentState!.save();
-                        //   print('Valid email: $_email');
-                        // }
-                      },
-                    ),
-                  ],
-                ).paddingAll(20)
-            ],
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Wrap(
+            alignment: WrapAlignment.spaceBetween,
+            spacing: 10,
+            runSpacing: 10,
+            children: documentImages.map((doc) {
+              return buildDocumentField(doc.label);
+            }).toList(),
           ),
         ),
       ),

@@ -179,9 +179,10 @@ class HrEmployeeList extends StatelessWidget {
                                 ? IconButton(
                                     padding: EdgeInsets.zero,
                                     onPressed: () {
-                                      Get.find<HRController>()
-                                          .getPersonalDetails(
-                                              hrController.employees[i].employeeId);
+                                      Get.find<HRController>().currentUserId =
+                                          hrController.employees[i].id;
+                                      print(
+                                          "this is the value ${Get.find<HRController>().currentUserId}");
                                       hrController.navigationAccordingStatus
                                           .clear();
                                       hrController.navigationAccordingStatus
@@ -190,6 +191,8 @@ class HrEmployeeList extends StatelessWidget {
                                       if (hrController
                                               .employees[i].isBankDetails ==
                                           0) {
+                                        Get.find<HRController>().getBankDetails(
+                                            hrController.employees[i].id);
                                         hrController.navigationAccordingStatus
                                             .add(
                                                 const AddEmployeeBankDetails());
@@ -197,6 +200,9 @@ class HrEmployeeList extends StatelessWidget {
                                       if (hrController
                                               .employees[i].isCareerDetails ==
                                           0) {
+                                        Get.find<HRController>()
+                                            .getCareerDetails(
+                                                hrController.employees[i].id);
                                         hrController.navigationAccordingStatus
                                             .add(
                                                 const AddEmployeeCareerDetails());
@@ -211,12 +217,18 @@ class HrEmployeeList extends StatelessWidget {
                                       if (hrController
                                               .employees[i].isDocumentDetails ==
                                           0) {
+                                        Get.find<HRController>()
+                                            .getEducationDetails(
+                                                hrController.employees[i].id);
                                         hrController.navigationAccordingStatus.add(
                                             const AddEmployeeEducationQualificationDetails());
                                       }
                                       if (hrController
                                               .employees[i].isUserDetails ==
                                           0) {
+                                        Get.find<HRController>()
+                                            .getPersonalDetails(
+                                                hrController.employees[i].id);
                                         hrController.navigationAccordingStatus.add(
                                             const AddEmployeePersonalDetails());
                                       }

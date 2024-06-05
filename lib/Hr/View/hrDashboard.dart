@@ -46,6 +46,8 @@ class _HrDashboardState extends State<HrDashboard> {
           ),
         ),
       ),
+    
+    
       drawer: Drawer(
         //  width: context.isPhone ? MediaQuery.sizeOf(context).width - 100 : 400,
         surfaceTintColor: const Color.fromARGB(255, 22, 22, 22),
@@ -217,7 +219,7 @@ class _HrDashboardState extends State<HrDashboard> {
                     color: const Color.fromARGB(255, 22, 22, 22),
                   ),
                   leading: Image.asset(
-                    "assets/images/peopleVector.png",
+                    "assets/images/stopwatch.png",
                     height: 28,
                   ),
                   title: const Text(
@@ -445,6 +447,8 @@ class _HrDashboardState extends State<HrDashboard> {
           ],
         ),
       ),
+    
+    
       body: SingleChildScrollView(
         child: Center(
           child: Column(

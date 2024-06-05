@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Hr/View/hrDashboard.dart';
-
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/utils/globals.dart';
-
-
 
 class AddedStaffScreen extends StatefulWidget {
   const AddedStaffScreen({super.key});
@@ -29,35 +26,44 @@ class _AddedStaffScreenState extends State<AddedStaffScreen> {
               fit: BoxFit.cover,
             ),
           ),
-          child: Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 700.0),
-                child: Column(
-                  children: [
-                    Center(
-                      child: CommonButton(
-                        title: 'Goto Staff Profile',
-                        color: Colors.white,
-                        textColor: Colors.black,
+          child: InkWell(
+            onTap: () {
+              Get.to(const HrDashboard(), id: securityGuardNavigation);
+            },
+            child: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 700.0),
+                  child: Column(
+                    children: [
+                      Center(
+                        child: CommonButton(
+                          title: 'Goto Staff Profile',
+                          color: Colors.white,
+                          textColor: Colors.black,
+                          onTap: () {
+                            Get.to(const HrDashboard(),
+                                id: securityGuardNavigation);
+                          },
+                        ),
                       ),
-                    ),
-                    const Gap(20),
-                    Center(
-                      child: CommonButton(
-                        title: 'Home',
-                        color: const Color(0xFF5A57FF),
-                        textColor: Colors.white,
-                        onTap: () {
-                          Get.to(const HrDashboard(),
-                              id: securityGuardNavigation);
-                        },
-                      ),
-                    )
-                  ],
+                      const Gap(20),
+                      Center(
+                        child: CommonButton(
+                          title: 'Home',
+                          color: const Color(0xFF5A57FF),
+                          textColor: Colors.white,
+                          onTap: () {
+                            Get.to(const HrDashboard(),
+                                id: securityGuardNavigation);
+                          },
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
