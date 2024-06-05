@@ -6,9 +6,9 @@ import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/Model/personType.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Common%20Data/repository/ownerRepo.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/DMS.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsRepo.dart';
-import 'package:moolwmsstore/Dock%20Supervisor/DMS.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
@@ -220,8 +220,11 @@ class OwnerController extends GetxController {
   }
 
   Future<List<Chamber>?> getAllChamberByWareHouseId(var warehouseId) async {
-    var value = await apiClient
-        .getData("owner/getAllChamberByWareHouseId/$warehouseId");
+    var value = await apiClient.postData("owner/getAllChamberByWareHouseId", {
+      "warehouse_id": warehouseId,
+      "temp_min_range": "",
+      "temp_max_range": ""
+    });
     if (value.data["message"] == "Chamber Detail for this warehouse") {
       List result = value.data["result"];
       return result.map((e) => Chamber.fromJson(e)).toList();
@@ -453,7 +456,7 @@ class OwnerController extends GetxController {
         Logger().i(v);
         apiClient.postData("avtar/addAvtar",
             {"user_id": user.id, "profile": v}).then((v2) async {
-          if (v2.data["result"] == "Users Avatar add successfully") {
+          if (v2.data["result"] == "Avtar Information updated") {
             Snacks.greenSnack("Profile Pic updated successfully");
             var box = await Hive.openBox('authbox');
             user = user.copyWith(avatar: v);

@@ -197,7 +197,8 @@ class ChamberDesigning extends StatelessWidget {
                                   x.add({
                                     "pallet_cordinate": v["pallet"] + "L$i",
                                     "status": v["status"],
-                                    "stacking_level": i
+                                    "stacking_level": i,
+                                    "is_full": 0
                                   });
                                 }
                               });

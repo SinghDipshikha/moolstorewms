@@ -30,6 +30,7 @@ class _CreateticketState extends State<Createticket> {
   bool creatingTicket = false;
   final _formKey = GlobalKey<FormState>();
   int selectedWarehouseId = 0;
+  bool tempRequired = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -151,20 +152,22 @@ class _CreateticketState extends State<Createticket> {
                       DropdownButtonFormField2<Map>(
                         decoration: InputDecoration(
                           focusedBorder: const OutlineInputBorder(
+                              gapPadding: 0,
                               borderSide: BorderSide(
                                   color: Color.fromARGB(255, 27, 23, 251),
                                   width: 0.4),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5))),
                           enabledBorder: const OutlineInputBorder(
+                              gapPadding: 0,
                               borderSide: BorderSide(
                                   color: Color.fromARGB(255, 169, 153, 246),
                                   width: 0.2),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5))),
-                          contentPadding: const EdgeInsets.symmetric(
-                              vertical: 0, horizontal: 0),
+                          contentPadding: EdgeInsets.zero,
                           border: OutlineInputBorder(
+                            gapPadding: 0,
                             borderSide:
                                 const BorderSide(color: Colors.transparent),
                             borderRadius: BorderRadius.circular(15),
@@ -224,8 +227,8 @@ class _CreateticketState extends State<Createticket> {
                           // ownerController.update();
                         },
                         buttonStyleData: const ButtonStyleData(
-                          //decoration: BoxDecoration(color: Colors.white),
-                          overlayColor: WidgetStatePropertyAll(Colors.white),
+                          padding: EdgeInsets.zero,
+                          //  decoration: BoxDecoration(color: Colors.red)
                         ),
                         iconStyleData: IconStyleData(
                           icon: const Icon(
@@ -244,12 +247,75 @@ class _CreateticketState extends State<Createticket> {
                           padding: EdgeInsets.only(left: 6),
                         ),
                       ).paddingSymmetric(vertical: 12),
-                      creatingTicket
-                          ?  Center(
-                              child: LoadingAnimationWidget.staggeredDotsWave(
-                        color: const Color(0xFF5A57FF),
-                        size: 80,
+                      Column(
+                        children: [
+                          Row(
+                            children: [
+                              const Text(
+                                'Temperature Option',
+                                style: TextStyle(
+                                  color: Color(0xFF595959),
+                                  fontSize: 18,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w400,
+                                  height: 0,
+                                ),
+                              ),
+                              Checkbox(
+                                  value: tempRequired,
+                                  onChanged: (v) {
+                                    setState(() {
+                                      tempRequired = !tempRequired;
+                                    });
+                                  })
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              const Text(
+                                'Min.',
+                                style: TextStyle(
+                                  color: Color(0xFFCCCCCC),
+                                  fontSize: 14,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              Container(
+                                width: 92,
+                                height: 53,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFFAF9FF),
+                                  shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                        width: 1, color: Color(0x335A57FF)),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                                child: const TextField(
+                                  decoration:
+                                      InputDecoration(border: InputBorder.none),
+                                ),
+                              ),
+                              const Text(
+                                '°c',
+                                style: TextStyle(
+                                  color: Color(0xFFCCCCCC),
+                                  fontSize: 14,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
                       ),
+                      creatingTicket
+                          ? Center(
+                              child: LoadingAnimationWidget.staggeredDotsWave(
+                                color: const Color(0xFF5A57FF),
+                                size: 80,
+                              ),
                             )
                           : CustomButton(
                               title: "Submit",
