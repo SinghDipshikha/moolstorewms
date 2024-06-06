@@ -4,6 +4,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsRepo.dart';
+import 'package:moolwmsstore/Hr/HumanResource.dart';
+import 'package:moolwmsstore/Sales/Sales.dart';
+import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:restart_app/restart_app.dart';
 
@@ -18,6 +21,26 @@ class DmsController extends GetxController {
       required this.apiClient,
       required this.user,
       this.isOwner = false});
+
+  dmsLogout() async {
+    var box = await Hive.openBox('authbox');
+    Get.find<DmsController>().dispose();
+
+    box.clear();
+    Restart.restartApp();
+  }
+
+  switchRole(String role) {
+    if (role == "security-guard") {
+      Get.offAll(const SecurityGuard());
+    }
+    if (role == "hr") {
+      Get.offAll(const HumanResouce());
+    }
+    if (role == "sales") {
+      Get.offAll(const Sales());
+    }
+  }
 
   updateProfilePic(XFile file) {
     apiClient.uploadImage(file).then((v) {

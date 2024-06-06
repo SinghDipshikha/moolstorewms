@@ -79,6 +79,8 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
               //  }
             },
           ),
+          
+          
           body: SingleChildScrollView(
             child: Center(
               child: Column(

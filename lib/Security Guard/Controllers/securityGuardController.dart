@@ -388,6 +388,26 @@ class SecurityGuardController extends GetxController {
     });
   }
 
+  void getAllLabourList() {
+    apiClient
+        .getData(
+      "material/list",
+    )
+        .then((value) {
+      if (value.data["message"] == "Data Retrieved Successfully!") {
+        Snacks.greenSnack("Data Retrieved Successfully!");
+        List x = value.data["result"];
+        allMaterialList = x.map((e) => MaterialEntry.fromJson(e)).toList();
+        print(allMaterialList);
+        isloading = false;
+        update();
+      } else {
+        isloading = false;
+        update();
+      }
+    });
+  }
+
   void getAllVehicleList() {
     apiClient
         .getData(
@@ -438,6 +458,20 @@ class SecurityGuardController extends GetxController {
   }
 
   getVisitorCount() async {
+    isGetVisitorCountLoading = true;
+    String afterUrl =
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!["id"]}";
+    await apiClient.getData("visitor/visitorCount$afterUrl").then((value) {
+      if (value.data["message"] == "Data Retrieved Successfully!") {
+        visitorCountIn = value.data["result"]["count_in"];
+        visitorCountOut = value.data["result"]["count_out"];
+        isGetVisitorCountLoading = false;
+        update();
+      }
+    });
+  }
+
+  getLabourCount() async {
     isGetVisitorCountLoading = true;
     String afterUrl =
         "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!["id"]}";
