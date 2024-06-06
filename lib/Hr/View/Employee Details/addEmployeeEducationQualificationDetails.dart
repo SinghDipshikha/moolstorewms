@@ -3,12 +3,10 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
-import 'package:moolwmsstore/Hr/View/Staff/staffList.dart';
-import 'package:moolwmsstore/Hr/View/widget/commonAppBar.dart';
+import 'package:moolwmsstore/Hr/Model/addEducationDetails.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
-import 'package:moolwmsstore/utils/globals.dart';
 
 ////@RoutePage()
 class AddEmployeeEducationQualificationDetails extends StatefulWidget {
@@ -45,6 +43,7 @@ class _AddEmployeeEducationQualificationDetailsState
   String _highestQualification = '';
   final String _collegeUniversity = '';
   String? selectedLanguage = "Hindi";
+  final AddEducationDetail _addEducationDetail = const AddEducationDetail();
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -52,44 +51,43 @@ class _AddEmployeeEducationQualificationDetailsState
       return Form(
         key: _formKey,
         child: Scaffold(
-         appBar: AppBar(
-          title: const Text(
-            'Eductaion Details',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontFamily: 'SF Pro Display',
-              fontWeight: FontWeight.w500,
+          appBar: AppBar(
+            title: const Text(
+              'Eductaion Details',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontFamily: 'SF Pro Display',
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
-        ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: CustomFloatingActionButton(
-            title: 'Next',
-            onTap: () {
-              // if (_formKey.currentState?.validate() ?? false) {
-              hrController.addEducationDetailsRequestModel =
-                  hrController.addEducationDetailsRequestModel.copyWith(
-                id: 1,
-                user_id: 3,
-                updated_by: hrController.user.id,
-                ssc_passing_year: _sscPassingYearController.text,
-                ssc_passing_percentage: _sscPercentageController.text,
-                ssc_passing_grade: _sscGradeController.text,
-                ssc_passing_school: _sscPassingYearController.text,
-                ssc_passing_university: _sscUniversityContoller.text,
-                highest_qualification: _hqController.text,
-                specialization: _hqspecializationController.text,
-                hq_passing_year: _hqPassingYearController.text,
-                hq_percentage: _hqGradeController.text,
-                hq_college: _hqCollegeUniversityController.text,
-              );
-              Logger().i(hrController.addCareerDetailsRequestModel.toJson());
-              hrController.addEducationDetails();
-            
-            },
-          ),
+              title: 'Next',
+              onTap: () {
+                //   if (_formKey.currentState?.validate() ?? false) {
+                hrController.addEducationDetailsRequestModel =
+                    hrController.addEducationDetailsRequestModel.copyWith(
+                  id: 1,
+                  user_id: hrController.currentUserId,
+                  updated_by: hrController.user.id,
+                  ssc_passing_year: _sscPassingYearController.text,
+                  ssc_passing_percentage: _sscPercentageController.text,
+                  ssc_passing_grade: _sscGradeController.text,
+                  ssc_passing_school: _sscPassingYearController.text,
+                  ssc_passing_university: _sscUniversityContoller.text,
+                  highest_qualification: _hqController.text,
+                  specialization: _hqspecializationController.text,
+                  hq_passing_year: _hqPassingYearController.text,
+                  hq_percentage: _hqGradeController.text,
+                  hq_college: _hqCollegeUniversityController.text,
+                );
+                Logger().i(hrController.addCareerDetailsRequestModel.toJson());
+                hrController.addEducationDetails();
+                // }
+              }),
           body: SingleChildScrollView(
             child: Center(
               child: Column(
@@ -124,6 +122,8 @@ class _AddEmployeeEducationQualificationDetailsState
                               hintText: "Passing Year",
                               obscureText: false,
                               controller: _sscPassingYearController,
+                              inputFormatters:
+                                  GlobalValidator.passingYearInputFormatter(),
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Please enter your passing year.';
@@ -145,6 +145,8 @@ class _AddEmployeeEducationQualificationDetailsState
                               hintText: "Percentage",
                               obscureText: false,
                               controller: _sscPercentageController,
+                              inputFormatters: GlobalValidator
+                                  .percentageGradeInputFormatter(),
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Please enter your percentage.';
@@ -166,6 +168,8 @@ class _AddEmployeeEducationQualificationDetailsState
                               hintText: "Grade",
                               obscureText: false,
                               controller: _sscGradeController,
+                              inputFormatters:
+                                  GlobalValidator.gateIDInputFormatter(),
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Please enter your grade.';
@@ -187,6 +191,8 @@ class _AddEmployeeEducationQualificationDetailsState
                               hintText: "School",
                               obscureText: false,
                               controller: _sscSchoolController,
+                              inputFormatters:
+                                  GlobalValidator.schoolInputFormatter(),
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Please enter your school name.';
@@ -207,6 +213,8 @@ class _AddEmployeeEducationQualificationDetailsState
                               hintText: "University",
                               obscureText: false,
                               controller: _sscUniversityContoller,
+                              inputFormatters: GlobalValidator
+                                  .collegeUniversityInputFormatter(),
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Please enter your college/university name.';
@@ -261,6 +269,8 @@ class _AddEmployeeEducationQualificationDetailsState
                               hintText: "Highest Qualification",
                               obscureText: false,
                               controller: _hqController,
+                              inputFormatters: GlobalValidator
+                                  .highestQualificationInputFormatter(),
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Please enter your highest qualification.';
@@ -282,6 +292,8 @@ class _AddEmployeeEducationQualificationDetailsState
                               hintText: "Specialization",
                               obscureText: false,
                               controller: _hqspecializationController,
+                              inputFormatters: GlobalValidator
+                                  .specializationInputFormatter(),
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Please enter your specialization name.';
@@ -303,6 +315,8 @@ class _AddEmployeeEducationQualificationDetailsState
                               hintText: "Passing Year",
                               obscureText: false,
                               controller: _hqPassingYearController,
+                              inputFormatters:
+                                  GlobalValidator.passingYearInputFormatter(),
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Please enter your passing year.';
@@ -324,6 +338,8 @@ class _AddEmployeeEducationQualificationDetailsState
                               hintText: "College?University ",
                               obscureText: false,
                               controller: _hqCollegeUniversityController,
+                              inputFormatters: GlobalValidator
+                                  .collegeUniversityInputFormatter(),
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Please enter your college/university name.';
@@ -345,6 +361,8 @@ class _AddEmployeeEducationQualificationDetailsState
                               hintText: "Percentage & Grade ",
                               obscureText: false,
                               controller: _hqGradeController,
+                              inputFormatters: GlobalValidator
+                                  .percentageGradeInputFormatter(),
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Please enter your percentage.';

@@ -34,6 +34,22 @@ class _PersonsListScreenState extends State<PersonsListScreen> {
     {"title": "icon", "flex": 1},
     {"title": "icon2", "flex": 1},
   ];
+
+  TextStyle subHeaderStyle = const TextStyle(
+    color: Color(0xFF5A57FF),
+    fontSize: 12,
+    fontFamily: 'SF Pro Text',
+    fontWeight: FontWeight.w400,
+  );
+  TextStyle headerStyle = const TextStyle(
+    color: Color(0xFF353535),
+    fontSize: 12,
+    fontFamily: 'SF Pro Text',
+    fontWeight: FontWeight.w500,
+  );
+  static const _pageSize = 20;
+
+
   bool isSelected = false;
   @override
   Widget build(BuildContext context) {

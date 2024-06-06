@@ -4,8 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/material.dart';
-import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
-import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 
 //@RoutePage()
 class MaterialListScreen extends StatefulWidget {
@@ -32,21 +30,36 @@ class _MaterialListScreenState extends State<MaterialListScreen> {
     {"title": "24-06-2023 10:35 AM", "flex": 2},
     {"title": "icon", "flex": 1},
   ];
+
+  TextStyle subHeaderStyle = const TextStyle(
+    color: Color(0xFF5A57FF),
+    fontSize: 12,
+    fontFamily: 'SF Pro Text',
+    fontWeight: FontWeight.w400,
+  );
+  TextStyle headerStyle = const TextStyle(
+    color: Color(0xFF353535),
+    fontSize: 12,
+    fontFamily: 'SF Pro Text',
+    fontWeight: FontWeight.w500,
+  );
+  static const _pageSize = 20;
+
   bool isSelected = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text(
-            'Material List',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontFamily: 'SF Pro Display',
-              fontWeight: FontWeight.w500,
-            ),
+        title: const Text(
+          'Material List',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontFamily: 'SF Pro Display',
+            fontWeight: FontWeight.w500,
           ),
         ),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -135,33 +148,46 @@ class _MaterialListScreenState extends State<MaterialListScreen> {
               ],
             ),
             const Gap(10),
-            Row(
-              children: List.generate(tags.length, (index) {
-                if (tags[index]["title"] == "icon") {
-                  return Expanded(
-                    flex: tags[index]["flex"],
-                    child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.more_horiz,
-                          color: Colors.white,
-                        )),
-                  );
-                }
-                return Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Expanded(
-                      flex: tags[index]["flex"],
-                      child: Text(
-                        tags[index]["title"],
-                        style: const TextStyle(
-                          color: Color(0xFF5A57FF),
-                          fontWeight: FontWeight.w700,
-                        ),
-                      )),
-                );
-              }),
-            ),
+            Row(children: [
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      tags[0]["title"],
+                      style: subHeaderStyle,
+                    ),
+                  )),
+              const Gap(3),
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    child: Text(
+                      tags[1]["title"],
+                      style: subHeaderStyle,
+                    ),
+                  )),
+              const Gap(3),
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    child: Text(
+                      tags[2]["title"],
+                      style: subHeaderStyle,
+                    ),
+                  )),
+              const Gap(3),
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      tags[3]["title"],
+                      style: subHeaderStyle,
+                    ),
+                  )),
+              const Gap(3),
+            ]).paddingSymmetric(horizontal: 8),
             Expanded(
               child: GetBuilder<SecurityGuardController>(initState: (state) {
                 Get.find<SecurityGuardController>().getAllMaterialList();
@@ -185,7 +211,7 @@ class _MaterialListScreenState extends State<MaterialListScreen> {
                           MaterialEntry entry =
                               securityGuardController.allMaterialList[i];
                           return Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(10.0),
                             child: Container(
                               width: 382,
                               height: 50,

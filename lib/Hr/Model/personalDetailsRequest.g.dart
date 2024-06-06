@@ -9,6 +9,7 @@ part of 'personalDetailsRequest.dart';
 _$PersonalDetailsRequestImpl _$$PersonalDetailsRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$PersonalDetailsRequestImpl(
+      id: (json['id'] as num?)?.toInt(),
       user_id: (json['user_id'] as num?)?.toInt(),
       updated_by: (json['updated_by'] as num?)?.toInt(),
       gst_number: json['gst_number'] as String?,
@@ -38,6 +39,7 @@ _$PersonalDetailsRequestImpl _$$PersonalDetailsRequestImplFromJson(
 Map<String, dynamic> _$$PersonalDetailsRequestImplToJson(
         _$PersonalDetailsRequestImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'user_id': instance.user_id,
       'updated_by': instance.updated_by,
       'gst_number': instance.gst_number,

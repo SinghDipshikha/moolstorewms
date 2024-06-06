@@ -21,6 +21,7 @@ PersonalDetailsRequest _$PersonalDetailsRequestFromJson(
 
 /// @nodoc
 mixin _$PersonalDetailsRequest {
+  int? get id => throw _privateConstructorUsedError;
   int? get user_id => throw _privateConstructorUsedError;
   int? get updated_by => throw _privateConstructorUsedError;
   String? get gst_number => throw _privateConstructorUsedError;
@@ -59,7 +60,8 @@ abstract class $PersonalDetailsRequestCopyWith<$Res> {
       _$PersonalDetailsRequestCopyWithImpl<$Res, PersonalDetailsRequest>;
   @useResult
   $Res call(
-      {int? user_id,
+      {int? id,
+      int? user_id,
       int? updated_by,
       String? gst_number,
       String? gender,
@@ -99,6 +101,7 @@ class _$PersonalDetailsRequestCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? user_id = freezed,
     Object? updated_by = freezed,
     Object? gst_number = freezed,
@@ -125,6 +128,10 @@ class _$PersonalDetailsRequestCopyWithImpl<$Res,
     Object? mailing_address = freezed,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       user_id: freezed == user_id
           ? _value.user_id
           : user_id // ignore: cast_nullable_to_non_nullable
@@ -235,7 +242,8 @@ abstract class _$$PersonalDetailsRequestImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? user_id,
+      {int? id,
+      int? user_id,
       int? updated_by,
       String? gst_number,
       String? gender,
@@ -274,6 +282,7 @@ class __$$PersonalDetailsRequestImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? user_id = freezed,
     Object? updated_by = freezed,
     Object? gst_number = freezed,
@@ -300,6 +309,10 @@ class __$$PersonalDetailsRequestImplCopyWithImpl<$Res>
     Object? mailing_address = freezed,
   }) {
     return _then(_$PersonalDetailsRequestImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       user_id: freezed == user_id
           ? _value.user_id
           : user_id // ignore: cast_nullable_to_non_nullable
@@ -404,7 +417,8 @@ class __$$PersonalDetailsRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
   const _$PersonalDetailsRequestImpl(
-      {this.user_id,
+      {this.id,
+      this.user_id,
       this.updated_by,
       this.gst_number,
       this.gender,
@@ -432,6 +446,8 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
   factory _$PersonalDetailsRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$PersonalDetailsRequestImplFromJson(json);
 
+  @override
+  final int? id;
   @override
   final int? user_id;
   @override
@@ -483,7 +499,7 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
 
   @override
   String toString() {
-    return 'PersonalDetailsRequest(user_id: $user_id, updated_by: $updated_by, gst_number: $gst_number, gender: $gender, dob: $dob, blood_group: $blood_group, email: $email, aadhaar_number: $aadhaar_number, pf_number: $pf_number, pan_card: $pan_card, esic_number: $esic_number, have_passport: $have_passport, passport_number: $passport_number, passport_expiry_date: $passport_expiry_date, have_disability: $have_disability, disability_describe: $disability_describe, address: $address, state: $state, city: $city, pincode: $pincode, emergency_contact_no: $emergency_contact_no, emergency_contact_person: $emergency_contact_person, mailing_address_diffrent: $mailing_address_diffrent, mailing_address: $mailing_address)';
+    return 'PersonalDetailsRequest(id: $id, user_id: $user_id, updated_by: $updated_by, gst_number: $gst_number, gender: $gender, dob: $dob, blood_group: $blood_group, email: $email, aadhaar_number: $aadhaar_number, pf_number: $pf_number, pan_card: $pan_card, esic_number: $esic_number, have_passport: $have_passport, passport_number: $passport_number, passport_expiry_date: $passport_expiry_date, have_disability: $have_disability, disability_describe: $disability_describe, address: $address, state: $state, city: $city, pincode: $pincode, emergency_contact_no: $emergency_contact_no, emergency_contact_person: $emergency_contact_person, mailing_address_diffrent: $mailing_address_diffrent, mailing_address: $mailing_address)';
   }
 
   @override
@@ -491,6 +507,7 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PersonalDetailsRequestImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.user_id, user_id) || other.user_id == user_id) &&
             (identical(other.updated_by, updated_by) ||
                 other.updated_by == updated_by) &&
@@ -539,6 +556,7 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
+        id,
         user_id,
         updated_by,
         gst_number,
@@ -582,7 +600,8 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
 
 abstract class _PersonalDetailsRequest implements PersonalDetailsRequest {
   const factory _PersonalDetailsRequest(
-      {final int? user_id,
+      {final int? id,
+      final int? user_id,
       final int? updated_by,
       final String? gst_number,
       final String? gender,
@@ -610,6 +629,8 @@ abstract class _PersonalDetailsRequest implements PersonalDetailsRequest {
   factory _PersonalDetailsRequest.fromJson(Map<String, dynamic> json) =
       _$PersonalDetailsRequestImpl.fromJson;
 
+  @override
+  int? get id;
   @override
   int? get user_id;
   @override

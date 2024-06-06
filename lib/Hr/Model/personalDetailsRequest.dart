@@ -6,6 +6,7 @@ part 'personalDetailsRequest.g.dart';
 @freezed
 class PersonalDetailsRequest with _$PersonalDetailsRequest {
   const factory PersonalDetailsRequest({
+    int ? id,
     int? user_id,
     int? updated_by,
     String? gst_number,

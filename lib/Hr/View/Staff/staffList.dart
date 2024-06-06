@@ -2,15 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
-import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeBankDetails.dart';
-import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeCareerDetails.dart';
-import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeDocuments.dart';
-import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeEducationQualificationDetails.dart';
-import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeePersonalDetails.dart';
-import 'package:moolwmsstore/Hr/View/Staff/addedStaffScreen.dart';
-import 'package:moolwmsstore/utils/globals.dart';
 
 class HrEmployeeList extends StatelessWidget {
   const HrEmployeeList({super.key});
@@ -179,58 +171,8 @@ class HrEmployeeList extends StatelessWidget {
                                 ? IconButton(
                                     padding: EdgeInsets.zero,
                                     onPressed: () {
-                                      Get.find<HRController>()
-                                          .getPersonalDetails(
-                                              hrController.employees[i].employeeId);
-                                      hrController.navigationAccordingStatus
-                                          .clear();
-                                      hrController.navigationAccordingStatus
-                                          .add(const AddedStaffScreen());
-
-                                      if (hrController
-                                              .employees[i].isBankDetails ==
-                                          0) {
-                                        hrController.navigationAccordingStatus
-                                            .add(
-                                                const AddEmployeeBankDetails());
-                                      }
-                                      if (hrController
-                                              .employees[i].isCareerDetails ==
-                                          0) {
-                                        hrController.navigationAccordingStatus
-                                            .add(
-                                                const AddEmployeeCareerDetails());
-                                      }
-                                      if (hrController
-                                              .employees[i].isDocumentDetails ==
-                                          0) {
-                                        hrController.navigationAccordingStatus.add(
-                                            const AddEmployeeDocumentsDetails());
-                                      }
-
-                                      if (hrController
-                                              .employees[i].isDocumentDetails ==
-                                          0) {
-                                        hrController.navigationAccordingStatus.add(
-                                            const AddEmployeeEducationQualificationDetails());
-                                      }
-                                      if (hrController
-                                              .employees[i].isUserDetails ==
-                                          0) {
-                                        hrController.navigationAccordingStatus.add(
-                                            const AddEmployeePersonalDetails());
-                                      }
-                                      Logger().i(hrController
-                                          .navigationAccordingStatus);
-
-                                      Get.to(
-                                          hrController
-                                                  .navigationAccordingStatus[
-                                              hrController
-                                                      .navigationAccordingStatus
-                                                      .length -
-                                                  1],
-                                          id: hrNavigationKey);
+                                      Get.find<HRController>().selectEmployee(
+                                          hrController.employees[i]);
                                     },
                                     icon: Image.asset(
                                       "assets/images/hrIcon2.png",
