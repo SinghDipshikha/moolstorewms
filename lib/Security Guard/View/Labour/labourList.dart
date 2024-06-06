@@ -1,4 +1,4 @@
-//import 'package:auto_route/auto_route.dart';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -6,18 +6,18 @@ import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardControlle
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/material.dart';
 
 //@RoutePage()
-class MaterialListScreen extends StatefulWidget {
-  const MaterialListScreen({super.key});
+class LabourListScreen extends StatefulWidget {
+  const LabourListScreen({super.key});
 
   @override
-  State<MaterialListScreen> createState() => _MaterialListScreenState();
+  State<LabourListScreen> createState() => _LabourListScreenState();
 }
 
-class _MaterialListScreenState extends State<MaterialListScreen> {
+class _LabourListScreenState extends State<LabourListScreen> {
   @override
   final List tags = [
-    {"title": "Product Name", "flex": 1},
-    {"title": "Quantity", "flex": 2},
+    {"title": "Labour Name", "flex": 1},
+    {"title": "Mobile No.", "flex": 2},
     {"title": "Date & Time", "flex": 2},
     {
       "title": "Status",
@@ -26,7 +26,7 @@ class _MaterialListScreenState extends State<MaterialListScreen> {
   ];
   final List dataList = [
     {"title": "K. Printer", "flex": 1},
-    {"title": "1200 Pcs", "flex": 2},
+    {"title": "0000000000", "flex": 2},
     {"title": "24-06-2023 10:35 AM", "flex": 2},
     {"title": "icon", "flex": 1},
   ];
@@ -66,87 +66,89 @@ class _MaterialListScreenState extends State<MaterialListScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Gap(20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                  width: 169,
-                  height: 39,
-                  padding: const EdgeInsets.only(
-                    top: 10,
-                    left: 30,
-                    right: 10,
-                    bottom: 10,
-                  ),
-                  decoration: ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      side:
-                          const BorderSide(width: 1, color: Color(0x195A57FF)),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Scan QR',
-                        style: TextStyle(
-                          color: Color(0xFFACACAC),
-                          fontSize: 16,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                          //height: 0,
-                        ),
-                      ),
-                      Icon(
-                        Icons.sort,
-                        color: Color(0xFFACACAC),
-                        size: 20,
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  width: 169,
-                  height: 39,
-                  padding: const EdgeInsets.only(
-                    top: 10,
-                    left: 30,
-                    right: 10,
-                    bottom: 10,
-                  ),
-                  decoration: ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      side:
-                          const BorderSide(width: 1, color: Color(0x195A57FF)),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Search',
-                        style: TextStyle(
-                          color: Color(0xFFACACAC),
-                          fontSize: 16,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                          //height: 0,
-                        ),
-                      ),
-                      Icon(
-                        Icons.search,
-                        color: Color(0xFFACACAC),
-                        size: 20,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //   children: [
+            //     Container(
+            //       width: 169,
+            //       height: 39,
+            //       padding: const EdgeInsets.only(
+            //         top: 10,
+            //         left: 30,
+            //         right: 10,
+            //         bottom: 10,
+            //       ),
+            //       decoration: ShapeDecoration(
+            //         shape: RoundedRectangleBorder(
+            //           side:
+            //               const BorderSide(width: 1, color: Color(0x195A57FF)),
+            //           borderRadius: BorderRadius.circular(30),
+            //         ),
+            //       ),
+            //       child: const Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //         crossAxisAlignment: CrossAxisAlignment.center,
+            //         children: [
+            //           Text(
+            //             'Scan QR',
+            //             style: TextStyle(
+            //               color: Color(0xFFACACAC),
+            //               fontSize: 16,
+            //               fontFamily: 'SF Pro Display',
+            //               fontWeight: FontWeight.w400,
+            //               //height: 0,
+            //             ),
+            //           ),
+            //           Icon(
+            //             Icons.sort,
+            //             color: Color(0xFFACACAC),
+            //             size: 20,
+            //           ),
+            //         ],
+            //       ),
+            //     ),
+            //     Container(
+            //       width: 169,
+            //       height: 39,
+            //       padding: const EdgeInsets.only(
+            //         top: 10,
+            //         left: 30,
+            //         right: 10,
+            //         bottom: 10,
+            //       ),
+            //       decoration: ShapeDecoration(
+            //         shape: RoundedRectangleBorder(
+            //           side:
+            //               const BorderSide(width: 1, color: Color(0x195A57FF)),
+            //           borderRadius: BorderRadius.circular(30),
+            //         ),
+            //       ),
+            //       child: const Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //         crossAxisAlignment: CrossAxisAlignment.center,
+            //         children: [
+            //           Text(
+            //             'Search',
+            //             style: TextStyle(
+            //               color: Color(0xFFACACAC),
+            //               fontSize: 16,
+            //               fontFamily: 'SF Pro Display',
+            //               fontWeight: FontWeight.w400,
+            //               //height: 0,
+            //             ),
+            //           ),
+            //           Icon(
+            //             Icons.search,
+            //             color: Color(0xFFACACAC),
+            //             size: 20,
+            //           ),
+            //         ],
+            //       ),
+            //     ),
+            //   ],
+            // ),
+        
+        
             const Gap(10),
             Row(children: [
               Expanded(

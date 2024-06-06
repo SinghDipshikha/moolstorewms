@@ -46,14 +46,12 @@ class _HrDashboardState extends State<HrDashboard> {
           ),
         ),
       ),
-    
-    
       drawer: Drawer(
-        //  width: context.isPhone ? MediaQuery.sizeOf(context).width - 100 : 400,
+      
         surfaceTintColor: const Color.fromARGB(255, 22, 22, 22),
         backgroundColor: const Color.fromARGB(255, 22, 22, 22),
         child: Column(
-          //padding: EdgeInsets.zero,
+
           children: [
             GetBuilder<HRController>(builder: (hrController) {
               return Theme(
@@ -234,10 +232,7 @@ class _HrDashboardState extends State<HrDashboard> {
                     ),
                   ),
                   children: [
-                    // CurvedLineConatainer(
-                    //   title: "Add Staff",
-                    //   onTap: () {},
-                    // ),
+                   
                     CurvedLineConatainer(
                       title: "Create Shift",
                       isShowextendedLine: false,
@@ -399,6 +394,7 @@ class _HrDashboardState extends State<HrDashboard> {
                         borderRadius: BorderRadius.circular(15),
                       ),
                     ),
+
                     menuItemStyleData: const MenuItemStyleData(
                       padding: EdgeInsets.symmetric(horizontal: 16),
                     ),
@@ -447,8 +443,6 @@ class _HrDashboardState extends State<HrDashboard> {
           ],
         ),
       ),
-    
-    
       body: SingleChildScrollView(
         child: Center(
           child: Column(

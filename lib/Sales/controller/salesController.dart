@@ -119,10 +119,7 @@ class SalesController extends GetxController {
     update();
   }
 
-  // getAllIndents() {
-  //   loading = true;
-  //  ;
-  // }
+
 
   List<EnterProduct> ticketProducts = [const EnterProduct()];
   List<Company> comapnies = [];

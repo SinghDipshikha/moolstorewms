@@ -1,23 +1,23 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/View/Dock%20Assign/dockAssign.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
 import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 class DmsDrawer extends StatelessWidget {
-  DmsDrawer({super.key});
-  final ImagePicker picker = ImagePicker();
+  const DmsDrawer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
       surfaceTintColor: const Color.fromARGB(255, 22, 22, 22),
       backgroundColor: const Color.fromARGB(255, 22, 22, 22),
       child: Column(
-        //padding: EdgeInsets.zero,
         children: [
-          GetBuilder<OwnerController>(builder: (ownerController) {
+          GetBuilder<DmsController>(builder: (dmsController) {
             return Theme(
               data: Theme.of(context).copyWith(
                 dividerTheme: const DividerThemeData(color: Colors.transparent),
@@ -29,146 +29,190 @@ class DmsDrawer extends StatelessWidget {
                   child: Row(
                     children: [
                       InkWell(
-                        onTap: () {
-                          picker
-                              .pickImage(
-                                  source: ImageSource.gallery, imageQuality: 50)
-                              .then((v) {
-                            if (v != null) {
-                              ownerController.updateProfilePic(v);
-                            }
-                          });
-                        },
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Container(
-                              height: 90,
-                              width: 90,
-                              decoration: const ShapeDecoration(
-                                color: Colors.transparent,
-                                shape: OvalBorder(
-                                  side: BorderSide(
-                                    width: 1,
-                                    strokeAlign: BorderSide.strokeAlignOutside,
-                                    color: Colors.white,
-                                  ),
-                                ),
+                        child: Container(
+                          width: 100,
+                          height: 100,
+                          decoration: const ShapeDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  "https://via.placeholder.com/100x100"),
+                              fit: BoxFit.fill,
+                            ),
+                            shape: OvalBorder(
+                              side: BorderSide(
+                                width: 2,
+                                strokeAlign: BorderSide.strokeAlignOutside,
+                                color: Color(0x195A57FF),
                               ),
                             ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(112),
-                              child: SizedBox(
-                                height: 80,
-                                width: 80,
-                                child: CachedNetworkImage(
-                                  fit: BoxFit.cover,
-                                  imageUrl: ownerController.user.avatar ?? "",
-                                  placeholder: (context, url) =>
-                                      const CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      const Icon(Icons.error),
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ),
                       const Gap(12),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    '${ownerController.user.first_name}',
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontFamily: 'SF Pro Text',
-                                      fontWeight: FontWeight.w500,
-                                      // //height: 0,
-                                      // letterSpacing: -0.80,
-                                    ),
-                                    overflow: TextOverflow.ellipsis,
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              SizedBox(
+                                height: 40,
+                                width: 120,
+                                child: Text(
+                                  '${dmsController.user.first_name} ${dmsController.user.last_name ?? ""}',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontFamily: 'SF Pro Text',
+                                    fontWeight: FontWeight.w500,
                                   ),
+                                  overflow: TextOverflow.ellipsis,
                                 ),
-                                const Gap(12),
-                                //  const Spacer(),
-                                Image.asset(
-                                  "assets/icons/candle.png",
-                                  height: 22,
-                                )
-                              ],
+                              ),
+                              const Gap(12),
+                              Image.asset(
+                                "assets/icons/candle.png",
+                                height: 22,
+                              )
+                            ],
+                          ),
+                          Text(
+                            dmsController.user.email ?? "",
+                            style: const TextStyle(
+                              color: Color(0xFFACACAC),
+                              fontSize: 14,
+                              fontFamily: 'SF Pro Text',
+                              fontWeight: FontWeight.w300,
                             ),
-                            if (ownerController.user.last_name != null)
-                              Text(
-                                ownerController.user.last_name ?? "",
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontFamily: 'SF Pro Text',
-                                  fontWeight: FontWeight.w500,
-                                  // //height: 0,
-                                  // letterSpacing: -0.80,
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            Text(
-                              ownerController.user.email ?? "",
-                              style: const TextStyle(
-                                color: Color(0xFFACACAC),
-                                fontSize: 14,
-                                fontFamily: 'SF Pro Text',
-                                fontWeight: FontWeight.w300,
-                                // //height: 0,
-                                // letterSpacing: -0.56,
-                              ),
-                              overflow: TextOverflow.ellipsis,
+                          ),
+                          const Text(
+                            'Dock-Supervisor',
+                            style: TextStyle(
+                              color: Color(0xFFFF5789),
+                              fontSize: 16,
+                              fontFamily: 'SF Pro Text',
+                              fontWeight: FontWeight.w500,
                             ),
-                            const Text(
-                              'Dock Supervisor',
-                              style: TextStyle(
-                                color: Color(0xFFFF5789),
-                                fontSize: 16,
-                                fontFamily: 'SF Pro Text',
-                                fontWeight: FontWeight.w500,
-                                // //height: 0,
-                                // letterSpacing: -0.64,
-                              ),
-                            )
-                          ],
-                        ),
+                          )
+                        ],
                       )
                     ],
                   )),
             );
           }),
+          SizedBox(
+            height: 50,
+            child: GetBuilder<DmsController>(builder: (dmsController) {
+              return DropdownButtonFormField2<Map>(
+                value: dmsController.currentlySelectedWarehouse,
+                decoration: InputDecoration(
+                  focusedBorder: const OutlineInputBorder(
+                      gapPadding: 0,
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(255, 27, 23, 251), width: 0.4),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  enabledBorder: OutlineInputBorder(
+                      gapPadding: 0,
+                      borderSide: BorderSide(
+                          color: Colors.white.withOpacity(0.30000001192092896),
+                          width: 1),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(10))),
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                  border: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                hint: const Text(
+                  'Select Warehouses',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontFamily: 'SF Pro Display',
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                items: dmsController.user.warehouse!.map((item) {
+                  return DropdownMenuItem<Map>(
+                    value: item,
+                    child: Row(
+                      children: [
+                        Text(
+                          "${item["warehouse_name"]}",
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w400,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  );
+                }).toList(),
+                validator: (value) {
+                  if (value == null) {
+                    return 'Required';
+                  }
+                  return null;
+                },
+                onChanged: (value) {
+                  if (value != null) {
+                    dmsController.changeDashBoardWarehouse(warehouse: value);
+                    if (context.isPhone) {
+                      Navigator.of(context).pop();
+                    }
+                  }
+                },
+                onSaved: (value) {},
+                buttonStyleData: const ButtonStyleData(
+                  padding: EdgeInsets.zero,
+                  overlayColor: WidgetStatePropertyAll(Colors.white),
+                ),
+                iconStyleData: IconStyleData(
+                  icon: const Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.white,
+                  ).paddingOnly(right: 10),
+                  iconSize: 24,
+                ),
+                dropdownStyleData: DropdownStyleData(
+                  padding: EdgeInsets.zero,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                ),
+                menuItemStyleData: const MenuItemStyleData(
+                    padding: EdgeInsets.symmetric(horizontal: 8)),
+              );
+            }),
+          ).paddingSymmetric(horizontal: 8),
           Expanded(
               child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              if (!context.isPhone)
-                ListTile(
-                  leading: Image.asset(
-                    "assets/icons/grid-3.png",
-                    height: 28,
-                  ),
-                  title: const Text(
-                    'Dashboard',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color(0xFFA7A7A7),
-                      fontSize: 16,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  onTap: () {},
+              ListTile(
+                leading: Image.asset(
+                  "assets/icons/grid-3.png",
+                  height: 28,
                 ),
+                title: const Text(
+                  'Dashboard',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    color: Color(0xFFA7A7A7),
+                    fontSize: 16,
+                    fontFamily: 'SF Pro Text',
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                onTap: () {},
+              ),
               ExpansionTile(
                 collapsedShape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
@@ -178,81 +222,34 @@ class DmsDrawer extends StatelessWidget {
                   color: const Color.fromARGB(255, 22, 22, 22),
                 ),
                 leading: Image.asset(
-                  "assets/icons/New House Icon (R).png",
+                  "assets/images/dockDrawer.png",
                   height: 28,
                 ),
                 title: const Text(
-                  'Warehouse',
+                  'Docks',
                   style: TextStyle(
                     color: Color(0xFFACACAC),
                     fontSize: 16,
                     fontFamily: 'SF Pro Text',
                     fontWeight: FontWeight.w500,
-                    // //height: 0,
                     letterSpacing: -0.64,
                   ),
                 ),
                 children: [
                   CurvedLineConatainer(
-                    title: "Add Warehouse",
-                    onTap: () {
-                      if (context.isPhone) {
-                        Navigator.of(context).pop();
-                      }
-                    },
-                  ),
-                  CurvedLineConatainer(
-                    title: "View Warehouse",
+                    title: "Dock Assign",
                     isShowextendedLine: false,
                     onTap: () {
-                      if (context.isPhone) {
-                        Navigator.of(context).pop();
-                      }
-
-                      // WarehouseList
+                      Get.to(const DockAssignScreen(), id: dmsNavigationKey);
                     },
                   ),
-                  // CurvedLineConatainer(title: "dcdc"),
+
                   // CurvedLineConatainer(
-                  //   title: "dcdc",
+                  //   title: "Vehicle Queue",
                   //   isShowextendedLine: false,
-                  //     ),
+                  // ),
                 ],
               ),
-              // ListTile(
-              //   leading: Image.asset(
-              //     "assets/icons/Sales Icon (R).png",
-              //     height: 28,
-              //   ),
-              //   title: const Text(
-              //     'Sales',
-              //     textAlign: TextAlign.left,
-              //     style: TextStyle(
-              //       color: Color(0xFFA7A7A7),
-              //       fontSize: 16,
-              //       fontFamily: 'SF Pro Text',
-              //       fontWeight: FontWeight.w500,
-              //     ),
-              //   ),
-              //   onTap: () {},
-              // ),
-              // ListTile(
-              //   leading: Image.asset(
-              //     "assets/icons/HR Icon (R).png",
-              //     height: 28,
-              //   ),
-              //   title: const Text(
-              //     'HR',
-              //     textAlign: TextAlign.left,
-              //     style: TextStyle(
-              //       color: Color(0xFFA7A7A7),
-              //       fontSize: 16,
-              //       fontFamily: 'SF Pro Text',
-              //       fontWeight: FontWeight.w500,
-              //     ),
-              //   ),
-              //   onTap: () {},
-              // ),
               ExpansionTile(
                 collapsedShape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
@@ -262,46 +259,106 @@ class DmsDrawer extends StatelessWidget {
                   color: const Color.fromARGB(255, 22, 22, 22),
                 ),
                 leading: Image.asset(
-                  "assets/icons/Staff Profile Icons (R).png",
+                  "assets/images/chamberDrawer.png",
                   height: 28,
                 ),
                 title: const Text(
-                  'Staff',
+                  'Chamber Variable Phase',
                   style: TextStyle(
                     color: Color(0xFFACACAC),
                     fontSize: 16,
                     fontFamily: 'SF Pro Text',
                     fontWeight: FontWeight.w500,
-                    // //height: 0,
                     letterSpacing: -0.64,
                   ),
                 ),
                 children: [
                   CurvedLineConatainer(
-                    title: "Add Staff",
-                    onTap: () {
-                      if (context.isPhone) {
-                        Navigator.of(context).pop();
-                      }
-                    },
-                  ),
-                  CurvedLineConatainer(
-                    title: "Staff List",
+                    title: "Chamber List",
                     isShowextendedLine: false,
-                    onTap: () {
-                      if (context.isPhone) {
-                        Navigator.of(context).pop();
-                      }
-                    },
+                    onTap: () {},
                   ),
                 ],
               ),
             ],
           )),
-          const OwnerSwitchRoleButton(),
+          GetBuilder<DmsController>(builder: (dmsController) {
+            if (dmsController.isOwner) {
+              return const OwnerSwitchRoleButton();
+            }
+
+            if (dmsController.user.person_type != null) {
+              if (dmsController.user.person_type!.isNotEmpty) {
+                return DropdownButtonFormField2<String>(
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 16, horizontal: 12),
+                    border: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.transparent),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                  hint: const Text('Switch Role',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontFamily: 'SF Pro Text',
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: -0.64,
+                      )),
+                  items: dmsController.user.person_type!.map((item) {
+                    return DropdownMenuItem<String>(
+                      value: item["person_type"].toString(),
+                      child: Text(
+                        item["person_type"].toString(),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: 'SF Pro Text',
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.64,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                  validator: (value) {
+                    if (value == null) {
+                      return 'Switch Role';
+                    }
+                    return null;
+                  },
+                  onChanged: (value) {
+                    if (value != null) {
+                      dmsController.switchRole(value);
+                    }
+                  },
+                  onSaved: (value) {},
+                  buttonStyleData: const ButtonStyleData(
+                    overlayColor: WidgetStatePropertyAll(Colors.white),
+                  ),
+                  iconStyleData: const IconStyleData(
+                    icon: Icon(
+                      Icons.arrow_drop_down,
+                      color: Colors.white,
+                    ),
+                    iconSize: 24,
+                  ),
+                  dropdownStyleData: DropdownStyleData(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                  menuItemStyleData: const MenuItemStyleData(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                  ),
+                ).paddingSymmetric(horizontal: 12, vertical: 12);
+              }
+            }
+            return Container();
+          }),
           InkWell(
             onTap: () {
-              Get.find<OwnerController>().ownerLogout();
+              Get.find<DmsController>().dmsLogout();
             },
             child: Container(
               height: 60,
@@ -325,7 +382,6 @@ class DmsDrawer extends StatelessWidget {
                       fontSize: 16,
                       fontFamily: 'SF Pro Text',
                       fontWeight: FontWeight.w500,
-                      //height: 0,
                       letterSpacing: -0.64,
                     ),
                   )
@@ -356,7 +412,7 @@ class CurvedLineConatainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      //  color: Colors.amber,
+      //  color: Color(0xFF918FFA),
       height: 40,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -404,7 +460,6 @@ class CurvedLineConatainer extends StatelessWidget {
                       fontSize: 16,
                       fontFamily: 'SF Pro Text',
                       fontWeight: FontWeight.w500,
-                      //height: 0,
                       letterSpacing: -0.64,
                     ),
                   ),

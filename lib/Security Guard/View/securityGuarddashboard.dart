@@ -8,6 +8,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Labour/addLabour.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Labour/labourList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Material/materialList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/isUserCheckedIn.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/registrationList.dart';
@@ -314,7 +315,7 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                     color: const Color.fromARGB(255, 22, 22, 22),
                   ),
                   leading: Image.asset(
-                    "assets/images/registerVector.png",
+                    "assets/images/registerDrawer.png",
                     height: 28,
                   ),
                   title: const Text(
@@ -360,11 +361,11 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                     color: const Color.fromARGB(255, 22, 22, 22),
                   ),
                   leading: Image.asset(
-                    "assets/images/ticketVector.png",
+                    "assets/images/indent.png",
                     height: 28,
                   ),
                   title: const Text(
-                    'Tickets',
+                    'Indents',
                     style: TextStyle(
                       color: Color(0xFFACACAC),
                       fontSize: 16,
@@ -376,14 +377,14 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                   ),
                   children: [
                     CurvedLineConatainer(
-                      title: "Add Ticket",
+                      title: "Add Indent",
                       onTap: () {
                         Get.to(const AddTicketScreen(),
                             id: securityGuardNavigation);
                       },
                     ),
                     CurvedLineConatainer(
-                      title: "Ticket List",
+                      title: "Indent List",
                       isShowextendedLine: false,
                       onTap: () {
                         Get.to(const TicketListScreen(),
@@ -406,7 +407,7 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                     color: const Color.fromARGB(255, 22, 22, 22),
                   ),
                   leading: Image.asset(
-                    "assets/images/visitorVector.png",
+                    "assets/images/visitorDrawer.png",
                     height: 28,
                   ),
                   title: const Text(
@@ -436,11 +437,92 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                             id: securityGuardNavigation);
                       },
                     ),
+                  ],
+                ),
+                ExpansionTile(
+                  collapsedShape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                  iconColor: Colors.white,
+                  collapsedIconColor: Colors.white,
+                  shape: Border.all(
+                    color: const Color.fromARGB(255, 22, 22, 22),
+                  ),
+                  leading: Image.asset(
+                    "assets/images/personDrawer.png",
+                    height: 28,
+                  ),
+                  title: const Text(
+                    'Person',
+                    style: TextStyle(
+                      color: Color(0xFFACACAC),
+                      fontSize: 16,
+                      fontFamily: 'SF Pro Text',
+                      fontWeight: FontWeight.w500,
+                      // height: 0,
+                      letterSpacing: -0.64,
+                    ),
+                  ),
+                  children: [
+                    CurvedLineConatainer(
+                      title: "Add Person",
+                      onTap: () {
+                        Get.to(AddVistorBySecurityGuard(),
+                            id: securityGuardNavigation);
+                      },
+                    ),
+                    CurvedLineConatainer(
+                      title: "Person List",
+                      isShowextendedLine: false,
+                      onTap: () {
+                        Get.to(const MaterialListScreen(),
+                            id: securityGuardNavigation);
+                      },
+                    ),
                     // CurvedLineConatainer(title: "dcdc"),
                     // CurvedLineConatainer(
                     //   title: "dcdc",
                     //   isShowextendedLine: false,
                     //     ),
+                  ],
+                ),
+                ExpansionTile(
+                  collapsedShape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                  iconColor: Colors.white,
+                  collapsedIconColor: Colors.white,
+                  shape: Border.all(
+                    color: const Color.fromARGB(255, 22, 22, 22),
+                  ),
+                  leading: Image.asset(
+                    "assets/images/labourDrawer.png",
+                    height: 28,
+                  ),
+                  title: const Text(
+                    'Labour',
+                    style: TextStyle(
+                      color: Color(0xFFACACAC),
+                      fontSize: 16,
+                      fontFamily: 'SF Pro Text',
+                      fontWeight: FontWeight.w500,
+                      // height: 0,
+                      letterSpacing: -0.64,
+                    ),
+                  ),
+                  children: [
+                    CurvedLineConatainer(
+                      title: "Add Labour",
+                      onTap: () {
+                        Get.to(const AddLabour(), id: securityGuardNavigation);
+                      },
+                    ),
+                    CurvedLineConatainer(
+                      title: "Labour List",
+                      isShowextendedLine: false,
+                      onTap: () {
+                        Get.to(const LabourListScreen(),
+                            id: securityGuardNavigation);
+                      },
+                    ),
                   ],
                 ),
               ],
@@ -1404,6 +1486,120 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                             decoration: const BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage("assets/images/visitor.png"),
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  );
+                }),
+              ),
+            ).paddingSymmetric(vertical: 8),
+            InkWell(
+              onTap: () {
+                Get.to(const VisitorListScreen(), id: securityGuardNavigation);
+              },
+              child: Container(
+                width: double.infinity,
+                height: 140,
+                decoration: ShapeDecoration(
+                  gradient: LinearGradient(
+                    begin: const Alignment(1.00, 0.00),
+                    end: const Alignment(-1, 0),
+                    colors: [
+                      Colors.white.withOpacity(0.10000000149011612),
+                      Colors.white.withOpacity(0.10000000149011612)
+                    ],
+                  ),
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(width: 1, color: Colors.white),
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                ),
+                child: GetBuilder<SecurityGuardController>(initState: (d) {
+                  Get.find<SecurityGuardController>().getVisitorCount();
+                }, builder: (context) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Labour',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontFamily: 'SF Pro Text',
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: -0.72,
+                        ),
+                      ).paddingOnly(top: 20, left: 25),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Column(
+                            children: [
+                              securityGuardController.isGetVisitorCountLoading
+                                  ? LoadingAnimationWidget.staggeredDotsWave(
+                                      color: Colors.white,
+                                      size: 20,
+                                    )
+                                  : Text(
+                                      '${securityGuardController.visitorCountIn}',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 24,
+                                        fontFamily: 'SF Pro Display',
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                              const Text(
+                                'Labour In',
+                                style: TextStyle(
+                                  color: Colors.green,
+                                  fontSize: 14,
+                                  fontFamily: 'SF Pro Text',
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: -0.56,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              securityGuardController.isGetVisitorCountLoading
+                                  ? LoadingAnimationWidget.staggeredDotsWave(
+                                      color: Colors.white,
+                                      size: 20,
+                                    )
+                                  : Text(
+                                      '${securityGuardController.visitorCountOut}',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 24,
+                                        fontFamily: 'SF Pro Display',
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                              const Text(
+                                'Labour Out',
+                                style: TextStyle(
+                                  color: Colors.orange,
+                                  fontSize: 14,
+                                  fontFamily: 'SF Pro Text',
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: -0.56,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Container(
+                            width: 92,
+                            height: 90,
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage("assets/images/labour.png"),
                                 fit: BoxFit.fill,
                               ),
                             ),
