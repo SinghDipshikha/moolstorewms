@@ -62,7 +62,7 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
               //if (_formKey.currentState?.validate() ?? false) {
               hrController.addBankDetailsRequestModel =
                   hrController.addBankDetailsRequestModel.copyWith(
-                id: hrController.currentUserId,
+                id: _addBankDetails.id,
                 user_id: hrController.currentUserId,
                 updated_by: hrController.user.id,
                 account_name: _accountNameController.text,

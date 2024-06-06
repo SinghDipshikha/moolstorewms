@@ -20,10 +20,12 @@ import 'package:moolwmsstore/Hr/Model/personaldetailsResponse.dart';
 import 'package:moolwmsstore/Hr/Model/referralDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/shiftDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/staff.dart';
+import 'package:moolwmsstore/Hr/Model/uploadDocument.dart';
 import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeBankDetails.dart';
 import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeCareerDetails.dart';
 import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeDocuments.dart';
 import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeEducationQualificationDetails.dart';
+import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeePersonalDetails.dart';
 import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeReferralDetails.dart';
 import 'package:moolwmsstore/Hr/View/Shfits/createShift.dart';
 import 'package:moolwmsstore/Hr/View/Staff/addedStaffScreen.dart';
@@ -61,7 +63,6 @@ class HRController extends GetxController {
   ReferralDetailsRequest addReferralDetailsRequestModel =
       const ReferralDetailsRequest();
   ShiftDetailsRequest addShiftDetailsRequestModel = const ShiftDetailsRequest();
-  List<StaffEntry> employees = [];
   List<AddShift> allShifts = [];
   List<PersonalDetailsResponse> getPersonalDetailsList = [];
   List<AddCareerDetail> getCareerDetailsList = [];
@@ -74,9 +75,43 @@ class HRController extends GetxController {
   Map? selectedWarehouse;
   int? currentUserId;
 
-  List<Widget> navigationAccordingStatus = [
-    const AddedStaffScreen(),
-  ];
+  List<StaffEntry> employees = [];
+  StaffEntry? currentlySeletedEmployee;
+  List<Widget> navigationAccordingStatus = [];
+
+  selectEmployee(StaffEntry emp) {
+    Logger().i(emp);
+
+    currentlySeletedEmployee = emp;
+    navigationAccordingStatus.clear();
+    navigationAccordingStatus.add(const AddedStaffScreen());
+
+    if (currentlySeletedEmployee!.isBankDetails == 0) {
+      // getBankDetails(currentlySeletedEmployee!.id);
+      navigationAccordingStatus.add(const AddEmployeeBankDetails());
+    }
+    if (currentlySeletedEmployee?.isCareerDetails == 0) {
+      // Get.find<HRController>().getCareerDetails(currentlySeletedEmployee?.id);
+      navigationAccordingStatus.add(const AddEmployeeCareerDetails());
+    }
+
+    if (currentlySeletedEmployee?.isDocumentDetails == 0) {
+      // Get.find<HRController>()
+      //     .getEducationDetails(currentlySeletedEmployee?.id);
+      navigationAccordingStatus
+          .add(const AddEmployeeEducationQualificationDetails());
+    }
+    if (currentlySeletedEmployee?.isUserDetails == 0) {
+      // Get.find<HRController>().getPersonalDetails(currentlySeletedEmployee?.id);
+      navigationAccordingStatus.add(AddEmployeePersonalDetails());
+    }
+    if (currentlySeletedEmployee!.isDocumentDetails == 0) {
+      navigationAccordingStatus.add(const AddEmployeeDocumentsDetails());
+    }
+
+    Get.to(navigationAccordingStatus[navigationAccordingStatus.length - 1],
+        id: hrNavigationKey);
+  }
 
   switchRole(String role) {
     if (role == "security-guard") {
@@ -145,9 +180,12 @@ class HRController extends GetxController {
   }
 
 /////////// Get Personal Details/////////
-  getPersonalDetails(var userId) {
-    apiClient.postData("hr/getBasicInformationById", {"user_id": userId}).then(
-        (value) {
+  getPersonalDetails() {
+    apiClient
+        .postData("hr/getBasicInformationById",
+            {"user_id": currentlySeletedEmployee!.id},
+            passhandlecheck: true)
+        .then((value) {
       if (value.data["message"] == "items found") {
         Snacks.greenSnack("Personal Details");
         List<dynamic> x = value.data["result"];
@@ -384,6 +422,45 @@ class HRController extends GetxController {
     });
   }
 
+////////////////////////// Documnets //////////////////////////////////////
+///
+///
+///
+
+// String? adharCard_front ;
+// String? adharCard_back ;
+// String? pan_card ;
+// String? degree_certificate ;
+// String? cancelled_cheque ;
+// String? experience_letter ;
+// String? bank_receipt ;
+
+  UploadDocument? userDocumnetsModel = new UploadDocument(label_name: [ {"key": {"profile_image": null}},
+    {"key": {"adharCard_front": null}},
+    {"key": {"adharCard_back": null}},
+    {"key": {"pan_card": null}},
+    {"key": {"degree_certificate": null}},
+    {"key": {"cancelled_cheque": null}},
+    {"key": {"experience_letter": null}},
+    {"key": {"bank_receipt": null}}]);
+  getEmployeeDocumnets() {
+    apiClient.postData("hr/getUserDocsByUserId",
+        {"user_id": currentlySeletedEmployee!.id},passhandlecheck: true).then((v) {
+      Logger().i(v.data);
+    });
+  }
+
+  updateDocuments(){
+
+apiClient.postData("hr/addDocs", userDocumnetsModel!.copyWith(updated_by: user.id ,user_id: currentlySeletedEmployee!.id).toJson()).then((v){
+  
+});
+
+  }
+
+
+
+
   ////////////////Add Shift//////////////
 
   addShiftDetails() async {
@@ -453,7 +530,7 @@ class HRController extends GetxController {
 
   //     if (response.data["message"] == "Document Information Added") {
   //       addDocumentRequestModel =
-  //           const DocumentRequestModel(); 
+  //           const DocumentRequestModel();
   //       isLoading = false;
 
   //       Snacks.greenSnack("Document Information Added");

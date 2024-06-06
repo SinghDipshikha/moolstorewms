@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 
@@ -10,6 +11,7 @@ class CommanTextField extends StatelessWidget {
   Widget? prefixIcon;
   String? hintText;
   int? maxLength;
+  String? initialValue;
   String? Function(String?)? validator;
   TextInputType? keyboardType;
   List<TextInputFormatter>? inputFormatters;
@@ -25,6 +27,7 @@ class CommanTextField extends StatelessWidget {
     super.key,
     this.labelText,
     this.hintText,
+    this.initialValue,
     this.textCapitalization,
     this.borderRadius,
     this.obscureText,
@@ -64,24 +67,20 @@ class CommanTextField extends StatelessWidget {
                     TextSpan(
                       text: "$labelText",
                       style: const TextStyle(
+                        color: Color(0xFF595959),
                         fontSize: 16,
+                        fontFamily: 'SF Pro Display',
                         fontWeight: FontWeight.w400,
-                        color: Color(0xFFACACAC),
+                        //height: 1,
                       ),
-                    ),
-                    TextSpan(
-                      text: '*',
-                      style: TextStyles.bodyMedium(context)
-                          .copyWith(color: Colors.red),
                     ),
                   ],
                 ),
               ),
             ),
-            const SizedBox(
-              width: 40,
-            ),
+            const Gap(8),
             TextFormField(
+              initialValue: initialValue,
               maxLines: maxLines,
               textCapitalization: textCapitalization ?? TextCapitalization.none,
               onTapOutside: (event) {

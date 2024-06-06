@@ -22,6 +22,13 @@ class DmsController extends GetxController {
       required this.user,
       this.isOwner = false});
 
+  @override
+  void onInit() {
+    currentlySelectedWarehouse = user.warehouse![0];
+
+    super.onInit();
+  }
+
   dmsLogout() async {
     var box = await Hive.openBox('authbox');
     Get.find<DmsController>().dispose();
@@ -40,6 +47,14 @@ class DmsController extends GetxController {
     if (role == "sales") {
       Get.offAll(const Sales());
     }
+  }
+
+  Map? currentlySelectedWarehouse;
+  // currentlySelectedWarehouse!["id"]  access warehopuse like this
+  changeDashBoardWarehouse({required Map warehouse}) {
+    currentlySelectedWarehouse = warehouse;
+
+    update();
   }
 
   updateProfilePic(XFile file) {

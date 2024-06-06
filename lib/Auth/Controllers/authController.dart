@@ -13,9 +13,9 @@ import 'package:moolwmsstore/Auth/View/welcome.dart';
 import 'package:moolwmsstore/Common%20Data/Model/Auth/signupfield.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Common%20Data/repository/ownerRepo.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/DMS.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsRepo.dart';
-import 'package:moolwmsstore/Dock%20Supervisor/DMS.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
@@ -290,7 +290,7 @@ class AuthController extends GetxController {
         Get.offAll(
           const Welcome(),
         );
-      } else if (value.data["message"] == "Failed to add") {
+      } else {
         loading = false;
         update();
       }

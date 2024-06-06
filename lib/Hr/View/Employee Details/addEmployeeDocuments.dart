@@ -9,6 +9,7 @@ import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
+import 'package:moolwmsstore/utils/dimensions.dart';
 
 class DocumentImage {
   final String label;
@@ -157,18 +158,73 @@ class _AddEmployeeDocumentsDetailsState
         },
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Wrap(
-            alignment: WrapAlignment.spaceBetween,
-            spacing: 10,
-            runSpacing: 10,
-            children: documentImages.map((doc) {
-              return buildDocumentField(doc.label);
+        child: GetBuilder<HRController>(initState: (state) {
+          Get.find<HRController>().getEmployeeDocumnets();
+        }, builder: (hRController) {
+          return Column(
+            children: hRController.userDocumnetsModel!.label_name!.map((doc) {
+              return InkWell(
+                onTap: () {
+                  picker
+                      .pickImage(
+                    source: ImageSource.gallery,
+                    imageQuality: 50,
+                  )
+                      .then((v) {
+                    if (v != null) {
+                      hRController.uploadImage(v).then((imgUrl) {
+                        int i = hRController.userDocumnetsModel!.label_name!
+                            .indexOf(doc);
+                        List<Map<String, Map<String, String?>>>? m =
+                            hRController.userDocumnetsModel!.label_name;
+
+                        m![i] = {
+                          "key": {"${m[i]["key"]?.keys.toList()[0]}": imgUrl}
+                        };
+
+                        hRController.userDocumnetsModel = hRController
+                            .userDocumnetsModel!
+                            .copyWith(label_name: m);
+                        hRController.update();
+                        hRController.updateDocuments();
+                      });
+                    }
+                  });
+                  //  hRController.uploadImage()
+                },
+                child: Container(
+                  height: 60,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: ShapeDecoration(
+                    color: const Color(0xFFFAF9FF),
+                    shape: RoundedRectangleBorder(
+                      side:
+                          const BorderSide(width: 1, color: Color(0x195A57FF)),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        doc["key"]!.keys.toList()[0],
+                        style: const TextStyle(
+                          color: Color(0xFF353535),
+                          fontSize: 16,
+                          fontFamily: 'SF Pro Display',
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 0.32,
+                        ),
+                      )
+                    ],
+                  ).paddingSymmetric(horizontal: 8),
+                ).paddingSymmetric(vertical: 8),
+              );
             }).toList(),
-          ),
-        ),
-      ),
+          );
+        }),
+      ).paddingSymmetric(
+          vertical: Dimensions.vericalBodyPad,
+          horizontal: Dimensions.horizontalBodyPad),
     );
   }
 }
