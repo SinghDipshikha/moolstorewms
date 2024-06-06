@@ -173,13 +173,23 @@ class _DockAssignScreenState extends State<DockAssignScreen> {
                                             "12-06-2024") {
                                           return Expanded(
                                               flex: dataList[index]["flex"],
-                                              child: const Text(
-                                                "12-06-2024\n08: 50 AM",
-                                                style: TextStyle(
-                                                  color: Color(0xFF353535),
-                                                  fontSize: 12,
-                                                  fontFamily: 'SF Pro Text',
-                                                  fontWeight: FontWeight.w500,
+                                              child: Container(
+                                                height: 30,
+                                                decoration: ShapeDecoration(
+                                                  color: Colors.white,
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5)),
+                                                ),
+                                                child: const Text(
+                                                  "12-06-2024\n08: 50 AM",
+                                                  style: TextStyle(
+                                                    color: Color(0xFF353535),
+                                                    fontSize: 12,
+                                                    fontFamily: 'SF Pro Text',
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
                                                 ),
                                               ));
                                         }
@@ -215,53 +225,26 @@ class _DockAssignScreenState extends State<DockAssignScreen> {
                                                       BorderRadius.circular(5),
                                                 ),
                                               ),
-                                              child: const Text(
-                                                'Vehicle Out',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  color: Color(0xFFE23744),
-                                                  fontSize: 10,
-                                                  fontFamily: 'SF Pro Display',
-                                                  fontWeight: FontWeight.w400,
+                                              child: const Center(
+                                                child: Text(
+                                                  'Vehicle Out',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    color: Color(0xFFE23744),
+                                                    fontSize: 10,
+                                                    fontFamily:
+                                                        'SF Pro Display',
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           );
                                         }
-                                        if (dataList[index]["title"] ==
-                                            "icon3") {
-                                          return Expanded(
-                                            flex: dataList[index]["flex"],
-                                            child: Container(
-                                              height: 22,
-                                              decoration: ShapeDecoration(
-                                                color: const Color(0xFFFFD9DC),
-                                                shape: RoundedRectangleBorder(
-                                                  side: const BorderSide(
-                                                      width: 1,
-                                                      color: Color(0x33E23744)),
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                ),
-                                              ),
-                                              child: const Text(
-                                                'Vehicle Out',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  color: Color(0xFFE23744),
-                                                  fontSize: 12,
-                                                  fontFamily: 'SF Pro Display',
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                              ),
-                                            ),
-                                          );
-                                        }
+
                                         return Expanded(
                                           flex: tags[index]["flex"],
                                           child: Container(
-                                            // width: 20,
-                                            // height: 30,
                                             decoration: ShapeDecoration(
                                               color: const Color(0xFFFAF9FF),
                                               shape: RoundedRectangleBorder(
@@ -269,7 +252,7 @@ class _DockAssignScreenState extends State<DockAssignScreen> {
                                                       BorderRadius.circular(5)),
                                               image: const DecorationImage(
                                                 image: AssetImage(
-                                                    "assets/images/check_in.png"),
+                                                    "assets/images/eye.png"),
                                                 fit: BoxFit.contain,
                                               ),
                                             ),
