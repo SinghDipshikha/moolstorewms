@@ -6,10 +6,15 @@ part 'dock.g.dart';
 @freezed
 class Dock with _$Dock {
   const factory Dock({
-     String ?title,
-         int? status,
-         int ?warehouseId,
-         int? dockId,
+      int? dockId,
+         String? dockName,
+         int? id,
+         String ?vehicleNumber,
+         String? vehicleStatus,
+         String ?movement,
+         int ?isShow,
+         DateTime ?createdAt,
+         DateTime? updatedAt,
   }) = _Dock;
 
   factory Dock.fromJson(Map<String, Object?> json) =>

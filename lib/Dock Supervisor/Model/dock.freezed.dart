@@ -20,10 +20,15 @@ Dock _$DockFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Dock {
-  String? get title => throw _privateConstructorUsedError;
-  int? get status => throw _privateConstructorUsedError;
-  int? get warehouseId => throw _privateConstructorUsedError;
   int? get dockId => throw _privateConstructorUsedError;
+  String? get dockName => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String? get vehicleNumber => throw _privateConstructorUsedError;
+  String? get vehicleStatus => throw _privateConstructorUsedError;
+  String? get movement => throw _privateConstructorUsedError;
+  int? get isShow => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +40,16 @@ abstract class $DockCopyWith<$Res> {
   factory $DockCopyWith(Dock value, $Res Function(Dock) then) =
       _$DockCopyWithImpl<$Res, Dock>;
   @useResult
-  $Res call({String? title, int? status, int? warehouseId, int? dockId});
+  $Res call(
+      {int? dockId,
+      String? dockName,
+      int? id,
+      String? vehicleNumber,
+      String? vehicleStatus,
+      String? movement,
+      int? isShow,
+      DateTime? createdAt,
+      DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -51,28 +65,53 @@ class _$DockCopyWithImpl<$Res, $Val extends Dock>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = freezed,
-    Object? status = freezed,
-    Object? warehouseId = freezed,
     Object? dockId = freezed,
+    Object? dockName = freezed,
+    Object? id = freezed,
+    Object? vehicleNumber = freezed,
+    Object? vehicleStatus = freezed,
+    Object? movement = freezed,
+    Object? isShow = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as int?,
-      warehouseId: freezed == warehouseId
-          ? _value.warehouseId
-          : warehouseId // ignore: cast_nullable_to_non_nullable
-              as int?,
       dockId: freezed == dockId
           ? _value.dockId
           : dockId // ignore: cast_nullable_to_non_nullable
               as int?,
+      dockName: freezed == dockName
+          ? _value.dockName
+          : dockName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      vehicleNumber: freezed == vehicleNumber
+          ? _value.vehicleNumber
+          : vehicleNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      vehicleStatus: freezed == vehicleStatus
+          ? _value.vehicleStatus
+          : vehicleStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
+      movement: freezed == movement
+          ? _value.movement
+          : movement // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isShow: freezed == isShow
+          ? _value.isShow
+          : isShow // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -84,7 +123,16 @@ abstract class _$$DockImplCopyWith<$Res> implements $DockCopyWith<$Res> {
       __$$DockImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? title, int? status, int? warehouseId, int? dockId});
+  $Res call(
+      {int? dockId,
+      String? dockName,
+      int? id,
+      String? vehicleNumber,
+      String? vehicleStatus,
+      String? movement,
+      int? isShow,
+      DateTime? createdAt,
+      DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -97,28 +145,53 @@ class __$$DockImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = freezed,
-    Object? status = freezed,
-    Object? warehouseId = freezed,
     Object? dockId = freezed,
+    Object? dockName = freezed,
+    Object? id = freezed,
+    Object? vehicleNumber = freezed,
+    Object? vehicleStatus = freezed,
+    Object? movement = freezed,
+    Object? isShow = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$DockImpl(
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as int?,
-      warehouseId: freezed == warehouseId
-          ? _value.warehouseId
-          : warehouseId // ignore: cast_nullable_to_non_nullable
-              as int?,
       dockId: freezed == dockId
           ? _value.dockId
           : dockId // ignore: cast_nullable_to_non_nullable
               as int?,
+      dockName: freezed == dockName
+          ? _value.dockName
+          : dockName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      vehicleNumber: freezed == vehicleNumber
+          ? _value.vehicleNumber
+          : vehicleNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      vehicleStatus: freezed == vehicleStatus
+          ? _value.vehicleStatus
+          : vehicleStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
+      movement: freezed == movement
+          ? _value.movement
+          : movement // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isShow: freezed == isShow
+          ? _value.isShow
+          : isShow // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -126,23 +199,42 @@ class __$$DockImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DockImpl implements _Dock {
-  const _$DockImpl({this.title, this.status, this.warehouseId, this.dockId});
+  const _$DockImpl(
+      {this.dockId,
+      this.dockName,
+      this.id,
+      this.vehicleNumber,
+      this.vehicleStatus,
+      this.movement,
+      this.isShow,
+      this.createdAt,
+      this.updatedAt});
 
   factory _$DockImpl.fromJson(Map<String, dynamic> json) =>
       _$$DockImplFromJson(json);
 
   @override
-  final String? title;
-  @override
-  final int? status;
-  @override
-  final int? warehouseId;
-  @override
   final int? dockId;
+  @override
+  final String? dockName;
+  @override
+  final int? id;
+  @override
+  final String? vehicleNumber;
+  @override
+  final String? vehicleStatus;
+  @override
+  final String? movement;
+  @override
+  final int? isShow;
+  @override
+  final DateTime? createdAt;
+  @override
+  final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'Dock(title: $title, status: $status, warehouseId: $warehouseId, dockId: $dockId)';
+    return 'Dock(dockId: $dockId, dockName: $dockName, id: $id, vehicleNumber: $vehicleNumber, vehicleStatus: $vehicleStatus, movement: $movement, isShow: $isShow, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -150,17 +242,27 @@ class _$DockImpl implements _Dock {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DockImpl &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.warehouseId, warehouseId) ||
-                other.warehouseId == warehouseId) &&
-            (identical(other.dockId, dockId) || other.dockId == dockId));
+            (identical(other.dockId, dockId) || other.dockId == dockId) &&
+            (identical(other.dockName, dockName) ||
+                other.dockName == dockName) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.vehicleNumber, vehicleNumber) ||
+                other.vehicleNumber == vehicleNumber) &&
+            (identical(other.vehicleStatus, vehicleStatus) ||
+                other.vehicleStatus == vehicleStatus) &&
+            (identical(other.movement, movement) ||
+                other.movement == movement) &&
+            (identical(other.isShow, isShow) || other.isShow == isShow) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, title, status, warehouseId, dockId);
+  int get hashCode => Object.hash(runtimeType, dockId, dockName, id,
+      vehicleNumber, vehicleStatus, movement, isShow, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -178,21 +280,36 @@ class _$DockImpl implements _Dock {
 
 abstract class _Dock implements Dock {
   const factory _Dock(
-      {final String? title,
-      final int? status,
-      final int? warehouseId,
-      final int? dockId}) = _$DockImpl;
+      {final int? dockId,
+      final String? dockName,
+      final int? id,
+      final String? vehicleNumber,
+      final String? vehicleStatus,
+      final String? movement,
+      final int? isShow,
+      final DateTime? createdAt,
+      final DateTime? updatedAt}) = _$DockImpl;
 
   factory _Dock.fromJson(Map<String, dynamic> json) = _$DockImpl.fromJson;
 
   @override
-  String? get title;
-  @override
-  int? get status;
-  @override
-  int? get warehouseId;
-  @override
   int? get dockId;
+  @override
+  String? get dockName;
+  @override
+  int? get id;
+  @override
+  String? get vehicleNumber;
+  @override
+  String? get vehicleStatus;
+  @override
+  String? get movement;
+  @override
+  int? get isShow;
+  @override
+  DateTime? get createdAt;
+  @override
+  DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$DockImplCopyWith<_$DockImpl> get copyWith =>

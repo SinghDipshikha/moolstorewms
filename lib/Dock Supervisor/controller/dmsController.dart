@@ -98,7 +98,7 @@ class DmsController extends GetxController {
   getAllDockListByWarehouseId() {
     apiClient
         .getData(
-            "dock/getDocksByWarehouseId/${currentlySelectedWarehouse!["id"]}")
+            "dock/getAllQueuedListByDocks/${currentlySelectedWarehouse!["id"]}")
         .then((value) {
       if (value.data["message"] == "Docks found for given warehouse") {
         List x = value.data["result"];
