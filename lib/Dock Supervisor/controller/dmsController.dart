@@ -1,8 +1,11 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/Model/dock.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/Model/vehicle.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsRepo.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Sales/Sales.dart';
@@ -22,6 +25,9 @@ class DmsController extends GetxController {
       required this.user,
       this.isOwner = false});
 
+  @override
+  List<Vehicle> vehicleList = [];
+  List<Dock> dockList = [];
   @override
   void onInit() {
     currentlySelectedWarehouse = user.warehouse![0];
@@ -71,6 +77,35 @@ class DmsController extends GetxController {
             box.put("user", user);
           }
         });
+      }
+    });
+  }
+
+  getAllVehicleListByWarehouseId() {
+    apiClient
+        .getData("dock/getAllQueuedList/${currentlySelectedWarehouse!["id"]}")
+        .then((value) {
+      if (value.data["message"] == "Queued List found") {
+        List x = value.data["result"];
+        vehicleList = x.map((e) => Vehicle.fromJson(e)).toList();
+        Logger().i(vehicleList);
+
+        update();
+      }
+    });
+  }
+
+  getAllDockListByWarehouseId() {
+    apiClient
+        .getData(
+            "dock/getDocksByWarehouseId/${currentlySelectedWarehouse!["id"]}")
+        .then((value) {
+      if (value.data["message"] == "Docks found for given warehouse") {
+        List x = value.data["result"];
+        dockList = x.map((e) => Dock.fromJson(e)).toList();
+        Logger().i(dockList);
+
+        update();
       }
     });
   }

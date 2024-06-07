@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -147,8 +146,7 @@ class _LabourListScreenState extends State<LabourListScreen> {
             //     ),
             //   ],
             // ),
-        
-        
+
             const Gap(10),
             Row(children: [
               Expanded(

@@ -240,7 +240,10 @@ class DmsDrawer extends StatelessWidget {
                     title: "Dock Assign",
                     isShowextendedLine: false,
                     onTap: () {
-                      Get.to(const DockAssignScreen(), id: dmsNavigationKey);
+                      if (context.isPhone) {
+                        Navigator.of(context).pop();
+                      }
+                      Get.to(const CustomToggleWidget(), id: dmsNavigationKey);
                     },
                   ),
 
@@ -276,7 +279,11 @@ class DmsDrawer extends StatelessWidget {
                   CurvedLineConatainer(
                     title: "Chamber List",
                     isShowextendedLine: false,
-                    onTap: () {},
+                    onTap: () {
+                      if (context.isPhone) {
+                        Navigator.of(context).pop();
+                      }
+                    },
                   ),
                 ],
               ),
