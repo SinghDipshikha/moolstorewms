@@ -485,6 +485,8 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
     );
   }
 
+  
+  
   @override
   final List tags = [
     {"title": "Shift Name", "flex": 2},
@@ -500,7 +502,7 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
   @override
   void initState() {
     selectedWarehouse = Get.find<HRController>().user.warehouse![0];
-    // TODO: implement initState
+
     super.initState();
   }
 
