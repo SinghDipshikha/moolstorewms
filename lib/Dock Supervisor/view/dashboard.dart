@@ -18,7 +18,7 @@ class DMSDashboard extends StatelessWidget {
           ),
         ),
       ),
-      drawer:  DmsDrawer(),
+      drawer: const DmsDrawer(),
     );
   }
 }

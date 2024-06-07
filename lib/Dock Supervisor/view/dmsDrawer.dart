@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/View/Dock%20Assign/dockAssign.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/view/Dock%20Assign/dockAssign.dart';
 import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
@@ -240,7 +241,10 @@ class DmsDrawer extends StatelessWidget {
                     title: "Dock Assign",
                     isShowextendedLine: false,
                     onTap: () {
-                      Get.to(const DockAssignScreen(), id: dmsNavigationKey);
+                      if (context.isPhone) {
+                        Navigator.of(context).pop();
+                      }
+                      Get.to(const CustomToggleWidget(), id: dmsNavigationKey);
                     },
                   ),
 
@@ -276,7 +280,11 @@ class DmsDrawer extends StatelessWidget {
                   CurvedLineConatainer(
                     title: "Chamber List",
                     isShowextendedLine: false,
-                    onTap: () {},
+                    onTap: () {
+                      if (context.isPhone) {
+                        Navigator.of(context).pop();
+                      }
+                    },
                   ),
                 ],
               ),
