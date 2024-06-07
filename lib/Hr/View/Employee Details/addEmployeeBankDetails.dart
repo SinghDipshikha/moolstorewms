@@ -32,10 +32,7 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
   final TextEditingController _branchController = TextEditingController();
   final TextEditingController _accountTypeController = TextEditingController();
   final AddBankDetails _addBankDetails = const AddBankDetails();
-  @override
-  oninit() {
-    int? userId = Get.find<HRController>().currentUserId;
-  }
+ 
 
   @override
   Widget build(BuildContext context) {

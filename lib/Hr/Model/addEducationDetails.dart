@@ -6,22 +6,19 @@ part 'addEducationDetails.g.dart';
 @freezed
 class AddEducationDetail with _$AddEducationDetail {
   const factory AddEducationDetail({
-     int ?id,
-    int ?user_id,
-    String ?ssc_passing_year,
+
+  int? user_id,
+    int? updated_by,
+    String? ssc_passing_year,
     String? ssc_passing_percentage,
-    String ?ssc_passing_grade,
-    String ?ssc_passing_school,
-    String ?ssc_passing_university,
-    String ?highest_qualification,
-    String ?specialization,
-    int ?hq_passing_year,
-    String ?hq_college,
-    String ?hq_percentage,
-    int ?updated_by,
-    int ?status,
-    DateTime? created_at,
-    DateTime ?updated_at,
+    String? ssc_passing_grade,
+    String? ssc_passing_school,
+    String? ssc_passing_university,
+    String? highest_qualification,
+    String? specialization,
+    String? hq_passing_year,
+    String? hq_college,
+    String? hq_percentage,
   }) = _AddEducationDetail;
 
   factory AddEducationDetail.fromJson(Map<String, Object?> json) =>

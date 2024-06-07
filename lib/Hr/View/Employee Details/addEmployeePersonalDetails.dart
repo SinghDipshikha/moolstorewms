@@ -4,7 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
-import 'package:moolwmsstore/Hr/Model/personaldetailsResponse.dart';
+import 'package:moolwmsstore/Hr/Model/personaldetails.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
@@ -353,8 +353,9 @@ class _AddEmployeePersonalDetailsState
                   },
                 ).paddingSymmetric(vertical: 12),
                 CommanTextField(
+                  keyboardType: TextInputType.number,
                   onChanged: (p0) {
-                    personalDetails = personalDetails.copyWith(pincode: p0);
+                    personalDetails = personalDetails.copyWith(pincode: int.parse(p0));
                   },
                   labelText: "Pincode",
                   hintText: "Pincode",

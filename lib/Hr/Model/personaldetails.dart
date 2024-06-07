@@ -1,15 +1,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'personalDetailsRequest.freezed.dart';
-part 'personalDetailsRequest.g.dart';
+part 'personaldetails.freezed.dart';
+part 'personaldetails.g.dart';
 
 @freezed
-class PersonalDetailsRequest with _$PersonalDetailsRequest {
-  const factory PersonalDetailsRequest({
-    int? id,
+class PersonalDetailsResponse with _$PersonalDetailsResponse {
+  const factory PersonalDetailsResponse({
+    // int? id,
     int? user_id,
     int? updated_by,
-    String? gst_number,
     String? gender,
     DateTime? dob,
     String? blood_group,
@@ -31,8 +30,8 @@ class PersonalDetailsRequest with _$PersonalDetailsRequest {
     String? emergency_contact_person,
     int? mailing_address_diffrent,
     String? mailing_address,
-  }) = _PersonalDetailsRequest;
+  }) = _PersonalDetails;
 
-  factory PersonalDetailsRequest.fromJson(Map<String, Object?> json) =>
-      _$PersonalDetailsRequestFromJson(json);
+  factory PersonalDetailsResponse.fromJson(Map<String, Object?> json) =>
+      _$PersonalDetailsResponseFromJson(json);
 }

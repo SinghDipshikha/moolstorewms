@@ -20,8 +20,8 @@ AddEducationDetail _$AddEducationDetailFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AddEducationDetail {
-  int? get id => throw _privateConstructorUsedError;
   int? get user_id => throw _privateConstructorUsedError;
+  int? get updated_by => throw _privateConstructorUsedError;
   String? get ssc_passing_year => throw _privateConstructorUsedError;
   String? get ssc_passing_percentage => throw _privateConstructorUsedError;
   String? get ssc_passing_grade => throw _privateConstructorUsedError;
@@ -29,13 +29,9 @@ mixin _$AddEducationDetail {
   String? get ssc_passing_university => throw _privateConstructorUsedError;
   String? get highest_qualification => throw _privateConstructorUsedError;
   String? get specialization => throw _privateConstructorUsedError;
-  int? get hq_passing_year => throw _privateConstructorUsedError;
+  String? get hq_passing_year => throw _privateConstructorUsedError;
   String? get hq_college => throw _privateConstructorUsedError;
   String? get hq_percentage => throw _privateConstructorUsedError;
-  int? get updated_by => throw _privateConstructorUsedError;
-  int? get status => throw _privateConstructorUsedError;
-  DateTime? get created_at => throw _privateConstructorUsedError;
-  DateTime? get updated_at => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,8 +46,8 @@ abstract class $AddEducationDetailCopyWith<$Res> {
       _$AddEducationDetailCopyWithImpl<$Res, AddEducationDetail>;
   @useResult
   $Res call(
-      {int? id,
-      int? user_id,
+      {int? user_id,
+      int? updated_by,
       String? ssc_passing_year,
       String? ssc_passing_percentage,
       String? ssc_passing_grade,
@@ -59,13 +55,9 @@ abstract class $AddEducationDetailCopyWith<$Res> {
       String? ssc_passing_university,
       String? highest_qualification,
       String? specialization,
-      int? hq_passing_year,
+      String? hq_passing_year,
       String? hq_college,
-      String? hq_percentage,
-      int? updated_by,
-      int? status,
-      DateTime? created_at,
-      DateTime? updated_at});
+      String? hq_percentage});
 }
 
 /// @nodoc
@@ -81,8 +73,8 @@ class _$AddEducationDetailCopyWithImpl<$Res, $Val extends AddEducationDetail>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? user_id = freezed,
+    Object? updated_by = freezed,
     Object? ssc_passing_year = freezed,
     Object? ssc_passing_percentage = freezed,
     Object? ssc_passing_grade = freezed,
@@ -93,19 +85,15 @@ class _$AddEducationDetailCopyWithImpl<$Res, $Val extends AddEducationDetail>
     Object? hq_passing_year = freezed,
     Object? hq_college = freezed,
     Object? hq_percentage = freezed,
-    Object? updated_by = freezed,
-    Object? status = freezed,
-    Object? created_at = freezed,
-    Object? updated_at = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
       user_id: freezed == user_id
           ? _value.user_id
           : user_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      updated_by: freezed == updated_by
+          ? _value.updated_by
+          : updated_by // ignore: cast_nullable_to_non_nullable
               as int?,
       ssc_passing_year: freezed == ssc_passing_year
           ? _value.ssc_passing_year
@@ -138,7 +126,7 @@ class _$AddEducationDetailCopyWithImpl<$Res, $Val extends AddEducationDetail>
       hq_passing_year: freezed == hq_passing_year
           ? _value.hq_passing_year
           : hq_passing_year // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       hq_college: freezed == hq_college
           ? _value.hq_college
           : hq_college // ignore: cast_nullable_to_non_nullable
@@ -147,22 +135,6 @@ class _$AddEducationDetailCopyWithImpl<$Res, $Val extends AddEducationDetail>
           ? _value.hq_percentage
           : hq_percentage // ignore: cast_nullable_to_non_nullable
               as String?,
-      updated_by: freezed == updated_by
-          ? _value.updated_by
-          : updated_by // ignore: cast_nullable_to_non_nullable
-              as int?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as int?,
-      created_at: freezed == created_at
-          ? _value.created_at
-          : created_at // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updated_at: freezed == updated_at
-          ? _value.updated_at
-          : updated_at // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
     ) as $Val);
   }
 }
@@ -176,8 +148,8 @@ abstract class _$$AddEducationDetailImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
-      int? user_id,
+      {int? user_id,
+      int? updated_by,
       String? ssc_passing_year,
       String? ssc_passing_percentage,
       String? ssc_passing_grade,
@@ -185,13 +157,9 @@ abstract class _$$AddEducationDetailImplCopyWith<$Res>
       String? ssc_passing_university,
       String? highest_qualification,
       String? specialization,
-      int? hq_passing_year,
+      String? hq_passing_year,
       String? hq_college,
-      String? hq_percentage,
-      int? updated_by,
-      int? status,
-      DateTime? created_at,
-      DateTime? updated_at});
+      String? hq_percentage});
 }
 
 /// @nodoc
@@ -205,8 +173,8 @@ class __$$AddEducationDetailImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? user_id = freezed,
+    Object? updated_by = freezed,
     Object? ssc_passing_year = freezed,
     Object? ssc_passing_percentage = freezed,
     Object? ssc_passing_grade = freezed,
@@ -217,19 +185,15 @@ class __$$AddEducationDetailImplCopyWithImpl<$Res>
     Object? hq_passing_year = freezed,
     Object? hq_college = freezed,
     Object? hq_percentage = freezed,
-    Object? updated_by = freezed,
-    Object? status = freezed,
-    Object? created_at = freezed,
-    Object? updated_at = freezed,
   }) {
     return _then(_$AddEducationDetailImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
       user_id: freezed == user_id
           ? _value.user_id
           : user_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      updated_by: freezed == updated_by
+          ? _value.updated_by
+          : updated_by // ignore: cast_nullable_to_non_nullable
               as int?,
       ssc_passing_year: freezed == ssc_passing_year
           ? _value.ssc_passing_year
@@ -262,7 +226,7 @@ class __$$AddEducationDetailImplCopyWithImpl<$Res>
       hq_passing_year: freezed == hq_passing_year
           ? _value.hq_passing_year
           : hq_passing_year // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       hq_college: freezed == hq_college
           ? _value.hq_college
           : hq_college // ignore: cast_nullable_to_non_nullable
@@ -271,22 +235,6 @@ class __$$AddEducationDetailImplCopyWithImpl<$Res>
           ? _value.hq_percentage
           : hq_percentage // ignore: cast_nullable_to_non_nullable
               as String?,
-      updated_by: freezed == updated_by
-          ? _value.updated_by
-          : updated_by // ignore: cast_nullable_to_non_nullable
-              as int?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as int?,
-      created_at: freezed == created_at
-          ? _value.created_at
-          : created_at // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updated_at: freezed == updated_at
-          ? _value.updated_at
-          : updated_at // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
     ));
   }
 }
@@ -295,8 +243,8 @@ class __$$AddEducationDetailImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AddEducationDetailImpl implements _AddEducationDetail {
   const _$AddEducationDetailImpl(
-      {this.id,
-      this.user_id,
+      {this.user_id,
+      this.updated_by,
       this.ssc_passing_year,
       this.ssc_passing_percentage,
       this.ssc_passing_grade,
@@ -306,19 +254,15 @@ class _$AddEducationDetailImpl implements _AddEducationDetail {
       this.specialization,
       this.hq_passing_year,
       this.hq_college,
-      this.hq_percentage,
-      this.updated_by,
-      this.status,
-      this.created_at,
-      this.updated_at});
+      this.hq_percentage});
 
   factory _$AddEducationDetailImpl.fromJson(Map<String, dynamic> json) =>
       _$$AddEducationDetailImplFromJson(json);
 
   @override
-  final int? id;
-  @override
   final int? user_id;
+  @override
+  final int? updated_by;
   @override
   final String? ssc_passing_year;
   @override
@@ -334,23 +278,15 @@ class _$AddEducationDetailImpl implements _AddEducationDetail {
   @override
   final String? specialization;
   @override
-  final int? hq_passing_year;
+  final String? hq_passing_year;
   @override
   final String? hq_college;
   @override
   final String? hq_percentage;
-  @override
-  final int? updated_by;
-  @override
-  final int? status;
-  @override
-  final DateTime? created_at;
-  @override
-  final DateTime? updated_at;
 
   @override
   String toString() {
-    return 'AddEducationDetail(id: $id, user_id: $user_id, ssc_passing_year: $ssc_passing_year, ssc_passing_percentage: $ssc_passing_percentage, ssc_passing_grade: $ssc_passing_grade, ssc_passing_school: $ssc_passing_school, ssc_passing_university: $ssc_passing_university, highest_qualification: $highest_qualification, specialization: $specialization, hq_passing_year: $hq_passing_year, hq_college: $hq_college, hq_percentage: $hq_percentage, updated_by: $updated_by, status: $status, created_at: $created_at, updated_at: $updated_at)';
+    return 'AddEducationDetail(user_id: $user_id, updated_by: $updated_by, ssc_passing_year: $ssc_passing_year, ssc_passing_percentage: $ssc_passing_percentage, ssc_passing_grade: $ssc_passing_grade, ssc_passing_school: $ssc_passing_school, ssc_passing_university: $ssc_passing_university, highest_qualification: $highest_qualification, specialization: $specialization, hq_passing_year: $hq_passing_year, hq_college: $hq_college, hq_percentage: $hq_percentage)';
   }
 
   @override
@@ -358,8 +294,9 @@ class _$AddEducationDetailImpl implements _AddEducationDetail {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AddEducationDetailImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.user_id, user_id) || other.user_id == user_id) &&
+            (identical(other.updated_by, updated_by) ||
+                other.updated_by == updated_by) &&
             (identical(other.ssc_passing_year, ssc_passing_year) ||
                 other.ssc_passing_year == ssc_passing_year) &&
             (identical(other.ssc_passing_percentage, ssc_passing_percentage) ||
@@ -379,22 +316,15 @@ class _$AddEducationDetailImpl implements _AddEducationDetail {
             (identical(other.hq_college, hq_college) ||
                 other.hq_college == hq_college) &&
             (identical(other.hq_percentage, hq_percentage) ||
-                other.hq_percentage == hq_percentage) &&
-            (identical(other.updated_by, updated_by) ||
-                other.updated_by == updated_by) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.created_at, created_at) ||
-                other.created_at == created_at) &&
-            (identical(other.updated_at, updated_at) ||
-                other.updated_at == updated_at));
+                other.hq_percentage == hq_percentage));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
       user_id,
+      updated_by,
       ssc_passing_year,
       ssc_passing_percentage,
       ssc_passing_grade,
@@ -404,11 +334,7 @@ class _$AddEducationDetailImpl implements _AddEducationDetail {
       specialization,
       hq_passing_year,
       hq_college,
-      hq_percentage,
-      updated_by,
-      status,
-      created_at,
-      updated_at);
+      hq_percentage);
 
   @JsonKey(ignore: true)
   @override
@@ -427,8 +353,8 @@ class _$AddEducationDetailImpl implements _AddEducationDetail {
 
 abstract class _AddEducationDetail implements AddEducationDetail {
   const factory _AddEducationDetail(
-      {final int? id,
-      final int? user_id,
+      {final int? user_id,
+      final int? updated_by,
       final String? ssc_passing_year,
       final String? ssc_passing_percentage,
       final String? ssc_passing_grade,
@@ -436,21 +362,17 @@ abstract class _AddEducationDetail implements AddEducationDetail {
       final String? ssc_passing_university,
       final String? highest_qualification,
       final String? specialization,
-      final int? hq_passing_year,
+      final String? hq_passing_year,
       final String? hq_college,
-      final String? hq_percentage,
-      final int? updated_by,
-      final int? status,
-      final DateTime? created_at,
-      final DateTime? updated_at}) = _$AddEducationDetailImpl;
+      final String? hq_percentage}) = _$AddEducationDetailImpl;
 
   factory _AddEducationDetail.fromJson(Map<String, dynamic> json) =
       _$AddEducationDetailImpl.fromJson;
 
   @override
-  int? get id;
-  @override
   int? get user_id;
+  @override
+  int? get updated_by;
   @override
   String? get ssc_passing_year;
   @override
@@ -466,19 +388,11 @@ abstract class _AddEducationDetail implements AddEducationDetail {
   @override
   String? get specialization;
   @override
-  int? get hq_passing_year;
+  String? get hq_passing_year;
   @override
   String? get hq_college;
   @override
   String? get hq_percentage;
-  @override
-  int? get updated_by;
-  @override
-  int? get status;
-  @override
-  DateTime? get created_at;
-  @override
-  DateTime? get updated_at;
   @override
   @JsonKey(ignore: true)
   _$$AddEducationDetailImplCopyWith<_$AddEducationDetailImpl> get copyWith =>

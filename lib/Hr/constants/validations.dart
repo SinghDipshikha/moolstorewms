@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:number_text_input_formatter/number_text_input_formatter.dart';
 
 abstract class GlobalValidator {
   // HrModuleValidator._();
@@ -258,7 +259,7 @@ abstract class GlobalValidator {
   }
 
   static List<TextInputFormatter> pincodeInputFormatter() {
-    return [FilteringTextInputFormatter.digitsOnly];
+    return [FilteringTextInputFormatter.digitsOnly ,NumberTextInputFormatter()];
   }
 
   static List<TextInputFormatter> esicInputFormatter() {

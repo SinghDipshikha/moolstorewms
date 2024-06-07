@@ -14,8 +14,7 @@ import 'package:moolwmsstore/Hr/Model/addShift.dart';
 import 'package:moolwmsstore/Hr/Model/addShiftDetails.dart';
 import 'package:moolwmsstore/Hr/Model/bankDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/careerDetailsRequest.dart';
-import 'package:moolwmsstore/Hr/Model/educationDetailsRequest.dart';
-import 'package:moolwmsstore/Hr/Model/personaldetailsResponse.dart';
+import 'package:moolwmsstore/Hr/Model/personaldetails.dart';
 import 'package:moolwmsstore/Hr/Model/referralDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/shiftDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/staff.dart';
@@ -49,8 +48,6 @@ class HRController extends GetxController {
   List<AddCareerDetail> carrierDetails = [const AddCareerDetail()];
   var myHrID;
 
-  EducationDetailsRequest addEducationDetailsRequestModel =
-      const EducationDetailsRequest();
   ReferralDetailsRequest addReferralDetailRequestModel =
       const ReferralDetailsRequest();
   BankDetailsRequest addBankDetailsRequestModel = const BankDetailsRequest();
@@ -102,8 +99,7 @@ class HRController extends GetxController {
       navigationAccordingStatus.add(const AddEmployeeCareerDetails());
     }
     if (currentlySeletedEmployee?.isDocumentDetails == 0) {
-      navigationAccordingStatus
-          .add(const AddEmployeeEducationQualificationDetails());
+      navigationAccordingStatus.add(AddEmployeeEducationQualificationDetails());
     }
 
     if (currentlySeletedEmployee?.isUserDetails == 0) {
@@ -118,7 +114,7 @@ class HRController extends GetxController {
     isLoading = false;
     update();
     navigationAccordingStatus.removeLast();
-    Get.to(navigationAccordingStatus[navigationAccordingStatus.length - 1],
+    Get.off(navigationAccordingStatus[navigationAccordingStatus.length - 1],
         id: hrNavigationKey);
   }
 
@@ -265,31 +261,30 @@ class HRController extends GetxController {
   }
 
 //////////////////////Add or Update Education Details//////////////
-  addEducationDetails() async {
+  addEducationDetails(AddEducationDetail addEducationDetail) async {
     isLoading = true;
     update();
 
     try {
       final response = await apiClient.postData(
         "hr/addEducationInformation",
-        addEducationDetailsRequestModel.toJson(),
+        addEducationDetail
+            .copyWith(
+                updated_by: user.id, user_id: currentlySeletedEmployee!.id)
+            .toJson(),
       );
 
       final message = response.data["message"];
 
       if (message == "Information Added") {
-        print('Deepshikha');
-        addEducationDetailsRequestModel = const EducationDetailsRequest();
         Snacks.greenSnack("Education Information Added Successfully");
         navigateNextSubmitEmployeeScreen();
       } else if (message == "information updated") {
-        addEducationDetailsRequestModel = const EducationDetailsRequest();
         Snacks.greenSnack("Education Information Updated Successfully");
         navigateNextSubmitEmployeeScreen();
       }
     } catch (error) {
       Snacks.redSnack("Failed to add education information. Please try again.");
-      print("Error: $error");
     } finally {
       isLoading = false;
       update();
