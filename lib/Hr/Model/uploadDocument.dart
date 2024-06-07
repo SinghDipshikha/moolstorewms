@@ -11,7 +11,7 @@ class UploadDocument with _$UploadDocument {
     int? user_id,
     String? file_path,
     String? file_type,
-    List<Map<String, Map<String, String?>>>? label_name,
+    List<Map<String, String?>>? label_name,
     int? updated_by,
   }) = _UploadDocument;
 

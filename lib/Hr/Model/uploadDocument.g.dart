@@ -12,9 +12,7 @@ _$UploadDocumentImpl _$$UploadDocumentImplFromJson(Map<String, dynamic> json) =>
       file_path: json['file_path'] as String?,
       file_type: json['file_type'] as String?,
       label_name: (json['label_name'] as List<dynamic>?)
-          ?.map((e) => (e as Map<String, dynamic>).map(
-                (k, e) => MapEntry(k, Map<String, String?>.from(e as Map)),
-              ))
+          ?.map((e) => Map<String, String?>.from(e as Map))
           .toList(),
       updated_by: (json['updated_by'] as num?)?.toInt(),
     );

@@ -3,8 +3,10 @@ import 'dart:typed_data';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
@@ -150,79 +152,155 @@ class _AddEmployeeDocumentsDetailsState
           ),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: CustomFloatingActionButton(
-        title: 'Next',
-        onTap: () {
-          submitForm();
-        },
-      ),
-      body: SingleChildScrollView(
-        child: GetBuilder<HRController>(initState: (state) {
-          Get.find<HRController>().getEmployeeDocumnets();
-        }, builder: (hRController) {
-          return Column(
-            children: hRController.userDocumnetsModel!.label_name!.map((doc) {
-              return InkWell(
-                onTap: () {
-                  picker
-                      .pickImage(
-                    source: ImageSource.gallery,
-                    imageQuality: 50,
-                  )
-                      .then((v) {
-                    if (v != null) {
-                      hRController.uploadImage(v).then((imgUrl) {
-                        int i = hRController.userDocumnetsModel!.label_name!
-                            .indexOf(doc);
-                        List<Map<String, Map<String, String?>>>? m =
-                            hRController.userDocumnetsModel!.label_name;
+      body: GetBuilder<HRController>(initState: (state) {
+        Get.find<HRController>().getEmployeeDocumnets();
+      }, builder: (hRController) {
+        bool showSubmit = true;
+        for (var e in hRController.userDocumnetsModel!.label_name!) {
+          if (e.values.toList()[0] == null) {
+            showSubmit = false;
+          }
+        }
+        if (hRController.isLoading) {
+          return Center(
+            child: LoadingAnimationWidget.staggeredDotsWave(
+              color: AppColors.primaryColor,
+              size: 80,
+            ),
+          );
+        }
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              Column(
+                children:
+                    hRController.userDocumnetsModel!.label_name!.map((doc) {
+                  if (doc.values.toList()[0] != null) {
+                    return InkWell(
+                      onTap: () {
+                        List<Map<String, String?>> labelName = [
+                          ...hRController.userDocumnetsModel!.label_name!
+                        ];
 
-                        m![i] = {
-                          "key": {"${m[i]["key"]?.keys.toList()[0]}": imgUrl}
-                        };
+                        int i = labelName.indexOf(doc);
+
+                        labelName[i] = {labelName[i].keys.toList()[0]: null};
 
                         hRController.userDocumnetsModel = hRController
                             .userDocumnetsModel!
-                            .copyWith(label_name: m);
+                            .copyWith(label_name: labelName);
+
                         hRController.update();
-                        hRController.updateDocuments();
-                      });
-                    }
-                  });
-                  //  hRController.uploadImage()
-                },
-                child: Container(
-                  height: 60,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFFFAF9FF),
-                    shape: RoundedRectangleBorder(
-                      side:
-                          const BorderSide(width: 1, color: Color(0x195A57FF)),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: Row(
-                    children: [
-                      Text(
-                        doc["key"]!.keys.toList()[0],
-                        style: const TextStyle(
-                          color: Color(0xFF353535),
-                          fontSize: 16,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: 0.32,
+                      },
+                      child: Container(
+                        height: 100,
+                        decoration: ShapeDecoration(
+                          color: const Color(0xFF5A57FF),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                         ),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 120,
+                              height: 70,
+                              decoration: ShapeDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(doc.values.toList()[0]!),
+                                  fit: BoxFit.fill,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ).paddingSymmetric(vertical: 8);
+                  }
+                  return InkWell(
+                    onTap: () {
+                      picker
+                          .pickImage(
+                        source: ImageSource.gallery,
+                        imageQuality: 50,
                       )
-                    ],
-                  ).paddingSymmetric(horizontal: 8),
-                ).paddingSymmetric(vertical: 8),
-              );
-            }).toList(),
-          );
-        }),
-      ).paddingSymmetric(
+                          .then((v) {
+                        if (v != null) {
+                          hRController.uploadImage(v).then((imgUrl) {
+                            List<Map<String, String?>> labelName = [
+                              ...hRController.userDocumnetsModel!.label_name!
+                            ];
+
+                            int i = labelName.indexOf(doc);
+
+                            labelName[i] = {
+                              labelName[i].keys.toList()[0]: imgUrl
+                            };
+
+                            hRController.userDocumnetsModel = hRController
+                                .userDocumnetsModel!
+                                .copyWith(label_name: labelName);
+
+                            hRController.update();
+                            // hRController.updateDocuments();
+                          });
+                        }
+                      });
+                      //  hRController.uploadImage()
+                    },
+                    child: Container(
+                      height: 60,
+                      clipBehavior: Clip.antiAlias,
+                      decoration: ShapeDecoration(
+                        color: const Color(0xFFFAF9FF),
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                              width: 1, color: Color(0x195A57FF)),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            "assets/icons/gallery.png",
+                            height: 40,
+                          ),
+                          const Gap(10),
+                          Text(
+                            doc.keys.toList()[0].tr,
+                            style: const TextStyle(
+                              color: Color(0xFF353535),
+                              fontSize: 16,
+                              fontFamily: 'SF Pro Display',
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: 0.32,
+                            ),
+                          ),
+                          const Spacer(),
+                          Icon(
+                            Icons.upload_file,
+                            color: AppColors.primaryColor,
+                          )
+                        ],
+                      ).paddingSymmetric(horizontal: 8),
+                    ).paddingSymmetric(vertical: 8),
+                  );
+                }).toList(),
+              ),
+              if (showSubmit)
+                CustomFloatingActionButton(
+                  title: 'Submit',
+                  onTap: () {
+                 hRController.updateDocuments();
+                  },
+                ).paddingSymmetric(vertical: 18)
+            ],
+          ),
+        );
+      }).paddingSymmetric(
           vertical: Dimensions.vericalBodyPad,
           horizontal: Dimensions.horizontalBodyPad),
     );

@@ -26,17 +26,17 @@ mixin _$PersonalDetailsRequest {
   int? get updated_by => throw _privateConstructorUsedError;
   String? get gst_number => throw _privateConstructorUsedError;
   String? get gender => throw _privateConstructorUsedError;
-  String? get dob => throw _privateConstructorUsedError;
+  DateTime? get dob => throw _privateConstructorUsedError;
   String? get blood_group => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get aadhaar_number => throw _privateConstructorUsedError;
   String? get pf_number => throw _privateConstructorUsedError;
   String? get pan_card => throw _privateConstructorUsedError;
   String? get esic_number => throw _privateConstructorUsedError;
-  String? get have_passport => throw _privateConstructorUsedError;
+  int? get have_passport => throw _privateConstructorUsedError;
   String? get passport_number => throw _privateConstructorUsedError;
-  String? get passport_expiry_date => throw _privateConstructorUsedError;
-  String? get have_disability => throw _privateConstructorUsedError;
+  DateTime? get passport_expiry_date => throw _privateConstructorUsedError;
+  int? get have_disability => throw _privateConstructorUsedError;
   String? get disability_describe => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
   String? get state => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ mixin _$PersonalDetailsRequest {
   int? get pincode => throw _privateConstructorUsedError;
   String? get emergency_contact_no => throw _privateConstructorUsedError;
   String? get emergency_contact_person => throw _privateConstructorUsedError;
-  String? get mailing_address_diffrent => throw _privateConstructorUsedError;
+  int? get mailing_address_diffrent => throw _privateConstructorUsedError;
   String? get mailing_address => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -65,17 +65,17 @@ abstract class $PersonalDetailsRequestCopyWith<$Res> {
       int? updated_by,
       String? gst_number,
       String? gender,
-      String? dob,
+      DateTime? dob,
       String? blood_group,
       String? email,
       String? aadhaar_number,
       String? pf_number,
       String? pan_card,
       String? esic_number,
-      String? have_passport,
+      int? have_passport,
       String? passport_number,
-      String? passport_expiry_date,
-      String? have_disability,
+      DateTime? passport_expiry_date,
+      int? have_disability,
       String? disability_describe,
       String? address,
       String? state,
@@ -83,7 +83,7 @@ abstract class $PersonalDetailsRequestCopyWith<$Res> {
       int? pincode,
       String? emergency_contact_no,
       String? emergency_contact_person,
-      String? mailing_address_diffrent,
+      int? mailing_address_diffrent,
       String? mailing_address});
 }
 
@@ -151,7 +151,7 @@ class _$PersonalDetailsRequestCopyWithImpl<$Res,
       dob: freezed == dob
           ? _value.dob
           : dob // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
       blood_group: freezed == blood_group
           ? _value.blood_group
           : blood_group // ignore: cast_nullable_to_non_nullable
@@ -179,7 +179,7 @@ class _$PersonalDetailsRequestCopyWithImpl<$Res,
       have_passport: freezed == have_passport
           ? _value.have_passport
           : have_passport // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       passport_number: freezed == passport_number
           ? _value.passport_number
           : passport_number // ignore: cast_nullable_to_non_nullable
@@ -187,11 +187,11 @@ class _$PersonalDetailsRequestCopyWithImpl<$Res,
       passport_expiry_date: freezed == passport_expiry_date
           ? _value.passport_expiry_date
           : passport_expiry_date // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
       have_disability: freezed == have_disability
           ? _value.have_disability
           : have_disability // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       disability_describe: freezed == disability_describe
           ? _value.disability_describe
           : disability_describe // ignore: cast_nullable_to_non_nullable
@@ -223,7 +223,7 @@ class _$PersonalDetailsRequestCopyWithImpl<$Res,
       mailing_address_diffrent: freezed == mailing_address_diffrent
           ? _value.mailing_address_diffrent
           : mailing_address_diffrent // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       mailing_address: freezed == mailing_address
           ? _value.mailing_address
           : mailing_address // ignore: cast_nullable_to_non_nullable
@@ -247,17 +247,17 @@ abstract class _$$PersonalDetailsRequestImplCopyWith<$Res>
       int? updated_by,
       String? gst_number,
       String? gender,
-      String? dob,
+      DateTime? dob,
       String? blood_group,
       String? email,
       String? aadhaar_number,
       String? pf_number,
       String? pan_card,
       String? esic_number,
-      String? have_passport,
+      int? have_passport,
       String? passport_number,
-      String? passport_expiry_date,
-      String? have_disability,
+      DateTime? passport_expiry_date,
+      int? have_disability,
       String? disability_describe,
       String? address,
       String? state,
@@ -265,7 +265,7 @@ abstract class _$$PersonalDetailsRequestImplCopyWith<$Res>
       int? pincode,
       String? emergency_contact_no,
       String? emergency_contact_person,
-      String? mailing_address_diffrent,
+      int? mailing_address_diffrent,
       String? mailing_address});
 }
 
@@ -332,7 +332,7 @@ class __$$PersonalDetailsRequestImplCopyWithImpl<$Res>
       dob: freezed == dob
           ? _value.dob
           : dob // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
       blood_group: freezed == blood_group
           ? _value.blood_group
           : blood_group // ignore: cast_nullable_to_non_nullable
@@ -360,7 +360,7 @@ class __$$PersonalDetailsRequestImplCopyWithImpl<$Res>
       have_passport: freezed == have_passport
           ? _value.have_passport
           : have_passport // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       passport_number: freezed == passport_number
           ? _value.passport_number
           : passport_number // ignore: cast_nullable_to_non_nullable
@@ -368,11 +368,11 @@ class __$$PersonalDetailsRequestImplCopyWithImpl<$Res>
       passport_expiry_date: freezed == passport_expiry_date
           ? _value.passport_expiry_date
           : passport_expiry_date // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
       have_disability: freezed == have_disability
           ? _value.have_disability
           : have_disability // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       disability_describe: freezed == disability_describe
           ? _value.disability_describe
           : disability_describe // ignore: cast_nullable_to_non_nullable
@@ -404,7 +404,7 @@ class __$$PersonalDetailsRequestImplCopyWithImpl<$Res>
       mailing_address_diffrent: freezed == mailing_address_diffrent
           ? _value.mailing_address_diffrent
           : mailing_address_diffrent // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       mailing_address: freezed == mailing_address
           ? _value.mailing_address
           : mailing_address // ignore: cast_nullable_to_non_nullable
@@ -457,7 +457,7 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
   @override
   final String? gender;
   @override
-  final String? dob;
+  final DateTime? dob;
   @override
   final String? blood_group;
   @override
@@ -471,13 +471,13 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
   @override
   final String? esic_number;
   @override
-  final String? have_passport;
+  final int? have_passport;
   @override
   final String? passport_number;
   @override
-  final String? passport_expiry_date;
+  final DateTime? passport_expiry_date;
   @override
-  final String? have_disability;
+  final int? have_disability;
   @override
   final String? disability_describe;
   @override
@@ -493,7 +493,7 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
   @override
   final String? emergency_contact_person;
   @override
-  final String? mailing_address_diffrent;
+  final int? mailing_address_diffrent;
   @override
   final String? mailing_address;
 
@@ -605,17 +605,17 @@ abstract class _PersonalDetailsRequest implements PersonalDetailsRequest {
       final int? updated_by,
       final String? gst_number,
       final String? gender,
-      final String? dob,
+      final DateTime? dob,
       final String? blood_group,
       final String? email,
       final String? aadhaar_number,
       final String? pf_number,
       final String? pan_card,
       final String? esic_number,
-      final String? have_passport,
+      final int? have_passport,
       final String? passport_number,
-      final String? passport_expiry_date,
-      final String? have_disability,
+      final DateTime? passport_expiry_date,
+      final int? have_disability,
       final String? disability_describe,
       final String? address,
       final String? state,
@@ -623,7 +623,7 @@ abstract class _PersonalDetailsRequest implements PersonalDetailsRequest {
       final int? pincode,
       final String? emergency_contact_no,
       final String? emergency_contact_person,
-      final String? mailing_address_diffrent,
+      final int? mailing_address_diffrent,
       final String? mailing_address}) = _$PersonalDetailsRequestImpl;
 
   factory _PersonalDetailsRequest.fromJson(Map<String, dynamic> json) =
@@ -640,7 +640,7 @@ abstract class _PersonalDetailsRequest implements PersonalDetailsRequest {
   @override
   String? get gender;
   @override
-  String? get dob;
+  DateTime? get dob;
   @override
   String? get blood_group;
   @override
@@ -654,13 +654,13 @@ abstract class _PersonalDetailsRequest implements PersonalDetailsRequest {
   @override
   String? get esic_number;
   @override
-  String? get have_passport;
+  int? get have_passport;
   @override
   String? get passport_number;
   @override
-  String? get passport_expiry_date;
+  DateTime? get passport_expiry_date;
   @override
-  String? get have_disability;
+  int? get have_disability;
   @override
   String? get disability_describe;
   @override
@@ -676,7 +676,7 @@ abstract class _PersonalDetailsRequest implements PersonalDetailsRequest {
   @override
   String? get emergency_contact_person;
   @override
-  String? get mailing_address_diffrent;
+  int? get mailing_address_diffrent;
   @override
   String? get mailing_address;
   @override

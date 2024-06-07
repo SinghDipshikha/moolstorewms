@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:moolwmsstore/Auth/Controllers/authController.dart';
+import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 /*  if (state is OtpSentSuccess) {
@@ -206,56 +208,67 @@ class PhoneSign extends StatelessWidget {
                           ],
                         ),
                         const Gap(10),
-                        InkWell(
-                          onTap: () {
-                            if (_formKey.currentState?.validate() ?? false) {
-                              if (signUp) {
-                                Get.find<AuthController>().sendSignUpOtp(
-                                    "$countryCode${controller!.text}");
-                              } else {
-                                Get.find<AuthController>().sendSignInOtp(
-                                    "$countryCode${controller!.text}");
-                              }
+                        GetBuilder<AuthController>(
+                          builder: (authController) {
+                            if(authController.loading){
+                                   return LoadingAnimationWidget
+                                        .staggeredDotsWave(
+                                      color: AppColors.primaryColor,
+                                      size: 80,
+                                    );
                             }
-
-                            //  Get.find<AuthController>().sendOtp("number");
-                            // Get.to(const OtpScreen());
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            width: double.infinity,
-                            height: 45,
-                            decoration: ShapeDecoration(
-                              color: Colors.white,
-                              // gradient: const LinearGradient(
-                              //   begin: Alignment(1.00, 0.00),
-                              //   end: Alignment(-1, 0),
-                              //   colors: [Color(0xFFFD578A), Color(0xFF5B57FE)],
-                              // ),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5)),
-                              shadows: const [
-                                BoxShadow(
-                                  color: Color(0x19000000),
-                                  blurRadius: 2,
-                                  offset: Offset(0, 2),
-                                  spreadRadius: 0,
-                                )
-                              ],
-                            ),
-                            child: const Text(
-                              'Request OTP',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                //  fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w600,
-                                // height: 0.12,
-                                // letterSpacing: 0.32,
+                            return InkWell(
+                              onTap: () {
+                                if (_formKey.currentState?.validate() ?? false) {
+                                  if (signUp) {
+                                   authController.sendSignUpOtp(
+                                        "$countryCode${controller!.text}");
+                                  } else {
+                               authController.sendSignInOtp(
+                                        "$countryCode${controller!.text}");
+                                  }
+                                }
+                            
+                                //  Get.find<AuthController>().sendOtp("number");
+                                // Get.to(const OtpScreen());
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: double.infinity,
+                                height: 45,
+                                decoration: ShapeDecoration(
+                                  color: Colors.white,
+                                  // gradient: const LinearGradient(
+                                  //   begin: Alignment(1.00, 0.00),
+                                  //   end: Alignment(-1, 0),
+                                  //   colors: [Color(0xFFFD578A), Color(0xFF5B57FE)],
+                                  // ),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5)),
+                                  shadows: const [
+                                    BoxShadow(
+                                      color: Color(0x19000000),
+                                      blurRadius: 2,
+                                      offset: Offset(0, 2),
+                                      spreadRadius: 0,
+                                    )
+                                  ],
+                                ),
+                                child: const Text(
+                                  'Request OTP',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    //  fontFamily: 'SF Pro Display',
+                                    fontWeight: FontWeight.w600,
+                                    // height: 0.12,
+                                    // letterSpacing: 0.32,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
+                            );
+                          }
                         ),
                         SmoothPageIndicator(
                                 controller: pageController, // PageController

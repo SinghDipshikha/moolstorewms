@@ -87,6 +87,15 @@ class OwnerController extends GetxController {
       DateTime.now().subtract(const Duration(days: 1));
   DateTime dashBoardEndDate = DateTime.now();
 
+
+  refreshDashboard(){
+       getticketWarehouseCount();
+    getMaterialCount();
+    getVehicleCount();
+    getVisitorCount();
+    getPersonCount();
+  }
+
   changeDashBoardDate({required DateTime start, required DateTime end}) {
     dashBoardStartDate = start;
     dashBoardEndDate = end;

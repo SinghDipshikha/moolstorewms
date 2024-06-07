@@ -33,7 +33,7 @@ mixin _$PersonalDetailsResponse {
   String? get esic_number => throw _privateConstructorUsedError;
   int? get have_passport => throw _privateConstructorUsedError;
   String? get passport_number => throw _privateConstructorUsedError;
-  String? get passport_expiry_date => throw _privateConstructorUsedError;
+  DateTime? get passport_expiry_date => throw _privateConstructorUsedError;
   int? get have_disability => throw _privateConstructorUsedError;
   String? get disability_describe => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ mixin _$PersonalDetailsResponse {
   String? get pincode => throw _privateConstructorUsedError;
   String? get emergency_contact_no => throw _privateConstructorUsedError;
   String? get emergency_contact_person => throw _privateConstructorUsedError;
-  String? get mailing_address_diffrent => throw _privateConstructorUsedError;
+  int? get mailing_address_diffrent => throw _privateConstructorUsedError;
   String? get mailing_address => throw _privateConstructorUsedError;
   int? get updated_by => throw _privateConstructorUsedError;
   DateTime? get created_at => throw _privateConstructorUsedError;
@@ -76,7 +76,7 @@ abstract class $PersonalDetailsResponseCopyWith<$Res> {
       String? esic_number,
       int? have_passport,
       String? passport_number,
-      String? passport_expiry_date,
+      DateTime? passport_expiry_date,
       int? have_disability,
       String? disability_describe,
       String? address,
@@ -85,7 +85,7 @@ abstract class $PersonalDetailsResponseCopyWith<$Res> {
       String? pincode,
       String? emergency_contact_no,
       String? emergency_contact_person,
-      String? mailing_address_diffrent,
+      int? mailing_address_diffrent,
       String? mailing_address,
       int? updated_by,
       DateTime? created_at,
@@ -191,7 +191,7 @@ class _$PersonalDetailsResponseCopyWithImpl<$Res,
       passport_expiry_date: freezed == passport_expiry_date
           ? _value.passport_expiry_date
           : passport_expiry_date // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
       have_disability: freezed == have_disability
           ? _value.have_disability
           : have_disability // ignore: cast_nullable_to_non_nullable
@@ -227,7 +227,7 @@ class _$PersonalDetailsResponseCopyWithImpl<$Res,
       mailing_address_diffrent: freezed == mailing_address_diffrent
           ? _value.mailing_address_diffrent
           : mailing_address_diffrent // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       mailing_address: freezed == mailing_address
           ? _value.mailing_address
           : mailing_address // ignore: cast_nullable_to_non_nullable
@@ -281,7 +281,7 @@ abstract class _$$PersonalDetailsImplCopyWith<$Res>
       String? esic_number,
       int? have_passport,
       String? passport_number,
-      String? passport_expiry_date,
+      DateTime? passport_expiry_date,
       int? have_disability,
       String? disability_describe,
       String? address,
@@ -290,7 +290,7 @@ abstract class _$$PersonalDetailsImplCopyWith<$Res>
       String? pincode,
       String? emergency_contact_no,
       String? emergency_contact_person,
-      String? mailing_address_diffrent,
+      int? mailing_address_diffrent,
       String? mailing_address,
       int? updated_by,
       DateTime? created_at,
@@ -393,7 +393,7 @@ class __$$PersonalDetailsImplCopyWithImpl<$Res>
       passport_expiry_date: freezed == passport_expiry_date
           ? _value.passport_expiry_date
           : passport_expiry_date // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
       have_disability: freezed == have_disability
           ? _value.have_disability
           : have_disability // ignore: cast_nullable_to_non_nullable
@@ -429,7 +429,7 @@ class __$$PersonalDetailsImplCopyWithImpl<$Res>
       mailing_address_diffrent: freezed == mailing_address_diffrent
           ? _value.mailing_address_diffrent
           : mailing_address_diffrent // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       mailing_address: freezed == mailing_address
           ? _value.mailing_address
           : mailing_address // ignore: cast_nullable_to_non_nullable
@@ -524,7 +524,7 @@ class _$PersonalDetailsImpl implements _PersonalDetails {
   @override
   final String? passport_number;
   @override
-  final String? passport_expiry_date;
+  final DateTime? passport_expiry_date;
   @override
   final int? have_disability;
   @override
@@ -542,7 +542,7 @@ class _$PersonalDetailsImpl implements _PersonalDetails {
   @override
   final String? emergency_contact_person;
   @override
-  final String? mailing_address_diffrent;
+  final int? mailing_address_diffrent;
   @override
   final String? mailing_address;
   @override
@@ -684,7 +684,7 @@ abstract class _PersonalDetails implements PersonalDetailsResponse {
       final String? esic_number,
       final int? have_passport,
       final String? passport_number,
-      final String? passport_expiry_date,
+      final DateTime? passport_expiry_date,
       final int? have_disability,
       final String? disability_describe,
       final String? address,
@@ -693,7 +693,7 @@ abstract class _PersonalDetails implements PersonalDetailsResponse {
       final String? pincode,
       final String? emergency_contact_no,
       final String? emergency_contact_person,
-      final String? mailing_address_diffrent,
+      final int? mailing_address_diffrent,
       final String? mailing_address,
       final int? updated_by,
       final DateTime? created_at,
@@ -730,7 +730,7 @@ abstract class _PersonalDetails implements PersonalDetailsResponse {
   @override
   String? get passport_number;
   @override
-  String? get passport_expiry_date;
+  DateTime? get passport_expiry_date;
   @override
   int? get have_disability;
   @override
@@ -748,7 +748,7 @@ abstract class _PersonalDetails implements PersonalDetailsResponse {
   @override
   String? get emergency_contact_person;
   @override
-  String? get mailing_address_diffrent;
+  int? get mailing_address_diffrent;
   @override
   String? get mailing_address;
   @override

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:moolwmsstore/Auth/Controllers/authController.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:otp_text_field_v2/otp_field_style_v2.dart';
@@ -79,43 +80,52 @@ class _OtpScreenState extends State<OtpScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: InkWell(
-        onTap: submitOtp,
-        child: Container(
-          alignment: Alignment.center,
-          width: double.infinity,
-          height: 45,
-          decoration: ShapeDecoration(
-            gradient: const LinearGradient(
-              begin: Alignment(1.00, 0.00),
-              end: Alignment(-1, 0),
-              colors: [Color(0xFF2D2D2D), Color(0xFF1F1F1F)],
+      floatingActionButton:
+          GetBuilder<AuthController>(builder: (authController) {
+        if (authController.loading) {
+          return LoadingAnimationWidget.staggeredDotsWave(
+            color: AppColors.primaryColor,
+            size: 80,
+          );
+        }
+        return InkWell(
+          onTap: submitOtp,
+          child: Container(
+            alignment: Alignment.center,
+            width: double.infinity,
+            height: 45,
+            decoration: ShapeDecoration(
+              gradient: const LinearGradient(
+                begin: Alignment(1.00, 0.00),
+                end: Alignment(-1, 0),
+                colors: [Color(0xFF2D2D2D), Color(0xFF1F1F1F)],
+              ),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5)),
+              shadows: const [
+                BoxShadow(
+                  color: Color(0x19000000),
+                  blurRadius: 2,
+                  offset: Offset(0, 2),
+                  spreadRadius: 0,
+                )
+              ],
             ),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            shadows: const [
-              BoxShadow(
-                color: Color(0x19000000),
-                blurRadius: 2,
-                offset: Offset(0, 2),
-                spreadRadius: 0,
-              )
-            ],
-          ),
-          child: const Text(
-            'Confirm',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-              //  fontFamily: 'SF Pro Display',
-              fontWeight: FontWeight.w600,
-              // height: 0.12,
-              // letterSpacing: 0.32,
+            child: const Text(
+              'Confirm',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                //  fontFamily: 'SF Pro Display',
+                fontWeight: FontWeight.w600,
+                // height: 0.12,
+                // letterSpacing: 0.32,
+              ),
             ),
-          ),
-        ).paddingSymmetric(horizontal: 12),
-      ),
+          ).paddingSymmetric(horizontal: 12),
+        );
+      }),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

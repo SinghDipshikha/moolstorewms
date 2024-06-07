@@ -21,7 +21,9 @@ _$PersonalDetailsImpl _$$PersonalDetailsImplFromJson(
       esic_number: json['esic_number'] as String?,
       have_passport: (json['have_passport'] as num?)?.toInt(),
       passport_number: json['passport_number'] as String?,
-      passport_expiry_date: json['passport_expiry_date'] as String?,
+      passport_expiry_date: json['passport_expiry_date'] == null
+          ? null
+          : DateTime.parse(json['passport_expiry_date'] as String),
       have_disability: (json['have_disability'] as num?)?.toInt(),
       disability_describe: json['disability_describe'] as String?,
       address: json['address'] as String?,
@@ -30,7 +32,8 @@ _$PersonalDetailsImpl _$$PersonalDetailsImplFromJson(
       pincode: json['pincode'] as String?,
       emergency_contact_no: json['emergency_contact_no'] as String?,
       emergency_contact_person: json['emergency_contact_person'] as String?,
-      mailing_address_diffrent: json['mailing_address_diffrent'] as String?,
+      mailing_address_diffrent:
+          (json['mailing_address_diffrent'] as num?)?.toInt(),
       mailing_address: json['mailing_address'] as String?,
       updated_by: (json['updated_by'] as num?)?.toInt(),
       created_at: json['created_at'] == null
@@ -57,7 +60,7 @@ Map<String, dynamic> _$$PersonalDetailsImplToJson(
       'esic_number': instance.esic_number,
       'have_passport': instance.have_passport,
       'passport_number': instance.passport_number,
-      'passport_expiry_date': instance.passport_expiry_date,
+      'passport_expiry_date': instance.passport_expiry_date?.toIso8601String(),
       'have_disability': instance.have_disability,
       'disability_describe': instance.disability_describe,
       'address': instance.address,
