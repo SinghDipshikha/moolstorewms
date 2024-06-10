@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/Model/addReferralDetails.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
@@ -23,19 +22,8 @@ class _AddEmployeeReferralDetailsState
     extends State<AddEmployeeReferralDetails> {
   @override
   final _formKey = GlobalKey<FormState>();
-  String _mobileNumber = '';
-  String _address = '';
-  String _email = '';
-  String _refereeName = '';
-  String _companyName = '';
-  String _designation = '';
-  final TextEditingController _referralNameController = TextEditingController();
-  final TextEditingController _companyNameController = TextEditingController();
-  final TextEditingController _addressController = TextEditingController();
-  final TextEditingController _designationController = TextEditingController();
-  final TextEditingController _mobileNumberContoller = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final AddReferralDetail _addReferralDetail = const AddReferralDetail();
+  AddReferralDetail referralDetail = const AddReferralDetail();
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HRController>(builder: (hrController) {
@@ -55,30 +43,8 @@ class _AddEmployeeReferralDetailsState
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: CustomFloatingActionButton(
-              title: 'Next',
-              onTap: () {
-                //    if (_formKey.currentState?.validate() ?? false) {
-                hrController.addReferralDetailRequestModel =
-                    hrController.addReferralDetailRequestModel.copyWith(
-                        name: _referralNameController.text,
-                        company: _companyNameController.text,
-                        address: _addressController.text,
-                        designation: _designationController.text,
-                        mobile_number: _mobileNumberContoller.text,
-                        email_id: _emailController.text);
-                Logger().i(hrController.addReferralDetailRequestModel.toJson());
-                hrController.addReferralDetails(
-                    userID: hrController.currentUserId,
-                    updatedBy: hrController.user.id,
-                    referralDetails: [
-                      hrController.addReferralDetailRequestModel
-                    ]);
-
-                print(hrController.addReferralDetailRequestModel);
-
-                /// }
-              }),
+          floatingActionButton:
+              CustomFloatingActionButton(title: 'Next', onTap: () {}),
           body: SingleChildScrollView(
             child: Center(
               child: Column(
@@ -97,7 +63,6 @@ class _AddEmployeeReferralDetailsState
                           labelText: "Referee Name",
                           hintText: "Referee Name",
                           obscureText: false,
-                          controller: _referralNameController,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Please enter your referee name.';
@@ -109,15 +74,14 @@ class _AddEmployeeReferralDetailsState
 
                             return null;
                           },
-                          onChanged: (value) {
-                            _refereeName = value;
+                          onChanged: (p0) {
+                            referralDetail = referralDetail.copyWith(name: p0);
                           },
                         ).paddingAll(10),
                         CommanTextField(
                           labelText: "Company",
                           hintText: "Company",
                           obscureText: false,
-                          controller: _companyNameController,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Please enter your company name.';
@@ -129,15 +93,15 @@ class _AddEmployeeReferralDetailsState
 
                             return null;
                           },
-                          onChanged: (value) {
-                            _companyName = value;
+                          onChanged: (p0) {
+                            referralDetail =
+                                referralDetail.copyWith(company: p0);
                           },
                         ).paddingAll(10),
                         CommanTextField(
                           labelText: "Address",
                           hintText: "Address",
                           obscureText: false,
-                          controller: _addressController,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Please enter your address';
@@ -149,15 +113,15 @@ class _AddEmployeeReferralDetailsState
 
                             return null;
                           },
-                          onChanged: (value) {
-                            _address = value;
+                          onChanged: (p0) {
+                            referralDetail =
+                                referralDetail.copyWith(address: p0);
                           },
                         ).paddingAll(10),
                         CommanTextField(
                           labelText: "Designation",
                           hintText: "Designation",
                           obscureText: false,
-                          controller: _designationController,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Please enter your designation.';
@@ -169,15 +133,15 @@ class _AddEmployeeReferralDetailsState
 
                             return null;
                           },
-                          onChanged: (value) {
-                            _designation = value;
+                          onChanged: (p0) {
+                            referralDetail =
+                                referralDetail.copyWith(designation: p0);
                           },
                         ).paddingAll(10),
                         CommanTextField(
                           labelText: "Mobile Number",
                           hintText: "Mobile Number",
                           obscureText: false,
-                          controller: _mobileNumberContoller,
                           inputFormatters:
                               GlobalValidator.mobileNumberInputFormatter(),
                           validator: (value) {
@@ -191,15 +155,15 @@ class _AddEmployeeReferralDetailsState
 
                             return null;
                           },
-                          onChanged: (value) {
-                            _mobileNumber = value;
+                          onChanged: (p0) {
+                            referralDetail =
+                                referralDetail.copyWith(mobileNumber: p0);
                           },
                         ).paddingAll(10),
                         CommanTextField(
                           labelText: "Email ID",
                           hintText: "Email ID",
                           obscureText: false,
-                          controller: _emailController,
                           inputFormatters:
                               GlobalValidator.emailInputFormatter(),
                           validator: (value) {
@@ -213,8 +177,8 @@ class _AddEmployeeReferralDetailsState
 
                             return null;
                           },
-                          onChanged: (value) {
-                            _email = value;
+                          onChanged: (p0) {
+                            referralDetail = referralDetail.copyWith(email: p0);
                           },
                         ).paddingAll(10),
                       ],

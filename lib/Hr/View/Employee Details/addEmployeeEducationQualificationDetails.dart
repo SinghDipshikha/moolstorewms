@@ -9,11 +9,12 @@ import 'package:moolwmsstore/Hr/constants/validations.dart';
 
 ////@RoutePage()
 class AddEmployeeEducationQualificationDetails extends StatelessWidget {
-   AddEmployeeEducationQualificationDetails({super.key});
+  AddEmployeeEducationQualificationDetails({super.key});
 
   AddEducationDetail addEducationDetail = const AddEducationDetail();
 
   final _formKey = GlobalKey<FormState>();
+  AddEducationDetail educationDetail = const AddEducationDetail();
 
   @override
   Widget build(BuildContext context) {
@@ -79,9 +80,9 @@ class AddEmployeeEducationQualificationDetails extends StatelessWidget {
 
                                 return null;
                               },
-                              onChanged: (value) {
-                                addEducationDetail = addEducationDetail
-                                    .copyWith(ssc_passing_year: value);
+                              onChanged: (p0) {
+                                educationDetail = educationDetail.copyWith(
+                                    ssc_passing_year: p0);
                               },
                             ).paddingAll(2),
                             CommanTextField(
@@ -102,9 +103,9 @@ class AddEmployeeEducationQualificationDetails extends StatelessWidget {
 
                                 return null;
                               },
-                              onChanged: (value) {
-                                addEducationDetail = addEducationDetail
-                                    .copyWith(ssc_passing_percentage: value);
+                              onChanged: (p0) {
+                                educationDetail = educationDetail.copyWith(
+                                    ssc_passing_percentage: p0);
                               },
                             ).paddingAll(2),
                             CommanTextField(
@@ -125,9 +126,9 @@ class AddEmployeeEducationQualificationDetails extends StatelessWidget {
 
                                 return null;
                               },
-                              onChanged: (value) {
-                                addEducationDetail = addEducationDetail
-                                    .copyWith(ssc_passing_grade: value);
+                              onChanged: (p0) {
+                                educationDetail = educationDetail.copyWith(
+                                    ssc_passing_grade: p0);
                               },
                             ).paddingAll(2),
                             CommanTextField(
@@ -147,9 +148,9 @@ class AddEmployeeEducationQualificationDetails extends StatelessWidget {
 
                                 return null;
                               },
-                              onChanged: (value) {
-                                addEducationDetail = addEducationDetail
-                                    .copyWith(ssc_passing_school: value);
+                              onChanged: (p0) {
+                                educationDetail = educationDetail.copyWith(
+                                    ssc_passing_school: p0);
                               },
                             ).paddingAll(2),
                             CommanTextField(
@@ -170,9 +171,9 @@ class AddEmployeeEducationQualificationDetails extends StatelessWidget {
 
                                 return null;
                               },
-                              onChanged: (value) {
-                                addEducationDetail = addEducationDetail
-                                    .copyWith(ssc_passing_university: value);
+                              onChanged: (p0) {
+                                educationDetail = educationDetail.copyWith(
+                                    ssc_passing_university: p0);
                               },
                             ).paddingAll(2),
                           ],
@@ -226,9 +227,9 @@ class AddEmployeeEducationQualificationDetails extends StatelessWidget {
 
                                 return null;
                               },
-                              onChanged: (value) {
-                                addEducationDetail = addEducationDetail
-                                    .copyWith(highest_qualification: value);
+                              onChanged: (p0) {
+                                educationDetail = educationDetail.copyWith(
+                                    highest_qualification: p0);
                               },
                             ).paddingAll(8),
                             CommanTextField(
@@ -249,9 +250,9 @@ class AddEmployeeEducationQualificationDetails extends StatelessWidget {
 
                                 return null;
                               },
-                              onChanged: (value) {
-                                addEducationDetail = addEducationDetail
-                                    .copyWith(specialization: value);
+                              onChanged: (p0) {
+                                educationDetail = educationDetail.copyWith(
+                                    specialization: p0);
                               },
                             ).paddingAll(8),
                             CommanTextField(
@@ -272,9 +273,9 @@ class AddEmployeeEducationQualificationDetails extends StatelessWidget {
 
                                 return null;
                               },
-                              onChanged: (value) {
-                                addEducationDetail = addEducationDetail
-                                    .copyWith(hq_passing_year: value);
+                              onChanged: (p0) {
+                                educationDetail = educationDetail.copyWith(
+                                    hq_passing_year: p0);
                               },
                             ).paddingAll(8),
                             CommanTextField(
@@ -295,9 +296,9 @@ class AddEmployeeEducationQualificationDetails extends StatelessWidget {
 
                                 return null;
                               },
-                              onChanged: (value) {
-                                addEducationDetail = addEducationDetail
-                                    .copyWith(hq_college: value);
+                              onChanged: (p0) {
+                                educationDetail =
+                                    educationDetail.copyWith(hq_college: p0);
                               },
                             ).paddingAll(8),
                             CommanTextField(
@@ -318,9 +319,9 @@ class AddEmployeeEducationQualificationDetails extends StatelessWidget {
 
                                 return null;
                               },
-                              onChanged: (value) {
-                                addEducationDetail = addEducationDetail
-                                    .copyWith(hq_percentage: value);
+                              onChanged: (p0) {
+                                educationDetail =
+                                    educationDetail.copyWith(hq_percentage: p0);
                               },
                             ).paddingAll(2),
                           ],
@@ -331,9 +332,8 @@ class AddEmployeeEducationQualificationDetails extends StatelessWidget {
                   CustomFloatingActionButton(
                       title: 'Next',
                       onTap: () {
-                           if (_formKey.currentState?.validate() ?? false) {
-
-                        hrController.addEducationDetails(addEducationDetail);
+                        if (_formKey.currentState?.validate() ?? false) {
+                          hrController.addEducationDetails(addEducationDetail);
                         }
                       }),
                   const Gap(20),
