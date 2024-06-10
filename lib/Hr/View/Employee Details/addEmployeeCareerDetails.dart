@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/Model/addCareerDetail.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
@@ -29,8 +28,8 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
   final bool _isCheckedDisablityNo = false;
   final String _monthlySalary = '';
   final String _currentSalary = '';
-  String _employerName = '';
- 
+  final String _employerName = '';
+
   final AddCareerDetail _careerDetails = const AddCareerDetail();
 
   Future<void> _selectDate(BuildContext context) async {
@@ -63,11 +62,8 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
 
   String? selectedLanguage = "Hindi";
   final _formKey = GlobalKey<FormState>();
-   AddCareerDetail careerDetail = const AddCareerDetail();
+  AddCareerDetail careerDetail = const AddCareerDetail();
   @override
-  
-
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HRController>(builder: (hrController) {
@@ -89,9 +85,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: CustomFloatingActionButton(
             title: 'Next',
-            onTap: () {
-             
-            },
+            onTap: () {},
           ),
           body: SingleChildScrollView(
             child: Center(
@@ -125,7 +119,6 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                         "Name of Employer",
                                     hintText: "Name of Employer",
                                     obscureText: false,
-                                 
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return 'Please enter your gaurd name.';
@@ -139,26 +132,26 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                       return null;
                                     },
                                     onChanged: (p0) {
-                                careerDetail =
-                                    careerDetail.copyWith(name_of_employer: p0);
-                              },
+                                      careerDetail = careerDetail.copyWith(
+                                          name_of_employer: p0);
+                                    },
                                   ).paddingAll(4),
                                   CommanTextField(
                                     labelText: "Designation",
                                     hintText: "Designation",
                                     obscureText: false,
-                                 
-                                    onChanged: (p0){
-                                       careerDetail = careerDetail.copyWith(designation: p0);
+                                    onChanged: (p0) {
+                                      careerDetail = careerDetail.copyWith(
+                                          designation: p0);
                                     },
                                   ).paddingAll(4),
                                   CommanTextField(
                                     labelText: "Reporting To",
                                     hintText: "Reporting To ",
                                     obscureText: false,
-                                    
-                                    onChanged: (p0){
-                                       careerDetail = careerDetail.copyWith(reporting_to: p0);
+                                    onChanged: (p0) {
+                                      careerDetail = careerDetail.copyWith(
+                                          reporting_to: p0);
                                     },
                                   ).paddingAll(4),
                                   Row(
@@ -320,9 +313,9 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                     labelText: "Start",
                                     hintText: "₹",
                                     obscureText: false,
-                                   
-                                    onChanged: (p0){
-                                       careerDetail = careerDetail.copyWith(monthly_salary_start: p0);
+                                    onChanged: (p0) {
+                                      careerDetail = careerDetail.copyWith(
+                                          monthly_salary_start: int.parse(p0));
                                     },
                                     inputFormatters: GlobalValidator
                                         .monthlySalaryInputFormatter(),
@@ -338,14 +331,14 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
 
                                       return null;
                                     },
-                                   
                                   ).paddingAll(4),
                                   CommanTextField(
                                     labelText: "Current/End",
                                     hintText: "₹",
                                     obscureText: false,
-                                    onChanged: (p0){
-                                       careerDetail = careerDetail.copyWith(monthly_salary_end: p0);
+                                    onChanged: (p0) {
+                                      careerDetail = careerDetail.copyWith(
+                                          monthly_salary_end: int.parse(p0));
                                     },
                                     inputFormatters: GlobalValidator
                                         .monthlySalaryInputFormatter(),
@@ -361,7 +354,6 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
 
                                       return null;
                                     },
-                                   
                                   ).paddingAll(4),
                                   InkWell(
                                     onTap: () {
