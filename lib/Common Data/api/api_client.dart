@@ -74,8 +74,16 @@ class ApiClient extends g.GetxService {
           .timeout(Duration(seconds: timeoutInSeconds));
       return passhandlecheck ? response : handleResponse(response);
     } catch (e) {
-      Snacks.redSnack(noInternetMessage);
+      if (e is DioException) {
+        e.message;
+        Snacks.redSnack(e.message ?? "Something is wrong");
+      } else {
+        Snacks.redSnack("Something is wrong $e");
+      }
+    
+
       return Response(
+          data: {"message": "error hardcoded by jass"},
           statusCode: 1,
           statusMessage: noInternetMessage,
           requestOptions: RequestOptions());
@@ -198,6 +206,7 @@ class ApiClient extends g.GetxService {
     if (response0.statusCode != 200 && response0.data == null) {
       Snacks.redSnack(noInternetMessage);
       response0 = Response(
+          data: {"message": "error hardcoded by jass"},
           statusCode: 0,
           statusMessage: noInternetMessage,
           requestOptions: RequestOptions());

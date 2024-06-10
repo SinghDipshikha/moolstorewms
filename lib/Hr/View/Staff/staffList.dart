@@ -22,7 +22,6 @@ class HrEmployeeList extends StatelessWidget {
       fontWeight: FontWeight.w500,
     );
 
-    String? selectedShift;
     return GetBuilder<HRController>(initState: (state) {
       Get.find<HRController>().getAllStaffList();
     }, builder: (hrController) {
@@ -103,7 +102,7 @@ class HrEmployeeList extends StatelessWidget {
                   flex: 1,
                   child: Container(
                     child: Text(
-                      'Mobile no.,',
+                      'Mobile no.',
                       style: subHeaderStyle,
                     ),
                   )),
@@ -112,11 +111,19 @@ class HrEmployeeList extends StatelessWidget {
                   flex: 1,
                   child: Container(
                     child: Text(
-                      'Designation,',
+                      'Designation',
                       style: subHeaderStyle,
                     ),
                   )),
               const Gap(3),
+              IconButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () {},
+                  icon: Image.asset(
+                    "assets/images/hrIcon2.png",
+                    height: 20,
+                    color: Colors.transparent,
+                  ))
             ]).paddingSymmetric(horizontal: 8),
 
             Expanded(
@@ -150,7 +157,7 @@ class HrEmployeeList extends StatelessWidget {
                             Expanded(
                                 flex: 1,
                                 child: Text(
-                                    hrController.employees[i].personType
+                                    hrController.employees[i].personType![0]
                                             .toString()
                                             .replaceAll("[", "")
                                             .replaceAll("]", "") ??

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'personalDetailsRequest.dart';
+part of 'personaldetails.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,29 +14,28 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-PersonalDetailsRequest _$PersonalDetailsRequestFromJson(
+PersonalDetailsResponse _$PersonalDetailsResponseFromJson(
     Map<String, dynamic> json) {
-  return _PersonalDetailsRequest.fromJson(json);
+  return _PersonalDetails.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PersonalDetailsRequest {
-  int? get id => throw _privateConstructorUsedError;
+mixin _$PersonalDetailsResponse {
+// int? id,
   int? get user_id => throw _privateConstructorUsedError;
   int? get updated_by => throw _privateConstructorUsedError;
-  String? get gst_number => throw _privateConstructorUsedError;
   String? get gender => throw _privateConstructorUsedError;
-  String? get dob => throw _privateConstructorUsedError;
+  DateTime? get dob => throw _privateConstructorUsedError;
   String? get blood_group => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get aadhaar_number => throw _privateConstructorUsedError;
   String? get pf_number => throw _privateConstructorUsedError;
   String? get pan_card => throw _privateConstructorUsedError;
   String? get esic_number => throw _privateConstructorUsedError;
-  String? get have_passport => throw _privateConstructorUsedError;
+  int? get have_passport => throw _privateConstructorUsedError;
   String? get passport_number => throw _privateConstructorUsedError;
-  String? get passport_expiry_date => throw _privateConstructorUsedError;
-  String? get have_disability => throw _privateConstructorUsedError;
+  DateTime? get passport_expiry_date => throw _privateConstructorUsedError;
+  int? get have_disability => throw _privateConstructorUsedError;
   String? get disability_describe => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
   String? get state => throw _privateConstructorUsedError;
@@ -44,38 +43,36 @@ mixin _$PersonalDetailsRequest {
   int? get pincode => throw _privateConstructorUsedError;
   String? get emergency_contact_no => throw _privateConstructorUsedError;
   String? get emergency_contact_person => throw _privateConstructorUsedError;
-  String? get mailing_address_diffrent => throw _privateConstructorUsedError;
+  int? get mailing_address_diffrent => throw _privateConstructorUsedError;
   String? get mailing_address => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PersonalDetailsRequestCopyWith<PersonalDetailsRequest> get copyWith =>
+  $PersonalDetailsResponseCopyWith<PersonalDetailsResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PersonalDetailsRequestCopyWith<$Res> {
-  factory $PersonalDetailsRequestCopyWith(PersonalDetailsRequest value,
-          $Res Function(PersonalDetailsRequest) then) =
-      _$PersonalDetailsRequestCopyWithImpl<$Res, PersonalDetailsRequest>;
+abstract class $PersonalDetailsResponseCopyWith<$Res> {
+  factory $PersonalDetailsResponseCopyWith(PersonalDetailsResponse value,
+          $Res Function(PersonalDetailsResponse) then) =
+      _$PersonalDetailsResponseCopyWithImpl<$Res, PersonalDetailsResponse>;
   @useResult
   $Res call(
-      {int? id,
-      int? user_id,
+      {int? user_id,
       int? updated_by,
-      String? gst_number,
       String? gender,
-      String? dob,
+      DateTime? dob,
       String? blood_group,
       String? email,
       String? aadhaar_number,
       String? pf_number,
       String? pan_card,
       String? esic_number,
-      String? have_passport,
+      int? have_passport,
       String? passport_number,
-      String? passport_expiry_date,
-      String? have_disability,
+      DateTime? passport_expiry_date,
+      int? have_disability,
       String? disability_describe,
       String? address,
       String? state,
@@ -83,15 +80,15 @@ abstract class $PersonalDetailsRequestCopyWith<$Res> {
       int? pincode,
       String? emergency_contact_no,
       String? emergency_contact_person,
-      String? mailing_address_diffrent,
+      int? mailing_address_diffrent,
       String? mailing_address});
 }
 
 /// @nodoc
-class _$PersonalDetailsRequestCopyWithImpl<$Res,
-        $Val extends PersonalDetailsRequest>
-    implements $PersonalDetailsRequestCopyWith<$Res> {
-  _$PersonalDetailsRequestCopyWithImpl(this._value, this._then);
+class _$PersonalDetailsResponseCopyWithImpl<$Res,
+        $Val extends PersonalDetailsResponse>
+    implements $PersonalDetailsResponseCopyWith<$Res> {
+  _$PersonalDetailsResponseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -101,10 +98,8 @@ class _$PersonalDetailsRequestCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? user_id = freezed,
     Object? updated_by = freezed,
-    Object? gst_number = freezed,
     Object? gender = freezed,
     Object? dob = freezed,
     Object? blood_group = freezed,
@@ -128,10 +123,6 @@ class _$PersonalDetailsRequestCopyWithImpl<$Res,
     Object? mailing_address = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
       user_id: freezed == user_id
           ? _value.user_id
           : user_id // ignore: cast_nullable_to_non_nullable
@@ -140,10 +131,6 @@ class _$PersonalDetailsRequestCopyWithImpl<$Res,
           ? _value.updated_by
           : updated_by // ignore: cast_nullable_to_non_nullable
               as int?,
-      gst_number: freezed == gst_number
-          ? _value.gst_number
-          : gst_number // ignore: cast_nullable_to_non_nullable
-              as String?,
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -151,7 +138,7 @@ class _$PersonalDetailsRequestCopyWithImpl<$Res,
       dob: freezed == dob
           ? _value.dob
           : dob // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
       blood_group: freezed == blood_group
           ? _value.blood_group
           : blood_group // ignore: cast_nullable_to_non_nullable
@@ -179,7 +166,7 @@ class _$PersonalDetailsRequestCopyWithImpl<$Res,
       have_passport: freezed == have_passport
           ? _value.have_passport
           : have_passport // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       passport_number: freezed == passport_number
           ? _value.passport_number
           : passport_number // ignore: cast_nullable_to_non_nullable
@@ -187,11 +174,11 @@ class _$PersonalDetailsRequestCopyWithImpl<$Res,
       passport_expiry_date: freezed == passport_expiry_date
           ? _value.passport_expiry_date
           : passport_expiry_date // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
       have_disability: freezed == have_disability
           ? _value.have_disability
           : have_disability // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       disability_describe: freezed == disability_describe
           ? _value.disability_describe
           : disability_describe // ignore: cast_nullable_to_non_nullable
@@ -223,7 +210,7 @@ class _$PersonalDetailsRequestCopyWithImpl<$Res,
       mailing_address_diffrent: freezed == mailing_address_diffrent
           ? _value.mailing_address_diffrent
           : mailing_address_diffrent // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       mailing_address: freezed == mailing_address
           ? _value.mailing_address
           : mailing_address // ignore: cast_nullable_to_non_nullable
@@ -233,31 +220,28 @@ class _$PersonalDetailsRequestCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$PersonalDetailsRequestImplCopyWith<$Res>
-    implements $PersonalDetailsRequestCopyWith<$Res> {
-  factory _$$PersonalDetailsRequestImplCopyWith(
-          _$PersonalDetailsRequestImpl value,
-          $Res Function(_$PersonalDetailsRequestImpl) then) =
-      __$$PersonalDetailsRequestImplCopyWithImpl<$Res>;
+abstract class _$$PersonalDetailsImplCopyWith<$Res>
+    implements $PersonalDetailsResponseCopyWith<$Res> {
+  factory _$$PersonalDetailsImplCopyWith(_$PersonalDetailsImpl value,
+          $Res Function(_$PersonalDetailsImpl) then) =
+      __$$PersonalDetailsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {int? id,
-      int? user_id,
+      {int? user_id,
       int? updated_by,
-      String? gst_number,
       String? gender,
-      String? dob,
+      DateTime? dob,
       String? blood_group,
       String? email,
       String? aadhaar_number,
       String? pf_number,
       String? pan_card,
       String? esic_number,
-      String? have_passport,
+      int? have_passport,
       String? passport_number,
-      String? passport_expiry_date,
-      String? have_disability,
+      DateTime? passport_expiry_date,
+      int? have_disability,
       String? disability_describe,
       String? address,
       String? state,
@@ -265,27 +249,23 @@ abstract class _$$PersonalDetailsRequestImplCopyWith<$Res>
       int? pincode,
       String? emergency_contact_no,
       String? emergency_contact_person,
-      String? mailing_address_diffrent,
+      int? mailing_address_diffrent,
       String? mailing_address});
 }
 
 /// @nodoc
-class __$$PersonalDetailsRequestImplCopyWithImpl<$Res>
-    extends _$PersonalDetailsRequestCopyWithImpl<$Res,
-        _$PersonalDetailsRequestImpl>
-    implements _$$PersonalDetailsRequestImplCopyWith<$Res> {
-  __$$PersonalDetailsRequestImplCopyWithImpl(
-      _$PersonalDetailsRequestImpl _value,
-      $Res Function(_$PersonalDetailsRequestImpl) _then)
+class __$$PersonalDetailsImplCopyWithImpl<$Res>
+    extends _$PersonalDetailsResponseCopyWithImpl<$Res, _$PersonalDetailsImpl>
+    implements _$$PersonalDetailsImplCopyWith<$Res> {
+  __$$PersonalDetailsImplCopyWithImpl(
+      _$PersonalDetailsImpl _value, $Res Function(_$PersonalDetailsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? user_id = freezed,
     Object? updated_by = freezed,
-    Object? gst_number = freezed,
     Object? gender = freezed,
     Object? dob = freezed,
     Object? blood_group = freezed,
@@ -308,11 +288,7 @@ class __$$PersonalDetailsRequestImplCopyWithImpl<$Res>
     Object? mailing_address_diffrent = freezed,
     Object? mailing_address = freezed,
   }) {
-    return _then(_$PersonalDetailsRequestImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+    return _then(_$PersonalDetailsImpl(
       user_id: freezed == user_id
           ? _value.user_id
           : user_id // ignore: cast_nullable_to_non_nullable
@@ -321,10 +297,6 @@ class __$$PersonalDetailsRequestImplCopyWithImpl<$Res>
           ? _value.updated_by
           : updated_by // ignore: cast_nullable_to_non_nullable
               as int?,
-      gst_number: freezed == gst_number
-          ? _value.gst_number
-          : gst_number // ignore: cast_nullable_to_non_nullable
-              as String?,
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -332,7 +304,7 @@ class __$$PersonalDetailsRequestImplCopyWithImpl<$Res>
       dob: freezed == dob
           ? _value.dob
           : dob // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
       blood_group: freezed == blood_group
           ? _value.blood_group
           : blood_group // ignore: cast_nullable_to_non_nullable
@@ -360,7 +332,7 @@ class __$$PersonalDetailsRequestImplCopyWithImpl<$Res>
       have_passport: freezed == have_passport
           ? _value.have_passport
           : have_passport // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       passport_number: freezed == passport_number
           ? _value.passport_number
           : passport_number // ignore: cast_nullable_to_non_nullable
@@ -368,11 +340,11 @@ class __$$PersonalDetailsRequestImplCopyWithImpl<$Res>
       passport_expiry_date: freezed == passport_expiry_date
           ? _value.passport_expiry_date
           : passport_expiry_date // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
       have_disability: freezed == have_disability
           ? _value.have_disability
           : have_disability // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       disability_describe: freezed == disability_describe
           ? _value.disability_describe
           : disability_describe // ignore: cast_nullable_to_non_nullable
@@ -404,7 +376,7 @@ class __$$PersonalDetailsRequestImplCopyWithImpl<$Res>
       mailing_address_diffrent: freezed == mailing_address_diffrent
           ? _value.mailing_address_diffrent
           : mailing_address_diffrent // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       mailing_address: freezed == mailing_address
           ? _value.mailing_address
           : mailing_address // ignore: cast_nullable_to_non_nullable
@@ -415,12 +387,10 @@ class __$$PersonalDetailsRequestImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
-  const _$PersonalDetailsRequestImpl(
-      {this.id,
-      this.user_id,
+class _$PersonalDetailsImpl implements _PersonalDetails {
+  const _$PersonalDetailsImpl(
+      {this.user_id,
       this.updated_by,
-      this.gst_number,
       this.gender,
       this.dob,
       this.blood_group,
@@ -443,21 +413,18 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
       this.mailing_address_diffrent,
       this.mailing_address});
 
-  factory _$PersonalDetailsRequestImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PersonalDetailsRequestImplFromJson(json);
+  factory _$PersonalDetailsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PersonalDetailsImplFromJson(json);
 
-  @override
-  final int? id;
+// int? id,
   @override
   final int? user_id;
   @override
   final int? updated_by;
   @override
-  final String? gst_number;
-  @override
   final String? gender;
   @override
-  final String? dob;
+  final DateTime? dob;
   @override
   final String? blood_group;
   @override
@@ -471,13 +438,13 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
   @override
   final String? esic_number;
   @override
-  final String? have_passport;
+  final int? have_passport;
   @override
   final String? passport_number;
   @override
-  final String? passport_expiry_date;
+  final DateTime? passport_expiry_date;
   @override
-  final String? have_disability;
+  final int? have_disability;
   @override
   final String? disability_describe;
   @override
@@ -493,26 +460,23 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
   @override
   final String? emergency_contact_person;
   @override
-  final String? mailing_address_diffrent;
+  final int? mailing_address_diffrent;
   @override
   final String? mailing_address;
 
   @override
   String toString() {
-    return 'PersonalDetailsRequest(id: $id, user_id: $user_id, updated_by: $updated_by, gst_number: $gst_number, gender: $gender, dob: $dob, blood_group: $blood_group, email: $email, aadhaar_number: $aadhaar_number, pf_number: $pf_number, pan_card: $pan_card, esic_number: $esic_number, have_passport: $have_passport, passport_number: $passport_number, passport_expiry_date: $passport_expiry_date, have_disability: $have_disability, disability_describe: $disability_describe, address: $address, state: $state, city: $city, pincode: $pincode, emergency_contact_no: $emergency_contact_no, emergency_contact_person: $emergency_contact_person, mailing_address_diffrent: $mailing_address_diffrent, mailing_address: $mailing_address)';
+    return 'PersonalDetailsResponse(user_id: $user_id, updated_by: $updated_by, gender: $gender, dob: $dob, blood_group: $blood_group, email: $email, aadhaar_number: $aadhaar_number, pf_number: $pf_number, pan_card: $pan_card, esic_number: $esic_number, have_passport: $have_passport, passport_number: $passport_number, passport_expiry_date: $passport_expiry_date, have_disability: $have_disability, disability_describe: $disability_describe, address: $address, state: $state, city: $city, pincode: $pincode, emergency_contact_no: $emergency_contact_no, emergency_contact_person: $emergency_contact_person, mailing_address_diffrent: $mailing_address_diffrent, mailing_address: $mailing_address)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PersonalDetailsRequestImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            other is _$PersonalDetailsImpl &&
             (identical(other.user_id, user_id) || other.user_id == user_id) &&
             (identical(other.updated_by, updated_by) ||
                 other.updated_by == updated_by) &&
-            (identical(other.gst_number, gst_number) ||
-                other.gst_number == gst_number) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.dob, dob) || other.dob == dob) &&
             (identical(other.blood_group, blood_group) ||
@@ -556,10 +520,8 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        id,
         user_id,
         updated_by,
-        gst_number,
         gender,
         dob,
         blood_group,
@@ -586,36 +548,34 @@ class _$PersonalDetailsRequestImpl implements _PersonalDetailsRequest {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PersonalDetailsRequestImplCopyWith<_$PersonalDetailsRequestImpl>
-      get copyWith => __$$PersonalDetailsRequestImplCopyWithImpl<
-          _$PersonalDetailsRequestImpl>(this, _$identity);
+  _$$PersonalDetailsImplCopyWith<_$PersonalDetailsImpl> get copyWith =>
+      __$$PersonalDetailsImplCopyWithImpl<_$PersonalDetailsImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PersonalDetailsRequestImplToJson(
+    return _$$PersonalDetailsImplToJson(
       this,
     );
   }
 }
 
-abstract class _PersonalDetailsRequest implements PersonalDetailsRequest {
-  const factory _PersonalDetailsRequest(
-      {final int? id,
-      final int? user_id,
+abstract class _PersonalDetails implements PersonalDetailsResponse {
+  const factory _PersonalDetails(
+      {final int? user_id,
       final int? updated_by,
-      final String? gst_number,
       final String? gender,
-      final String? dob,
+      final DateTime? dob,
       final String? blood_group,
       final String? email,
       final String? aadhaar_number,
       final String? pf_number,
       final String? pan_card,
       final String? esic_number,
-      final String? have_passport,
+      final int? have_passport,
       final String? passport_number,
-      final String? passport_expiry_date,
-      final String? have_disability,
+      final DateTime? passport_expiry_date,
+      final int? have_disability,
       final String? disability_describe,
       final String? address,
       final String? state,
@@ -623,24 +583,20 @@ abstract class _PersonalDetailsRequest implements PersonalDetailsRequest {
       final int? pincode,
       final String? emergency_contact_no,
       final String? emergency_contact_person,
-      final String? mailing_address_diffrent,
-      final String? mailing_address}) = _$PersonalDetailsRequestImpl;
+      final int? mailing_address_diffrent,
+      final String? mailing_address}) = _$PersonalDetailsImpl;
 
-  factory _PersonalDetailsRequest.fromJson(Map<String, dynamic> json) =
-      _$PersonalDetailsRequestImpl.fromJson;
+  factory _PersonalDetails.fromJson(Map<String, dynamic> json) =
+      _$PersonalDetailsImpl.fromJson;
 
-  @override
-  int? get id;
-  @override
+  @override // int? id,
   int? get user_id;
   @override
   int? get updated_by;
   @override
-  String? get gst_number;
-  @override
   String? get gender;
   @override
-  String? get dob;
+  DateTime? get dob;
   @override
   String? get blood_group;
   @override
@@ -654,13 +610,13 @@ abstract class _PersonalDetailsRequest implements PersonalDetailsRequest {
   @override
   String? get esic_number;
   @override
-  String? get have_passport;
+  int? get have_passport;
   @override
   String? get passport_number;
   @override
-  String? get passport_expiry_date;
+  DateTime? get passport_expiry_date;
   @override
-  String? get have_disability;
+  int? get have_disability;
   @override
   String? get disability_describe;
   @override
@@ -676,11 +632,11 @@ abstract class _PersonalDetailsRequest implements PersonalDetailsRequest {
   @override
   String? get emergency_contact_person;
   @override
-  String? get mailing_address_diffrent;
+  int? get mailing_address_diffrent;
   @override
   String? get mailing_address;
   @override
   @JsonKey(ignore: true)
-  _$$PersonalDetailsRequestImplCopyWith<_$PersonalDetailsRequestImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$PersonalDetailsImplCopyWith<_$PersonalDetailsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

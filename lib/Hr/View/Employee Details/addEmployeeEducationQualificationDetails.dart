@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/Model/addEducationDetails.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
@@ -9,42 +8,13 @@ import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
 
 ////@RoutePage()
-class AddEmployeeEducationQualificationDetails extends StatefulWidget {
-  const AddEmployeeEducationQualificationDetails({super.key});
+class AddEmployeeEducationQualificationDetails extends StatelessWidget {
+   AddEmployeeEducationQualificationDetails({super.key});
 
-  @override
-  State<AddEmployeeEducationQualificationDetails> createState() =>
-      _AddEmployeeEducationQualificationDetailsState();
-}
+  AddEducationDetail addEducationDetail = const AddEducationDetail();
 
-class _AddEmployeeEducationQualificationDetailsState
-    extends State<AddEmployeeEducationQualificationDetails> {
-  final TextEditingController _sscPassingYearController =
-      TextEditingController();
-  final TextEditingController _sscPercentageController =
-      TextEditingController();
-  final TextEditingController _sscGradeController = TextEditingController();
-  final TextEditingController _sscSchoolController = TextEditingController();
-  final TextEditingController _sscUniversityContoller = TextEditingController();
-  final TextEditingController _hqController = TextEditingController();
-  final TextEditingController _hqspecializationController =
-      TextEditingController();
-  final TextEditingController _hqPassingYearController =
-      TextEditingController();
-
-  final TextEditingController _hqCollegeUniversityController =
-      TextEditingController();
-  final TextEditingController _hqGradeController = TextEditingController();
-  String _passingYear = '';
-  String _percentage = '';
-  String _grade = '';
-  String _school = '';
-  String _specilization = '';
-  String _highestQualification = '';
-  final String _collegeUniversity = '';
-  String? selectedLanguage = "Hindi";
-  final AddEducationDetail _addEducationDetail = const AddEducationDetail();
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HRController>(builder: (hrController) {
@@ -62,32 +32,6 @@ class _AddEmployeeEducationQualificationDetailsState
               ),
             ),
           ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: CustomFloatingActionButton(
-              title: 'Next',
-              onTap: () {
-                //   if (_formKey.currentState?.validate() ?? false) {
-                hrController.addEducationDetailsRequestModel =
-                    hrController.addEducationDetailsRequestModel.copyWith(
-                  id: 1,
-                  user_id: hrController.currentUserId,
-                  updated_by: hrController.user.id,
-                  ssc_passing_year: _sscPassingYearController.text,
-                  ssc_passing_percentage: _sscPercentageController.text,
-                  ssc_passing_grade: _sscGradeController.text,
-                  ssc_passing_school: _sscPassingYearController.text,
-                  ssc_passing_university: _sscUniversityContoller.text,
-                  highest_qualification: _hqController.text,
-                  specialization: _hqspecializationController.text,
-                  hq_passing_year: _hqPassingYearController.text,
-                  hq_percentage: _hqGradeController.text,
-                  hq_college: _hqCollegeUniversityController.text,
-                );
-                Logger().i(hrController.addCareerDetailsRequestModel.toJson());
-                hrController.addEducationDetails();
-                // }
-              }),
           body: SingleChildScrollView(
             child: Center(
               child: Column(
@@ -121,7 +65,6 @@ class _AddEmployeeEducationQualificationDetailsState
                               labelText: "Passing Year",
                               hintText: "Passing Year",
                               obscureText: false,
-                              controller: _sscPassingYearController,
                               inputFormatters:
                                   GlobalValidator.passingYearInputFormatter(),
                               validator: (value) {
@@ -137,14 +80,14 @@ class _AddEmployeeEducationQualificationDetailsState
                                 return null;
                               },
                               onChanged: (value) {
-                                _passingYear = value;
+                                addEducationDetail = addEducationDetail
+                                    .copyWith(ssc_passing_year: value);
                               },
                             ).paddingAll(2),
                             CommanTextField(
                               labelText: "Percentage",
                               hintText: "Percentage",
                               obscureText: false,
-                              controller: _sscPercentageController,
                               inputFormatters: GlobalValidator
                                   .percentageGradeInputFormatter(),
                               validator: (value) {
@@ -160,14 +103,14 @@ class _AddEmployeeEducationQualificationDetailsState
                                 return null;
                               },
                               onChanged: (value) {
-                                _percentage = value;
+                                addEducationDetail = addEducationDetail
+                                    .copyWith(ssc_passing_percentage: value);
                               },
                             ).paddingAll(2),
                             CommanTextField(
                               labelText: "Grade",
                               hintText: "Grade",
                               obscureText: false,
-                              controller: _sscGradeController,
                               inputFormatters:
                                   GlobalValidator.gateIDInputFormatter(),
                               validator: (value) {
@@ -183,14 +126,14 @@ class _AddEmployeeEducationQualificationDetailsState
                                 return null;
                               },
                               onChanged: (value) {
-                                _grade = value;
+                                addEducationDetail = addEducationDetail
+                                    .copyWith(ssc_passing_grade: value);
                               },
                             ).paddingAll(2),
                             CommanTextField(
                               labelText: "School",
                               hintText: "School",
                               obscureText: false,
-                              controller: _sscSchoolController,
                               inputFormatters:
                                   GlobalValidator.schoolInputFormatter(),
                               validator: (value) {
@@ -205,14 +148,14 @@ class _AddEmployeeEducationQualificationDetailsState
                                 return null;
                               },
                               onChanged: (value) {
-                                _school = value;
+                                addEducationDetail = addEducationDetail
+                                    .copyWith(ssc_passing_school: value);
                               },
                             ).paddingAll(2),
                             CommanTextField(
                               labelText: "University",
                               hintText: "University",
                               obscureText: false,
-                              controller: _sscUniversityContoller,
                               inputFormatters: GlobalValidator
                                   .collegeUniversityInputFormatter(),
                               validator: (value) {
@@ -228,7 +171,8 @@ class _AddEmployeeEducationQualificationDetailsState
                                 return null;
                               },
                               onChanged: (value) {
-                                _school = value;
+                                addEducationDetail = addEducationDetail
+                                    .copyWith(ssc_passing_university: value);
                               },
                             ).paddingAll(2),
                           ],
@@ -268,7 +212,6 @@ class _AddEmployeeEducationQualificationDetailsState
                               labelText: "Highest Qualification",
                               hintText: "Highest Qualification",
                               obscureText: false,
-                              controller: _hqController,
                               inputFormatters: GlobalValidator
                                   .highestQualificationInputFormatter(),
                               validator: (value) {
@@ -284,14 +227,14 @@ class _AddEmployeeEducationQualificationDetailsState
                                 return null;
                               },
                               onChanged: (value) {
-                                _highestQualification = value;
+                                addEducationDetail = addEducationDetail
+                                    .copyWith(highest_qualification: value);
                               },
                             ).paddingAll(8),
                             CommanTextField(
                               labelText: "Specialization",
                               hintText: "Specialization",
                               obscureText: false,
-                              controller: _hqspecializationController,
                               inputFormatters: GlobalValidator
                                   .specializationInputFormatter(),
                               validator: (value) {
@@ -307,14 +250,14 @@ class _AddEmployeeEducationQualificationDetailsState
                                 return null;
                               },
                               onChanged: (value) {
-                                _specilization = value;
+                                addEducationDetail = addEducationDetail
+                                    .copyWith(specialization: value);
                               },
                             ).paddingAll(8),
                             CommanTextField(
                               labelText: "Passing Year",
                               hintText: "Passing Year",
                               obscureText: false,
-                              controller: _hqPassingYearController,
                               inputFormatters:
                                   GlobalValidator.passingYearInputFormatter(),
                               validator: (value) {
@@ -330,14 +273,14 @@ class _AddEmployeeEducationQualificationDetailsState
                                 return null;
                               },
                               onChanged: (value) {
-                                _passingYear = value;
+                                addEducationDetail = addEducationDetail
+                                    .copyWith(hq_passing_year: value);
                               },
                             ).paddingAll(8),
                             CommanTextField(
                               labelText: "College?University ",
                               hintText: "College?University ",
                               obscureText: false,
-                              controller: _hqCollegeUniversityController,
                               inputFormatters: GlobalValidator
                                   .collegeUniversityInputFormatter(),
                               validator: (value) {
@@ -353,14 +296,14 @@ class _AddEmployeeEducationQualificationDetailsState
                                 return null;
                               },
                               onChanged: (value) {
-                                _school = value;
+                                addEducationDetail = addEducationDetail
+                                    .copyWith(hq_college: value);
                               },
                             ).paddingAll(8),
                             CommanTextField(
                               labelText: "Percentage & Grade ",
                               hintText: "Percentage & Grade ",
                               obscureText: false,
-                              controller: _hqGradeController,
                               inputFormatters: GlobalValidator
                                   .percentageGradeInputFormatter(),
                               validator: (value) {
@@ -376,7 +319,8 @@ class _AddEmployeeEducationQualificationDetailsState
                                 return null;
                               },
                               onChanged: (value) {
-                                _percentage = value;
+                                addEducationDetail = addEducationDetail
+                                    .copyWith(hq_percentage: value);
                               },
                             ).paddingAll(2),
                           ],
@@ -384,7 +328,15 @@ class _AddEmployeeEducationQualificationDetailsState
                       ),
                     ),
                   ),
-                  const Gap(200),
+                  CustomFloatingActionButton(
+                      title: 'Next',
+                      onTap: () {
+                           if (_formKey.currentState?.validate() ?? false) {
+
+                        hrController.addEducationDetails(addEducationDetail);
+                        }
+                      }),
+                  const Gap(20),
                 ],
               ),
             ),

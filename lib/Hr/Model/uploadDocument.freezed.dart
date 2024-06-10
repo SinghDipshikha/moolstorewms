@@ -23,7 +23,7 @@ mixin _$UploadDocument {
   int? get user_id => throw _privateConstructorUsedError;
   String? get file_path => throw _privateConstructorUsedError;
   String? get file_type => throw _privateConstructorUsedError;
-  List<Map<String, Map<String, String?>>>? get label_name =>
+  List<Map<String, String?>>? get label_name =>
       throw _privateConstructorUsedError;
   int? get updated_by => throw _privateConstructorUsedError;
 
@@ -43,7 +43,7 @@ abstract class $UploadDocumentCopyWith<$Res> {
       {int? user_id,
       String? file_path,
       String? file_type,
-      List<Map<String, Map<String, String?>>>? label_name,
+      List<Map<String, String?>>? label_name,
       int? updated_by});
 }
 
@@ -82,7 +82,7 @@ class _$UploadDocumentCopyWithImpl<$Res, $Val extends UploadDocument>
       label_name: freezed == label_name
           ? _value.label_name
           : label_name // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, Map<String, String?>>>?,
+              as List<Map<String, String?>>?,
       updated_by: freezed == updated_by
           ? _value.updated_by
           : updated_by // ignore: cast_nullable_to_non_nullable
@@ -103,7 +103,7 @@ abstract class _$$UploadDocumentImplCopyWith<$Res>
       {int? user_id,
       String? file_path,
       String? file_type,
-      List<Map<String, Map<String, String?>>>? label_name,
+      List<Map<String, String?>>? label_name,
       int? updated_by});
 }
 
@@ -140,7 +140,7 @@ class __$$UploadDocumentImplCopyWithImpl<$Res>
       label_name: freezed == label_name
           ? _value._label_name
           : label_name // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, Map<String, String?>>>?,
+              as List<Map<String, String?>>?,
       updated_by: freezed == updated_by
           ? _value.updated_by
           : updated_by // ignore: cast_nullable_to_non_nullable
@@ -156,7 +156,7 @@ class _$UploadDocumentImpl implements _UploadDocument {
       {this.user_id,
       this.file_path,
       this.file_type,
-      final List<Map<String, Map<String, String?>>>? label_name,
+      final List<Map<String, String?>>? label_name,
       this.updated_by})
       : _label_name = label_name;
 
@@ -169,9 +169,9 @@ class _$UploadDocumentImpl implements _UploadDocument {
   final String? file_path;
   @override
   final String? file_type;
-  final List<Map<String, Map<String, String?>>>? _label_name;
+  final List<Map<String, String?>>? _label_name;
   @override
-  List<Map<String, Map<String, String?>>>? get label_name {
+  List<Map<String, String?>>? get label_name {
     final value = _label_name;
     if (value == null) return null;
     if (_label_name is EqualUnmodifiableListView) return _label_name;
@@ -228,7 +228,7 @@ abstract class _UploadDocument implements UploadDocument {
       {final int? user_id,
       final String? file_path,
       final String? file_type,
-      final List<Map<String, Map<String, String?>>>? label_name,
+      final List<Map<String, String?>>? label_name,
       final int? updated_by}) = _$UploadDocumentImpl;
 
   factory _UploadDocument.fromJson(Map<String, dynamic> json) =
@@ -241,7 +241,7 @@ abstract class _UploadDocument implements UploadDocument {
   @override
   String? get file_type;
   @override
-  List<Map<String, Map<String, String?>>>? get label_name;
+  List<Map<String, String?>>? get label_name;
   @override
   int? get updated_by;
   @override

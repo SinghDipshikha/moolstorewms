@@ -13,6 +13,14 @@
 "enter_manager_phone_number" :"Manager’s mobile number",
 "individual_user" :"Individual User",
 "i_am_individual" :"I'm logging in as a user to view my personal records for items at various locations using WMS.",
+"profile_image" : "Profile Picture",
+"adharCard_front" :"Aadhaar Front",
+"adharCard_back" :"Aadhaar Back",
+
+
+"cancelled_cheque" :"Cancelled Cheque",
+"experience_letter" :"Experience Letter",
+"bank_receipt"  :"Bank Receipt",
 
 
 

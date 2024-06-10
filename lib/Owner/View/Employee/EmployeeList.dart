@@ -175,7 +175,7 @@ class EmployeeList extends StatelessWidget {
                             Expanded(
                                 flex: 1,
                                 child: Text(
-                                  ownerController.employees[i].personType
+                                  ownerController.employees[i].personType![0]
                                           .toString()
                                           .replaceAll("[", "")
                                           .replaceAll("]", "") ??

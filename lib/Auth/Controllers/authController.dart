@@ -219,28 +219,39 @@ class AuthController extends GetxController {
                   signUp: false,
                 ),
                 id: authNavigationKey);
+          } else {
+            loading = false;
+            update();
           }
         });
       } else {
         Snacks.redSnack("Something went wrong");
+        loading = false;
+        update();
       }
     });
   }
 
   verifySignupOtp(int otp) {
+    loading = true;
+    update();
     Get.find<ApiClient>().postData(
         "otp/verifySignupOtp", {"mobile": number, "otp": otp}).then((value) {
       if (value.data["message"] == "Your Number is now verified") {
-        Get.to(SignUp(), id: authNavigationKey);
+        loading = false;
         Snacks.greenSnack("Your Number is now verified");
-      }
-      if (value.data["message"] == "Invalid OTP") {
-        Snacks.redSnack("Invalid OTP");
+        Get.to(SignUp(), id: authNavigationKey);
+      } else {
+        loading = false;
+        update();
+        Snacks.redSnack(value.data["message"]);
       }
     });
   }
 
   sendSignUpOtp(String num) {
+    loading = true;
+    update();
     number = num;
 
     Get.find<ApiClient>().postData("user/signupOtp", {
@@ -249,11 +260,16 @@ class AuthController extends GetxController {
       if (value.data["message"] ==
           "One Time Password has been sent successfully.") {
         Snacks.greenSnack("One Time Password has been sent successfully.");
+        loading = false;
+        update();
         Get.to(
             OtpScreen(
               signUp: true,
             ),
             id: authNavigationKey);
+      } else {
+        loading = false;
+        update();
       }
       // Logger().i(value.data);
     });
@@ -310,35 +326,42 @@ class AuthController extends GetxController {
 
   sendSignInOtp(String num) {
     number = num;
-
+    loading = true;
+    update();
     Get.find<ApiClient>().postData("user/loginOtp", {
       "mobile": num,
     }).then((value) {
       if (value.data["message"] ==
           "One Time Password has been sent successfully.") {
         Snacks.greenSnack("One Time Password has been sent successfully.");
+        loading = false;
         Get.to(
             OtpScreen(
               signUp: false,
             ),
             id: authNavigationKey);
+      } else {
+        loading = false;
+        update();
       }
       // Logger().i(value.data);
     });
   }
 
   verifySignInOtp(int otp) {
+    loading = true;
+    update();
     Get.find<ApiClient>().postData(
         "otp/verifySignInOtp", {"mobile": number, "otp": otp}).then((value) {
       if (value.data["result"]["role_id"] != null) {
         user = User.fromJson(value.data["result"]);
         box.put("user", user);
-
+        loading = false;
         afterSpalsh();
-      }
-
-      if (value.data["message"] == "Invalid OTP") {
-        Snacks.redSnack("Invalid OTP");
+      } else {
+        loading = false;
+        update();
+        Snacks.redSnack(value.data["message"]);
       }
     });
   }
