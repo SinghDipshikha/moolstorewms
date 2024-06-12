@@ -355,7 +355,8 @@ class _AddEmployeePersonalDetailsState
                 CommanTextField(
                   keyboardType: TextInputType.number,
                   onChanged: (p0) {
-                    personalDetails = personalDetails.copyWith(pincode: int.parse(p0));
+                    personalDetails =
+                        personalDetails.copyWith(pincode: int.parse(p0));
                   },
                   labelText: "Pincode",
                   hintText: "Pincode",

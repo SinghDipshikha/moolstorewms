@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/Model/addBankDetails.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
@@ -19,21 +18,10 @@ class AddEmployeeBankDetails extends StatefulWidget {
 class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
   @override
   final _formKey = GlobalKey<FormState>();
-  String _accountName = '';
-  String _accountNumber = '';
-  String _bankName = '';
-  String _ifscCode = '';
-  String _accountType = '';
-  final TextEditingController _accountNameController = TextEditingController();
-  final TextEditingController _accountNumberController =
-      TextEditingController();
-  final TextEditingController _ifscCodeController = TextEditingController();
-  final TextEditingController _bankNameController = TextEditingController();
-  final TextEditingController _branchController = TextEditingController();
-  final TextEditingController _accountTypeController = TextEditingController();
-  final AddBankDetails _addBankDetails = const AddBankDetails();
- 
 
+  final AddBankDetails _addBankDetails = const AddBankDetails();
+
+  AddBankDetails bankDetails = const AddBankDetails();
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HRController>(builder: (hrController) {
@@ -55,29 +43,8 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: CustomFloatingActionButton(
             title: 'Next',
-            onTap: () {
-              //if (_formKey.currentState?.validate() ?? false) {
-              hrController.addBankDetailsRequestModel =
-                  hrController.addBankDetailsRequestModel.copyWith(
-                id: _addBankDetails.id,
-                user_id: hrController.currentUserId,
-                updated_by: hrController.user.id,
-                account_name: _accountNameController.text,
-                account_no: _accountNumberController.text,
-                ifsc_no: _ifscCodeController.text,
-                bank_name: _bankNameController.text,
-                account_type: _accountTypeController.text,
-                branch_name: _branchController.text,
-              );
-              Logger().i(hrController.addCareerDetailsRequestModel.toJson());
-              hrController.addBankDetails();
-
-              //Get.to(const AddEmployeeDocumentsDetails(), id: hrNavigationKey);
-              //  }
-            },
+            onTap: () {},
           ),
-          
-          
           body: SingleChildScrollView(
             child: Center(
               child: Column(
@@ -100,7 +67,6 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
                             labelText: "Account Name",
                             hintText: "Account Name ",
                             obscureText: false,
-                            controller: _accountNameController,
                             inputFormatters:
                                 GlobalValidator.accountNameInputFormatter(),
                             validator: (value) {
@@ -114,15 +80,15 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
 
                               return null;
                             },
-                            onChanged: (value) {
-                              _accountName = value;
+                            onChanged: (p0) {
+                              bankDetails =
+                                  bankDetails.copyWith(account_name: p0);
                             },
                           ).paddingAll(2),
                           CommanTextField(
                             labelText: "Account Number",
                             hintText: "Account Number",
                             obscureText: false,
-                            controller: _accountNumberController,
                             inputFormatters:
                                 GlobalValidator.accountNumberInputFormatter(),
                             validator: (value) {
@@ -137,15 +103,15 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
 
                               return null;
                             },
-                            onChanged: (value) {
-                              _accountNumber = value;
+                            onChanged: (p0) {
+                              bankDetails =
+                                  bankDetails.copyWith(account_no: p0);
                             },
                           ).paddingAll(2),
                           CommanTextField(
                             labelText: "Bank Name",
                             hintText: "Bank Name",
                             obscureText: false,
-                            controller: _bankNameController,
                             inputFormatters:
                                 GlobalValidator.bankNameInputFormatter(),
                             validator: (value) {
@@ -159,15 +125,15 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
 
                               return null;
                             },
-                            onChanged: (value) {
-                              _bankName = value;
+                            onChanged: (p0) {
+                              bankDetails =
+                                  bankDetails.copyWith(branch_name: p0);
                             },
                           ).paddingAll(2),
                           CommanTextField(
                             labelText: "IFSC Number",
                             hintText: "IFSC Number",
                             obscureText: false,
-                            controller: _ifscCodeController,
                             inputFormatters:
                                 GlobalValidator.ifscCodeInputFormatter(),
                             validator: (value) {
@@ -181,15 +147,14 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
 
                               return null;
                             },
-                            onChanged: (value) {
-                              _ifscCode = value;
+                            onChanged: (p0) {
+                              bankDetails = bankDetails.copyWith(ifsc_no: p0);
                             },
                           ).paddingAll(2),
                           CommanTextField(
                             labelText: "Account Type",
                             hintText: "Account Type",
                             obscureText: false,
-                            controller: _accountTypeController,
                             inputFormatters:
                                 GlobalValidator.accountTypeInputFormatter(),
                             validator: (value) {
@@ -204,8 +169,9 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
 
                               return null;
                             },
-                            onChanged: (value) {
-                              _accountType = value;
+                            onChanged: (p0) {
+                              bankDetails =
+                                  bankDetails.copyWith(account_type: p0);
                             },
                           ).paddingAll(2),
                         ],
