@@ -222,12 +222,68 @@ class DockQueueListScreen extends StatelessWidget {
                                                 }
 
                                                 if (dataList[index]["title"] ==
-                                                    "icon2") {
+                                                        "icon2" &&
+                                                    entry.vehicleStatus ==
+                                                        "Dock Assigned") {
                                                   return Expanded(
                                                     flex: dataList[index]
                                                         ["flex"],
                                                     child: Container(
+                                                      width: 80,
                                                       height: 22,
+                                                      padding: const EdgeInsets
+                                                          .symmetric(
+                                                          horizontal: 10,
+                                                          vertical: 4),
+                                                      decoration:
+                                                          ShapeDecoration(
+                                                        color: const Color(
+                                                            0xFFD1FFF2),
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          side: const BorderSide(
+                                                              width: 1,
+                                                              color: Color(
+                                                                  0x33019C6F)),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                        ),
+                                                      ),
+                                                      child: const Center(
+                                                        child: Text(
+                                                          'Assigned',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: TextStyle(
+                                                            color: Color(
+                                                                0xFF019C6F),
+                                                            fontSize: 12,
+                                                            fontFamily:
+                                                                'SF Pro Display',
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            height: 0,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+
+                                                if (dataList[index]["title"] ==
+                                                        "icon2" &&
+                                                    entry.vehicleStatus == "") {
+                                                  return Expanded(
+                                                    flex: dataList[index]
+                                                        ["flex"],
+                                                    child: Container(
+                                                      width: 80,
+                                                      height: 22,
+                                                      padding: const EdgeInsets
+                                                          .symmetric(
+                                                          horizontal: 10,
+                                                          vertical: 4),
                                                       decoration:
                                                           ShapeDecoration(
                                                         color: const Color(
@@ -245,17 +301,18 @@ class DockQueueListScreen extends StatelessWidget {
                                                       ),
                                                       child: const Center(
                                                         child: Text(
-                                                          'Vehicle Out',
+                                                          'Not Assigned',
                                                           textAlign:
                                                               TextAlign.center,
                                                           style: TextStyle(
                                                             color: Color(
                                                                 0xFFE23744),
-                                                            fontSize: 10,
+                                                            fontSize: 12,
                                                             fontFamily:
                                                                 'SF Pro Display',
                                                             fontWeight:
                                                                 FontWeight.w400,
+                                                            height: 0,
                                                           ),
                                                         ),
                                                       ),
