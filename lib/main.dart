@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
-import 'package:moolwmsstore/Dock%20Supervisor/View/assignChamber.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/View/selectChamber.dart';
 import 'package:moolwmsstore/helper/messages.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
@@ -52,7 +52,7 @@ class _DipshikaAppState extends State<DipshikaApp> {
             .copyWith(textScaler: const TextScaler.linear(0.9)),
         child: GetMaterialApp(
           //  home: ViewVisitor(visitor: null),
-          home: const AssignChamberScreen(),
+          home: const SelectChamberScreen(),
           debugShowCheckedModeBanner: false,
           locale: localizeController.locale,
           fallbackLocale: Locale(

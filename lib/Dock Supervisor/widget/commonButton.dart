@@ -21,7 +21,13 @@ class CustomFloatingActionButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
           decoration: ShapeDecoration(
             color: Colors.black,
-            shadows: const [],
+            shadows: const [
+              BoxShadow(
+                color: Colors.grey,
+                offset: Offset(0.0, 1.0), //(x,y)
+                blurRadius: 50.0,
+              ),
+            ],
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
@@ -43,3 +49,4 @@ class CustomFloatingActionButton extends StatelessWidget {
     );
   }
 }
+
