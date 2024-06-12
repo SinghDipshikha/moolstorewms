@@ -33,7 +33,7 @@ class OwnerDrawer extends StatelessWidget {
                   curve: Curves.bounceOut,
                   decoration: const BoxDecoration(
                       border: Border(bottom: BorderSide.none)),
-                  child: Row(
+                  child: Row( 
                     children: [
                       InkWell(
                         onTap: () {

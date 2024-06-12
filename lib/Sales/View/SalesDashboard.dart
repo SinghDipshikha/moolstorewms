@@ -5,12 +5,12 @@ import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:moolwmsstore/Sales/View/Ticket/createticket.dart';
+import 'package:moolwmsstore/Sales/View/Ticket/createindent.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/ticketList.dart';
 import 'package:moolwmsstore/Sales/View/Visiitors/addVistor.dart';
 import 'package:moolwmsstore/Sales/View/Visiitors/visitorsList.dart';
-import 'package:moolwmsstore/Sales/View/addCompany.dart';
-import 'package:moolwmsstore/Sales/View/companyList.dart';
+import 'package:moolwmsstore/Sales/View/customer/addCustomer.dart';
+import 'package:moolwmsstore/Sales/View/customer/customerList.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
 import 'package:moolwmsstore/utils/globals.dart';
@@ -205,7 +205,7 @@ class SalesDashboard extends StatelessWidget {
                     height: 28,
                   ),
                   title: const Text(
-                    'Company',
+                    'Customer',
                     style: TextStyle(
                       color: Color(0xFFACACAC),
                       fontSize: 16,
@@ -217,16 +217,16 @@ class SalesDashboard extends StatelessWidget {
                   ),
                   children: [
                     CurvedLineConatainer(
-                      title: "Add Company",
+                      title: "Add Customer",
                       onTap: () {
-                        Get.to(AddCompany(), id: salesNavigationKey);
+                        Get.to(AddCustomer(), id: salesNavigationKey);
                       },
                     ),
                     CurvedLineConatainer(
-                      title: "Company List",
+                      title: "Customer List",
                       isShowextendedLine: false,
                       onTap: () {
-                        Get.to(const CompanyList(), id: salesNavigationKey);
+                        Get.to(const CustomerList(), id: salesNavigationKey);
                         // Get.find<OwnerController>().setloadingtrue();
                         // Get.to(const WarehouseList(), id: ownerNavigationKey);
                         // WarehouseList

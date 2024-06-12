@@ -14,7 +14,7 @@ import 'package:moolwmsstore/Sales/Model/company.dart';
 import 'package:moolwmsstore/Sales/Model/enterProduct.dart';
 import 'package:moolwmsstore/Sales/Sales.dart';
 import 'package:moolwmsstore/Sales/View/Visiitors/addVisitorSucces.dart';
-import 'package:moolwmsstore/Sales/View/companyAdded.dart';
+import 'package:moolwmsstore/Sales/View/customer/companyAdded.dart';
 import 'package:moolwmsstore/Sales/repo/salesRepo.dart';
 import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
@@ -36,9 +36,7 @@ class SalesController extends GetxController {
   bool loading = false;
 
   Company? callFromCompany;
-  Company? billToCompany;
-  Company? shippedFromCompany;
-  Company? shippedToCompany;
+
 
   DateTime? checkIndateTime;
   DateTime dashBoardSelectedDate = DateTime.now();
@@ -145,9 +143,9 @@ class SalesController extends GetxController {
       "user_id": 1,
       "company_details": [
         {"call_from": callFromCompany!.sellerCompanyDetailsID},
-        {"shipped_from": shippedFromCompany!.sellerCompanyDetailsID},
-        {"bill_to": billToCompany!.sellerCompanyDetailsID},
-        {"shipped_to": shippedToCompany!.sellerCompanyDetailsID}
+        // {"shipped_from": shippedFromCompany!.sellerCompanyDetailsID},
+        // {"bill_to": billToCompany!.sellerCompanyDetailsID},
+        // {"shipped_to": shippedToCompany!.sellerCompanyDetailsID}
       ],
       "products": ticketProducts.map((e) => e.toJson()).toList(),
       "order_number": poId,
@@ -232,15 +230,15 @@ class SalesController extends GetxController {
     if (check == "Call From") {
       callFromCompany = selectedCompany;
     }
-    if (check == "Bill To") {
-      billToCompany = selectedCompany;
-    }
-    if (check == "Shipped  From") {
-      shippedFromCompany = selectedCompany;
-    }
-    if (check == "Shipped  To") {
-      shippedToCompany = selectedCompany;
-    }
+    // if (check == "Bill To") {
+    //   billToCompany = selectedCompany;
+    // }
+    // if (check == "Shipped  From") {
+    //   shippedFromCompany = selectedCompany;
+    // }
+    // if (check == "Shipped  To") {
+    //   shippedToCompany = selectedCompany;
+    // }
     update();
   }
 

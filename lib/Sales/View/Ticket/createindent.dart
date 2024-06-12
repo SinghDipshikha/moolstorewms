@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:moolwmsstore/Sales/Model/company.dart';
 import 'package:moolwmsstore/Sales/Model/enterProduct.dart';
-import 'package:moolwmsstore/Sales/View/Ticket/addCompanyDialog.dart';
+import 'package:moolwmsstore/Sales/View/customer/addCompanyDialog.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/enterProduct.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/ticketList.dart';
 import 'package:moolwmsstore/Sales/View/common/widgets/salesCommonWidgets.dart';
@@ -15,6 +15,7 @@ import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/tagContainer.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:moolwmsstore/utils/globals.dart';
+import 'package:moolwmsstore/utils/textStyles.dart';
 import 'package:throttling/throttling.dart';
 // import 'package:throttling/throttling.dart';
 
@@ -38,12 +39,7 @@ class _CreateticketState extends State<Createticket> {
         centerTitle: false,
         title: const Text(
           'Create Indent',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontFamily: 'SF Pro Display',
-            fontWeight: FontWeight.w500,
-          ),
+          style: TextDecorations.appBarTextStyle,
         ),
       ),
       body: creatingTicket
@@ -59,6 +55,19 @@ class _CreateticketState extends State<Createticket> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      salesController.callFromCompany == null
+                          ? SelectCompany(
+                              title: "Customer",
+                            )
+                          : SelectedCompany(
+                              title: "Customer",
+                              company_name: salesController
+                                      .callFromCompany?.company_name ??
+                                  "",
+                              onPressed: () {
+                                salesController.callFromCompany = null;
+                                salesController.update();
+                              }),
                       CommonTextField(
                         controller: poId,
                         validator: (val) {
@@ -73,58 +82,6 @@ class _CreateticketState extends State<Createticket> {
                         //  controller: ,
                         labelText: 'Purchase Order ID',
                       ).paddingSymmetric(vertical: 12),
-                      salesController.callFromCompany == null
-                          ? SelectCompany(
-                              title: "Call From",
-                            )
-                          : SelectedCompany(
-                              title: "Call From",
-                              company_name: salesController
-                                      .callFromCompany?.company_name ??
-                                  "",
-                              onPressed: () {
-                                salesController.callFromCompany = null;
-                                salesController.update();
-                              }),
-                      salesController.billToCompany == null
-                          ? SelectCompany(
-                              title: "Bill To",
-                            )
-                          : SelectedCompany(
-                              title: "Bill To",
-                              company_name:
-                                  salesController.billToCompany?.company_name ??
-                                      "",
-                              onPressed: () {
-                                salesController.billToCompany = null;
-                                salesController.update();
-                              }),
-                      salesController.shippedFromCompany == null
-                          ? SelectCompany(
-                              title: "Shipped  From",
-                            )
-                          : SelectedCompany(
-                              title: "Shipped  From",
-                              company_name: salesController
-                                      .shippedFromCompany?.company_name ??
-                                  "",
-                              onPressed: () {
-                                salesController.shippedFromCompany = null;
-                                salesController.update();
-                              }),
-                      salesController.shippedToCompany == null
-                          ? SelectCompany(
-                              title: "Shipped  To",
-                            )
-                          : SelectedCompany(
-                              title: "Shipped  To",
-                              company_name: salesController
-                                      .shippedToCompany?.company_name ??
-                                  "",
-                              onPressed: () {
-                                salesController.shippedToCompany = null;
-                                salesController.update();
-                              }),
                       Column(
                         children: List.generate(
                             salesController.ticketProducts.length, (index) {

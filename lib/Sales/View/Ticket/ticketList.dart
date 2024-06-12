@@ -14,7 +14,7 @@ import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:moolwmsstore/Sales/Model/Indent/indentElement.dart';
-import 'package:moolwmsstore/Sales/View/Ticket/createticket.dart';
+import 'package:moolwmsstore/Sales/View/Ticket/createindent.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/indentInOut.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/viewindent.dart';
 import 'package:moolwmsstore/Sales/View/common/widgets/customButton.dart';
@@ -178,8 +178,8 @@ class _TicketListState extends State<TicketList> {
                           return IconButton(
                               padding: EdgeInsets.zero,
                               onPressed: () {
-                                Get.to(IndentInOut(indentElement: item),
-                                    id: salesNavigationKey);
+                                // Get.to(IndentInOut(indentElement: item),
+                                //     id: salesNavigationKey);
                               },
                               icon: Image.asset(
                                 "assets/icons/check_in.png",

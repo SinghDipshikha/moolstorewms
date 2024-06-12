@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Sales/View/addCompany.dart';
-import 'package:moolwmsstore/Sales/View/companyDetail.dart';
+import 'package:moolwmsstore/Sales/View/customer/addCustomer.dart';
+import 'package:moolwmsstore/Sales/View/customer/companyDetail.dart';
 import 'package:moolwmsstore/Sales/View/common/widgets/customButton.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
-class CompanyList extends StatelessWidget {
-  const CompanyList({super.key});
+class CustomerList extends StatelessWidget {
+  const CustomerList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class CompanyList extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: CustomButton(
         onTap: () {
-          Get.off(AddCompany(), id: salesNavigationKey);
+          Get.off(AddCustomer(), id: salesNavigationKey);
         },
         title: 'Add Company',
       ).paddingSymmetric(horizontal: 12),

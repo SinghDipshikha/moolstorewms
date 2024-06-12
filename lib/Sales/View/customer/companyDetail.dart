@@ -5,6 +5,7 @@ import 'package:moolwmsstore/Sales/Model/company.dart';
 import 'package:moolwmsstore/Sales/View/SalesDashboard.dart';
 import 'package:moolwmsstore/Sales/View/common/widgets/customButton.dart';
 import 'package:moolwmsstore/utils/globals.dart';
+import 'package:moolwmsstore/utils/textStyles.dart';
 
 class CompanyDetail extends StatelessWidget {
   Company company;
@@ -15,24 +16,16 @@ class CompanyDetail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
-        backgroundColor: const Color(0xFF232323),
         title: const Text(
           'View Company',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontFamily: 'SF Pro Text',
-            fontWeight: FontWeight.w500,
-            //height: 0,
-            letterSpacing: -0.80,
-          ),
+          style: TextDecorations.appBarTextStyle,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: CustomButton(
         onTap: () {
           Get.back();
-          Get.off( SalesDashboard(), id: salesNavigationKey);
+          Get.off(SalesDashboard(), id: salesNavigationKey);
         },
         colors: const [Color(0xFF5A57FF), Color(0xFF5A57FF)],
         title: 'Home',
