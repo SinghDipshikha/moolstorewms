@@ -26,28 +26,4 @@ class AppConstants {
   ];
 }
 
-class ColorConstants {
-  static List<BoxShadow>? boxShadow(BuildContext context) {
-    return MediaQuery.of(context).platformBrightness != Brightness.dark
-        ? [
-            const BoxShadow(
-              color: Color.fromARGB(255, 229, 229, 229),
-              blurRadius: 20,
-              offset: Offset(1, 1),
-              spreadRadius: 0,
-            )
-          ]
-        : null;
-  }
 
-  static List<BoxShadow>? colouredboxShadow({required Color color}) {
-    return [
-      BoxShadow(
-        color: color,
-        blurRadius: 20,
-        offset: const Offset(0, 5),
-        spreadRadius: 0,
-      )
-    ];
-  }
-}

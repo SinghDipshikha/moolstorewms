@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Sales/View/SalesDashboard.dart';
-import 'package:moolwmsstore/Sales/View/companyList.dart';
+import 'package:moolwmsstore/Sales/View/customer/customerList.dart';
 import 'package:moolwmsstore/Sales/View/common/widgets/customButton.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
@@ -21,9 +21,9 @@ class CompanyAdded extends StatelessWidget {
             colors: const [Color(0xFFFFFFFF), Color(0xFFFFFFFF)],
             titleTextColor: Colors.black,
             onTap: () {
-              Get.off(const CompanyList(), id: salesNavigationKey);
+            //  Get.off(const CustomerList(), id: salesNavigationKey);
             },
-            title: "Company List",
+            title: "Customer List",
           ).paddingSymmetric(horizontal: 12),
           const Gap(12),
           CustomButton(

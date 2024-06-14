@@ -78,7 +78,7 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                                 ),
                               ),
                             ),
-                          ),
+                          ), 
                           const Gap(30),
                           Row(
                             children: [

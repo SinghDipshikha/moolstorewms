@@ -60,6 +60,10 @@ class AuthController extends GetxController {
   }
 
   String phoneNum = "";
+
+
+  String selectedPersonType = "EMP"; 
+  // "EMP" "CUS"
   List<SignupField> fields = [];
 
   String? organiosationCode;
@@ -298,7 +302,7 @@ class AuthController extends GetxController {
           "client_id": value.data["result"][0]["id"],
           "type": "NewOrg",
           "description":
-              "${value.data["result"][0]["company_name"]} added by ${value.data["result"][0]["name"]}"
+              "${value.data["result"][0]["company_name"]} added by ${value.data["result"][0]["name"]} on ${AppConstants.dayMonrhormatter.format(DateTime.now())}"
         });
 
         Snacks.greenSnack("Organization Added Successfully");

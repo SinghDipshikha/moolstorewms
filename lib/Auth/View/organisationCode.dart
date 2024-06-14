@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Auth/Controllers/authController.dart';
+import 'package:moolwmsstore/Owner/View/Common/commonTextField.dart';
+import 'package:moolwmsstore/View/Styles/Styles..dart';
 
 class OrganisationCode extends StatelessWidget {
   OrganisationCode({super.key});
@@ -9,49 +12,181 @@ class OrganisationCode extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      clipBehavior: Clip.antiAlias,
-      decoration: ShapeDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment(0.00, -1.00),
-          end: Alignment(0, 1),
-          colors: [Color(0xFF6562FF), Color(0xFF5A57FF)],
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0),
-        ),
-      ),
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.transparent,
-        body: Form(
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.white,
+      body: GetBuilder<AuthController>(builder: (authController) {
+        return Form(
           key: formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Center(
-                child: Image.asset(
-                  "assets/icons/MoolCode Logo.png",
-                  height: 102,
-                ),
-              ).paddingSymmetric(horizontal: 16, vertical: 26),
-              Center(
-                  child: Image.asset(
-                "assets/icons/Sales Illustration.png",
-                height: 240,
-              ).paddingSymmetric(horizontal: 16, vertical: 12)),
               const Text(
-                'Organisation Number',
+                'Select User Type',
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
+                  color: Color(0xFF5A57FF),
+                  fontSize: 24,
                   fontFamily: 'SF Pro Display',
-                  fontWeight: FontWeight.w400,
-                  // //height: 0,
+                  fontWeight: FontWeight.w600,
                 ),
-              ).paddingSymmetric(vertical: 12),
-              TextFormField(
+              ),
+              const Gap(26),
+              authController.selectedPersonType == "EMP"
+                  ? Column(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            authController.selectedPersonType = "EMP";
+                            authController.update();
+                          },
+                          child: Stack(
+                            alignment: Alignment.topRight,
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: AppColors.primaryColor,
+                                radius: 94,
+                                child: const CircleAvatar(
+                                  backgroundColor: Colors.white,
+                                  radius: 90,
+                                  foregroundImage: AssetImage(
+                                      "assets/icons/employeeAvater.png"),
+                                ),
+                              ),
+                              Image.asset(
+                                "assets/icons/Selected Check(R).png",
+                                height: 50,
+                              )
+                            ],
+                          ),
+                        ),
+                        const Text(
+                          'Employee',
+                          style: TextStyle(
+                            color: Color(0xFF5A57FF),
+                            fontSize: 24,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    )
+                  : InkWell(
+                      onTap: () {
+                        authController.selectedPersonType = "EMP";
+                        authController.update();
+                      },
+                      child: const Column(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Color.fromARGB(255, 233, 233, 233),
+                            radius: 94,
+                            child: CircleAvatar(
+                              foregroundColor:
+                                  Color.fromARGB(255, 233, 233, 233),
+                              backgroundColor:
+                                  Color.fromARGB(255, 233, 233, 233),
+                              radius: 90,
+                              foregroundImage: AssetImage(
+                                "assets/icons/employeeGreyAvater.png",
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Employee',
+                            style: TextStyle(
+                              color: Color(0xFFACACAC),
+                              fontSize: 24,
+                              fontFamily: 'SF Pro Display',
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+              const Gap(22),
+              authController.selectedPersonType == "CUS"
+                  ? Column(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            authController.selectedPersonType = "CUS";
+                            authController.update();
+                          },
+                          child: Stack(
+                            alignment: Alignment.topRight,
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: AppColors.primaryColor,
+                                radius: 94,
+                                child: const CircleAvatar(
+                                  backgroundColor: Colors.white,
+                                  radius: 90,
+                                  foregroundImage: AssetImage(
+                                      "assets/icons/customerAvatar.png"),
+                                ),
+                              ),
+                              Image.asset(
+                                "assets/icons/Selected Check(R).png",
+                                height: 50,
+                              )
+                            ],
+                          ),
+                        ),
+                        const Text(
+                          'Customer',
+                          style: TextStyle(
+                            color: Color(0xFF5A57FF),
+                            fontSize: 24,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    )
+                  : InkWell(
+                      onTap: () {
+                        authController.selectedPersonType = "CUS";
+                        authController.update();
+                      },
+                      child: const Column(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Color.fromARGB(255, 233, 233, 233),
+                            radius: 94,
+                            child: CircleAvatar(
+                              foregroundColor:
+                                  Color.fromARGB(255, 233, 233, 233),
+                              backgroundColor:
+                                  Color.fromARGB(255, 233, 233, 233),
+                              radius: 90,
+                              foregroundImage: AssetImage(
+                                "assets/icons/customerGreyAvatar.png",
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Customer',
+                            style: TextStyle(
+                              color: Color(0xFFACACAC),
+                              fontSize: 24,
+                              fontFamily: 'SF Pro Display',
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+              const Gap(22),
+              CommonTextField(
+                style: const TextStyle(
+                  color: Color(0xFF5A57FF),
+                  fontSize: 20,
+                  fontFamily: 'SF Pro Display',
+                  fontWeight: FontWeight.w500,
+                ),
+                hintText: 'Enter organisation number',
+                labelText: 'Organisation Code',
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please enter your organisation code.';
@@ -60,30 +195,13 @@ class OrganisationCode extends StatelessWidget {
                   return null;
                 },
                 controller: controller,
-                onTapOutside: (event) {
-                  FocusManager.instance.primaryFocus?.unfocus();
-                },
                 onFieldSubmitted: (value) {
                   FocusManager.instance.primaryFocus?.unfocus();
                   Get.find<AuthController>().checkOrganisationCode(
                       organiosationCodee: controller!.text.toString());
                 },
-                style: const TextStyle(
-                  color: Colors.yellow,
-                  fontSize: 18,
-                  fontFamily: 'SF Pro Display',
-                  fontWeight: FontWeight.w900,
-                  // //height: 0,
-                ),
-                decoration: const InputDecoration(
-                    hintText: 'Enter organisation number',
-                    enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Colors.white, width: 0.4)),
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white))),
-              ).paddingOnly(bottom: 20),
-              // const Gap(20),
+              ),
+              const Gap(22),
               GetBuilder<AuthController>(builder: (authController) {
                 return authController.loading
                     ? const Center(
@@ -108,23 +226,16 @@ class OrganisationCode extends StatelessWidget {
                             // width: 358,
                             height: 45,
                             decoration: ShapeDecoration(
-                              color: Colors.white,
+                              color: const Color(0xFF5A57FF),
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5)),
-                              shadows: const [
-                                BoxShadow(
-                                  color: Color(0x19000000),
-                                  blurRadius: 2,
-                                  offset: Offset(0, 2),
-                                  spreadRadius: 0,
-                                )
-                              ],
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                             ),
                             child: const Text(
-                              'Check',
+                              'Next',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: Color(0xFF353535),
+                                color: Colors.white,
                                 fontSize: 16,
                                 fontFamily: 'SF Pro Display',
                                 fontWeight: FontWeight.w600,
@@ -137,9 +248,11 @@ class OrganisationCode extends StatelessWidget {
                       );
               }),
             ],
-          ).paddingSymmetric(horizontal: 20),
-        ),
-      ),
+          ).paddingSymmetric(
+            horizontal: 20,
+          ),
+        );
+      }),
     );
   }
 }

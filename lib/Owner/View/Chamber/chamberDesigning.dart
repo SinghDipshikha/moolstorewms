@@ -211,6 +211,7 @@ class ChamberDesigning extends StatelessWidget {
                                 "maxColumn": chamberController.maxColumn,
                                 "minRow": chamberController.minRow,
                                 "minColumn": chamberController.minColumn,
+                                "max_stack_level": stacklevel,
                               });
                             },
                             title: "Submit",

@@ -19,26 +19,29 @@ class CommonTextField extends StatelessWidget {
   double? borderRadius;
   int? maxLines;
   Color? containerColor;
+  void Function(String)? onFieldSubmitted;
+  TextStyle? style;
 
-  CommonTextField({
-    this.containerColor,
-    super.key,
-    this.labelText,
-    this.hintText,
-    this.textCapitalization,
-    this.borderRadius,
-    this.obscureText,
-    this.suffixIcon,
-    this.onChanged,
-    this.prefixIcon,
-    this.controller,
-    this.maxLength,
-    this.maxLines,
-    this.inputFormatters,
-    this.keyboardType,
-    this.padding,
-    this.validator,
-  });
+  CommonTextField(
+      {this.style,
+      this.containerColor,
+      super.key,
+      this.labelText,
+      this.hintText,
+      this.textCapitalization,
+      this.borderRadius,
+      this.obscureText,
+      this.suffixIcon,
+      this.onChanged,
+      this.prefixIcon,
+      this.controller,
+      this.maxLength,
+      this.maxLines,
+      this.inputFormatters,
+      this.keyboardType,
+      this.padding,
+      this.validator,
+      this.onFieldSubmitted});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +56,7 @@ class CommonTextField extends StatelessWidget {
                 TextSpan(
                   text: "$labelText",
                   style: const TextStyle(
-                    color: Color(0xFF595959),
+                    color: Color(0xFF353535),
                     fontSize: 16,
                     fontFamily: 'SF Pro Display',
                     fontWeight: FontWeight.w400,
@@ -66,6 +69,7 @@ class CommonTextField extends StatelessWidget {
           8,
         ),
         TextFormField(
+          style: style,
           maxLength: maxLength,
           maxLines: maxLines,
           textCapitalization: textCapitalization ?? TextCapitalization.none,
@@ -73,9 +77,7 @@ class CommonTextField extends StatelessWidget {
             FocusManager.instance.primaryFocus?.unfocus();
           },
           onChanged: onChanged,
-          onFieldSubmitted: (value) {
-            FocusManager.instance.primaryFocus?.unfocus();
-          },
+          onFieldSubmitted: onFieldSubmitted,
           keyboardType: keyboardType,
           controller: controller,
           validator: validator,
