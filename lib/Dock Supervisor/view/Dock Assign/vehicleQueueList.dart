@@ -3,9 +3,12 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/vehicle.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/View/assignChamber.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/widget/commonDropDown.dart';
+import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 class VehicleQueueListScreen extends StatefulWidget {
   const VehicleQueueListScreen({super.key});
@@ -229,26 +232,32 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                                   ),
                                 ),
                               ),
-                              Container(
-                                width: 140,
-                                height: 50,
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 8),
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFF02A676),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30),
+                              InkWell(
+                                onTap: () {
+                                  Get.to(const AssignChamberScreen(),
+                                      id: dmsNavigationKey);
+                                },
+                                child: Container(
+                                  width: 140,
+                                  height: 50,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 8),
+                                  decoration: ShapeDecoration(
+                                    color: const Color(0xFF02A676),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                    ),
                                   ),
-                                ),
-                                child: const Center(
-                                  child: Text(
-                                    'Assign',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                      fontFamily: 'SF Pro Display',
-                                      fontWeight: FontWeight.w600,
-                                      height: 0,
+                                  child: const Center(
+                                    child: Text(
+                                      'Assign',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontFamily: 'SF Pro Display',
+                                        fontWeight: FontWeight.w600,
+                                        height: 0,
+                                      ),
                                     ),
                                   ),
                                 ),
