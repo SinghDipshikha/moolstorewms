@@ -617,6 +617,9 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                   menuItemStyleData: const MenuItemStyleData(
                       padding: EdgeInsets.symmetric(horizontal: 8)),
                 ),
+            
+            
+            
               ),
             ),
             const Gap(20),

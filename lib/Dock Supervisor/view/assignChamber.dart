@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/View/selectChamber.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/widget/commonDropDown.dart';
+import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 class AssignChamberScreen extends StatefulWidget {
   const AssignChamberScreen({super.key});
@@ -196,7 +200,7 @@ class _AssignChamberScreenState extends State<AssignChamberScreen> {
           Center(
             child: Container(
                 width: 358,
-                height: 155,
+                height: 300,
                 decoration: ShapeDecoration(
                   color: const Color(0xFFFAF9FF),
                   shape: RoundedRectangleBorder(
@@ -231,30 +235,105 @@ class _AssignChamberScreenState extends State<AssignChamberScreen> {
                   ),
                   const Gap(10),
                   ChamberSeledtionEntry(
-                    productName: '',
-                    productQuantity: '',
+                    productName: 'Kanon Scanner',
+                    productQuantity: '1200',
+                  ),
+                  const Gap(10),
+                  ChamberSeledtionEntry(
+                    productName: 'Kanon Scanner',
+                    productQuantity: '1200',
                   ),
                   const Gap(20),
                   Container(
-                    width: 158,
-                    height: 40,
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                    width: 300,
+                    height: 90,
                     decoration: ShapeDecoration(
                       color: const Color(0xFF5A57FF),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: const Center(
-                      child: Text(
-                        'Assign Chamber ',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w600,
-                          height: 0,
+                    child: const Column(
+                      children: [
+                        Gap(20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              'Chamber',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              'Chamber Temperature',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )
+                          ],
+                        ),
+                        Gap(10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              'No.8',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            Text(
+                              '05°c - 31°c',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w600,
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  const Gap(20),
+                  InkWell(
+                    onTap: () {
+                      Get.to(const SelectChamberScreen(), id: dmsNavigationKey);
+                    },
+                    child: Container(
+                      width: 158,
+                      height: 40,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 8),
+                      decoration: ShapeDecoration(
+                        color: const Color(0xFF5A57FF),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          'Assign Chamber ',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w600,
+                            height: 0,
+                          ),
                         ),
                       ),
                     ),
@@ -364,10 +443,10 @@ class _ChamberSeledtionEntryState extends State<ChamberSeledtionEntry> {
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-      const Text(
-        'Kanon Scanner',
+      Text(
+        widget.productName,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           color: Color(0xFF353535),
           fontSize: 14,
           fontFamily: 'SF Pro Display',
@@ -385,11 +464,11 @@ class _ChamberSeledtionEntryState extends State<ChamberSeledtionEntry> {
             borderRadius: BorderRadius.circular(3),
           ),
         ),
-        child: const Center(
+        child: Center(
           child: Text(
-            '1200',
+            widget.productQuantity,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               color: Color(0xFF353535),
               fontSize: 16,
               fontFamily: 'SF Pro Display',
