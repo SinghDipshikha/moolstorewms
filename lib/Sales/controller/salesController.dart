@@ -10,7 +10,7 @@ import 'package:moolwmsstore/Sales/Model/Indent/indentElement.dart';
 import 'package:moolwmsstore/Sales/Model/Indent/initialProduct.dart';
 import 'package:moolwmsstore/Sales/Model/Indent/viewIndentModel.dart';
 import 'package:moolwmsstore/Sales/Model/Visitor/addVisitorModel.dart';
-import 'package:moolwmsstore/Sales/Model/company.dart';
+import 'package:moolwmsstore/Sales/Model/addCustomer.dart';
 import 'package:moolwmsstore/Sales/Model/enterProduct.dart';
 import 'package:moolwmsstore/Sales/Sales.dart';
 import 'package:moolwmsstore/Sales/View/Visiitors/addVisitorSucces.dart';
@@ -35,7 +35,7 @@ class SalesController extends GetxController {
 
   bool loading = false;
 
-  Company? callFromCompany;
+
 
 
   DateTime? checkIndateTime;
@@ -120,19 +120,19 @@ class SalesController extends GetxController {
 
 
   List<EnterProduct> ticketProducts = [const EnterProduct()];
-  List<Company> comapnies = [];
-  getCompanyList() {
-    loading = true;
-    apiClient.postData("company/companylist", {"keyword": ""}).then((value) {
-      if (value.data["message"] == "Data Retrieved Successfully!") {
-        comapnies = (value.data["result"] as List)
-            .map((e) => Company.fromJson(e))
-            .toList();
-        loading = false;
-        update();
-      }
-    });
-  }
+  // List<Company> comapnies = [];
+  // getCompanyList() {
+  //   loading = true;
+  //   apiClient.postData("company/companylist", {"keyword": ""}).then((value) {
+  //     if (value.data["message"] == "Data Retrieved Successfully!") {
+  //       comapnies = (value.data["result"] as List)
+  //           .map((e) => Company.fromJson(e))
+  //           .toList();
+  //       loading = false;
+  //       update();
+  //     }
+  //   });
+  // }
 
   Future<bool> createIndent(
       {required String poId, required int warehouseid}) async {
@@ -142,7 +142,7 @@ class SalesController extends GetxController {
     var value = await apiClient.postData("user/createPurchaseOrder", {
       "user_id": 1,
       "company_details": [
-        {"call_from": callFromCompany!.sellerCompanyDetailsID},
+       
         // {"shipped_from": shippedFromCompany!.sellerCompanyDetailsID},
         // {"bill_to": billToCompany!.sellerCompanyDetailsID},
         // {"shipped_to": shippedToCompany!.sellerCompanyDetailsID}
@@ -208,61 +208,61 @@ class SalesController extends GetxController {
     });
   }
 
-  Future<List<Company>?> searchComapny(String s) async {
-    var value = await apiClient.postData("company/companylist", {"keyword": s});
+  // Future<List<Company>?> searchComapny(String s) async {
+  //   var value = await apiClient.postData("company/companylist", {"keyword": s});
 
-    if (value.data == null) {
-      return null;
-    }
-    if (value.data["message"] == "Data Retrieved Successfully!") {
-      List x = value.data["result"];
-      if (x.isEmpty) {
-        return null;
-      } else {
-        return x.map((e) => Company.fromJson(e)).toList();
-      }
-    } else {
-      return null;
-    }
-  }
+  //   if (value.data == null) {
+  //     return null;
+  //   }
+  //   if (value.data["message"] == "Data Retrieved Successfully!") {
+  //     List x = value.data["result"];
+  //     if (x.isEmpty) {
+  //       return null;
+  //     } else {
+  //       return x.map((e) => Company.fromJson(e)).toList();
+  //     }
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
-  selectCompany({required String check, required selectedCompany}) {
-    if (check == "Call From") {
-      callFromCompany = selectedCompany;
-    }
-    // if (check == "Bill To") {
-    //   billToCompany = selectedCompany;
-    // }
-    // if (check == "Shipped  From") {
-    //   shippedFromCompany = selectedCompany;
-    // }
-    // if (check == "Shipped  To") {
-    //   shippedToCompany = selectedCompany;
-    // }
-    update();
-  }
+  // selectCompany({required String check, required selectedCompany}) {
+  //   if (check == "Call From") {
+  //     callFromCompany = selectedCompany;
+  //   }
+  //   // if (check == "Bill To") {
+  //   //   billToCompany = selectedCompany;
+  //   // }
+  //   // if (check == "Shipped  From") {
+  //   //   shippedFromCompany = selectedCompany;
+  //   // }
+  //   // if (check == "Shipped  To") {
+  //   //   shippedToCompany = selectedCompany;
+  //   // }
+  //   update();
+  // }
 
-  addCompany(Company company) {
-    apiClient.postData("company/addCompany", company.toJson()).then((value) {
+  addCustomer(AddCustomer customer) {
+    apiClient.postData("company/addCustomer", customer.toJson()).then((value) {
       if (value.data["message"] ==
           "Seller company and details added successfully") {
-        Snacks.greenSnack("Company added successfully");
+        Snacks.greenSnack("Customer added successfully");
 
-        Get.off(const CompanyAdded(), id: salesNavigationKey);
+       
       }
     });
   }
 
-  Future<bool> addCompanyByDialog(Company company) async {
-    var value =
-        await apiClient.postData("company/addCompany", company.toJson());
-    if (value.data["message"] ==
-        "Seller company and details added successfully") {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  // Future<bool> addCompanyByDialog(Company company) async {
+  //   var value =
+  //       await apiClient.postData("company/addCompany", company.toJson());
+  //   if (value.data["message"] ==
+  //       "Seller company and details added successfully") {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   bool imageUploading = false;
 

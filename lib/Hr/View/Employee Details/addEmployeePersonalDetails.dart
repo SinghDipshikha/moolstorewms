@@ -172,6 +172,8 @@ class _AddEmployeePersonalDetailsState
                           Icons.calendar_month,
                           color: Colors.black,
                         )),
+               
+               
                 CommanTextField(
                   onChanged: (p0) {
                     personalDetails = personalDetails.copyWith(blood_group: p0);

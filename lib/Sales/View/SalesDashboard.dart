@@ -9,7 +9,7 @@ import 'package:moolwmsstore/Sales/View/Ticket/createindent.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/ticketList.dart';
 import 'package:moolwmsstore/Sales/View/Visiitors/addVistor.dart';
 import 'package:moolwmsstore/Sales/View/Visiitors/visitorsList.dart';
-import 'package:moolwmsstore/Sales/View/customer/addCustomer.dart';
+import 'package:moolwmsstore/Sales/View/customer/addCustomerScreen.dart';
 import 'package:moolwmsstore/Sales/View/customer/customerList.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
@@ -219,14 +219,14 @@ class SalesDashboard extends StatelessWidget {
                     CurvedLineConatainer(
                       title: "Add Customer",
                       onTap: () {
-                        Get.to(AddCustomer(), id: salesNavigationKey);
+                        Get.to(AddCustomerScreen(), id: salesNavigationKey);
                       },
                     ),
                     CurvedLineConatainer(
                       title: "Customer List",
                       isShowextendedLine: false,
                       onTap: () {
-                        Get.to(const CustomerList(), id: salesNavigationKey);
+                      //  Get.to(const CustomerList(), id: salesNavigationKey);
                         // Get.find<OwnerController>().setloadingtrue();
                         // Get.to(const WarehouseList(), id: ownerNavigationKey);
                         // WarehouseList

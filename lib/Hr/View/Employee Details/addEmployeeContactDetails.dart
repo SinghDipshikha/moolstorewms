@@ -35,12 +35,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
     'Telegu',
   ];
   String? selectedLanguage = "Hindi";
-  String _mobileNumber = '';
-  String _contactName = '';
-  String _address = '';
-  String _state = '';
-  String _pincode = '';
-  String _city = '';
+
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +94,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                             return null;
                           },
                           onChanged: (value) {
-                            _address = value;
+                          
                           },
                         ).paddingAll(2),
                         CommanTextField(
@@ -118,7 +113,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                             return null;
                           },
                           onChanged: (value) {
-                            _state = value;
+                           
                           },
                         ).paddingAll(2),
                         CommanTextField(
@@ -137,7 +132,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                             return null;
                           },
                           onChanged: (value) {
-                            _city = value;
+                            
                           },
                         ).paddingAll(2),
                         CommanTextField(
@@ -156,7 +151,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                             return null;
                           },
                           onChanged: (value) {
-                            _pincode = value;
+                        
                           },
                         ).paddingAll(2),
                         Container(
@@ -280,7 +275,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                             return null;
                           },
                           onChanged: (value) {
-                            _mobileNumber = value;
+                            
                           },
                         ).paddingAll(2),
                         CommanTextField(
@@ -299,7 +294,7 @@ class _AddEmployeeContactDetailsState extends State<AddEmployeeContactDetails> {
                             return null;
                           },
                           onChanged: (value) {
-                            _contactName = value;
+                          
                           },
                         ).paddingAll(2),
                         CommomDropDownBlackTheme(

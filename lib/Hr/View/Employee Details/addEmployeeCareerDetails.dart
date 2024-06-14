@@ -22,13 +22,6 @@ class AddEmployeeCareerDetails extends StatefulWidget {
 class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
   DateTime? _selectedDate;
   DateTime? _selectedDate2;
-  final bool _isCheckedPassportYes = false;
-  final bool _isCheckedPassportNo = false;
-  final bool _isCheckedDisablityYes = false;
-  final bool _isCheckedDisablityNo = false;
-  final String _monthlySalary = '';
-  final String _currentSalary = '';
-  final String _employerName = '';
 
   final AddCareerDetail _careerDetails = const AddCareerDetail();
 
@@ -176,55 +169,52 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                             ),
                                           ),
                                           const Gap(10),
-                                          InkWell(
-                                            onTap: () {
-                                              _selectDate(context);
-                                            },
-                                            child: Container(
-                                              width: 123,
-                                              height: 35,
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 20,
-                                                      vertical: 5),
-                                              decoration: ShapeDecoration(
-                                                color: const Color(0xFFFAF9FF),
-                                                shape: RoundedRectangleBorder(
-                                                  side: const BorderSide(
-                                                      width: 1,
-                                                      color: Color(0x195E57FC)),
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                ),
-                                              ),
-                                              child: const Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    'Select',
-                                                    style: TextStyle(
-                                                      color: Color(0xFFACACAC),
-                                                      fontSize: 11.74,
-                                                      fontFamily:
-                                                          'SF Pro Display',
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      //height: 0,
-                                                    ),
-                                                  ),
-                                                  Icon(
+                                          careerDetail.employment_date_from !=
+                                                  null
+                                              ? TextButton(
+                                                  onPressed: () {
+                                                    showDatePicker(
+                                                      context: context,
+                                                      initialDate:
+                                                          DateTime.now(),
+                                                      firstDate: DateTime(2000),
+                                                      lastDate: DateTime(2101),
+                                                    ).then((v) {
+                                                      if (v != null) {
+                                                        setState(() {
+                                                          careerDetail =
+                                                              careerDetail.copyWith(
+                                                                  employment_date_from:
+                                                                      v);
+                                                        });
+                                                      }
+                                                    });
+                                                  },
+                                                  child: const Text(
+                                                      "Show Date here"))
+                                              : IconButton(
+                                                  onPressed: () {
+                                                    showDatePicker(
+                                                      context: context,
+                                                      initialDate:
+                                                          DateTime.now(),
+                                                      firstDate: DateTime(2000),
+                                                      lastDate: DateTime(2101),
+                                                    ).then((v) {
+                                                      if (v != null) {
+                                                        setState(() {
+                                                          careerDetail =
+                                                              careerDetail.copyWith(
+                                                                  employment_date_from:
+                                                                      v);
+                                                        });
+                                                      }
+                                                    });
+                                                  },
+                                                  icon: const Icon(
                                                     Icons.calendar_month,
-                                                    color: Color(0xFFACACAC),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          ),
+                                                    color: Colors.black,
+                                                  )),
                                         ],
                                       ),
                                       Row(
@@ -243,55 +233,52 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                             ),
                                           ),
                                           const Gap(10),
-                                          InkWell(
-                                            onTap: () {
-                                              _selectDate2(context);
-                                            },
-                                            child: Container(
-                                              width: 123,
-                                              height: 35,
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 20,
-                                                      vertical: 5),
-                                              decoration: ShapeDecoration(
-                                                color: const Color(0xFFFAF9FF),
-                                                shape: RoundedRectangleBorder(
-                                                  side: const BorderSide(
-                                                      width: 1,
-                                                      color: Color(0x195E57FC)),
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                ),
-                                              ),
-                                              child: const Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    'Select',
-                                                    style: TextStyle(
-                                                      color: Color(0xFFACACAC),
-                                                      fontSize: 11.74,
-                                                      fontFamily:
-                                                          'SF Pro Display',
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      //height: 0,
-                                                    ),
-                                                  ),
-                                                  Icon(
+                                          careerDetail.employment_date_to !=
+                                                  null
+                                              ? TextButton(
+                                                  onPressed: () {   
+                                                    showDatePicker(
+                                                      context: context,
+                                                      initialDate:
+                                                          DateTime.now(),
+                                                      firstDate: DateTime(2000),
+                                                      lastDate: DateTime(2101),
+                                                    ).then((v) {
+                                                      if (v != null) {
+                                                        setState(() {
+                                                          careerDetail =
+                                                              careerDetail.copyWith(
+                                                                  employment_date_to:
+                                                                      v);
+                                                        });
+                                                      }
+                                                    });
+                                                  },
+                                                  child: const Text(
+                                                      "Show Date here"))
+                                              : IconButton(
+                                                  onPressed: () {
+                                                    showDatePicker(
+                                                      context: context,
+                                                      initialDate:
+                                                          DateTime.now(),
+                                                      firstDate: DateTime(2000),
+                                                      lastDate: DateTime(2101),
+                                                    ).then((v) {
+                                                      if (v != null) {
+                                                        setState(() {
+                                                          careerDetail =
+                                                              careerDetail.copyWith(
+                                                                  employment_date_to:
+                                                                      v);
+                                                        });
+                                                      }
+                                                    });
+                                                  },
+                                                  icon: const Icon(
                                                     Icons.calendar_month,
-                                                    color: Color(0xFFACACAC),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          ),
+                                                    color: Colors.black,
+                                                  )),
                                         ],
                                       ),
                                     ],

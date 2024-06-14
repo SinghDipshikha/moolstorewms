@@ -21,7 +21,7 @@ class CompanyAdded extends StatelessWidget {
             colors: const [Color(0xFFFFFFFF), Color(0xFFFFFFFF)],
             titleTextColor: Colors.black,
             onTap: () {
-              Get.off(const CustomerList(), id: salesNavigationKey);
+            //  Get.off(const CustomerList(), id: salesNavigationKey);
             },
             title: "Customer List",
           ).paddingSymmetric(horizontal: 12),

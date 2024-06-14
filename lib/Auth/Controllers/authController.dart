@@ -60,6 +60,10 @@ class AuthController extends GetxController {
   }
 
   String phoneNum = "";
+
+
+  String selectedPersonType = "EMP"; 
+  // "EMP" "CUS"
   List<SignupField> fields = [];
 
   String? organiosationCode;

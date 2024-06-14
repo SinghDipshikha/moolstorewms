@@ -2,7 +2,7 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Sales/Model/company.dart';
+import 'package:moolwmsstore/Sales/Model/addCustomer.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';
@@ -242,23 +242,23 @@ class AddCompanyDialog extends StatelessWidget {
                     return InkWell(
                       onTap: () {
                         if (_formKey.currentState?.validate() ?? false) {
-                          salesController
-                              .addCompanyByDialog(
-                            Company(
-                                company_name: companyName.text,
-                                user_id: salesController.user.id,
-                                status: "1",
-                                phone_no: "$countryCode${phone.text}",
-                                address: address.text,
-                                state: state.text,
-                                gst_no: gstNum.text),
-                          )
-                              .then((value) {
-                            if (value) {
-                              Get.back();
-                              Snacks.greenSnack("Company added successfully");
-                            }
-                          });
+                          // salesController
+                          //     .addCompanyByDialog(
+                          //   Company(
+                          //       company_name: companyName.text,
+                          //       user_id: salesController.user.id,
+                          //       status: "1",
+                          //       phone_no: "$countryCode${phone.text}",
+                          //       address: address.text,
+                          //       state: state.text,
+                          //       gst_no: gstNum.text),
+                          // )
+                          //     .then((value) {
+                          //   if (value) {
+                          //     Get.back();
+                          //     Snacks.greenSnack("Company added successfully");
+                          //   }
+                          // });
                         }
                       },
                       child: Container(

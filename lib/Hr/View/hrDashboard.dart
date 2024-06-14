@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
+import 'package:moolwmsstore/Hr/View/Employee%20Details/updateEmployeeDetails.dart';
 import 'package:moolwmsstore/Hr/View/Shfits/createShift.dart';
 import 'package:moolwmsstore/Hr/View/Staff/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
@@ -47,11 +48,9 @@ class _HrDashboardState extends State<HrDashboard> {
         ),
       ),
       drawer: Drawer(
-      
         surfaceTintColor: const Color.fromARGB(255, 22, 22, 22),
         backgroundColor: const Color.fromARGB(255, 22, 22, 22),
         child: Column(
-
           children: [
             GetBuilder<HRController>(builder: (hrController) {
               return Theme(
@@ -195,10 +194,18 @@ class _HrDashboardState extends State<HrDashboard> {
                     //   onTap: () {},
                     // ),
                     CurvedLineConatainer(
-                      title: "View Staff",
+                      title: "Staff List",
                       isShowextendedLine: false,
                       onTap: () {
                         Get.to(const HrEmployeeList(), id: hrNavigationKey);
+                      },
+                    ),
+                    CurvedLineConatainer(
+                      title: "View Staff Details",
+                      isShowextendedLine: false,
+                      onTap: () {
+                        Get.to(const UpdateEmployeeDetailsScreen(),
+                            id: hrNavigationKey);
                       },
                     ),
                     // CurvedLineConatainer(title: "dcdc"),
@@ -232,7 +239,6 @@ class _HrDashboardState extends State<HrDashboard> {
                     ),
                   ),
                   children: [
-                   
                     CurvedLineConatainer(
                       title: "Create Shift",
                       isShowextendedLine: false,

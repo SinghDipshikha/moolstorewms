@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:moolwmsstore/Sales/Model/addCustomer.dart';
 import 'package:moolwmsstore/Sales/View/common/widgets/salesCommonWidgets.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
@@ -10,11 +11,15 @@ import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:moolwmsstore/utils/textStyles.dart';
 import 'package:moolwmsstore/utils/textutils.dart';
 
-class AddCustomer extends StatelessWidget {
-  AddCustomer({super.key});
+class AddCustomerScreen extends StatelessWidget {
+  AddCustomerScreen({super.key});
 
   final _formKey = GlobalKey<FormState>();
-  final ImagePicker picker = ImagePicker();
+
+  AddCustomer addCustomer = AddCustomer(
+
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,14 +34,19 @@ class AddCustomer extends StatelessWidget {
         key: _formKey,
         child: ListView(children: [
           const Center(
-            child: Text(
-              'Upload Photo',
-              style: TextStyle(
-                color: Color(0xFF595959),
-                fontSize: 16,
-                fontFamily: 'SF Pro Display',
-                fontWeight: FontWeight.w400,
-                height: 0,
+            child: Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: "Upload Photo",
+                    style: TextStyle(
+                      color: Color(0xFF595959),
+                      fontSize: 16,
+                      fontFamily: 'SF Pro Display',
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
               ),
             ),
           ).paddingSymmetric(vertical: 12),
@@ -47,7 +57,9 @@ class AddCustomer extends StatelessWidget {
               size: 28,
               color: AppColors.primaryColor,
             ),
-            onImageUploaded: (p0) {},
+            onImageUploaded: (p0) {
+              addCustomer = addCustomer.copyWith(avatar: p0);
+            },
           ),
           CommonTextField(
             validator: (val) {
@@ -59,7 +71,9 @@ class AddCustomer extends StatelessWidget {
                 return null;
               }
             },
-            onChanged: (p0) {},
+            onChanged: (p0) {
+               addCustomer = addCustomer.copyWith(name: p0);
+            },
             textCapitalization: TextCapitalization.words,
             labelText: 'Customer Name',
             hintText: "Enter Customer name",
@@ -83,7 +97,9 @@ class AddCustomer extends StatelessWidget {
                 return null;
               }
             },
-            onChanged: (p0) {},
+            onChanged: (p0) {
+               addCustomer = addCustomer.copyWith(company_name: p0);
+            },
             textCapitalization: TextCapitalization.words,
             labelText: 'Company Name',
             hintText: "Enter company name",
@@ -107,7 +123,9 @@ class AddCustomer extends StatelessWidget {
                 return null;
               }
             },
-            onChanged: (p0) {},
+            onChanged: (p0) {
+               addCustomer = addCustomer.copyWith(address: p0);
+            },
             textCapitalization: TextCapitalization.words,
             labelText: 'Address',
             hintText: "Enter company address",
@@ -131,7 +149,9 @@ class AddCustomer extends StatelessWidget {
                 return null;
               }
             },
-            onChanged: (p0) {},
+            onChanged: (p0) {
+               addCustomer = addCustomer.copyWith(state: p0);
+            },
             textCapitalization: TextCapitalization.words,
             labelText: 'State',
             hintText: "Enter state",
@@ -157,7 +177,9 @@ class AddCustomer extends StatelessWidget {
                 return null;
               }
             },
-            onChanged: (p0) {},
+            onChanged: (p0) {
+               addCustomer = addCustomer.copyWith(gst_number: p0);
+            },
             textCapitalization: TextCapitalization.characters,
             labelText: 'GST IN',
             hintText: "Enter gst number",
@@ -183,7 +205,10 @@ class AddCustomer extends StatelessWidget {
                 return null;
               }
             },
-            onChanged: (p0) {},
+            onChanged: (p0) {
+                addCustomer = addCustomer.copyWith(cin: p0);
+ 
+            },
             textCapitalization: TextCapitalization.characters,
             labelText: 'CIN',
             hintText: "Enter Corporate Identification Number",
@@ -198,7 +223,8 @@ class AddCustomer extends StatelessWidget {
           ),
           const Gap(12),
           CommonTextField(
-            onChanged: (p0) {},
+            onChanged: (p0) {  addCustomer = addCustomer.copyWith(phone: "+91$p0");
+            },
             keyboardType: TextInputType.phone,
             maxLength: 10,
             validator: (val) {
@@ -225,6 +251,8 @@ class AddCustomer extends StatelessWidget {
               colors: const [Color(0xFF5A57FF), Color(0xFF5A57FF)],
               onTap: () {
                 if (_formKey.currentState?.validate() ?? false) {
+
+                 // salesController.
                   // salesController.addCompany(Company(
                   //     company_name: companyName.text,
                   //     user_id: salesController.user.id,
