@@ -14,7 +14,6 @@ import 'package:moolwmsstore/Sales/Model/addCustomer.dart';
 import 'package:moolwmsstore/Sales/Model/enterProduct.dart';
 import 'package:moolwmsstore/Sales/Sales.dart';
 import 'package:moolwmsstore/Sales/View/Visiitors/addVisitorSucces.dart';
-import 'package:moolwmsstore/Sales/View/customer/companyAdded.dart';
 import 'package:moolwmsstore/Sales/repo/salesRepo.dart';
 import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
@@ -34,9 +33,6 @@ class SalesController extends GetxController {
   User user;
 
   bool loading = false;
-
-
-
 
   DateTime? checkIndateTime;
   DateTime dashBoardSelectedDate = DateTime.now();
@@ -117,8 +113,6 @@ class SalesController extends GetxController {
     update();
   }
 
-
-
   List<EnterProduct> ticketProducts = [const EnterProduct()];
   // List<Company> comapnies = [];
   // getCompanyList() {
@@ -136,13 +130,10 @@ class SalesController extends GetxController {
 
   Future<bool> createIndent(
       {required String poId, required int warehouseid}) async {
-
-
-        update();
+    update();
     var value = await apiClient.postData("user/createPurchaseOrder", {
       "user_id": 1,
       "company_details": [
-       
         // {"shipped_from": shippedFromCompany!.sellerCompanyDetailsID},
         // {"bill_to": billToCompany!.sellerCompanyDetailsID},
         // {"shipped_to": shippedToCompany!.sellerCompanyDetailsID}
@@ -243,12 +234,10 @@ class SalesController extends GetxController {
   // }
 
   addCustomer(AddCustomer customer) {
-    apiClient.postData("company/addCustomer", customer.toJson()).then((value) {
-      if (value.data["message"] ==
-          "Seller company and details added successfully") {
+    apiClient.postData("user/addCustomer", customer.toJson()).then((value) {
+      if (value.data["message"] == "Customer added successfully") {
+        Get.back(id: salesNavigationKey);
         Snacks.greenSnack("Customer added successfully");
-
-       
       }
     });
   }

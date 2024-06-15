@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Sales/Model/addCustomer.dart';
 import 'package:moolwmsstore/Sales/View/common/widgets/salesCommonWidgets.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
@@ -16,9 +16,7 @@ class AddCustomerScreen extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
 
-  AddCustomer addCustomer = AddCustomer(
-
-  );
+  AddCustomer addCustomer = const AddCustomer();
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +70,7 @@ class AddCustomerScreen extends StatelessWidget {
               }
             },
             onChanged: (p0) {
-               addCustomer = addCustomer.copyWith(name: p0);
+              addCustomer = addCustomer.copyWith(name: p0);
             },
             textCapitalization: TextCapitalization.words,
             labelText: 'Customer Name',
@@ -98,7 +96,7 @@ class AddCustomerScreen extends StatelessWidget {
               }
             },
             onChanged: (p0) {
-               addCustomer = addCustomer.copyWith(company_name: p0);
+              addCustomer = addCustomer.copyWith(company_name: p0);
             },
             textCapitalization: TextCapitalization.words,
             labelText: 'Company Name',
@@ -124,7 +122,7 @@ class AddCustomerScreen extends StatelessWidget {
               }
             },
             onChanged: (p0) {
-               addCustomer = addCustomer.copyWith(address: p0);
+              addCustomer = addCustomer.copyWith(address: p0);
             },
             textCapitalization: TextCapitalization.words,
             labelText: 'Address',
@@ -150,7 +148,7 @@ class AddCustomerScreen extends StatelessWidget {
               }
             },
             onChanged: (p0) {
-               addCustomer = addCustomer.copyWith(state: p0);
+              addCustomer = addCustomer.copyWith(state: p0);
             },
             textCapitalization: TextCapitalization.words,
             labelText: 'State',
@@ -178,7 +176,7 @@ class AddCustomerScreen extends StatelessWidget {
               }
             },
             onChanged: (p0) {
-               addCustomer = addCustomer.copyWith(gst_number: p0);
+              addCustomer = addCustomer.copyWith(gst_number: p0);
             },
             textCapitalization: TextCapitalization.characters,
             labelText: 'GST IN',
@@ -206,8 +204,7 @@ class AddCustomerScreen extends StatelessWidget {
               }
             },
             onChanged: (p0) {
-                addCustomer = addCustomer.copyWith(cin: p0);
- 
+              addCustomer = addCustomer.copyWith(cin: p0);
             },
             textCapitalization: TextCapitalization.characters,
             labelText: 'CIN',
@@ -223,7 +220,8 @@ class AddCustomerScreen extends StatelessWidget {
           ),
           const Gap(12),
           CommonTextField(
-            onChanged: (p0) {  addCustomer = addCustomer.copyWith(phone: "+91$p0");
+            onChanged: (p0) {
+              addCustomer = addCustomer.copyWith(phone: "+91$p0");
             },
             keyboardType: TextInputType.phone,
             maxLength: 10,
@@ -252,7 +250,11 @@ class AddCustomerScreen extends StatelessWidget {
               onTap: () {
                 if (_formKey.currentState?.validate() ?? false) {
 
-                 // salesController.
+                  addCustomer = addCustomer.copyWith(addedBy: salesController.user.id);
+                  Logger().i(addCustomer.toJson());
+                  salesController.addCustomer(addCustomer);
+
+                  // salesController.
                   // salesController.addCompany(Company(
                   //     company_name: companyName.text,
                   //     user_id: salesController.user.id,

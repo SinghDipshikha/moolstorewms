@@ -12,6 +12,8 @@ import 'package:path_provider/path_provider.dart' as path_provider;
 
 import 'helper/get_di.dart' as di;
 
+//22AAAAA0000A1Z5
+//U74999DL2019PTC357379
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   //FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
