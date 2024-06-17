@@ -20,9 +20,11 @@ EnterProduct _$EnterProductFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$EnterProduct {
-  String? get product_no => throw _privateConstructorUsedError;
+  String? get sku_id => throw _privateConstructorUsedError;
   String? get product_name => throw _privateConstructorUsedError;
   String? get hsn_number => throw _privateConstructorUsedError;
+  DateTime? get mfg_date => throw _privateConstructorUsedError;
+  DateTime? get expiry_date => throw _privateConstructorUsedError;
   double? get mrp => throw _privateConstructorUsedError;
   int? get margin => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
@@ -30,7 +32,6 @@ mixin _$EnterProduct {
   int? get gst_rate => throw _privateConstructorUsedError;
   int? get qty => throw _privateConstructorUsedError;
   String? get uom => throw _privateConstructorUsedError;
-  DateTime? get expiry_date => throw _privateConstructorUsedError;
   int? get total_tax => throw _privateConstructorUsedError;
   int? get total => throw _privateConstructorUsedError;
 
@@ -47,9 +48,11 @@ abstract class $EnterProductCopyWith<$Res> {
       _$EnterProductCopyWithImpl<$Res, EnterProduct>;
   @useResult
   $Res call(
-      {String? product_no,
+      {String? sku_id,
       String? product_name,
       String? hsn_number,
+      DateTime? mfg_date,
+      DateTime? expiry_date,
       double? mrp,
       int? margin,
       String? description,
@@ -57,7 +60,6 @@ abstract class $EnterProductCopyWith<$Res> {
       int? gst_rate,
       int? qty,
       String? uom,
-      DateTime? expiry_date,
       int? total_tax,
       int? total});
 }
@@ -75,9 +77,11 @@ class _$EnterProductCopyWithImpl<$Res, $Val extends EnterProduct>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? product_no = freezed,
+    Object? sku_id = freezed,
     Object? product_name = freezed,
     Object? hsn_number = freezed,
+    Object? mfg_date = freezed,
+    Object? expiry_date = freezed,
     Object? mrp = freezed,
     Object? margin = freezed,
     Object? description = freezed,
@@ -85,14 +89,13 @@ class _$EnterProductCopyWithImpl<$Res, $Val extends EnterProduct>
     Object? gst_rate = freezed,
     Object? qty = freezed,
     Object? uom = freezed,
-    Object? expiry_date = freezed,
     Object? total_tax = freezed,
     Object? total = freezed,
   }) {
     return _then(_value.copyWith(
-      product_no: freezed == product_no
-          ? _value.product_no
-          : product_no // ignore: cast_nullable_to_non_nullable
+      sku_id: freezed == sku_id
+          ? _value.sku_id
+          : sku_id // ignore: cast_nullable_to_non_nullable
               as String?,
       product_name: freezed == product_name
           ? _value.product_name
@@ -102,6 +105,14 @@ class _$EnterProductCopyWithImpl<$Res, $Val extends EnterProduct>
           ? _value.hsn_number
           : hsn_number // ignore: cast_nullable_to_non_nullable
               as String?,
+      mfg_date: freezed == mfg_date
+          ? _value.mfg_date
+          : mfg_date // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      expiry_date: freezed == expiry_date
+          ? _value.expiry_date
+          : expiry_date // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       mrp: freezed == mrp
           ? _value.mrp
           : mrp // ignore: cast_nullable_to_non_nullable
@@ -130,10 +141,6 @@ class _$EnterProductCopyWithImpl<$Res, $Val extends EnterProduct>
           ? _value.uom
           : uom // ignore: cast_nullable_to_non_nullable
               as String?,
-      expiry_date: freezed == expiry_date
-          ? _value.expiry_date
-          : expiry_date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
       total_tax: freezed == total_tax
           ? _value.total_tax
           : total_tax // ignore: cast_nullable_to_non_nullable
@@ -155,9 +162,11 @@ abstract class _$$EnterProductImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? product_no,
+      {String? sku_id,
       String? product_name,
       String? hsn_number,
+      DateTime? mfg_date,
+      DateTime? expiry_date,
       double? mrp,
       int? margin,
       String? description,
@@ -165,7 +174,6 @@ abstract class _$$EnterProductImplCopyWith<$Res>
       int? gst_rate,
       int? qty,
       String? uom,
-      DateTime? expiry_date,
       int? total_tax,
       int? total});
 }
@@ -181,9 +189,11 @@ class __$$EnterProductImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? product_no = freezed,
+    Object? sku_id = freezed,
     Object? product_name = freezed,
     Object? hsn_number = freezed,
+    Object? mfg_date = freezed,
+    Object? expiry_date = freezed,
     Object? mrp = freezed,
     Object? margin = freezed,
     Object? description = freezed,
@@ -191,14 +201,13 @@ class __$$EnterProductImplCopyWithImpl<$Res>
     Object? gst_rate = freezed,
     Object? qty = freezed,
     Object? uom = freezed,
-    Object? expiry_date = freezed,
     Object? total_tax = freezed,
     Object? total = freezed,
   }) {
     return _then(_$EnterProductImpl(
-      product_no: freezed == product_no
-          ? _value.product_no
-          : product_no // ignore: cast_nullable_to_non_nullable
+      sku_id: freezed == sku_id
+          ? _value.sku_id
+          : sku_id // ignore: cast_nullable_to_non_nullable
               as String?,
       product_name: freezed == product_name
           ? _value.product_name
@@ -208,6 +217,14 @@ class __$$EnterProductImplCopyWithImpl<$Res>
           ? _value.hsn_number
           : hsn_number // ignore: cast_nullable_to_non_nullable
               as String?,
+      mfg_date: freezed == mfg_date
+          ? _value.mfg_date
+          : mfg_date // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      expiry_date: freezed == expiry_date
+          ? _value.expiry_date
+          : expiry_date // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       mrp: freezed == mrp
           ? _value.mrp
           : mrp // ignore: cast_nullable_to_non_nullable
@@ -236,10 +253,6 @@ class __$$EnterProductImplCopyWithImpl<$Res>
           ? _value.uom
           : uom // ignore: cast_nullable_to_non_nullable
               as String?,
-      expiry_date: freezed == expiry_date
-          ? _value.expiry_date
-          : expiry_date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
       total_tax: freezed == total_tax
           ? _value.total_tax
           : total_tax // ignore: cast_nullable_to_non_nullable
@@ -256,9 +269,11 @@ class __$$EnterProductImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$EnterProductImpl implements _EnterProduct {
   const _$EnterProductImpl(
-      {this.product_no,
+      {this.sku_id,
       this.product_name,
       this.hsn_number,
+      this.mfg_date,
+      this.expiry_date,
       this.mrp,
       this.margin,
       this.description,
@@ -266,7 +281,6 @@ class _$EnterProductImpl implements _EnterProduct {
       this.gst_rate,
       this.qty,
       this.uom,
-      this.expiry_date,
       this.total_tax,
       this.total});
 
@@ -274,11 +288,15 @@ class _$EnterProductImpl implements _EnterProduct {
       _$$EnterProductImplFromJson(json);
 
   @override
-  final String? product_no;
+  final String? sku_id;
   @override
   final String? product_name;
   @override
   final String? hsn_number;
+  @override
+  final DateTime? mfg_date;
+  @override
+  final DateTime? expiry_date;
   @override
   final double? mrp;
   @override
@@ -294,15 +312,13 @@ class _$EnterProductImpl implements _EnterProduct {
   @override
   final String? uom;
   @override
-  final DateTime? expiry_date;
-  @override
   final int? total_tax;
   @override
   final int? total;
 
   @override
   String toString() {
-    return 'EnterProduct(product_no: $product_no, product_name: $product_name, hsn_number: $hsn_number, mrp: $mrp, margin: $margin, description: $description, unit: $unit, gst_rate: $gst_rate, qty: $qty, uom: $uom, expiry_date: $expiry_date, total_tax: $total_tax, total: $total)';
+    return 'EnterProduct(sku_id: $sku_id, product_name: $product_name, hsn_number: $hsn_number, mfg_date: $mfg_date, expiry_date: $expiry_date, mrp: $mrp, margin: $margin, description: $description, unit: $unit, gst_rate: $gst_rate, qty: $qty, uom: $uom, total_tax: $total_tax, total: $total)';
   }
 
   @override
@@ -310,12 +326,15 @@ class _$EnterProductImpl implements _EnterProduct {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EnterProductImpl &&
-            (identical(other.product_no, product_no) ||
-                other.product_no == product_no) &&
+            (identical(other.sku_id, sku_id) || other.sku_id == sku_id) &&
             (identical(other.product_name, product_name) ||
                 other.product_name == product_name) &&
             (identical(other.hsn_number, hsn_number) ||
                 other.hsn_number == hsn_number) &&
+            (identical(other.mfg_date, mfg_date) ||
+                other.mfg_date == mfg_date) &&
+            (identical(other.expiry_date, expiry_date) ||
+                other.expiry_date == expiry_date) &&
             (identical(other.mrp, mrp) || other.mrp == mrp) &&
             (identical(other.margin, margin) || other.margin == margin) &&
             (identical(other.description, description) ||
@@ -325,8 +344,6 @@ class _$EnterProductImpl implements _EnterProduct {
                 other.gst_rate == gst_rate) &&
             (identical(other.qty, qty) || other.qty == qty) &&
             (identical(other.uom, uom) || other.uom == uom) &&
-            (identical(other.expiry_date, expiry_date) ||
-                other.expiry_date == expiry_date) &&
             (identical(other.total_tax, total_tax) ||
                 other.total_tax == total_tax) &&
             (identical(other.total, total) || other.total == total));
@@ -336,9 +353,11 @@ class _$EnterProductImpl implements _EnterProduct {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      product_no,
+      sku_id,
       product_name,
       hsn_number,
+      mfg_date,
+      expiry_date,
       mrp,
       margin,
       description,
@@ -346,7 +365,6 @@ class _$EnterProductImpl implements _EnterProduct {
       gst_rate,
       qty,
       uom,
-      expiry_date,
       total_tax,
       total);
 
@@ -366,9 +384,11 @@ class _$EnterProductImpl implements _EnterProduct {
 
 abstract class _EnterProduct implements EnterProduct {
   const factory _EnterProduct(
-      {final String? product_no,
+      {final String? sku_id,
       final String? product_name,
       final String? hsn_number,
+      final DateTime? mfg_date,
+      final DateTime? expiry_date,
       final double? mrp,
       final int? margin,
       final String? description,
@@ -376,7 +396,6 @@ abstract class _EnterProduct implements EnterProduct {
       final int? gst_rate,
       final int? qty,
       final String? uom,
-      final DateTime? expiry_date,
       final int? total_tax,
       final int? total}) = _$EnterProductImpl;
 
@@ -384,11 +403,15 @@ abstract class _EnterProduct implements EnterProduct {
       _$EnterProductImpl.fromJson;
 
   @override
-  String? get product_no;
+  String? get sku_id;
   @override
   String? get product_name;
   @override
   String? get hsn_number;
+  @override
+  DateTime? get mfg_date;
+  @override
+  DateTime? get expiry_date;
   @override
   double? get mrp;
   @override
@@ -403,8 +426,6 @@ abstract class _EnterProduct implements EnterProduct {
   int? get qty;
   @override
   String? get uom;
-  @override
-  DateTime? get expiry_date;
   @override
   int? get total_tax;
   @override

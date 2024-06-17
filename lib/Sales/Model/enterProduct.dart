@@ -4,11 +4,14 @@ part 'enterProduct.freezed.dart';
 part 'enterProduct.g.dart';
 
 @freezed
+
 class EnterProduct with _$EnterProduct {
   const factory EnterProduct({
-    String? product_no,
+    String? sku_id,
     String? product_name,
     String? hsn_number,
+    DateTime? mfg_date,
+    DateTime? expiry_date,
     double? mrp,
     int? margin,
     String? description,
@@ -16,7 +19,6 @@ class EnterProduct with _$EnterProduct {
     int? gst_rate,
     int? qty,
     String? uom,
-    DateTime? expiry_date,
     int? total_tax,
     int? total,
   }) = _EnterProduct;
@@ -27,22 +29,22 @@ class EnterProduct with _$EnterProduct {
 
 
 /*
-{
-            "product_no":"def",
-            "product_name":"butter milk",
+        {
+            "sku_id":"105AB",
+            "product_name":"safal peas",
             "hsn_number":"589000",
-            "mrp":87,
+            "mfg_date":"2022-03-05 00:00:00",
+            "expiry_date":"2022-03-05 00:00:00",
+            "mrp":100,
             "margin":13,
             "description":"amul butter",
+            "qty":30,
             "unit": 10,
-            "gst_rate":3,
-            "qty":3,
-            "uom":"abc",
-            "expiry_date": "2022-03-05 00:00:00",
-            "total_tax":134,
-            "total":1220
+            "uom":"kg",
+            "gst_rate":5,
+            "total_tax":15,
+            "total":315
         },
-
 
  */
 

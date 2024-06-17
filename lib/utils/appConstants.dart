@@ -5,7 +5,8 @@ import 'package:moolwmsstore/Common%20Data/Model/LanaguageModel.dart';
 // DateFormat.yMd().add_jm()        -> 7/10/1996 5:08 PM
 class AppConstants {
   static DateFormat dateformatter = DateFormat('MMM d, yyyy');
-  static DateFormat timeformatter = DateFormat('h:mm a');
+  static DateFormat timeformatter = DateFormat('MMM d, yyyy  h:mm a');
+  static DateFormat datetimeformatter = DateFormat('h:mm a');
   static DateFormat dayMonrhormatter = DateFormat('d MMM');
   static DateFormat yearMonthDayformatter = DateFormat('yyyy-MM-dd');
 
@@ -26,4 +27,28 @@ class AppConstants {
   ];
 }
 
+class ColorConstants {
+  static List<BoxShadow>? boxShadow(BuildContext context) {
+    return MediaQuery.of(context).platformBrightness != Brightness.dark
+        ? [
+            const BoxShadow(
+              color: Color.fromARGB(255, 229, 229, 229),
+              blurRadius: 20,
+              offset: Offset(1, 1),
+              spreadRadius: 0,
+            )
+          ]
+        : null;
+  }
 
+  static List<BoxShadow>? colouredboxShadow({required Color color}) {
+    return [
+      BoxShadow(
+        color: color,
+        blurRadius: 20,
+        offset: const Offset(0, 5),
+        spreadRadius: 0,
+      )
+    ];
+  }
+}

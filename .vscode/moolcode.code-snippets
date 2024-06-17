@@ -13,7 +13,7 @@
 
 		"prefix": "appBar",
 		"body": [
-			"appBar: AppBar(centerTitle: false,title: const Text('Create Indent',style: TextDecorations.appBarTextStyle,),),",
+			"appBar: AppBar(centerTitle: false,title: const Text('Create Indent',style: TextStyles.appBarTextStyle),),",
 
 		],
 		"description": "Common App Bar"

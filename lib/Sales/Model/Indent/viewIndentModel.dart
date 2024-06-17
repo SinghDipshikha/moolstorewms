@@ -1,4 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:moolwmsstore/Sales/Model/Customer/customerListElement.dart';
+import 'package:moolwmsstore/Sales/Model/Indent/indentInSubmit.dart';
+import 'package:moolwmsstore/Sales/Model/enterProduct.dart';
 
 part 'viewIndentModel.freezed.dart';
 part 'viewIndentModel.g.dart';
@@ -6,156 +9,89 @@ part 'viewIndentModel.g.dart';
 @freezed
 class IndentViewModel with _$IndentViewModel {
   const factory IndentViewModel({
-    String? ticket_id,
+    int? id,
+    String? indent_number,
+    String? order_number,
     DateTime? created_at,
+    int? warehouse_id,
+    int? min_temperature,
+    int? max_temperature,
+    String? warehouse_name,
     String? first_name,
     dynamic last_name,
-    String? call_from_seller_company,
+    String? personType,
     String? name,
-    String? ship_from_seller_companany,
-    String? ship_to_seller_companany,
-    String? bill_to_seller_companany,
-    List<ProductsIndentViewModel>? product_details,
-    List<ChecksIndentViewModel>? check_in_out,
-
+    List<String>? designation,
+    List<CustomerListElement>? customer_details,
+    List<EnterProduct>? product_details,
+    List<VehicleDetails>? vehicle_details,
   }) = _IndentViewModel;
 
   factory IndentViewModel.fromJson(Map<String, Object?> json) =>
       _$IndentViewModelFromJson(json);
 }
 
-@freezed
-class ChecksIndentViewModel with _$ChecksIndentViewModel {
-  const factory ChecksIndentViewModel({
-    String? vehicle_types,
-    String? vehicle_number,
-    String? driver_name,
-    String? checkin_type,
-    DateTime? expected_date,
-    String? seller_product_value,
-    String? product_name,
-    String? warehouse_name,
-  }) = _ChecksIndentViewModel;
 
-  factory ChecksIndentViewModel.fromJson(Map<String, Object?> json) =>
-      _$ChecksIndentViewModelFromJson(json);
-}
-
-@freezed
-class ProductsIndentViewModel with _$ProductsIndentViewModel {
-  const factory ProductsIndentViewModel({
-    int? qty,
-    int? mrp,
-    int? total,
-    int? unit,
-    String? product_no,
-    String? product_name,
-    String? hsn_number,
-  }) = _ProductsIndentViewModel;
-
-  factory ProductsIndentViewModel.fromJson(Map<String, Object?> json) =>
-      _$ProductsIndentViewModelFromJson(json);
-}
 
 
 
 /*
 
-{
-            "ticket_id": "1716292316543000",
-            "created_at": "2024-05-21T17:21:56.000Z",
+      {
+            "id": 34,
+            "indent_id": "IND-SL034",
+            "order_number": "cbncjxjx",
+            "created_at": "2024-06-16T15:17:02.000Z",
+            "warehouse_id": 2,
+            "warehouse_name": "Lodeshwar",
             "first_name": "Jaspreet Singh",
             "last_name": null,
-            "call_from_seller_company": "Indicold Sbsh",
-            "name": "Jaspreet Singh ",
-            "ship_from_seller_companany": "Zepto",
-            "ship_to_seller_companany": "Zomato",
-            "bill_to_seller_companany": "Maggie ",
+            "personType": "owner",
+            "name": "Jaspreet Singh",
+            "designation": [
+                "owner"
+            ],
+            "customer_details": [
+                {
+                    "id": 38,
+                    "customer_num": "CUS038",
+                    "first_name": "DDJDDJ",
+                    "last_name": "",
+                    "phone": "+915454545464",
+                    "email": "null",
+                    "company_name": "Shdhdhdh",
+                    "gst_number": "22AAAAA0000A1Z",
+                    "address": "Dhdhdh",
+                    "state": "Zhdjjd"
+                }
+            ],
             "product_details": [
                 {
-                    "qty": 3,
-                    "mrp": 100,
-                    "total": 315,
-                    "unit": 10,
-                    "product_no": "105AB",
-                    "product_name": "safal peas",
-                    "hsn_number": "589000"
-                },
-                {
-                    "qty": 3,
-                    "mrp": 50,
-                    "total": 165,
-                    "unit": 15,
-                    "product_no": "106CD",
-                    "product_name": " icecream",
-                    "hsn_number": "312000"
+                    "id": 79,
+                    "product_name": "Shdhhd",
+                    "sku_id": "xbbd",
+                    "hsn_number": "dhdhdh",
+                    "mrp": 79,
+                    "uom": "vs",
+                    "gst_rate": 48,
+                    "mfg_date": "2024-06-21T00:00:00.000Z",
+                    "expiry_date": "2024-06-14T00:00:00.000Z",
+                    "qty": 100,
+                    "unit": 40,
+                    "total_tax": 7845,
+                    "total": 0
                 }
             ],
-            "check_ins": [
+            "vehicle_details": [
                 {
-                    "vehicle_types": "cold",
-                    "vehicle_number": "DL03AS-3000",
-                    "driver_name": "ravi",
-                    "checkin_type": "IN",
-                    "expected_date": "2022-03-10T03:00:10.000Z",
-                    "seller_product_value": "3",
-                    "product_name": "safal peas",
-                    "warehouse_name": "Agro Kailash"
-                },
-                {
-                    "vehicle_types": "cold",
-                    "vehicle_number": "DL03AS-3000",
-                    "driver_name": "ravi",
-                    "checkin_type": "IN",
-                    "expected_date": "2022-03-10T03:00:10.000Z",
-                    "seller_product_value": "2",
-                    "product_name": " icecream",
-                    "warehouse_name": "Agro Kailash"
-                },
-                {
-                    "vehicle_types": "Truck",
-                    "vehicle_number": "DL03AS-3000",
-                    "driver_name": "ajay",
-                    "checkin_type": "IN",
-                    "expected_date": "2022-03-10T03:00:10.000Z",
-                    "seller_product_value": "6",
-                    "product_name": "safal peas",
-                    "warehouse_name": "Agro Kailash"
-                },
-                {
-                    "vehicle_types": "Truck",
-                    "vehicle_number": "DL03AS-3000",
-                    "driver_name": "ajay",
-                    "checkin_type": "IN",
-                    "expected_date": "2022-03-10T03:00:10.000Z",
-                    "seller_product_value": "8",
-                    "product_name": " icecream",
-                    "warehouse_name": "Agro Kailash"
-                },
-                {
-                    "vehicle_types": "Truck",
-                    "vehicle_number": "DL03AS-3000",
-                    "driver_name": "ajay",
-                    "checkin_type": "IN",
-                    "expected_date": "2022-03-10T03:00:10.000Z",
-                    "seller_product_value": "6",
-                    "product_name": "safal peas",
-                    "warehouse_name": "Agro Kailash"
-                },
-                {
-                    "vehicle_types": "Truck",
-                    "vehicle_number": "DL03AS-3000",
-                    "driver_name": "ajay",
-                    "checkin_type": "IN",
-                    "expected_date": "2022-03-10T03:00:10.000Z",
-                    "seller_product_value": "8",
-                    "product_name": " icecream",
-                    "warehouse_name": "Agro Kailash"
+                    "vehicle_number": "sbbs",
+                    "vehicle_types": "zbdbd",
+                    "driver_name": "xbbdnd",
+                    "driver_ph_number": "7554545442",
+                    "expected_date": "0000-00-00 00:00:00"
                 }
-            ],
-            "check_outs": []
-        
-}
+            ]
+        }
 
 
  */

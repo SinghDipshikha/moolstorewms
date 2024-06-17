@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Auth/Repository/authRepo.dart';
 import 'package:moolwmsstore/Auth/View/Blocked.dart';
@@ -61,8 +62,7 @@ class AuthController extends GetxController {
 
   String phoneNum = "";
 
-
-  String selectedPersonType = "EMP"; 
+  String selectedPersonType = "EMP";
   // "EMP" "CUS"
   List<SignupField> fields = [];
 
@@ -173,7 +173,7 @@ class AuthController extends GetxController {
 
   splash() async {
     user = box.get("user");
-
+    Logger().i(user);
     if (user != null && organiosationCode != null) {
       sharedPreferences.setString(AppConstants.orgCode, organiosationCode!);
       Get.find<ApiClient>().updateHeader();

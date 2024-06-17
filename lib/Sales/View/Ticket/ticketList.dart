@@ -15,10 +15,10 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:moolwmsstore/Sales/Model/Indent/indentElement.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/createindent.dart';
-import 'package:moolwmsstore/Sales/View/Ticket/indentInOut.dart';
 import 'package:moolwmsstore/Sales/View/Ticket/viewindent.dart';
 import 'package:moolwmsstore/Sales/View/common/widgets/customButton.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
+import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 class TicketList extends StatefulWidget {
@@ -40,19 +40,16 @@ class _TicketListState extends State<TicketList> {
   @override
   void initState() {
     pagingController.addPageRequestListener((pageKey) {
-      Get.find<SalesController>().apiClient.postData(
-          "user/getAllPoList?recordsPerPage=20&next=$pageKey ",
-          {"keyword": "", "date": "", "warehouse_id": null}).then((v) {
-        if (v.data["message"] == "Data Retrieved Successfully!") {
-          List<IndentElement> newItems = (v.data["result"] as List)
-              .map((e) => IndentElement.fromJson(e))
-              .toList();
-          final isLastPage = newItems.length < 20;
-          if (isLastPage) {
-            pagingController.appendLastPage(newItems);
+      Get.find<SalesController>()
+          .salesRepo
+          .getIndents(recordsPerPage: 20, page: pageKey)
+          .then((v) {
+        if (v != pageKey) {
+          if (v!.length < 2) {
+            pagingController.appendLastPage(v);
           } else {
-            final nextPageKey = pageKey + newItems.length;
-            pagingController.appendPage(newItems, nextPageKey);
+            final nextPageKey = pageKey + 1;
+            pagingController.appendPage(v, nextPageKey);
           }
         }
       });
@@ -66,11 +63,11 @@ class _TicketListState extends State<TicketList> {
   Widget build(BuildContext context) {
     final List tags = [
       {
-        "title": 'Ticket ID',
+        "title": 'Indent ID',
         "flex": 1,
       },
       {"title": 'Order No.', "flex": 1},
-      {"title": 'Shipped To', "flex": 1},
+      {"title": 'Customer', "flex": 1},
       {"title": "Date & Time", "flex": 1},
       {"title": "In/Out", "flex": 1},
       {"title": "Info", "flex": 1},
@@ -81,17 +78,7 @@ class _TicketListState extends State<TicketList> {
         appBar: AppBar(
           centerTitle: false,
           backgroundColor: const Color(0xFF232323),
-          title: const Text(
-            'Ticket List',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontFamily: 'SF Pro Text',
-              fontWeight: FontWeight.w500,
-              //height: 0,
-              letterSpacing: -0.80,
-            ),
-          ),
+          title: const Text('Indent List', style: TextStyles.appBarTextStyle),
         ),
         body: Column(
           children: [
@@ -102,43 +89,22 @@ class _TicketListState extends State<TicketList> {
                   return IconButton(
                       padding: EdgeInsets.zero,
                       onPressed: () {},
-                      icon: Text(
-                        tags[index]["title"],
-                        style: const TextStyle(
-                          color: Color(0xFF5A57FF),
-                          fontSize: 10,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ));
+                      icon: Text(tags[index]["title"],
+                          style: TextStyles.talbleHeadingTitleStyle));
                 }
 
                 if (tags[index]["title"] == "In/Out") {
                   return IconButton(
                       padding: EdgeInsets.zero,
                       onPressed: () {},
-                      icon: Text(
-                        tags[index]["title"],
-                        style: const TextStyle(
-                          color: Color(0xFF5A57FF),
-                          fontSize: 10,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ));
+                      icon: Text(tags[index]["title"],
+                          style: TextStyles.talbleHeadingTitleStyle));
                 }
 
                 return Expanded(
                     flex: tags[index]["flex"],
-                    child: Text(
-                      tags[index]["title"],
-                      style: const TextStyle(
-                        color: Color(0xFF5A57FF),
-                        fontSize: 10,
-                        fontFamily: 'SF Pro Display',
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ));
+                    child: Text(tags[index]["title"],
+                        style: TextStyles.talbleHeadingTitleStyle));
               }),
             ).paddingSymmetric(horizontal: 20),
             Expanded(
@@ -195,21 +161,14 @@ class _TicketListState extends State<TicketList> {
                                 color: Colors.black,
                               ));
                         }
-                        if (tags[index]["title"] == 'Ticket ID') {
+                        if (tags[index]["title"] == 'Indent ID') {
                           return Expanded(
                               flex: tags[index]["flex"],
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text(
-                                  item.ticket_id ?? "--",
-                                  style: const TextStyle(
-                                    color: Color(0xFF353535),
-                                    fontSize: 10,
-                                    fontFamily: 'SF Pro Display',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
+                                child: Text(item.indent_number ?? "--",
+                                    style: TextStyles.talbleContentTextStyle),
                               ));
                         }
                         if (tags[index]["title"] == 'Order No.') {
@@ -218,15 +177,8 @@ class _TicketListState extends State<TicketList> {
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text(
-                                  item.order_number ?? "--",
-                                  style: const TextStyle(
-                                    color: Color(0xFF353535),
-                                    fontSize: 10,
-                                    fontFamily: 'SF Pro Display',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
+                                child: Text(item.order_number ?? "--",
+                                    style: TextStyles.talbleContentTextStyle),
                               ));
                         }
                         if (tags[index]["title"] == 'Order No.') {
@@ -235,32 +187,18 @@ class _TicketListState extends State<TicketList> {
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text(
-                                  item.ticket_id ?? "--",
-                                  style: const TextStyle(
-                                    color: Color(0xFF353535),
-                                    fontSize: 10,
-                                    fontFamily: 'SF Pro Display',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
+                                child: Text(item.indent_number ?? "--",
+                                    style: TextStyles.talbleContentTextStyle),
                               ));
                         }
-                        if (tags[index]["title"] == 'Shipped To') {
+                        if (tags[index]["title"] == 'Customer') {
                           return Expanded(
                               flex: tags[index]["flex"],
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text(
-                                  item.shipped_to_company ?? "--",
-                                  style: const TextStyle(
-                                    color: Color(0xFF353535),
-                                    fontSize: 10,
-                                    fontFamily: 'SF Pro Display',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
+                                child: Text(item.customer_name ?? "--",
+                                    style: TextStyles.talbleContentTextStyle),
                               ));
                         }
                         if (tags[index]["title"] == "Date & Time") {

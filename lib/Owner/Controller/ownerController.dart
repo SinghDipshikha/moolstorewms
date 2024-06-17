@@ -87,9 +87,8 @@ class OwnerController extends GetxController {
       DateTime.now().subtract(const Duration(days: 1));
   DateTime dashBoardEndDate = DateTime.now();
 
-
-  refreshDashboard(){
-       getticketWarehouseCount();
+  refreshDashboard() {
+    getticketWarehouseCount();
     getMaterialCount();
     getVehicleCount();
     getVisitorCount();
@@ -402,8 +401,7 @@ class OwnerController extends GetxController {
       Get.offAll(const Owner());
     }
     if (role == "Dock-supervisor") {
-      Get.lazyPut(
-          () => Dmsrepo(sharedPreferences: Get.find(), apiClient: Get.find()));
+      Get.put(Dmsrepo(sharedPreferences: Get.find(), apiClient: Get.find()));
       Get.put(
           DmsController(
             isOwner: true,
@@ -416,7 +414,7 @@ class OwnerController extends GetxController {
       Get.offAll(const DMS());
     }
     if (role == "Security Guard") {
-      Get.lazyPut(() => SecurityGuardRepo(
+      Get.put(SecurityGuardRepo(
           sharedPreferences: Get.find(), apiClient: Get.find()));
       Get.put(
           SecurityGuardController(
@@ -430,8 +428,7 @@ class OwnerController extends GetxController {
       Get.offAll(const SecurityGuard());
     }
     if (role == "HR") {
-      Get.lazyPut(
-          () => HrRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
+      Get.put(HrRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
       Get.put(
           HRController(
             isOwner: true,
@@ -444,8 +441,7 @@ class OwnerController extends GetxController {
       Get.offAll(const HumanResouce());
     }
     if (role == "Sales") {
-      Get.lazyPut(() =>
-          SalesRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
+      Get.put(SalesRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
       Get.put(
           SalesController(
             isOwner: true,
@@ -454,7 +450,6 @@ class OwnerController extends GetxController {
             apiClient: Get.find<ApiClient>(),
           ),
           permanent: true);
-
       Get.offAll(const Sales());
     }
   }

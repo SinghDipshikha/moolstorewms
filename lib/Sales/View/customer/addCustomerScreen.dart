@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
+import 'package:moolwmsstore/Hr/constants/validations.dart';
 import 'package:moolwmsstore/Sales/Model/addCustomer.dart';
 import 'package:moolwmsstore/Sales/View/common/widgets/salesCommonWidgets.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/common/widgets/profileAvatar.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
-import 'package:moolwmsstore/utils/textStyles.dart';
 import 'package:moolwmsstore/utils/textutils.dart';
 
 class AddCustomerScreen extends StatelessWidget {
@@ -23,10 +23,7 @@ class AddCustomerScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
-        title: const Text(
-          'Add Customer',
-          style: TextDecorations.appBarTextStyle,
-        ),
+        title: const Text('Add Customer', style: TextStyles.appBarTextStyle),
       ),
       body: Form(
         key: _formKey,
@@ -243,14 +240,41 @@ class AddCustomerScreen extends StatelessWidget {
               height: 6,
             ).paddingAll(12),
           ),
+          const Gap(12),
+          CommonTextField(
+            onChanged: (p0) {
+              addCustomer = addCustomer.copyWith(email: p0);
+            },
+            validator: (val) {
+              if (val == null || val.isEmpty) {
+                {
+                  return "required";
+                }
+              } else if (!GlobalValidator.isValidEmail(val)) {
+                return 'Please enter a valid email address';
+              } else {
+                return null;
+              }
+            },
+            labelText: 'Email Address',
+            hintText: 'Enter Email Address',
+            prefixIcon: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Image.asset(
+                'assets/icons/PO Icon Set 1 (R) copy.png',
+                height: 20,
+                width: 20,
+              ),
+            ),
+          ),
           const Gap(22),
           GetBuilder<SalesController>(builder: (salesController) {
             return CustomButton(
               colors: const [Color(0xFF5A57FF), Color(0xFF5A57FF)],
               onTap: () {
                 if (_formKey.currentState?.validate() ?? false) {
-
-                  addCustomer = addCustomer.copyWith(addedBy: salesController.user.id);
+                  addCustomer =
+                      addCustomer.copyWith(addedBy: salesController.user.id);
                   Logger().i(addCustomer.toJson());
                   salesController.addCustomer(addCustomer);
 

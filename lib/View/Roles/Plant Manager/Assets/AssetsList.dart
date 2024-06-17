@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/Owner/View/Common/customButton.dart';
 import 'package:moolwmsstore/View/Roles/Plant%20Manager/Assets/assetEntry.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
@@ -25,11 +26,11 @@ class AssetsList extends StatelessWidget {
         ? Scaffold(
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
-            floatingActionButton: CustomButton2(
+            floatingActionButton: CustomButton(
                     onTap: () {
                       Get.to(const AssetEntry());
                     },
-                    leftIcon: "assets/icons/Add Red2.png",
+                  
                     title: "Add New Asset")
                 .paddingSymmetric(horizontal: 12),
             body: ListView.builder(itemBuilder: (context, i) {

@@ -2,12 +2,13 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
-import 'package:moolwmsstore/Sales/Model/Indent/checkInSubmit.dart';
+import 'package:moolwmsstore/Sales/Model/Customer/customerListElement.dart';
 import 'package:moolwmsstore/Sales/Model/Indent/indentElement.dart';
-import 'package:moolwmsstore/Sales/Model/Indent/initialProduct.dart';
+import 'package:moolwmsstore/Sales/Model/Indent/indentInSubmit.dart';
 import 'package:moolwmsstore/Sales/Model/Indent/viewIndentModel.dart';
 import 'package:moolwmsstore/Sales/Model/Visitor/addVisitorModel.dart';
 import 'package:moolwmsstore/Sales/Model/addCustomer.dart';
@@ -24,6 +25,17 @@ class SalesController extends GetxController {
   final SalesRepo salesRepo;
   final ApiClient apiClient;
   bool isOwner;
+  @override
+  void onInit() {
+    submitIndent = IndentInModel(
+      status: "IN",
+      user_id: user.id as int,
+      temperature_unit: "celcius",
+    );
+    // TODO: implement onInit
+    super.onInit();
+  }
+
   SalesController(
       {required this.salesRepo,
       required this.apiClient,
@@ -38,9 +50,10 @@ class SalesController extends GetxController {
   DateTime dashBoardSelectedDate = DateTime.now();
 
   List<IndentElement> indentElements = [];
-  List<InitialProduct> initialProducts = [];
-  CheckInModel? checkInModel;
+
   List<Map<String, int>> initialProductsqty = [];
+
+  CustomerListElement? selectedCustomerForIndent;
 
   DateFormat formatter = DateFormat('yyyy-MM-dd');
   Map dashboardData = {
@@ -83,103 +96,62 @@ class SalesController extends GetxController {
     update();
   }
 
-  getInitialProductsofIndent({required String indentId}) async {
-    loading = true;
+  List<EnterProduct> ticketProducts = [const EnterProduct()];
 
-    if (indentId == "") {
-      return;
-    }
-    await apiClient
-        .getData("user/getProductDetailsOfTicket/$indentId")
-        .then((value) {
-      if (value.data["message"] ==
-          "Product details fetched successfully for given ticket id") {
-        initialProductsqty.clear();
-        initialProducts = (value.data["result"] as List)
-            .map((e) => InitialProduct.fromJson(e))
-            .toList();
-
-        for (var e in initialProducts) {
-          initialProductsqty.add({"product_id": e.product_id as int, "qty": 0});
-        }
-
-        checkInModel = const CheckInModel().copyWith(
-            warehouse_id: initialProducts[0].warehouse_id,
-            vehicle_details: const VehicleDetails(),
-            products: initialProductsqty);
-      }
-    });
-    loading = false;
+  late IndentInModel submitIndent;
+  bool creatingIndent = false;
+  createIndent({required IndentInModel i}) async {
+    creatingIndent = true;
     update();
+    var value = await apiClient.postData("sales/createPoIndent", i.toJson());
+    if (value.data["message"] ==
+        "Successfully Created Purchase Order and Indent id is Assigned") {
+      selectedCustomerForIndent = null;
+      submitIndent = IndentInModel(
+        status: "IN",
+        user_id: user.id as int,
+        temperature_unit: "celcius",
+      );
+      Get.back(id: salesNavigationKey);
+      Snacks.greenSnack(value.data["message"]);
+    } else {
+      Snacks.redSnack(value.data["message"]);
+      creatingIndent = false;
+      update();
+    }
+    creatingIndent = false;
   }
 
-  List<EnterProduct> ticketProducts = [const EnterProduct()];
-  // List<Company> comapnies = [];
-  // getCompanyList() {
-  //   loading = true;
-  //   apiClient.postData("company/companylist", {"keyword": ""}).then((value) {
-  //     if (value.data["message"] == "Data Retrieved Successfully!") {
-  //       comapnies = (value.data["result"] as List)
-  //           .map((e) => Company.fromJson(e))
-  //           .toList();
-  //       loading = false;
+  // bool creatingIndentCheck = false;
+  // createIndentChecIn() {
+  //   creatingIndentCheck = true;
+  //   update();
+  //   List<Map<String, int>> a = [];
+  //   for (var e in initialProductsqty) {
+  //     if (e["qty"] != 0) {
+  //       a.add(e);
+  //     }
+  //   }
+  //   checkInModel = checkInModel!.copyWith(products: a);
+
+  //   apiClient
+  //       .postData("user/createTicketCheckIn", checkInModel!.toJson())
+  //       .then((v) {
+  //     if (v.data["result"] == "Checkin Created for given Products") {
+  //       checkIndateTime = null;
+  //       checkInModel = null;
+  //       creatingIndentCheck = false;
+  //       Get.back(id: salesNavigationKey);
+  //       // Get.off(TicketList(), id: salesNavigationKey);
+  //       Snacks.greenSnack("Checkin Created for given Products");
+  //     } else {
+  //       Snacks.redSnack("Something went wrong");
+
+  //       creatingIndentCheck = false;
   //       update();
   //     }
   //   });
   // }
-
-  Future<bool> createIndent(
-      {required String poId, required int warehouseid}) async {
-    update();
-    var value = await apiClient.postData("user/createPurchaseOrder", {
-      "user_id": 1,
-      "company_details": [
-        // {"shipped_from": shippedFromCompany!.sellerCompanyDetailsID},
-        // {"bill_to": billToCompany!.sellerCompanyDetailsID},
-        // {"shipped_to": shippedToCompany!.sellerCompanyDetailsID}
-      ],
-      "products": ticketProducts.map((e) => e.toJson()).toList(),
-      "order_number": poId,
-      "warehouse_id": warehouseid
-    });
-    if (value.data["message"] ==
-        "Successfully Created Purchase Order and Ticket id is Assigned") {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  bool creatingIndentCheck = false;
-  createIndentChecIn() {
-    creatingIndentCheck = true;
-    update();
-    List<Map<String, int>> a = [];
-    for (var e in initialProductsqty) {
-      if (e["qty"] != 0) {
-        a.add(e);
-      }
-    }
-    checkInModel = checkInModel!.copyWith(products: a);
-
-    apiClient
-        .postData("user/createTicketCheckIn", checkInModel!.toJson())
-        .then((v) {
-      if (v.data["result"] == "Checkin Created for given Products") {
-        checkIndateTime = null;
-        checkInModel = null;
-        creatingIndentCheck = false;
-        Get.back(id: salesNavigationKey);
-        // Get.off(TicketList(), id: salesNavigationKey);
-        Snacks.greenSnack("Checkin Created for given Products");
-      } else {
-        Snacks.redSnack("Something went wrong");
-
-        creatingIndentCheck = false;
-        update();
-      }
-    });
-  }
 
   IndentViewModel? indent;
   viewindent({required String indentId}) async {
@@ -188,12 +160,13 @@ class SalesController extends GetxController {
     }
     loading = true;
 
-    await apiClient
-        .getData("ticket/viewTicket?ticket_id=$indentId")
-        .then((value) {
-      if (value.data["message"] == "Data Retrieved Successfully!") {
+    await apiClient.getData("sales/poIndentDetails/$indentId").then((value) {
+      if (value.data["message"] ==
+          "Product details fetched successfully for given Indent id") {
         indent = IndentViewModel.fromJson(value.data["result"][0]);
+        Logger().i(indent);
       }
+
       loading = false;
       update();
     });

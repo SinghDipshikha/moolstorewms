@@ -226,7 +226,7 @@ class SalesDashboard extends StatelessWidget {
                       title: "Customer List",
                       isShowextendedLine: false,
                       onTap: () {
-                      //  Get.to(const CustomerList(), id: salesNavigationKey);
+                        Get.to(const CustomerList(), id: salesNavigationKey);
                         // Get.find<OwnerController>().setloadingtrue();
                         // Get.to(const WarehouseList(), id: ownerNavigationKey);
                         // WarehouseList
