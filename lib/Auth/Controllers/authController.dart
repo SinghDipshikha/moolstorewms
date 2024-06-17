@@ -13,7 +13,7 @@ import 'package:moolwmsstore/Auth/View/signUp.dart';
 import 'package:moolwmsstore/Auth/View/welcome.dart';
 import 'package:moolwmsstore/Common%20Data/Model/Auth/signupfield.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
-import 'package:moolwmsstore/Common%20Data/repository/ownerRepo.dart';
+import 'package:moolwmsstore/Owner/Controller/ownerRepo.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/DMS.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsRepo.dart';

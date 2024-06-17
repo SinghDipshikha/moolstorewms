@@ -5,7 +5,7 @@ import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/Model/personType.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
-import 'package:moolwmsstore/Common%20Data/repository/ownerRepo.dart';
+import 'package:moolwmsstore/Owner/Controller/ownerRepo.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/DMS.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsRepo.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Owner/View/Common/customButton.dart';
-import 'package:moolwmsstore/View/Roles/Plant%20Manager/Assets/assetEntry.dart';
+import 'package:moolwmsstore/Plant%20Manager/view/Assets/assetEntry.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';
