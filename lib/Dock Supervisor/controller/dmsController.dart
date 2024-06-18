@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
@@ -63,20 +62,17 @@ class DmsController extends GetxController {
     update();
   }
 
-  updateProfilePic(XFile file) {
-    apiClient.uploadImage(file).then((v) {
-      if (v != null) {
-        apiClient.postData("avtar/addAvtar",
-            {"user_id": user.id, "profile": v}).then((v2) async {
-          if (v2.data["result"] == "Users Avatar add successfully") {
-            Snacks.greenSnack("Profile Pic updated successfully");
-            var box = await Hive.openBox('authbox');
-            user = user.copyWith(avatar: v);
-            update();
+  updateProfilePic(String url) {
+    apiClient
+        .postData("avtar/addAvtar", {"user_id": user.id, "profile": url}).then(
+            (v2) async {
+      if (v2.data["result"] == "Avtar Information updated") {
+        Snacks.greenSnack("Profile Pic updated successfully");
+        var box = await Hive.openBox('authbox');
+        user = user.copyWith(avatar: url);
+        update();
 
-            box.put("user", user);
-          }
-        });
+        box.put("user", user);
       }
     });
   }
@@ -86,8 +82,9 @@ class DmsController extends GetxController {
         .getData("dock/getAllQueuedList/${currentlySelectedWarehouse!["id"]}")
         .then((value) {
       if (value.data["message"] == "Queued List found") {
-        List x = value.data["result"];
-        vehicleList = x.map((e) => Vehicle.fromJson(e)).toList();
+        vehicleList = (value.data["result"] as List)
+            .map((e) => Vehicle.fromJson(e))
+            .toList();
         Logger().i(vehicleList);
 
         update();

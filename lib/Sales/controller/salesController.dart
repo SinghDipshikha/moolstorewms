@@ -237,6 +237,21 @@ class SalesController extends GetxController {
     return x;
   }
 
+  updateProfilePic(String url) {
+    apiClient
+        .postData("avtar/addAvtar", {"user_id": user.id, "profile": url}).then(
+            (v2) async {
+      if (v2.data["result"] == "Avtar Information updated") {
+        Snacks.greenSnack("Profile Pic updated successfully");
+        var box = await Hive.openBox('authbox');
+        user = user.copyWith(avatar: url);
+        update();
+
+        box.put("user", user);
+      }
+    });
+  }
+
   switchRole(String role) {
     if (role == "security-guard") {
       Get.offAll(const SecurityGuard());

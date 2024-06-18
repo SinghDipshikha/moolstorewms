@@ -53,7 +53,8 @@ class _CustomToggleWidgetState extends State<CustomToggleWidget>
               borderRadius: BorderRadius.circular(20),
             ),
             child: TabBar(
-              indicatorColor: Colors.transparent,
+              dividerColor: Colors.transparent,
+              indicatorColor: Colors.red,
               controller: _tabController,
               indicator: BoxDecoration(
                 color: const Color(0xFF5A57FF),
@@ -73,7 +74,7 @@ class _CustomToggleWidgetState extends State<CustomToggleWidget>
             child: TabBarView(
               controller: _tabController,
               children: [
-                VehicleQueueListScreen(),
+                const VehicleQueueListScreen(),
                 DockQueueListScreen(),
               ],
             ),

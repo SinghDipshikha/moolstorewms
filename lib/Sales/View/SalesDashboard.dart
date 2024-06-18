@@ -13,6 +13,7 @@ import 'package:moolwmsstore/Sales/View/customer/addCustomerScreen.dart';
 import 'package:moolwmsstore/Sales/View/customer/customerList.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
+import 'package:moolwmsstore/common/widgets/profileAvatar.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 
@@ -46,75 +47,68 @@ class SalesDashboard extends StatelessWidget {
                         border: Border(bottom: BorderSide.none)),
                     child: Row(
                       children: [
-                        Container(
-                          width: 100,
-                          height: 100,
-                          decoration: const ShapeDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                  "https://via.placeholder.com/100x100"),
-                              fit: BoxFit.fill,
-                            ),
-                            shape: OvalBorder(
-                              side: BorderSide(
-                                width: 2,
-                                strokeAlign: BorderSide.strokeAlignOutside,
-                                color: Color(0x195A57FF),
-                              ),
-                            ),
-                          ),
-                        ),
+                        ProfileAvatar(
+                            imageUrl: salesController.user.avatar,
+                            initialWidget:
+                                Image.asset("assets/icons/employeeAvater.png"),
+                            onImageUploaded: (v) {
+                              salesController.updateProfilePic(v);
+                            }),
                         const Gap(12),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                const Text(
-                                  '',
-                                  // '${ownerController.user.first_name} ${ownerController.user.last_name ?? ""}',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontFamily: 'SF Pro Text',
-                                    fontWeight: FontWeight.w500,
-                                    // //height: 0,
-                                    // letterSpacing: -0.80,
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      '${salesController.user.first_name} ${salesController.user.last_name ?? ""}',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontFamily: 'SF Pro Text',
+                                        fontWeight: FontWeight.w500,
+                                        // //height: 0,
+                                        // letterSpacing: -0.80,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                   ),
+                                  const Gap(12),
+                                  //  const Spacer(),
+                                  Image.asset(
+                                    "assets/icons/candle.png",
+                                    height: 22,
+                                  )
+                                ],
+                              ),
+                              Text(
+                                salesController.user.email ?? "",
+                                style: const TextStyle(
+                                  color: Color(0xFFACACAC),
+                                  fontSize: 14,
+                                  fontFamily: 'SF Pro Text',
+                                  fontWeight: FontWeight.w300,
+                                  // //height: 0,
+                                  // letterSpacing: -0.56,
                                 ),
-                                const Gap(12),
-                                //  const Spacer(),
-                                Image.asset(
-                                  "assets/icons/candle.png",
-                                  height: 22,
-                                )
-                              ],
-                            ),
-                            const Text(
-                              // ownerController.user.email ?? "",
-                              '',
-                              style: TextStyle(
-                                color: Color(0xFFACACAC),
-                                fontSize: 14,
-                                fontFamily: 'SF Pro Text',
-                                fontWeight: FontWeight.w300,
-                                // //height: 0,
-                                // letterSpacing: -0.56,
+                                overflow: TextOverflow.ellipsis,
                               ),
-                            ),
-                            const Text(
-                              'Sales',
-                              style: TextStyle(
-                                color: Color(0xFFFF5789),
-                                fontSize: 16,
-                                fontFamily: 'SF Pro Text',
-                                fontWeight: FontWeight.w500,
-                                // //height: 0,
-                                // letterSpacing: -0.64,
-                              ),
-                            )
-                          ],
+                              const Text(
+                                'Sales',
+                                style: TextStyle(
+                                  color: Color(0xFFFF5789),
+                                  fontSize: 16,
+                                  fontFamily: 'SF Pro Text',
+                                  fontWeight: FontWeight.w500,
+                                  // //height: 0,
+                                  // letterSpacing: -0.64,
+                                ),
+                              )
+                            ],
+                          ),
                         )
                       ],
                     ));

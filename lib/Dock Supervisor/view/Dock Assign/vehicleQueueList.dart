@@ -5,7 +5,6 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/vehicle.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/View/assignChamber.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
-import 'package:moolwmsstore/Dock%20Supervisor/widget/commonDropDown.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:moolwmsstore/utils/globals.dart';
@@ -28,10 +27,6 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
       "title": "Status",
       "flex": 1,
     },
-    {
-      "title": "View",
-      "flex": 1,
-    },
   ];
 
   final List dataList = [
@@ -39,7 +34,6 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
     {"title": "12-06-2024", "flex": 1},
     {"title": "Inward", "flex": 1},
     {"title": "icon2", "flex": 1},
-    {"title": "icon3", "flex": 1},
   ];
   void _showPopup(BuildContext context) {
     showDialog(
@@ -78,7 +72,7 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                                 ),
                               ),
                             ),
-                          ), 
+                          ),
                           const Gap(30),
                           Row(
                             children: [
@@ -296,24 +290,16 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
     fontWeight: FontWeight.w500,
   );
 
-  final PagingController<int, int> _pagingController =
-      PagingController(firstPageKey: 0);
 
-  @override
-  oninit() {}
+  // @override
+  // oninit() {}
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: CustomFloatingActionButton(
-        title: 'Assign Dock',
-        onTap: () {},
-      ),
-      body: GetBuilder<DmsController>(initState: (s) {
+    return  GetBuilder<DmsController>(initState: (s) {
         Get.find<DmsController>().getAllVehicleListByWarehouseId();
       }, builder: (context) {
-        return SingleChildScrollView(
+        return Expanded(
           child: Column(
             children: [
               const Gap(20),
@@ -370,16 +356,16 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                                   style: subHeaderStyle,
                                 ),
                               )),
-                          const Gap(3),
-                          Expanded(
-                              flex: 1,
-                              child: Container(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  tags[4]["title"],
-                                  style: subHeaderStyle,
-                                ),
-                              )),
+                          // const Gap(3),
+                          // Expanded(
+                          //     flex: 1,
+                          //     child: Container(
+                          //       alignment: Alignment.center,
+                          //       child: Text(
+                          //         tags[4]["title"],
+                          //         style: subHeaderStyle,
+                          //       ),
+                          //     )),
                         ]).paddingSymmetric(horizontal: 20),
                         Expanded(
                           child: GetBuilder<DmsController>(
@@ -478,23 +464,26 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                                                         ),
                                                       ));
                                                 }
-
+          
                                                 if (dataList[index]["title"] ==
                                                     "Inward") {
                                                   return Expanded(
                                                       flex: dataList[index]
                                                           ["flex"],
-                                                      child: Text(
-                                                        entry.movement ?? "",
-                                                        style: const TextStyle(
-                                                          color:
-                                                              Color(0xFF353535),
-                                                          fontSize: 12,
-                                                          fontFamily:
-                                                              'SF Pro Text',
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          //height: 0,
+                                                      child: Center(
+                                                        child: Text(
+                                                          entry.movement ?? "",
+                                                          style:
+                                                              const TextStyle(
+                                                            color: Color(
+                                                                0xFF353535),
+                                                            fontSize: 12,
+                                                            fontFamily:
+                                                                'SF Pro Text',
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            //height: 0,
+                                                          ),
                                                         ),
                                                       ));
                                                 }
@@ -541,7 +530,7 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                                                     ),
                                                   );
                                                 }
-
+          
                                                 if (dataList[index]["title"] ==
                                                         "icon2" &&
                                                     entry.vehicle_status ==
@@ -591,35 +580,10 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                                                     ),
                                                   );
                                                 }
-
+          
                                                 return Expanded(
                                                   flex: tags[index]["flex"],
-                                                  child: InkWell(
-                                                    onTap: () {
-                                                      _showPopup(context);
-                                                    },
-                                                    child: Container(
-                                                      height: 20,
-                                                      width: 20,
-                                                      decoration:
-                                                          ShapeDecoration(
-                                                        color: const Color(
-                                                            0xFFFAF9FF),
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5)),
-                                                        image:
-                                                            const DecorationImage(
-                                                          image: AssetImage(
-                                                              "assets/images/eye.png"),
-                                                          fit: BoxFit.contain,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
+                                                  child: Container(),
                                                 );
                                               }),
                                             ),
@@ -630,16 +594,13 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                           }),
                         ),
                       ],
-                    ).paddingSymmetric(
-                        horizontal: Dimensions.horizontalBodyPad,
-                        vertical: Dimensions.vericalBodyPad),
+                    ),
                   ),
                 ),
               ),
             ],
           ),
         );
-      }),
-    );
+      });
   }
 }
