@@ -32,6 +32,19 @@ class _VehicleListScreenState extends State<VehicleListScreen> {
     {"title": "icon2", "flex": 1},
   ];
   bool isSelected = false;
+  TextStyle subHeaderStyle = const TextStyle(
+    color: Color(0xFF5A57FF),
+    fontSize: 12,
+    fontFamily: 'SF Pro Text',
+    fontWeight: FontWeight.w400,
+  );
+  TextStyle headerStyle = const TextStyle(
+    color: Color(0xFF353535),
+    fontSize: 12,
+    fontFamily: 'SF Pro Text',
+    fontWeight: FontWeight.w500,
+  );
+  static const _pageSize = 20;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,34 +146,47 @@ class _VehicleListScreenState extends State<VehicleListScreen> {
                 ),
               ],
             ),
-            const Gap(20),
-            Row(
-              children: List.generate(tags.length, (index) {
-                if (tags[index]["title"] == "icon") {
-                  return Expanded(
-                    flex: tags[index]["flex"],
-                    child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.more_horiz,
-                          color: Colors.white,
-                        )),
-                  );
-                }
-                return Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Expanded(
-                      flex: tags[index]["flex"],
-                      child: Text(
-                        tags[index]["title"],
-                        style: const TextStyle(
-                          color: Color(0xFF5A57FF),
-                          fontWeight: FontWeight.w700,
-                        ),
-                      )),
-                );
-              }),
-            ),
+            const Gap(10),
+            Row(children: [
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      tags[0]["title"],
+                      style: subHeaderStyle,
+                    ),
+                  )),
+              const Gap(3),
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    child: Text(
+                      tags[1]["title"],
+                      style: subHeaderStyle,
+                    ),
+                  )),
+              const Gap(3),
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    child: Text(
+                      tags[2]["title"],
+                      style: subHeaderStyle,
+                    ),
+                  )),
+              const Gap(3),
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      tags[3]["title"],
+                      style: subHeaderStyle,
+                    ),
+                  )),
+              const Gap(3),
+            ]).paddingSymmetric(horizontal: 8),
             Expanded(
               child: GetBuilder<SecurityGuardController>(initState: (state) {
                 Get.find<SecurityGuardController>().getAllVehicleList();

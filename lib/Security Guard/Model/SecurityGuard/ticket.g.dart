@@ -9,37 +9,37 @@ part of 'ticket.dart';
 _$GetAllTicketListBySecurityGuardImpl
     _$$GetAllTicketListBySecurityGuardImplFromJson(Map<String, dynamic> json) =>
         _$GetAllTicketListBySecurityGuardImpl(
-          id: (json['id'] as num?)?.toInt(),
+          indent_number: json['indent_number'] as String?,
           ticket_generate_by: (json['ticket_generate_by'] as num?)?.toInt(),
-          ticket_verify_by: json['ticket_verify_by'] as String?,
-          visit_ticket_number: json['visit_ticket_number'] as String?,
+          employee_id: json['employee_id'] as String?,
           visitor_name: json['visitor_name'] as String?,
           visitor_ph_number: json['visitor_ph_number'] as String?,
-          purpose_of_visit: json['purpose_of_visit'] as String?,
-          id_proof: json['id_proof'] as String?,
-          in_out_status: json['in_out_status'] as String?,
-          remarks: json['remarks'] as String?,
-          status: json['status'],
+          does_have_vehicle: json['does_have_vehicle'] as String?,
+          vehicle_number: json['vehicle_number'] as String?,
+          vehicle_types: json['vehicle_types'] as String?,
+          material_inside: json['material_inside'] as String?,
+          products: json['products'] as String?,
+          status: json['status'] as String?,
+          warehouse_id: (json['warehouse_id'] as num?)?.toInt(),
           created_at: json['created_at'] == null
               ? null
               : DateTime.parse(json['created_at'] as String),
-          updated_at: json['updated_at'],
         );
 
 Map<String, dynamic> _$$GetAllTicketListBySecurityGuardImplToJson(
         _$GetAllTicketListBySecurityGuardImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'indent_number': instance.indent_number,
       'ticket_generate_by': instance.ticket_generate_by,
-      'ticket_verify_by': instance.ticket_verify_by,
-      'visit_ticket_number': instance.visit_ticket_number,
+      'employee_id': instance.employee_id,
       'visitor_name': instance.visitor_name,
       'visitor_ph_number': instance.visitor_ph_number,
-      'purpose_of_visit': instance.purpose_of_visit,
-      'id_proof': instance.id_proof,
-      'in_out_status': instance.in_out_status,
-      'remarks': instance.remarks,
+      'does_have_vehicle': instance.does_have_vehicle,
+      'vehicle_number': instance.vehicle_number,
+      'vehicle_types': instance.vehicle_types,
+      'material_inside': instance.material_inside,
+      'products': instance.products,
       'status': instance.status,
+      'warehouse_id': instance.warehouse_id,
       'created_at': instance.created_at?.toIso8601String(),
-      'updated_at': instance.updated_at,
     };

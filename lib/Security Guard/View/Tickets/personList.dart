@@ -342,6 +342,7 @@ class _PersonsListScreenState extends State<PersonsListScreen> {
                             ),
                           );
                         });
+           
               }),
             ),
           ],
