@@ -45,22 +45,19 @@ class _VisitorListScreenState extends State<VisitorListScreen> {
       PagingController(firstPageKey: 1);
   Future<void> _fetchPage(int pageKey) async {
     try {
-    await getAllVisitorList(pageKey).then((v){
+      await getAllVisitorList(pageKey).then((v) {
+        if (v != null) {
+          final newItems = v;
 
-        if(v != null){
-   final newItems = v ;
-
-  final isLastPage = newItems.length < _pageSize;
-      if (isLastPage) {
-        _pagingController.appendLastPage(newItems);
-      } else {
-        final nextPageKey = pageKey + newItems.length;
-        _pagingController.appendPage(newItems, nextPageKey);
-      }
+          final isLastPage = newItems.length < _pageSize;
+          if (isLastPage) {
+            _pagingController.appendLastPage(newItems);
+          } else {
+            final nextPageKey = pageKey + newItems.length;
+            _pagingController.appendPage(newItems, nextPageKey);
+          }
         }
       });
-
-    
     } catch (error) {
       _pagingController.error = error;
     }
@@ -84,6 +81,19 @@ class _VisitorListScreenState extends State<VisitorListScreen> {
       return null;
     }
   }
+
+  TextStyle subHeaderStyle = const TextStyle(
+    color: Color(0xFF5A57FF),
+    fontSize: 12,
+    fontFamily: 'SF Pro Text',
+    fontWeight: FontWeight.w400,
+  );
+  TextStyle headerStyle = const TextStyle(
+    color: Color(0xFF353535),
+    fontSize: 12,
+    fontFamily: 'SF Pro Text',
+    fontWeight: FontWeight.w500,
+  );
 
   @override
   void initState() {
@@ -152,30 +162,46 @@ class _VisitorListScreenState extends State<VisitorListScreen> {
             ],
           ),
           const Gap(12),
-          Row(
-            children: List.generate(tags.length, (index) {
-              if (tags[index]["title"] == "icon") {
-                return Expanded(
-                  flex: tags[index]["flex"],
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.more_horiz,
-                        color: Colors.white,
-                      )),
-                );
-              }
-              return Expanded(
-                  flex: tags[index]["flex"],
+          Row(children: [
+            Expanded(
+                flex: 1,
+                child: Container(
+                  alignment: Alignment.centerLeft,
                   child: Text(
-                    tags[index]["title"],
-                    style: const TextStyle(
-                      color: Color(0xFF5A57FF),
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ));
-            }),
-          ),
+                    tags[0]["title"],
+                    style: subHeaderStyle,
+                  ),
+                )),
+            const Gap(3),
+            Expanded(
+                flex: 1,
+                child: Container(
+                  child: Text(
+                    tags[1]["title"],
+                    style: subHeaderStyle,
+                  ),
+                )),
+            const Gap(3),
+            Expanded(
+                flex: 1,
+                child: Container(
+                  child: Text(
+                    tags[2]["title"],
+                    style: subHeaderStyle,
+                  ),
+                )),
+            const Gap(3),
+            Expanded(
+                flex: 1,
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    tags[3]["title"],
+                    style: subHeaderStyle,
+                  ),
+                )),
+            const Gap(3),
+          ]).paddingSymmetric(horizontal: 8),
           Expanded(
             child: GetBuilder<SecurityGuardController>(
                 builder: (securityGuardController) {

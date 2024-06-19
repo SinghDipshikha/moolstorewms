@@ -247,6 +247,8 @@ class AddVistorBySecurityGuard extends StatelessWidget {
                     ),
                   ],
                 ).paddingSymmetric(vertical: 8),
+             
+             
                 GetBuilder<SecurityGuardController>(builder: (sgController) {
                   return InkWell(
                     onTap: () {

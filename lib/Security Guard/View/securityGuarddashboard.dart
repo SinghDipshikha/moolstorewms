@@ -377,7 +377,7 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                   ),
                   children: [
                     CurvedLineConatainer(
-                      title: "Add Indent",
+                      title: "Initiate Indent",
                       onTap: () {
                         Get.to(const AddTicketScreen(),
                             id: securityGuardNavigation);
@@ -512,7 +512,8 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                     CurvedLineConatainer(
                       title: "Add Labour",
                       onTap: () {
-                        Get.to(const AddLabour(), id: securityGuardNavigation);
+                        Get.to(AddLabourBySecurityGuard(),
+                            id: securityGuardNavigation);
                       },
                     ),
                     CurvedLineConatainer(
@@ -857,7 +858,7 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Create\n',
+                                    'Initiate\n',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 18,
@@ -972,7 +973,8 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                 flex: 1,
                 child: InkWell(
                   onTap: () {
-                    Get.to(const AddLabour(), id: securityGuardNavigation);
+                    Get.to(AddLabourBySecurityGuard(),
+                        id: securityGuardNavigation);
                   },
                   child: Container(
                     height: 106,
@@ -1499,7 +1501,7 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
             ).paddingSymmetric(vertical: 8),
             InkWell(
               onTap: () {
-                Get.to(const VisitorListScreen(), id: securityGuardNavigation);
+                Get.to(const LabourListScreen(), id: securityGuardNavigation);
               },
               child: Container(
                 width: double.infinity,

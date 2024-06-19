@@ -6,12 +6,14 @@ import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Sales/Sales.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addLabour.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addMaterialCount.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addPersonCount.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addVehicleCount.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addVisitor.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addVisitorCount.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/employeeEntry.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/labour.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/material.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/person.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/secGuardDetail.dart';
@@ -42,10 +44,12 @@ class SecurityGuardController extends GetxController {
 
   List<Visitor> allVisitorList = [];
   List<Ticket> allTicketList = [];
+  List<LabourEntry> allLabourList = [];
   List<MaterialEntry> allMaterialList = [];
   List<VehicleEntry> allVehicleList = [];
   List<VehicleCount> allVehicleCount = [];
   List<MaterialCount> allMaterialCount = [];
+
   List<PersonCount> allPersonCount = [];
   List<VisitorCount> allVisitorCount = [];
   List<Person> allPersonList = [];
@@ -218,12 +222,31 @@ class SecurityGuardController extends GetxController {
     addVisitorModel = addVisitorModel.copyWith(
         ticket_generate_by: user.id, in_out_status: "IN");
     await apiClient
-        .postData("user/addVisitorBySales", addVisitorModel.toJson())
+        .postData("securityGuard/addVisitor", addVisitorModel.toJson())
         .then((v) {
       if (v.data["message"] == "Visitor Checked IN successfully") {
         isGetVisitorCountLoading = false;
         Get.off(const VisitorAddedSuccessfully(), id: hrNavigationKey);
         addVisitorModel = const AddVisitorBySecurityGaurd();
+      }
+    });
+    isGetPersonCountLoading = false;
+    update();
+  }
+
+  AddLabourBySecurityGaurd addLabourModel = const AddLabourBySecurityGaurd();
+
+  addLabour() async {
+    isCheckIn = true;
+    update();
+
+    await apiClient
+        .postData("labour/addLabourBySecurityGuard", addVisitorModel.toJson())
+        .then((v) {
+      if (v.data["message"] == "Labour Checked IN successfully") {
+        isGetVisitorCountLoading = false;
+
+        addLabourModel = const AddLabourBySecurityGaurd();
       }
     });
     isGetPersonCountLoading = false;
@@ -257,12 +280,21 @@ class SecurityGuardController extends GetxController {
   //   });
   // }
 
-  List<Ticket> tickets = [];
+  List<Ticket> allTicketsList = [];
   void getAllTicketList() {
-    apiClient.getData("ticket/getAllTicketsList").then((value) {
+    apiClient.postData("securityGuard/indentList?recordsPerPage=25&next=1", {
+      {
+        "indent_number": "",
+        "vehicle_number": "",
+        "driver_name": "",
+        "warehouse_id": 1,
+        "start_date": "",
+        "end_date": ""
+      }
+    }).then((value) {
       if (value.data["message"] == "") {
         List x = value.data["result"];
-        tickets = x.map((e) => Ticket.fromJson(e)).toList();
+        allTicketsList = x.map((e) => Ticket.fromJson(e)).toList();
         isloading = false;
         update();
       } else {
@@ -389,15 +421,19 @@ class SecurityGuardController extends GetxController {
   }
 
   void getAllLabourList() {
-    apiClient
-        .getData(
-      "material/list",
-    )
-        .then((value) {
-      if (value.data["message"] == "Data Retrieved Successfully!") {
-        Snacks.greenSnack("Data Retrieved Successfully!");
+    apiClient.postData("labour/list?recordsPerPage=3&next=1", {
+      {
+        "name": "",
+        "phone_no": "",
+        "start_date": "",
+        "end_date": "",
+        "warehouse_id": currentlySelectedWarehouse!['id'],
+      }
+    }).then((value) {
+      if (value.data["message"] == "Labour Data Retrieved Successfully!") {
+        Snacks.greenSnack("Labour Data Retrieved Successfully!");
         List x = value.data["result"];
-        allMaterialList = x.map((e) => MaterialEntry.fromJson(e)).toList();
+        allLabourList = x.map((e) => LabourEntry.fromJson(e)).toList();
         print(allMaterialList);
         isloading = false;
         update();

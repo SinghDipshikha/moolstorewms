@@ -46,106 +46,97 @@ class DockQueueListScreen extends StatelessWidget {
       Get.find<DmsController>().getAllDockListByWarehouseId();
     }, builder: (context) {
       return Expanded(
-        child: Column(
-          children: [
-            Center(
-              child: Container(
-                decoration: ShapeDecoration(
-                  color: const Color(0xFFFAF9FF),
-                  shape: RoundedRectangleBorder(
-                    side: const BorderSide(width: 1, color: Color(0x195E57FC)),
-                    borderRadius: BorderRadius.circular(18),
-                  ),
-                ),
-                child: Column(
-                  children: [
-                    Row(children: [
-                      Expanded(
-                          flex: 1,
-                          child: Container(
-                            child: Text(
-                              tags[0]["title"],
-                              style: subHeaderStyle,
+        child: Container(
+          decoration: ShapeDecoration(
+            color: const Color(0xFFFAF9FF),
+            shape: RoundedRectangleBorder(
+              side: const BorderSide(width: 1, color: Color(0x195E57FC)),
+              borderRadius: BorderRadius.circular(18),
+            ),
+          ),
+          child: Column(
+            children: [
+              Row(children: [
+                Expanded(
+                    flex: 1,
+                    child: Container(
+                      child: Text(
+                        tags[0]["title"],
+                        style: subHeaderStyle,
+                      ),
+                    )),
+                const Gap(3),
+                Expanded(
+                    flex: 1,
+                    child: Container(
+                      child: Text(
+                        tags[1]["title"],
+                        style: subHeaderStyle,
+                      ),
+                    )),
+                const Gap(3),
+                Expanded(
+                    flex: 1,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                        tags[2]["title"],
+                        style: subHeaderStyle,
+                      ),
+                    )),
+                const Gap(3),
+                Expanded(
+                    flex: 1,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                        tags[3]["title"],
+                        style: subHeaderStyle,
+                      ),
+                    )),
+              ]).paddingSymmetric(horizontal: 8),
+              Expanded(
+                child: GetBuilder<DmsController>(builder: (dmsController) {
+                  return dmsController.dockList.isEmpty
+                      ? const Center(
+                          child: Text(
+                            'No data found',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
                             ),
-                          )),
-                      const Gap(3),
-                      Expanded(
-                          flex: 1,
-                          child: Container(
-                            child: Text(
-                              tags[1]["title"],
-                              style: subHeaderStyle,
-                            ),
-                          )),
-                      const Gap(3),
-                      Expanded(
-                          flex: 1,
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              tags[2]["title"],
-                              style: subHeaderStyle,
-                            ),
-                          )),
-                      const Gap(3),
-                      Expanded(
-                          flex: 1,
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              tags[3]["title"],
-                              style: subHeaderStyle,
-                            ),
-                          )),
-                    ]).paddingSymmetric(horizontal: 8),
-                    Expanded(
-                      child:
-                          GetBuilder<DmsController>(builder: (dmsController) {
-                        return dmsController.dockList.isEmpty
-                            ? const Center(
-                                child: Text(
-                                  'No data found',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
+                          ),
+                        )
+                      : ListView.builder(
+                          itemCount: dmsController.dockList.length,
+                          itemBuilder: (context, i) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 50,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFFAF9FF),
+                                  shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                        width: 1, color: Color(0x195A57FF)),
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
                                 ),
-                              )
-                            : ListView.builder(
-                                itemCount: dmsController.dockList.length,
-                                itemBuilder: (context, i) {
-                                  return Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      height: 50,
-                                      decoration: ShapeDecoration(
-                                        color: const Color(0xFFFAF9FF),
-                                        shape: RoundedRectangleBorder(
-                                          side: const BorderSide(
-                                              width: 1,
-                                              color: Color(0x195A57FF)),
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                      ),
-                                      child: const Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 12, vertical: 12),
-                                        child: Row(
-                                          children: [],
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                });
-                      }),
-                    ),
-                  ],
-                ),
+                                child: const Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 12, vertical: 12),
+                                  child: Row(
+                                    children: [],
+                                  ),
+                                ),
+                              ),
+                            );
+                          });
+                }),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
     });

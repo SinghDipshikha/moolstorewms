@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
-import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/material.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/labour.dart';
 
 //@RoutePage()
 class LabourListScreen extends StatefulWidget {
@@ -16,8 +16,8 @@ class _LabourListScreenState extends State<LabourListScreen> {
   @override
   final List tags = [
     {"title": "Labour Name", "flex": 1},
-    {"title": "Mobile No.", "flex": 2},
     {"title": "Date & Time", "flex": 2},
+    {"title": "Mobile No.", "flex": 2},
     {
       "title": "Status",
       "flex": 1,
@@ -25,8 +25,8 @@ class _LabourListScreenState extends State<LabourListScreen> {
   ];
   final List dataList = [
     {"title": "K. Printer", "flex": 1},
-    {"title": "0000000000", "flex": 2},
     {"title": "24-06-2023 10:35 AM", "flex": 2},
+    {"title": "0000000000", "flex": 2},
     {"title": "icon", "flex": 1},
   ];
 
@@ -50,7 +50,7 @@ class _LabourListScreenState extends State<LabourListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Material List',
+          'Labour List',
           style: TextStyle(
             color: Colors.white,
             fontSize: 18,
@@ -190,7 +190,7 @@ class _LabourListScreenState extends State<LabourListScreen> {
             ]).paddingSymmetric(horizontal: 8),
             Expanded(
               child: GetBuilder<SecurityGuardController>(initState: (state) {
-                Get.find<SecurityGuardController>().getAllMaterialList();
+                Get.find<SecurityGuardController>().getAllLabourList();
               }, builder: (securityGuardController) {
                 return securityGuardController.allMaterialList.isEmpty
                     ? const Center(
@@ -208,8 +208,8 @@ class _LabourListScreenState extends State<LabourListScreen> {
                         itemCount:
                             securityGuardController.allMaterialList.length,
                         itemBuilder: (context, i) {
-                          MaterialEntry entry =
-                              securityGuardController.allMaterialList[i];
+                          LabourEntry entry =
+                              securityGuardController.allLabourList[i];
                           return Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Container(
@@ -234,23 +234,7 @@ class _LabourListScreenState extends State<LabourListScreen> {
                                       return Expanded(
                                           flex: dataList[index]["flex"],
                                           child: Text(
-                                            entry.product_name ?? "",
-                                            style: const TextStyle(
-                                              color: Color(0xFF353535),
-                                              fontSize: 12,
-                                              fontFamily: 'SF Pro Text',
-                                              fontWeight: FontWeight.w500,
-                                              //height: 0,
-                                              letterSpacing: -0.48,
-                                            ),
-                                          ));
-                                    }
-                                    if (dataList[index]["title"] ==
-                                        "1200 Pcs") {
-                                      return Expanded(
-                                          flex: dataList[index]["flex"],
-                                          child: Text(
-                                            entry.qty.toString() ?? "",
+                                            entry.full_name ?? "",
                                             style: const TextStyle(
                                               color: Color(0xFF353535),
                                               fontSize: 12,
@@ -278,6 +262,24 @@ class _LabourListScreenState extends State<LabourListScreen> {
                                             ),
                                           ));
                                     }
+                                    if (dataList[index]["title"] ==
+                                        "0000000000") {
+                                      return Expanded(
+                                          flex: dataList[index]["flex"],
+                                          child: Text(
+                                            entry.mobile_number.toString() ??
+                                                "",
+                                            style: const TextStyle(
+                                              color: Color(0xFF353535),
+                                              fontSize: 12,
+                                              fontFamily: 'SF Pro Text',
+                                              fontWeight: FontWeight.w500,
+                                              //height: 0,
+                                              letterSpacing: -0.48,
+                                            ),
+                                          ));
+                                    }
+
                                     if (dataList[index]["title"] == "icon" &&
                                         entry.status == "IN") {
                                       return Expanded(
