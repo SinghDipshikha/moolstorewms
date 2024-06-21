@@ -6,10 +6,6 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/employeeEntry.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/registrationEntryReview.dart';
-import 'package:moolwmsstore/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart';
-import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
-import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
-import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 //@RoutePage()
@@ -42,29 +38,27 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      floatingActionButton: CustomFloatingActionButton(
-        title: 'Scan QR',
-        leftIcon: 'assets/icons/qr_icon.png',
-        color: const Color(0xFF5A57FF),
-        textColor: Colors.white,
-        onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const RegistrationTypeOptions(),
-          ));
-        },
-      ),
-      appBar:AppBar(
-          title: const Text(
-            'Register List',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontFamily: 'SF Pro Display',
-              fontWeight: FontWeight.w500,
-            ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      // floatingActionButton: CustomFloatingActionButton(
+      //   title: 'Scan QR',
+      //   leftIcon: 'assets/icons/qr_icon.png',
+      //   color: const Color(0xFF5A57FF),
+      //   textColor: Colors.white,
+      //   onTap: () {
+      //     Get.to(const RegistrationTypeOptions(), id: securityGuardNavigation);
+      //   },
+      // ),
+      appBar: AppBar(
+        title: const Text(
+          'Register List',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontFamily: 'SF Pro Display',
+            fontWeight: FontWeight.w500,
           ),
         ),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -346,9 +340,6 @@ class _RegistrationListScreenState extends State<RegistrationListScreen> {
                                       );
                                     }),
                                   ),
-                               
-                               
-                               
                                 ),
                               ),
                             ),
