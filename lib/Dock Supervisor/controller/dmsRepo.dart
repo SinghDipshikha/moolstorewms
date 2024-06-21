@@ -1,6 +1,7 @@
-import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
-import 'package:moolwmsstore/Hr/Model/careerDetailsRequest.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/Model/dock.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Dmsrepo {
@@ -8,9 +9,16 @@ class Dmsrepo {
   final SharedPreferences sharedPreferences;
   Dmsrepo({required this.sharedPreferences, required this.apiClient});
 
-  
+  Future<List<Dock>?> getUnassignedDocks() async {
+    var res = await apiClient.getData(
+        "dock/getDocksNotAssigned/${Get.find<DmsController>().currentlySelectedWarehouse!["id"]}");
+    if (res.data["message"] == "Docks List found") {
+      return (res.data["result"] as List).map((e) => Dock.fromJson(e)).toList();
+    } else {
+      return null;
+    }
+  }
 
-  
 // Future<bool> addContactDetails(
 //       {var hrID,
 //       required var userID,

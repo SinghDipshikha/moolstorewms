@@ -24,7 +24,7 @@ class DmsController extends GetxController {
       required this.user,
       this.isOwner = false});
 
-  @override
+
   List<Vehicle> vehicleList = [];
   List<Dock> dockList = [];
   @override

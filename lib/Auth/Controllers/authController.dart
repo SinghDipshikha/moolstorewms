@@ -13,7 +13,6 @@ import 'package:moolwmsstore/Auth/View/signUp.dart';
 import 'package:moolwmsstore/Auth/View/welcome.dart';
 import 'package:moolwmsstore/Common%20Data/Model/Auth/signupfield.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
-import 'package:moolwmsstore/Owner/Controller/ownerRepo.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/DMS.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsRepo.dart';
@@ -21,6 +20,7 @@ import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
+import 'package:moolwmsstore/Owner/Controller/ownerRepo.dart';
 import 'package:moolwmsstore/Owner/Owner.dart';
 import 'package:moolwmsstore/Sales/Sales.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
@@ -75,7 +75,15 @@ class AuthController extends GetxController {
         .getData("user/userInfo/${user!.id}")
         .whenComplete(() {})
         .then((v) {
-      if (v.data["result"]["user"]["status"] == 0) {
+      Logger().i(v.data["status"]);
+      if (v.data["status"] == false) {
+        box.clear();
+        sharedPreferences.clear();
+        Snacks.redSnack("Something is wrong, Please Login Again");
+
+      }
+      else{
+          if (v.data["result"]["user"]["status"] == 0) {
         Get.offAll(const Blocked());
         return;
       }
@@ -168,12 +176,17 @@ class AuthController extends GetxController {
           }
         }
       }
+
+
+      }
+
+    
     });
   }
 
   splash() async {
     user = box.get("user");
-    Logger().i(user);
+
     if (user != null && organiosationCode != null) {
       sharedPreferences.setString(AppConstants.orgCode, organiosationCode!);
       Get.find<ApiClient>().updateHeader();

@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/View/Dock%20Assign/dockQueueList.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/View/Dock%20Assign/vehicleQueueList.dart';
+import 'package:moolwmsstore/utils/dimensions.dart';
 
 class CustomToggleWidget extends StatefulWidget {
   const CustomToggleWidget({super.key});
@@ -44,7 +46,6 @@ class _CustomToggleWidgetState extends State<CustomToggleWidget>
       ),
       body: Column(
         children: [
-          const Gap(10),
           Container(
             height: 50,
             padding: const EdgeInsets.all(4),
@@ -70,6 +71,7 @@ class _CustomToggleWidgetState extends State<CustomToggleWidget>
               ],
             ),
           ),
+          const Gap(12),
           Expanded(
             child: TabBarView(
               controller: _tabController,
@@ -80,7 +82,9 @@ class _CustomToggleWidgetState extends State<CustomToggleWidget>
             ),
           ),
         ],
-      ),
+      ).paddingSymmetric(
+          vertical: Dimensions.vericalBodyPad,
+          horizontal: Dimensions.horizontalBodyPad),
     );
   }
 }

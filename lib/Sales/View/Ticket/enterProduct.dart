@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:moolwmsstore/Sales/View/common/widgets/commonTextField.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/View/common/tagContainer.dart';
+import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:number_text_input_formatter/number_text_input_formatter.dart';
 // import 'package:number_text_input_formatter/number_text_input_formatter.dart';
 
@@ -116,20 +117,20 @@ class _EnterProductViewState extends State<EnterProductView> {
                   Expanded(
                     child: InkWell(
                       onTap: () async {
-                        await showDatePicker(
-                          
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(2000),
-                          lastDate: DateTime(2101),
-                        ).then((value) {
-                          setState(() {
-                            mfgpicked = value;
-                            salesController.ticketProducts[widget.index] =
-                                salesController.ticketProducts[widget.index]
-                                    .copyWith(mfg_date: mfgpicked);
-                          });
-                        });
+                        AppConstants.pickDate(context: context).then(
+                          (value) {
+                            if (value != null) {
+                              setState(() {
+                                mfgpicked = value;
+                                salesController.ticketProducts[widget.index] =
+                                    salesController.ticketProducts[widget.index]
+                                        .copyWith(mfg_date: mfgpicked);
+                              });
+
+                              // arrivaldate = value;
+                            }
+                          },
+                        );
                       },
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -187,19 +188,20 @@ class _EnterProductViewState extends State<EnterProductView> {
                   Expanded(
                     child: InkWell(
                       onTap: () async {
-                        await showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(2000),
-                          lastDate: DateTime(2101),
-                        ).then((value) {
-                          setState(() {
-                            exppicked = value;
-                            salesController.ticketProducts[widget.index] =
-                                salesController.ticketProducts[widget.index]
-                                    .copyWith(expiry_date: exppicked);
-                          });
-                        });
+                        AppConstants.pickDate(context: context).then(
+                          (value) {
+                            if (value != null) {
+                              setState(() {
+                                exppicked = value;
+                                salesController.ticketProducts[widget.index] =
+                                    salesController.ticketProducts[widget.index]
+                                        .copyWith(expiry_date: exppicked);
+                              });
+
+                              // arrivaldate = value;
+                            }
+                          },
+                        );
                       },
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

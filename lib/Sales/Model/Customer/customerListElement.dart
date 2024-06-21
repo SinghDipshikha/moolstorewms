@@ -13,7 +13,7 @@ class CustomerListElement with _$CustomerListElement {
     String? phone,
     String? email,
     String? company_name,
-    String? avatar_url,
+    String? avatar,
     int? status,
   }) = _CustomerListElement;
 

@@ -16,7 +16,7 @@ _$CustomerListElementImpl _$$CustomerListElementImplFromJson(
       phone: json['phone'] as String?,
       email: json['email'] as String?,
       company_name: json['company_name'] as String?,
-      avatar_url: json['avatar_url'] as String?,
+      avatar: json['avatar'] as String?,
       status: (json['status'] as num?)?.toInt(),
     );
 
@@ -30,6 +30,6 @@ Map<String, dynamic> _$$CustomerListElementImplToJson(
       'phone': instance.phone,
       'email': instance.email,
       'company_name': instance.company_name,
-      'avatar_url': instance.avatar_url,
+      'avatar': instance.avatar,
       'status': instance.status,
     };

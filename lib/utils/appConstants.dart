@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:moolwmsstore/Common%20Data/Model/LanaguageModel.dart';
+import 'package:moolwmsstore/View/Styles/Styles..dart';
+import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 
 // DateFormat.yMd().add_jm()        -> 7/10/1996 5:08 PM
 class AppConstants {
@@ -25,6 +27,94 @@ class AppConstants {
     LanguageModel(languageCode: 'kn', languageName: 'ಕನ್ನಡ'),
     LanguageModel(languageCode: 'te', languageName: 'తెలుగు'),
   ];
+
+  static Future<DateTime?> pickDate({required BuildContext context}) async {
+    return showOmniDateTimePicker(
+      type: OmniDateTimePickerType.date,
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: AppColors.primaryColor,
+      ),
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1600).subtract(const Duration(days: 3652)),
+      lastDate: DateTime.now().add(
+        const Duration(days: 3652),
+      ),
+      borderRadius: const BorderRadius.all(Radius.circular(16)),
+      constraints: const BoxConstraints(
+        maxWidth: 350,
+        maxHeight: 650,
+      ),
+      transitionBuilder: (context, anim1, anim2, child) {
+        return FadeTransition(
+          opacity: anim1.drive(
+            Tween(
+              begin: 0,
+              end: 1,
+            ),
+          ),
+          child: child,
+        );
+      },
+      transitionDuration: const Duration(milliseconds: 200),
+      barrierDismissible: true,
+      selectableDayPredicate: (dateTime) {
+        // Disable 25th Feb 2023
+        if (dateTime == DateTime(2023, 2, 25)) {
+          return false;
+        } else {
+          return true;
+        }
+      },
+    );
+  }
+
+  static Future<DateTime?> pickDateTime({required BuildContext context}) async {
+    return showOmniDateTimePicker(
+      type: OmniDateTimePickerType.date,
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: AppColors.primaryColor,
+      ),
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1600).subtract(const Duration(days: 3652)),
+      lastDate: DateTime.now().add(
+        const Duration(days: 3652),
+      ),
+      is24HourMode: false,
+      isShowSeconds: false,
+      minutesInterval: 1,
+      secondsInterval: 1,
+      borderRadius: const BorderRadius.all(Radius.circular(16)),
+      constraints: const BoxConstraints(
+        maxWidth: 350,
+        maxHeight: 650,
+      ),
+      transitionBuilder: (context, anim1, anim2, child) {
+        return FadeTransition(
+          opacity: anim1.drive(
+            Tween(
+              begin: 0,
+              end: 1,
+            ),
+          ),
+          child: child,
+        );
+      },
+      transitionDuration: const Duration(milliseconds: 200),
+      barrierDismissible: true,
+      selectableDayPredicate: (dateTime) {
+        // Disable 25th Feb 2023
+        if (dateTime == DateTime(2023, 2, 25)) {
+          return false;
+        } else {
+          return true;
+        }
+      },
+    );
+  }
 }
 
 class ColorConstants {

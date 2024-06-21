@@ -7,30 +7,30 @@ part of 'dock.dart';
 // **************************************************************************
 
 _$DockImpl _$$DockImplFromJson(Map<String, dynamic> json) => _$DockImpl(
-      dockId: (json['dockId'] as num?)?.toInt(),
-      dockName: json['dockName'] as String?,
+      dock_id: (json['dock_id'] as num?)?.toInt(),
+      dock_name: json['dock_name'] as String?,
       id: (json['id'] as num?)?.toInt(),
-      vehicleNumber: json['vehicleNumber'] as String?,
-      vehicleStatus: json['vehicleStatus'] as String?,
+      vehicle_number: json['vehicle_number'] as String?,
+      vehicle_status: json['vehicle_status'] as String?,
       movement: json['movement'] as String?,
       isShow: (json['isShow'] as num?)?.toInt(),
-      createdAt: json['createdAt'] == null
+      created_at: json['created_at'] == null
           ? null
-          : DateTime.parse(json['createdAt'] as String),
-      updatedAt: json['updatedAt'] == null
+          : DateTime.parse(json['created_at'] as String),
+      updated_at: json['updated_at'] == null
           ? null
-          : DateTime.parse(json['updatedAt'] as String),
+          : DateTime.parse(json['updated_at'] as String),
     );
 
 Map<String, dynamic> _$$DockImplToJson(_$DockImpl instance) =>
     <String, dynamic>{
-      'dockId': instance.dockId,
-      'dockName': instance.dockName,
+      'dock_id': instance.dock_id,
+      'dock_name': instance.dock_name,
       'id': instance.id,
-      'vehicleNumber': instance.vehicleNumber,
-      'vehicleStatus': instance.vehicleStatus,
+      'vehicle_number': instance.vehicle_number,
+      'vehicle_status': instance.vehicle_status,
       'movement': instance.movement,
       'isShow': instance.isShow,
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
+      'created_at': instance.created_at?.toIso8601String(),
+      'updated_at': instance.updated_at?.toIso8601String(),
     };

@@ -11,6 +11,7 @@ _$VehicleImpl _$$VehicleImplFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num?)?.toInt(),
       vehicle_number: json['vehicle_number'] as String?,
       vehicle_status: json['vehicle_status'] as String?,
+      indent_number: json['indent_number'] as String?,
       movement: json['movement'] as String?,
       isShow: (json['isShow'] as num?)?.toInt(),
       created_at: json['created_at'] == null
@@ -26,6 +27,7 @@ Map<String, dynamic> _$$VehicleImplToJson(_$VehicleImpl instance) =>
       'id': instance.id,
       'vehicle_number': instance.vehicle_number,
       'vehicle_status': instance.vehicle_status,
+      'indent_number': instance.indent_number,
       'movement': instance.movement,
       'isShow': instance.isShow,
       'created_at': instance.created_at?.toIso8601String(),

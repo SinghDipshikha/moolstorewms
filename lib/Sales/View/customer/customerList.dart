@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Sales/Model/Customer/customerListElement.dart';
 import 'package:moolwmsstore/Sales/View/common/widgets/customButton.dart';
 import 'package:moolwmsstore/Sales/View/customer/addCustomerScreen.dart';
@@ -28,6 +30,8 @@ class _CustomerListState extends State<CustomerList> {
           .salesRepo
           .getCustomers(recordsPerPage: 20, page: pageKey)
           .then((v) {
+        Logger().i(v);
+
         if (v != null) {
           final isLastPage = v.length < 20;
           if (isLastPage) {
@@ -83,14 +87,12 @@ class _CustomerListState extends State<CustomerList> {
                               "Comapny Name",
                               style: TextStyles.talbleHeadingTitleStyle,
                             )),
+                        const Gap(12),
+                        const CircleAvatar(
+                          radius: 30,
+                          backgroundColor: Colors.transparent,
+                        ),
 
-                        IconButton(
-                            padding: EdgeInsets.zero,
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.more_horiz,
-                              color: Colors.white,
-                            )),
                         // IconButton(
                         //     padding: EdgeInsets.zero,
                         //     onPressed: () {},
@@ -154,20 +156,25 @@ class _CustomerListState extends State<CustomerList> {
                                         style:
                                             TextStyles.talbleContentTextStyle),
                                   )),
-                              IconButton(
-                                  padding: EdgeInsets.zero,
-                                  onPressed: () {
-                                    // Get.to(
-                                    //     CompanyDetail(
-                                    //       company:
-                                    //           salesController.comapnies[i],
-                                    //     ),
-                                    //     id: salesNavigationKey);
-                                  },
-                                  icon: const Icon(
-                                    Icons.visibility,
-                                    color: Colors.black,
-                                  )),
+                              const Gap(12),
+                              CircleAvatar(
+                                radius: 30.0,
+                                backgroundColor:
+                                    const Color.fromARGB(255, 238, 237, 237),
+                                backgroundImage: item.avatar != null
+                                    ? null
+                                    : const AssetImage(
+                                        "assets/icons/customerAvatar.png"),
+                                child: item.avatar != null
+                                    ? ClipRRect(
+                                        borderRadius: BorderRadius.circular(30),
+                                        child: Image.network(
+                                          item.avatar.toString(),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      )
+                                    : null,
+                              ),
                             ],
                           ),
                         ).paddingSymmetric(vertical: 4, horizontal: 0);

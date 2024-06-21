@@ -155,20 +155,23 @@ class SalesController extends GetxController {
 
   IndentViewModel? indent;
   viewindent({required String indentId}) async {
+    loading = true;
     if (indentId == "") {
       return;
     }
-    loading = true;
 
     await apiClient.getData("sales/poIndentDetails/$indentId").then((value) {
-      if (value.data["message"] ==
-          "Product details fetched successfully for given Indent id") {
+      if (value.data["message"]
+          .toString()
+          .contains("Indent details found Successfully")) {
         indent = IndentViewModel.fromJson(value.data["result"][0]);
         Logger().i(indent);
+        loading = false;
+        update();
+      } else {
+        loading = false;
+        Get.back(id: salesNavigationKey);
       }
-
-      loading = false;
-      update();
     });
   }
 
@@ -215,16 +218,7 @@ class SalesController extends GetxController {
     });
   }
 
-  // Future<bool> addCompanyByDialog(Company company) async {
-  //   var value =
-  //       await apiClient.postData("company/addCompany", company.toJson());
-  //   if (value.data["message"] ==
-  //       "Seller company and details added successfully") {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
+
 
   bool imageUploading = false;
 

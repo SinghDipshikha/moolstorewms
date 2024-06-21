@@ -27,7 +27,7 @@ mixin _$CustomerListElement {
   String? get phone => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get company_name => throw _privateConstructorUsedError;
-  String? get avatar_url => throw _privateConstructorUsedError;
+  String? get avatar => throw _privateConstructorUsedError;
   int? get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -50,7 +50,7 @@ abstract class $CustomerListElementCopyWith<$Res> {
       String? phone,
       String? email,
       String? company_name,
-      String? avatar_url,
+      String? avatar,
       int? status});
 }
 
@@ -74,7 +74,7 @@ class _$CustomerListElementCopyWithImpl<$Res, $Val extends CustomerListElement>
     Object? phone = freezed,
     Object? email = freezed,
     Object? company_name = freezed,
-    Object? avatar_url = freezed,
+    Object? avatar = freezed,
     Object? status = freezed,
   }) {
     return _then(_value.copyWith(
@@ -106,9 +106,9 @@ class _$CustomerListElementCopyWithImpl<$Res, $Val extends CustomerListElement>
           ? _value.company_name
           : company_name // ignore: cast_nullable_to_non_nullable
               as String?,
-      avatar_url: freezed == avatar_url
-          ? _value.avatar_url
-          : avatar_url // ignore: cast_nullable_to_non_nullable
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
       status: freezed == status
           ? _value.status
@@ -134,7 +134,7 @@ abstract class _$$CustomerListElementImplCopyWith<$Res>
       String? phone,
       String? email,
       String? company_name,
-      String? avatar_url,
+      String? avatar,
       int? status});
 }
 
@@ -156,7 +156,7 @@ class __$$CustomerListElementImplCopyWithImpl<$Res>
     Object? phone = freezed,
     Object? email = freezed,
     Object? company_name = freezed,
-    Object? avatar_url = freezed,
+    Object? avatar = freezed,
     Object? status = freezed,
   }) {
     return _then(_$CustomerListElementImpl(
@@ -188,9 +188,9 @@ class __$$CustomerListElementImplCopyWithImpl<$Res>
           ? _value.company_name
           : company_name // ignore: cast_nullable_to_non_nullable
               as String?,
-      avatar_url: freezed == avatar_url
-          ? _value.avatar_url
-          : avatar_url // ignore: cast_nullable_to_non_nullable
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
       status: freezed == status
           ? _value.status
@@ -211,7 +211,7 @@ class _$CustomerListElementImpl implements _CustomerListElement {
       this.phone,
       this.email,
       this.company_name,
-      this.avatar_url,
+      this.avatar,
       this.status});
 
   factory _$CustomerListElementImpl.fromJson(Map<String, dynamic> json) =>
@@ -232,13 +232,13 @@ class _$CustomerListElementImpl implements _CustomerListElement {
   @override
   final String? company_name;
   @override
-  final String? avatar_url;
+  final String? avatar;
   @override
   final int? status;
 
   @override
   String toString() {
-    return 'CustomerListElement(id: $id, first_name: $first_name, customer_num: $customer_num, last_name: $last_name, phone: $phone, email: $email, company_name: $company_name, avatar_url: $avatar_url, status: $status)';
+    return 'CustomerListElement(id: $id, first_name: $first_name, customer_num: $customer_num, last_name: $last_name, phone: $phone, email: $email, company_name: $company_name, avatar: $avatar, status: $status)';
   }
 
   @override
@@ -257,15 +257,14 @@ class _$CustomerListElementImpl implements _CustomerListElement {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.company_name, company_name) ||
                 other.company_name == company_name) &&
-            (identical(other.avatar_url, avatar_url) ||
-                other.avatar_url == avatar_url) &&
+            (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, first_name, customer_num,
-      last_name, phone, email, company_name, avatar_url, status);
+      last_name, phone, email, company_name, avatar, status);
 
   @JsonKey(ignore: true)
   @override
@@ -291,7 +290,7 @@ abstract class _CustomerListElement implements CustomerListElement {
       final String? phone,
       final String? email,
       final String? company_name,
-      final String? avatar_url,
+      final String? avatar,
       final int? status}) = _$CustomerListElementImpl;
 
   factory _CustomerListElement.fromJson(Map<String, dynamic> json) =
@@ -312,7 +311,7 @@ abstract class _CustomerListElement implements CustomerListElement {
   @override
   String? get company_name;
   @override
-  String? get avatar_url;
+  String? get avatar;
   @override
   int? get status;
   @override

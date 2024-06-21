@@ -17,7 +17,6 @@ import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 import 'package:number_text_input_formatter/number_text_input_formatter.dart';
-import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 // import 'package:throttling/throttling.dart';
 import 'package:throttling/throttling.dart';
 
@@ -330,9 +329,17 @@ class _CreateticketState extends State<Createticket> {
                                 FocusManager.instance.primaryFocus?.unfocus();
                               },
                               onChanged: (value) {
-                                salesController.submitIndent =
-                                    salesController.submitIndent.copyWith(
-                                        min_temperature: int.parse(value));
+                                if (value.contains("-")) {
+                                  if (value.length > 1) {
+                                    salesController.submitIndent =
+                                        salesController.submitIndent.copyWith(
+                                            min_temperature: int.parse(value));
+                                  }
+                                } else {
+                                  salesController.submitIndent =
+                                      salesController.submitIndent.copyWith(
+                                          min_temperature: int.parse(value));
+                                }
                               },
                               inputFormatters: [
                                 NumberTextInputFormatter(allowNegative: true)
@@ -376,9 +383,17 @@ class _CreateticketState extends State<Createticket> {
                                 FocusManager.instance.primaryFocus?.unfocus();
                               },
                               onChanged: (value) {
-                                salesController.submitIndent =
-                                    salesController.submitIndent.copyWith(
-                                        max_temperature: int.parse(value));
+                                if (value.contains("-")) {
+                                  if (value.length > 1) {
+                                    salesController.submitIndent =
+                                        salesController.submitIndent.copyWith(
+                                            max_temperature: int.parse(value));
+                                  }
+                                } else {
+                                  salesController.submitIndent =
+                                      salesController.submitIndent.copyWith(
+                                          max_temperature: int.parse(value));
+                                }
                               },
                               inputFormatters: [
                                 NumberTextInputFormatter(allowNegative: true)
@@ -421,77 +436,18 @@ class _CreateticketState extends State<Createticket> {
                       ),
                       InkWell(
                         onTap: () async {
-                          await showOmniDateTimePicker(
-                            theme: ThemeData(
-                              //   useMaterial3: true,
-                              brightness: Brightness.light,
-                              primaryColor: AppColors.primaryColor,
-                              // colorSchemeSeed: AppColors.primaryColor
-                            ),
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(1600)
-                                .subtract(const Duration(days: 3652)),
-                            lastDate: DateTime.now().add(
-                              const Duration(days: 3652),
-                            ),
-                            is24HourMode: false,
-                            isShowSeconds: false,
-                            minutesInterval: 1,
-                            secondsInterval: 1,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(16)),
-                            constraints: const BoxConstraints(
-                              maxWidth: 350,
-                              maxHeight: 650,
-                            ),
-                            transitionBuilder: (context, anim1, anim2, child) {
-                              return FadeTransition(
-                                opacity: anim1.drive(
-                                  Tween(
-                                    begin: 0,
-                                    end: 1,
-                                  ),
-                                ),
-                                child: child,
-                              );
-                            },
-                            transitionDuration:
-                                const Duration(milliseconds: 200),
-                            barrierDismissible: true,
-                            selectableDayPredicate: (dateTime) {
-                              // Disable 25th Feb 2023
-                              if (dateTime == DateTime(2023, 2, 25)) {
-                                return false;
-                              } else {
-                                return true;
+                          AppConstants.pickDateTime(context: context).then(
+                            (value) {
+                              if (value != null) {
+                                salesController.submitIndent = salesController
+                                    .submitIndent
+                                    .copyWith(expected_date: value);
+                                salesController.update();
+
+                                // arrivaldate = value;
                               }
                             },
-                          ).then((value) {
-                            if (value != null) {
-                              salesController.submitIndent = salesController
-                                  .submitIndent
-                                  .copyWith(expected_date: value);
-                              salesController.update();
-
-                              // arrivaldate = value;
-                            }
-                          });
-                          // await showDatePicker(
-                          //   context: context,
-                          //   initialDate: DateTime.now(),
-                          //   firstDate: DateTime(2000),
-                          //   lastDate: DateTime(2101),
-                          // ).then((value) {
-                          //   if (value != null) {
-                          //     salesController.submitIndent = salesController
-                          //         .submitIndent
-                          //         .copyWith(expected_date: value);
-                          //     salesController.update();
-                          //     Logger().i(salesController.submitIndent.toJson());
-                          //     // arrivaldate = value;
-                          //   }
-                          // });
+                          );
                         },
                         child: Container(
                             alignment: Alignment.center,
@@ -594,23 +550,21 @@ class _AskCustomerindentState extends State<AskCustomerindent> {
                     radius: 30.0,
                     backgroundColor: const Color.fromARGB(255, 238, 237, 237),
                     backgroundImage: salesController
-                                .selectedCustomerForIndent?.avatar_url !=
+                                .selectedCustomerForIndent?.avatar !=
                             null
                         ? null
                         : const AssetImage("assets/icons/customerAvatar.png"),
-                    child:
-                        salesController.selectedCustomerForIndent?.avatar_url !=
-                                null
-                            ? ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Image.network(
-                                  salesController
-                                      .selectedCustomerForIndent!.avatar_url
-                                      .toString(),
-                                  fit: BoxFit.cover,
-                                ),
-                              )
-                            : null,
+                    child: salesController.selectedCustomerForIndent?.avatar !=
+                            null
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: Image.network(
+                              salesController.selectedCustomerForIndent!.avatar
+                                  .toString(),
+                              fit: BoxFit.cover,
+                            ),
+                          )
+                        : null,
                   ),
                   const Gap(12),
                   Column(
@@ -690,10 +644,11 @@ class _AskCustomerindentState extends State<AskCustomerindent> {
                               Get.find<SalesController>()
                                   .salesRepo
                                   .getCustomers(
-                                      recordsPerPage: 5,
-                                      page: 1,
-                                      name: p0,
-                                      phone_no: p0)
+                                    recordsPerPage: 5,
+                                    page: 1,
+                                    name: p0.isNum ? "" : p0,
+                                    phone_no: !p0.isNum ? "" : p0,
+                                  )
                                   .then((v) {
                                 setState(() {
                                   customerList = v;
@@ -784,19 +739,18 @@ class _AskCustomerindentState extends State<AskCustomerindent> {
                                           backgroundColor: const Color.fromARGB(
                                               255, 238, 237, 237),
                                           backgroundImage: customerList![i]
-                                                      .avatar_url !=
+                                                      .avatar !=
                                                   null
                                               ? null
                                               : const AssetImage(
                                                   "assets/icons/customerAvatar.png"),
-                                          child: customerList![i].avatar_url !=
-                                                  null
+                                          child: customerList![i].avatar != null
                                               ? ClipRRect(
                                                   borderRadius:
                                                       BorderRadius.circular(50),
                                                   child: Image.network(
                                                     customerList![i]
-                                                        .avatar_url
+                                                        .avatar
                                                         .toString(),
                                                     fit: BoxFit.cover,
                                                   ),

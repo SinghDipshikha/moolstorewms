@@ -23,7 +23,9 @@ class Viewindent extends StatelessWidget {
         centerTitle: false,
         title: const Text('View Indent', style: TextStyles.appBarTextStyle),
       ),
-      body: GetBuilder<SalesController>(initState: (state) {
+      body: GetBuilder<SalesController>(
+        
+        initState: (state) {
         Get.find<SalesController>()
             .viewindent(indentId: indentElement.indent_number ?? "");
       }, builder: (salesController) {
@@ -71,8 +73,10 @@ class Viewindent extends StatelessWidget {
                     color: const Color(0xFF5A57FF),
                   ).paddingSymmetric(horizontal: 8),
                   Text(
-                    dateformatter
-                        .format(salesController.indent!.created_at as DateTime),
+                    salesController.indent?.created_at == null
+                        ? "--"
+                        : dateformatter.format(
+                            salesController.indent?.created_at as DateTime),
                     style: const TextStyle(
                       color: Color(0xFF5A57FF),
                       fontSize: 14,
@@ -102,8 +106,10 @@ class Viewindent extends StatelessWidget {
                     color: const Color(0xFF5A57FF),
                   ).paddingSymmetric(horizontal: 8),
                   Text(
-                    timeformatter
-                        .format(salesController.indent!.created_at as DateTime),
+                    salesController.indent?.created_at == null
+                        ? "--"
+                        : timeformatter.format(
+                            salesController.indent?.created_at as DateTime),
                     style: const TextStyle(
                       color: Color(0xFF5A57FF),
                       fontSize: 14,
@@ -269,19 +275,19 @@ class Viewindent extends StatelessWidget {
                         backgroundColor:
                             const Color.fromARGB(255, 238, 237, 237),
                         backgroundImage: salesController
-                                    .indent!.customer_details![0].avatar_url !=
+                                    .indent!.customer_details![0].avatar !=
                                 null
                             ? null
                             : const AssetImage(
                                 "assets/icons/customerAvatar.png"),
                         child: salesController
-                                    .indent!.customer_details![0].avatar_url !=
+                                    .indent!.customer_details![0].avatar !=
                                 null
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(50),
                                 child: Image.network(
                                   salesController
-                                      .indent!.customer_details![0].avatar_url
+                                      .indent!.customer_details![0].avatar
                                       .toString(),
                                   fit: BoxFit.cover,
                                 ),
