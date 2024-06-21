@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Ticket _$TicketFromJson(Map<String, dynamic> json) {
-  return _GetAllTicketListBySecurityGuard.fromJson(json);
+TicketSG _$TicketSGFromJson(Map<String, dynamic> json) {
+  return _TicketSG.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Ticket {
+mixin _$TicketSG {
   String? get indent_number => throw _privateConstructorUsedError;
   int? get ticket_generate_by => throw _privateConstructorUsedError;
   String? get employee_id => throw _privateConstructorUsedError;
@@ -36,13 +36,14 @@ mixin _$Ticket {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TicketCopyWith<Ticket> get copyWith => throw _privateConstructorUsedError;
+  $TicketSGCopyWith<TicketSG> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TicketCopyWith<$Res> {
-  factory $TicketCopyWith(Ticket value, $Res Function(Ticket) then) =
-      _$TicketCopyWithImpl<$Res, Ticket>;
+abstract class $TicketSGCopyWith<$Res> {
+  factory $TicketSGCopyWith(TicketSG value, $Res Function(TicketSG) then) =
+      _$TicketSGCopyWithImpl<$Res, TicketSG>;
   @useResult
   $Res call(
       {String? indent_number,
@@ -61,9 +62,9 @@ abstract class $TicketCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TicketCopyWithImpl<$Res, $Val extends Ticket>
-    implements $TicketCopyWith<$Res> {
-  _$TicketCopyWithImpl(this._value, this._then);
+class _$TicketSGCopyWithImpl<$Res, $Val extends TicketSG>
+    implements $TicketSGCopyWith<$Res> {
+  _$TicketSGCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -145,12 +146,11 @@ class _$TicketCopyWithImpl<$Res, $Val extends Ticket>
 }
 
 /// @nodoc
-abstract class _$$GetAllTicketListBySecurityGuardImplCopyWith<$Res>
-    implements $TicketCopyWith<$Res> {
-  factory _$$GetAllTicketListBySecurityGuardImplCopyWith(
-          _$GetAllTicketListBySecurityGuardImpl value,
-          $Res Function(_$GetAllTicketListBySecurityGuardImpl) then) =
-      __$$GetAllTicketListBySecurityGuardImplCopyWithImpl<$Res>;
+abstract class _$$TicketSGImplCopyWith<$Res>
+    implements $TicketSGCopyWith<$Res> {
+  factory _$$TicketSGImplCopyWith(
+          _$TicketSGImpl value, $Res Function(_$TicketSGImpl) then) =
+      __$$TicketSGImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -170,12 +170,11 @@ abstract class _$$GetAllTicketListBySecurityGuardImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$GetAllTicketListBySecurityGuardImplCopyWithImpl<$Res>
-    extends _$TicketCopyWithImpl<$Res, _$GetAllTicketListBySecurityGuardImpl>
-    implements _$$GetAllTicketListBySecurityGuardImplCopyWith<$Res> {
-  __$$GetAllTicketListBySecurityGuardImplCopyWithImpl(
-      _$GetAllTicketListBySecurityGuardImpl _value,
-      $Res Function(_$GetAllTicketListBySecurityGuardImpl) _then)
+class __$$TicketSGImplCopyWithImpl<$Res>
+    extends _$TicketSGCopyWithImpl<$Res, _$TicketSGImpl>
+    implements _$$TicketSGImplCopyWith<$Res> {
+  __$$TicketSGImplCopyWithImpl(
+      _$TicketSGImpl _value, $Res Function(_$TicketSGImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -195,7 +194,7 @@ class __$$GetAllTicketListBySecurityGuardImplCopyWithImpl<$Res>
     Object? warehouse_id = freezed,
     Object? created_at = freezed,
   }) {
-    return _then(_$GetAllTicketListBySecurityGuardImpl(
+    return _then(_$TicketSGImpl(
       indent_number: freezed == indent_number
           ? _value.indent_number
           : indent_number // ignore: cast_nullable_to_non_nullable
@@ -254,9 +253,8 @@ class __$$GetAllTicketListBySecurityGuardImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$GetAllTicketListBySecurityGuardImpl
-    implements _GetAllTicketListBySecurityGuard {
-  const _$GetAllTicketListBySecurityGuardImpl(
+class _$TicketSGImpl implements _TicketSG {
+  const _$TicketSGImpl(
       {this.indent_number,
       this.ticket_generate_by,
       this.employee_id,
@@ -271,9 +269,8 @@ class _$GetAllTicketListBySecurityGuardImpl
       this.warehouse_id,
       this.created_at});
 
-  factory _$GetAllTicketListBySecurityGuardImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$GetAllTicketListBySecurityGuardImplFromJson(json);
+  factory _$TicketSGImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TicketSGImplFromJson(json);
 
   @override
   final String? indent_number;
@@ -304,14 +301,14 @@ class _$GetAllTicketListBySecurityGuardImpl
 
   @override
   String toString() {
-    return 'Ticket(indent_number: $indent_number, ticket_generate_by: $ticket_generate_by, employee_id: $employee_id, visitor_name: $visitor_name, visitor_ph_number: $visitor_ph_number, does_have_vehicle: $does_have_vehicle, vehicle_number: $vehicle_number, vehicle_types: $vehicle_types, material_inside: $material_inside, products: $products, status: $status, warehouse_id: $warehouse_id, created_at: $created_at)';
+    return 'TicketSG(indent_number: $indent_number, ticket_generate_by: $ticket_generate_by, employee_id: $employee_id, visitor_name: $visitor_name, visitor_ph_number: $visitor_ph_number, does_have_vehicle: $does_have_vehicle, vehicle_number: $vehicle_number, vehicle_types: $vehicle_types, material_inside: $material_inside, products: $products, status: $status, warehouse_id: $warehouse_id, created_at: $created_at)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GetAllTicketListBySecurityGuardImpl &&
+            other is _$TicketSGImpl &&
             (identical(other.indent_number, indent_number) ||
                 other.indent_number == indent_number) &&
             (identical(other.ticket_generate_by, ticket_generate_by) ||
@@ -360,21 +357,19 @@ class _$GetAllTicketListBySecurityGuardImpl
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$GetAllTicketListBySecurityGuardImplCopyWith<
-          _$GetAllTicketListBySecurityGuardImpl>
-      get copyWith => __$$GetAllTicketListBySecurityGuardImplCopyWithImpl<
-          _$GetAllTicketListBySecurityGuardImpl>(this, _$identity);
+  _$$TicketSGImplCopyWith<_$TicketSGImpl> get copyWith =>
+      __$$TicketSGImplCopyWithImpl<_$TicketSGImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$GetAllTicketListBySecurityGuardImplToJson(
+    return _$$TicketSGImplToJson(
       this,
     );
   }
 }
 
-abstract class _GetAllTicketListBySecurityGuard implements Ticket {
-  const factory _GetAllTicketListBySecurityGuard(
+abstract class _TicketSG implements TicketSG {
+  const factory _TicketSG(
       {final String? indent_number,
       final int? ticket_generate_by,
       final String? employee_id,
@@ -387,10 +382,10 @@ abstract class _GetAllTicketListBySecurityGuard implements Ticket {
       final String? products,
       final String? status,
       final int? warehouse_id,
-      final DateTime? created_at}) = _$GetAllTicketListBySecurityGuardImpl;
+      final DateTime? created_at}) = _$TicketSGImpl;
 
-  factory _GetAllTicketListBySecurityGuard.fromJson(Map<String, dynamic> json) =
-      _$GetAllTicketListBySecurityGuardImpl.fromJson;
+  factory _TicketSG.fromJson(Map<String, dynamic> json) =
+      _$TicketSGImpl.fromJson;
 
   @override
   String? get indent_number;
@@ -420,7 +415,769 @@ abstract class _GetAllTicketListBySecurityGuard implements Ticket {
   DateTime? get created_at;
   @override
   @JsonKey(ignore: true)
-  _$$GetAllTicketListBySecurityGuardImplCopyWith<
-          _$GetAllTicketListBySecurityGuardImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$TicketSGImplCopyWith<_$TicketSGImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+TicketSL _$TicketSLFromJson(Map<String, dynamic> json) {
+  return _TicketSL.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TicketSL {
+  int? get id => throw _privateConstructorUsedError;
+  String? get indent_number => throw _privateConstructorUsedError;
+  String? get order_number => throw _privateConstructorUsedError;
+  DateTime? get created_at => throw _privateConstructorUsedError;
+  int? get warehouse_id => throw _privateConstructorUsedError;
+  int? get min_temperature => throw _privateConstructorUsedError;
+  int? get max_temperature => throw _privateConstructorUsedError;
+  String? get temperature_unit => throw _privateConstructorUsedError;
+  String? get warehouse_name => throw _privateConstructorUsedError;
+  String? get first_name => throw _privateConstructorUsedError;
+  dynamic get last_name => throw _privateConstructorUsedError;
+  String? get personType => throw _privateConstructorUsedError;
+  List<String>? get designation => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TicketSLCopyWith<TicketSL> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TicketSLCopyWith<$Res> {
+  factory $TicketSLCopyWith(TicketSL value, $Res Function(TicketSL) then) =
+      _$TicketSLCopyWithImpl<$Res, TicketSL>;
+  @useResult
+  $Res call(
+      {int? id,
+      String? indent_number,
+      String? order_number,
+      DateTime? created_at,
+      int? warehouse_id,
+      int? min_temperature,
+      int? max_temperature,
+      String? temperature_unit,
+      String? warehouse_name,
+      String? first_name,
+      dynamic last_name,
+      String? personType,
+      List<String>? designation});
+}
+
+/// @nodoc
+class _$TicketSLCopyWithImpl<$Res, $Val extends TicketSL>
+    implements $TicketSLCopyWith<$Res> {
+  _$TicketSLCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? indent_number = freezed,
+    Object? order_number = freezed,
+    Object? created_at = freezed,
+    Object? warehouse_id = freezed,
+    Object? min_temperature = freezed,
+    Object? max_temperature = freezed,
+    Object? temperature_unit = freezed,
+    Object? warehouse_name = freezed,
+    Object? first_name = freezed,
+    Object? last_name = freezed,
+    Object? personType = freezed,
+    Object? designation = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      indent_number: freezed == indent_number
+          ? _value.indent_number
+          : indent_number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      order_number: freezed == order_number
+          ? _value.order_number
+          : order_number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      created_at: freezed == created_at
+          ? _value.created_at
+          : created_at // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      warehouse_id: freezed == warehouse_id
+          ? _value.warehouse_id
+          : warehouse_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      min_temperature: freezed == min_temperature
+          ? _value.min_temperature
+          : min_temperature // ignore: cast_nullable_to_non_nullable
+              as int?,
+      max_temperature: freezed == max_temperature
+          ? _value.max_temperature
+          : max_temperature // ignore: cast_nullable_to_non_nullable
+              as int?,
+      temperature_unit: freezed == temperature_unit
+          ? _value.temperature_unit
+          : temperature_unit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      warehouse_name: freezed == warehouse_name
+          ? _value.warehouse_name
+          : warehouse_name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      first_name: freezed == first_name
+          ? _value.first_name
+          : first_name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      last_name: freezed == last_name
+          ? _value.last_name
+          : last_name // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      personType: freezed == personType
+          ? _value.personType
+          : personType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      designation: freezed == designation
+          ? _value.designation
+          : designation // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$TicketSLImplCopyWith<$Res>
+    implements $TicketSLCopyWith<$Res> {
+  factory _$$TicketSLImplCopyWith(
+          _$TicketSLImpl value, $Res Function(_$TicketSLImpl) then) =
+      __$$TicketSLImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int? id,
+      String? indent_number,
+      String? order_number,
+      DateTime? created_at,
+      int? warehouse_id,
+      int? min_temperature,
+      int? max_temperature,
+      String? temperature_unit,
+      String? warehouse_name,
+      String? first_name,
+      dynamic last_name,
+      String? personType,
+      List<String>? designation});
+}
+
+/// @nodoc
+class __$$TicketSLImplCopyWithImpl<$Res>
+    extends _$TicketSLCopyWithImpl<$Res, _$TicketSLImpl>
+    implements _$$TicketSLImplCopyWith<$Res> {
+  __$$TicketSLImplCopyWithImpl(
+      _$TicketSLImpl _value, $Res Function(_$TicketSLImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? indent_number = freezed,
+    Object? order_number = freezed,
+    Object? created_at = freezed,
+    Object? warehouse_id = freezed,
+    Object? min_temperature = freezed,
+    Object? max_temperature = freezed,
+    Object? temperature_unit = freezed,
+    Object? warehouse_name = freezed,
+    Object? first_name = freezed,
+    Object? last_name = freezed,
+    Object? personType = freezed,
+    Object? designation = freezed,
+  }) {
+    return _then(_$TicketSLImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      indent_number: freezed == indent_number
+          ? _value.indent_number
+          : indent_number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      order_number: freezed == order_number
+          ? _value.order_number
+          : order_number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      created_at: freezed == created_at
+          ? _value.created_at
+          : created_at // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      warehouse_id: freezed == warehouse_id
+          ? _value.warehouse_id
+          : warehouse_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      min_temperature: freezed == min_temperature
+          ? _value.min_temperature
+          : min_temperature // ignore: cast_nullable_to_non_nullable
+              as int?,
+      max_temperature: freezed == max_temperature
+          ? _value.max_temperature
+          : max_temperature // ignore: cast_nullable_to_non_nullable
+              as int?,
+      temperature_unit: freezed == temperature_unit
+          ? _value.temperature_unit
+          : temperature_unit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      warehouse_name: freezed == warehouse_name
+          ? _value.warehouse_name
+          : warehouse_name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      first_name: freezed == first_name
+          ? _value.first_name
+          : first_name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      last_name: freezed == last_name
+          ? _value.last_name
+          : last_name // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      personType: freezed == personType
+          ? _value.personType
+          : personType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      designation: freezed == designation
+          ? _value._designation
+          : designation // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TicketSLImpl implements _TicketSL {
+  const _$TicketSLImpl(
+      {this.id,
+      this.indent_number,
+      this.order_number,
+      this.created_at,
+      this.warehouse_id,
+      this.min_temperature,
+      this.max_temperature,
+      this.temperature_unit,
+      this.warehouse_name,
+      this.first_name,
+      this.last_name,
+      this.personType,
+      final List<String>? designation})
+      : _designation = designation;
+
+  factory _$TicketSLImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TicketSLImplFromJson(json);
+
+  @override
+  final int? id;
+  @override
+  final String? indent_number;
+  @override
+  final String? order_number;
+  @override
+  final DateTime? created_at;
+  @override
+  final int? warehouse_id;
+  @override
+  final int? min_temperature;
+  @override
+  final int? max_temperature;
+  @override
+  final String? temperature_unit;
+  @override
+  final String? warehouse_name;
+  @override
+  final String? first_name;
+  @override
+  final dynamic last_name;
+  @override
+  final String? personType;
+  final List<String>? _designation;
+  @override
+  List<String>? get designation {
+    final value = _designation;
+    if (value == null) return null;
+    if (_designation is EqualUnmodifiableListView) return _designation;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'TicketSL(id: $id, indent_number: $indent_number, order_number: $order_number, created_at: $created_at, warehouse_id: $warehouse_id, min_temperature: $min_temperature, max_temperature: $max_temperature, temperature_unit: $temperature_unit, warehouse_name: $warehouse_name, first_name: $first_name, last_name: $last_name, personType: $personType, designation: $designation)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TicketSLImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.indent_number, indent_number) ||
+                other.indent_number == indent_number) &&
+            (identical(other.order_number, order_number) ||
+                other.order_number == order_number) &&
+            (identical(other.created_at, created_at) ||
+                other.created_at == created_at) &&
+            (identical(other.warehouse_id, warehouse_id) ||
+                other.warehouse_id == warehouse_id) &&
+            (identical(other.min_temperature, min_temperature) ||
+                other.min_temperature == min_temperature) &&
+            (identical(other.max_temperature, max_temperature) ||
+                other.max_temperature == max_temperature) &&
+            (identical(other.temperature_unit, temperature_unit) ||
+                other.temperature_unit == temperature_unit) &&
+            (identical(other.warehouse_name, warehouse_name) ||
+                other.warehouse_name == warehouse_name) &&
+            (identical(other.first_name, first_name) ||
+                other.first_name == first_name) &&
+            const DeepCollectionEquality().equals(other.last_name, last_name) &&
+            (identical(other.personType, personType) ||
+                other.personType == personType) &&
+            const DeepCollectionEquality()
+                .equals(other._designation, _designation));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      indent_number,
+      order_number,
+      created_at,
+      warehouse_id,
+      min_temperature,
+      max_temperature,
+      temperature_unit,
+      warehouse_name,
+      first_name,
+      const DeepCollectionEquality().hash(last_name),
+      personType,
+      const DeepCollectionEquality().hash(_designation));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TicketSLImplCopyWith<_$TicketSLImpl> get copyWith =>
+      __$$TicketSLImplCopyWithImpl<_$TicketSLImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TicketSLImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _TicketSL implements TicketSL {
+  const factory _TicketSL(
+      {final int? id,
+      final String? indent_number,
+      final String? order_number,
+      final DateTime? created_at,
+      final int? warehouse_id,
+      final int? min_temperature,
+      final int? max_temperature,
+      final String? temperature_unit,
+      final String? warehouse_name,
+      final String? first_name,
+      final dynamic last_name,
+      final String? personType,
+      final List<String>? designation}) = _$TicketSLImpl;
+
+  factory _TicketSL.fromJson(Map<String, dynamic> json) =
+      _$TicketSLImpl.fromJson;
+
+  @override
+  int? get id;
+  @override
+  String? get indent_number;
+  @override
+  String? get order_number;
+  @override
+  DateTime? get created_at;
+  @override
+  int? get warehouse_id;
+  @override
+  int? get min_temperature;
+  @override
+  int? get max_temperature;
+  @override
+  String? get temperature_unit;
+  @override
+  String? get warehouse_name;
+  @override
+  String? get first_name;
+  @override
+  dynamic get last_name;
+  @override
+  String? get personType;
+  @override
+  List<String>? get designation;
+  @override
+  @JsonKey(ignore: true)
+  _$$TicketSLImplCopyWith<_$TicketSLImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$Ticket {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(TicketSG ticketSG) sg,
+    required TResult Function(TicketSL ticketSL) sl,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(TicketSG ticketSG)? sg,
+    TResult? Function(TicketSL ticketSL)? sl,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(TicketSG ticketSG)? sg,
+    TResult Function(TicketSL ticketSL)? sl,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TicketSGWrapper value) sg,
+    required TResult Function(TicketSLWrapper value) sl,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TicketSGWrapper value)? sg,
+    TResult? Function(TicketSLWrapper value)? sl,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TicketSGWrapper value)? sg,
+    TResult Function(TicketSLWrapper value)? sl,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TicketCopyWith<$Res> {
+  factory $TicketCopyWith(Ticket value, $Res Function(Ticket) then) =
+      _$TicketCopyWithImpl<$Res, Ticket>;
+}
+
+/// @nodoc
+class _$TicketCopyWithImpl<$Res, $Val extends Ticket>
+    implements $TicketCopyWith<$Res> {
+  _$TicketCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$TicketSGWrapperImplCopyWith<$Res> {
+  factory _$$TicketSGWrapperImplCopyWith(_$TicketSGWrapperImpl value,
+          $Res Function(_$TicketSGWrapperImpl) then) =
+      __$$TicketSGWrapperImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({TicketSG ticketSG});
+
+  $TicketSGCopyWith<$Res> get ticketSG;
+}
+
+/// @nodoc
+class __$$TicketSGWrapperImplCopyWithImpl<$Res>
+    extends _$TicketCopyWithImpl<$Res, _$TicketSGWrapperImpl>
+    implements _$$TicketSGWrapperImplCopyWith<$Res> {
+  __$$TicketSGWrapperImplCopyWithImpl(
+      _$TicketSGWrapperImpl _value, $Res Function(_$TicketSGWrapperImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? ticketSG = null,
+  }) {
+    return _then(_$TicketSGWrapperImpl(
+      null == ticketSG
+          ? _value.ticketSG
+          : ticketSG // ignore: cast_nullable_to_non_nullable
+              as TicketSG,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TicketSGCopyWith<$Res> get ticketSG {
+    return $TicketSGCopyWith<$Res>(_value.ticketSG, (value) {
+      return _then(_value.copyWith(ticketSG: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$TicketSGWrapperImpl implements TicketSGWrapper {
+  const _$TicketSGWrapperImpl(this.ticketSG);
+
+  @override
+  final TicketSG ticketSG;
+
+  @override
+  String toString() {
+    return 'Ticket.sg(ticketSG: $ticketSG)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TicketSGWrapperImpl &&
+            (identical(other.ticketSG, ticketSG) ||
+                other.ticketSG == ticketSG));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, ticketSG);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TicketSGWrapperImplCopyWith<_$TicketSGWrapperImpl> get copyWith =>
+      __$$TicketSGWrapperImplCopyWithImpl<_$TicketSGWrapperImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(TicketSG ticketSG) sg,
+    required TResult Function(TicketSL ticketSL) sl,
+  }) {
+    return sg(ticketSG);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(TicketSG ticketSG)? sg,
+    TResult? Function(TicketSL ticketSL)? sl,
+  }) {
+    return sg?.call(ticketSG);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(TicketSG ticketSG)? sg,
+    TResult Function(TicketSL ticketSL)? sl,
+    required TResult orElse(),
+  }) {
+    if (sg != null) {
+      return sg(ticketSG);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TicketSGWrapper value) sg,
+    required TResult Function(TicketSLWrapper value) sl,
+  }) {
+    return sg(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TicketSGWrapper value)? sg,
+    TResult? Function(TicketSLWrapper value)? sl,
+  }) {
+    return sg?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TicketSGWrapper value)? sg,
+    TResult Function(TicketSLWrapper value)? sl,
+    required TResult orElse(),
+  }) {
+    if (sg != null) {
+      return sg(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TicketSGWrapper implements Ticket {
+  const factory TicketSGWrapper(final TicketSG ticketSG) =
+      _$TicketSGWrapperImpl;
+
+  TicketSG get ticketSG;
+  @JsonKey(ignore: true)
+  _$$TicketSGWrapperImplCopyWith<_$TicketSGWrapperImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$TicketSLWrapperImplCopyWith<$Res> {
+  factory _$$TicketSLWrapperImplCopyWith(_$TicketSLWrapperImpl value,
+          $Res Function(_$TicketSLWrapperImpl) then) =
+      __$$TicketSLWrapperImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({TicketSL ticketSL});
+
+  $TicketSLCopyWith<$Res> get ticketSL;
+}
+
+/// @nodoc
+class __$$TicketSLWrapperImplCopyWithImpl<$Res>
+    extends _$TicketCopyWithImpl<$Res, _$TicketSLWrapperImpl>
+    implements _$$TicketSLWrapperImplCopyWith<$Res> {
+  __$$TicketSLWrapperImplCopyWithImpl(
+      _$TicketSLWrapperImpl _value, $Res Function(_$TicketSLWrapperImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? ticketSL = null,
+  }) {
+    return _then(_$TicketSLWrapperImpl(
+      null == ticketSL
+          ? _value.ticketSL
+          : ticketSL // ignore: cast_nullable_to_non_nullable
+              as TicketSL,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TicketSLCopyWith<$Res> get ticketSL {
+    return $TicketSLCopyWith<$Res>(_value.ticketSL, (value) {
+      return _then(_value.copyWith(ticketSL: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$TicketSLWrapperImpl implements TicketSLWrapper {
+  const _$TicketSLWrapperImpl(this.ticketSL);
+
+  @override
+  final TicketSL ticketSL;
+
+  @override
+  String toString() {
+    return 'Ticket.sl(ticketSL: $ticketSL)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TicketSLWrapperImpl &&
+            (identical(other.ticketSL, ticketSL) ||
+                other.ticketSL == ticketSL));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, ticketSL);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TicketSLWrapperImplCopyWith<_$TicketSLWrapperImpl> get copyWith =>
+      __$$TicketSLWrapperImplCopyWithImpl<_$TicketSLWrapperImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(TicketSG ticketSG) sg,
+    required TResult Function(TicketSL ticketSL) sl,
+  }) {
+    return sl(ticketSL);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(TicketSG ticketSG)? sg,
+    TResult? Function(TicketSL ticketSL)? sl,
+  }) {
+    return sl?.call(ticketSL);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(TicketSG ticketSG)? sg,
+    TResult Function(TicketSL ticketSL)? sl,
+    required TResult orElse(),
+  }) {
+    if (sl != null) {
+      return sl(ticketSL);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TicketSGWrapper value) sg,
+    required TResult Function(TicketSLWrapper value) sl,
+  }) {
+    return sl(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TicketSGWrapper value)? sg,
+    TResult? Function(TicketSLWrapper value)? sl,
+  }) {
+    return sl?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TicketSGWrapper value)? sg,
+    TResult Function(TicketSLWrapper value)? sl,
+    required TResult orElse(),
+  }) {
+    if (sl != null) {
+      return sl(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TicketSLWrapper implements Ticket {
+  const factory TicketSLWrapper(final TicketSL ticketSL) =
+      _$TicketSLWrapperImpl;
+
+  TicketSL get ticketSL;
+  @JsonKey(ignore: true)
+  _$$TicketSLWrapperImplCopyWith<_$TicketSLWrapperImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

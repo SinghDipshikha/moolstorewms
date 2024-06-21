@@ -280,7 +280,7 @@ class _TicketListScreenState extends State<TicketListScreen> {
                         itemCount:
                             securityGuardController.allTicketsList.length,
                         itemBuilder: (context, i) {
-                          Ticket entry =
+                          TicketSG entry =
                               securityGuardController.allTicketsList[i];
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -399,7 +399,12 @@ class _TicketListScreenState extends State<TicketListScreen> {
                                       InkWell(
                                         onTap: () {
                                           Get.to(
-                                              const TicketEntryReviewScreen(),
+                                              TicketEntryReviewScreen(
+                                                indentElement: entry
+                                                        .indent_number
+                                                        .toString() ??
+                                                    "",
+                                              ),
                                               id: securityGuardNavigation);
                                         },
                                         child: Expanded(

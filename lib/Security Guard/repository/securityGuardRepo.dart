@@ -138,7 +138,7 @@ class SecurityGuardRepo {
     return null;
   }
 
-  Future<Ticket?> getAllTicketList({
+  Future<TicketSG?> getAllTicketList({
     required var recordsPerPage,
     required var next,
   }) async {

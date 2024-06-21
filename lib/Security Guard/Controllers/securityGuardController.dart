@@ -22,7 +22,6 @@ import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/ticket.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/vehicle.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/visitor.dart';
 import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
-import 'package:moolwmsstore/Security%20Guard/View/Tickets/ticketVerify.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Visitor/visitorCheckedInSuccessfully.dart';
 import 'package:moolwmsstore/Security%20Guard/repository/securityGuardRepo.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
@@ -43,7 +42,7 @@ class SecurityGuardController extends GetxController {
   List<EmployeeEntry> empEntryList = [];
 
   List<Visitor> allVisitorList = [];
-  List<Ticket> allTicketList = [];
+  List<TicketSG> allTicketList = [];
   List<LabourEntry> allLabourList = [];
   List<MaterialEntry> allMaterialList = [];
   List<VehicleEntry> allVehicleList = [];
@@ -280,7 +279,7 @@ class SecurityGuardController extends GetxController {
   //   });
   // }
 
-  List<Ticket> allTicketsList = [];
+  List<TicketSG> allTicketsList = [];
   bool isLoading = true;
 
   void getAllTicketList() {
@@ -294,7 +293,7 @@ class SecurityGuardController extends GetxController {
     }).then((value) {
       if (value.data["message"] == "Indent Details found") {
         List x = value.data["result"];
-        allTicketsList = x.map((e) => Ticket.fromJson(e)).toList();
+        allTicketsList = x.map((e) => TicketSG.fromJson(e)).toList();
       } else {
         allTicketsList = [];
       }
@@ -304,6 +303,39 @@ class SecurityGuardController extends GetxController {
       isLoading = false;
       update();
       print("Error fetching tickets: $error");
+    });
+  }
+
+  Ticket? indent;
+
+  viewIndent({required String indentId}) async {
+    if (indentId.isEmpty) {
+      return;
+    }
+    isLoading = true;
+
+    String apiEndpoint;
+    if (indentId.contains('SG')) {
+      apiEndpoint = "securityGuard/indentDetailsByNum/$indentId";
+    } else if (indentId.contains('SL')) {
+      apiEndpoint = "sales/poIndentDetails/$indentId";
+    } else {
+      isLoading = false;
+      return;
+    }
+
+    await apiClient.getData(apiEndpoint).then((value) {
+      if (indentId.contains('SG') &&
+          value.data["message"] ==
+              "Indent details found Successfully for Indent id $indentId") {
+        indent = Ticket.sg(TicketSG.fromJson(value.data["result"][0]));
+      } else if (indentId.contains('SL') &&
+          value.data["message"] ==
+              "Indent details found Successfully for Indent id $indentId") {
+        indent = Ticket.sl(TicketSL.fromJson(value.data["result"][0]));
+      }
+      isLoading = false;
+      update();
     });
   }
 
@@ -392,9 +424,9 @@ class SecurityGuardController extends GetxController {
 
         Snacks.greenSnack("Ticket Added Successfully");
         isloading = false;
-        Get.offAll(
-          const TicketEntryReviewScreen(),
-        );
+        // Get.offAll(
+        //    TicketEntryReviewScreen(),
+        // );
       } else if (value.data["message"] == "Failed to add") {
         isloading = false;
         update();
