@@ -3,11 +3,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/vehicle.dart';
-import 'package:moolwmsstore/Dock%20Supervisor/View/assignChamber.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
-import 'package:moolwmsstore/Dock%20Supervisor/view/Dock%20Assign/docklistDialog.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
-import 'package:moolwmsstore/utils/globals.dart';
 
 class VehicleQueueListScreen extends StatefulWidget {
   const VehicleQueueListScreen({super.key});
@@ -221,13 +218,13 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                                                 "Not Assigned"
                                             ? InkWell(
                                                 onTap: () {
-                                                  Get.dialog(
+                                                  // Get.dialog(
 
-                                                       DocklistDialog( entry: entry,),
-                                                      navigatorKey: Get.nestedKey(
-                                                          salesNavigationKey),
-                                                      barrierColor:
-                                                          Colors.transparent ,barrierDismissible: false);
+                                                  //      DocklistDialog( entry: entry,),
+                                                  //     navigatorKey: Get.nestedKey(
+                                                  //         salesNavigationKey),
+                                                  //     barrierColor:
+                                                  //         Colors.transparent ,barrierDismissible: false);
                                                   // Get.dialog(
                                                   //     const DocklistDialog());
                                                 },

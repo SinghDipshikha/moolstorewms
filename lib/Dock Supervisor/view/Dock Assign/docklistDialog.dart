@@ -4,12 +4,11 @@ import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/dock.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/vehicle.dart';
-import 'package:moolwmsstore/Dock%20Supervisor/Model/vehicle.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
-class DocklistDialog extends Stat, required Vehicle entryefulWidget {
+class DocklistDialog extends StatefulWidget {
   Vehicle entry;
   DocklistDialog({super.key, required this.entry});
 

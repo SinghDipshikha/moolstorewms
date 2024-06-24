@@ -221,16 +221,6 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      hint: const Text(
-                        'All Warehouses',
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
                       items:
                           securityGuardController.user.warehouse!.map((item) {
                         return DropdownMenuItem<WarehousesAcess>(
@@ -238,7 +228,7 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                           child: Row(
                             children: [
                               Text(
-                                "${item.warehouse_name}",
+                                item.warehouse_name,
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 14,
