@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Auth/widgets/commonTextField.dart';
-import 'package:moolwmsstore/Hr/constants/validations.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addProduct.dart';
 import 'package:moolwmsstore/View/common/tagContainer.dart';
@@ -49,245 +47,248 @@ class _TicketEntryReviewScreenForSLState
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Form(
-          child: GetBuilder<SecurityGuardController>(initState: (state) {
-            Get.find<SecurityGuardController>()
-                .viewIndent(indentId: widget.indentElement ?? "");
-          }, builder: (sgController) {
-            return Column(
-              children: [
-                const Gap(20),
-                Container(
-                  height: 39,
-                  padding: const EdgeInsets.only(
-                    top: 10,
-                    left: 30,
-                    right: 10,
-                    bottom: 10,
-                  ),
-                  decoration: ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      side:
-                          const BorderSide(width: 1, color: Color(0x195A57FF)),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        // 'Indent ID :' ${sgController.indentBySg!.indent_number}
-                        '',
-                        style: TextStyle(
-                          color: Color(0xFFACACAC),
-                          fontSize: 16,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                          //height: 0,
-                        ),
-                      ),
-                    ],
+      body: Form(
+        child: GetBuilder<SecurityGuardController>(initState: (state) {
+          Get.find<SecurityGuardController>()
+              .viewIndent(indentId: widget.indentElement ?? "");
+        }, builder: (sgController) {
+          if (sgController.vehicleDetails == null) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return Column(
+            children: [
+              const Gap(20),
+              Container(
+                height: 39,
+                padding: const EdgeInsets.only(
+                  top: 10,
+                  left: 30,
+                  right: 10,
+                  bottom: 10,
+                ),
+                decoration: ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(width: 1, color: Color(0x195A57FF)),
+                    borderRadius: BorderRadius.circular(30),
                   ),
                 ),
-                const Gap(20),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
-                  child: Column(
-                    children: [
-                      TagContainer(
-                          title: 'Person Information',
-                          child: Column(
-                            children: [
-                              PersonalInfoTitle(
-                                title: 'Person Name',
-                                value:
-                                    '${sgController.vehicleDetails!.driver_name}',
-                              ),
-                              const Gap(16),
-                              PersonalInfoTitle(
-                                title: 'Person Mobile No.',
-                                value:
-                                    '${sgController.vehicleDetails!.driver_phone}',
-                              ),
-                              const Gap(16),
-                            ],
-                          ).paddingSymmetric(vertical: 16, horizontal: 16)),
-                      const Gap(10),
-                      TagContainer(
-                          title: 'Vehicle Number',
-                          child: Column(
-                            children: [
-                              PersonalInfoTitle(
-                                title: 'Vehicle Number',
-                                value:
-                                    '${sgController.vehicleDetails!.vehicle_number}',
-                              ),
-                              const Gap(16),
-                              PersonalInfoTitle(
-                                title: 'Driver Name',
-                                value:
-                                    '${sgController.vehicleDetails!.driver_name}',
-                              ),
-                              const Gap(16),
-                            ],
-                          ).paddingSymmetric(vertical: 16, horizontal: 16)),
-                      TagContainer(
-                        title: 'Product Name',
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      // 'Indent ID :' ${sgController.indentBySg!.indent_number}
+                      '',
+                      style: TextStyle(
+                        color: Color(0xFFACACAC),
+                        fontSize: 16,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w400,
+                        //height: 0,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Gap(20),
+              Padding(
+                padding:
+                    const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
+                child: Column(
+                  children: [
+                    TagContainer(
+                        title: 'Person Information',
                         child: Column(
                           children: [
-                            ...List.generate(
-                                sgController
-                                    .indentBySl!.product_details!.length, (i) {
-                              return Container(
-                                decoration: ShapeDecoration(
-                                  color: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                        width: 1, color: Color(0x195A57FF)),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-                                child: ProductView(
-                                    product: sgController
-                                        .indentBySl!.product_details![i]),
-                              ).paddingSymmetric(vertical: 6);
-                            })
+                            PersonalInfoTitle(
+                              title: 'Person Name',
+                              value:
+                                  '${sgController.vehicleDetails!.driver_name}',
+                            ),
+                            const Gap(16),
+                            PersonalInfoTitle(
+                              title: 'Person Mobile No.',
+                              value:
+                                  '${sgController.vehicleDetails!.driver_phone}',
+                            ),
+                            const Gap(16),
                           ],
-                        ),
-                      ),
-                      const Gap(20),
-                      if (isCheckedYesAddProduct && isCheckedYesMaterial)
-                        TagContainer(
-                            title: 'Product Name',
-                            child: Column(
-                              children: [
-                                CommonTextField(
-                                  controller: productName,
-                                  textCapitalization: TextCapitalization.words,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Please enter Product name.';
-                                    }
-
-                                    return null;
-                                  },
-                                  labelText: 'Product Name',
-                                  hintText: 'Enter your product’s name',
-                                ),
-                                const Gap(16),
-                                CommonTextField(
-                                  controller: productQuantity,
-                                  textCapitalization:
-                                      TextCapitalization.characters,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Please enter quantity';
-                                    }
-
-                                    if (!GlobalValidator.isValidPAN(value)) {
-                                      return 'Please enter a valid quantity.';
-                                    }
-
-                                    return null;
-                                  },
-                                  //  validator: ,
-                                  // inputFormatters: [
-                                  //   FilteringTextInputFormatter.allow(
-                                  //       RegExp(r"^[A-Z]{5}[0-9]{4}[A-Z]{1}$"))
-                                  // ],
-                                  labelText: "Quantity",
-                                  hintText: "Enter Quantity",
-                                ),
-                                const Gap(16),
-                                CommonTextField(
-                                  controller: productPrice,
-                                  textCapitalization:
-                                      TextCapitalization.characters,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Please enter units';
-                                    }
-
-                                    if (!GlobalValidator.isValidPAN(value)) {
-                                      return 'Please enter a valid units.';
-                                    }
-
-                                    return null;
-                                  },
-                                  //  validator: ,
-                                  // inputFormatters: [
-                                  //   FilteringTextInputFormatter.allow(
-                                  //       RegExp(r"^[A-Z]{5}[0-9]{4}[A-Z]{1}$"))
-                                  // ],
-                                  labelText: "Units",
-                                  hintText: "Enter Units",
-                                ),
-                                const Gap(16),
-                              ],
-                            ).paddingSymmetric(vertical: 16, horizontal: 16)),
-                      const Gap(10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        ).paddingSymmetric(vertical: 16, horizontal: 16)),
+                    const Gap(10),
+                    TagContainer(
+                        title: 'Vehicle Number',
+                        child: Column(
+                          children: [
+                            PersonalInfoTitle(
+                              title: 'Vehicle Number',
+                              value:
+                                  '${sgController.vehicleDetails!.vehicle_number}',
+                            ),
+                            const Gap(16),
+                            PersonalInfoTitle(
+                              title: 'Driver Name',
+                              value:
+                                  '${sgController.vehicleDetails!.driver_name}',
+                            ),
+                            const Gap(16),
+                          ],
+                        ).paddingSymmetric(vertical: 16, horizontal: 16)),
+                    TagContainer(
+                      title: 'Product Name',
+                      child: Column(
                         children: [
-                          Container(
-                            width: 170,
-                            height: 50,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 8),
-                            decoration: ShapeDecoration(
-                              color: const Color(0xFFE23744),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                'Reject',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontFamily: 'SF Pro Display',
-                                  fontWeight: FontWeight.w600,
+                          ...List.generate(
+                              sgController.indentBySl!.product_details!.length,
+                              (i) {
+                            return Container(
+                              decoration: ShapeDecoration(
+                                color: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  side: const BorderSide(
+                                      width: 1, color: Color(0x195A57FF)),
+                                  borderRadius: BorderRadius.circular(8),
                                 ),
                               ),
-                            ),
-                          ),
-                          Container(
-                            width: 170,
-                            height: 50,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 8),
-                            decoration: ShapeDecoration(
-                              color: const Color(0xFF04BF8A),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                'Approve',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontFamily: 'SF Pro Display',
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
+                              child: ProductView(
+                                  product: sgController
+                                      .indentBySl!.product_details![i]),
+                            ).paddingSymmetric(vertical: 6);
+                          })
                         ],
                       ),
-                      const Gap(60)
-                    ],
-                  ),
+                    ),
+
+                    //if (isCheckedYesAddProduct && isCheckedYesMaterial)
+                    //   TagContainer(
+                    //       title: 'Product Name',
+                    //       child: Column(
+                    //         children: [
+                    //           CommonTextField(
+                    //             controller: productName,
+                    //             textCapitalization: TextCapitalization.words,
+                    //             validator: (value) {
+                    //               if (value!.isEmpty) {
+                    //                 return 'Please enter Product name.';
+                    //               }
+
+                    //               return null;
+                    //             },
+                    //             labelText: 'Product Name',
+                    //             hintText: 'Enter your product’s name',
+                    //           ),
+                    //           const Gap(16),
+                    //           CommonTextField(
+                    //             controller: productQuantity,
+                    //             textCapitalization:
+                    //                 TextCapitalization.characters,
+                    //             validator: (value) {
+                    //               if (value!.isEmpty) {
+                    //                 return 'Please enter quantity';
+                    //               }
+
+                    //               if (!GlobalValidator.isValidPAN(value)) {
+                    //                 return 'Please enter a valid quantity.';
+                    //               }
+
+                    //               return null;
+                    //             },
+                    //             //  validator: ,
+                    //             // inputFormatters: [
+                    //             //   FilteringTextInputFormatter.allow(
+                    //             //       RegExp(r"^[A-Z]{5}[0-9]{4}[A-Z]{1}$"))
+                    //             // ],
+                    //             labelText: "Quantity",
+                    //             hintText: "Enter Quantity",
+                    //           ),
+                    //           const Gap(16),
+                    //           CommonTextField(
+                    //             controller: productPrice,
+                    //             textCapitalization:
+                    //                 TextCapitalization.characters,
+                    //             validator: (value) {
+                    //               if (value!.isEmpty) {
+                    //                 return 'Please enter units';
+                    //               }
+
+                    //               if (!GlobalValidator.isValidPAN(value)) {
+                    //                 return 'Please enter a valid units.';
+                    //               }
+
+                    //               return null;
+                    //             },
+                    //             //  validator: ,
+                    //             // inputFormatters: [
+                    //             //   FilteringTextInputFormatter.allow(
+                    //             //       RegExp(r"^[A-Z]{5}[0-9]{4}[A-Z]{1}$"))
+                    //             // ],
+                    //             labelText: "Units",
+                    //             hintText: "Enter Units",
+                    //           ),
+                    //           const Gap(16),
+                    //         ],
+                    //       ).paddingSymmetric(vertical: 16, horizontal: 16)),
+                    // const Gap(10),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          width: 170,
+                          height: 50,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 8),
+                          decoration: ShapeDecoration(
+                            color: const Color(0xFFE23744),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              'Reject',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 170,
+                          height: 50,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 8),
+                          decoration: ShapeDecoration(
+                            color: const Color(0xFF04BF8A),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              'Approve',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Gap(60)
+                  ],
                 ),
-              ],
-            );
-          }),
-        ),
+              ),
+            ],
+          );
+        }),
       ),
     );
   }

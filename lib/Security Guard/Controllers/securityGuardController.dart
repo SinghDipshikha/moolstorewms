@@ -9,7 +9,6 @@ import 'package:moolwmsstore/Sales/Sales.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addLabour.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addMaterialCount.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addPersonCount.dart';
-import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addProduct.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addVehicleCount.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addVisitor.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addVisitorCount.dart';
@@ -57,7 +56,7 @@ class SecurityGuardController extends GetxController {
   TicketSG? indentBySg;
   TicketSL? indentBySl;
   VehicleEntry? vehicleDetails;
-  
+
   bool? isCheckIn;
   User user;
   bool isloading = false;
@@ -337,12 +336,13 @@ class SecurityGuardController extends GetxController {
       if (indentId.contains('SL') &&
           value.data["message"] ==
               "Indent details found Successfully for Indent id $indentId") {
-        indentBySl= TicketSL.fromJson(value.data["result"][0]);
+        indentBySl = TicketSL.fromJson(value.data["result"][0]);
         Logger().i(indentBySg);
       }
-      isLoading = false;
-      update();
     });
+
+    isLoading = false;
+    update();
   }
 
 //   addTicketBySecurityGuard({
