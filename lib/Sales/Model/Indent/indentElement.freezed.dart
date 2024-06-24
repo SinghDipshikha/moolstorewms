@@ -20,11 +20,14 @@ IndentElement _$IndentElementFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$IndentElement {
-  String? get ticket_id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  int? get customer_id => throw _privateConstructorUsedError;
+  String? get customer_name => throw _privateConstructorUsedError;
+  String? get indent_number => throw _privateConstructorUsedError;
   String? get order_number => throw _privateConstructorUsedError;
-  int? get shipped_to_company_id => throw _privateConstructorUsedError;
-  String? get shipped_to_company => throw _privateConstructorUsedError;
-  String? get IndentElement_name => throw _privateConstructorUsedError;
+  String? get vehicle_number => throw _privateConstructorUsedError;
+  String? get driver_name => throw _privateConstructorUsedError;
+  String? get driver_ph_number => throw _privateConstructorUsedError;
   DateTime? get dateTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,11 +43,14 @@ abstract class $IndentElementCopyWith<$Res> {
       _$IndentElementCopyWithImpl<$Res, IndentElement>;
   @useResult
   $Res call(
-      {String? ticket_id,
+      {int? id,
+      int? customer_id,
+      String? customer_name,
+      String? indent_number,
       String? order_number,
-      int? shipped_to_company_id,
-      String? shipped_to_company,
-      String? IndentElement_name,
+      String? vehicle_number,
+      String? driver_name,
+      String? driver_ph_number,
       DateTime? dateTime});
 }
 
@@ -61,33 +67,48 @@ class _$IndentElementCopyWithImpl<$Res, $Val extends IndentElement>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? ticket_id = freezed,
+    Object? id = freezed,
+    Object? customer_id = freezed,
+    Object? customer_name = freezed,
+    Object? indent_number = freezed,
     Object? order_number = freezed,
-    Object? shipped_to_company_id = freezed,
-    Object? shipped_to_company = freezed,
-    Object? IndentElement_name = freezed,
+    Object? vehicle_number = freezed,
+    Object? driver_name = freezed,
+    Object? driver_ph_number = freezed,
     Object? dateTime = freezed,
   }) {
     return _then(_value.copyWith(
-      ticket_id: freezed == ticket_id
-          ? _value.ticket_id
-          : ticket_id // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customer_id: freezed == customer_id
+          ? _value.customer_id
+          : customer_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customer_name: freezed == customer_name
+          ? _value.customer_name
+          : customer_name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      indent_number: freezed == indent_number
+          ? _value.indent_number
+          : indent_number // ignore: cast_nullable_to_non_nullable
               as String?,
       order_number: freezed == order_number
           ? _value.order_number
           : order_number // ignore: cast_nullable_to_non_nullable
               as String?,
-      shipped_to_company_id: freezed == shipped_to_company_id
-          ? _value.shipped_to_company_id
-          : shipped_to_company_id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      shipped_to_company: freezed == shipped_to_company
-          ? _value.shipped_to_company
-          : shipped_to_company // ignore: cast_nullable_to_non_nullable
+      vehicle_number: freezed == vehicle_number
+          ? _value.vehicle_number
+          : vehicle_number // ignore: cast_nullable_to_non_nullable
               as String?,
-      IndentElement_name: freezed == IndentElement_name
-          ? _value.IndentElement_name
-          : IndentElement_name // ignore: cast_nullable_to_non_nullable
+      driver_name: freezed == driver_name
+          ? _value.driver_name
+          : driver_name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      driver_ph_number: freezed == driver_ph_number
+          ? _value.driver_ph_number
+          : driver_ph_number // ignore: cast_nullable_to_non_nullable
               as String?,
       dateTime: freezed == dateTime
           ? _value.dateTime
@@ -106,11 +127,14 @@ abstract class _$$IndentElementImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? ticket_id,
+      {int? id,
+      int? customer_id,
+      String? customer_name,
+      String? indent_number,
       String? order_number,
-      int? shipped_to_company_id,
-      String? shipped_to_company,
-      String? IndentElement_name,
+      String? vehicle_number,
+      String? driver_name,
+      String? driver_ph_number,
       DateTime? dateTime});
 }
 
@@ -125,33 +149,48 @@ class __$$IndentElementImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? ticket_id = freezed,
+    Object? id = freezed,
+    Object? customer_id = freezed,
+    Object? customer_name = freezed,
+    Object? indent_number = freezed,
     Object? order_number = freezed,
-    Object? shipped_to_company_id = freezed,
-    Object? shipped_to_company = freezed,
-    Object? IndentElement_name = freezed,
+    Object? vehicle_number = freezed,
+    Object? driver_name = freezed,
+    Object? driver_ph_number = freezed,
     Object? dateTime = freezed,
   }) {
     return _then(_$IndentElementImpl(
-      ticket_id: freezed == ticket_id
-          ? _value.ticket_id
-          : ticket_id // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customer_id: freezed == customer_id
+          ? _value.customer_id
+          : customer_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customer_name: freezed == customer_name
+          ? _value.customer_name
+          : customer_name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      indent_number: freezed == indent_number
+          ? _value.indent_number
+          : indent_number // ignore: cast_nullable_to_non_nullable
               as String?,
       order_number: freezed == order_number
           ? _value.order_number
           : order_number // ignore: cast_nullable_to_non_nullable
               as String?,
-      shipped_to_company_id: freezed == shipped_to_company_id
-          ? _value.shipped_to_company_id
-          : shipped_to_company_id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      shipped_to_company: freezed == shipped_to_company
-          ? _value.shipped_to_company
-          : shipped_to_company // ignore: cast_nullable_to_non_nullable
+      vehicle_number: freezed == vehicle_number
+          ? _value.vehicle_number
+          : vehicle_number // ignore: cast_nullable_to_non_nullable
               as String?,
-      IndentElement_name: freezed == IndentElement_name
-          ? _value.IndentElement_name
-          : IndentElement_name // ignore: cast_nullable_to_non_nullable
+      driver_name: freezed == driver_name
+          ? _value.driver_name
+          : driver_name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      driver_ph_number: freezed == driver_ph_number
+          ? _value.driver_ph_number
+          : driver_ph_number // ignore: cast_nullable_to_non_nullable
               as String?,
       dateTime: freezed == dateTime
           ? _value.dateTime
@@ -165,32 +204,41 @@ class __$$IndentElementImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$IndentElementImpl implements _IndentElement {
   const _$IndentElementImpl(
-      {this.ticket_id,
+      {this.id,
+      this.customer_id,
+      this.customer_name,
+      this.indent_number,
       this.order_number,
-      this.shipped_to_company_id,
-      this.shipped_to_company,
-      this.IndentElement_name,
+      this.vehicle_number,
+      this.driver_name,
+      this.driver_ph_number,
       this.dateTime});
 
   factory _$IndentElementImpl.fromJson(Map<String, dynamic> json) =>
       _$$IndentElementImplFromJson(json);
 
   @override
-  final String? ticket_id;
+  final int? id;
+  @override
+  final int? customer_id;
+  @override
+  final String? customer_name;
+  @override
+  final String? indent_number;
   @override
   final String? order_number;
   @override
-  final int? shipped_to_company_id;
+  final String? vehicle_number;
   @override
-  final String? shipped_to_company;
+  final String? driver_name;
   @override
-  final String? IndentElement_name;
+  final String? driver_ph_number;
   @override
   final DateTime? dateTime;
 
   @override
   String toString() {
-    return 'IndentElement(ticket_id: $ticket_id, order_number: $order_number, shipped_to_company_id: $shipped_to_company_id, shipped_to_company: $shipped_to_company, IndentElement_name: $IndentElement_name, dateTime: $dateTime)';
+    return 'IndentElement(id: $id, customer_id: $customer_id, customer_name: $customer_name, indent_number: $indent_number, order_number: $order_number, vehicle_number: $vehicle_number, driver_name: $driver_name, driver_ph_number: $driver_ph_number, dateTime: $dateTime)';
   }
 
   @override
@@ -198,24 +246,38 @@ class _$IndentElementImpl implements _IndentElement {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$IndentElementImpl &&
-            (identical(other.ticket_id, ticket_id) ||
-                other.ticket_id == ticket_id) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.customer_id, customer_id) ||
+                other.customer_id == customer_id) &&
+            (identical(other.customer_name, customer_name) ||
+                other.customer_name == customer_name) &&
+            (identical(other.indent_number, indent_number) ||
+                other.indent_number == indent_number) &&
             (identical(other.order_number, order_number) ||
                 other.order_number == order_number) &&
-            (identical(other.shipped_to_company_id, shipped_to_company_id) ||
-                other.shipped_to_company_id == shipped_to_company_id) &&
-            (identical(other.shipped_to_company, shipped_to_company) ||
-                other.shipped_to_company == shipped_to_company) &&
-            (identical(other.IndentElement_name, IndentElement_name) ||
-                other.IndentElement_name == IndentElement_name) &&
+            (identical(other.vehicle_number, vehicle_number) ||
+                other.vehicle_number == vehicle_number) &&
+            (identical(other.driver_name, driver_name) ||
+                other.driver_name == driver_name) &&
+            (identical(other.driver_ph_number, driver_ph_number) ||
+                other.driver_ph_number == driver_ph_number) &&
             (identical(other.dateTime, dateTime) ||
                 other.dateTime == dateTime));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, ticket_id, order_number,
-      shipped_to_company_id, shipped_to_company, IndentElement_name, dateTime);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      customer_id,
+      customer_name,
+      indent_number,
+      order_number,
+      vehicle_number,
+      driver_name,
+      driver_ph_number,
+      dateTime);
 
   @JsonKey(ignore: true)
   @override
@@ -233,26 +295,35 @@ class _$IndentElementImpl implements _IndentElement {
 
 abstract class _IndentElement implements IndentElement {
   const factory _IndentElement(
-      {final String? ticket_id,
+      {final int? id,
+      final int? customer_id,
+      final String? customer_name,
+      final String? indent_number,
       final String? order_number,
-      final int? shipped_to_company_id,
-      final String? shipped_to_company,
-      final String? IndentElement_name,
+      final String? vehicle_number,
+      final String? driver_name,
+      final String? driver_ph_number,
       final DateTime? dateTime}) = _$IndentElementImpl;
 
   factory _IndentElement.fromJson(Map<String, dynamic> json) =
       _$IndentElementImpl.fromJson;
 
   @override
-  String? get ticket_id;
+  int? get id;
+  @override
+  int? get customer_id;
+  @override
+  String? get customer_name;
+  @override
+  String? get indent_number;
   @override
   String? get order_number;
   @override
-  int? get shipped_to_company_id;
+  String? get vehicle_number;
   @override
-  String? get shipped_to_company;
+  String? get driver_name;
   @override
-  String? get IndentElement_name;
+  String? get driver_ph_number;
   @override
   DateTime? get dateTime;
   @override

@@ -196,8 +196,7 @@ class CommanTextFieldForDocuments extends StatelessWidget {
                     ),
                     TextSpan(
                       text: '*',
-                      style: TextStyles.bodyMedium(context)
-                          .copyWith(color: Colors.red),
+                      style: TextStyle(color: Colors.red),
                     ),
                   ],
                 ),

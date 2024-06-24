@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Auth/Auth.dart';
-import 'package:moolwmsstore/View/Styles/Styles..dart';
-import 'package:moolwmsstore/View/common/customButton.dart';
+import 'package:moolwmsstore/Owner/View/Common/customButton.dart';
 
 // import 'package:getx_route_annotations/getx_route_annotations.dart';
 // ////@RoutePage()
@@ -42,12 +41,10 @@ class Welcome extends StatelessWidget {
                     height: height * 0.2,
                   ),
                   const Gap(20),
-                  Text("You are Onboard",
-                      style: TextStyles.bodyMedium(context)
-                          .copyWith(color: Colors.white)),
-                  Text("You have signed up successfully",
-                      style: TextStyles.bodyMedium(context)
-                          .copyWith(color: Colors.white)),
+                  const Text("You are Onboard",
+                      style: TextStyle(color: Colors.white)),
+                  const Text("You have signed up successfully",
+                      style: TextStyle(color: Colors.white)),
                   const Gap(20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -60,7 +57,6 @@ class Welcome extends StatelessWidget {
                         //  context.pushReplacement(location)
                       },
                       title: "Welcome",
-                      glow: false,
                     ),
                   )
                 ],

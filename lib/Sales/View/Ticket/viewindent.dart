@@ -1,13 +1,14 @@
-import 'package:accordion/accordion.dart';
-import 'package:accordion/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:moolwmsstore/Sales/Model/Indent/indentElement.dart';
-import 'package:moolwmsstore/Sales/Model/Indent/viewIndentModel.dart';
+import 'package:moolwmsstore/Sales/Model/enterProduct.dart';
+import 'package:moolwmsstore/Sales/View/common/widgets/titleContainer.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
+import 'package:moolwmsstore/View/Styles/Styles..dart';
+import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
 
 class Viewindent extends StatelessWidget {
@@ -19,40 +20,63 @@ class Viewindent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'View Indent',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontFamily: 'SF Pro Display',
-            fontWeight: FontWeight.w500,
-          ),
-        ),
+        centerTitle: false,
+        title: const Text('View Indent', style: TextStyles.appBarTextStyle),
       ),
-      body: GetBuilder<SalesController>(initState: (state) {
+      body: GetBuilder<SalesController>(
+        
+        initState: (state) {
         Get.find<SalesController>()
-            .viewindent(indentId: indentElement.ticket_id ?? "");
+            .viewindent(indentId: indentElement.indent_number ?? "");
       }, builder: (salesController) {
-        //  salesController.indent.product_details
         if (salesController.loading) {
           return const Center(
               child: SpinKitDoubleBounce(
             color: Color(0xFF5A57FF),
           ));
         }
+        const TextStyle subtitleStyle = TextStyle(
+          color: Color(0xFF808080),
+          fontSize: 10,
+          fontFamily: 'SF Pro Display',
+          fontWeight: FontWeight.w400,
+        );
+        const TextStyle titleStyle = TextStyle(
+          color: Color(0xFF353535),
+          fontSize: 16,
+          fontFamily: 'SF Pro Display',
+          fontWeight: FontWeight.w500,
+        );
         return SingleChildScrollView(
           child: Column(
             children: [
               Row(
                 children: [
+                  const Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Created on : ',
+                          style: TextStyle(
+                            color: Color(0xFFACACAC),
+                            fontSize: 12,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   Image.asset(
                     "assets/icons/calendar.png",
                     height: 16,
                     color: const Color(0xFF5A57FF),
                   ).paddingSymmetric(horizontal: 8),
                   Text(
-                    dateformatter
-                        .format(salesController.indent!.created_at as DateTime),
+                    salesController.indent?.created_at == null
+                        ? "--"
+                        : dateformatter.format(
+                            salesController.indent?.created_at as DateTime),
                     style: const TextStyle(
                       color: Color(0xFF5A57FF),
                       fontSize: 14,
@@ -61,14 +85,31 @@ class Viewindent extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
+                  const Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Created at : ',
+                          style: TextStyle(
+                            color: Color(0xFFACACAC),
+                            fontSize: 12,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   Image.asset(
                     "assets/icons/Clock Icon (R).png",
                     height: 18,
                     color: const Color(0xFF5A57FF),
                   ).paddingSymmetric(horizontal: 8),
                   Text(
-                    timeformatter
-                        .format(salesController.indent!.created_at as DateTime),
+                    salesController.indent?.created_at == null
+                        ? "--"
+                        : timeformatter.format(
+                            salesController.indent?.created_at as DateTime),
                     style: const TextStyle(
                       color: Color(0xFF5A57FF),
                       fontSize: 14,
@@ -89,29 +130,61 @@ class Viewindent extends StatelessWidget {
                       borderRadius: BorderRadius.circular(5),
                     ),
                   ),
-                  child: Text.rich(
-                    TextSpan(
-                      children: [
-                        const TextSpan(
-                          text: 'Indent Created by : ',
-                          style: TextStyle(
-                            color: Color(0xFFACACAC),
-                            fontSize: 12,
-                            fontFamily: 'SF Pro Display',
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text.rich(
                         TextSpan(
-                          text: salesController.indent!.name ?? "--",
-                          style: const TextStyle(
-                            color: Color(0xFF353535),
-                            fontSize: 12,
-                            fontFamily: 'SF Pro Display',
-                            fontWeight: FontWeight.w400,
-                          ),
+                          children: [
+                            const TextSpan(
+                              text: 'Indent Created by : ',
+                              style: TextStyle(
+                                color: Color(0xFFACACAC),
+                                fontSize: 12,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            TextSpan(
+                              text: salesController.indent!.name ?? "--",
+                              style: const TextStyle(
+                                color: Color(0xFF353535),
+                                fontSize: 12,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                      const Gap(12),
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            const TextSpan(
+                              text: 'Designation : ',
+                              style: TextStyle(
+                                color: Color(0xFFACACAC),
+                                fontSize: 12,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            TextSpan(
+                              text: (salesController.indent!.designation?[0] ??
+                                      " --")
+                                  .toUpperCase(),
+                              style: const TextStyle(
+                                color: Color(0xFF353535),
+                                fontSize: 12,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   )).paddingOnly(top: 12),
               Container(
                   height: 36,
@@ -137,7 +210,7 @@ class Viewindent extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: salesController.indent!.ticket_id ?? "--",
+                          text: salesController.indent!.indent_number ?? "--",
                           style: const TextStyle(
                             color: Color(0xFF353535),
                             fontSize: 12,
@@ -147,342 +220,371 @@ class Viewindent extends StatelessWidget {
                         ),
                       ],
                     ),
-                  )).paddingOnly(bottom: 12),
-              Accordion(
-                paddingListBottom: 0,
-                paddingListTop: 12,
-                disableScrolling: true,
-                paddingListHorizontal: 0,
-                headerBorderRadius: 10,
-                headerBorderColor: Colors.blueGrey,
-                headerBorderColorOpened: Colors.transparent,
-                contentBackgroundColor: Colors.white,
-                contentHorizontalPadding: 0,
-                contentVerticalPadding: 0,
-                headerBackgroundColor: const Color(0xFF5A57FF),
-                scaleWhenAnimating: true,
-                openAndCloseAnimation: true,
-                headerPadding:
-                    const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-                sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
-                sectionClosingHapticFeedback: SectionHapticFeedback.light,
-                children: [
-                  AccordionSection(
-                    headerBackgroundColorOpened: const Color(0xFF5A57FF),
-                    contentBorderColor: Colors.transparent,
-                    isOpen: false,
-                    contentVerticalPadding: 2,
-                    header: const Row(
+                  )),
+              Container(
+                width: double.infinity,
+                height: 80,
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                    image: DecorationImage(
+                        fit: BoxFit.fitWidth,
+                        image: AssetImage("assets/images/Mask group.png"))),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Warehouse Name',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color(0xFFC2C0FF),
+                          fontSize: 12,
+                          fontFamily: 'SF Pro Display',
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      Text(
+                        salesController.indent?.warehouse_name ?? "--",
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontFamily: 'SF Pro Display',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ).paddingSymmetric(vertical: 16),
+              TitleContainer(
+                title: "Customer Details",
+                child: Container(
+                  decoration: ShapeDecoration(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      side:
+                          const BorderSide(width: 1, color: Color(0x195A57FF)),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 22.0,
+                        backgroundColor:
+                            const Color.fromARGB(255, 238, 237, 237),
+                        backgroundImage: salesController
+                                    .indent!.customer_details![0].avatar !=
+                                null
+                            ? null
+                            : const AssetImage(
+                                "assets/icons/customerAvatar.png"),
+                        child: salesController
+                                    .indent!.customer_details![0].avatar !=
+                                null
+                            ? ClipRRect(
+                                borderRadius: BorderRadius.circular(50),
+                                child: Image.network(
+                                  salesController
+                                      .indent!.customer_details![0].avatar
+                                      .toString(),
+                                  fit: BoxFit.cover,
+                                ),
+                              )
+                            : null,
+                      ),
+                      const Gap(12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              salesController.indent!.customer_details![0]
+                                      .first_name ??
+                                  salesController
+                                      .indent!.customer_details![0].last_name ??
+                                  "",
+                              style: const TextStyle(
+                                color: Color(0xFF353535),
+                                fontSize: 14,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  salesController.indent!.customer_details![0]
+                                          .company_name ??
+                                      "--",
+                                  style: const TextStyle(
+                                    color: Color(0xFF5A57FF),
+                                    fontSize: 8,
+                                    fontFamily: 'SF Pro Display',
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                const Spacer(),
+                                Text(
+                                  salesController
+                                          .indent!.customer_details![0].phone ??
+                                      "--",
+                                  style: const TextStyle(
+                                    color: Color(0xFF5A57FF),
+                                    fontSize: 8,
+                                    fontFamily: 'SF Pro Display',
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  salesController.indent!.customer_details![0]
+                                          .company_name ??
+                                      "--",
+                                  style: const TextStyle(
+                                    color: Color(0xFF5A57FF),
+                                    fontSize: 8,
+                                    fontFamily: 'SF Pro Display',
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                const Spacer(),
+                                Text(
+                                  salesController
+                                          .indent!.customer_details![0].email ??
+                                      "",
+                                  style: const TextStyle(
+                                    color: Color(0xFF5A57FF),
+                                    fontSize: 8,
+                                    fontFamily: 'SF Pro Display',
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ).paddingAll(8),
+                ).paddingSymmetric(vertical: 6),
+              ),
+              const Gap(12),
+              TitleContainer(
+                title: "Products Details",
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'Company Details',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontFamily: 'SF Pro Display',
-                            fontWeight: FontWeight.w400,
+                        Text.rich(
+                          TextSpan(
+                            children: [
+                              const TextSpan(
+                                text: 'Minimum Temperature : ',
+                                style: TextStyle(
+                                  color: Color(0xFFACACAC),
+                                  fontSize: 12,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                    "${salesController.indent!.max_temperature ?? " --"} °c",
+                                style: const TextStyle(
+                                  color: Color(0xFF353535),
+                                  fontSize: 12,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Gap(12),
+                        Text.rich(
+                          TextSpan(
+                            children: [
+                              const TextSpan(
+                                text: 'Max Temperature : ',
+                                style: TextStyle(
+                                  color: Color(0xFFACACAC),
+                                  fontSize: 12,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                    "${salesController.indent!.max_temperature ?? " --"} °c",
+                                style: const TextStyle(
+                                  color: Color(0xFF353535),
+                                  fontSize: 12,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
                     ),
-                    content: Container(
-                      decoration: ShapeDecoration(
-                        color: const Color(0xFFFAF9FF),
-                        shape: RoundedRectangleBorder(
-                          side: const BorderSide(
-                              width: 1, color: Color(0x195A57FF)),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          ComapnyTitle(
-                              title: 'Call From',
-                              company: salesController
-                                      .indent!.call_from_seller_company ??
-                                  "--"),
-                          const Gap(18),
-                          ComapnyTitle(
-                              title: 'Bill To',
-                              company: salesController
-                                      .indent!.bill_to_seller_companany ??
-                                  "--"),
-                          const Gap(18),
-                          ComapnyTitle(
-                              title: 'Shipped From',
-                              company: salesController
-                                      .indent!.ship_from_seller_companany ??
-                                  "--"),
-                          const Gap(18),
-                          ComapnyTitle(
-                              title: 'Shipped To',
-                              company: salesController
-                                      .indent!.ship_to_seller_companany ??
-                                  "--"),
-                        ],
-                      ).paddingSymmetric(horizontal: 12, vertical: 22),
-                    ),
-                  ),
-                ],
-              ),
-              Accordion(
-                paddingListBottom: 0,
-                paddingListTop: 0,
-                disableScrolling: true,
-                paddingListHorizontal: 0,
-                headerBorderRadius: 10,
-                headerBorderColor: Colors.blueGrey,
-                headerBorderColorOpened: Colors.transparent,
-                contentBackgroundColor: Colors.white,
-                contentHorizontalPadding: 0,
-                contentVerticalPadding: 0,
-                headerBackgroundColor: const Color(0xFF5A57FF),
-                scaleWhenAnimating: true,
-                openAndCloseAnimation: true,
-                headerPadding:
-                    const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-                sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
-                sectionClosingHapticFeedback: SectionHapticFeedback.light,
-                children: [
-                  AccordionSection(
-                      headerBackgroundColorOpened: const Color(0xFF5A57FF),
-                      contentBorderColor: Colors.transparent,
-                      isOpen: false,
-                      contentVerticalPadding: 2,
-                      header: const Row(
-                        children: [
-                          Text(
-                            'Product Details',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontFamily: 'SF Pro Display',
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
-                      content: Container(
+                    ...List.generate(
+                        salesController.indent!.product_details!.length, (i) {
+                      return Container(
                         decoration: ShapeDecoration(
-                          color: const Color(0xFFFAF9FF),
+                          color: Colors.white,
                           shape: RoundedRectangleBorder(
                             side: const BorderSide(
                                 width: 1, color: Color(0x195A57FF)),
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(8),
                           ),
                         ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: List.generate(
-                              salesController.indent!.product_details?.length ??
-                                  0, (i) {
-                            return Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Product(
-                                  product: salesController
-                                      .indent!.product_details![i],
-                                ).paddingSymmetric(
-                                    vertical: 12, horizontal: 12),
-                                if (i <
-                                    (salesController
-                                            .indent!.product_details!.length -
-                                        1))
-                                  const Divider(
-                                    color: Color(0x195A57FF),
-                                  )
-                              ],
-                            );
-                          }),
-                        ),
-                      )),
-                ],
+                        child: Product(
+                            product:
+                                salesController.indent!.product_details![i]),
+                      ).paddingSymmetric(vertical: 6);
+                    })
+                  ],
+                ),
               ),
-              ListView.builder(
-                itemCount: salesController.indent!.check_in_out!.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return Container(
-                    width: double.infinity,
-                    height: 187,
-                    decoration: ShapeDecoration(
-                      color: const Color(0xFFFAF9FF),
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(
-                            width: 1, color: Color(0x195A57FF)),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+              const Gap(12),
+              TitleContainer(
+                title: "Vehicle Details",
+                child: Container(
+                  decoration: ShapeDecoration(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      side:
+                          const BorderSide(width: 1, color: Color(0x195A57FF)),
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              width: 98,
-                              height: 27,
-                              alignment: Alignment.center,
-                              decoration: ShapeDecoration(
-                                color: const Color(0xFFB9FFEA),
-                                shape: RoundedRectangleBorder(
-                                  side: const BorderSide(
-                                      width: 1, color: Color(0x1902A676)),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                              ),
-                              child: const Text(
-                                'Checked In',
-                                style: TextStyle(
-                                  color: Color(0xFF02A676),
-                                  fontSize: 16,
-                                  fontFamily: 'SF Pro Display',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                            const Spacer(),
-                            Container(
-                              height: 27,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 4),
-                              decoration: ShapeDecoration(
-                                color: const Color(0xFFEAE9FF),
-                                shape: RoundedRectangleBorder(
-                                  side: const BorderSide(
-                                      width: 1, color: Color(0x195A57FF)),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Image.asset(
-                                    "assets/icons/calendar.png",
-                                    height: 10,
-                                    color: const Color(0xFF5A57FF),
-                                  ).paddingSymmetric(horizontal: 8),
-                                  Text(
-                                    dateformatter.format(salesController
-                                        .indent!.created_at as DateTime),
-                                    style: const TextStyle(
-                                      color: Color(0xFF5A57FF),
-                                      fontSize: 8,
-                                      fontFamily: 'SF Pro Display',
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                  const Gap(10),
-                                  Image.asset(
-                                    "assets/icons/Clock Icon (R).png",
-                                    height: 10,
-                                    color: const Color(0xFF5A57FF),
-                                  ).paddingSymmetric(horizontal: 8),
-                                  Text(
-                                    timeformatter.format(salesController
-                                        .indent!.created_at as DateTime),
-                                    style: const TextStyle(
-                                      color: Color(0xFF5A57FF),
-                                      fontSize: 8,
-                                      fontFamily: 'SF Pro Display',
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                        const Row(
-                          children: [
-                            Expanded(
-                              flex: 3,
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                              flex: 1,
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text(
-                                    'Warehouse Name',
-                                    style: TextStyle(
-                                      color: Color(0xFFACACAC),
-                                      fontSize: 10,
-                                      fontFamily: 'SF Pro Display',
-                                      fontWeight: FontWeight.w400,
-                                    ),
+                                  const Text(
+                                    'Driver Name',
+                                    style: subtitleStyle,
                                   ),
-                                  Text(
-                                    'PixelGenix Solutions',
-                                    style: TextStyle(
-                                      color: Color(0xFF353535),
-                                      fontSize: 14,
-                                      fontFamily: 'SF Pro Display',
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  )
+                                  Container(
+                                      child: Text(
+                                              salesController
+                                                      .indent!
+                                                      .vehicle_details![0]
+                                                      .driver_name ??
+                                                  "--",
+                                              style: titleStyle)
+                                          .paddingSymmetric(vertical: 4)),
+                                  const Gap(8),
                                 ],
-                              ),
-                            ),
-                            Expanded(
-                              flex: 2,
+                              )),
+                          Expanded(
+                              flex: 1,
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'Vehicle Number',
-                                    style: TextStyle(
-                                      color: Color(0xFFACACAC),
-                                      fontSize: 10,
-                                      fontFamily: 'SF Pro Display',
-                                      fontWeight: FontWeight.w400,
-                                    ),
+                                    style: subtitleStyle,
                                   ),
-                                  Text(
-                                    'LS 12 0014',
-                                    style: TextStyle(
-                                      color: Color(0xFF353535),
-                                      fontSize: 14,
-                                      fontFamily: 'SF Pro Display',
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  )
+                                  Container(
+                                      child: Text(
+                                              salesController
+                                                      .indent!
+                                                      .vehicle_details![0]
+                                                      .vehicle_number ??
+                                                  "--",
+                                              style: titleStyle)
+                                          .paddingSymmetric(vertical: 4)),
+                                  const Gap(8),
                                 ],
-                              ),
-                            ),
-                            // Expanded(
-                            //   flex: 2,
-                            //   child: Column(
-                            //     crossAxisAlignment: CrossAxisAlignment.start,
-                            //     mainAxisSize: MainAxisSize.min,
-                            //     children: [
-                            //       Text(
-                            //         'Total Price',
-                            //         style: TextStyle(
-                            //           color: Color(0xFFACACAC),
-                            //           fontSize: 10,
-                            //           fontFamily: 'SF Pro Display',
-                            //           fontWeight: FontWeight.w400,
-                            //         ),
-                            //       ),
-                            //       Text(
-                            //         'Rs 36000',
-                            //         style: TextStyle(
-                            //           color: Color(0xFF353535),
-                            //           fontSize: 14,
-                            //           fontFamily: 'SF Pro Display',
-                            //           fontWeight: FontWeight.w500,
-                            //         ),
-                            //       )
-                            //     ],
-                            //   ),
-                            // ),
-                          ],
-                        ).paddingSymmetric(vertical: 8)
-                      ],
-                    ).paddingAll(12),
-                  ).paddingSymmetric(vertical: 12);
-                },
-              )
+                              )),
+                          Expanded(
+                              flex: 1,
+                              child: Column(
+                                children: [
+                                  const Text(
+                                    'Vehicle Type',
+                                    style: subtitleStyle,
+                                  ),
+                                  Container(
+                                      child: Text(
+                                              salesController
+                                                      .indent!
+                                                      .vehicle_details![0]
+                                                      .vehicle_type ??
+                                                  "--",
+                                              style: titleStyle)
+                                          .paddingSymmetric(vertical: 4)),
+                                  const Gap(8),
+                                ],
+                              )),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                              flex: 1,
+                              child: Column(
+                                children: [
+                                  const Text(
+                                    'Driver Phone Number',
+                                    style: subtitleStyle,
+                                  ),
+                                  Container(
+                                      child: Text(
+                                              salesController
+                                                      .indent!
+                                                      .vehicle_details![0]
+                                                      .driver_ph_number ??
+                                                  "--",
+                                              style: titleStyle)
+                                          .paddingSymmetric(vertical: 4)),
+                                ],
+                              )),
+                          Expanded(
+                              flex: 1,
+                              child: Column(
+                                children: [
+                                  const Text(
+                                    'Expected Arrival Date and Time',
+                                    style: subtitleStyle,
+                                  ),
+                                  Container(
+                                      child: Text(
+                                              salesController
+                                                          .indent!
+                                                          .vehicle_details![0]
+                                                          .expected_date ==
+                                                      null
+                                                  ? "--"
+                                                  : AppConstants.timeformatter
+                                                      .format(salesController
+                                                              .indent!
+                                                              .vehicle_details![0]
+                                                              .expected_date
+                                                          as DateTime),
+                                              style: titleStyle)
+                                          .paddingSymmetric(vertical: 4)),
+                                ],
+                              )),
+                        ],
+                      ),
+                    ],
+                  ).paddingSymmetric(vertical: 12),
+                ),
+              ),
+              const Gap(12)
             ],
           ),
         ).paddingSymmetric(
@@ -493,62 +595,61 @@ class Viewindent extends StatelessWidget {
   }
 }
 
-class ComapnyTitle extends StatelessWidget {
-  String title;
-  String company;
-  ComapnyTitle(
-      {super.key, required this.title, required this.company, required});
+// class ComapnyTitle extends StatelessWidget {
+//   String title;
+//   String company;
+//   ComapnyTitle(
+//       {super.key, required this.title, required this.company, required});
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Row(
-          children: [
-            Image.asset(
-              "assets/icons/Line 44.png",
-              color: Colors.black,
-              height: 8,
-            ).paddingOnly(right: 12),
-            Text(
-              title,
-              style: const TextStyle(
-                color: Color(0xFFACACAC),
-                fontSize: 14,
-                fontFamily: 'SF Pro Display',
-                fontWeight: FontWeight.w400,
-              ),
-            )
-          ],
-        ),
-        // const Gap(2),
-        Row(
-          children: [
-            Image.asset(
-              "assets/icons/Line 44.png",
-              height: 8,
-              color: Colors.transparent,
-            ).paddingOnly(right: 12),
-            Text(
-              company,
-              style: const TextStyle(
-                color: Color(0xFF353535),
-                fontSize: 22,
-                fontFamily: 'SF Pro Display',
-                fontWeight: FontWeight.w500,
-                height: 0,
-              ),
-            )
-          ],
-        ),
-      ],
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       mainAxisSize: MainAxisSize.min,
+//       children: [
+//         Row(
+//           children: [
+//             Image.asset(
+//               "assets/icons/Line 44.png",
+//               color: Colors.black,
+//               height: 8,
+//             ).paddingOnly(right: 12),
+//             Text(
+//               title,
+//               style: const TextStyle(
+//                 color: Color(0xFFACACAC),
+//                 fontSize: 14,
+//                 fontFamily: 'SF Pro Display',
+//                 fontWeight: FontWeight.w400,
+//               ),
+//             )
+//           ],
+//         ),
+//         // const Gap(2),
+//         Row(
+//           children: [
+//             Image.asset(
+//               "assets/icons/Line 44.png",
+//               height: 8,
+//               color: Colors.transparent,
+//             ).paddingOnly(right: 12),
+//             Text(
+//               company,
+//               style: const TextStyle(
+//                 color: Color(0xFF353535),
+//                 fontSize: 22,
+//                 fontFamily: 'SF Pro Display',
+//                 fontWeight: FontWeight.w500,
+//                 height: 0,
+//               ),
+//             )
+//           ],
+//         ),
+//       ],
+//     );
+//   }
 
 class Product extends StatelessWidget {
-  ProductsIndentViewModel product;
+  EnterProduct product;
   Product({super.key, required this.product});
 
   @override
@@ -566,11 +667,6 @@ class Product extends StatelessWidget {
       fontWeight: FontWeight.w500,
     );
 
-    const BoxDecoration f = BoxDecoration(
-        border: Border(
-      bottom: BorderSide(width: 1, color: Color(0x195A57FF)),
-    ));
-
     return Row(
       children: [
         Expanded(
@@ -583,7 +679,6 @@ class Product extends StatelessWidget {
                   style: subtitleStyle,
                 ),
                 Container(
-                    decoration: f,
                     child: Text(product.product_name ?? "--", style: titleStyle)
                         .paddingSymmetric(vertical: 4)),
                 const Gap(8),
@@ -592,7 +687,6 @@ class Product extends StatelessWidget {
                   style: subtitleStyle,
                 ),
                 Container(
-                    decoration: f,
                     child: Text("${product.qty ?? "--"}", style: titleStyle)),
                 const Gap(8),
                 const Text(
@@ -600,7 +694,6 @@ class Product extends StatelessWidget {
                   style: subtitleStyle,
                 ),
                 Container(
-                    decoration: f,
                     child: Text("${product.mrp ?? "--"}", style: titleStyle)),
               ],
             )),
@@ -612,20 +705,17 @@ class Product extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'Product Number',
+                    'SKU ID',
                     style: subtitleStyle,
                   ),
                   Container(
-                      decoration: f,
-                      child:
-                          Text(product.product_no ?? "--", style: titleStyle)),
+                      child: Text(product.sku_id ?? "--", style: titleStyle)),
                   const Gap(8),
                   const Text(
                     'Unit',
                     style: subtitleStyle,
                   ),
                   Container(
-                      decoration: f,
                       child:
                           Text("${product.unit ?? "--"}", style: titleStyle)),
                   const Gap(8),
@@ -634,8 +724,8 @@ class Product extends StatelessWidget {
                     style: subtitleStyle,
                   ),
                   Container(
-                      decoration: f,
-                      child: const Text(" product.gst", style: titleStyle)),
+                      child: Text("${product.gst_rate ?? "--"}%",
+                          style: titleStyle)),
                 ],
               ),
             )),
@@ -651,7 +741,6 @@ class Product extends StatelessWidget {
                     style: subtitleStyle,
                   ),
                   Container(
-                      decoration: f,
                       child:
                           Text(product.hsn_number ?? "--", style: titleStyle)),
                   const Gap(8),
@@ -659,22 +748,24 @@ class Product extends StatelessWidget {
                     'Expiry Date',
                     style: subtitleStyle,
                   ),
-                  Container(
-                      decoration: f,
-                      child: const Text("expiryDate", style: titleStyle)),
+                  Text(
+                      product.expiry_date == null
+                          ? "--"
+                          : AppConstants.dayMonrhormatter
+                              .format(product.expiry_date as DateTime),
+                      style: titleStyle),
                   const Gap(8),
                   const Text(
                     'Total Price',
                     style: subtitleStyle,
                   ),
                   Container(
-                      decoration: f,
                       child:
                           Text("${product.total ?? "--"}", style: titleStyle)),
                 ],
               ),
             )),
       ],
-    );
+    ).paddingAll(12);
   }
 }

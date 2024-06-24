@@ -1,386 +1,197 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_spinkit/flutter_spinkit.dart';
-// import 'package:gap/gap.dart';
-// import 'package:get/get.dart';
-// import 'package:moolwmsstore/Sales/View/customer/addCustomer.dart';
-// import 'package:moolwmsstore/Sales/View/customer/companyDetail.dart';
-// import 'package:moolwmsstore/Sales/View/common/widgets/customButton.dart';
-// import 'package:moolwmsstore/Sales/controller/salesController.dart';
-// import 'package:moolwmsstore/utils/globals.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:logger/logger.dart';
+import 'package:moolwmsstore/Sales/Model/Customer/customerListElement.dart';
+import 'package:moolwmsstore/Sales/View/common/widgets/customButton.dart';
+import 'package:moolwmsstore/Sales/View/customer/addCustomerScreen.dart';
+import 'package:moolwmsstore/Sales/controller/salesController.dart';
+import 'package:moolwmsstore/View/Styles/Styles..dart';
+import 'package:moolwmsstore/utils/dimensions.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
-// class CustomerList extends StatelessWidget {
-//   const CustomerList({super.key});
+class CustomerList extends StatefulWidget {
+  const CustomerList({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     final List tags = [
-//       {"title": "Company Name", "flex": 1},
-//       {"title": "Phone No.", "flex": 1},
-//       {"title": "Date & Time", "flex": 1},
-//       {"title": "In/Out", "flex": 1},
-//     ];
+  @override
+  State<CustomerList> createState() => _CustomerListState();
+}
 
-//     return Scaffold(
-//       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-//       floatingActionButton: CustomButton(
-//         onTap: () {
-//           Get.off(AddCustomer(), id: salesNavigationKey);
-//         },
-//         title: 'Add Company',
-//       ).paddingSymmetric(horizontal: 12),
-//       appBar: AppBar(
-//         centerTitle: false,
-//         backgroundColor: const Color(0xFF232323),
-//         title: const Text(
-//           'Company List',
-//           style: TextStyle(
-//             color: Colors.white,
-//             fontSize: 20,
-//             fontFamily: 'SF Pro Text',
-//             fontWeight: FontWeight.w500,
-//             //height: 0,
-//             letterSpacing: -0.80,
-//           ),
-//         ),
-//       ),
-//       body: GetBuilder<SalesController>(initState: (state) {
-//         //Get.find<SalesController>().getCompanyList();
-//       }, builder: (salesController) {
-//         if (salesController.loading == true) {
-//           return const Center(
-//             child: SpinKitDoubleBounce(
-//               color: Color(0xFF5A57FF),
-//             ),
-//           );
-//         }
-//         return Stack(
-//           alignment: Alignment.bottomCenter,
-//           children: [
-//             Column(
-//               children: [
-//                 const Gap(20),
-//                 Row(
-//                   mainAxisAlignment: MainAxisAlignment.center,
-//                   children: [
-//                     Container(
-//                       height: 40,
-//                       width: 170,
-//                       decoration: BoxDecoration(
-//                         borderRadius: BorderRadius.circular(30),
-//                         border: Border.all(
-//                             color: const Color(0xFF5A57FF).withOpacity(0.4)),
-//                       ),
-//                       child: Row(
-//                         mainAxisAlignment: MainAxisAlignment.center,
-//                         children: [
-//                           Image.asset(
-//                             'assets/icons/Filter (R).png',
-//                             height: 19,
-//                           ),
-//                           const SizedBox(
-//                             width: 12,
-//                           ),
-//                           const Text(
-//                             'Filter',
-//                             textAlign: TextAlign.center,
-//                             style: TextStyle(
-//                               color: Color(0xFFA7A7A7),
-//                               fontSize: 16,
-//                               fontFamily: 'SF Pro Text',
-//                               fontWeight: FontWeight.w500,
-//                               //height: 0,
-//                               letterSpacing: -0.64,
-//                             ),
-//                           )
-//                         ],
-//                       ),
-//                     ),
-//                     const Gap(20),
-//                     Container(
-//                       height: 40,
-//                       width: 170,
-//                       decoration: BoxDecoration(
-//                         borderRadius: BorderRadius.circular(30),
-//                         border: Border.all(
-//                             width: 1,
-//                             color: const Color(0xFF5A57FF).withOpacity(0.4)),
-//                       ),
-//                       child: Row(
-//                         mainAxisAlignment: MainAxisAlignment.center,
-//                         children: [
-//                           Image.asset(
-//                             'assets/icons/search-normal.png',
-//                             height: 19,
-//                           ),
-//                           const SizedBox(
-//                             width: 12,
-//                           ),
-//                           const Text(
-//                             'Search',
-//                             textAlign: TextAlign.center,
-//                             style: TextStyle(
-//                               color: Color(0xFFA7A7A7),
-//                               fontSize: 16,
-//                               fontFamily: 'SF Pro Text',
-//                               fontWeight: FontWeight.w500,
-//                               //height: 0,
-//                               letterSpacing: -0.64,
-//                             ),
-//                           )
-//                         ],
-//                       ),
-//                     )
-//                   ],
-//                 ),
-//                 const Gap(30),
-//                 Row(
-//                   children: [
-//                     const Expanded(
-//                         flex: 1,
-//                         child: Text(
-//                           "Company Name",
-//                           style: TextStyle(
-//                             color: Color(0xFF5A57FF),
-//                             fontSize: 12,
-//                             fontFamily: 'SF Pro Text',
-//                             fontWeight: FontWeight.w400,
-//                             //height: 0,
-//                             letterSpacing: -0.48,
-//                           ),
-//                         )),
-//                     const Expanded(
-//                         flex: 1,
-//                         child: Text(
-//                           "Phone No.",
-//                           style: TextStyle(
-//                             color: Color(0xFF5A57FF),
-//                             fontSize: 12,
-//                             fontFamily: 'SF Pro Text',
-//                             fontWeight: FontWeight.w400,
-//                             //height: 0,
-//                             letterSpacing: -0.48,
-//                           ),
-//                         )),
-//                     const Expanded(
-//                         flex: 1,
-//                         child: Text(
-//                           "Date & Time",
-//                           style: TextStyle(
-//                             color: Color(0xFF5A57FF),
-//                             fontSize: 12,
-//                             fontFamily: 'SF Pro Text',
-//                             fontWeight: FontWeight.w400,
-//                             //height: 0,
-//                             letterSpacing: -0.48,
-//                           ),
-//                         )),
-//                     // IconButton(
-//                     //     padding: EdgeInsets.zero,
-//                     //     onPressed: () {},
-//                     //     icon: const Text(
-//                     //       "In/Out",
-//                     //       style: TextStyle(
-//                     //         color: Color(0xFF5A57FF),
-//                     //         fontSize: 12,
-//                     //         fontFamily: 'SF Pro Text',
-//                     //         fontWeight: FontWeight.w400,
-//                     //         //height: 0,
-//                     //         letterSpacing: -0.48,
-//                     //       ),
-//                     //     )),
-//                     IconButton(
-//                         padding: EdgeInsets.zero,
-//                         onPressed: () {},
-//                         icon: const Icon(
-//                           Icons.more_horiz,
-//                           color: Colors.white,
-//                         )),
-//                     // IconButton(
-//                     //     padding: EdgeInsets.zero,
-//                     //     onPressed: () {},
-//                     //     icon: const Icon(
-//                     //       Icons.more_horiz,
-//                     //       color: Colors.white,
-//                     //     ))
-//                   ],
-//                 ).paddingSymmetric(horizontal: 20),
-//                 Expanded(
-//                     child: ListView.builder(
-//                         itemCount: salesController.comapnies.length,
-//                         itemBuilder: (context, i) {
-//                           return Container(
-//                             height: 70,
-//                             decoration: ShapeDecoration(
-//                               color: const Color(0xFFFAF9FF),
-//                               shape: RoundedRectangleBorder(
-//                                 side: const BorderSide(
-//                                     width: 1, color: Color(0x195A57FF)),
-//                                 borderRadius: BorderRadius.circular(5),
-//                               ),
-//                             ),
-//                             padding: const EdgeInsets.symmetric(horizontal: 12),
-//                             child: Row(
-//                               children: [
-//                                 Expanded(
-//                                     flex: 1,
-//                                     child: InkWell(
-//                                       onTap: () {
-//                                         // Get.to(const CompanyDetail(),
-//                                         //     id: salesNavigationKey);
-//                                       },
-//                                       child: Padding(
-//                                         padding: const EdgeInsets.symmetric(
-//                                             horizontal: 8.0),
-//                                         child: Text(
-//                                           salesController
-//                                                   .comapnies[i].company_name ??
-//                                               "",
-//                                           style: const TextStyle(
-//                                             color: Color(0xFF353535),
-//                                             fontSize: 12,
-//                                             fontFamily: 'SF Pro Text',
-//                                             fontWeight: FontWeight.w500,
-//                                           ),
-//                                         ),
-//                                       ),
-//                                     )),
-//                                 Expanded(
-//                                     flex: 1,
-//                                     child: InkWell(
-//                                       onTap: () {
-//                                         // Get.to(const CompanyDetail(),
-//                                         //     id: salesNavigationKey);
-//                                       },
-//                                       child: Padding(
-//                                         padding: const EdgeInsets.symmetric(
-//                                             horizontal: 8.0),
-//                                         child: Text(
-//                                           salesController
-//                                                   .comapnies[i].phone_no ??
-//                                               "",
-//                                           style: const TextStyle(
-//                                             color: Color(0xFF353535),
-//                                             fontSize: 12,
-//                                             fontFamily: 'SF Pro Text',
-//                                             fontWeight: FontWeight.w500,
-//                                           ),
-//                                         ),
-//                                       ),
-//                                     )),
-//                                 Expanded(
-//                                     flex: 1,
-//                                     child: InkWell(
-//                                       onTap: () {
-//                                         // Get.to(const CompanyDetail(),
-//                                         //     id: salesNavigationKey);
-//                                       },
-//                                       child: Padding(
-//                                         padding: const EdgeInsets.symmetric(
-//                                             horizontal: 8.0),
-//                                         child: Text(
-//                                           salesController
-//                                                   .comapnies[i].created_at
-//                                                   .toString() ??
-//                                               "",
-//                                           style: const TextStyle(
-//                                             color: Color(0xFF353535),
-//                                             fontSize: 12,
-//                                             fontFamily: 'SF Pro Text',
-//                                             fontWeight: FontWeight.w500,
-//                                           ),
-//                                         ),
-//                                       ),
-//                                     )),
-//                                 // IconButton(
-//                                 //     padding: EdgeInsets.zero,
-//                                 //     onPressed: () {},
-//                                 //     icon: Image.asset(
-//                                 //       "assets/icons/check_in.png",
-//                                 //       height: 32,
-//                                 //     )),
-//                                 IconButton(
-//                                     padding: EdgeInsets.zero,
-//                                     onPressed: () {
-//                                       Get.to(
-//                                           CompanyDetail(
-//                                             company:
-//                                                 salesController.comapnies[i],
-//                                           ),
-//                                           id: salesNavigationKey);
-//                                     },
-//                                     icon: const Icon(
-//                                       Icons.visibility,
-//                                       color: Colors.black,
-//                                     )),
-//                                 // IconButton(
-//                                 //     padding: EdgeInsets.zero,
-//                                 //     onPressed: () {},
-//                                 //     icon: const Icon(
-//                                 //       Icons.more_vert,
-//                                 //       color: Colors.black,
-//                                 //     )),
-//                               ],
-//                               // children: List.generate(tags.length, (index) {
-//                               //   if (tags[index]["title"] == "Info") {
-//                               //     return IconButton(
-//                               //         padding: EdgeInsets.zero,
-//                               //         onPressed: () {},
-//                               //         icon: Image.asset(
-//                               //           "assets/icons/Eye.png",
-//                               //           height: 22,
-//                               //         ));
-//                               //   }
-//                               //   if (tags[index]["title"] == "icon") {
-//                               //     return IconButton(
-//                               //         padding: EdgeInsets.zero,
-//                               //         onPressed: () {},
-//                               //         icon: const Icon(
-//                               //           Icons.more_horiz,
-//                               //           color: Colors.black,
-//                               //         ));
-//                               //   }
-//                               //   return Expanded(
-//                               //       flex: tags[index]["flex"],
-//                               //       child: GestureDetector(
-//                               //         onTap: () {
-//                               //           Get.to(const CompanyDetail(),
-//                               //               id: salesNavigationKey);
-//                               //         },
-//                               //         child: Padding(
-//                               //           padding:
-//                               //               const EdgeInsets.symmetric(horizontal: 8.0),
-//                               //           child: Text(
-//                               //             contents[index]["title"],
-//                               //             style: const TextStyle(
-//                               //               color: Color(0xFF353535),
-//                               //               fontSize: 12,
-//                               //               fontFamily: 'SF Pro Text',
-//                               //               fontWeight: FontWeight.w500,
-//                               //             ),
-//                               //           ),
-//                               //         ),
-//                               //       ));
-//                               // }),
-//                             ),
-//                           ).paddingSymmetric(vertical: 4, horizontal: 10);
-//                         })),
-//               ],
-//             ),
-//             Container(
-//               height: Get.height * 0.2,
-//               decoration: BoxDecoration(
-//                   gradient: LinearGradient(
-//                       begin: Alignment.topCenter,
-//                       end: Alignment.bottomCenter,
-//                       colors: [
-//                     Colors.white.withOpacity(0.3),
-//                     Colors.white,
-//                     Colors.white,
-//                   ])),
-//             ),
-//           ],
-//         );
-//       }),
-//     );
-//   }
-// }
+class _CustomerListState extends State<CustomerList> {
+  final PagingController<int, CustomerListElement> pagingController =
+      PagingController(firstPageKey: 1);
+
+  @override
+  void initState() {
+    pagingController.addPageRequestListener((pageKey) {
+      Get.find<SalesController>()
+          .salesRepo
+          .getCustomers(recordsPerPage: 20, page: pageKey)
+          .then((v) {
+        Logger().i(v);
+
+        if (v != null) {
+          final isLastPage = v.length < 20;
+          if (isLastPage) {
+            pagingController.appendLastPage(v);
+          } else {
+            final nextPageKey = pageKey + 1;
+            pagingController.appendPage(v, nextPageKey);
+          }
+        }
+      });
+    });
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: false,
+        backgroundColor: const Color(0xFF232323),
+        title: const Text('Cutsomer List', style: TextStyles.appBarTextStyle),
+      ),
+      body: GetBuilder<SalesController>(
+              initState: (state) {},
+              builder: (salesController) {
+                if (salesController.loading == true) {
+                  return const Center(
+                    child: SpinKitDoubleBounce(
+                      color: Color(0xFF5A57FF),
+                    ),
+                  );
+                }
+                return Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                            flex: 1,
+                            child: Text(
+                              "Customer Name",
+                              style: TextStyles.talbleHeadingTitleStyle,
+                            )),
+                        Expanded(
+                            flex: 1,
+                            child: Text(
+                              "Phone No.",
+                              style: TextStyles.talbleHeadingTitleStyle,
+                            )),
+                        Expanded(
+                            flex: 1,
+                            child: Text(
+                              "Comapny Name",
+                              style: TextStyles.talbleHeadingTitleStyle,
+                            )),
+                        const Gap(12),
+                        const CircleAvatar(
+                          radius: 30,
+                          backgroundColor: Colors.transparent,
+                        ),
+
+                        // IconButton(
+                        //     padding: EdgeInsets.zero,
+                        //     onPressed: () {},
+                        //     icon: const Icon(
+                        //       Icons.more_horiz,
+                        //       color: Colors.white,
+                        //     ))
+                      ],
+                    ).paddingSymmetric(horizontal: 8),
+                    Expanded(
+                        child: PagedListView<int, CustomerListElement>(
+                      pagingController: pagingController,
+                      builderDelegate:
+                          PagedChildBuilderDelegate<CustomerListElement>(
+                              itemBuilder: (context, item, index) {
+                        return Container(
+                          height: 70,
+                          decoration: ShapeDecoration(
+                            color: const Color(0xFFFAF9FF),
+                            shape: RoundedRectangleBorder(
+                              side: const BorderSide(
+                                  width: 1, color: Color(0x195A57FF)),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  flex: 1,
+                                  child: InkWell(
+                                    onTap: () {
+                                      // Get.to(const CompanyDetail(),
+                                      //     id: salesNavigationKey);
+                                    },
+                                    child: Text(
+                                        ((item.first_name ?? "") +
+                                            (item.last_name ?? "")),
+                                        style:
+                                            TextStyles.talbleContentTextStyle),
+                                  )),
+                              Expanded(
+                                  flex: 1,
+                                  child: InkWell(
+                                    onTap: () {
+                                      // Get.to(const CompanyDetail(),
+                                      //     id: salesNavigationKey);
+                                    },
+                                    child: Text("${item.phone}",
+                                        style:
+                                            TextStyles.talbleContentTextStyle),
+                                  )),
+                              Expanded(
+                                  flex: 1,
+                                  child: InkWell(
+                                    onTap: () {
+                                      // Get.to(const CompanyDetail(),
+                                      //     id: salesNavigationKey);
+                                    },
+                                    child: Text("${item.company_name}",
+                                        style:
+                                            TextStyles.talbleContentTextStyle),
+                                  )),
+                              const Gap(12),
+                              CircleAvatar(
+                                radius: 30.0,
+                                backgroundColor:
+                                    const Color.fromARGB(255, 238, 237, 237),
+                                backgroundImage: item.avatar != null
+                                    ? null
+                                    : const AssetImage(
+                                        "assets/icons/customerAvatar.png"),
+                                child: item.avatar != null
+                                    ? ClipRRect(
+                                        borderRadius: BorderRadius.circular(30),
+                                        child: Image.network(
+                                          item.avatar.toString(),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      )
+                                    : null,
+                              ),
+                            ],
+                          ),
+                        ).paddingSymmetric(vertical: 4, horizontal: 0);
+                      }),
+                    )),
+                    CustomButton(
+                      onTap: () {
+                        Get.off(AddCustomerScreen(), id: salesNavigationKey);
+                      },
+                      title: 'Add Customer',
+                    ).paddingSymmetric(horizontal: 12, vertical: 12)
+                  ],
+                );
+              })
+          .paddingSymmetric(
+              vertical: Dimensions.vericalBodyPad,
+              horizontal: Dimensions.horizontalBodyPad),
+    );
+  }
+}

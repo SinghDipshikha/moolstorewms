@@ -73,10 +73,10 @@ class CommonTextField extends StatelessWidget {
           onTapOutside: (event) {
             FocusManager.instance.primaryFocus?.unfocus();
           },
-          onChanged: onChanged,
           onFieldSubmitted: (value) {
             FocusManager.instance.primaryFocus?.unfocus();
           },
+          onChanged: onChanged,
           keyboardType: keyboardType,
           controller: controller,
           validator: validator,

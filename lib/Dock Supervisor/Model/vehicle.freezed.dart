@@ -23,6 +23,7 @@ mixin _$Vehicle {
   int? get id => throw _privateConstructorUsedError;
   String? get vehicle_number => throw _privateConstructorUsedError;
   String? get vehicle_status => throw _privateConstructorUsedError;
+  String? get indent_number => throw _privateConstructorUsedError;
   String? get movement => throw _privateConstructorUsedError;
   int? get isShow => throw _privateConstructorUsedError;
   DateTime? get created_at => throw _privateConstructorUsedError;
@@ -44,6 +45,7 @@ abstract class $VehicleCopyWith<$Res> {
       {int? id,
       String? vehicle_number,
       String? vehicle_status,
+      String? indent_number,
       String? movement,
       int? isShow,
       DateTime? created_at,
@@ -68,6 +70,7 @@ class _$VehicleCopyWithImpl<$Res, $Val extends Vehicle>
     Object? id = freezed,
     Object? vehicle_number = freezed,
     Object? vehicle_status = freezed,
+    Object? indent_number = freezed,
     Object? movement = freezed,
     Object? isShow = freezed,
     Object? created_at = freezed,
@@ -87,6 +90,10 @@ class _$VehicleCopyWithImpl<$Res, $Val extends Vehicle>
       vehicle_status: freezed == vehicle_status
           ? _value.vehicle_status
           : vehicle_status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      indent_number: freezed == indent_number
+          ? _value.indent_number
+          : indent_number // ignore: cast_nullable_to_non_nullable
               as String?,
       movement: freezed == movement
           ? _value.movement
@@ -127,6 +134,7 @@ abstract class _$$VehicleImplCopyWith<$Res> implements $VehicleCopyWith<$Res> {
       {int? id,
       String? vehicle_number,
       String? vehicle_status,
+      String? indent_number,
       String? movement,
       int? isShow,
       DateTime? created_at,
@@ -149,6 +157,7 @@ class __$$VehicleImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? vehicle_number = freezed,
     Object? vehicle_status = freezed,
+    Object? indent_number = freezed,
     Object? movement = freezed,
     Object? isShow = freezed,
     Object? created_at = freezed,
@@ -168,6 +177,10 @@ class __$$VehicleImplCopyWithImpl<$Res>
       vehicle_status: freezed == vehicle_status
           ? _value.vehicle_status
           : vehicle_status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      indent_number: freezed == indent_number
+          ? _value.indent_number
+          : indent_number // ignore: cast_nullable_to_non_nullable
               as String?,
       movement: freezed == movement
           ? _value.movement
@@ -204,6 +217,7 @@ class _$VehicleImpl implements _Vehicle {
       {this.id,
       this.vehicle_number,
       this.vehicle_status,
+      this.indent_number,
       this.movement,
       this.isShow,
       this.created_at,
@@ -221,6 +235,8 @@ class _$VehicleImpl implements _Vehicle {
   @override
   final String? vehicle_status;
   @override
+  final String? indent_number;
+  @override
   final String? movement;
   @override
   final int? isShow;
@@ -235,7 +251,7 @@ class _$VehicleImpl implements _Vehicle {
 
   @override
   String toString() {
-    return 'Vehicle(id: $id, vehicle_number: $vehicle_number, vehicle_status: $vehicle_status, movement: $movement, isShow: $isShow, created_at: $created_at, updated_at: $updated_at, dock_id: $dock_id, dock_name: $dock_name)';
+    return 'Vehicle(id: $id, vehicle_number: $vehicle_number, vehicle_status: $vehicle_status, indent_number: $indent_number, movement: $movement, isShow: $isShow, created_at: $created_at, updated_at: $updated_at, dock_id: $dock_id, dock_name: $dock_name)';
   }
 
   @override
@@ -248,6 +264,8 @@ class _$VehicleImpl implements _Vehicle {
                 other.vehicle_number == vehicle_number) &&
             (identical(other.vehicle_status, vehicle_status) ||
                 other.vehicle_status == vehicle_status) &&
+            (identical(other.indent_number, indent_number) ||
+                other.indent_number == indent_number) &&
             (identical(other.movement, movement) ||
                 other.movement == movement) &&
             (identical(other.isShow, isShow) || other.isShow == isShow) &&
@@ -266,6 +284,7 @@ class _$VehicleImpl implements _Vehicle {
       id,
       vehicle_number,
       vehicle_status,
+      indent_number,
       movement,
       isShow,
       created_at,
@@ -292,6 +311,7 @@ abstract class _Vehicle implements Vehicle {
       {final int? id,
       final String? vehicle_number,
       final String? vehicle_status,
+      final String? indent_number,
       final String? movement,
       final int? isShow,
       final DateTime? created_at,
@@ -307,6 +327,8 @@ abstract class _Vehicle implements Vehicle {
   String? get vehicle_number;
   @override
   String? get vehicle_status;
+  @override
+  String? get indent_number;
   @override
   String? get movement;
   @override

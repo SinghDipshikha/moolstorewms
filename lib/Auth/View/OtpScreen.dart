@@ -82,13 +82,13 @@ class _OtpScreenState extends State<OtpScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton:
           GetBuilder<AuthController>(builder: (authController) {
-        if (authController.loading) {
-          return LoadingAnimationWidget.staggeredDotsWave(
+   return authController.loading ?
+           LoadingAnimationWidget.staggeredDotsWave(
             color: AppColors.primaryColor,
             size: 80,
-          );
-        }
-        return InkWell(
+          ) :
+        
+         InkWell(
           onTap: submitOtp,
           child: Container(
             alignment: Alignment.center,

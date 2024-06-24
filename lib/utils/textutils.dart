@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:number_text_input_formatter/number_text_input_formatter.dart';
 
 class TextUtils {
   static bool validateTYPE({required String? type, required String val}) {
@@ -59,11 +60,15 @@ class TextUtils {
     } else if (type == "gst") {
       return [UpperCaseTextFormatter()];
     } else if (type == "num") {
-      return null;
+      return [NumberTextInputFormatter()];
     } else if (type == "email") {
       return null;
+    } else if (type == "mobile") {
+      return [NumberTextInputFormatter()];
+    } else if (type == "int") {
+      return [NumberTextInputFormatter()];
     } else if (type == "double") {
-      return null;
+      return [NumberTextInputFormatter()];
     } else if (type == "string") {
       return null;
     } else if (type == "name") {
@@ -125,9 +130,10 @@ class TextUtils {
     return gstNo.contains(
         RegExp(r'[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[1-9A-Z]{1}'));
   }
+
   static bool isValidCIN(String gstNo) {
-    return gstNo.contains(
-        RegExp(r'^([LUu]{1})([0-9]{5})([A-Za-z]{2})([0-9]{4})([A-Za-z]{3})([0-9]{6})$'));
+    return gstNo.contains(RegExp(
+        r'^([LUu]{1})([0-9]{5})([A-Za-z]{2})([0-9]{4})([A-Za-z]{3})([0-9]{6})$'));
   }
 
   static bool isValidPAN(String gstNo) {

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/View/Dock%20Assign/dockAssign.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
 import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
+import 'package:moolwmsstore/common/widgets/profileAvatar.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 class DmsDrawer extends StatelessWidget {
@@ -28,26 +29,13 @@ class DmsDrawer extends StatelessWidget {
                       border: Border(bottom: BorderSide.none)),
                   child: Row(
                     children: [
-                      InkWell(
-                        child: Container(
-                          width: 100,
-                          height: 100,
-                          decoration: const ShapeDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                  "https://via.placeholder.com/100x100"),
-                              fit: BoxFit.fill,
-                            ),
-                            shape: OvalBorder(
-                              side: BorderSide(
-                                width: 2,
-                                strokeAlign: BorderSide.strokeAlignOutside,
-                                color: Color(0x195A57FF),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      ProfileAvatar(
+                          imageUrl: dmsController.user.avatar,
+                          initialWidget:
+                              Image.asset("assets/icons/employeeAvater.png"),
+                          onImageUploaded: (v) {
+                            dmsController.updateProfilePic(v);
+                          }),
                       const Gap(12),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -55,21 +43,20 @@ class DmsDrawer extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              SizedBox(
-                                height: 40,
-                                width: 120,
-                                child: Text(
-                                  '${dmsController.user.first_name} ${dmsController.user.last_name ?? ""}',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontFamily: 'SF Pro Text',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
+                              Text(
+                                '${dmsController.user.first_name} ${dmsController.user.last_name ?? ""}',
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontFamily: 'SF Pro Text',
+                                  fontWeight: FontWeight.w500,
+                                  // //height: 0,
+                                  // letterSpacing: -0.80,
                                 ),
                               ),
                               const Gap(12),
+                              //  const Spacer(),
                               Image.asset(
                                 "assets/icons/candle.png",
                                 height: 22,
@@ -78,20 +65,26 @@ class DmsDrawer extends StatelessWidget {
                           ),
                           Text(
                             dmsController.user.email ?? "",
+                            overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
                               color: Color(0xFFACACAC),
-                              fontSize: 14,
+                              fontSize: 10,
                               fontFamily: 'SF Pro Text',
                               fontWeight: FontWeight.w300,
+                              // //height: 0,
+                              // letterSpacing: -0.56,
                             ),
                           ),
                           const Text(
                             'Dock-Supervisor',
+                            overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               color: Color(0xFFFF5789),
-                              fontSize: 16,
+                              fontSize: 12,
                               fontFamily: 'SF Pro Text',
                               fontWeight: FontWeight.w500,
+                              // //height: 0,
+                              // letterSpacing: -0.64,
                             ),
                           )
                         ],

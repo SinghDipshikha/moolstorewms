@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/View/Styles/Styles..dart';
 
 class CommonTextField extends StatelessWidget {
   bool? obscureText;
@@ -63,10 +62,9 @@ class CommonTextField extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                        TextSpan(
+                        const TextSpan(
                           text: '*',
-                          style: TextStyles.bodyMedium(context)
-                              .copyWith(color: Colors.red),
+                          style: TextStyle(color: Colors.red),
                         ),
                       ],
                     ),
@@ -137,10 +135,9 @@ class CommonTextField extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                        TextSpan(
+                        const TextSpan(
                           text: '*',
-                          style: TextStyles.bodyMedium(context)
-                              .copyWith(color: Colors.red),
+                          style: TextStyle(color: Colors.red),
                         ),
                       ],
                     ),
@@ -723,10 +720,9 @@ class CommanTextFieldForDocuments extends StatelessWidget {
                         color: Color(0xFFACACAC),
                       ),
                     ),
-                    TextSpan(
+                    const TextSpan(
                       text: '*',
-                      style: TextStyles.bodyMedium(context)
-                          .copyWith(color: Colors.red),
+                      style: TextStyle(color: Colors.red),
                     ),
                   ],
                 ),

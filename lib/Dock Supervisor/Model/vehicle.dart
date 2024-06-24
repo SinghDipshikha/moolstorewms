@@ -9,6 +9,7 @@ class Vehicle with _$Vehicle {
     int? id,
     String? vehicle_number,
     String? vehicle_status,
+    String? indent_number,
     String? movement,
     int? isShow,
     DateTime? created_at,
@@ -20,4 +21,3 @@ class Vehicle with _$Vehicle {
   factory Vehicle.fromJson(Map<String, Object?> json) =>
       _$VehicleFromJson(json);
 }
-  

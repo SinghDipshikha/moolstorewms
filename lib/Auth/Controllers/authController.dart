@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Auth/Repository/authRepo.dart';
 import 'package:moolwmsstore/Auth/View/Blocked.dart';
@@ -12,7 +13,6 @@ import 'package:moolwmsstore/Auth/View/signUp.dart';
 import 'package:moolwmsstore/Auth/View/welcome.dart';
 import 'package:moolwmsstore/Common%20Data/Model/Auth/signupfield.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
-import 'package:moolwmsstore/Common%20Data/repository/ownerRepo.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/DMS.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsRepo.dart';
@@ -20,6 +20,7 @@ import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
+import 'package:moolwmsstore/Owner/Controller/ownerRepo.dart';
 import 'package:moolwmsstore/Owner/Owner.dart';
 import 'package:moolwmsstore/Sales/Sales.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
@@ -61,8 +62,7 @@ class AuthController extends GetxController {
 
   String phoneNum = "";
 
-
-  String selectedPersonType = "EMP"; 
+  String selectedPersonType = "EMP";
   // "EMP" "CUS"
   List<SignupField> fields = [];
 
@@ -75,96 +75,104 @@ class AuthController extends GetxController {
         .getData("user/userInfo/${user!.id}")
         .whenComplete(() {})
         .then((v) {
-      if (v.data["result"]["user"]["status"] == 0) {
-        Get.offAll(const Blocked());
-        return;
-      }
-
-      if (user?.role_id == 1) {
-        user = user!.copyWith(
-            warehouse: v.data["result"]["warehouse"],
-            avatar: v.data["result"]["user"]["avatar"]);
-
-        Get.lazyPut(() => OwnerRepo(
-            sharedPreferences: Get.find(), apiClient: Get.find<ApiClient>()));
-        Get.put(
-            OwnerController(
-                user: user as User,
-                ownerRepo: Get.find<OwnerRepo>(),
-                apiClient: Get.find<ApiClient>()),
-            permanent: true);
-        Get.put(ChamberController(), permanent: true);
-        Future.delayed(const Duration(seconds: 2)).whenComplete(() {
-          Get.delete<AuthController>();
-          Get.offAll(const Owner());
-        });
-      }
-
-      if (user?.role_id == 2) {
-        user = user!.copyWith(
-            warehouse: v.data["result"]["warehouse"],
-            person_type: v.data["result"]["person_type"],
-            avatar: v.data["result"]["user"]["avatar"]);
-
-        for (var element in user!.person_type!) {
-          if (element["person_type"] == "security-guard") {
-            Get.lazyPut(() => SecurityGuardRepo(
-                sharedPreferences: Get.find(), apiClient: Get.find()));
-            Get.put(
-                SecurityGuardController(
-                  user: user as User,
-                  secGaurdRepo: Get.find<SecurityGuardRepo>(),
-                  apiClient: Get.find<ApiClient>(),
-                ),
-                permanent: true);
-          }
-          if (element["person_type"] == "sales") {
-            Get.lazyPut(() => SalesRepo(
-                sharedPreferences: Get.find(), apiClient: Get.find()));
-            Get.put(
-                SalesController(
-                    user: user as User,
-                    salesRepo: Get.find<SalesRepo>(),
-                    apiClient: Get.find<ApiClient>()),
-                permanent: true);
-          }
-          if (element["person_type"] == "hr") {
-            Get.lazyPut(() =>
-                HrRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
-            Get.put(
-                HRController(
-                    user: user as User,
-                    hrRepo: Get.find<HrRepo>(),
-                    apiClient: Get.find<ApiClient>()),
-                permanent: true);
-          }
-          if (element["person_type"] == "dock-supervisor") {
-            Get.lazyPut(() =>
-                Dmsrepo(sharedPreferences: Get.find(), apiClient: Get.find()));
-            Get.put(
-                DmsController(
-                    user: user as User,
-                    dmsRepo: Get.find<Dmsrepo>(),
-                    apiClient: Get.find<ApiClient>()),
-                permanent: true);
-          }
+      Logger().i(v.data["status"]);
+      if (v.data["status"] == false) {
+        box.clear();
+        sharedPreferences.clear();
+        Get.to(const SignInUp(), id: authNavigationKey);
+        Snacks.redSnack("Something is wrong, Please Login Again");
+      } else {
+        if (v.data["result"]["user"]["status"] == 0) {
+          Get.offAll(const Blocked());
+          return;
         }
-        if (user!.person_type?[0] != null) {
-          if (user!.person_type?[0]["person_type"] == "security-guard") {
+
+        if (user?.role_id == 1) {
+          user = user!.copyWith(
+              warehouse: v.data["result"]["warehouse"],
+              avatar: v.data["result"]["user"]["avatar"]);
+
+          Get.lazyPut(() => OwnerRepo(
+              sharedPreferences: Get.find(), apiClient: Get.find<ApiClient>()));
+          Get.put(
+              OwnerController(
+                  user: user as User,
+                  ownerRepo: Get.find<OwnerRepo>(),
+                  apiClient: Get.find<ApiClient>()),
+              permanent: true);
+          Get.put(ChamberController(), permanent: true);
+          Future.delayed(const Duration(seconds: 2)).whenComplete(() {
             Get.delete<AuthController>();
-            Get.offAll(const SecurityGuard());
+            Get.offAll(const Owner());
+          });
+        }
+
+        if (user?.role_id == 2) {
+          user = user!.copyWith(
+              warehouse: v.data["result"]["warehouse"],
+              person_type: v.data["result"]["person_type"],
+              avatar: v.data["result"]["user"]["avatar"]);
+
+          for (var element in user!.person_type!) {
+            if (element["person_type"] == "security-guard") {
+              Get.lazyPut(() => SecurityGuardRepo(
+                  sharedPreferences: Get.find(), apiClient: Get.find()));
+              Get.put(
+                  SecurityGuardController(
+                    user: user as User,
+                    secGaurdRepo: Get.find<SecurityGuardRepo>(),
+                    apiClient: Get.find<ApiClient>(),
+                  ),
+                  permanent: true);
+            }
+            if (element["person_type"] == "sales") {
+              Get.lazyPut(() => SalesRepo(
+                  sharedPreferences: Get.find(), apiClient: Get.find()));
+              Get.put(
+                  SalesController(
+                      user: user as User,
+                      salesRepo: Get.find<SalesRepo>(),
+                      apiClient: Get.find<ApiClient>()),
+                  permanent: true);
+            }
+            if (element["person_type"] == "hr") {
+              Get.lazyPut(() =>
+                  HrRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
+              Get.put(
+                  HRController(
+                      user: user as User,
+                      hrRepo: Get.find<HrRepo>(),
+                      apiClient: Get.find<ApiClient>()),
+                  permanent: true);
+            }
+            if (element["person_type"] == "dock-supervisor") {
+              Get.lazyPut(() => Dmsrepo(
+                  sharedPreferences: Get.find(), apiClient: Get.find()));
+              Get.put(
+                  DmsController(
+                      user: user as User,
+                      dmsRepo: Get.find<Dmsrepo>(),
+                      apiClient: Get.find<ApiClient>()),
+                  permanent: true);
+            }
           }
-          if (user!.person_type?[0]["person_type"] == "sales") {
-            Get.delete<AuthController>();
-            Get.offAll(const Sales());
-          }
-          if (user!.person_type?[0]["person_type"] == "hr") {
-            Get.delete<AuthController>();
-            Get.offAll(const HumanResouce());
-          }
-          if (user!.person_type?[0]["person_type"] == "dock-supervisor") {
-            Get.delete<AuthController>();
-            Get.offAll(const DMS());
+          if (user!.person_type?[0] != null) {
+            if (user!.person_type?[0]["person_type"] == "security-guard") {
+              Get.delete<AuthController>();
+              Get.offAll(const SecurityGuard());
+            }
+            if (user!.person_type?[0]["person_type"] == "sales") {
+              Get.delete<AuthController>();
+              Get.offAll(const Sales());
+            }
+            if (user!.person_type?[0]["person_type"] == "hr") {
+              Get.delete<AuthController>();
+              Get.offAll(const HumanResouce());
+            }
+            if (user!.person_type?[0]["person_type"] == "dock-supervisor") {
+              Get.delete<AuthController>();
+              Get.offAll(const DMS());
+            }
           }
         }
       }

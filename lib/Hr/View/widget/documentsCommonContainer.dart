@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/View/Styles/Styles..dart';
 
 class DocumentCommonContainer extends StatelessWidget {
   String? labelText;
@@ -39,10 +38,9 @@ class DocumentCommonContainer extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  TextSpan(
+                  const TextSpan(
                     text: '*',
-                    style: TextStyles.bodyMedium(context)
-                        .copyWith(color: Colors.red),
+                    style: TextStyle(color: Colors.red),
                   ),
                 ],
               ),

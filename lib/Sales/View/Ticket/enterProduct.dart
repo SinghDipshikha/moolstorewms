@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:moolwmsstore/Sales/View/common/widgets/commonTextField.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/View/common/tagContainer.dart';
+import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:number_text_input_formatter/number_text_input_formatter.dart';
 // import 'package:number_text_input_formatter/number_text_input_formatter.dart';
 
@@ -29,7 +30,8 @@ class _EnterProductViewState extends State<EnterProductView> {
   // TextEditingController uom = TextEditingController();
   // TextEditingController gstrRate = TextEditingController();
   // TextEditingController totalTax = TextEditingController();
-  DateTime? picked;
+  DateTime? exppicked;
+  DateTime? mfgpicked;
   DateFormat formatter = DateFormat('yyyy-MM-dd');
   final _formKey = GlobalKey<FormState>();
   @override
@@ -84,95 +86,173 @@ class _EnterProductViewState extends State<EnterProductView> {
                 //  controller: productname,
                 textCapitalization: TextCapitalization.words,
                 containerColor: Colors.white,
-                hintText: 'Enter full name',
+                hintText: 'Enter product name',
                 labelText: 'Product Name',
               ).paddingSymmetric(vertical: 8),
               CommonTextField(
                 onChanged: (p0) {
                   salesController.ticketProducts[widget.index] = salesController
                       .ticketProducts[widget.index]
-                      .copyWith(product_no: p0);
+                      .copyWith(sku_id: p0);
                 },
                 //  controller: productnumber,
                 containerColor: Colors.white,
                 //  controller: ,
-                labelText: 'Product Number',
+                labelText: 'SKU ID',
+              ).paddingSymmetric(vertical: 8),
+              CommonTextField(
+                onChanged: (p0) {
+                  salesController.ticketProducts[widget.index] = salesController
+                      .ticketProducts[widget.index]
+                      .copyWith(hsn_number: p0);
+                },
+                //    controller: hsn,
+                containerColor: Colors.white,
+                //  controller: ,
+                labelText: 'HSN Number',
               ).paddingSymmetric(vertical: 8),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    child: CommonTextField(
-                      onChanged: (p0) {
-                        salesController.ticketProducts[widget.index] =
-                            salesController.ticketProducts[widget.index]
-                                .copyWith(hsn_number: p0);
+                    child: InkWell(
+                      onTap: () async {
+                        AppConstants.pickDate(context: context).then(
+                          (value) {
+                            if (value != null) {
+                              setState(() {
+                                mfgpicked = value;
+                                salesController.ticketProducts[widget.index] =
+                                    salesController.ticketProducts[widget.index]
+                                        .copyWith(mfg_date: mfgpicked);
+                              });
+
+                              // arrivaldate = value;
+                            }
+                          },
+                        );
                       },
-                      //    controller: hsn,
-                      containerColor: Colors.white,
-                      //  controller: ,
-                      labelText: 'HSN Number',
-                    ).paddingSymmetric(vertical: 8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Gap(
+                            8,
+                          ),
+                          const Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "Mfg. Date",
+                                  style: TextStyle(
+                                    color: Color(0xFF595959),
+                                    fontSize: 16,
+                                    fontFamily: 'SF Pro Display',
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const Gap(
+                            8,
+                          ),
+                          Container(
+                              alignment: Alignment.center,
+                              height: 50.0,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: const Color.fromARGB(
+                                          255, 169, 153, 246),
+                                      width: 0.2),
+                                  color: Colors.white,
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(5))),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(mfgpicked != null
+                                      ? formatter.format(mfgpicked!)
+                                      : "Select"),
+                                  Image.asset(
+                                    "assets/icons/calendar.png",
+                                    height: 22,
+                                  ).paddingAll(6),
+                                ],
+                              ))
+                        ],
+                      ),
+                    ),
                   ),
                   const Gap(10),
                   Expanded(
-                    child: Column(
-                      children: [
-                        const Gap(
-                          8,
-                        ),
-                        const Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text: "Expiry Date",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color(0xFFACACAC),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const Gap(
-                          8,
-                        ),
-                        InkWell(
-                          onTap: () async {
-                            await showDatePicker(
-                              context: context,
-                              initialDate: DateTime.now(),
-                              firstDate: DateTime(2000),
-                              lastDate: DateTime(2101),
-                            ).then((value) {
+                    child: InkWell(
+                      onTap: () async {
+                        AppConstants.pickDate(context: context).then(
+                          (value) {
+                            if (value != null) {
                               setState(() {
-                                picked = value;
+                                exppicked = value;
                                 salesController.ticketProducts[widget.index] =
                                     salesController.ticketProducts[widget.index]
-                                        .copyWith(expiry_date: picked);
+                                        .copyWith(expiry_date: exppicked);
                               });
-                            });
+
+                              // arrivaldate = value;
+                            }
                           },
-                          child: Container(
-                            alignment: Alignment.center,
-                            height: 50.0,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: const Color.fromARGB(
-                                        255, 169, 153, 246),
-                                    width: 0.2),
-                                color: Colors.white,
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(5))),
-                            child: picked != null
-                                ? Text(formatter.format(picked!))
-                                : Image.asset("assets/icons/calendar.png")
-                                    .paddingAll(6),
+                        );
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Gap(
+                            8,
                           ),
-                        )
-                      ],
+                          const Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "Expiry Date",
+                                  style: TextStyle(
+                                    color: Color(0xFF595959),
+                                    fontSize: 16,
+                                    fontFamily: 'SF Pro Display',
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const Gap(
+                            8,
+                          ),
+                          Container(
+                              alignment: Alignment.center,
+                              height: 50.0,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: const Color.fromARGB(
+                                          255, 169, 153, 246),
+                                      width: 0.2),
+                                  color: Colors.white,
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(5))),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(exppicked != null
+                                      ? formatter.format(exppicked!)
+                                      : "Select"),
+                                  Image.asset(
+                                    "assets/icons/calendar.png",
+                                    height: 22,
+                                  ).paddingAll(6),
+                                ],
+                              ))
+                        ],
+                      ),
                     ),
                   ),
                 ],

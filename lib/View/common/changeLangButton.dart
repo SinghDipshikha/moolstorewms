@@ -54,11 +54,7 @@ class ChangeLangButton extends StatelessWidget {
                               child: Text(
                                   AppConstants
                                       .LANGUAGE_LIST[index].languageName,
-                                  style: TextStyles.bodyMedium(context).copyWith(
-                                      fontWeight: FontWeight.w500,
-                                      color: selected
-                                          ? Colors.white
-                                          : Colors.black)
+                              
                                   // TextStyle(
                                   //     fontSize: 16.sp,
                                   //     color: selected ? Colors.white : Colors.black),

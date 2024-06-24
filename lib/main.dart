@@ -1,31 +1,17 @@
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:moolwmsstore/Auth/Auth.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
 import 'package:moolwmsstore/helper/messages.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
-import 'package:path_provider/path_provider.dart' as path_provider;
 
 import 'helper/get_di.dart' as di;
 
+//22AAAAA0000A1Z5
+//U74999DL2019PTC357379
 Future<void> main() async {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  //FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  if (kIsWeb) {
-    await Hive.initFlutter();
-  } else {
-    final dbDir = await path_provider.getApplicationDocumentsDirectory();
-    await Hive.initFlutter(dbDir.path);
-  }
-  // GlobalKey<NavigatorState> navigatorKey1 = GlobalKey<NavigatorState>();
-  // GlobalKey<NavigatorState> navigatorKey2 = GlobalKey<NavigatorState>();
-  // Get.addKey(navigatorKey1);
-  // Get.addKey(navigatorKey2);
-
   Map<String, Map<String, String>> languages = await di.init();
   runApp(DipshikaApp(
     languages: languages,

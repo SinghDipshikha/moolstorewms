@@ -237,11 +237,17 @@ class AddChamberView extends StatelessWidget {
                             inputFormatters: [
                               NumberTextInputFormatter(allowNegative: true)
                             ],
-                            onChanged: (p0) {
-                              if (p0.isNum) {
+                            onChanged: (value) {
+                              if (value.contains("-")) {
+                                if (value.length > 1) {
+                                  ownerController.addChamberModel =
+                                      ownerController.addChamberModel.copyWith(
+                                          temp_min_range: int.parse(value));
+                                }
+                              } else {
                                 ownerController.addChamberModel =
                                     ownerController.addChamberModel.copyWith(
-                                        temp_min_range: int.parse(p0));
+                                        temp_min_range: int.parse(value));
                               }
                             },
                             suffixIcon: Text(
@@ -273,11 +279,17 @@ class AddChamberView extends StatelessWidget {
                             inputFormatters: [
                               NumberTextInputFormatter(allowNegative: true)
                             ],
-                            onChanged: (p0) {
-                              if (p0.isNum) {
+                            onChanged: (value) {
+                              if (value.contains("-")) {
+                                if (value.length > 1) {
+                                  ownerController.addChamberModel =
+                                      ownerController.addChamberModel.copyWith(
+                                          temp_max_range: int.parse(value));
+                                }
+                              } else {
                                 ownerController.addChamberModel =
                                     ownerController.addChamberModel.copyWith(
-                                        temp_max_range: int.parse(p0));
+                                        temp_max_range: int.parse(value));
                               }
                             },
                             suffixIcon: Text(
@@ -534,7 +546,6 @@ class AddChamberView extends StatelessWidget {
                           const Gap(8),
                         ],
                       )).paddingAll(12),
-               
                       StyledContainer(
                           child: Column(
                         children: [
@@ -714,7 +725,6 @@ class AddChamberView extends StatelessWidget {
                           )
                         ],
                       )).paddingAll(12),
-
                       CustomButton(
                         title: "Submit",
                         onTap: () {
@@ -748,4 +758,3 @@ class AddChamberView extends StatelessWidget {
     });
   }
 }
-

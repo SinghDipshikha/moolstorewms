@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:moolwmsstore/Dock%20Supervisor/Model/dock.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
-import 'package:moolwmsstore/Dock%20Supervisor/view/Dock%20Assign/dockAssign.dart';
-import 'package:moolwmsstore/Dock%20Supervisor/widget/commonDropDown.dart';
-import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
-import 'package:moolwmsstore/utils/dimensions.dart';
 
 class DockQueueListScreen extends StatelessWidget {
   DockQueueListScreen({super.key});
@@ -24,13 +18,6 @@ class DockQueueListScreen extends StatelessWidget {
       "title": "View",
       "flex": 1,
     },
-  ];
-
-  final List dataList = [
-    {"title": "D-01", "flex": 1},
-    {"title": "IN-1234", "flex": 1},
-    {"title": "icon2", "flex": 1},
-    {"title": "icon3", "flex": 1},
   ];
 
   bool isSelected = false;
@@ -53,314 +40,103 @@ class DockQueueListScreen extends StatelessWidget {
     fontWeight: FontWeight.w500,
   );
 
-  final PagingController<int, int> _pagingController =
-      PagingController(firstPageKey: 0);
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: CustomFloatingActionButton(
-        title: 'Inspect',
-        onTap: () {},
-      ),
-      body: GetBuilder<DmsController>(initState: (s) {
-        Get.find<DmsController>().getAllDockListByWarehouseId();
-      }, builder: (context) {
-        return SingleChildScrollView(
-          child: Column(
-            children: [
-              const Gap(20),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: CustomToggleWidget(),
-              ),
-              const Gap(20),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Center(
-                  child: Container(
-                    height: 337,
-                    decoration: ShapeDecoration(
-                      color: const Color(0xFFFAF9FF),
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(
-                            width: 1, color: Color(0x195E57FC)),
-                        borderRadius: BorderRadius.circular(18),
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        Row(children: [
-                          Expanded(
-                              flex: 1,
-                              child: Container(
-                                child: Text(
-                                  tags[0]["title"],
-                                  style: subHeaderStyle,
-                                ),
-                              )),
-                          const Gap(3),
-                          Expanded(
-                              flex: 1,
-                              child: Container(
-                                child: Text(
-                                  tags[1]["title"],
-                                  style: subHeaderStyle,
-                                ),
-                              )),
-                          const Gap(3),
-                          Expanded(
-                              flex: 1,
-                              child: Container(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  tags[2]["title"],
-                                  style: subHeaderStyle,
-                                ),
-                              )),
-                          const Gap(3),
-                          Expanded(
-                              flex: 1,
-                              child: Container(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  tags[3]["title"],
-                                  style: subHeaderStyle,
-                                ),
-                              )),
-                        ]).paddingSymmetric(horizontal: 8),
-                        Expanded(
-                          child: GetBuilder<DmsController>(
-                              builder: (dmsController) {
-                            return dmsController.dockList.isEmpty
-                                ? const Center(
-                                    child: Text(
-                                      'No data found',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  )
-                                : ListView.builder(
-                                    itemCount: dmsController.dockList.length,
-                                    itemBuilder: (context, i) {
-                                      Dock entry = dmsController.dockList[i];
-                                      return Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Container(
-                                          width: 382,
-                                          height: 50,
-                                          decoration: ShapeDecoration(
-                                            color: const Color(0xFFFAF9FF),
-                                            shape: RoundedRectangleBorder(
-                                              side: const BorderSide(
-                                                  width: 1,
-                                                  color: Color(0x195A57FF)),
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 12, vertical: 12),
-                                            child: Row(
-                                              children: List.generate(
-                                                  dataList.length, (index) {
-                                                if (dataList[index]["title"] ==
-                                                    "D-01") {
-                                                  return Expanded(
-                                                      flex: dataList[index]
-                                                          ["flex"],
-                                                      child: Text(
-                                                        entry.dockId
-                                                                .toString() ??
-                                                            "",
-                                                        style: const TextStyle(
-                                                          color:
-                                                              Color(0xFF353535),
-                                                          fontSize: 12,
-                                                          fontFamily:
-                                                              'SF Pro Text',
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          //height: 0,
-                                                          letterSpacing: -0.48,
-                                                        ),
-                                                      ));
-                                                }
-                                                if (dataList[index]["title"] ==
-                                                    "IN-1234") {
-                                                  return Expanded(
-                                                      flex: dataList[index]
-                                                          ["flex"],
-                                                      child: Container(
-                                                        height: 30,
-                                                        decoration:
-                                                            ShapeDecoration(
-                                                          color: Colors.white,
-                                                          shape: RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5)),
-                                                        ),
-                                                        child: const Text(
-                                                          "IN-1234",
-                                                          style: TextStyle(
-                                                            color: Color(
-                                                                0xFF353535),
-                                                            fontSize: 12,
-                                                            fontFamily:
-                                                                'SF Pro Text',
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                        ),
-                                                      ));
-                                                }
-
-                                                if (dataList[index]["title"] ==
-                                                        "icon2" &&
-                                                    entry.vehicleStatus ==
-                                                        "Dock Assigned") {
-                                                  return Expanded(
-                                                    flex: dataList[index]
-                                                        ["flex"],
-                                                    child: Container(
-                                                      width: 80,
-                                                      height: 22,
-                                                      padding: const EdgeInsets
-                                                          .symmetric(
-                                                          horizontal: 10,
-                                                          vertical: 4),
-                                                      decoration:
-                                                          ShapeDecoration(
-                                                        color: const Color(
-                                                            0xFFD1FFF2),
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          side: const BorderSide(
-                                                              width: 1,
-                                                              color: Color(
-                                                                  0x33019C6F)),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5),
-                                                        ),
-                                                      ),
-                                                      child: const Center(
-                                                        child: Text(
-                                                          'Assigned',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: TextStyle(
-                                                            color: Color(
-                                                                0xFF019C6F),
-                                                            fontSize: 12,
-                                                            fontFamily:
-                                                                'SF Pro Display',
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            height: 0,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                }
-
-                                                if (dataList[index]["title"] ==
-                                                        "icon2" &&
-                                                    entry.vehicleStatus == "") {
-                                                  return Expanded(
-                                                    flex: dataList[index]
-                                                        ["flex"],
-                                                    child: Container(
-                                                      width: 80,
-                                                      height: 22,
-                                                      padding: const EdgeInsets
-                                                          .symmetric(
-                                                          horizontal: 10,
-                                                          vertical: 4),
-                                                      decoration:
-                                                          ShapeDecoration(
-                                                        color: const Color(
-                                                            0xFFFFD9DC),
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          side: const BorderSide(
-                                                              width: 1,
-                                                              color: Color(
-                                                                  0x33E23744)),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5),
-                                                        ),
-                                                      ),
-                                                      child: const Center(
-                                                        child: Text(
-                                                          'Not Assigned',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: TextStyle(
-                                                            color: Color(
-                                                                0xFFE23744),
-                                                            fontSize: 12,
-                                                            fontFamily:
-                                                                'SF Pro Display',
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            height: 0,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                }
-
-                                                return Expanded(
-                                                  flex: tags[index]["flex"],
-                                                  child: Container(
-                                                    decoration: ShapeDecoration(
-                                                      color: const Color(
-                                                          0xFFFAF9FF),
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5)),
-                                                      image:
-                                                          const DecorationImage(
-                                                        image: AssetImage(
-                                                            "assets/images/eye.png"),
-                                                        fit: BoxFit.contain,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              }),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    });
-                          }),
-                        ),
-                      ],
-                    ).paddingSymmetric(
-                        horizontal: Dimensions.horizontalBodyPad,
-                        vertical: Dimensions.vericalBodyPad),
-                  ),
-                ),
-              ),
-            ],
+    return GetBuilder<DmsController>(initState: (s) {
+      Get.find<DmsController>().getAllDockListByWarehouseId();
+    }, builder: (context) {
+      return Container(
+        decoration: ShapeDecoration(
+          color: const Color(0xFFFAF9FF),
+          shape: RoundedRectangleBorder(
+            side: const BorderSide(width: 1, color: Color(0x195E57FC)),
+            borderRadius: BorderRadius.circular(18),
           ),
-        );
-      }),
-    );
+        ),
+        child: Column(
+          children: [
+            Row(children: [
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    child: Text(
+                      tags[0]["title"],
+                      style: subHeaderStyle,
+                    ),
+                  )),
+              const Gap(3),
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    child: Text(
+                      tags[1]["title"],
+                      style: subHeaderStyle,
+                    ),
+                  )),
+              const Gap(3),
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      tags[2]["title"],
+                      style: subHeaderStyle,
+                    ),
+                  )),
+              const Gap(3),
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      tags[3]["title"],
+                      style: subHeaderStyle,
+                    ),
+                  )),
+            ]).paddingSymmetric(horizontal: 8),
+            Expanded(
+              child: GetBuilder<DmsController>(builder: (dmsController) {
+                return dmsController.dockList.isEmpty
+                    ? const Center(
+                        child: Text(
+                          'No data found',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )
+                    : ListView.builder(
+                        itemCount: dmsController.dockList.length,
+                        itemBuilder: (context, i) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: 50,
+                              decoration: ShapeDecoration(
+                                color: const Color(0xFFFAF9FF),
+                                shape: RoundedRectangleBorder(
+                                  side: const BorderSide(
+                                      width: 1, color: Color(0x195A57FF)),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 12),
+                                child: Row(
+                                  children: [],
+                                ),
+                              ),
+                            ),
+                          );
+                        });
+              }),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:moolwmsstore/Owner/View/Common/customButton.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/customButton.dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';
@@ -26,7 +27,7 @@ class _AssetEntryState extends State<AssetEntry> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: CustomButton2(
+      floatingActionButton: CustomButton(
               onTap: () {
                 showDialog(
                     context: context,
@@ -203,7 +204,7 @@ class _AssetEntryState extends State<AssetEntry> {
                       );
                     });
               },
-              rightIcon: "assets/icons/submit.png",
+    
               title: "Submit")
           .paddingSymmetric(horizontal: 12),
       appBar: AppBar(

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'checkInSubmit.dart';
+part of 'indentInSubmit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,46 +14,56 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-CheckInModel _$CheckInModelFromJson(Map<String, dynamic> json) {
-  return _CheckInModel.fromJson(json);
+IndentInModel _$IndentInModelFromJson(Map<String, dynamic> json) {
+  return _IndentInModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CheckInModel {
-  int? get seller_purchase_order_id => throw _privateConstructorUsedError;
-  List<Map<String, int>>? get products => throw _privateConstructorUsedError;
+mixin _$IndentInModel {
+  int get user_id => throw _privateConstructorUsedError;
+  int? get customer_id => throw _privateConstructorUsedError;
+  List<EnterProduct>? get products => throw _privateConstructorUsedError;
   VehicleDetails? get vehicle_details => throw _privateConstructorUsedError;
-  String? get checkin_type => throw _privateConstructorUsedError;
+  String? get order_number => throw _privateConstructorUsedError;
   int? get warehouse_id => throw _privateConstructorUsedError;
+  int? get min_temperature => throw _privateConstructorUsedError;
+  int? get max_temperature => throw _privateConstructorUsedError;
   DateTime? get expected_date => throw _privateConstructorUsedError;
+  String get temperature_unit => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CheckInModelCopyWith<CheckInModel> get copyWith =>
+  $IndentInModelCopyWith<IndentInModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CheckInModelCopyWith<$Res> {
-  factory $CheckInModelCopyWith(
-          CheckInModel value, $Res Function(CheckInModel) then) =
-      _$CheckInModelCopyWithImpl<$Res, CheckInModel>;
+abstract class $IndentInModelCopyWith<$Res> {
+  factory $IndentInModelCopyWith(
+          IndentInModel value, $Res Function(IndentInModel) then) =
+      _$IndentInModelCopyWithImpl<$Res, IndentInModel>;
   @useResult
   $Res call(
-      {int? seller_purchase_order_id,
-      List<Map<String, int>>? products,
+      {int user_id,
+      int? customer_id,
+      List<EnterProduct>? products,
       VehicleDetails? vehicle_details,
-      String? checkin_type,
+      String? order_number,
       int? warehouse_id,
-      DateTime? expected_date});
+      int? min_temperature,
+      int? max_temperature,
+      DateTime? expected_date,
+      String temperature_unit,
+      String status});
 
   $VehicleDetailsCopyWith<$Res>? get vehicle_details;
 }
 
 /// @nodoc
-class _$CheckInModelCopyWithImpl<$Res, $Val extends CheckInModel>
-    implements $CheckInModelCopyWith<$Res> {
-  _$CheckInModelCopyWithImpl(this._value, this._then);
+class _$IndentInModelCopyWithImpl<$Res, $Val extends IndentInModel>
+    implements $IndentInModelCopyWith<$Res> {
+  _$IndentInModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -63,38 +73,63 @@ class _$CheckInModelCopyWithImpl<$Res, $Val extends CheckInModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? seller_purchase_order_id = freezed,
+    Object? user_id = null,
+    Object? customer_id = freezed,
     Object? products = freezed,
     Object? vehicle_details = freezed,
-    Object? checkin_type = freezed,
+    Object? order_number = freezed,
     Object? warehouse_id = freezed,
+    Object? min_temperature = freezed,
+    Object? max_temperature = freezed,
     Object? expected_date = freezed,
+    Object? temperature_unit = null,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
-      seller_purchase_order_id: freezed == seller_purchase_order_id
-          ? _value.seller_purchase_order_id
-          : seller_purchase_order_id // ignore: cast_nullable_to_non_nullable
+      user_id: null == user_id
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
+              as int,
+      customer_id: freezed == customer_id
+          ? _value.customer_id
+          : customer_id // ignore: cast_nullable_to_non_nullable
               as int?,
       products: freezed == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, int>>?,
+              as List<EnterProduct>?,
       vehicle_details: freezed == vehicle_details
           ? _value.vehicle_details
           : vehicle_details // ignore: cast_nullable_to_non_nullable
               as VehicleDetails?,
-      checkin_type: freezed == checkin_type
-          ? _value.checkin_type
-          : checkin_type // ignore: cast_nullable_to_non_nullable
+      order_number: freezed == order_number
+          ? _value.order_number
+          : order_number // ignore: cast_nullable_to_non_nullable
               as String?,
       warehouse_id: freezed == warehouse_id
           ? _value.warehouse_id
           : warehouse_id // ignore: cast_nullable_to_non_nullable
               as int?,
+      min_temperature: freezed == min_temperature
+          ? _value.min_temperature
+          : min_temperature // ignore: cast_nullable_to_non_nullable
+              as int?,
+      max_temperature: freezed == max_temperature
+          ? _value.max_temperature
+          : max_temperature // ignore: cast_nullable_to_non_nullable
+              as int?,
       expected_date: freezed == expected_date
           ? _value.expected_date
           : expected_date // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      temperature_unit: null == temperature_unit
+          ? _value.temperature_unit
+          : temperature_unit // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
@@ -112,92 +147,129 @@ class _$CheckInModelCopyWithImpl<$Res, $Val extends CheckInModel>
 }
 
 /// @nodoc
-abstract class _$$CheckInModelImplCopyWith<$Res>
-    implements $CheckInModelCopyWith<$Res> {
-  factory _$$CheckInModelImplCopyWith(
-          _$CheckInModelImpl value, $Res Function(_$CheckInModelImpl) then) =
-      __$$CheckInModelImplCopyWithImpl<$Res>;
+abstract class _$$IndentInModelImplCopyWith<$Res>
+    implements $IndentInModelCopyWith<$Res> {
+  factory _$$IndentInModelImplCopyWith(
+          _$IndentInModelImpl value, $Res Function(_$IndentInModelImpl) then) =
+      __$$IndentInModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {int? seller_purchase_order_id,
-      List<Map<String, int>>? products,
+      {int user_id,
+      int? customer_id,
+      List<EnterProduct>? products,
       VehicleDetails? vehicle_details,
-      String? checkin_type,
+      String? order_number,
       int? warehouse_id,
-      DateTime? expected_date});
+      int? min_temperature,
+      int? max_temperature,
+      DateTime? expected_date,
+      String temperature_unit,
+      String status});
 
   @override
   $VehicleDetailsCopyWith<$Res>? get vehicle_details;
 }
 
 /// @nodoc
-class __$$CheckInModelImplCopyWithImpl<$Res>
-    extends _$CheckInModelCopyWithImpl<$Res, _$CheckInModelImpl>
-    implements _$$CheckInModelImplCopyWith<$Res> {
-  __$$CheckInModelImplCopyWithImpl(
-      _$CheckInModelImpl _value, $Res Function(_$CheckInModelImpl) _then)
+class __$$IndentInModelImplCopyWithImpl<$Res>
+    extends _$IndentInModelCopyWithImpl<$Res, _$IndentInModelImpl>
+    implements _$$IndentInModelImplCopyWith<$Res> {
+  __$$IndentInModelImplCopyWithImpl(
+      _$IndentInModelImpl _value, $Res Function(_$IndentInModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? seller_purchase_order_id = freezed,
+    Object? user_id = null,
+    Object? customer_id = freezed,
     Object? products = freezed,
     Object? vehicle_details = freezed,
-    Object? checkin_type = freezed,
+    Object? order_number = freezed,
     Object? warehouse_id = freezed,
+    Object? min_temperature = freezed,
+    Object? max_temperature = freezed,
     Object? expected_date = freezed,
+    Object? temperature_unit = null,
+    Object? status = null,
   }) {
-    return _then(_$CheckInModelImpl(
-      seller_purchase_order_id: freezed == seller_purchase_order_id
-          ? _value.seller_purchase_order_id
-          : seller_purchase_order_id // ignore: cast_nullable_to_non_nullable
+    return _then(_$IndentInModelImpl(
+      user_id: null == user_id
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
+              as int,
+      customer_id: freezed == customer_id
+          ? _value.customer_id
+          : customer_id // ignore: cast_nullable_to_non_nullable
               as int?,
       products: freezed == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, int>>?,
+              as List<EnterProduct>?,
       vehicle_details: freezed == vehicle_details
           ? _value.vehicle_details
           : vehicle_details // ignore: cast_nullable_to_non_nullable
               as VehicleDetails?,
-      checkin_type: freezed == checkin_type
-          ? _value.checkin_type
-          : checkin_type // ignore: cast_nullable_to_non_nullable
+      order_number: freezed == order_number
+          ? _value.order_number
+          : order_number // ignore: cast_nullable_to_non_nullable
               as String?,
       warehouse_id: freezed == warehouse_id
           ? _value.warehouse_id
           : warehouse_id // ignore: cast_nullable_to_non_nullable
               as int?,
+      min_temperature: freezed == min_temperature
+          ? _value.min_temperature
+          : min_temperature // ignore: cast_nullable_to_non_nullable
+              as int?,
+      max_temperature: freezed == max_temperature
+          ? _value.max_temperature
+          : max_temperature // ignore: cast_nullable_to_non_nullable
+              as int?,
       expected_date: freezed == expected_date
           ? _value.expected_date
           : expected_date // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      temperature_unit: null == temperature_unit
+          ? _value.temperature_unit
+          : temperature_unit // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$CheckInModelImpl implements _CheckInModel {
-  const _$CheckInModelImpl(
-      {this.seller_purchase_order_id,
-      final List<Map<String, int>>? products,
+class _$IndentInModelImpl implements _IndentInModel {
+  const _$IndentInModelImpl(
+      {required this.user_id,
+      this.customer_id,
+      final List<EnterProduct>? products,
       this.vehicle_details,
-      this.checkin_type,
+      this.order_number,
       this.warehouse_id,
-      this.expected_date})
+      this.min_temperature,
+      this.max_temperature,
+      this.expected_date,
+      required this.temperature_unit,
+      required this.status})
       : _products = products;
 
-  factory _$CheckInModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CheckInModelImplFromJson(json);
+  factory _$IndentInModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$IndentInModelImplFromJson(json);
 
   @override
-  final int? seller_purchase_order_id;
-  final List<Map<String, int>>? _products;
+  final int user_id;
   @override
-  List<Map<String, int>>? get products {
+  final int? customer_id;
+  final List<EnterProduct>? _products;
+  @override
+  List<EnterProduct>? get products {
     final value = _products;
     if (value == null) return null;
     if (_products is EqualUnmodifiableListView) return _products;
@@ -208,88 +280,123 @@ class _$CheckInModelImpl implements _CheckInModel {
   @override
   final VehicleDetails? vehicle_details;
   @override
-  final String? checkin_type;
+  final String? order_number;
   @override
   final int? warehouse_id;
   @override
+  final int? min_temperature;
+  @override
+  final int? max_temperature;
+  @override
   final DateTime? expected_date;
+  @override
+  final String temperature_unit;
+  @override
+  final String status;
 
   @override
   String toString() {
-    return 'CheckInModel(seller_purchase_order_id: $seller_purchase_order_id, products: $products, vehicle_details: $vehicle_details, checkin_type: $checkin_type, warehouse_id: $warehouse_id, expected_date: $expected_date)';
+    return 'IndentInModel(user_id: $user_id, customer_id: $customer_id, products: $products, vehicle_details: $vehicle_details, order_number: $order_number, warehouse_id: $warehouse_id, min_temperature: $min_temperature, max_temperature: $max_temperature, expected_date: $expected_date, temperature_unit: $temperature_unit, status: $status)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CheckInModelImpl &&
-            (identical(
-                    other.seller_purchase_order_id, seller_purchase_order_id) ||
-                other.seller_purchase_order_id == seller_purchase_order_id) &&
+            other is _$IndentInModelImpl &&
+            (identical(other.user_id, user_id) || other.user_id == user_id) &&
+            (identical(other.customer_id, customer_id) ||
+                other.customer_id == customer_id) &&
             const DeepCollectionEquality().equals(other._products, _products) &&
             (identical(other.vehicle_details, vehicle_details) ||
                 other.vehicle_details == vehicle_details) &&
-            (identical(other.checkin_type, checkin_type) ||
-                other.checkin_type == checkin_type) &&
+            (identical(other.order_number, order_number) ||
+                other.order_number == order_number) &&
             (identical(other.warehouse_id, warehouse_id) ||
                 other.warehouse_id == warehouse_id) &&
+            (identical(other.min_temperature, min_temperature) ||
+                other.min_temperature == min_temperature) &&
+            (identical(other.max_temperature, max_temperature) ||
+                other.max_temperature == max_temperature) &&
             (identical(other.expected_date, expected_date) ||
-                other.expected_date == expected_date));
+                other.expected_date == expected_date) &&
+            (identical(other.temperature_unit, temperature_unit) ||
+                other.temperature_unit == temperature_unit) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      seller_purchase_order_id,
+      user_id,
+      customer_id,
       const DeepCollectionEquality().hash(_products),
       vehicle_details,
-      checkin_type,
+      order_number,
       warehouse_id,
-      expected_date);
+      min_temperature,
+      max_temperature,
+      expected_date,
+      temperature_unit,
+      status);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CheckInModelImplCopyWith<_$CheckInModelImpl> get copyWith =>
-      __$$CheckInModelImplCopyWithImpl<_$CheckInModelImpl>(this, _$identity);
+  _$$IndentInModelImplCopyWith<_$IndentInModelImpl> get copyWith =>
+      __$$IndentInModelImplCopyWithImpl<_$IndentInModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CheckInModelImplToJson(
+    return _$$IndentInModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _CheckInModel implements CheckInModel {
-  const factory _CheckInModel(
-      {final int? seller_purchase_order_id,
-      final List<Map<String, int>>? products,
+abstract class _IndentInModel implements IndentInModel {
+  const factory _IndentInModel(
+      {required final int user_id,
+      final int? customer_id,
+      final List<EnterProduct>? products,
       final VehicleDetails? vehicle_details,
-      final String? checkin_type,
+      final String? order_number,
       final int? warehouse_id,
-      final DateTime? expected_date}) = _$CheckInModelImpl;
+      final int? min_temperature,
+      final int? max_temperature,
+      final DateTime? expected_date,
+      required final String temperature_unit,
+      required final String status}) = _$IndentInModelImpl;
 
-  factory _CheckInModel.fromJson(Map<String, dynamic> json) =
-      _$CheckInModelImpl.fromJson;
+  factory _IndentInModel.fromJson(Map<String, dynamic> json) =
+      _$IndentInModelImpl.fromJson;
 
   @override
-  int? get seller_purchase_order_id;
+  int get user_id;
   @override
-  List<Map<String, int>>? get products;
+  int? get customer_id;
+  @override
+  List<EnterProduct>? get products;
   @override
   VehicleDetails? get vehicle_details;
   @override
-  String? get checkin_type;
+  String? get order_number;
   @override
   int? get warehouse_id;
   @override
+  int? get min_temperature;
+  @override
+  int? get max_temperature;
+  @override
   DateTime? get expected_date;
   @override
+  String get temperature_unit;
+  @override
+  String get status;
+  @override
   @JsonKey(ignore: true)
-  _$$CheckInModelImplCopyWith<_$CheckInModelImpl> get copyWith =>
+  _$$IndentInModelImplCopyWith<_$IndentInModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -303,6 +410,7 @@ mixin _$VehicleDetails {
   String? get vehicle_number => throw _privateConstructorUsedError;
   String? get driver_name => throw _privateConstructorUsedError;
   String? get driver_ph_number => throw _privateConstructorUsedError;
+  DateTime? get expected_date => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -320,7 +428,8 @@ abstract class $VehicleDetailsCopyWith<$Res> {
       {String? vehicle_type,
       String? vehicle_number,
       String? driver_name,
-      String? driver_ph_number});
+      String? driver_ph_number,
+      DateTime? expected_date});
 }
 
 /// @nodoc
@@ -340,6 +449,7 @@ class _$VehicleDetailsCopyWithImpl<$Res, $Val extends VehicleDetails>
     Object? vehicle_number = freezed,
     Object? driver_name = freezed,
     Object? driver_ph_number = freezed,
+    Object? expected_date = freezed,
   }) {
     return _then(_value.copyWith(
       vehicle_type: freezed == vehicle_type
@@ -358,6 +468,10 @@ class _$VehicleDetailsCopyWithImpl<$Res, $Val extends VehicleDetails>
           ? _value.driver_ph_number
           : driver_ph_number // ignore: cast_nullable_to_non_nullable
               as String?,
+      expected_date: freezed == expected_date
+          ? _value.expected_date
+          : expected_date // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -374,7 +488,8 @@ abstract class _$$VehicleDetailsImplCopyWith<$Res>
       {String? vehicle_type,
       String? vehicle_number,
       String? driver_name,
-      String? driver_ph_number});
+      String? driver_ph_number,
+      DateTime? expected_date});
 }
 
 /// @nodoc
@@ -392,6 +507,7 @@ class __$$VehicleDetailsImplCopyWithImpl<$Res>
     Object? vehicle_number = freezed,
     Object? driver_name = freezed,
     Object? driver_ph_number = freezed,
+    Object? expected_date = freezed,
   }) {
     return _then(_$VehicleDetailsImpl(
       vehicle_type: freezed == vehicle_type
@@ -410,6 +526,10 @@ class __$$VehicleDetailsImplCopyWithImpl<$Res>
           ? _value.driver_ph_number
           : driver_ph_number // ignore: cast_nullable_to_non_nullable
               as String?,
+      expected_date: freezed == expected_date
+          ? _value.expected_date
+          : expected_date // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -421,7 +541,8 @@ class _$VehicleDetailsImpl implements _VehicleDetails {
       {this.vehicle_type,
       this.vehicle_number,
       this.driver_name,
-      this.driver_ph_number});
+      this.driver_ph_number,
+      this.expected_date});
 
   factory _$VehicleDetailsImpl.fromJson(Map<String, dynamic> json) =>
       _$$VehicleDetailsImplFromJson(json);
@@ -434,10 +555,12 @@ class _$VehicleDetailsImpl implements _VehicleDetails {
   final String? driver_name;
   @override
   final String? driver_ph_number;
+  @override
+  final DateTime? expected_date;
 
   @override
   String toString() {
-    return 'VehicleDetails(vehicle_type: $vehicle_type, vehicle_number: $vehicle_number, driver_name: $driver_name, driver_ph_number: $driver_ph_number)';
+    return 'VehicleDetails(vehicle_type: $vehicle_type, vehicle_number: $vehicle_number, driver_name: $driver_name, driver_ph_number: $driver_ph_number, expected_date: $expected_date)';
   }
 
   @override
@@ -452,13 +575,15 @@ class _$VehicleDetailsImpl implements _VehicleDetails {
             (identical(other.driver_name, driver_name) ||
                 other.driver_name == driver_name) &&
             (identical(other.driver_ph_number, driver_ph_number) ||
-                other.driver_ph_number == driver_ph_number));
+                other.driver_ph_number == driver_ph_number) &&
+            (identical(other.expected_date, expected_date) ||
+                other.expected_date == expected_date));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, vehicle_type, vehicle_number, driver_name, driver_ph_number);
+  int get hashCode => Object.hash(runtimeType, vehicle_type, vehicle_number,
+      driver_name, driver_ph_number, expected_date);
 
   @JsonKey(ignore: true)
   @override
@@ -480,7 +605,8 @@ abstract class _VehicleDetails implements VehicleDetails {
       {final String? vehicle_type,
       final String? vehicle_number,
       final String? driver_name,
-      final String? driver_ph_number}) = _$VehicleDetailsImpl;
+      final String? driver_ph_number,
+      final DateTime? expected_date}) = _$VehicleDetailsImpl;
 
   factory _VehicleDetails.fromJson(Map<String, dynamic> json) =
       _$VehicleDetailsImpl.fromJson;
@@ -493,6 +619,8 @@ abstract class _VehicleDetails implements VehicleDetails {
   String? get driver_name;
   @override
   String? get driver_ph_number;
+  @override
+  DateTime? get expected_date;
   @override
   @JsonKey(ignore: true)
   _$$VehicleDetailsImplCopyWith<_$VehicleDetailsImpl> get copyWith =>
