@@ -14,6 +14,7 @@ import 'package:moolwmsstore/Hr/Model/addShift.dart';
 import 'package:moolwmsstore/Hr/Model/addShiftDetails.dart';
 import 'package:moolwmsstore/Hr/Model/bankDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/careerDetailsRequest.dart';
+import 'package:moolwmsstore/Hr/Model/dashboardCount.dart';
 import 'package:moolwmsstore/Hr/Model/personaldetails.dart';
 import 'package:moolwmsstore/Hr/Model/referralDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/shiftDetailsRequest.dart';
@@ -57,6 +58,7 @@ class HRController extends GetxController {
       const ReferralDetailsRequest();
   ShiftDetailsRequest addShiftDetailsRequestModel = const ShiftDetailsRequest();
   List<AddShift> allShifts = [];
+
   List<PersonalDetailsResponse> getPersonalDetailsList = [];
   List<AddCareerDetail> getCareerDetailsList = [];
   List<AddEducationDetail> getEducationDetailsList = [];
@@ -67,11 +69,16 @@ class HRController extends GetxController {
   List<AddShiftDetails> getShiftData = [];
   Map? selectedWarehouse;
   int? currentUserId;
-
+  TotalCount? totalCount;
+  ArrivalCount? arrivalCount;
   List<StaffEntry> employees = [];
   StaffEntry? currentlySeletedEmployee;
   List<Widget> navigationAccordingStatus = [];
-
+  bool isTotalEmployees = false;
+  DateTime dashBoardStartDate =
+      DateTime.now().subtract(const Duration(days: 1));
+  DateTime dashBoardEndDate = DateTime.now();
+  hrDashboardCounts() {}
   // List<Widget> employSumbitScreen = [
   //   const AddedStaffScreen(),
   //   const AddEmployeeBankDetails(),
@@ -539,30 +546,54 @@ class HRController extends GetxController {
     Restart.restartApp();
   }
 
-  // addDocuments() async {
+  // Future<bool> getDashboardCounts({
+  //   int? shiftId,
+  //   String? startDate,
+  //   String? endDate,
+  //   int? warehouseId,
+  // }) async {
   //   isLoading = true;
   //   update();
-  //   try {
-  //     final response = await apiClient.postData(
-  //       "hr/addDocs",
-  //       addDocumentRequestModel.toJson(),
-  //     );
 
-  //     if (response.data["message"] == "Document Information Added") {
-  //       addDocumentRequestModel =
-  //           const DocumentRequestModel();
-  //       isLoading = false;
+  //   final Map<String, dynamic> requestBody = {
+  //     "shift_id": shiftId,
+  //     "start_date": startDate,
+  //     "end_date": endDate,
+  //     "warehouse_id": selectedWarehouse
+  //   };
 
-  //       Snacks.greenSnack("Document Information Added");
+  //   final response = await apiClient.postData("/hr/dashboard", requestBody);
+  //   if (response.data["message"] ==
+  //       "Employee attendance status fetched successfully") {
+  //     totalCount = response.data['result']['totalEmployeesData'];
+  //     arrivalCount = response.data['result']['arrival'];
 
-  //       isLoading = false;
-  //       update();
-  //     }
-  //   } catch (error) {
-  //     print('Error: $error');
+  //     Snacks.greenSnack("Employee attendance status fetched successfully");
 
-  //     isLoading = false;
-  //     update();
+  //     return true;
+  //   } else {
+  //     return false;
   //   }
   // }
+
+  getDashboardCount() async {
+    isTotalEmployees = true;
+
+    await apiClient.postData("hr/dashboard", {
+      {
+        "shift_id": 6,
+        "start_date": "",
+        "end_date": "",
+        "warehouse_id": selectedWarehouse
+      }
+    }).then((value) {
+      if (value.data["message"] ==
+          "Employee attendance status fetched successfully") {
+        totalCount = value.data['result']['totalEmployeesData']['totalEmp'];
+        arrivalCount = value.data['result']['arrival'];
+        isTotalEmployees = false;
+        update();
+      }
+    });
+  }
 }
