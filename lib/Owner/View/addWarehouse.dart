@@ -91,13 +91,14 @@ class AddWarehouse extends StatelessWidget {
                                       ).paddingOnly(top: 15)
                                     : null,
                                 onChanged: (x) {
-                                  ownerController.addWarehouseFields[i] =
-                                      field.copyWith(
-                                          value: (field.type == "int" ||
-                                                  field.type == "double" ||
-                                                  field.type == "mobile")
-                                              ? int.parse(x.toString())
-                                              : x);
+                                  if (x.isNotEmpty)
+                                    ownerController.addWarehouseFields[i] =
+                                        field.copyWith(
+                                            value: (field.type == "int" ||
+                                                    field.type == "double" ||
+                                                    field.type == "mobile")
+                                                ? int.parse(x.toString())
+                                                : x);
                                 },
                                 textCapitalization:
                                     TextUtils.textCapitalization(field.type),

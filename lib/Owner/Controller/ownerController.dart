@@ -39,16 +39,23 @@ class OwnerController extends GetxController {
 
   @override
   void onInit() {
-    dashboardWarehouses.addAll(user.warehouse!.toList());
-    dashboardWarehouses.add(WarehousesAcess.fromJson({
-      "id": null,
-      "warehouse_name": "All Warehouses",
-    }));
+    if (user.warehouse == null) {
+      isWarehouseAdded = false;
+    } else {
+      isWarehouseAdded = true;
+      dashboardWarehouses.addAll(user.warehouse!.toList());
+      dashboardWarehouses.add(WarehousesAcess.fromJson({
+        "id": null,
+        "warehouse_name": "All Warehouses",
+      }));
+    }
+
     selectedTempType = "celsius";
     // TODO: implement onInit
     super.onInit();
   }
 
+  bool isWarehouseAdded = false;
   User user;
   List<Warehouse> warehouses = [];
   List<Warehouse> searchWarehouses = [];

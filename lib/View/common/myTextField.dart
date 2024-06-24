@@ -43,6 +43,7 @@ class MyTextField extends StatelessWidget {
       padding:
           padding ?? const EdgeInsets.symmetric(vertical: 0, horizontal: 6),
       child: TextFormField(
+        maxLength: maxLength,
         maxLines: maxLines,
         textCapitalization: textCapitalization ?? TextCapitalization.none,
         onTapOutside: (event) {
