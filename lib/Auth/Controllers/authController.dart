@@ -89,7 +89,7 @@ class AuthController extends GetxController {
 
         if (user?.role_id == 1) {
           user = user!.copyWith(
-              warehouse: v.data["result"]["warehouse"],
+              warehouse: (v.data["result"]["warehouse"] as List).map((e)=> WarehousesAcess.fromJson(e)).toList(),
               avatar: v.data["result"]["user"]["avatar"]);
 
           Get.lazyPut(() => OwnerRepo(

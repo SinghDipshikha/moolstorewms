@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
 import 'package:moolwmsstore/Owner/View/Common/cc.dart';
 import 'package:moolwmsstore/Owner/View/WarehouseList.dart';
@@ -224,7 +225,7 @@ class OwnerDashboard extends StatelessWidget {
                           height: 30,
                           child: GetBuilder<OwnerController>(
                               builder: (ownerController) {
-                            return DropdownButtonFormField2<Map>(
+                            return DropdownButtonFormField2<WarehousesAcess>(
                               // value: ownerController.currentlySelectedWarehouse,
                               decoration: InputDecoration(
                                 focusedBorder: const OutlineInputBorder(
@@ -262,12 +263,12 @@ class OwnerDashboard extends StatelessWidget {
                               ),
                               items: ownerController.dashboardWarehouses
                                   .map((item) {
-                                return DropdownMenuItem<Map>(
+                                return DropdownMenuItem<WarehousesAcess>(
                                   value: item,
                                   child: Row(
                                     children: [
                                       Text(
-                                        "${item["warehouse_name"]}",
+                                        "${item.warehouse_name}",
                                         style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 14,

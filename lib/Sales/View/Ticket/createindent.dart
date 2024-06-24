@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Sales/Model/Customer/customerListElement.dart';
 import 'package:moolwmsstore/Sales/Model/Indent/indentInSubmit.dart';
 import 'package:moolwmsstore/Sales/Model/enterProduct.dart';
@@ -182,7 +183,7 @@ class _CreateticketState extends State<Createticket> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      DropdownButtonFormField2<Map>(
+                      DropdownButtonFormField2<WarehousesAcess>(
                         decoration: InputDecoration(
                           focusedBorder: const OutlineInputBorder(
                               gapPadding: 0,
@@ -222,29 +223,18 @@ class _CreateticketState extends State<Createticket> {
                           ),
                         ),
                         items: salesController.user.warehouse?.map((item) {
-                          return DropdownMenuItem<Map>(
+                          return DropdownMenuItem<WarehousesAcess>(
                             value: item,
                             child: Row(
                               children: [
                                 Text(
-                                  "${item["warehouse_name"]}",
+                                  "${item.warehouse_name}",
                                   style: const TextStyle(
                                     color: Colors.black,
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
-                                const Gap(10),
-                                Container(
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                      color: item["color"],
-                                      borderRadius: BorderRadius.circular(4)),
-                                  height: 20,
-                                  width: 20,
-                                  child: Text("${item["centerTitle"]}",
-                                      style:
-                                          const TextStyle(color: Colors.white)),
-                                )
+                             
                               ],
                             ),
                           );
@@ -257,7 +247,7 @@ class _CreateticketState extends State<Createticket> {
                         },
                         onChanged: (value) {
                           if (value != null) {
-                            selectedWarehouseId = value["id"];
+                            selectedWarehouseId = value.warehouse_id!;
                           }
                         },
                         onSaved: (value) {

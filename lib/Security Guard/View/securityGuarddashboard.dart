@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:logger/logger.dart';
+import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Labour/addLabour.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Labour/labourList.dart';
@@ -194,7 +195,7 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                   height: 50,
                   child: GetBuilder<SecurityGuardController>(
                       builder: (securityGuardController) {
-                    return DropdownButtonFormField2<Map>(
+                    return DropdownButtonFormField2<WarehousesAcess>(
                       value: securityGuardController.currentlySelectedWarehouse,
                       decoration: InputDecoration(
                         focusedBorder: const OutlineInputBorder(
@@ -232,12 +233,12 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                       ),
                       items:
                           securityGuardController.user.warehouse!.map((item) {
-                        return DropdownMenuItem<Map>(
+                        return DropdownMenuItem<WarehousesAcess>(
                           value: item,
                           child: Row(
                             children: [
                               Text(
-                                "${item["warehouse_name"]}",
+                                "${item.warehouse_name}",
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 14,

@@ -37,7 +37,7 @@ mixin _$User {
   @HiveField(7)
   List<dynamic>? get person_type => throw _privateConstructorUsedError;
   @HiveField(8)
-  List<dynamic>? get warehouse => throw _privateConstructorUsedError;
+  List<WarehousesAcess>? get warehouse => throw _privateConstructorUsedError;
   @HiveField(9)
   String? get avatar => throw _privateConstructorUsedError;
 
@@ -60,7 +60,7 @@ abstract class $UserCopyWith<$Res> {
       @HiveField(3) dynamic phone,
       @HiveField(4) String? organiosationCode,
       @HiveField(7) List<dynamic>? person_type,
-      @HiveField(8) List<dynamic>? warehouse,
+      @HiveField(8) List<WarehousesAcess>? warehouse,
       @HiveField(9) String? avatar});
 }
 
@@ -124,7 +124,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       warehouse: freezed == warehouse
           ? _value.warehouse
           : warehouse // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<WarehousesAcess>?,
       avatar: freezed == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
@@ -149,7 +149,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       @HiveField(3) dynamic phone,
       @HiveField(4) String? organiosationCode,
       @HiveField(7) List<dynamic>? person_type,
-      @HiveField(8) List<dynamic>? warehouse,
+      @HiveField(8) List<WarehousesAcess>? warehouse,
       @HiveField(9) String? avatar});
 }
 
@@ -210,7 +210,7 @@ class __$$UserImplCopyWithImpl<$Res>
       warehouse: freezed == warehouse
           ? _value._warehouse
           : warehouse // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<WarehousesAcess>?,
       avatar: freezed == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
@@ -231,7 +231,7 @@ class _$UserImpl implements _User {
       @HiveField(3) this.phone,
       @HiveField(4) this.organiosationCode,
       @HiveField(7) final List<dynamic>? person_type,
-      @HiveField(8) final List<dynamic>? warehouse,
+      @HiveField(8) final List<WarehousesAcess>? warehouse,
       @HiveField(9) this.avatar})
       : _person_type = person_type,
         _warehouse = warehouse;
@@ -271,10 +271,10 @@ class _$UserImpl implements _User {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<dynamic>? _warehouse;
+  final List<WarehousesAcess>? _warehouse;
   @override
   @HiveField(8)
-  List<dynamic>? get warehouse {
+  List<WarehousesAcess>? get warehouse {
     final value = _warehouse;
     if (value == null) return null;
     if (_warehouse is EqualUnmodifiableListView) return _warehouse;
@@ -352,7 +352,7 @@ abstract class _User implements User {
       @HiveField(3) final dynamic phone,
       @HiveField(4) final String? organiosationCode,
       @HiveField(7) final List<dynamic>? person_type,
-      @HiveField(8) final List<dynamic>? warehouse,
+      @HiveField(8) final List<WarehousesAcess>? warehouse,
       @HiveField(9) final String? avatar}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
@@ -383,12 +383,179 @@ abstract class _User implements User {
   List<dynamic>? get person_type;
   @override
   @HiveField(8)
-  List<dynamic>? get warehouse;
+  List<WarehousesAcess>? get warehouse;
   @override
   @HiveField(9)
   String? get avatar;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+WarehousesAcess _$WarehousesAcessFromJson(Map<String, dynamic> json) {
+  return _WarehousesAcess.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WarehousesAcess {
+  @HiveField(0)
+  String get warehouse_name => throw _privateConstructorUsedError;
+  @HiveField(1)
+  int? get warehouse_id => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WarehousesAcessCopyWith<WarehousesAcess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WarehousesAcessCopyWith<$Res> {
+  factory $WarehousesAcessCopyWith(
+          WarehousesAcess value, $Res Function(WarehousesAcess) then) =
+      _$WarehousesAcessCopyWithImpl<$Res, WarehousesAcess>;
+  @useResult
+  $Res call(
+      {@HiveField(0) String warehouse_name, @HiveField(1) int? warehouse_id});
+}
+
+/// @nodoc
+class _$WarehousesAcessCopyWithImpl<$Res, $Val extends WarehousesAcess>
+    implements $WarehousesAcessCopyWith<$Res> {
+  _$WarehousesAcessCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? warehouse_name = null,
+    Object? warehouse_id = freezed,
+  }) {
+    return _then(_value.copyWith(
+      warehouse_name: null == warehouse_name
+          ? _value.warehouse_name
+          : warehouse_name // ignore: cast_nullable_to_non_nullable
+              as String,
+      warehouse_id: freezed == warehouse_id
+          ? _value.warehouse_id
+          : warehouse_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$WarehousesAcessImplCopyWith<$Res>
+    implements $WarehousesAcessCopyWith<$Res> {
+  factory _$$WarehousesAcessImplCopyWith(_$WarehousesAcessImpl value,
+          $Res Function(_$WarehousesAcessImpl) then) =
+      __$$WarehousesAcessImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@HiveField(0) String warehouse_name, @HiveField(1) int? warehouse_id});
+}
+
+/// @nodoc
+class __$$WarehousesAcessImplCopyWithImpl<$Res>
+    extends _$WarehousesAcessCopyWithImpl<$Res, _$WarehousesAcessImpl>
+    implements _$$WarehousesAcessImplCopyWith<$Res> {
+  __$$WarehousesAcessImplCopyWithImpl(
+      _$WarehousesAcessImpl _value, $Res Function(_$WarehousesAcessImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? warehouse_name = null,
+    Object? warehouse_id = freezed,
+  }) {
+    return _then(_$WarehousesAcessImpl(
+      warehouse_name: null == warehouse_name
+          ? _value.warehouse_name
+          : warehouse_name // ignore: cast_nullable_to_non_nullable
+              as String,
+      warehouse_id: freezed == warehouse_id
+          ? _value.warehouse_id
+          : warehouse_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$WarehousesAcessImpl implements _WarehousesAcess {
+  const _$WarehousesAcessImpl(
+      {@HiveField(0) required this.warehouse_name,
+      @HiveField(1) this.warehouse_id});
+
+  factory _$WarehousesAcessImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WarehousesAcessImplFromJson(json);
+
+  @override
+  @HiveField(0)
+  final String warehouse_name;
+  @override
+  @HiveField(1)
+  final int? warehouse_id;
+
+  @override
+  String toString() {
+    return 'WarehousesAcess(warehouse_name: $warehouse_name, warehouse_id: $warehouse_id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WarehousesAcessImpl &&
+            (identical(other.warehouse_name, warehouse_name) ||
+                other.warehouse_name == warehouse_name) &&
+            (identical(other.warehouse_id, warehouse_id) ||
+                other.warehouse_id == warehouse_id));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, warehouse_name, warehouse_id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$WarehousesAcessImplCopyWith<_$WarehousesAcessImpl> get copyWith =>
+      __$$WarehousesAcessImplCopyWithImpl<_$WarehousesAcessImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$WarehousesAcessImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WarehousesAcess implements WarehousesAcess {
+  const factory _WarehousesAcess(
+      {@HiveField(0) required final String warehouse_name,
+      @HiveField(1) final int? warehouse_id}) = _$WarehousesAcessImpl;
+
+  factory _WarehousesAcess.fromJson(Map<String, dynamic> json) =
+      _$WarehousesAcessImpl.fromJson;
+
+  @override
+  @HiveField(0)
+  String get warehouse_name;
+  @override
+  @HiveField(1)
+  int? get warehouse_id;
+  @override
+  @JsonKey(ignore: true)
+  _$$WarehousesAcessImplCopyWith<_$WarehousesAcessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

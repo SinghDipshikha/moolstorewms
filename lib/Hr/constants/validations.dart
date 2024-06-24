@@ -266,9 +266,9 @@ abstract class GlobalValidator {
     return [FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z0-9]"))];
   }
 
-  static List<TextInputFormatter> gateIDInputFormatter() {
-    return [FilteringTextInputFormatter.allow(RegExp(r"Gate-\d{3,5}"))];
-  }
+  // static List<TextInputFormatter> gateIDInputFormatter() {
+  //   return [FilteringTextInputFormatter.allow(RegExp(r"Gate-\d{3,5}"))];
+  // }
 
   static List<TextInputFormatter> bloodGroupInputFormatter() {
     return [FilteringTextInputFormatter.allow(RegExp(r"(A|B|AB|O)[\+-]"))];

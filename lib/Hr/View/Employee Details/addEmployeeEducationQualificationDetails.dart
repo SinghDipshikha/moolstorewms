@@ -112,8 +112,6 @@ class AddEmployeeEducationQualificationDetails extends StatelessWidget {
                               labelText: "Grade",
                               hintText: "Grade",
                               obscureText: false,
-                              inputFormatters:
-                                  GlobalValidator.gateIDInputFormatter(),
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Please enter your grade.';

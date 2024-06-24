@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
+import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/Model/addShift.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
@@ -433,9 +434,8 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                                                 shift_check_out:
                                                     _formatTimeOfDay(
                                                         _selectedTime2),
-                                                warehouse_id:
-                                                    selectedWarehouse![
-                                                        "warehouse_id"]);
+                                                warehouse_id: selectedWarehouse!
+                                                    .warehouse_id);
                                     Logger().i(hrController
                                         .addShiftDetailsRequestModel
                                         .toJson());
@@ -485,8 +485,6 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
     );
   }
 
-  
-  
   @override
   final List tags = [
     {"title": "Shift Name", "flex": 2},
@@ -498,7 +496,7 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
     {"title": "09 : 30 AM", "flex": 2},
     {"title": "06 : 30 PM", "flex": 2},
   ];
-  Map? selectedWarehouse;
+  WarehousesAcess? selectedWarehouse;
   @override
   void initState() {
     selectedWarehouse = Get.find<HRController>().user.warehouse![0];
@@ -533,7 +531,7 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: SizedBox(
-                child: DropdownButtonFormField2<Map>(
+                child: DropdownButtonFormField2<WarehousesAcess>(
                   value: selectedWarehouse,
                   decoration: InputDecoration(
                     focusedBorder: const OutlineInputBorder(
@@ -564,12 +562,12 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                     ),
                   ),
                   items: hrController.user.warehouse!.map((item) {
-                    return DropdownMenuItem<Map>(
+                    return DropdownMenuItem<WarehousesAcess>(
                       value: item,
                       child: Row(
                         children: [
                           Text(
-                            "${item["warehouse_name"]}",
+                            item.warehouse_name,
                             style: const TextStyle(
                               color: Colors.black,
                               fontSize: 14,
@@ -617,9 +615,6 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                   menuItemStyleData: const MenuItemStyleData(
                       padding: EdgeInsets.symmetric(horizontal: 8)),
                 ),
-            
-            
-            
               ),
             ),
             const Gap(20),
@@ -694,7 +689,7 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                     ).paddingSymmetric(horizontal: 12),
                     GetBuilder<HRController>(initState: (state) {
                       Get.find<HRController>()
-                          .getAllShift(selectedWarehouse!["warehouse_id"]);
+                          .getAllShift(selectedWarehouse!.warehouse_id);
                     }, builder: (context) {
                       return hrController.allShifts.isEmpty
                           ? const Center(

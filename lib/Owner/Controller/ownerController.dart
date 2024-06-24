@@ -5,13 +5,13 @@ import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/Model/personType.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
-import 'package:moolwmsstore/Owner/Controller/ownerRepo.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/DMS.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsRepo.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
+import 'package:moolwmsstore/Owner/Controller/ownerRepo.dart';
 import 'package:moolwmsstore/Owner/Model/Chamber/addChamber.dart';
 import 'package:moolwmsstore/Owner/Model/Chamber/chamber.dart';
 import 'package:moolwmsstore/Owner/Model/addWarehouseField.dart';
@@ -40,10 +40,10 @@ class OwnerController extends GetxController {
   @override
   void onInit() {
     dashboardWarehouses.addAll(user.warehouse!.toList());
-    dashboardWarehouses.add({
-      "id": "",
+    dashboardWarehouses.add(WarehousesAcess.fromJson({
+      "id": null,
       "warehouse_name": "All Warehouses",
-    });
+    }));
     selectedTempType = "celsius";
     // TODO: implement onInit
     super.onInit();
@@ -65,8 +65,8 @@ class OwnerController extends GetxController {
   int? allIndentCount;
   int? sgIndentCount;
   int? salesIndentCount;
-  Map? selectedDashboardWarehouse;
-  List dashboardWarehouses = [];
+  WarehousesAcess? selectedDashboardWarehouse;
+  List<WarehousesAcess> dashboardWarehouses = [];
   int? warehouseCount;
   int? ticketCount;
   bool isGetIndentWarehouseCountLoading = true;
@@ -105,7 +105,7 @@ class OwnerController extends GetxController {
     getPersonCount();
   }
 
-  changeDashBoardWarehouse({required Map warehouse}) {
+  changeDashBoardWarehouse({required WarehousesAcess warehouse}) {
     selectedDashboardWarehouse = warehouse;
 
     Logger().i(selectedDashboardWarehouse);
@@ -119,7 +119,7 @@ class OwnerController extends GetxController {
   getticketWarehouseCount() async {
     isGetIndentWarehouseCountLoading = true;
     String afterUrl =
-        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}";
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!.warehouse_id}";
     await apiClient.getData("owner/dashboard$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         warehouseCount = value.data["result"]["warehouseCount"];
@@ -135,7 +135,7 @@ class OwnerController extends GetxController {
   getMaterialCount() async {
     isGetMaterialCountLoading = true;
     String afterUrl =
-        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}";
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!.warehouse_id}";
     await apiClient.getData("material/materialCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         materialCountIn = value.data["result"]["count_in"];
@@ -149,7 +149,7 @@ class OwnerController extends GetxController {
   getVehicleCount() async {
     isGetVehicleCountLoading = true;
     String afterUrl =
-        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}";
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!.warehouse_id}";
     await apiClient.getData("vehicle/vehicalCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         vehicleCountIn = value.data["result"]["count_in"];
@@ -163,7 +163,7 @@ class OwnerController extends GetxController {
   getVisitorCount() async {
     isGetVisitorCountLoading = true;
     String afterUrl =
-        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}";
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!.warehouse_id}";
     await apiClient.getData("visitor/visitorCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         visitorCountIn = value.data["result"]["count_in"];
@@ -177,7 +177,7 @@ class OwnerController extends GetxController {
   getPersonCount() async {
     isGetPersonCountLoading = true;
     String afterUrl =
-        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!["id"]}";
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${selectedDashboardWarehouse == null ? "" : selectedDashboardWarehouse!.warehouse_id}";
     await apiClient.getData("person/personCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         personCountIn = value.data["result"]["count_in"];

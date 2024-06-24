@@ -24,7 +24,6 @@ class DmsController extends GetxController {
       required this.user,
       this.isOwner = false});
 
-
   List<Vehicle> vehicleList = [];
   List<Dock> dockList = [];
   @override
@@ -54,9 +53,9 @@ class DmsController extends GetxController {
     }
   }
 
-  Map? currentlySelectedWarehouse;
+  WarehousesAcess? currentlySelectedWarehouse;
   // currentlySelectedWarehouse!["id"]  access warehopuse like this
-  changeDashBoardWarehouse({required Map warehouse}) {
+  changeDashBoardWarehouse({required WarehousesAcess warehouse}) {
     currentlySelectedWarehouse = warehouse;
 
     update();
@@ -79,7 +78,7 @@ class DmsController extends GetxController {
 
   getAllVehicleListByWarehouseId() {
     apiClient
-        .getData("dock/getAllQueuedList/${currentlySelectedWarehouse!["id"]}")
+        .getData("dock/getAllQueuedList/${currentlySelectedWarehouse!.warehouse_id}")
         .then((value) {
       if (value.data["message"] == "Queued List found") {
         vehicleList = (value.data["result"] as List)
@@ -95,7 +94,7 @@ class DmsController extends GetxController {
   getAllDockListByWarehouseId() {
     apiClient
         .getData(
-            "dock/getAllQueuedListByDocks/${currentlySelectedWarehouse!["id"]}")
+            "dock/getAllQueuedListByDocks/${currentlySelectedWarehouse!.warehouse_id}")
         .then((value) {
       if (value.data["message"] == "Docks found for given warehouse") {
         List x = value.data["result"];

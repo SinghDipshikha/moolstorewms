@@ -25,7 +25,7 @@ class UserAdapter extends TypeAdapter<User> {
       phone: fields[3] as dynamic,
       organiosationCode: fields[4] as String?,
       person_type: (fields[7] as List?)?.cast<dynamic>(),
-      warehouse: (fields[8] as List?)?.cast<dynamic>(),
+      warehouse: (fields[8] as List?)?.cast<WarehousesAcess>(),
       avatar: fields[9] as String?,
     );
   }
@@ -67,6 +67,43 @@ class UserAdapter extends TypeAdapter<User> {
           typeId == other.typeId;
 }
 
+class WarehousesAcessAdapter extends TypeAdapter<WarehousesAcess> {
+  @override
+  final int typeId = 2;
+
+  @override
+  WarehousesAcess read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return WarehousesAcess(
+      warehouse_name: fields[0] as String,
+      warehouse_id: fields[1] as int?,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, WarehousesAcess obj) {
+    writer
+      ..writeByte(2)
+      ..writeByte(0)
+      ..write(obj.warehouse_name)
+      ..writeByte(1)
+      ..write(obj.warehouse_id);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WarehousesAcessAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
@@ -80,7 +117,9 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       phone: json['phone'],
       organiosationCode: json['organiosationCode'] as String?,
       person_type: json['person_type'] as List<dynamic>?,
-      warehouse: json['warehouse'] as List<dynamic>?,
+      warehouse: (json['warehouse'] as List<dynamic>?)
+          ?.map((e) => WarehousesAcess.fromJson(e as Map<String, dynamic>))
+          .toList(),
       avatar: json['avatar'] as String?,
     );
 
@@ -94,6 +133,20 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'phone': instance.phone,
       'organiosationCode': instance.organiosationCode,
       'person_type': instance.person_type,
-      'warehouse': instance.warehouse,
+      'warehouse': instance.warehouse?.map((e) => e.toJson()).toList(),
       'avatar': instance.avatar,
+    };
+
+_$WarehousesAcessImpl _$$WarehousesAcessImplFromJson(
+        Map<String, dynamic> json) =>
+    _$WarehousesAcessImpl(
+      warehouse_name: json['warehouse_name'] as String,
+      warehouse_id: (json['warehouse_id'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$WarehousesAcessImplToJson(
+        _$WarehousesAcessImpl instance) =>
+    <String, dynamic>{
+      'warehouse_name': instance.warehouse_name,
+      'warehouse_id': instance.warehouse_id,
     };

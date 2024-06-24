@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Auth/widgets/commonTextField.dart';
 import 'package:moolwmsstore/Sales/View/common/widgets/customButton.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
@@ -386,7 +387,7 @@ class AddVistorBySecurityGuard extends StatelessWidget {
                   );
                 }).paddingOnly(bottom: 12),
                 GetBuilder<SecurityGuardController>(builder: (sgController) {
-                  return DropdownButtonFormField2<Map>(
+                  return DropdownButtonFormField2<WarehousesAcess>(
                     decoration: InputDecoration(
                       focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(
@@ -419,28 +420,18 @@ class AddVistorBySecurityGuard extends StatelessWidget {
                       ),
                     ),
                     items: sgController.user.warehouse?.map((item) {
-                      return DropdownMenuItem<Map>(
+                      return DropdownMenuItem<WarehousesAcess>(
                         value: item,
                         child: Row(
                           children: [
                             Text(
-                              "${item["warehouse_name"]}",
+                              "${item.warehouse_name}",
                               style: const TextStyle(
                                 color: Colors.black,
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),
-                            const Gap(10),
-                            Container(
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                  color: item["color"],
-                                  borderRadius: BorderRadius.circular(4)),
-                              height: 20,
-                              width: 20,
-                              child: Text("${item["centerTitle"]}",
-                                  style: const TextStyle(color: Colors.white)),
-                            )
+                      
                           ],
                         ),
                       );
@@ -455,7 +446,7 @@ class AddVistorBySecurityGuard extends StatelessWidget {
                       if (value != null) {
                         sgController.addVisitorModel = sgController
                             .addVisitorModel
-                            .copyWith(warehouse_id: value["id"]);
+                            .copyWith(warehouse_id: value.warehouse_id.toString());
                         sgController.update();
                       }
                     },
