@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/View/Dock%20Assign/dockAssign.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
 import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
@@ -96,7 +97,7 @@ class DmsDrawer extends StatelessWidget {
           SizedBox(
             height: 50,
             child: GetBuilder<DmsController>(builder: (dmsController) {
-              return DropdownButtonFormField2<Map>(
+              return DropdownButtonFormField2<WarehousesAcess>(
                 value: dmsController.currentlySelectedWarehouse,
                 decoration: InputDecoration(
                   focusedBorder: const OutlineInputBorder(
@@ -129,12 +130,12 @@ class DmsDrawer extends StatelessWidget {
                   ),
                 ),
                 items: dmsController.user.warehouse!.map((item) {
-                  return DropdownMenuItem<Map>(
+                  return DropdownMenuItem<WarehousesAcess>(
                     value: item,
                     child: Row(
                       children: [
                         Text(
-                          "${item["warehouse_name"]}",
+                          "${item.warehouse_name}",
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 14,

@@ -11,11 +11,26 @@ class Dmsrepo {
 
   Future<List<Dock>?> getUnassignedDocks() async {
     var res = await apiClient.getData(
-        "dock/getDocksNotAssigned/${Get.find<DmsController>().currentlySelectedWarehouse!["id"]}");
+        "dock/getDocksNotAssigned/${Get.find<DmsController>().currentlySelectedWarehouse!.warehouse_id}");
     if (res.data["message"] == "Docks List found") {
       return (res.data["result"] as List).map((e) => Dock.fromJson(e)).toList();
     } else {
       return null;
+    }
+  }
+
+  Future<bool> assignDockToVehicle(
+      {required int rowId, required int dockNumber}) async {
+    var res = await apiClient.postData("dock/vehicleDockAssigned", {
+      "id": rowId,
+      "updated_at": DateTime.now(),
+      "vehicle_status": "Dock Assigned",
+      "dock_id": dockNumber
+    });
+    if (res.data["message"] == "Dock Assigned") {
+      return true;
+    } else {
+      return false;
     }
   }
 

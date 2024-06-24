@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/vehicle.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/View/assignChamber.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
@@ -28,243 +29,6 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
       "flex": 1,
     },
   ];
-
-  void _showPopup(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return StatefulBuilder(
-          builder: (context, setState) {
-            return AlertDialog(
-              backgroundColor: Colors.white,
-              content: SingleChildScrollView(
-                child: ListBody(
-                  children: <Widget>[
-                    Center(
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 82,
-                            decoration: const ShapeDecoration(
-                              color: Color(0xFF5A57FF),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(32),
-                                  topRight: Radius.circular(32),
-                                ),
-                              ),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                'Assign Dock',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 24,
-                                  fontFamily: 'SF Pro Display',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Gap(30),
-                          Row(
-                            children: [
-                              Container(
-                                width: 145,
-                                height: 60,
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFF5A57FF),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8)),
-                                  shadows: const [
-                                    BoxShadow(
-                                      color: Color(0xFF000000),
-                                      blurRadius: 0,
-                                      offset: Offset(6, 6),
-                                      spreadRadius: 0,
-                                    )
-                                  ],
-                                ),
-                                child: Row(
-                                  children: [
-                                    const Gap(30),
-                                    const Text(
-                                      'D-01',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 24,
-                                        fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                    const Gap(10),
-                                    Container(
-                                        width: 31,
-                                        height: 31,
-                                        decoration: const BoxDecoration(
-                                            color: Colors.green,
-                                            shape: BoxShape.circle,
-                                            boxShadow: [BoxShadow()]),
-                                        child: const Icon(Icons.check)),
-                                  ],
-                                ),
-                              ),
-                              const Gap(10),
-                              Container(
-                                width: 145,
-                                height: 60,
-                                decoration: ShapeDecoration(
-                                  color: const Color(0x195E57FC),
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                        width: 1, color: Color(0x195E57FC)),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-                                child: const Center(
-                                  child: Text(
-                                    'D-02',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Color(0xFF595959),
-                                      fontSize: 24,
-                                      fontFamily: 'SF Pro Display',
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const Gap(20),
-                          Row(
-                            children: [
-                              Container(
-                                width: 145,
-                                height: 60,
-                                decoration: ShapeDecoration(
-                                  color: const Color(0x195E57FC),
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                        width: 1, color: Color(0x195E57FC)),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-                                child: const Center(
-                                  child: Text(
-                                    'D-02',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Color(0xFF595959),
-                                      fontSize: 24,
-                                      fontFamily: 'SF Pro Display',
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const Gap(10),
-                              Container(
-                                width: 145,
-                                height: 60,
-                                decoration: ShapeDecoration(
-                                  color: const Color(0x195E57FC),
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                        width: 1, color: Color(0x195E57FC)),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-                                child: const Center(
-                                  child: Text(
-                                    'D-02',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Color(0xFF595959),
-                                      fontSize: 24,
-                                      fontFamily: 'SF Pro Display',
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const Gap(20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Container(
-                                width: 140,
-                                height: 50,
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 8),
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFFF94F46),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                ),
-                                child: const Center(
-                                  child: Text(
-                                    'Cancel',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                      fontFamily: 'SF Pro Display',
-                                      fontWeight: FontWeight.w600,
-                                      height: 0,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(const AssignChamberScreen(),
-                                      id: dmsNavigationKey);
-                                },
-                                child: Container(
-                                  width: 140,
-                                  height: 50,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 8),
-                                  decoration: ShapeDecoration(
-                                    color: const Color(0xFF02A676),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),
-                                  ),
-                                  child: const Center(
-                                    child: Text(
-                                      'Assign',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontFamily: 'SF Pro Display',
-                                        fontWeight: FontWeight.w600,
-                                        height: 0,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              actions: const <Widget>[],
-            );
-          },
-        );
-      },
-    );
-  }
 
   DateTime start = DateTime.now();
 
@@ -371,6 +135,8 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                               itemCount: dmsController.vehicleList.length,
                               itemBuilder: (context, i) {
                                 Vehicle entry = dmsController.vehicleList[i];
+                                Logger().i(entry.toJson());
+
                                 return Container(
                                   height: 60,
                                   decoration: ShapeDecoration(
@@ -456,11 +222,12 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                                             ? InkWell(
                                                 onTap: () {
                                                   Get.dialog(
-                                                      const DocklistDialog(),
+
+                                                       DocklistDialog( entry: entry,),
                                                       navigatorKey: Get.nestedKey(
                                                           salesNavigationKey),
                                                       barrierColor:
-                                                          Colors.transparent);
+                                                          Colors.transparent ,barrierDismissible: false);
                                                   // Get.dialog(
                                                   //     const DocklistDialog());
                                                 },

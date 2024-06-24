@@ -10,7 +10,6 @@ import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Auth/Repository/authRepo.dart';
 import 'package:moolwmsstore/Common%20Data/Model/LanaguageModel.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
-
 import 'package:moolwmsstore/Controller/language_controller.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
@@ -30,6 +29,7 @@ Future<Map<String, Map<String, String>>> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
 
   Hive.registerAdapter(UserAdapter());
+  Hive.registerAdapter(WarehousesAcessAdapter());
 
   await Hive.openBox('authbox');
 

@@ -81,7 +81,7 @@ class SecurityGuardController extends GetxController {
     getPersonCount();
   }
 
-  changeDashBoardWarehouse({required Map warehouse}) {
+  changeDashBoardWarehouse({required WarehousesAcess warehouse}) {
     currentlySelectedWarehouse = warehouse;
 
     getMaterialCount();
@@ -108,7 +108,7 @@ class SecurityGuardController extends GetxController {
     super.onInit();
   }
 
-  Map? currentlySelectedWarehouse;
+  WarehousesAcess? currentlySelectedWarehouse;
   void verifyEmployee() {
     secGaurdRepo
         .verifyEmployee(empId: 2, daterTime: DateTime.now(), gateId: 1)
@@ -462,7 +462,7 @@ class SecurityGuardController extends GetxController {
         "phone_no": "",
         "start_date": "",
         "end_date": "",
-        "warehouse_id": currentlySelectedWarehouse!['id'],
+        "warehouse_id": currentlySelectedWarehouse!.warehouse_id,
       }
     }).then((value) {
       if (value.data["message"] == "Labour Data Retrieved Successfully!") {
@@ -503,7 +503,7 @@ class SecurityGuardController extends GetxController {
     Logger().d(currentlySelectedWarehouse);
     isGetMaterialCountLoading = true;
     String afterUrl =
-        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!["id"]}";
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!.warehouse_id}";
     await apiClient.getData("material/materialCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         materialCountIn = value.data["result"]["count_in"];
@@ -517,7 +517,7 @@ class SecurityGuardController extends GetxController {
   getVehicleCount() async {
     isGetVehicleCountLoading = true;
     String afterUrl =
-        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!["id"]}";
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!.warehouse_id}";
     await apiClient.getData("vehicle/vehicalCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         vehicleCountIn = value.data["result"]["count_in"];
@@ -531,7 +531,7 @@ class SecurityGuardController extends GetxController {
   getVisitorCount() async {
     isGetVisitorCountLoading = true;
     String afterUrl =
-        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!["id"]}";
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!.warehouse_id}";
     await apiClient.getData("visitor/visitorCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         visitorCountIn = value.data["result"]["count_in"];
@@ -545,7 +545,7 @@ class SecurityGuardController extends GetxController {
   getLabourCount() async {
     isGetVisitorCountLoading = true;
     String afterUrl =
-        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!["id"]}";
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!.warehouse_id}";
     await apiClient.getData("visitor/visitorCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         visitorCountIn = value.data["result"]["count_in"];
@@ -559,7 +559,7 @@ class SecurityGuardController extends GetxController {
   getPersonCount() async {
     isGetPersonCountLoading = true;
     String afterUrl =
-        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!["id"]}";
+        "?start_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardStartDate)}\"&end_date=\"${AppConstants.yearMonthDayformatter.format(dashBoardEndDate)}\"&warehouse_id=${currentlySelectedWarehouse!.warehouse_id}";
     await apiClient.getData("person/personCount$afterUrl").then((value) {
       if (value.data["message"] == "Data Retrieved Successfully!") {
         personCountIn = value.data["result"]["count_in"];
