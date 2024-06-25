@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Auth/Auth.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
+import 'package:moolwmsstore/Customer/View/customerDashboard.dart';
 import 'package:moolwmsstore/helper/messages.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 
@@ -38,7 +38,7 @@ class _DipshikaAppState extends State<DipshikaApp> {
             .copyWith(textScaler: const TextScaler.linear(0.9)),
         child: GetMaterialApp(
           //  home: ViewVisitor(visitor: null),
-          home: const Auth(),
+          home: const CustomerDashboard(),
           debugShowCheckedModeBanner: false,
           locale: localizeController.locale,
           fallbackLocale: Locale(
