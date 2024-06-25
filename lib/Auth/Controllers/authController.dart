@@ -13,6 +13,9 @@ import 'package:moolwmsstore/Auth/View/signUp.dart';
 import 'package:moolwmsstore/Auth/View/welcome.dart';
 import 'package:moolwmsstore/Common%20Data/Model/Auth/signupfield.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
+import 'package:moolwmsstore/Customer/Controller/customerController.dart';
+import 'package:moolwmsstore/Customer/Customer.dart';
+import 'package:moolwmsstore/Customer/Repository/customerRepo.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/DMS.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsRepo.dart';
@@ -159,6 +162,16 @@ class AuthController extends GetxController {
                       apiClient: Get.find<ApiClient>()),
                   permanent: true);
             }
+            if (element["person_type"] == "customer") {
+              Get.lazyPut(() => CustomerRepo(
+                  sharedPreferences: Get.find(), apiClient: Get.find()));
+              Get.put(
+                  CustomerController(
+                      user: user as User,
+                      apiClient: Get.find<ApiClient>(),
+                      customerRepo: Get.find<CustomerRepo>()),
+                  permanent: true);
+            }
           }
           if (user!.person_type?[0] != null) {
             if (user!.person_type?[0]["person_type"] == "security-guard") {
@@ -176,6 +189,10 @@ class AuthController extends GetxController {
             if (user!.person_type?[0]["person_type"] == "dock-supervisor") {
               Get.delete<AuthController>();
               Get.offAll(const DMS());
+            }
+            if (user!.person_type?[0]["person_type"] == "customer") {
+              Get.delete<AuthController>();
+              Get.offAll(const Customer());
             }
           }
         }

@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
+import 'package:moolwmsstore/Customer/Repository/customerRepo.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/dock.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/vehicle.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsRepo.dart';
@@ -13,6 +14,7 @@ import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:restart_app/restart_app.dart';
 
 class CustomerController extends GetxController {
+final CustomerRepo customerRepo;
 
   final ApiClient apiClient;
   bool isLoading = false;
@@ -22,7 +24,8 @@ class CustomerController extends GetxController {
       {
       required this.apiClient,
       required this.user,
-      this.isOwner = false});
+       required this.customerRepo, 
+      this.isOwner = false,});
 
   List<Vehicle> vehicleList = [];
   List<Dock> dockList = [];
