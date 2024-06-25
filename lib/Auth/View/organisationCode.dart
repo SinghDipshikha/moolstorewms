@@ -179,6 +179,7 @@ class OrganisationCode extends StatelessWidget {
                     ),
               const Gap(22),
               CommonTextField(
+                maxLines: 1,
                 style: const TextStyle(
                   color: Color(0xFF5A57FF),
                   fontSize: 20,
@@ -198,7 +199,7 @@ class OrganisationCode extends StatelessWidget {
                 onFieldSubmitted: (value) {
                   FocusManager.instance.primaryFocus?.unfocus();
                   Get.find<AuthController>().checkOrganisationCode(
-                      organiosationCodee: controller!.text.toString());
+                      organiosationCodee: controller!.text.toString().trim());
                 },
               ),
               const Gap(22),

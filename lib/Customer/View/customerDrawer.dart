@@ -1,11 +1,8 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Customer/Controller/customerController.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/View/Dock%20Assign/dockAssign.dart';
-import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
 import 'package:moolwmsstore/common/widgets/profileAvatar.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
@@ -19,7 +16,7 @@ class CustomerDrawer extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 22, 22, 22),
       child: Column(
         children: [
-          GetBuilder<DmsController>(builder: (dmsController) {
+          GetBuilder<CustomerController>(builder: (customerController) {
             return Theme(
               data: Theme.of(context).copyWith(
                 dividerTheme: const DividerThemeData(color: Colors.transparent),
@@ -31,11 +28,11 @@ class CustomerDrawer extends StatelessWidget {
                   child: Row(
                     children: [
                       ProfileAvatar(
-                          imageUrl: dmsController.user.avatar,
+                          imageUrl: customerController.user.avatar,
                           initialWidget:
                               Image.asset("assets/icons/employeeAvater.png"),
                           onImageUploaded: (v) {
-                            dmsController.updateProfilePic(v);
+                            customerController.updateProfilePic(v);
                           }),
                       const Gap(12),
                       Column(
@@ -45,7 +42,7 @@ class CustomerDrawer extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                '${dmsController.user.first_name} ${dmsController.user.last_name ?? ""}',
+                                '${customerController.user.first_name} ${customerController.user.last_name ?? ""}',
                                 overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
                                   color: Colors.white,
@@ -62,7 +59,7 @@ class CustomerDrawer extends StatelessWidget {
                             ],
                           ),
                           Text(
-                            dmsController.user.email ?? "",
+                            customerController.user.email ?? "",
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
                               color: Color(0xFFACACAC),
@@ -87,98 +84,6 @@ class CustomerDrawer extends StatelessWidget {
                   )),
             );
           }),
-          SizedBox(
-            height: 50,
-            child: GetBuilder<CustomerController>(builder: (dmsController) {
-              return DropdownButtonFormField2<WarehousesAcess>(
-                value: dmsController.currentlySelectedWarehouse,
-                decoration: InputDecoration(
-                  focusedBorder: const OutlineInputBorder(
-                      gapPadding: 0,
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(255, 27, 23, 251), width: 0.4),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  enabledBorder: OutlineInputBorder(
-                      gapPadding: 0,
-                      borderSide: BorderSide(
-                          color: Colors.white.withOpacity(0.30000001192092896),
-                          width: 1),
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(10))),
-                  contentPadding:
-                      const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-                  border: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.transparent),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                hint: const Text(
-                  'Select Warehouses',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontFamily: 'SF Pro Display',
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                items: dmsController.user.warehouse!.map((item) {
-                  return DropdownMenuItem<WarehousesAcess>(
-                    value: item,
-                    child: Row(
-                      children: [
-                        Text(
-                          item.warehouse_name ?? "--",
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: 'SF Pro Display',
-                            fontWeight: FontWeight.w400,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  );
-                }).toList(),
-                validator: (value) {
-                  if (value == null) {
-                    return 'Required';
-                  }
-                  return null;
-                },
-                onChanged: (value) {
-                  if (value != null) {
-                    dmsController.changeDashBoardWarehouse(warehouse: value);
-                    if (context.isPhone) {
-                      Navigator.of(context).pop();
-                    }
-                  }
-                },
-                onSaved: (value) {},
-                buttonStyleData: const ButtonStyleData(
-                  padding: EdgeInsets.zero,
-                  overlayColor: WidgetStatePropertyAll(Colors.white),
-                ),
-                iconStyleData: IconStyleData(
-                  icon: const Icon(
-                    Icons.arrow_drop_down,
-                    color: Colors.white,
-                  ).paddingOnly(right: 10),
-                  iconSize: 24,
-                ),
-                dropdownStyleData: DropdownStyleData(
-                  padding: EdgeInsets.zero,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
-                menuItemStyleData: const MenuItemStyleData(
-                    padding: EdgeInsets.symmetric(horizontal: 8)),
-              );
-            }),
-          ).paddingSymmetric(horizontal: 8),
           Expanded(
               child: ListView(
             padding: EdgeInsets.zero,
@@ -317,7 +222,7 @@ class CustomerDrawer extends StatelessWidget {
           )),
           InkWell(
             onTap: () {
-              Get.find<DmsController>().dmsLogout();
+              Get.find<CustomerController>().logout();
             },
             child: Container(
               height: 60,

@@ -29,7 +29,7 @@ import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 import 'package:restart_app/restart_app.dart';
 
-import '../../Security Guard/repository/securityGuardRepo.dart';
+import '../../Security Guard/Controllers/securityGuardRepo.dart';
 
 class OwnerController extends GetxController {
   final OwnerRepo ownerRepo;

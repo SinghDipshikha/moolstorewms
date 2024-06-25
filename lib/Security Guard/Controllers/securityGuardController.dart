@@ -23,7 +23,7 @@ import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/vehicle.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/visitor.dart';
 import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Visitor/visitorCheckedInSuccessfully.dart';
-import 'package:moolwmsstore/Security%20Guard/repository/securityGuardRepo.dart';
+import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardRepo.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/utils/globals.dart';
@@ -287,29 +287,29 @@ class SecurityGuardController extends GetxController {
   List<TicketSG> allTicketsList = [];
   bool isLoading = true;
 
-  void getAllTicketList() {
-    apiClient.postData("securityGuard/indentList?recordsPerPage=25&next=1", {
-      "indent_number": "",
-      "vehicle_number": "",
-      "driver_name": "",
-      "warehouse_id": "",
-      "start_date": "",
-      "end_date": ""
-    }).then((value) {
-      if (value.data["message"] == "Indent Details found") {
-        List x = value.data["result"];
-        allTicketsList = x.map((e) => TicketSG.fromJson(e)).toList();
-      } else {
-        allTicketsList = [];
-      }
-      isLoading = false;
-      update();
-    }).catchError((error) {
-      isLoading = false;
-      update();
-      print("Error fetching tickets: $error");
-    });
-  }
+  // void getAllTicketList() {
+  //   apiClient.postData("securityGuard/indentList?recordsPerPage=25&next=1", {
+  //     "indent_number": "",
+  //     "vehicle_number": "",
+  //     "driver_name": "",
+  //     "warehouse_id": "",
+  //     "start_date": "",
+  //     "end_date": ""
+  //   }).then((value) {
+  //     if (value.data["message"] == "Indent Details found") {
+  //       List x = value.data["result"];
+  //       allTicketsList = x.map((e) => TicketSG.fromJson(e)).toList();
+  //     } else {
+  //       allTicketsList = [];
+  //     }
+  //     isLoading = false;
+  //     update();
+  //   }).catchError((error) {
+  //     isLoading = false;
+  //     update();
+  //     print("Error fetching tickets: $error");
+  //   });
+  // }
 
   viewIndent({required String indentId}) async {
     if (indentId.isEmpty) {

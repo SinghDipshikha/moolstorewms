@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Auth/Repository/authRepo.dart';
 import 'package:moolwmsstore/Auth/View/Blocked.dart';
@@ -29,8 +28,8 @@ import 'package:moolwmsstore/Sales/Sales.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/Sales/repo/salesRepo.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
+import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardRepo.dart';
 import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
-import 'package:moolwmsstore/Security%20Guard/repository/securityGuardRepo.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/common/controller/chamberController.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
@@ -78,7 +77,6 @@ class AuthController extends GetxController {
         .getData("user/userInfo/${user!.id}")
         .whenComplete(() {})
         .then((v) {
-   
       if (v.data["status"] == false) {
         box.clear();
         sharedPreferences.clear();
