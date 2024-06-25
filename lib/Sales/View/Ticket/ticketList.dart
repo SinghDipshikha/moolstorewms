@@ -36,7 +36,7 @@ class _TicketListState extends State<TicketList> {
   final PagingController<int, IndentElement> pagingController =
       PagingController(firstPageKey: 1);
 
-  @override
+
   @override
   void initState() {
     pagingController.addPageRequestListener((pageKey) {

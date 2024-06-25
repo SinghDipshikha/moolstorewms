@@ -66,7 +66,6 @@ class TextUtils {
     } else if (type == "mobile") {
       return [
         NumberTextInputFormatter(),
-        // LengthLimitingTextInputFormatter(10),
       ];
     } else if (type == "int") {
       return [NumberTextInputFormatter()];

@@ -284,7 +284,7 @@ class SecurityGuardController extends GetxController {
   //   });
   // }
 
-  List<TicketSG> allTicketsList = [];
+
   bool isLoading = true;
 
   // void getAllTicketList() {
