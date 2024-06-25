@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:get/get.dart' as g;
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
+import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/Indent/indentElement.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addVisitor.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/employeeEntry.dart';
@@ -139,14 +141,21 @@ class SecurityGuardRepo {
     return null;
   }
 
-  Future<IndentElement?> getAllTicketList({
-    required var recordsPerPage,
-    required var next,
+  Future<List<IndentElement>?> getAllindents({
+    required int recordsPerPage,
+    required int page,
   }) async {
-    Response res = await apiClient.getData("ticket/getAllTicketsList");
-    if (res.data["message"] == "Data Retrieved Successfully!") {
+    var res = await apiClient.postData("securityGuard/indentList?recordsPerPage=$recordsPerPage&next=$page",{
+    "indent_number":"",
+    "vehicle_number":"",
+    "driver_name":"",
+    "warehouse_id":g.Get.find<SecurityGuardController>().currentlySelectedWarehouse!.warehouse_id,
+    "start_date":"",
+    "end_date":""
+});
+    if (res.data["message"] == "Indent Details found") {
       // return Ticket.fromJson(res.data["result"]);
-      return null;
+      return (res.data["result"] as List).map((e)=> IndentElement.fromJson(e)).toList();
     }
     return null;
   }

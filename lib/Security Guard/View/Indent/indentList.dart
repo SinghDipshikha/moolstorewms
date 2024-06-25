@@ -13,14 +13,14 @@ import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 //@RoutePage()
-class TicketListScreen extends StatefulWidget {
-  const TicketListScreen({super.key});
+class IndentListScreen extends StatefulWidget {
+  const IndentListScreen({super.key});
 
   @override
-  State<TicketListScreen> createState() => _TicketListScreenState();
+  State<IndentListScreen> createState() => _IndentListScreenState();
 }
 
-class _TicketListScreenState extends State<TicketListScreen> {
+class _IndentListScreenState extends State<IndentListScreen> {
   @override
   final List tags = [
     {"title": 'Indent ID', "flex": 1},
@@ -112,7 +112,7 @@ class _TicketListScreenState extends State<TicketListScreen> {
         ),
       ),
       body: GetBuilder<SecurityGuardController>(initState: (state) {
-        Get.find<SecurityGuardController>().getAllTicketList();
+       // Get.find<SecurityGuardController>().getAllIndentList();
       }, builder: (sgController) {
         return Column(
           children: [
@@ -259,7 +259,7 @@ class _TicketListScreenState extends State<TicketListScreen> {
             ]).paddingSymmetric(horizontal: 8),
             Expanded(
               child: GetBuilder<SecurityGuardController>(initState: (state) {
-                Get.find<SecurityGuardController>().getAllTicketList();
+                Get.find<SecurityGuardController>().secGaurdRepo.getAllindents(recordsPerPage: 23, page: 1);
               }, builder: (securityGuardController) {
                 return securityGuardController.allTicketsList.isEmpty
                     ? const Center(

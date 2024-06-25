@@ -10,7 +10,7 @@ import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Indent/addTicket.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Indent/personList.dart';
-import 'package:moolwmsstore/Security%20Guard/View/Indent/ticketList.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Indent/indentList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Labour/addLabour.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Labour/labourList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Material/materialList.dart';
@@ -379,7 +379,7 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                       title: "Indent List",
                       isShowextendedLine: false,
                       onTap: () {
-                        Get.to(const TicketListScreen(),
+                        Get.to(const IndentListScreen(),
                             id: securityGuardNavigation);
                       },
                     ),
@@ -753,7 +753,7 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                   imagePath: "assets/images/ticket-star.png",
                   title: 'Ticket',
                   onTap: () {
-                    Get.to(const TicketListScreen(),
+                    Get.to(const IndentListScreen(),
                         id: securityGuardNavigation);
                   },
                 ),
