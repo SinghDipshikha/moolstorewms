@@ -73,6 +73,7 @@ class SecurityGuardController extends GetxController {
   int? personCountIn;
   int? personCountOut;
   bool isGetPersonCountLoading = true;
+  String? currentIndentId;
   DateTime dashBoardStartDate =
       DateTime.now().subtract(const Duration(days: 1));
   DateTime dashBoardEndDate = DateTime.now();

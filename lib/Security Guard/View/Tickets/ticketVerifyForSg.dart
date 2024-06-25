@@ -104,7 +104,8 @@ class _TicketEntryReviewScreenForSGState
                               PersonalInfoTitle(
                                 title: 'Person Name',
                                 value:
-                                    '${sgController.vehicleDetails!.driver_name}',
+                                    '${sgController.vehicleDetails!.driver_name}?? ' ??
+                                        "",
                               ),
                               const Gap(16),
                               PersonalInfoTitle(
@@ -150,7 +151,7 @@ class _TicketEntryReviewScreenForSGState
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                 ),
-                                child: Product(
+                                child: ProductView(
                                     product: sgController
                                         .indentBySg!.product_details![i]),
                               ).paddingSymmetric(vertical: 6);
@@ -353,9 +354,9 @@ class PersonalInfoTitle extends StatelessWidget {
   }
 }
 
-class Product extends StatelessWidget {
+class ProductView extends StatelessWidget {
   ProductEntry product;
-  Product({super.key, required this.product});
+  ProductView({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {

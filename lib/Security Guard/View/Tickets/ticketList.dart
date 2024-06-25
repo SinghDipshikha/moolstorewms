@@ -7,6 +7,7 @@ import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardControlle
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/ticket.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Tickets/ticketVerifyForSg.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Tickets/ticketVerifyForSl.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:moolwmsstore/utils/globals.dart';
@@ -282,7 +283,7 @@ class _TicketListScreenState extends State<TicketListScreen> {
                         itemBuilder: (context, i) {
                           TicketSG entry =
                               securityGuardController.allTicketsList[i];
-                              
+
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
@@ -399,14 +400,21 @@ class _TicketListScreenState extends State<TicketListScreen> {
                                             ),
                                       InkWell(
                                         onTap: () {
-                                          Get.to(
-                                              TicketEntryReviewScreenForSG(
-                                                indentElement: entry
-                                                        .indent_number
-                                                        .toString() ??
-                                                    "",
-                                              ),
-                                              id: securityGuardNavigation);
+                                          entry.indent_number!.contains('SG')
+                                              ? Get.to(
+                                                  TicketEntryReviewScreenForSG(
+                                                    indentElement: entry
+                                                            .indent_number
+                                                            .toString() ??
+                                                        "",
+                                                  ),
+                                                  id: securityGuardNavigation)
+                                              : TicketEntryReviewScreenForSL(
+                                                  indentElement: entry
+                                                          .indent_number
+                                                          .toString() ??
+                                                      "",
+                                                );
                                         },
                                         child: Expanded(
                                           flex: 1,
