@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/Indent/indentElement.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addVisitor.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/employeeEntry.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/person.dart';
@@ -138,7 +139,7 @@ class SecurityGuardRepo {
     return null;
   }
 
-  Future<TicketSG?> getAllTicketList({
+  Future<IndentElement?> getAllTicketList({
     required var recordsPerPage,
     required var next,
   }) async {

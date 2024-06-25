@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/ticket.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Indent/ticketVerifyForSg.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Indent/ticketVerifyForSl.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart';
-import 'package:moolwmsstore/Security%20Guard/View/Tickets/ticketVerifyForSg.dart';
-import 'package:moolwmsstore/Security%20Guard/View/Tickets/ticketVerifyForSl.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:moolwmsstore/utils/globals.dart';
@@ -27,10 +27,6 @@ class _TicketListScreenState extends State<TicketListScreen> {
     {"title": "Vehicle No.", "flex": 1},
     {"title": "Driver Name", "flex": 1},
     {"title": 'Date Time', "flex": 1},
-    {
-      "title": "Status",
-      "flex": 1,
-    },
     {
       "title": "Verify",
       "flex": 1,
@@ -241,16 +237,16 @@ class _TicketListScreenState extends State<TicketListScreen> {
                     ),
                   )),
               const Gap(3),
-              Expanded(
-                  flex: 1,
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      tags[4]["title"],
-                      style: subHeaderStyle,
-                    ),
-                  )),
-              const Gap(3),
+              // Expanded(
+              //     flex: 1,
+              //     child: Container(
+              //       alignment: Alignment.center,
+              //       child: Text(
+              //         tags[4]["title"],
+              //         style: subHeaderStyle,
+              //       ),
+              //     )),
+              // const Gap(3),
               Expanded(
                   flex: 1,
                   child: Container(

@@ -27,7 +27,7 @@ import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/Sales/repo/salesRepo.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
-import 'package:moolwmsstore/Security%20Guard/repository/securityGuardRepo.dart';
+import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardRepo.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/common/controller/chamberController.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';

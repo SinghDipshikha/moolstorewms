@@ -23,7 +23,7 @@ import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/vehicle.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/visitor.dart';
 import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Visitor/visitorCheckedInSuccessfully.dart';
-import 'package:moolwmsstore/Security%20Guard/repository/securityGuardRepo.dart';
+import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardRepo.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/utils/globals.dart';
