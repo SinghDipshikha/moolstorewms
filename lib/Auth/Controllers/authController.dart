@@ -75,7 +75,7 @@ class AuthController extends GetxController {
         .getData("user/userInfo/${user!.id}")
         .whenComplete(() {})
         .then((v) {
-      Logger().i(v.data["status"]);
+   
       if (v.data["status"] == false) {
         box.clear();
         sharedPreferences.clear();

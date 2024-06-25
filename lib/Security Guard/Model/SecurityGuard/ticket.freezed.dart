@@ -33,6 +33,8 @@ mixin _$TicketSG {
   String? get status => throw _privateConstructorUsedError;
   int? get warehouse_id => throw _privateConstructorUsedError;
   DateTime? get created_at => throw _privateConstructorUsedError;
+  List<ProductEntry>? get product_details => throw _privateConstructorUsedError;
+  List<VehicleEntry>? get vehicle_details => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -58,7 +60,9 @@ abstract class $TicketSGCopyWith<$Res> {
       String? products,
       String? status,
       int? warehouse_id,
-      DateTime? created_at});
+      DateTime? created_at,
+      List<ProductEntry>? product_details,
+      List<VehicleEntry>? vehicle_details});
 }
 
 /// @nodoc
@@ -87,6 +91,8 @@ class _$TicketSGCopyWithImpl<$Res, $Val extends TicketSG>
     Object? status = freezed,
     Object? warehouse_id = freezed,
     Object? created_at = freezed,
+    Object? product_details = freezed,
+    Object? vehicle_details = freezed,
   }) {
     return _then(_value.copyWith(
       indent_number: freezed == indent_number
@@ -141,6 +147,14 @@ class _$TicketSGCopyWithImpl<$Res, $Val extends TicketSG>
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      product_details: freezed == product_details
+          ? _value.product_details
+          : product_details // ignore: cast_nullable_to_non_nullable
+              as List<ProductEntry>?,
+      vehicle_details: freezed == vehicle_details
+          ? _value.vehicle_details
+          : vehicle_details // ignore: cast_nullable_to_non_nullable
+              as List<VehicleEntry>?,
     ) as $Val);
   }
 }
@@ -166,7 +180,9 @@ abstract class _$$TicketSGImplCopyWith<$Res>
       String? products,
       String? status,
       int? warehouse_id,
-      DateTime? created_at});
+      DateTime? created_at,
+      List<ProductEntry>? product_details,
+      List<VehicleEntry>? vehicle_details});
 }
 
 /// @nodoc
@@ -193,6 +209,8 @@ class __$$TicketSGImplCopyWithImpl<$Res>
     Object? status = freezed,
     Object? warehouse_id = freezed,
     Object? created_at = freezed,
+    Object? product_details = freezed,
+    Object? vehicle_details = freezed,
   }) {
     return _then(_$TicketSGImpl(
       indent_number: freezed == indent_number
@@ -247,6 +265,14 @@ class __$$TicketSGImplCopyWithImpl<$Res>
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      product_details: freezed == product_details
+          ? _value._product_details
+          : product_details // ignore: cast_nullable_to_non_nullable
+              as List<ProductEntry>?,
+      vehicle_details: freezed == vehicle_details
+          ? _value._vehicle_details
+          : vehicle_details // ignore: cast_nullable_to_non_nullable
+              as List<VehicleEntry>?,
     ));
   }
 }
@@ -267,7 +293,11 @@ class _$TicketSGImpl implements _TicketSG {
       this.products,
       this.status,
       this.warehouse_id,
-      this.created_at});
+      this.created_at,
+      final List<ProductEntry>? product_details,
+      final List<VehicleEntry>? vehicle_details})
+      : _product_details = product_details,
+        _vehicle_details = vehicle_details;
 
   factory _$TicketSGImpl.fromJson(Map<String, dynamic> json) =>
       _$$TicketSGImplFromJson(json);
@@ -298,10 +328,29 @@ class _$TicketSGImpl implements _TicketSG {
   final int? warehouse_id;
   @override
   final DateTime? created_at;
+  final List<ProductEntry>? _product_details;
+  @override
+  List<ProductEntry>? get product_details {
+    final value = _product_details;
+    if (value == null) return null;
+    if (_product_details is EqualUnmodifiableListView) return _product_details;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<VehicleEntry>? _vehicle_details;
+  @override
+  List<VehicleEntry>? get vehicle_details {
+    final value = _vehicle_details;
+    if (value == null) return null;
+    if (_vehicle_details is EqualUnmodifiableListView) return _vehicle_details;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'TicketSG(indent_number: $indent_number, ticket_generate_by: $ticket_generate_by, employee_id: $employee_id, visitor_name: $visitor_name, visitor_ph_number: $visitor_ph_number, does_have_vehicle: $does_have_vehicle, vehicle_number: $vehicle_number, vehicle_types: $vehicle_types, material_inside: $material_inside, products: $products, status: $status, warehouse_id: $warehouse_id, created_at: $created_at)';
+    return 'TicketSG(indent_number: $indent_number, ticket_generate_by: $ticket_generate_by, employee_id: $employee_id, visitor_name: $visitor_name, visitor_ph_number: $visitor_ph_number, does_have_vehicle: $does_have_vehicle, vehicle_number: $vehicle_number, vehicle_types: $vehicle_types, material_inside: $material_inside, products: $products, status: $status, warehouse_id: $warehouse_id, created_at: $created_at, product_details: $product_details, vehicle_details: $vehicle_details)';
   }
 
   @override
@@ -333,7 +382,11 @@ class _$TicketSGImpl implements _TicketSG {
             (identical(other.warehouse_id, warehouse_id) ||
                 other.warehouse_id == warehouse_id) &&
             (identical(other.created_at, created_at) ||
-                other.created_at == created_at));
+                other.created_at == created_at) &&
+            const DeepCollectionEquality()
+                .equals(other._product_details, _product_details) &&
+            const DeepCollectionEquality()
+                .equals(other._vehicle_details, _vehicle_details));
   }
 
   @JsonKey(ignore: true)
@@ -352,7 +405,9 @@ class _$TicketSGImpl implements _TicketSG {
       products,
       status,
       warehouse_id,
-      created_at);
+      created_at,
+      const DeepCollectionEquality().hash(_product_details),
+      const DeepCollectionEquality().hash(_vehicle_details));
 
   @JsonKey(ignore: true)
   @override
@@ -382,7 +437,9 @@ abstract class _TicketSG implements TicketSG {
       final String? products,
       final String? status,
       final int? warehouse_id,
-      final DateTime? created_at}) = _$TicketSGImpl;
+      final DateTime? created_at,
+      final List<ProductEntry>? product_details,
+      final List<VehicleEntry>? vehicle_details}) = _$TicketSGImpl;
 
   factory _TicketSG.fromJson(Map<String, dynamic> json) =
       _$TicketSGImpl.fromJson;
@@ -414,6 +471,10 @@ abstract class _TicketSG implements TicketSG {
   @override
   DateTime? get created_at;
   @override
+  List<ProductEntry>? get product_details;
+  @override
+  List<VehicleEntry>? get vehicle_details;
+  @override
   @JsonKey(ignore: true)
   _$$TicketSGImplCopyWith<_$TicketSGImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -432,12 +493,14 @@ mixin _$TicketSL {
   int? get warehouse_id => throw _privateConstructorUsedError;
   int? get min_temperature => throw _privateConstructorUsedError;
   int? get max_temperature => throw _privateConstructorUsedError;
-  String? get temperature_unit => throw _privateConstructorUsedError;
   String? get warehouse_name => throw _privateConstructorUsedError;
   String? get first_name => throw _privateConstructorUsedError;
   dynamic get last_name => throw _privateConstructorUsedError;
   String? get personType => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   List<String>? get designation => throw _privateConstructorUsedError;
+  List<ProductEntry>? get product_details => throw _privateConstructorUsedError;
+  List<VehicleEntry>? get vehicle_details => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -458,12 +521,14 @@ abstract class $TicketSLCopyWith<$Res> {
       int? warehouse_id,
       int? min_temperature,
       int? max_temperature,
-      String? temperature_unit,
       String? warehouse_name,
       String? first_name,
       dynamic last_name,
       String? personType,
-      List<String>? designation});
+      String? name,
+      List<String>? designation,
+      List<ProductEntry>? product_details,
+      List<VehicleEntry>? vehicle_details});
 }
 
 /// @nodoc
@@ -486,12 +551,14 @@ class _$TicketSLCopyWithImpl<$Res, $Val extends TicketSL>
     Object? warehouse_id = freezed,
     Object? min_temperature = freezed,
     Object? max_temperature = freezed,
-    Object? temperature_unit = freezed,
     Object? warehouse_name = freezed,
     Object? first_name = freezed,
     Object? last_name = freezed,
     Object? personType = freezed,
+    Object? name = freezed,
     Object? designation = freezed,
+    Object? product_details = freezed,
+    Object? vehicle_details = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -522,10 +589,6 @@ class _$TicketSLCopyWithImpl<$Res, $Val extends TicketSL>
           ? _value.max_temperature
           : max_temperature // ignore: cast_nullable_to_non_nullable
               as int?,
-      temperature_unit: freezed == temperature_unit
-          ? _value.temperature_unit
-          : temperature_unit // ignore: cast_nullable_to_non_nullable
-              as String?,
       warehouse_name: freezed == warehouse_name
           ? _value.warehouse_name
           : warehouse_name // ignore: cast_nullable_to_non_nullable
@@ -542,10 +605,22 @@ class _$TicketSLCopyWithImpl<$Res, $Val extends TicketSL>
           ? _value.personType
           : personType // ignore: cast_nullable_to_non_nullable
               as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
       designation: freezed == designation
           ? _value.designation
           : designation // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      product_details: freezed == product_details
+          ? _value.product_details
+          : product_details // ignore: cast_nullable_to_non_nullable
+              as List<ProductEntry>?,
+      vehicle_details: freezed == vehicle_details
+          ? _value.vehicle_details
+          : vehicle_details // ignore: cast_nullable_to_non_nullable
+              as List<VehicleEntry>?,
     ) as $Val);
   }
 }
@@ -566,12 +641,14 @@ abstract class _$$TicketSLImplCopyWith<$Res>
       int? warehouse_id,
       int? min_temperature,
       int? max_temperature,
-      String? temperature_unit,
       String? warehouse_name,
       String? first_name,
       dynamic last_name,
       String? personType,
-      List<String>? designation});
+      String? name,
+      List<String>? designation,
+      List<ProductEntry>? product_details,
+      List<VehicleEntry>? vehicle_details});
 }
 
 /// @nodoc
@@ -592,12 +669,14 @@ class __$$TicketSLImplCopyWithImpl<$Res>
     Object? warehouse_id = freezed,
     Object? min_temperature = freezed,
     Object? max_temperature = freezed,
-    Object? temperature_unit = freezed,
     Object? warehouse_name = freezed,
     Object? first_name = freezed,
     Object? last_name = freezed,
     Object? personType = freezed,
+    Object? name = freezed,
     Object? designation = freezed,
+    Object? product_details = freezed,
+    Object? vehicle_details = freezed,
   }) {
     return _then(_$TicketSLImpl(
       id: freezed == id
@@ -628,10 +707,6 @@ class __$$TicketSLImplCopyWithImpl<$Res>
           ? _value.max_temperature
           : max_temperature // ignore: cast_nullable_to_non_nullable
               as int?,
-      temperature_unit: freezed == temperature_unit
-          ? _value.temperature_unit
-          : temperature_unit // ignore: cast_nullable_to_non_nullable
-              as String?,
       warehouse_name: freezed == warehouse_name
           ? _value.warehouse_name
           : warehouse_name // ignore: cast_nullable_to_non_nullable
@@ -648,10 +723,22 @@ class __$$TicketSLImplCopyWithImpl<$Res>
           ? _value.personType
           : personType // ignore: cast_nullable_to_non_nullable
               as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
       designation: freezed == designation
           ? _value._designation
           : designation // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      product_details: freezed == product_details
+          ? _value._product_details
+          : product_details // ignore: cast_nullable_to_non_nullable
+              as List<ProductEntry>?,
+      vehicle_details: freezed == vehicle_details
+          ? _value._vehicle_details
+          : vehicle_details // ignore: cast_nullable_to_non_nullable
+              as List<VehicleEntry>?,
     ));
   }
 }
@@ -667,13 +754,17 @@ class _$TicketSLImpl implements _TicketSL {
       this.warehouse_id,
       this.min_temperature,
       this.max_temperature,
-      this.temperature_unit,
       this.warehouse_name,
       this.first_name,
       this.last_name,
       this.personType,
-      final List<String>? designation})
-      : _designation = designation;
+      this.name,
+      final List<String>? designation,
+      final List<ProductEntry>? product_details,
+      final List<VehicleEntry>? vehicle_details})
+      : _designation = designation,
+        _product_details = product_details,
+        _vehicle_details = vehicle_details;
 
   factory _$TicketSLImpl.fromJson(Map<String, dynamic> json) =>
       _$$TicketSLImplFromJson(json);
@@ -693,8 +784,6 @@ class _$TicketSLImpl implements _TicketSL {
   @override
   final int? max_temperature;
   @override
-  final String? temperature_unit;
-  @override
   final String? warehouse_name;
   @override
   final String? first_name;
@@ -702,6 +791,8 @@ class _$TicketSLImpl implements _TicketSL {
   final dynamic last_name;
   @override
   final String? personType;
+  @override
+  final String? name;
   final List<String>? _designation;
   @override
   List<String>? get designation {
@@ -712,9 +803,29 @@ class _$TicketSLImpl implements _TicketSL {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<ProductEntry>? _product_details;
+  @override
+  List<ProductEntry>? get product_details {
+    final value = _product_details;
+    if (value == null) return null;
+    if (_product_details is EqualUnmodifiableListView) return _product_details;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<VehicleEntry>? _vehicle_details;
+  @override
+  List<VehicleEntry>? get vehicle_details {
+    final value = _vehicle_details;
+    if (value == null) return null;
+    if (_vehicle_details is EqualUnmodifiableListView) return _vehicle_details;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   String toString() {
-    return 'TicketSL(id: $id, indent_number: $indent_number, order_number: $order_number, created_at: $created_at, warehouse_id: $warehouse_id, min_temperature: $min_temperature, max_temperature: $max_temperature, temperature_unit: $temperature_unit, warehouse_name: $warehouse_name, first_name: $first_name, last_name: $last_name, personType: $personType, designation: $designation)';
+    return 'TicketSL(id: $id, indent_number: $indent_number, order_number: $order_number, created_at: $created_at, warehouse_id: $warehouse_id, min_temperature: $min_temperature, max_temperature: $max_temperature, warehouse_name: $warehouse_name, first_name: $first_name, last_name: $last_name, personType: $personType, name: $name, designation: $designation, product_details: $product_details, vehicle_details: $vehicle_details)';
   }
 
   @override
@@ -735,8 +846,6 @@ class _$TicketSLImpl implements _TicketSL {
                 other.min_temperature == min_temperature) &&
             (identical(other.max_temperature, max_temperature) ||
                 other.max_temperature == max_temperature) &&
-            (identical(other.temperature_unit, temperature_unit) ||
-                other.temperature_unit == temperature_unit) &&
             (identical(other.warehouse_name, warehouse_name) ||
                 other.warehouse_name == warehouse_name) &&
             (identical(other.first_name, first_name) ||
@@ -744,8 +853,13 @@ class _$TicketSLImpl implements _TicketSL {
             const DeepCollectionEquality().equals(other.last_name, last_name) &&
             (identical(other.personType, personType) ||
                 other.personType == personType) &&
+            (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
-                .equals(other._designation, _designation));
+                .equals(other._designation, _designation) &&
+            const DeepCollectionEquality()
+                .equals(other._product_details, _product_details) &&
+            const DeepCollectionEquality()
+                .equals(other._vehicle_details, _vehicle_details));
   }
 
   @JsonKey(ignore: true)
@@ -759,12 +873,14 @@ class _$TicketSLImpl implements _TicketSL {
       warehouse_id,
       min_temperature,
       max_temperature,
-      temperature_unit,
       warehouse_name,
       first_name,
       const DeepCollectionEquality().hash(last_name),
       personType,
-      const DeepCollectionEquality().hash(_designation));
+      name,
+      const DeepCollectionEquality().hash(_designation),
+      const DeepCollectionEquality().hash(_product_details),
+      const DeepCollectionEquality().hash(_vehicle_details));
 
   @JsonKey(ignore: true)
   @override
@@ -789,12 +905,14 @@ abstract class _TicketSL implements TicketSL {
       final int? warehouse_id,
       final int? min_temperature,
       final int? max_temperature,
-      final String? temperature_unit,
       final String? warehouse_name,
       final String? first_name,
       final dynamic last_name,
       final String? personType,
-      final List<String>? designation}) = _$TicketSLImpl;
+      final String? name,
+      final List<String>? designation,
+      final List<ProductEntry>? product_details,
+      final List<VehicleEntry>? vehicle_details}) = _$TicketSLImpl;
 
   factory _TicketSL.fromJson(Map<String, dynamic> json) =
       _$TicketSLImpl.fromJson;
@@ -814,8 +932,6 @@ abstract class _TicketSL implements TicketSL {
   @override
   int? get max_temperature;
   @override
-  String? get temperature_unit;
-  @override
   String? get warehouse_name;
   @override
   String? get first_name;
@@ -824,7 +940,13 @@ abstract class _TicketSL implements TicketSL {
   @override
   String? get personType;
   @override
+  String? get name;
+  @override
   List<String>? get designation;
+  @override
+  List<ProductEntry>? get product_details;
+  @override
+  List<VehicleEntry>? get vehicle_details;
   @override
   @JsonKey(ignore: true)
   _$$TicketSLImplCopyWith<_$TicketSLImpl> get copyWith =>

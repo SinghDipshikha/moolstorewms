@@ -53,6 +53,10 @@ class SecurityGuardController extends GetxController {
   List<VisitorCount> allVisitorCount = [];
   List<Person> allPersonList = [];
 
+  TicketSG? indentBySg;
+  TicketSL? indentBySl;
+  VehicleEntry? vehicleDetails;
+
   bool? isCheckIn;
   User user;
   bool isloading = false;
@@ -69,6 +73,7 @@ class SecurityGuardController extends GetxController {
   int? personCountIn;
   int? personCountOut;
   bool isGetPersonCountLoading = true;
+  String? currentIndentId;
   DateTime dashBoardStartDate =
       DateTime.now().subtract(const Duration(days: 1));
   DateTime dashBoardEndDate = DateTime.now();
@@ -306,8 +311,6 @@ class SecurityGuardController extends GetxController {
     });
   }
 
-  Ticket? indent;
-
   viewIndent({required String indentId}) async {
     if (indentId.isEmpty) {
       return;
@@ -328,15 +331,19 @@ class SecurityGuardController extends GetxController {
       if (indentId.contains('SG') &&
           value.data["message"] ==
               "Indent details found Successfully for Indent id $indentId") {
-        indent = Ticket.sg(TicketSG.fromJson(value.data["result"][0]));
-      } else if (indentId.contains('SL') &&
+        indentBySg = TicketSG.fromJson(value.data["result"][0]);
+        Logger().i(indentBySg);
+      }
+      if (indentId.contains('SL') &&
           value.data["message"] ==
               "Indent details found Successfully for Indent id $indentId") {
-        indent = Ticket.sl(TicketSL.fromJson(value.data["result"][0]));
+        indentBySl = TicketSL.fromJson(value.data["result"][0]);
+        Logger().i(indentBySg);
       }
-      isLoading = false;
-      update();
     });
+
+    isLoading = false;
+    update();
   }
 
 //   addTicketBySecurityGuard({

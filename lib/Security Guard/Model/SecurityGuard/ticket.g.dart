@@ -23,6 +23,12 @@ _$TicketSGImpl _$$TicketSGImplFromJson(Map<String, dynamic> json) =>
       created_at: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),
+      product_details: (json['product_details'] as List<dynamic>?)
+          ?.map((e) => ProductEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      vehicle_details: (json['vehicle_details'] as List<dynamic>?)
+          ?.map((e) => VehicleEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$TicketSGImplToJson(_$TicketSGImpl instance) =>
@@ -40,6 +46,10 @@ Map<String, dynamic> _$$TicketSGImplToJson(_$TicketSGImpl instance) =>
       'status': instance.status,
       'warehouse_id': instance.warehouse_id,
       'created_at': instance.created_at?.toIso8601String(),
+      'product_details':
+          instance.product_details?.map((e) => e.toJson()).toList(),
+      'vehicle_details':
+          instance.vehicle_details?.map((e) => e.toJson()).toList(),
     };
 
 _$TicketSLImpl _$$TicketSLImplFromJson(Map<String, dynamic> json) =>
@@ -53,13 +63,19 @@ _$TicketSLImpl _$$TicketSLImplFromJson(Map<String, dynamic> json) =>
       warehouse_id: (json['warehouse_id'] as num?)?.toInt(),
       min_temperature: (json['min_temperature'] as num?)?.toInt(),
       max_temperature: (json['max_temperature'] as num?)?.toInt(),
-      temperature_unit: json['temperature_unit'] as String?,
       warehouse_name: json['warehouse_name'] as String?,
       first_name: json['first_name'] as String?,
       last_name: json['last_name'],
       personType: json['personType'] as String?,
+      name: json['name'] as String?,
       designation: (json['designation'] as List<dynamic>?)
           ?.map((e) => e as String)
+          .toList(),
+      product_details: (json['product_details'] as List<dynamic>?)
+          ?.map((e) => ProductEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      vehicle_details: (json['vehicle_details'] as List<dynamic>?)
+          ?.map((e) => VehicleEntry.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -72,10 +88,14 @@ Map<String, dynamic> _$$TicketSLImplToJson(_$TicketSLImpl instance) =>
       'warehouse_id': instance.warehouse_id,
       'min_temperature': instance.min_temperature,
       'max_temperature': instance.max_temperature,
-      'temperature_unit': instance.temperature_unit,
       'warehouse_name': instance.warehouse_name,
       'first_name': instance.first_name,
       'last_name': instance.last_name,
       'personType': instance.personType,
+      'name': instance.name,
       'designation': instance.designation,
+      'product_details':
+          instance.product_details?.map((e) => e.toJson()).toList(),
+      'vehicle_details':
+          instance.vehicle_details?.map((e) => e.toJson()).toList(),
     };

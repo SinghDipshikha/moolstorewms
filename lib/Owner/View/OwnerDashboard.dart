@@ -9,6 +9,7 @@ import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
 import 'package:moolwmsstore/Owner/View/Common/cc.dart';
 import 'package:moolwmsstore/Owner/View/WarehouseList.dart';
+import 'package:moolwmsstore/Owner/View/addWarehouse.dart';
 import 'package:moolwmsstore/Owner/View/widget/ownerDrawer.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
@@ -1147,7 +1148,7 @@ class OwnerDashboard extends StatelessWidget {
                   horizontal: Dimensions.horizontalBodyPad),
             )),
         GetBuilder<OwnerController>(builder: (ownerController) {
-          return ownerController.isWarehouseAdded
+          return ownerController.user.warehouse != null
               ? Container()
               : Blur(
                   blur: 1.5,
@@ -1160,17 +1161,86 @@ class OwnerDashboard extends StatelessWidget {
                 );
         }),
         GetBuilder<OwnerController>(builder: (ownerController) {
-          return ownerController.isWarehouseAdded
+          return ownerController.user.warehouse != null
               ? Container()
-              : Container(
-                  width: 358,
-                  height: 400,
-                  decoration: ShapeDecoration(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+              : Material(
+                  child: Container(
+                    width: double.infinity,
+                    decoration: ShapeDecoration(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                     ),
-                  ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          height: 182,
+                          decoration: ShapeDecoration(
+                            image: const DecorationImage(
+                                image: AssetImage(
+                                  "assets/icons/dialoginitial.png",
+                                ),
+                                fit: BoxFit.cover),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        ),
+                        const Gap(22),
+                        const Text(
+                          'Add your Warehouse now!',
+                          style: TextStyle(
+                            color: Color(0xFF353535),
+                            fontSize: 18,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const Text(
+                          'Adding your warehouse can significantly expand your reach\nand increase your revenue potential.',
+                          style: TextStyle(
+                            color: Color(0xFFA7A7A7),
+                            fontSize: 12,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        const Gap(22),
+                        Center(
+                          child: InkWell(
+                            onTap: () {
+                              Get.to(const AddWarehouse(),
+                                  id: ownerNavigationKey);
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: double.infinity,
+                              height: 50,
+                              decoration: ShapeDecoration(
+                                color: const Color(0xFF5A57FF),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
+                              ),
+                              child: const Text(
+                                'Add Warehouse',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ).paddingAll(12),
+                  ).paddingSymmetric(horizontal: 12),
                 );
         }),
       ],
