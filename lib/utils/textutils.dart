@@ -64,7 +64,10 @@ class TextUtils {
     } else if (type == "email") {
       return null;
     } else if (type == "mobile") {
-      return [NumberTextInputFormatter()];
+      return [
+        NumberTextInputFormatter(),
+        // LengthLimitingTextInputFormatter(10),
+      ];
     } else if (type == "int") {
       return [NumberTextInputFormatter()];
     } else if (type == "double") {

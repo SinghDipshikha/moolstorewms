@@ -39,16 +39,23 @@ class OwnerController extends GetxController {
 
   @override
   void onInit() {
-    dashboardWarehouses.addAll(user.warehouse!.toList());
-    dashboardWarehouses.add(WarehousesAcess.fromJson({
-      "id": null,
-      "warehouse_name": "All Warehouses",
-    }));
+    if (user.warehouse == null) {
+      isWarehouseAdded = false;
+    } else {
+      isWarehouseAdded = true;
+      dashboardWarehouses.addAll(user.warehouse!.toList());
+      dashboardWarehouses.add(WarehousesAcess.fromJson({
+        "id": null,
+        "warehouse_name": "All Warehouses",
+      }));
+    }
+
     selectedTempType = "celsius";
     // TODO: implement onInit
     super.onInit();
   }
 
+  bool isWarehouseAdded = false;
   User user;
   List<Warehouse> warehouses = [];
   List<Warehouse> searchWarehouses = [];
@@ -86,6 +93,21 @@ class OwnerController extends GetxController {
   DateTime dashBoardStartDate =
       DateTime.now().subtract(const Duration(days: 1));
   DateTime dashBoardEndDate = DateTime.now();
+
+  updateUserInfo() {
+    apiClient.getData("user/userInfo/${user.id}").then((v) {
+      user = user.copyWith(
+        warehouse: v.data["result"]["warehouse"] == null
+            ? null
+            : (v.data["result"]["warehouse"] as List)
+                .map((e) => WarehousesAcess.fromJson(e))
+                .toList(),
+      );
+      Get.back(id: ownerNavigationKey);
+      Snacks.greenSnack("WareHouse added");
+      refreshDashboard();
+    });
+  }
 
   refreshDashboard() {
     getticketWarehouseCount();
@@ -298,7 +320,10 @@ class OwnerController extends GetxController {
     Logger().i(roles);
   }
 
+  bool addingWarehouse = false;
   submitWarehouse() {
+    addingWarehouse = true;
+    update();
     Map body = {};
     body["country_code"] = countrydialCode;
     body["user_id"] = user.id;
@@ -310,10 +335,14 @@ class OwnerController extends GetxController {
     // Snacks.greenSnack("WareHouse added");
     apiClient.postData("owner/addOnlyWareHouse", body).then((value) async {
       if (value.data["result"] == "WareHouse added") {
+        addingWarehouse = false;
+        await updateUserInfo();
         //  Logger().i("djughuidbvjdbvjdbvikbdhcvb");
-        Get.back(id: ownerNavigationKey);
-        Snacks.greenSnack("WareHouse added");
+
         //
+      } else {
+        addingWarehouse = false;
+        update();
       }
     });
   }

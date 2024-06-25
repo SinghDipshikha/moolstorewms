@@ -78,7 +78,7 @@ class WarehousesAcessAdapter extends TypeAdapter<WarehousesAcess> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return WarehousesAcess(
-      warehouse_name: fields[0] as String,
+      warehouse_name: fields[0] as String?,
       warehouse_id: fields[1] as int?,
     );
   }
@@ -140,7 +140,7 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
 _$WarehousesAcessImpl _$$WarehousesAcessImplFromJson(
         Map<String, dynamic> json) =>
     _$WarehousesAcessImpl(
-      warehouse_name: json['warehouse_name'] as String,
+      warehouse_name: json['warehouse_name'] as String?,
       warehouse_id: (json['warehouse_id'] as num?)?.toInt(),
     );
 

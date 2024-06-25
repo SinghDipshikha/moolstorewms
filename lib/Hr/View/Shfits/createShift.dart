@@ -567,7 +567,7 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                       child: Row(
                         children: [
                           Text(
-                            item.warehouse_name,
+                            item.warehouse_name ?? "--",
                             style: const TextStyle(
                               color: Colors.black,
                               fontSize: 14,

@@ -27,7 +27,7 @@ class User with _$User {
 @HiveType(typeId: 2)
 class WarehousesAcess with _$WarehousesAcess {
   const factory WarehousesAcess({
-    @HiveField(0) required String warehouse_name,
+    @HiveField(0) String? warehouse_name,
     @HiveField(1) int? warehouse_id,
   }) = _WarehousesAcess;
 

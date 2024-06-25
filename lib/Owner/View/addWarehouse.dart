@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
 import 'package:moolwmsstore/Owner/Model/addWarehouseField.dart';
+import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/View/common/myTextField.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:moolwmsstore/utils/textutils.dart';
@@ -91,13 +93,14 @@ class AddWarehouse extends StatelessWidget {
                                       ).paddingOnly(top: 15)
                                     : null,
                                 onChanged: (x) {
-                                  ownerController.addWarehouseFields[i] =
-                                      field.copyWith(
-                                          value: (field.type == "int" ||
-                                                  field.type == "double" ||
-                                                  field.type == "mobile")
-                                              ? int.parse(x.toString())
-                                              : x);
+                                  if (x.isNotEmpty)
+                                    ownerController.addWarehouseFields[i] =
+                                        field.copyWith(
+                                            value: (field.type == "int" ||
+                                                    field.type == "double" ||
+                                                    field.type == "mobile")
+                                                ? int.parse(x.toString())
+                                                : x);
                                 },
                                 textCapitalization:
                                     TextUtils.textCapitalization(field.type),
@@ -132,37 +135,44 @@ class AddWarehouse extends StatelessWidget {
                       }),
                 ),
                 const Gap(10),
-                InkWell(
-                  onTap: () {
-                    if (formKey.currentState?.validate() ?? false) {
-                      ownerController.submitWarehouse();
-                    }
-                  },
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: double.infinity,
-                    height: 45,
-                    decoration: ShapeDecoration(
-                      gradient: const LinearGradient(
-                        begin: Alignment(1.00, 0.00),
-                        end: Alignment(-1, 0),
-                        colors: [Color(0xFF2D2D2D), Color(0xFF1F1F1F)],
+                ownerController.addingWarehouse
+                    ? Center(
+                        child: LoadingAnimationWidget.staggeredDotsWave(
+                          color: AppColors.primaryColor,
+                          size: 80,
+                        ),
+                      )
+                    : InkWell(
+                        onTap: () {
+                          if (formKey.currentState?.validate() ?? false) {
+                            ownerController.submitWarehouse();
+                          }
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          width: double.infinity,
+                          height: 45,
+                          decoration: ShapeDecoration(
+                            gradient: const LinearGradient(
+                              begin: Alignment(1.00, 0.00),
+                              end: Alignment(-1, 0),
+                              colors: [Color(0xFF2D2D2D), Color(0xFF1F1F1F)],
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                          ),
+                          child: const Text(
+                            'Submit',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontFamily: 'SF Pro Display',
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
                       ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                    ),
-                    child: const Text(
-                      'Submit',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontFamily: 'SF Pro Display',
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
                 const Gap(10),
 
                 // ),

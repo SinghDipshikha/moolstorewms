@@ -78,7 +78,7 @@ class AuthController extends GetxController {
         .getData("user/userInfo/${user!.id}")
         .whenComplete(() {})
         .then((v) {
-      Logger().i(v.data["status"]);
+   
       if (v.data["status"] == false) {
         box.clear();
         sharedPreferences.clear();
@@ -92,9 +92,11 @@ class AuthController extends GetxController {
 
         if (user?.role_id == 1) {
           user = user!.copyWith(
-              warehouse: (v.data["result"]["warehouse"] as List)
-                  .map((e) => WarehousesAcess.fromJson(e))
-                  .toList(),
+              warehouse: v.data["result"]["warehouse"] == null
+                  ? null
+                  : (v.data["result"]["warehouse"] as List)
+                      .map((e) => WarehousesAcess.fromJson(e))
+                      .toList(),
               avatar: v.data["result"]["user"]["avatar"]);
 
           Get.lazyPut(() => OwnerRepo(
@@ -114,9 +116,11 @@ class AuthController extends GetxController {
 
         if (user?.role_id == 2) {
           user = user!.copyWith(
-              warehouse: (v.data["result"]["warehouse"] as List)
-                  .map((e) => WarehousesAcess.fromJson(e))
-                  .toList(),
+              warehouse: v.data["result"]["warehouse"] == null
+                  ? null
+                  : (v.data["result"]["warehouse"] as List)
+                      .map((e) => WarehousesAcess.fromJson(e))
+                      .toList(),
               person_type: v.data["result"]["person_type"],
               avatar: v.data["result"]["user"]["avatar"]);
 
@@ -331,7 +335,7 @@ class AuthController extends GetxController {
           "client_id": value.data["result"][0]["id"],
           "type": "NewOrg",
           "description":
-              "${value.data["result"][0]["company_name"]} added by ${value.data["result"][0]["name"]} on ${AppConstants.dayMonrhormatter.format(DateTime.now())}"
+              "${value.data["result"][0]["company_name"]} added by ${value.data["result"][0]["name"]} on ${AppConstants.dateformatter.format(DateTime.now())}"
         });
 
         Snacks.greenSnack("Organization Added Successfully");

@@ -228,7 +228,7 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                           child: Row(
                             children: [
                               Text(
-                                item.warehouse_name,
+                                item.warehouse_name ?? "--",
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 14,

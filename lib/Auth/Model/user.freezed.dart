@@ -400,7 +400,7 @@ WarehousesAcess _$WarehousesAcessFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$WarehousesAcess {
   @HiveField(0)
-  String get warehouse_name => throw _privateConstructorUsedError;
+  String? get warehouse_name => throw _privateConstructorUsedError;
   @HiveField(1)
   int? get warehouse_id => throw _privateConstructorUsedError;
 
@@ -417,7 +417,7 @@ abstract class $WarehousesAcessCopyWith<$Res> {
       _$WarehousesAcessCopyWithImpl<$Res, WarehousesAcess>;
   @useResult
   $Res call(
-      {@HiveField(0) String warehouse_name, @HiveField(1) int? warehouse_id});
+      {@HiveField(0) String? warehouse_name, @HiveField(1) int? warehouse_id});
 }
 
 /// @nodoc
@@ -433,14 +433,14 @@ class _$WarehousesAcessCopyWithImpl<$Res, $Val extends WarehousesAcess>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? warehouse_name = null,
+    Object? warehouse_name = freezed,
     Object? warehouse_id = freezed,
   }) {
     return _then(_value.copyWith(
-      warehouse_name: null == warehouse_name
+      warehouse_name: freezed == warehouse_name
           ? _value.warehouse_name
           : warehouse_name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       warehouse_id: freezed == warehouse_id
           ? _value.warehouse_id
           : warehouse_id // ignore: cast_nullable_to_non_nullable
@@ -458,7 +458,7 @@ abstract class _$$WarehousesAcessImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@HiveField(0) String warehouse_name, @HiveField(1) int? warehouse_id});
+      {@HiveField(0) String? warehouse_name, @HiveField(1) int? warehouse_id});
 }
 
 /// @nodoc
@@ -472,14 +472,14 @@ class __$$WarehousesAcessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? warehouse_name = null,
+    Object? warehouse_name = freezed,
     Object? warehouse_id = freezed,
   }) {
     return _then(_$WarehousesAcessImpl(
-      warehouse_name: null == warehouse_name
+      warehouse_name: freezed == warehouse_name
           ? _value.warehouse_name
           : warehouse_name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       warehouse_id: freezed == warehouse_id
           ? _value.warehouse_id
           : warehouse_id // ignore: cast_nullable_to_non_nullable
@@ -492,15 +492,14 @@ class __$$WarehousesAcessImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WarehousesAcessImpl implements _WarehousesAcess {
   const _$WarehousesAcessImpl(
-      {@HiveField(0) required this.warehouse_name,
-      @HiveField(1) this.warehouse_id});
+      {@HiveField(0) this.warehouse_name, @HiveField(1) this.warehouse_id});
 
   factory _$WarehousesAcessImpl.fromJson(Map<String, dynamic> json) =>
       _$$WarehousesAcessImplFromJson(json);
 
   @override
   @HiveField(0)
-  final String warehouse_name;
+  final String? warehouse_name;
   @override
   @HiveField(1)
   final int? warehouse_id;
@@ -542,7 +541,7 @@ class _$WarehousesAcessImpl implements _WarehousesAcess {
 
 abstract class _WarehousesAcess implements WarehousesAcess {
   const factory _WarehousesAcess(
-      {@HiveField(0) required final String warehouse_name,
+      {@HiveField(0) final String? warehouse_name,
       @HiveField(1) final int? warehouse_id}) = _$WarehousesAcessImpl;
 
   factory _WarehousesAcess.fromJson(Map<String, dynamic> json) =
@@ -550,7 +549,7 @@ abstract class _WarehousesAcess implements WarehousesAcess {
 
   @override
   @HiveField(0)
-  String get warehouse_name;
+  String? get warehouse_name;
   @override
   @HiveField(1)
   int? get warehouse_id;
