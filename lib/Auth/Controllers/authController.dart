@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Auth/Repository/authRepo.dart';
 import 'package:moolwmsstore/Auth/View/Blocked.dart';
@@ -13,6 +12,9 @@ import 'package:moolwmsstore/Auth/View/signUp.dart';
 import 'package:moolwmsstore/Auth/View/welcome.dart';
 import 'package:moolwmsstore/Common%20Data/Model/Auth/signupfield.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
+import 'package:moolwmsstore/Customer/Controller/customerController.dart';
+import 'package:moolwmsstore/Customer/Customer.dart';
+import 'package:moolwmsstore/Customer/Repository/customerRepo.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/DMS.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsRepo.dart';
@@ -26,8 +28,8 @@ import 'package:moolwmsstore/Sales/Sales.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/Sales/repo/salesRepo.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
-import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardRepo.dart';
+import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/common/controller/chamberController.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
@@ -75,7 +77,6 @@ class AuthController extends GetxController {
         .getData("user/userInfo/${user!.id}")
         .whenComplete(() {})
         .then((v) {
-   
       if (v.data["status"] == false) {
         box.clear();
         sharedPreferences.clear();
@@ -163,6 +164,16 @@ class AuthController extends GetxController {
                       apiClient: Get.find<ApiClient>()),
                   permanent: true);
             }
+            if (element["person_type"] == "customer") {
+              Get.lazyPut(() => CustomerRepo(
+                  sharedPreferences: Get.find(), apiClient: Get.find()));
+              Get.put(
+                  CustomerController(
+                      user: user as User,
+                      apiClient: Get.find<ApiClient>(),
+                      customerRepo: Get.find<CustomerRepo>()),
+                  permanent: true);
+            }
           }
           if (user!.person_type?[0] != null) {
             if (user!.person_type?[0]["person_type"] == "security-guard") {
@@ -180,6 +191,10 @@ class AuthController extends GetxController {
             if (user!.person_type?[0]["person_type"] == "dock-supervisor") {
               Get.delete<AuthController>();
               Get.offAll(const DMS());
+            }
+            if (user!.person_type?[0]["person_type"] == "customer") {
+              Get.delete<AuthController>();
+              Get.offAll(const Customer());
             }
           }
         }

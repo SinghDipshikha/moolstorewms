@@ -1,34 +1,32 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
+import 'package:moolwmsstore/Customer/Repository/customerRepo.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/dock.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/vehicle.dart';
-import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsRepo.dart';
-import 'package:moolwmsstore/Hr/HumanResource.dart';
-import 'package:moolwmsstore/Sales/Sales.dart';
-import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:restart_app/restart_app.dart';
 
 class CustomerController extends GetxController {
+  final CustomerRepo customerRepo;
 
   final ApiClient apiClient;
   bool isLoading = false;
   bool isOwner;
   User user;
-  CustomerController(
-      {
-      required this.apiClient,
-      required this.user,
-      this.isOwner = false});
+  CustomerController({
+    required this.apiClient,
+    required this.user,
+    required this.customerRepo,
+    this.isOwner = false,
+  });
 
   List<Vehicle> vehicleList = [];
   List<Dock> dockList = [];
   @override
   void onInit() {
-    currentlySelectedWarehouse = user.warehouse![0];
+    // currentlySelectedWarehouse = user.warehouse![0];
 
     super.onInit();
   }
@@ -63,9 +61,6 @@ class CustomerController extends GetxController {
       }
     });
   }
-
-
- 
 
   logout() async {
     var box = await Hive.openBox('authbox');
