@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  cupertino_icons: ^1.0.2   
   dio: ^5.4.1
   get: ^4.6.6
   shared_preferences:
@@ -73,12 +74,12 @@ flutter_launcher_icons:
     background_color: "#FFFFFF"
     theme_color: "#FFFFFF"
 
-flutter_native_splash:
-  color: "#FFFFFF"
-  image: assets/Layer_5.png
-  android: true
-  ios: true
-  web: true
+# flutter_native_splash:
+#   color: "#FFFFFF"
+#   image: assets/Layer_5.png
+#   android: true
+#   ios: true
+#   web: true
 
 flutter:
   uses-material-design: true
