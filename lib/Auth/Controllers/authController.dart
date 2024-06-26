@@ -212,6 +212,8 @@ class AuthController extends GetxController {
     } else {
       Future.delayed(const Duration(seconds: 2)).whenComplete(() {
         Get.to(const SignInUp(), id: authNavigationKey);
+
+        // Get.clearRouteTree()
       });
     }
   }

@@ -5,11 +5,8 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Auth/widgets/commonTextField.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
-import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
-import 'package:moolwmsstore/Security%20Guard/View/widgets/commonAppBar.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/View/common/tagContainer.dart';
-import 'package:moolwmsstore/utils/globals.dart';
 
 class AddTicketScreen extends StatefulWidget {
   const AddTicketScreen({super.key});
@@ -73,16 +70,16 @@ class _AddTicketScreenState extends State<AddTicketScreen> {
               );
       }),
       appBar: AppBar(
-          title: const Text(
-            'Add Ticket',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontFamily: 'SF Pro Display',
-              fontWeight: FontWeight.w500,
-            ),
+        title: const Text(
+          'Add Ticket',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontFamily: 'SF Pro Display',
+            fontWeight: FontWeight.w500,
           ),
         ),
+      ),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -196,11 +193,11 @@ class _AddTicketScreenState extends State<AddTicketScreen> {
                         CommonTextField(
                           controller: driverName,
                           textCapitalization: TextCapitalization.words,
-                          labelText: "Driver Name",
-                          hintText: "Enter full name",
+                          labelText: "Vehicle Type",
+                          hintText: "Enter type",
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Please enter your driver name.';
+                              return 'Please enter your vehicle type.';
                             }
 
                             return null;
