@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:moolwmsstore/Auth/widgets/commonTextField.dart';
-import 'package:moolwmsstore/Hr/constants/validations.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
-import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addProduct.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/ticket.dart';
 import 'package:moolwmsstore/View/common/tagContainer.dart';
 
 class TicketEntryReviewScreenForSG extends StatefulWidget {
@@ -73,14 +71,13 @@ class _TicketEntryReviewScreenForSGState
                       borderRadius: BorderRadius.circular(30),
                     ),
                   ),
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        // 'Indent ID :' ${sgController.indentBySg!.indent_number}
-                        '',
-                        style: TextStyle(
+                        'Indent ID: ${sgController.indentBySg!.indent_number}, ',
+                        style: const TextStyle(
                           color: Color(0xFFACACAC),
                           fontSize: 16,
                           fontFamily: 'SF Pro Display',
@@ -111,7 +108,8 @@ class _TicketEntryReviewScreenForSGState
                               PersonalInfoTitle(
                                 title: 'Person Mobile No.',
                                 value:
-                                    '${sgController.vehicleDetails!.driver_phone}',
+                                    '${sgController.vehicleDetails!.driver_ph_number}' ??
+                                        "",
                               ),
                               const Gap(16),
                             ],
@@ -124,163 +122,41 @@ class _TicketEntryReviewScreenForSGState
                               PersonalInfoTitle(
                                 title: 'Vehicle Number',
                                 value:
-                                    '${sgController.vehicleDetails!.vehicle_number}',
+                                    '${sgController.vehicleDetails!.vehicle_number}' ??
+                                        "",
                               ),
                               const Gap(16),
                               PersonalInfoTitle(
-                                title: 'Driver Name',
+                                title: 'Vehicle Type',
                                 value:
-                                    '${sgController.vehicleDetails!.driver_name}',
+                                    '${sgController.vehicleDetails!.vehicle_types}' ??
+                                        "",
                               ),
                               const Gap(16),
                             ],
                           ).paddingSymmetric(vertical: 16, horizontal: 16)),
-                      TagContainer(
-                        title: 'Product Name',
-                        child: Column(
-                          children: [
-                            ...List.generate(
-                                sgController
-                                    .indentBySg!.product_details!.length, (i) {
-                              return Container(
-                                decoration: ShapeDecoration(
-                                  color: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                        width: 1, color: Color(0x195A57FF)),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-                                child: ProductView(
-                                    product: sgController
-                                        .indentBySg!.product_details![i]),
-                              ).paddingSymmetric(vertical: 6);
-                            })
-                          ],
-                        ),
-                      ),
                       const Gap(20),
-                      TagContainer(
-                          title: 'Product Name',
-                          child: Column(
-                            children: [
-                              CommonTextField(
-                                controller: productName,
-                                textCapitalization: TextCapitalization.words,
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return 'Please enter Product name.';
-                                  }
-
-                                  return null;
-                                },
-                                labelText: 'Product Name',
-                                hintText: 'Enter your product’s name',
-                              ),
-                              const Gap(16),
-                              CommonTextField(
-                                controller: productQuantity,
-                                textCapitalization:
-                                    TextCapitalization.characters,
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return 'Please enter quantity';
-                                  }
-
-                                  if (!GlobalValidator.isValidPAN(value)) {
-                                    return 'Please enter a valid quantity.';
-                                  }
-
-                                  return null;
-                                },
-                                //  validator: ,
-                                // inputFormatters: [
-                                //   FilteringTextInputFormatter.allow(
-                                //       RegExp(r"^[A-Z]{5}[0-9]{4}[A-Z]{1}$"))
-                                // ],
-                                labelText: "Quantity",
-                                hintText: "Enter Quantity",
-                              ),
-                              const Gap(16),
-                              CommonTextField(
-                                controller: productPrice,
-                                textCapitalization:
-                                    TextCapitalization.characters,
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return 'Please enter units';
-                                  }
-
-                                  if (!GlobalValidator.isValidPAN(value)) {
-                                    return 'Please enter a valid units.';
-                                  }
-
-                                  return null;
-                                },
-                                //  validator: ,
-                                // inputFormatters: [
-                                //   FilteringTextInputFormatter.allow(
-                                //       RegExp(r"^[A-Z]{5}[0-9]{4}[A-Z]{1}$"))
-                                // ],
-                                labelText: "Units",
-                                hintText: "Enter Units",
-                              ),
-                              const Gap(16),
-                            ],
-                          ).paddingSymmetric(vertical: 16, horizontal: 16)),
-                      const Gap(10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Container(
-                            width: 170,
-                            height: 50,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 8),
-                            decoration: ShapeDecoration(
-                              color: const Color(0xFFE23744),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                'Reject',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontFamily: 'SF Pro Display',
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
+                      ...List.generate(sgController.productDetails!.length,
+                          (i) {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 20.0),
+                          child: TagContainer(
+                            title: 'Product Information',
+                            child: ProductView(
+                              product: sgController.productDetails![i],
+                              productTitleValue:
+                                  sgController.productDetails![i].product_name!,
+                              productQtyValue: sgController
+                                  .productDetails![i].qty!
+                                  .toString(),
+                              productUnitValue: sgController
+                                  .productDetails![i].unit!
+                                  .toString(),
+                            ).paddingSymmetric(vertical: 10),
                           ),
-                          Container(
-                            width: 170,
-                            height: 50,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 8),
-                            decoration: ShapeDecoration(
-                              color: const Color(0xFF04BF8A),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                'Approve',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontFamily: 'SF Pro Display',
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Gap(60)
+                        );
+                      }),
+                      const Gap(20),
                     ],
                   ),
                 ),
@@ -355,67 +231,149 @@ class PersonalInfoTitle extends StatelessWidget {
 }
 
 class ProductView extends StatelessWidget {
-  ProductEntry product;
-  ProductView({super.key, required this.product});
+  ProductElement product;
+
+  String productTitleValue;
+
+  String productQtyValue;
+
+  String productUnitValue;
+
+  ProductView({
+    super.key,
+    required this.product,
+    required this.productTitleValue,
+    required this.productQtyValue,
+    required this.productUnitValue,
+  });
 
   @override
   Widget build(BuildContext context) {
-    const TextStyle subtitleStyle = TextStyle(
-      color: Color(0xFF808080),
-      fontSize: 10,
-      fontFamily: 'SF Pro Display',
-      fontWeight: FontWeight.w400,
-    );
-    const TextStyle titleStyle = TextStyle(
-      color: Color(0xFF353535),
-      fontSize: 16,
-      fontFamily: 'SF Pro Display',
-      fontWeight: FontWeight.w500,
-    );
-
-    const BoxDecoration f = BoxDecoration(
-        border: Border(
-      bottom: BorderSide(width: 1, color: Color(0x195A57FF)),
-    ));
-
-    return Row(
-      children: [
-        Expanded(
-            flex: 1,
-            child: Container(
-              alignment: Alignment.center,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Product Number',
-                    style: subtitleStyle,
-                  ),
-                  Container(
-                      decoration: f,
-                      child: Text(product.product_id.toString() ?? "--",
-                          style: titleStyle)),
-                  const Gap(8),
-                  const Text(
-                    'Unit',
-                    style: subtitleStyle,
-                  ),
-                  Container(
-                      decoration: f,
-                      child:
-                          Text("${product.unit ?? "--"}", style: titleStyle)),
-                  const Gap(8),
-                  const Text(
-                    'Qty',
-                    style: subtitleStyle,
-                  ),
-                  Container(
-                      decoration: f,
-                      child: Text("${product.qty ?? "--"}", style: titleStyle)),
-                ],
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Gap(20),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Product Name',
+                style: TextStyle(
+                  color: Color(0xFF595959),
+                  fontSize: 16,
+                  fontFamily: 'SF Pro Display',
+                  fontWeight: FontWeight.w400,
+                  //height: 1,
+                ),
               ),
-            )),
-      ],
+              Container(
+                width: 310,
+                height: 36,
+                padding: const EdgeInsets.only(
+                    top: 5, left: 20, right: 10, bottom: 5),
+                decoration: ShapeDecoration(
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(width: 1, color: Color(0x195E57FC)),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+                child: Text(
+                  productTitleValue,
+                  style: const TextStyle(
+                    color: Color(0xFF353535),
+                    fontSize: 18,
+                    fontFamily: 'SF Pro Display',
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              )
+            ],
+          ),
+          const Gap(20),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                productQtyValue,
+                style: const TextStyle(
+                  color: Color(0xFF595959),
+                  fontSize: 16,
+                  fontFamily: 'SF Pro Display',
+                  fontWeight: FontWeight.w400,
+                  //height: 1,
+                ),
+              ),
+              Container(
+                width: 310,
+                height: 36,
+                padding: const EdgeInsets.only(
+                    top: 5, left: 20, right: 10, bottom: 5),
+                decoration: ShapeDecoration(
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(width: 1, color: Color(0x195E57FC)),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+                child: Text(
+                  productUnitValue,
+                  style: const TextStyle(
+                    color: Color(0xFF353535),
+                    fontSize: 18,
+                    fontFamily: 'SF Pro Display',
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              )
+            ],
+          ),
+          const Gap(20),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Product Unit',
+                style: TextStyle(
+                  color: Color(0xFF595959),
+                  fontSize: 16,
+                  fontFamily: 'SF Pro Display',
+                  fontWeight: FontWeight.w400,
+                  //height: 1,
+                ),
+              ),
+              Container(
+                width: 310,
+                height: 36,
+                padding: const EdgeInsets.only(
+                    top: 5, left: 20, right: 10, bottom: 5),
+                decoration: ShapeDecoration(
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(width: 1, color: Color(0x195E57FC)),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+                child: const Text(
+                  'Enter product unit',
+                  style: TextStyle(
+                    color: Color(0xFF353535),
+                    fontSize: 18,
+                    fontFamily: 'SF Pro Display',
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              )
+            ],
+          ),
+          const Gap(20),
+        ],
+      ),
     );
   }
 }

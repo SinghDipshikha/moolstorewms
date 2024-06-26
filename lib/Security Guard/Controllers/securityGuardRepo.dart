@@ -8,7 +8,6 @@ import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/employeeEntry.
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/person.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/secGuardDetail.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/singlePersonDetail.dart';
-import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/ticket.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/visitor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -145,17 +144,21 @@ class SecurityGuardRepo {
     required int recordsPerPage,
     required int page,
   }) async {
-    var res = await apiClient.postData("securityGuard/indentList?recordsPerPage=$recordsPerPage&next=$page",{
-    "indent_number":"",
-    "vehicle_number":"",
-    "driver_name":"",
-    "warehouse_id":g.Get.find<SecurityGuardController>().currentlySelectedWarehouse!.warehouse_id,
-    "start_date":"",
-    "end_date":""
-});
+    var res = await apiClient.postData(
+        "securityGuard/indentList?recordsPerPage=$recordsPerPage&next=$page", {
+      "indent_number": "",
+      "vehicle_number": "",
+      "driver_name": "",
+      "warehouse_id": g.Get.find<SecurityGuardController>()
+          .currentlySelectedWarehouse!
+          .warehouse_id,
+      "start_date": "",
+      "end_date": ""
+    });
     if (res.data["message"] == "Indent Details found") {
-      // return Ticket.fromJson(res.data["result"]);
-      return (res.data["result"] as List).map((e)=> IndentElement.fromJson(e)).toList();
+      return (res.data["result"] as List)
+          .map((e) => IndentElement.fromJson(e))
+          .toList();
     }
     return null;
   }

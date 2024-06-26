@@ -521,18 +521,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       const Gap(10),
-                                      // Container(
-                                      //   width: 60,
-                                      //   height: 60,
-                                      //   decoration: const BoxDecoration(
-                                      //     image: DecorationImage(
-                                      //       image: AssetImage(
-                                      //           "assets/images/hrDashBoardEmployee.png"),
-                                      //       fit: BoxFit.fill,
-                                      //     ),
-                                      //   ),
-                                      // ),
-                                      // const Gap(5),
+                                    
                                       Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
