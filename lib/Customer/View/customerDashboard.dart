@@ -277,15 +277,54 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
               fontWeight: FontWeight.w400,
             ),
           ).paddingAll(20),
-
-
-
-
-
-          
-
+          const ChamberWidget(),
         ],
       ),
     );
+  }
+}
+
+class ChamberWidget extends StatefulWidget {
+  const ChamberWidget({super.key});
+
+  @override
+  State<ChamberWidget> createState() => _ChamberWidgetState();
+}
+
+class _ChamberWidgetState extends State<ChamberWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+        itemCount: 20,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            childAspectRatio: 3,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            crossAxisCount: 2),
+        itemBuilder: (context, i) {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GridView.builder(
+                itemCount: 20,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 3,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    crossAxisCount: 2),
+                itemBuilder: (context, i) {
+                  return Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    decoration: ShapeDecoration(
+                      color: const Color(0xFF3F3F3F),
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(width: 1, color: Colors.white),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  );
+                }),
+          );
+        });
   }
 }
