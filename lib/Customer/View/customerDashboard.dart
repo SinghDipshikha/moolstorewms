@@ -277,7 +277,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
               fontWeight: FontWeight.w400,
             ),
           ).paddingAll(20),
-          const ChamberWidget(),
+          // const ChamberWidget(),
         ],
       ),
     );

@@ -26,7 +26,8 @@ class _AddEmployeePersonalDetailsState
     extends State<AddEmployeePersonalDetails> {
   final _formKey = GlobalKey<FormState>();
 
-  PersonalDetailsResponse personalDetails = const PersonalDetailsResponse();
+  PersonalDetailsResponseUpdate personalDetails =
+      const PersonalDetailsResponseUpdate();
 
   // @override
   @override
@@ -172,8 +173,6 @@ class _AddEmployeePersonalDetailsState
                           Icons.calendar_month,
                           color: Colors.black,
                         )),
-               
-               
                 CommanTextField(
                   onChanged: (p0) {
                     personalDetails = personalDetails.copyWith(blood_group: p0);

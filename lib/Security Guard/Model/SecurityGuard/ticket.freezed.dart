@@ -33,8 +33,9 @@ mixin _$TicketSG {
   String? get status => throw _privateConstructorUsedError;
   int? get warehouse_id => throw _privateConstructorUsedError;
   DateTime? get created_at => throw _privateConstructorUsedError;
-  List<ProductEntry>? get product_details => throw _privateConstructorUsedError;
-  List<VehicleEntry>? get vehicle_details => throw _privateConstructorUsedError;
+  List<ProductElement>? get product_details =>
+      throw _privateConstructorUsedError;
+  VehicleElement? get vehicle_details => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -61,8 +62,10 @@ abstract class $TicketSGCopyWith<$Res> {
       String? status,
       int? warehouse_id,
       DateTime? created_at,
-      List<ProductEntry>? product_details,
-      List<VehicleEntry>? vehicle_details});
+      List<ProductElement>? product_details,
+      VehicleElement? vehicle_details});
+
+  $VehicleElementCopyWith<$Res>? get vehicle_details;
 }
 
 /// @nodoc
@@ -150,12 +153,24 @@ class _$TicketSGCopyWithImpl<$Res, $Val extends TicketSG>
       product_details: freezed == product_details
           ? _value.product_details
           : product_details // ignore: cast_nullable_to_non_nullable
-              as List<ProductEntry>?,
+              as List<ProductElement>?,
       vehicle_details: freezed == vehicle_details
           ? _value.vehicle_details
           : vehicle_details // ignore: cast_nullable_to_non_nullable
-              as List<VehicleEntry>?,
+              as VehicleElement?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $VehicleElementCopyWith<$Res>? get vehicle_details {
+    if (_value.vehicle_details == null) {
+      return null;
+    }
+
+    return $VehicleElementCopyWith<$Res>(_value.vehicle_details!, (value) {
+      return _then(_value.copyWith(vehicle_details: value) as $Val);
+    });
   }
 }
 
@@ -181,8 +196,11 @@ abstract class _$$TicketSGImplCopyWith<$Res>
       String? status,
       int? warehouse_id,
       DateTime? created_at,
-      List<ProductEntry>? product_details,
-      List<VehicleEntry>? vehicle_details});
+      List<ProductElement>? product_details,
+      VehicleElement? vehicle_details});
+
+  @override
+  $VehicleElementCopyWith<$Res>? get vehicle_details;
 }
 
 /// @nodoc
@@ -268,11 +286,11 @@ class __$$TicketSGImplCopyWithImpl<$Res>
       product_details: freezed == product_details
           ? _value._product_details
           : product_details // ignore: cast_nullable_to_non_nullable
-              as List<ProductEntry>?,
+              as List<ProductElement>?,
       vehicle_details: freezed == vehicle_details
-          ? _value._vehicle_details
+          ? _value.vehicle_details
           : vehicle_details // ignore: cast_nullable_to_non_nullable
-              as List<VehicleEntry>?,
+              as VehicleElement?,
     ));
   }
 }
@@ -294,10 +312,9 @@ class _$TicketSGImpl implements _TicketSG {
       this.status,
       this.warehouse_id,
       this.created_at,
-      final List<ProductEntry>? product_details,
-      final List<VehicleEntry>? vehicle_details})
-      : _product_details = product_details,
-        _vehicle_details = vehicle_details;
+      final List<ProductElement>? product_details,
+      this.vehicle_details})
+      : _product_details = product_details;
 
   factory _$TicketSGImpl.fromJson(Map<String, dynamic> json) =>
       _$$TicketSGImplFromJson(json);
@@ -328,9 +345,9 @@ class _$TicketSGImpl implements _TicketSG {
   final int? warehouse_id;
   @override
   final DateTime? created_at;
-  final List<ProductEntry>? _product_details;
+  final List<ProductElement>? _product_details;
   @override
-  List<ProductEntry>? get product_details {
+  List<ProductElement>? get product_details {
     final value = _product_details;
     if (value == null) return null;
     if (_product_details is EqualUnmodifiableListView) return _product_details;
@@ -338,15 +355,8 @@ class _$TicketSGImpl implements _TicketSG {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<VehicleEntry>? _vehicle_details;
   @override
-  List<VehicleEntry>? get vehicle_details {
-    final value = _vehicle_details;
-    if (value == null) return null;
-    if (_vehicle_details is EqualUnmodifiableListView) return _vehicle_details;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  final VehicleElement? vehicle_details;
 
   @override
   String toString() {
@@ -385,8 +395,8 @@ class _$TicketSGImpl implements _TicketSG {
                 other.created_at == created_at) &&
             const DeepCollectionEquality()
                 .equals(other._product_details, _product_details) &&
-            const DeepCollectionEquality()
-                .equals(other._vehicle_details, _vehicle_details));
+            (identical(other.vehicle_details, vehicle_details) ||
+                other.vehicle_details == vehicle_details));
   }
 
   @JsonKey(ignore: true)
@@ -407,7 +417,7 @@ class _$TicketSGImpl implements _TicketSG {
       warehouse_id,
       created_at,
       const DeepCollectionEquality().hash(_product_details),
-      const DeepCollectionEquality().hash(_vehicle_details));
+      vehicle_details);
 
   @JsonKey(ignore: true)
   @override
@@ -438,8 +448,8 @@ abstract class _TicketSG implements TicketSG {
       final String? status,
       final int? warehouse_id,
       final DateTime? created_at,
-      final List<ProductEntry>? product_details,
-      final List<VehicleEntry>? vehicle_details}) = _$TicketSGImpl;
+      final List<ProductElement>? product_details,
+      final VehicleElement? vehicle_details}) = _$TicketSGImpl;
 
   factory _TicketSG.fromJson(Map<String, dynamic> json) =
       _$TicketSGImpl.fromJson;
@@ -471,9 +481,9 @@ abstract class _TicketSG implements TicketSG {
   @override
   DateTime? get created_at;
   @override
-  List<ProductEntry>? get product_details;
+  List<ProductElement>? get product_details;
   @override
-  List<VehicleEntry>? get vehicle_details;
+  VehicleElement? get vehicle_details;
   @override
   @JsonKey(ignore: true)
   _$$TicketSGImplCopyWith<_$TicketSGImpl> get copyWith =>
@@ -499,8 +509,9 @@ mixin _$TicketSL {
   String? get personType => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   List<String>? get designation => throw _privateConstructorUsedError;
-  List<ProductEntry>? get product_details => throw _privateConstructorUsedError;
-  List<VehicleEntry>? get vehicle_details => throw _privateConstructorUsedError;
+  List<ProductElement>? get product_details =>
+      throw _privateConstructorUsedError;
+  VehicleElement? get vehicle_details => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -527,8 +538,10 @@ abstract class $TicketSLCopyWith<$Res> {
       String? personType,
       String? name,
       List<String>? designation,
-      List<ProductEntry>? product_details,
-      List<VehicleEntry>? vehicle_details});
+      List<ProductElement>? product_details,
+      VehicleElement? vehicle_details});
+
+  $VehicleElementCopyWith<$Res>? get vehicle_details;
 }
 
 /// @nodoc
@@ -616,12 +629,24 @@ class _$TicketSLCopyWithImpl<$Res, $Val extends TicketSL>
       product_details: freezed == product_details
           ? _value.product_details
           : product_details // ignore: cast_nullable_to_non_nullable
-              as List<ProductEntry>?,
+              as List<ProductElement>?,
       vehicle_details: freezed == vehicle_details
           ? _value.vehicle_details
           : vehicle_details // ignore: cast_nullable_to_non_nullable
-              as List<VehicleEntry>?,
+              as VehicleElement?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $VehicleElementCopyWith<$Res>? get vehicle_details {
+    if (_value.vehicle_details == null) {
+      return null;
+    }
+
+    return $VehicleElementCopyWith<$Res>(_value.vehicle_details!, (value) {
+      return _then(_value.copyWith(vehicle_details: value) as $Val);
+    });
   }
 }
 
@@ -647,8 +672,11 @@ abstract class _$$TicketSLImplCopyWith<$Res>
       String? personType,
       String? name,
       List<String>? designation,
-      List<ProductEntry>? product_details,
-      List<VehicleEntry>? vehicle_details});
+      List<ProductElement>? product_details,
+      VehicleElement? vehicle_details});
+
+  @override
+  $VehicleElementCopyWith<$Res>? get vehicle_details;
 }
 
 /// @nodoc
@@ -734,11 +762,11 @@ class __$$TicketSLImplCopyWithImpl<$Res>
       product_details: freezed == product_details
           ? _value._product_details
           : product_details // ignore: cast_nullable_to_non_nullable
-              as List<ProductEntry>?,
+              as List<ProductElement>?,
       vehicle_details: freezed == vehicle_details
-          ? _value._vehicle_details
+          ? _value.vehicle_details
           : vehicle_details // ignore: cast_nullable_to_non_nullable
-              as List<VehicleEntry>?,
+              as VehicleElement?,
     ));
   }
 }
@@ -760,11 +788,10 @@ class _$TicketSLImpl implements _TicketSL {
       this.personType,
       this.name,
       final List<String>? designation,
-      final List<ProductEntry>? product_details,
-      final List<VehicleEntry>? vehicle_details})
+      final List<ProductElement>? product_details,
+      this.vehicle_details})
       : _designation = designation,
-        _product_details = product_details,
-        _vehicle_details = vehicle_details;
+        _product_details = product_details;
 
   factory _$TicketSLImpl.fromJson(Map<String, dynamic> json) =>
       _$$TicketSLImplFromJson(json);
@@ -803,9 +830,9 @@ class _$TicketSLImpl implements _TicketSL {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<ProductEntry>? _product_details;
+  final List<ProductElement>? _product_details;
   @override
-  List<ProductEntry>? get product_details {
+  List<ProductElement>? get product_details {
     final value = _product_details;
     if (value == null) return null;
     if (_product_details is EqualUnmodifiableListView) return _product_details;
@@ -813,15 +840,8 @@ class _$TicketSLImpl implements _TicketSL {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<VehicleEntry>? _vehicle_details;
   @override
-  List<VehicleEntry>? get vehicle_details {
-    final value = _vehicle_details;
-    if (value == null) return null;
-    if (_vehicle_details is EqualUnmodifiableListView) return _vehicle_details;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  final VehicleElement? vehicle_details;
 
   @override
   String toString() {
@@ -858,8 +878,8 @@ class _$TicketSLImpl implements _TicketSL {
                 .equals(other._designation, _designation) &&
             const DeepCollectionEquality()
                 .equals(other._product_details, _product_details) &&
-            const DeepCollectionEquality()
-                .equals(other._vehicle_details, _vehicle_details));
+            (identical(other.vehicle_details, vehicle_details) ||
+                other.vehicle_details == vehicle_details));
   }
 
   @JsonKey(ignore: true)
@@ -880,7 +900,7 @@ class _$TicketSLImpl implements _TicketSL {
       name,
       const DeepCollectionEquality().hash(_designation),
       const DeepCollectionEquality().hash(_product_details),
-      const DeepCollectionEquality().hash(_vehicle_details));
+      vehicle_details);
 
   @JsonKey(ignore: true)
   @override
@@ -911,8 +931,8 @@ abstract class _TicketSL implements TicketSL {
       final String? personType,
       final String? name,
       final List<String>? designation,
-      final List<ProductEntry>? product_details,
-      final List<VehicleEntry>? vehicle_details}) = _$TicketSLImpl;
+      final List<ProductElement>? product_details,
+      final VehicleElement? vehicle_details}) = _$TicketSLImpl;
 
   factory _TicketSL.fromJson(Map<String, dynamic> json) =
       _$TicketSLImpl.fromJson;
@@ -944,9 +964,9 @@ abstract class _TicketSL implements TicketSL {
   @override
   List<String>? get designation;
   @override
-  List<ProductEntry>? get product_details;
+  List<ProductElement>? get product_details;
   @override
-  List<VehicleEntry>? get vehicle_details;
+  VehicleElement? get vehicle_details;
   @override
   @JsonKey(ignore: true)
   _$$TicketSLImplCopyWith<_$TicketSLImpl> get copyWith =>
@@ -1302,4 +1322,441 @@ abstract class TicketSLWrapper implements Ticket {
   @JsonKey(ignore: true)
   _$$TicketSLWrapperImplCopyWith<_$TicketSLWrapperImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+VehicleElement _$VehicleElementFromJson(Map<String, dynamic> json) {
+  return _GetAllVehicleElementBySecurityGaurd.fromJson(json);
+}
+
+/// @nodoc
+mixin _$VehicleElement {
+  String? get vehicle_number => throw _privateConstructorUsedError;
+  String? get vehicle_types => throw _privateConstructorUsedError;
+  String? get driver_name => throw _privateConstructorUsedError;
+  String? get driver_ph_number => throw _privateConstructorUsedError;
+  DateTime? get expected_date => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $VehicleElementCopyWith<VehicleElement> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $VehicleElementCopyWith<$Res> {
+  factory $VehicleElementCopyWith(
+          VehicleElement value, $Res Function(VehicleElement) then) =
+      _$VehicleElementCopyWithImpl<$Res, VehicleElement>;
+  @useResult
+  $Res call(
+      {String? vehicle_number,
+      String? vehicle_types,
+      String? driver_name,
+      String? driver_ph_number,
+      DateTime? expected_date});
+}
+
+/// @nodoc
+class _$VehicleElementCopyWithImpl<$Res, $Val extends VehicleElement>
+    implements $VehicleElementCopyWith<$Res> {
+  _$VehicleElementCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? vehicle_number = freezed,
+    Object? vehicle_types = freezed,
+    Object? driver_name = freezed,
+    Object? driver_ph_number = freezed,
+    Object? expected_date = freezed,
+  }) {
+    return _then(_value.copyWith(
+      vehicle_number: freezed == vehicle_number
+          ? _value.vehicle_number
+          : vehicle_number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      vehicle_types: freezed == vehicle_types
+          ? _value.vehicle_types
+          : vehicle_types // ignore: cast_nullable_to_non_nullable
+              as String?,
+      driver_name: freezed == driver_name
+          ? _value.driver_name
+          : driver_name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      driver_ph_number: freezed == driver_ph_number
+          ? _value.driver_ph_number
+          : driver_ph_number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      expected_date: freezed == expected_date
+          ? _value.expected_date
+          : expected_date // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$GetAllVehicleElementBySecurityGaurdImplCopyWith<$Res>
+    implements $VehicleElementCopyWith<$Res> {
+  factory _$$GetAllVehicleElementBySecurityGaurdImplCopyWith(
+          _$GetAllVehicleElementBySecurityGaurdImpl value,
+          $Res Function(_$GetAllVehicleElementBySecurityGaurdImpl) then) =
+      __$$GetAllVehicleElementBySecurityGaurdImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String? vehicle_number,
+      String? vehicle_types,
+      String? driver_name,
+      String? driver_ph_number,
+      DateTime? expected_date});
+}
+
+/// @nodoc
+class __$$GetAllVehicleElementBySecurityGaurdImplCopyWithImpl<$Res>
+    extends _$VehicleElementCopyWithImpl<$Res,
+        _$GetAllVehicleElementBySecurityGaurdImpl>
+    implements _$$GetAllVehicleElementBySecurityGaurdImplCopyWith<$Res> {
+  __$$GetAllVehicleElementBySecurityGaurdImplCopyWithImpl(
+      _$GetAllVehicleElementBySecurityGaurdImpl _value,
+      $Res Function(_$GetAllVehicleElementBySecurityGaurdImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? vehicle_number = freezed,
+    Object? vehicle_types = freezed,
+    Object? driver_name = freezed,
+    Object? driver_ph_number = freezed,
+    Object? expected_date = freezed,
+  }) {
+    return _then(_$GetAllVehicleElementBySecurityGaurdImpl(
+      vehicle_number: freezed == vehicle_number
+          ? _value.vehicle_number
+          : vehicle_number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      vehicle_types: freezed == vehicle_types
+          ? _value.vehicle_types
+          : vehicle_types // ignore: cast_nullable_to_non_nullable
+              as String?,
+      driver_name: freezed == driver_name
+          ? _value.driver_name
+          : driver_name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      driver_ph_number: freezed == driver_ph_number
+          ? _value.driver_ph_number
+          : driver_ph_number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      expected_date: freezed == expected_date
+          ? _value.expected_date
+          : expected_date // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$GetAllVehicleElementBySecurityGaurdImpl
+    implements _GetAllVehicleElementBySecurityGaurd {
+  const _$GetAllVehicleElementBySecurityGaurdImpl(
+      {this.vehicle_number,
+      this.vehicle_types,
+      this.driver_name,
+      this.driver_ph_number,
+      this.expected_date});
+
+  factory _$GetAllVehicleElementBySecurityGaurdImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$GetAllVehicleElementBySecurityGaurdImplFromJson(json);
+
+  @override
+  final String? vehicle_number;
+  @override
+  final String? vehicle_types;
+  @override
+  final String? driver_name;
+  @override
+  final String? driver_ph_number;
+  @override
+  final DateTime? expected_date;
+
+  @override
+  String toString() {
+    return 'VehicleElement(vehicle_number: $vehicle_number, vehicle_types: $vehicle_types, driver_name: $driver_name, driver_ph_number: $driver_ph_number, expected_date: $expected_date)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetAllVehicleElementBySecurityGaurdImpl &&
+            (identical(other.vehicle_number, vehicle_number) ||
+                other.vehicle_number == vehicle_number) &&
+            (identical(other.vehicle_types, vehicle_types) ||
+                other.vehicle_types == vehicle_types) &&
+            (identical(other.driver_name, driver_name) ||
+                other.driver_name == driver_name) &&
+            (identical(other.driver_ph_number, driver_ph_number) ||
+                other.driver_ph_number == driver_ph_number) &&
+            (identical(other.expected_date, expected_date) ||
+                other.expected_date == expected_date));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, vehicle_number, vehicle_types,
+      driver_name, driver_ph_number, expected_date);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetAllVehicleElementBySecurityGaurdImplCopyWith<
+          _$GetAllVehicleElementBySecurityGaurdImpl>
+      get copyWith => __$$GetAllVehicleElementBySecurityGaurdImplCopyWithImpl<
+          _$GetAllVehicleElementBySecurityGaurdImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$GetAllVehicleElementBySecurityGaurdImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _GetAllVehicleElementBySecurityGaurd implements VehicleElement {
+  const factory _GetAllVehicleElementBySecurityGaurd(
+          {final String? vehicle_number,
+          final String? vehicle_types,
+          final String? driver_name,
+          final String? driver_ph_number,
+          final DateTime? expected_date}) =
+      _$GetAllVehicleElementBySecurityGaurdImpl;
+
+  factory _GetAllVehicleElementBySecurityGaurd.fromJson(
+          Map<String, dynamic> json) =
+      _$GetAllVehicleElementBySecurityGaurdImpl.fromJson;
+
+  @override
+  String? get vehicle_number;
+  @override
+  String? get vehicle_types;
+  @override
+  String? get driver_name;
+  @override
+  String? get driver_ph_number;
+  @override
+  DateTime? get expected_date;
+  @override
+  @JsonKey(ignore: true)
+  _$$GetAllVehicleElementBySecurityGaurdImplCopyWith<
+          _$GetAllVehicleElementBySecurityGaurdImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+ProductElement _$ProductElementFromJson(Map<String, dynamic> json) {
+  return _GetAllProductElementBySecurityGaurd.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProductElement {
+  int? get product_id => throw _privateConstructorUsedError;
+  String? get product_name => throw _privateConstructorUsedError;
+  int? get qty => throw _privateConstructorUsedError;
+  int? get unit => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProductElementCopyWith<ProductElement> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProductElementCopyWith<$Res> {
+  factory $ProductElementCopyWith(
+          ProductElement value, $Res Function(ProductElement) then) =
+      _$ProductElementCopyWithImpl<$Res, ProductElement>;
+  @useResult
+  $Res call({int? product_id, String? product_name, int? qty, int? unit});
+}
+
+/// @nodoc
+class _$ProductElementCopyWithImpl<$Res, $Val extends ProductElement>
+    implements $ProductElementCopyWith<$Res> {
+  _$ProductElementCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? product_id = freezed,
+    Object? product_name = freezed,
+    Object? qty = freezed,
+    Object? unit = freezed,
+  }) {
+    return _then(_value.copyWith(
+      product_id: freezed == product_id
+          ? _value.product_id
+          : product_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      product_name: freezed == product_name
+          ? _value.product_name
+          : product_name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      qty: freezed == qty
+          ? _value.qty
+          : qty // ignore: cast_nullable_to_non_nullable
+              as int?,
+      unit: freezed == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$GetAllProductElementBySecurityGaurdImplCopyWith<$Res>
+    implements $ProductElementCopyWith<$Res> {
+  factory _$$GetAllProductElementBySecurityGaurdImplCopyWith(
+          _$GetAllProductElementBySecurityGaurdImpl value,
+          $Res Function(_$GetAllProductElementBySecurityGaurdImpl) then) =
+      __$$GetAllProductElementBySecurityGaurdImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int? product_id, String? product_name, int? qty, int? unit});
+}
+
+/// @nodoc
+class __$$GetAllProductElementBySecurityGaurdImplCopyWithImpl<$Res>
+    extends _$ProductElementCopyWithImpl<$Res,
+        _$GetAllProductElementBySecurityGaurdImpl>
+    implements _$$GetAllProductElementBySecurityGaurdImplCopyWith<$Res> {
+  __$$GetAllProductElementBySecurityGaurdImplCopyWithImpl(
+      _$GetAllProductElementBySecurityGaurdImpl _value,
+      $Res Function(_$GetAllProductElementBySecurityGaurdImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? product_id = freezed,
+    Object? product_name = freezed,
+    Object? qty = freezed,
+    Object? unit = freezed,
+  }) {
+    return _then(_$GetAllProductElementBySecurityGaurdImpl(
+      product_id: freezed == product_id
+          ? _value.product_id
+          : product_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      product_name: freezed == product_name
+          ? _value.product_name
+          : product_name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      qty: freezed == qty
+          ? _value.qty
+          : qty // ignore: cast_nullable_to_non_nullable
+              as int?,
+      unit: freezed == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$GetAllProductElementBySecurityGaurdImpl
+    implements _GetAllProductElementBySecurityGaurd {
+  const _$GetAllProductElementBySecurityGaurdImpl(
+      {this.product_id, this.product_name, this.qty, this.unit});
+
+  factory _$GetAllProductElementBySecurityGaurdImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$GetAllProductElementBySecurityGaurdImplFromJson(json);
+
+  @override
+  final int? product_id;
+  @override
+  final String? product_name;
+  @override
+  final int? qty;
+  @override
+  final int? unit;
+
+  @override
+  String toString() {
+    return 'ProductElement(product_id: $product_id, product_name: $product_name, qty: $qty, unit: $unit)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetAllProductElementBySecurityGaurdImpl &&
+            (identical(other.product_id, product_id) ||
+                other.product_id == product_id) &&
+            (identical(other.product_name, product_name) ||
+                other.product_name == product_name) &&
+            (identical(other.qty, qty) || other.qty == qty) &&
+            (identical(other.unit, unit) || other.unit == unit));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, product_id, product_name, qty, unit);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetAllProductElementBySecurityGaurdImplCopyWith<
+          _$GetAllProductElementBySecurityGaurdImpl>
+      get copyWith => __$$GetAllProductElementBySecurityGaurdImplCopyWithImpl<
+          _$GetAllProductElementBySecurityGaurdImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$GetAllProductElementBySecurityGaurdImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _GetAllProductElementBySecurityGaurd implements ProductElement {
+  const factory _GetAllProductElementBySecurityGaurd(
+      {final int? product_id,
+      final String? product_name,
+      final int? qty,
+      final int? unit}) = _$GetAllProductElementBySecurityGaurdImpl;
+
+  factory _GetAllProductElementBySecurityGaurd.fromJson(
+          Map<String, dynamic> json) =
+      _$GetAllProductElementBySecurityGaurdImpl.fromJson;
+
+  @override
+  int? get product_id;
+  @override
+  String? get product_name;
+  @override
+  int? get qty;
+  @override
+  int? get unit;
+  @override
+  @JsonKey(ignore: true)
+  _$$GetAllProductElementBySecurityGaurdImplCopyWith<
+          _$GetAllProductElementBySecurityGaurdImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

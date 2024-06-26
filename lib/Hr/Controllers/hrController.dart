@@ -59,7 +59,7 @@ class HRController extends GetxController {
   ShiftDetailsRequest addShiftDetailsRequestModel = const ShiftDetailsRequest();
   List<AddShift> allShifts = [];
 
-  List<PersonalDetailsResponse> getPersonalDetailsList = [];
+  List<PersonalDetailsResponseUpdate> getPersonalDetailsList = [];
   List<AddCareerDetail> getCareerDetailsList = [];
   List<AddEducationDetail> getEducationDetailsList = [];
   List<AddReferralDetail> getReferralDetailsList = [];
@@ -79,6 +79,7 @@ class HRController extends GetxController {
       DateTime.now().subtract(const Duration(days: 1));
   DateTime dashBoardEndDate = DateTime.now();
   hrDashboardCounts() {}
+  int? currentlySelectedWarehouseId;
   // List<Widget> employSumbitScreen = [
   //   const AddedStaffScreen(),
   //   const AddEmployeeBankDetails(),
@@ -88,6 +89,9 @@ class HRController extends GetxController {
   //   const AddEmployeeDocumentsDetails(),
   //   const AddEmployeeDocumentsDetails(),
   // ];
+  oninit() {
+    currentlySelectedWarehouse = user.warehouse![0];
+  }
 
   selectEmployee(StaffEntry emp) {
     Logger().i(emp);
@@ -137,6 +141,15 @@ class HRController extends GetxController {
     }
   }
 
+  WarehousesAcess? currentlySelectedWarehouse;
+  // currentlySelectedWarehouse!["id"]  access warehopuse like this
+  changeDashBoardWarehouse({required WarehousesAcess warehouse}) {
+    currentlySelectedWarehouse = warehouse;
+    currentlySelectedWarehouseId = currentlySelectedWarehouse!.warehouse_id;
+
+    update();
+  }
+
   bool imageUploading = false;
   Future<String?> uploadImage(XFile file) async {
     imageUploading = true;
@@ -166,7 +179,7 @@ class HRController extends GetxController {
   }
 
 ///////////////Add or Update Personal Details ////////////
-  addPersonalDetails(PersonalDetailsResponse yo) async {
+  addPersonalDetails(PersonalDetailsResponseUpdate yo) async {
     isLoading = true;
     update();
     await apiClient
@@ -201,7 +214,7 @@ class HRController extends GetxController {
         Snacks.greenSnack("Personal Details");
         List<dynamic> x = value.data["result"];
         getPersonalDetailsList =
-            x.map((e) => PersonalDetailsResponse.fromJson(e)).toList();
+            x.map((e) => PersonalDetailsResponseUpdate.fromJson(e)).toList();
 
         isLoading = false;
         update();
@@ -581,10 +594,10 @@ class HRController extends GetxController {
 
     await apiClient.postData("hr/dashboard", {
       {
-        "shift_id": 6,
+        "shift_id": "",
         "start_date": "",
         "end_date": "",
-        "warehouse_id": selectedWarehouse
+        "warehouse_id": currentlySelectedWarehouseId,
       }
     }).then((value) {
       if (value.data["message"] ==

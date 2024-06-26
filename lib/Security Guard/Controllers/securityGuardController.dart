@@ -6,6 +6,7 @@ import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Sales/Sales.dart';
+import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardRepo.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addLabour.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addMaterialCount.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addPersonCount.dart';
@@ -23,7 +24,7 @@ import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/vehicle.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/visitor.dart';
 import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Visitor/visitorCheckedInSuccessfully.dart';
-import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardRepo.dart';
+import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/utils/globals.dart';
@@ -55,7 +56,9 @@ class SecurityGuardController extends GetxController {
 
   TicketSG? indentBySg;
   TicketSL? indentBySl;
-  VehicleEntry? vehicleDetails;
+  VehicleElement? vehicleDetails;
+  List<ProductElement>? productDetails;
+  // List<VehicleEntry> vehicleDetails = [];
 
   bool? isCheckIn;
   User user;
@@ -284,32 +287,7 @@ class SecurityGuardController extends GetxController {
   //   });
   // }
 
-
   bool isLoading = true;
-
-  // void getAllTicketList() {
-  //   apiClient.postData("securityGuard/indentList?recordsPerPage=25&next=1", {
-  //     "indent_number": "",
-  //     "vehicle_number": "",
-  //     "driver_name": "",
-  //     "warehouse_id": "",
-  //     "start_date": "",
-  //     "end_date": ""
-  //   }).then((value) {
-  //     if (value.data["message"] == "Indent Details found") {
-  //       List x = value.data["result"];
-  //       allTicketsList = x.map((e) => TicketSG.fromJson(e)).toList();
-  //     } else {
-  //       allTicketsList = [];
-  //     }
-  //     isLoading = false;
-  //     update();
-  //   }).catchError((error) {
-  //     isLoading = false;
-  //     update();
-  //     print("Error fetching tickets: $error");
-  //   });
-  // }
 
   viewIndent({required String indentId}) async {
     if (indentId.isEmpty) {
@@ -327,22 +305,67 @@ class SecurityGuardController extends GetxController {
       return;
     }
 
-    await apiClient.getData(apiEndpoint).then((value) {
-      if (indentId.contains('SG') &&
-          value.data["message"] ==
-              "Indent details found Successfully for Indent id $indentId") {
-        indentBySg = TicketSG.fromJson(value.data["result"][0]);
-        Logger().i(indentBySg);
+    try {
+      var response = await apiClient.getData(apiEndpoint);
+      var data = response.data;
+
+      if (data == null || data["message"] == null || data["result"] == null) {
+        isLoading = false;
+        update();
+        return;
       }
-      if (indentId.contains('SL') &&
-          value.data["message"] ==
-              "Indent details found Successfully for Indent id $indentId") {
-        indentBySl = TicketSL.fromJson(value.data["result"][0]);
-        Logger().i(indentBySg);
+
+      if (data["message"] ==
+          "Indent details found Successfully for Indent id $indentId") {
+        if (indentId.contains('SG')) {
+          indentBySg = TicketSG.fromJson(data["result"]);
+          List x = data["result"]["product_details"];
+          productDetails = x.map((e) => ProductElement.fromJson(e)).toList();
+          vehicleDetails =
+              VehicleElement.fromJson(data["result"]["vehicle_details"]);
+
+          Logger().i(indentBySg);
+        } else if (indentId.contains('SL')) {
+          indentBySl = TicketSL.fromJson(data["result"]);
+          List x = data["result"]["product_details"];
+          productDetails = x.map((e) => ProductElement.fromJson(e)).toList();
+          vehicleDetails =
+              VehicleElement.fromJson(data["result"]["vehicle_details"]);
+          Logger().i(indentBySl);
+        }
+      }
+    } catch (e) {
+      print('Error: $e');
+    } finally {
+      isLoading = false;
+      update();
+    }
+  }
+
+  verifyPoIndent({
+    required String? status,
+    required int? sellerPurchaseOrder,
+    required String? vehicleNumber,
+    required String? indentNumber,
+  }) async {
+    isLoading = true;
+    update();
+
+    await apiClient.postData("securityGuard/verifyPoIndent", {
+      "status": status,
+      "seller_purchase_order_id": sellerPurchaseOrder,
+      "vehicle_number": vehicleNumber,
+      "indent_number": indentNumber
+    }).then((value) {
+      if (value.data["message"] == "Indent Already Verified") {
+        Snacks.greenSnack("Indent Verified!!!");
+        Get.off(const SecurityGuardDashBoard(), id: securityGuardNavigation);
+        isLoading = false;
+      } else if (value.data["message"] == "Already Verified") {
+        Snacks.redSnack("Indent is Already Verified");
       }
     });
 
-    isLoading = false;
     update();
   }
 
@@ -431,9 +454,6 @@ class SecurityGuardController extends GetxController {
 
         Snacks.greenSnack("Ticket Added Successfully");
         isloading = false;
-        // Get.offAll(
-        //    TicketEntryReviewScreen(),
-        // );
       } else if (value.data["message"] == "Failed to add") {
         isloading = false;
         update();

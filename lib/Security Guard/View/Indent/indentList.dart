@@ -30,14 +30,7 @@ class _IndentListScreenState extends State<IndentListScreen> {
       "flex": 1,
     },
   ];
-  // final List dataList = [
-  //   {"title": "#TC-130", "flex": 1},
-  //   {"title": "MH XY- 1234", "flex": 1},
-  //   {"title": "Alec Benjamin", "flex": 1},
-  //   {"title": "25-06-2024 10:35 AM", "flex": 1},
-  //   {"title": "icon1", "flex": 1},
-  //   {"title": "icon2", "flex": 1},
-  // ];
+
   bool isSelected = false;
 
   TextStyle subHeaderStyle = const TextStyle(
@@ -302,54 +295,26 @@ class _IndentListScreenState extends State<IndentListScreen> {
                                   ),
                                 ),
                               ),
-                              // entry.status == "IN"
-                              //     ? Expanded(
-                              //         flex: 1,
-                              //         child: Container(
-                              //           decoration: ShapeDecoration(
-                              //             color: const Color(0xFFFAF9FF),
-                              //             shape: RoundedRectangleBorder(
-                              //                 borderRadius:
-                              //                     BorderRadius.circular(5)),
-                              //             image: const DecorationImage(
-                              //               image: AssetImage(
-                              //                   "assets/images/check_in.png"),
-                              //               fit: BoxFit.contain,
-                              //             ),
-                              //           ),
-                              //         ),
-                              //       )
-                              //     : Expanded(
-                              //         flex: 1,
-                              //         child: Container(
-                              //           decoration: ShapeDecoration(
-                              //             color: const Color(0xFFFAF9FF),
-                              //             shape: RoundedRectangleBorder(
-                              //                 borderRadius:
-                              //                     BorderRadius.circular(5)),
-                              //             image: const DecorationImage(
-                              //               image: AssetImage(
-                              //                   "assets/images/check_out.png"),
-                              //               fit: BoxFit.contain,
-                              //             ),
-                              //           ),
-                              //         ),
-                              //       ),
                               InkWell(
                                 onTap: () {
-                                  entry.indent_number!.contains('SG')
-                                      ? Get.to(
-                                          TicketEntryReviewScreenForSG(
-                                            indentElement: entry.indent_number
-                                                    .toString() ??
-                                                "",
-                                          ),
-                                          id: securityGuardNavigation)
-                                      : TicketEntryReviewScreenForSL(
+                                  if (entry.indent_number!.contains('SG')) {
+                                    Get.to(
+                                        TicketEntryReviewScreenForSG(
                                           indentElement:
                                               entry.indent_number.toString() ??
                                                   "",
-                                        );
+                                        ),
+                                        id: securityGuardNavigation);
+                                  } else if (entry.indent_number!
+                                      .contains('SL')) {
+                                    Get.to(
+                                        TicketEntryReviewScreenForSL(
+                                          indentElement:
+                                              entry.indent_number.toString() ??
+                                                  "",
+                                        ),
+                                        id: securityGuardNavigation);
+                                  }
                                 },
                                 child: Expanded(
                                   flex: 1,

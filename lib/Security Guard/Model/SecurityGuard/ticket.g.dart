@@ -24,11 +24,12 @@ _$TicketSGImpl _$$TicketSGImplFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTime.parse(json['created_at'] as String),
       product_details: (json['product_details'] as List<dynamic>?)
-          ?.map((e) => ProductEntry.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ProductElement.fromJson(e as Map<String, dynamic>))
           .toList(),
-      vehicle_details: (json['vehicle_details'] as List<dynamic>?)
-          ?.map((e) => VehicleEntry.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      vehicle_details: json['vehicle_details'] == null
+          ? null
+          : VehicleElement.fromJson(
+              json['vehicle_details'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$TicketSGImplToJson(_$TicketSGImpl instance) =>
@@ -48,8 +49,7 @@ Map<String, dynamic> _$$TicketSGImplToJson(_$TicketSGImpl instance) =>
       'created_at': instance.created_at?.toIso8601String(),
       'product_details':
           instance.product_details?.map((e) => e.toJson()).toList(),
-      'vehicle_details':
-          instance.vehicle_details?.map((e) => e.toJson()).toList(),
+      'vehicle_details': instance.vehicle_details?.toJson(),
     };
 
 _$TicketSLImpl _$$TicketSLImplFromJson(Map<String, dynamic> json) =>
@@ -72,11 +72,12 @@ _$TicketSLImpl _$$TicketSLImplFromJson(Map<String, dynamic> json) =>
           ?.map((e) => e as String)
           .toList(),
       product_details: (json['product_details'] as List<dynamic>?)
-          ?.map((e) => ProductEntry.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ProductElement.fromJson(e as Map<String, dynamic>))
           .toList(),
-      vehicle_details: (json['vehicle_details'] as List<dynamic>?)
-          ?.map((e) => VehicleEntry.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      vehicle_details: json['vehicle_details'] == null
+          ? null
+          : VehicleElement.fromJson(
+              json['vehicle_details'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$TicketSLImplToJson(_$TicketSLImpl instance) =>
@@ -96,6 +97,47 @@ Map<String, dynamic> _$$TicketSLImplToJson(_$TicketSLImpl instance) =>
       'designation': instance.designation,
       'product_details':
           instance.product_details?.map((e) => e.toJson()).toList(),
-      'vehicle_details':
-          instance.vehicle_details?.map((e) => e.toJson()).toList(),
+      'vehicle_details': instance.vehicle_details?.toJson(),
+    };
+
+_$GetAllVehicleElementBySecurityGaurdImpl
+    _$$GetAllVehicleElementBySecurityGaurdImplFromJson(
+            Map<String, dynamic> json) =>
+        _$GetAllVehicleElementBySecurityGaurdImpl(
+          vehicle_number: json['vehicle_number'] as String?,
+          vehicle_types: json['vehicle_types'] as String?,
+          driver_name: json['driver_name'] as String?,
+          driver_ph_number: json['driver_ph_number'] as String?,
+          expected_date: json['expected_date'] == null
+              ? null
+              : DateTime.parse(json['expected_date'] as String),
+        );
+
+Map<String, dynamic> _$$GetAllVehicleElementBySecurityGaurdImplToJson(
+        _$GetAllVehicleElementBySecurityGaurdImpl instance) =>
+    <String, dynamic>{
+      'vehicle_number': instance.vehicle_number,
+      'vehicle_types': instance.vehicle_types,
+      'driver_name': instance.driver_name,
+      'driver_ph_number': instance.driver_ph_number,
+      'expected_date': instance.expected_date?.toIso8601String(),
+    };
+
+_$GetAllProductElementBySecurityGaurdImpl
+    _$$GetAllProductElementBySecurityGaurdImplFromJson(
+            Map<String, dynamic> json) =>
+        _$GetAllProductElementBySecurityGaurdImpl(
+          product_id: (json['product_id'] as num?)?.toInt(),
+          product_name: json['product_name'] as String?,
+          qty: (json['qty'] as num?)?.toInt(),
+          unit: (json['unit'] as num?)?.toInt(),
+        );
+
+Map<String, dynamic> _$$GetAllProductElementBySecurityGaurdImplToJson(
+        _$GetAllProductElementBySecurityGaurdImpl instance) =>
+    <String, dynamic>{
+      'product_id': instance.product_id,
+      'product_name': instance.product_name,
+      'qty': instance.qty,
+      'unit': instance.unit,
     };
