@@ -77,9 +77,14 @@ class SecurityGuardController extends GetxController {
   int? personCountOut;
   bool isGetPersonCountLoading = true;
   String? currentIndentId;
+  int? currentlySelectedWarehouseId;
   DateTime dashBoardStartDate =
       DateTime.now().subtract(const Duration(days: 1));
   DateTime dashBoardEndDate = DateTime.now();
+  oninit() {
+    currentlySelectedWarehouse = user.warehouse![0];
+  }
+
   changeDashBoardDate({required DateTime start, required DateTime end}) {
     dashBoardStartDate = start;
     dashBoardEndDate = end;
@@ -91,6 +96,7 @@ class SecurityGuardController extends GetxController {
 
   changeDashBoardWarehouse({required WarehousesAcess warehouse}) {
     currentlySelectedWarehouse = warehouse;
+    currentlySelectedWarehouseId = currentlySelectedWarehouse!.warehouse_id;
 
     getMaterialCount();
     getVehicleCount();
@@ -369,96 +375,92 @@ class SecurityGuardController extends GetxController {
     update();
   }
 
-//   addTicketBySecurityGuard({
-//     required int? ticketGeneratedBy,
-//     required String personName,
-//     required String mobileNumber,
-//     required String vehicleNumber,
-//     //  List<Map<String, String>> products = [{
+  // addTicketBySecurityGuard({
+  //   required int? ticketGeneratedBy,
+  //   required String personName,
+  //   required String mobileNumber,
+  //   required String vehicleNumber,
+  //   required String vehicleType,
+  //   required String doesHaveVehicle,
+  //   required String doesHaveMaterial,
+  //   required String status,
+  //   required List<Map<String, String>> products,
+  // }) {
+  //   isloading = true;
+  //   update();
+  //   Get.find<ApiClient>().postData("securityGuard/verifyPoIndent", {
+  //     {
+  //       "ticket_generate_by": ticketGeneratedBy,
+  //       "visitor_name": personName,
+  //       "visitor_ph_number": mobileNumber,
+  //       "does_have_vehicle": doesHaveVehicle,
+  //       "vehicle_number": vehicleNumber,
+  //       "material_inside": doesHaveMaterial,
+  //       "products": products,
+  //       "in_out_status": status,
+  //     }
+  //   }).then((value) async {
+  //     if (value.data["message"] == "Information Added") {
+  //       value.data["result"][0]["id"];
 
-//     //  },{}],
-//  // required String productName,
-//     // required String productQuantity,
-//     // required String productUnit,
-//     required String doesHaveVehicle,
-//     required String doesHaveMaterial,
-//     required String status,
-//   }) {
-//     isloading = true;
-//     update();
-//     Get.find<ApiClient>().postData("person/createTicketBySecurityGuard", {
-//       {
-//         "ticket_generate_by": ticketGeneratedBy,
-//         "visitor_name": personName,
-//         "visitor_ph_number": mobileNumber,
-//         "does_have_vehicle": doesHaveVehicle,
-//         "vehicle_number": vehicleNumber,
-//         "material_inside": doesHaveMaterial,
-//         "products": [
-//           {
-//             "product_name": productName,
-//             "qty": productQuantity,
-//             "unit": productUnit
-//           },
-//         ],
-//         "in_out_status": status,
-//       }
-//     }).then((value) async {
-//       if (value.data["message"] == "Information Added") {
-//         value.data["result"][0]["id"];
+  //       Snacks.greenSnack("Ticket Added Successfully");
+  //       isloading = false;
+  //       // Get.offAll(
+  //       //   const TicketEntryReviewScreen(),
+  //       // );
+  //     } else if (value.data["message"] == "Failed to add") {
+  //       isloading = false;
+  //       update();
+  //       Snacks.redSnack("Failed to add");
+  //     }
+  //   });
+  // }
 
-//         Snacks.greenSnack("Ticket Added Successfully");
-//         isloading = false;
-//         Get.offAll(
-//           const TicketEntryReviewScreen(),
-//         );
-//       } else if (value.data["message"] == "Failed to add") {
-//         isloading = false;
-//         update();
-//         Snacks.redSnack("Failed to add");
-//       }
-//     });
-//   }
-  addTicketBySecurityGuard({
-    required int? ticketGeneratedBy,
+  void addTicketBySecurityGuard({
+    required int ticketGeneratedBy,
     required String personName,
     required String mobileNumber,
     required String vehicleNumber,
+    required String vehicleType,
     required String doesHaveVehicle,
     required String doesHaveMaterial,
     required String status,
-    required List<Map<String, String>> products, // Updated parameter
+    required List<Map<String, String>> products,
   }) {
     isloading = true;
     update();
-    Get.find<ApiClient>().postData("person/createTicketBySecurityGuard", {
-      {
-        "ticket_generate_by": ticketGeneratedBy,
-        "visitor_name": personName,
-        "visitor_ph_number": mobileNumber,
-        "does_have_vehicle": doesHaveVehicle,
-        "vehicle_number": vehicleNumber,
-        "material_inside": doesHaveMaterial,
-        "products": products.map((product) {
-          return {
-            "product_name": product['productName'],
-            "qty": product['productQuantity'],
-            "unit": product['productUnit']
-          };
-        }).toList(),
-        "in_out_status": status,
-      }
-    }).then((value) async {
-      if (value.data["message"] == "Vehicle Checked IN successfully") {
-        value.data["result"][0]["id"];
 
-        Snacks.greenSnack("Ticket Added Successfully");
-        isloading = false;
+    final Map<String, dynamic> requestBody = {
+      "ticket_generate_by": ticketGeneratedBy,
+      "visitor_name": personName,
+      "visitor_ph_number": mobileNumber,
+      "does_have_vehicle": doesHaveVehicle,
+      "vehicle_number": vehicleNumber,
+      "vehicle_types": vehicleType,
+      "material_inside": doesHaveMaterial,
+      "warehouse_id": currentlySelectedWarehouse!.warehouse_id,
+      "products": products,
+      "in_out_status": status,
+    };
+
+    Get.find<ApiClient>()
+        .postData("securityGuard/createIndent", requestBody)
+        .then((value) async {
+      if (value.data["message"] ==
+          "Vehicle with Material Checked IN successfully") {
+        Snacks.greenSnack("Indent Added Successfully");
+        Get.off(const SecurityGuardDashBoard(), id: securityGuardNavigation);
+      } else if (value.data["message"] == "Provide Different Mobile") {
+        Snacks.redSnack("Provide Different Mobile");
       } else if (value.data["message"] == "Failed to add") {
-        isloading = false;
-        update();
         Snacks.redSnack("Failed to add");
       }
+      isloading = false;
+      update();
+    }).catchError((error) {
+      isloading = false;
+      update();
+      Snacks.redSnack("Failed to add due to error: $error");
     });
   }
 

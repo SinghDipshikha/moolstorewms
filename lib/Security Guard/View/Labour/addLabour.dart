@@ -38,7 +38,7 @@ class AddLabourBySecurityGuard extends StatelessWidget {
         return CustomButton(
           onTap: () {
             if (_formKey.currentState!.validate()) {
-              if (sgController.addVisitorModel.id_proof == null) {
+              if (sgController.addLabourModel.id_proof == null) {
                 Snacks.redSnack("Please Upload Id proof");
                 return;
               } else {
@@ -81,10 +81,10 @@ class AddLabourBySecurityGuard extends StatelessWidget {
                     }
                   },
                   onChanged: (p0) {
-                    Get.find<SecurityGuardController>().addVisitorModel =
+                    Get.find<SecurityGuardController>().addLabourModel =
                         Get.find<SecurityGuardController>()
-                            .addVisitorModel
-                            .copyWith(visitor_name: p0);
+                            .addLabourModel
+                            .copyWith(full_name: p0);
                   },
                   labelText: 'Full Name',
                   hintText: 'Enter visitor’s full name',
@@ -101,10 +101,10 @@ class AddLabourBySecurityGuard extends StatelessWidget {
                     }
                   },
                   onChanged: (p0) {
-                    Get.find<SecurityGuardController>().addVisitorModel =
+                    Get.find<SecurityGuardController>().addLabourModel =
                         Get.find<SecurityGuardController>()
-                            .addVisitorModel
-                            .copyWith(visitor_ph_number: "+91$p0");
+                            .addLabourModel
+                            .copyWith(mobile_number: "+91$p0");
                   },
                   labelText: 'Mobile Number',
                   hintText: 'Enter visitor’s Mobile Number',
@@ -123,12 +123,12 @@ class AddLabourBySecurityGuard extends StatelessWidget {
                     }
                   },
                   onChanged: (p0) {
-                    Get.find<SecurityGuardController>().addVisitorModel =
+                    Get.find<SecurityGuardController>().addLabourModel =
                         Get.find<SecurityGuardController>()
-                            .addVisitorModel
-                            .copyWith(purpose_of_visit: p0);
+                            .addLabourModel
+                            .copyWith(invited_by: p0);
                   },
-                  labelText: 'Purpose of Visit',
+                  labelText: 'Invited By ',
                   textCapitalization: TextCapitalization.words,
                 ).paddingSymmetric(vertical: 12),
                 const Row(
@@ -152,7 +152,7 @@ class AddLabourBySecurityGuard extends StatelessWidget {
                     );
                   }
 
-                  if (sgController.addVisitorModel.id_proof != null) {
+                  if (sgController.addLabourModel.id_proof != null) {
                     return Stack(
                       alignment: Alignment.topRight,
                       children: [
@@ -167,12 +167,12 @@ class AddLabourBySecurityGuard extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(5)),
                               ),
                               child: Image.network(
-                                  sgController.addVisitorModel.id_proof ?? "")),
+                                  sgController.addLabourModel.id_proof ?? "")),
                         ),
                         InkWell(
                           onTap: () {
-                            sgController.addVisitorModel = sgController
-                                .addVisitorModel
+                            sgController.addLabourModel = sgController
+                                .addLabourModel
                                 .copyWith(id_proof: null);
                             sgController.update();
                           },
@@ -271,7 +271,7 @@ class AddLabourBySecurityGuard extends StatelessWidget {
                 //               labelSmall: TextStyle(color: Colors.black),
                 //             )),
                 //         context: context,
-                //         // initialDate: sgController.addVisitorModel. ??
+                //         // initialDate: sgController.addLabourModel. ??
                 //         //  DateTime.now(),
                 //         firstDate:
                 //             DateTime(1600).subtract(const Duration(days: 3652)),
@@ -310,8 +310,8 @@ class AddLabourBySecurityGuard extends StatelessWidget {
                 //           }
                 //         },
                 //       ).then((v) {
-                //         sgController.addVisitorModel =
-                //             sgController.addVisitorModel.copyWith();
+                //         sgController.addLabourModel =
+                //             sgController.addLabourModel.copyWith();
                 //         sgController.update();
                 //       });
                 //     },
@@ -338,11 +338,11 @@ class AddLabourBySecurityGuard extends StatelessWidget {
                 //                 height: 22,
                 //               ).paddingSymmetric(horizontal: 8),
                 //               Text(
-                //                 sgController.addVisitorModel.ticket_validity ==
+                //                 sgController.addLabourModel.ticket_validity ==
                 //                         null
                 //                     ? "--"
                 //                     : timeformatter.format(sgController
-                //                         .addVisitorModel
+                //                         .addLabourModel
                 //                         .ticket_validity as DateTime),
                 //                 style: const TextStyle(
                 //                   color: Color(0xFFACACAC),
@@ -362,11 +362,11 @@ class AddLabourBySecurityGuard extends StatelessWidget {
                 //                 height: 22,
                 //               ).paddingSymmetric(horizontal: 8),
                 //               Text(
-                //                 sgController.addVisitorModel.ticket_validity ==
+                //                 sgController.addLabourModel.ticket_validity ==
                 //                         null
                 //                     ? "--"
                 //                     : dateformatter.format(sgController
-                //                         .addVisitorModel
+                //                         .addLabourModel
                 //                         .ticket_validity as DateTime),
                 //                 style: const TextStyle(
                 //                   color: Color(0xFFACACAC),
@@ -429,8 +429,6 @@ class AddLabourBySecurityGuard extends StatelessWidget {
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),
-                          
-                          
                           ],
                         ),
                       );
@@ -443,9 +441,9 @@ class AddLabourBySecurityGuard extends StatelessWidget {
                     },
                     onChanged: (value) {
                       if (value != null) {
-                        sgController.addVisitorModel = sgController
-                            .addVisitorModel
-                            .copyWith(warehouse_id: value.warehouse_id.toString());
+                        sgController.addLabourModel =
+                            sgController.addLabourModel.copyWith(
+                                warehouse_id: value.warehouse_id.toString());
                         sgController.update();
                       }
                     },

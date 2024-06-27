@@ -8,16 +8,15 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
-import 'package:moolwmsstore/Security%20Guard/View/Indent/addTicket.dart';
-import 'package:moolwmsstore/Security%20Guard/View/Indent/personList.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Indent/createIndent.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Indent/indentList.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Indent/personList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Labour/addLabour.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Labour/labourList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Material/materialList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/isUserCheckedIn.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/registrationList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart';
-
 import 'package:moolwmsstore/Security%20Guard/View/Vehicle/vehicleList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Visitor/addVisitor.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Visitor/visitorList.dart';
@@ -371,7 +370,7 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                     CurvedLineConatainer(
                       title: "Initiate Indent",
                       onTap: () {
-                        Get.to(const AddTicketScreen(),
+                        Get.to(const CreateIndentScreen(),
                             id: securityGuardNavigation);
                       },
                     ),
@@ -751,7 +750,7 @@ class _SecurityGuardDashBoardState extends State<SecurityGuardDashBoard> {
                 SmallCard(
                   cardColor: const Color(0xFF0070F2),
                   imagePath: "assets/images/ticket-star.png",
-                  title: 'Ticket',
+                  title: 'Indent',
                   onTap: () {
                     Get.to(const IndentListScreen(),
                         id: securityGuardNavigation);
@@ -1766,7 +1765,7 @@ class _CreateTicketPopUpState extends State<CreateTicketPopUp> {
                     onTap: () {
                       Navigator.pop(context);
                       if (isCheckedVehicle || isCheckedMaterial) {
-                        Get.to(const AddTicketScreen(),
+                        Get.to(const CreateIndentScreen(),
                             id: securityGuardNavigation);
                       } else {
                         Get.to(AddVistorBySecurityGuard(),
