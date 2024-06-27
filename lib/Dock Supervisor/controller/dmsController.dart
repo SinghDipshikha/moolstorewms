@@ -3,7 +3,6 @@ import 'package:hive/hive.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
-import 'package:moolwmsstore/Dock%20Supervisor/Model/dock.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/vehicle.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsRepo.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
@@ -25,7 +24,7 @@ class DmsController extends GetxController {
       this.isOwner = false});
 
   List<Vehicle> vehicleList = [];
-  List<Dock> dockList = [];
+  // List<Dock> dockList = [];
   @override
   void onInit() {
     currentlySelectedWarehouse = user.warehouse![0];
@@ -78,28 +77,14 @@ class DmsController extends GetxController {
 
   getAllVehicleListByWarehouseId() {
     apiClient
-        .getData("dock/getAllQueuedList/${currentlySelectedWarehouse!.warehouse_id}")
+        .getData(
+            "dock/getAllQueuedList/${currentlySelectedWarehouse!.warehouse_id}")
         .then((value) {
       if (value.data["message"] == "Queued List found") {
         vehicleList = (value.data["result"] as List)
             .map((e) => Vehicle.fromJson(e))
             .toList();
         Logger().i(vehicleList);
-
-        update();
-      }
-    });
-  }
-
-  getAllDockListByWarehouseId() {
-    apiClient
-        .getData(
-            "dock/getAllQueuedListByDocks/${currentlySelectedWarehouse!.warehouse_id}")
-        .then((value) {
-      if (value.data["message"] == "Docks found for given warehouse") {
-        List x = value.data["result"];
-        dockList = x.map((e) => Dock.fromJson(e)).toList();
-        Logger().i(dockList);
 
         update();
       }

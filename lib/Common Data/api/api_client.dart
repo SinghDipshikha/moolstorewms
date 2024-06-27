@@ -1,7 +1,4 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
-import 'package:dio/io.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart' as g;
 // import 'package:http/http.dart' as http;
@@ -11,33 +8,48 @@ import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:crypto/crypto.dart';
+
+// import 'package:http_interceptor/http_interceptor.dart';
+
+//     class MyInterceptor implements InterceptorContract {
+//       @override
+//       Future<RequestData> interceptRequest({RequestData data}) async {
+//         print('Intercept request');
+//         return data;
+//       }
+
+//       @override
+//       Future<ResponseData> interceptResponse({ResponseData data}) async {
+//         print('Intercept response');
+//         return data;
+//       }
+//     }
+
 class ApiClient extends g.GetxService {
   final Dio _dio = Dio();
 
+//   void initAdapter() {
+//   const String fingerprint = 'ee5ce1dfa7a53657c545c62b65802e4272878dabd65c0aadcf85783ebb0b4d5c';
+//   _dio.httpClientAdapter = IOHttpClientAdapter(
+//     createHttpClient: () {
 
-  void initAdapter() {
-  const String fingerprint = 'ee5ce1dfa7a53657c545c62b65802e4272878dabd65c0aadcf85783ebb0b4d5c';
-  _dio.httpClientAdapter = IOHttpClientAdapter(
-    createHttpClient: () {
-     
-      final HttpClient client = HttpClient(context: SecurityContext(withTrustedRoots: false));
-     
-      client.badCertificateCallback = (cert, host, port) => true;
-      return client;
-    },
-    validateCertificate: (cert, host, port) {
-      // Check that the cert fingerprint matches the one we expect.
-      // We definitely require _some_ certificate.
-      if (cert == null) {
-        return false;
-      }
-      // Validate it any way you want. Here we only check that
-      // the fingerprint matches the OpenSSL SHA256.
-      return fingerprint == sha256.convert(cert.der).toString();
-    },
-  );
-}
+//       final HttpClient client = HttpClient(context: SecurityContext(withTrustedRoots: false));
+
+//       client.badCertificateCallback = (cert, host, port) => true;
+//       return client;
+//     },
+//     validateCertificate: (cert, host, port) {
+//       // Check that the cert fingerprint matches the one we expect.
+//       // We definitely require _some_ certificate.
+//       if (cert == null) {
+//         return false;
+//       }
+//       // Validate it any way you want. Here we only check that
+//       // the fingerprint matches the OpenSSL SHA256.
+//       return fingerprint == sha256.convert(cert.der).toString();
+//     },
+//   );
+// }
 
   final String? appBaseUrl;
   final SharedPreferences sharedPreferences;
@@ -53,6 +65,7 @@ class ApiClient extends g.GetxService {
 
     updateHeader();
     _dio.interceptors.add(PrettyDioLogger(
+      compact: false,
       request: true,
       requestBody: true,
       requestHeader: true,
@@ -102,12 +115,13 @@ class ApiClient extends g.GetxService {
       return passhandlecheck ? response : handleResponse(response);
     } catch (e) {
       if (e is DioException) {
+        Logger().d(e);
         e.message;
         Snacks.redSnack(e.message ?? "Something is wrong");
       } else {
+        Logger().d(e);
         Snacks.redSnack("Something is wrong $e");
       }
-    
 
       return Response(
           data: {"message": "error hardcoded by jass"},

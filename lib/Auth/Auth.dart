@@ -11,6 +11,7 @@ class Auth extends StatelessWidget {
   Widget build(BuildContext context) {
     return context.isPhone
         ? GetNavigator(
+          
             key: Get.nestedKey(authNavigationKey),
             pages: const [
               MaterialPage(

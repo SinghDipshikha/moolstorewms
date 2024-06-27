@@ -41,7 +41,7 @@ class _DocklistDialogState extends State<DocklistDialog> {
           .then((v) {
         if (v) {
           Get.back(id: salesNavigationKey);
-
+      Get.find<DmsController>().getAllVehicleListByWarehouseId();
           Snacks.greenSnack(
               "Dock Assigned to vehicle ${widget.entry.vehicle_number}");
         }

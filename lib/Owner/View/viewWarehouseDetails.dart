@@ -1,32 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
 import 'package:moolwmsstore/Owner/Model/warehouse.dart';
 import 'package:moolwmsstore/Owner/View/Assets/assetEntry.dart';
 import 'package:moolwmsstore/Owner/View/Assets/assetsList.dart';
+import 'package:moolwmsstore/Owner/View/Chamber/addChamber.dart';
 import 'package:moolwmsstore/Owner/View/Chamber/chamberList.dart';
 import 'package:moolwmsstore/Owner/View/Employee/AddEmployee.dart';
 import 'package:moolwmsstore/Owner/View/Employee/EmployeeList.dart';
-import 'package:moolwmsstore/Owner/View/Chamber/addChamber.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 ////@RoutePage()
 class ViewWarehouseDetails extends StatelessWidget {
-  Warehouse? warehouse;
-  ViewWarehouseDetails({super.key, this.warehouse});
+  Warehouse warehouse;
+  ViewWarehouseDetails({super.key, required this.warehouse});
 
   @override
   Widget build(BuildContext context) {
     Map data = {
       // "Warehouse Name": warehouse?.warehouse_name ?? "",
-      "Warehouse Location": warehouse?.warehouses_location ?? "",
-      "Manager Name": warehouse?.warehouse_manager_name ?? "",
-      "Mobile Number": warehouse?.manager_phone_number ?? "",
-      "Email ID": warehouse?.warehouse_manager_email_id ?? "",
-      "No. of Chambers": warehouse?.no_of_chambers ?? "",
-      "Total Capacity": warehouse?.total_capacity ?? "",
-      "No. of Docks": warehouse?.no_of_docks ?? "",
-      "No. of Gates": warehouse?.no_of_gates ?? "",
+      "Warehouse Location": warehouse.warehouses_location ?? "",
+      "Manager Name": warehouse.warehouse_manager_name ?? "",
+      "Mobile Number": warehouse.manager_phone_number ?? "",
+      "Email ID": warehouse.warehouse_manager_email_id ?? "",
+      "No. of Chambers": warehouse.no_of_chambers ?? "",
+      "Total Capacity": warehouse.total_capacity ?? "",
+      "No. of Docks": warehouse.no_of_docks ?? "",
+      "No. of Gates": warehouse.no_of_gates ?? "",
     };
 
     List cards = [
@@ -36,14 +37,14 @@ class ViewWarehouseDetails extends StatelessWidget {
         "onviewPressed": () {
           Get.to(
               ChamberList(
-                warehouse_id: warehouse!.id,
+                warehouse_id: warehouse.id,
               ),
               id: ownerNavigationKey);
         },
         "onAddpressed": () {
           Get.to(
               AddChamberView(
-                warehouse_id: warehouse!.id,
+                warehouse_id: warehouse.id,
               ),
               id: ownerNavigationKey);
         }
@@ -52,9 +53,11 @@ class ViewWarehouseDetails extends StatelessWidget {
         "title": "Staff",
         "icon": "assets/icons/policeman-male 1.png",
         "onviewPressed": () {
-          Get.to( EmployeeList(
-            warehouseId: warehouse!.id,
-          ), id: ownerNavigationKey);
+          Get.to(
+              EmployeeList(
+                warehouseId: warehouse.id,
+              ),
+              id: ownerNavigationKey);
         },
         "onAddpressed": () {
           Get.to(AddEmployee(), id: ownerNavigationKey);
@@ -64,10 +67,20 @@ class ViewWarehouseDetails extends StatelessWidget {
         "title": "Assets",
         "icon": "assets/icons/Asset.png",
         "onviewPressed": () {
-          Get.to(const AssetsList(), id: ownerNavigationKey);
+       
+          Get.to(
+              AssetsList(
+                warehouseId: warehouse.id as int,
+              ),
+              id: ownerNavigationKey);
         },
         "onAddpressed": () {
-          Get.to(AssetEntry(), id: ownerNavigationKey);
+      
+          Get.to(
+              AssetEntry(
+                warehouseId: warehouse.id as int,
+              ),
+              id: ownerNavigationKey);
         }
       }
     ];
@@ -145,7 +158,7 @@ class ViewWarehouseDetails extends StatelessWidget {
                       ),
                       const Gap(4),
                       Text(
-                        warehouse?.warehouse_name ?? "",
+                        warehouse.warehouse_name ?? "",
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 26,
