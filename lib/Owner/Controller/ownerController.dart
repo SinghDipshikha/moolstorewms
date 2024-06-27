@@ -12,6 +12,8 @@ import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerRepo.dart';
+import 'package:moolwmsstore/Owner/Model/Asset/assetCatoegories.dart';
+import 'package:moolwmsstore/Owner/Model/Asset/assetType.dart';
 import 'package:moolwmsstore/Owner/Model/Chamber/addChamber.dart';
 import 'package:moolwmsstore/Owner/Model/Chamber/chamber.dart';
 import 'package:moolwmsstore/Owner/Model/addWarehouseField.dart';
@@ -369,6 +371,35 @@ class OwnerController extends GetxController {
   //     }
   //   });
   // }
+
+//Assets
+  List<AssetCatoegory>? assetCatoegories;
+  getAssetCategories() {
+    ownerRepo.getAssetsCategories().then((v) {
+      assetCatoegories = v;
+    });
+  }
+
+
+ String getCategotryname(int id){
+return  assetCatoegories!.firstWhere((e){
+    if(e.id == id){
+      return true;
+    }
+    else{
+      return false;
+    }
+
+  }).name;
+ 
+ 
+ }
+  List<AssetType>? assetTypes;
+  getAssetTypes() {
+    ownerRepo.getAssetsTypes().then((v) {
+      assetTypes = v;
+    });
+  }
 
   addChamber() async {
     loading = true;

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/vehicle.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/view/Dock%20Assign/docklistDialog.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/view/Unloading%20material/unloadIngMaterial.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 class VehicleQueueListScreen extends StatefulWidget {
   const VehicleQueueListScreen({super.key});
@@ -132,7 +134,6 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                               itemCount: dmsController.vehicleList.length,
                               itemBuilder: (context, i) {
                                 Vehicle entry = dmsController.vehicleList[i];
-                                Logger().i(entry.toJson());
 
                                 return Container(
                                   height: 60,
@@ -218,13 +219,16 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                                                 "Not Assigned"
                                             ? InkWell(
                                                 onTap: () {
-                                                  // Get.dialog(
-
-                                                  //      DocklistDialog( entry: entry,),
-                                                  //     navigatorKey: Get.nestedKey(
-                                                  //         salesNavigationKey),
-                                                  //     barrierColor:
-                                                  //         Colors.transparent ,barrierDismissible: false);
+                                                  Get.dialog(
+                                                      DocklistDialog(
+                                                        entry: entry,
+                                                      ),
+                                                      navigatorKey: Get.nestedKey(
+                                                          salesNavigationKey),
+                                                      barrierColor:
+                                                          Colors.transparent,
+                                                      barrierDismissible:
+                                                          false);
                                                   // Get.dialog(
                                                   //     const DocklistDialog());
                                                 },
@@ -248,7 +252,30 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                                                   ),
                                                 ),
                                               )
-                                            : Container()),
+                                            : InkWell(
+                                                onTap: () {
+                                                  Get.to(
+                                                      const UnloadIngMaterial());
+                                                },
+                                                child: Container(
+                                                  alignment: Alignment.center,
+                                                  height: 30,
+                                                  decoration: ShapeDecoration(
+                                                    color: Colors.green,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        6)),
+                                                  ),
+                                                  child: Text(
+                                                    'Dock Assigned',
+                                                    style: headerStyle.copyWith(
+                                                        color: Colors.white),
+                                                  ),
+                                                ),
+                                              )),
                                   ]).paddingSymmetric(horizontal: 14),
                                 ).paddingSymmetric(horizontal: 6, vertical: 6);
                               });

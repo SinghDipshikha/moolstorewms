@@ -50,6 +50,7 @@ dependencies:
   share_plus: ^9.0.0
   liquid_pull_to_refresh: ^3.0.1
   blur: ^4.0.0
+  elapsed_time_display: ^1.0.0
 
 dev_dependencies:
   flutter_test:

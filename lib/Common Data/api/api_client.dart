@@ -115,9 +115,11 @@ class ApiClient extends g.GetxService {
       return passhandlecheck ? response : handleResponse(response);
     } catch (e) {
       if (e is DioException) {
+        Logger().d(e);
         e.message;
         Snacks.redSnack(e.message ?? "Something is wrong");
       } else {
+        Logger().d(e);
         Snacks.redSnack("Something is wrong $e");
       }
 

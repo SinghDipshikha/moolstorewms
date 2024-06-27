@@ -3,15 +3,15 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
+import 'package:moolwmsstore/Owner/Model/Asset/assetElement.dart';
 import 'package:moolwmsstore/Owner/View/Assets/assetEntry.dart';
 import 'package:moolwmsstore/Owner/View/Common/ownerCommon.dart';
-import 'package:moolwmsstore/Sales/Model/Visitor/visitorElement.dart';
-import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 class AssetsList extends StatefulWidget {
-  const AssetsList({super.key});
+  int warehouseId;
+  AssetsList({super.key, required this.warehouseId});
 
   @override
   State<AssetsList> createState() => _AssetsListState();
@@ -32,44 +32,31 @@ class _AssetsListState extends State<AssetsList> {
     fontWeight: FontWeight.w500,
   );
 
-  final PagingController<int, VisitorElement> pagingController =
+  final PagingController<int, AssetElement> pagingController =
       PagingController(firstPageKey: 1);
+  int recordsPerPage = 20;
+  bool noAssestsFound = false;
   @override
   void initState() {
     pagingController.addPageRequestListener((pageKey) {
-      List<VisitorElement> newItems = (List.generate(
-              29,
-              (i) => VisitorElement.fromJson({}).copyWith(
-                    visit_ticket_number: "cdjcdjncdjncjdn",
-                    visitor_name: "cdjcdjncdjncjdn",
-                    visitor_ph_number: "cdjcdjncdjncjdn",
-                    in_out_status: "cdjcdjncdjncjdn",
-                  )))
-          // .map((e) => VisitorElement.fromJson(e))
-          // .map((e) => 1)
-          .toList();
-      pagingController.appendLastPage(newItems);
-      Get.find<OwnerController>().apiClient.postData(
-          "asset/getAllAssets?recordsPerPage=10&next=$pageKey ",
-          {"keyword": ""}).then((v) {
-        // "message": "Visitor details fetched Successfully!",
-        if (v.data["message"] == "Visitor details fetched Successfully!") {
-          // List<VisitorElement> newItems = (v.data["result"] as List)
-          //     .map((e) => VisitorElement.fromJson(e))
-          //     // .map((e) => 1)
-          //     .toList();
-          final isLastPage = newItems.length < 10;
-          if (isLastPage) {
-            pagingController.appendLastPage(newItems);
+      Get.find<OwnerController>()
+          .ownerRepo
+          .getAssetsList(
+              recordsPerPage: recordsPerPage,
+              page: pageKey,
+              warehouse_id: widget.warehouseId)
+          .then((v) {
+        if (v != null) {
+          if (v.length < recordsPerPage) {
+            pagingController.appendLastPage(v);
           } else {
-            final nextPageKey = pageKey + newItems.length;
-            pagingController.appendPage(newItems, nextPageKey);
+            final nextPageKey = pageKey + 1;
+            pagingController.appendPage(v, nextPageKey);
           }
-        }
-        if (v.data["message"] == "no asset found") {
-          Snacks.redSnack(
-            "No asset found",
-          );
+        } else if (pageKey == 1 && v == null) {
+          setState(() {
+            noAssestsFound = true;
+          });
         }
       });
     });
@@ -114,69 +101,83 @@ class _AssetsListState extends State<AssetsList> {
             ],
           ).paddingSymmetric(horizontal: 12, vertical: 12),
           Expanded(
-              child: PagedListView<int, VisitorElement>(
-            pagingController: pagingController,
-            builderDelegate: PagedChildBuilderDelegate<VisitorElement>(
-              itemBuilder: (context, item, index) {
-                return Container(
-                  width: 382,
-                  height: 40,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFFFAF9FF),
-                    shape: RoundedRectangleBorder(
-                      side:
-                          const BorderSide(width: 1, color: Color(0x195A57FF)),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: Row(
-                    // crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                          flex: 2,
-                          child: Text(item.visitor_name ?? "--",
-                              style: elementTextstyle)),
-                      const Gap(4),
-                      Expanded(
-                          flex: 2,
-                          child: Text(item.visitor_ph_number ?? "--",
-                              style: elementTextstyle)),
-                      const Gap(4),
-                      Expanded(
-                          flex: 2,
-                          child: Text(item.visitor_ph_number ?? "--",
-                              style: elementTextstyle)),
-                      const Gap(4),
-                      Expanded(
-                          flex: 2,
-                          child: Text(item.in_out_status ?? "--",
-                              style: const TextStyle(
-                                color: Color(0xFFACACAC),
-                                fontSize: 10,
-                                fontFamily: 'SF Pro Display',
-                                fontWeight: FontWeight.w400,
-                              ))),
-                      const Gap(4),
-                      Expanded(
-                        flex: 1,
-                        child: Image.asset(
-                          "assets/icons/eyeNew.png",
-                          height: 22,
-                          width: 20,
-                        ),
-                      )
-                    ],
-                  ).paddingSymmetric(horizontal: 12, vertical: 4),
-                ).paddingSymmetric(vertical: 4);
-              },
-            ),
-          )),
+              child: noAssestsFound
+                  ? const Center(
+                      child: Text("No Assests found for this warehouse"),
+                    )
+                  : PagedListView<int, AssetElement>(
+                      pagingController: pagingController,
+                      builderDelegate: PagedChildBuilderDelegate<AssetElement>(
+                        itemBuilder: (context, item, index) {
+                          return Container(
+                            width: 382,
+                            height: 40,
+                            decoration: ShapeDecoration(
+                              color: const Color(0xFFFAF9FF),
+                              shape: RoundedRectangleBorder(
+                                side: const BorderSide(
+                                    width: 1, color: Color(0x195A57FF)),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            child: Row(
+                              // crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                    flex: 2,
+                                    child: Text(item.asset_name ?? "--",
+                                        style: elementTextstyle)),
+                                const Gap(4),
+                                Expanded(
+                                    flex: 2,
+                                    child: Text(
+                                        item.asset_category == null
+                                            ? "--"
+                                            : Get.find<OwnerController>()
+                                                .getCategotryname(
+                                                    item.asset_category ?? 0),
+                                        style: elementTextstyle)),
+                                const Gap(4),
+                                Expanded(
+                                    flex: 2,
+                                    child: Text(
+                                        item.asset_cost.toString() ?? "--",
+                                        style: elementTextstyle)),
+                                const Gap(4),
+                                Expanded(
+                                    flex: 2,
+                                    child: Text(item.invoice_no ?? "--",
+                                        style: const TextStyle(
+                                          color: Color(0xFFACACAC),
+                                          fontSize: 10,
+                                          fontFamily: 'SF Pro Display',
+                                          fontWeight: FontWeight.w400,
+                                        ))),
+                                const Gap(4),
+                                Expanded(
+                                  flex: 1,
+                                  child: Image.asset(
+                                    "assets/icons/eyeNew.png",
+                                    height: 22,
+                                    width: 20,
+                                  ),
+                                )
+                              ],
+                            ).paddingSymmetric(horizontal: 12, vertical: 4),
+                          ).paddingSymmetric(vertical: 4);
+                        },
+                      ),
+                    )),
           Container(
               color: Colors.white,
               child: CustomButton(
                 title: "Add Asset",
                 onTap: () {
-                  Get.off( AssetEntry(), id: ownerNavigationKey);
+                  Get.off(
+                      AssetEntry(
+                        warehouseId: widget.warehouseId,
+                      ),
+                      id: ownerNavigationKey);
                 },
               ).paddingSymmetric(vertical: 12))
         ],

@@ -16,6 +16,8 @@ class WarehouseList extends StatelessWidget {
     return Scaffold(
       body: GetBuilder<OwnerController>(initState: (state) {
         Get.find<OwnerController>().getAllWarhouse();
+        Get.find<OwnerController>().getAssetCategories();
+        Get.find<OwnerController>().getAssetTypes();
       }, builder: (ownerController) {
         if (ownerController.loading) {
           return const Center(
@@ -42,8 +44,7 @@ class WarehouseList extends StatelessWidget {
                 ),
                 ElevatedButton(
                     style: const ButtonStyle(
-                        backgroundColor:
-                            MaterialStatePropertyAll(Colors.white)),
+                        backgroundColor: WidgetStatePropertyAll(Colors.white)),
                     onPressed: () {
                       Get.to(const AddWarehouse(), id: ownerNavigationKey);
                     },

@@ -23,7 +23,7 @@ class Dmsrepo {
       {required int rowId, required int dockNumber}) async {
     var res = await apiClient.postData("dock/vehicleDockAssigned", {
       "id": rowId,
-      "updated_at": DateTime.now(),
+      "updated_at": DateTime.now().toString(),
       "vehicle_status": "Dock Assigned",
       "dock_id": dockNumber
     });
@@ -31,6 +31,18 @@ class Dmsrepo {
       return true;
     } else {
       return false;
+    }
+  }
+
+  Future<List<Dock>?> getAllDockListByWarehouseId() async {
+    var value = await apiClient.getData(
+        "dock/getAllQueuedListByDocks/${Get.find<DmsController>().currentlySelectedWarehouse!.warehouse_id}");
+    if (value.data["message"] == "Docks List found") {
+      return (value.data["result"] as List)
+          .map((e) => Dock.fromJson(e))
+          .toList();
+    } else {
+      return null;
     }
   }
 
