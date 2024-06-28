@@ -7,6 +7,7 @@ import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardControlle
 import 'package:moolwmsstore/Security%20Guard/Model/Indent/indentElement.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Indent/ticketVerifyForSg.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Indent/ticketVerifyForSl.dart';
+import 'package:moolwmsstore/Security%20Guard/View/widgets/dateRangeButtton.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
@@ -45,9 +46,52 @@ class _IndentListScreenState extends State<IndentListScreen> {
     fontFamily: 'SF Pro Text',
     fontWeight: FontWeight.w500,
   );
+  DateTime start = DateTime.now();
+  DateTime end = DateTime.now().subtract(const Duration(days: 1));
   static const _pageSize = 20;
   final PagingController<int, IndentElement> _pagingController =
       PagingController(firstPageKey: 1);
+  Future<void> _fetchPage(int pageKey) async {
+    try {
+      await getAllindents(pageKey).then((v) {
+        if (v != null) {
+          final newItems = v;
+
+          final isLastPage = newItems.length < _pageSize;
+          if (isLastPage) {
+            _pagingController.appendLastPage(newItems);
+          } else {
+            final nextPageKey = pageKey + newItems.length;
+            _pagingController.appendPage(newItems, nextPageKey);
+          }
+        }
+      });
+    } catch (error) {
+      _pagingController.error = error;
+    }
+  }
+
+  Future<List<IndentElement>?> getAllindents(int pageKey) async {
+    var res = await Get.find<SecurityGuardController>().apiClient.postData(
+      "visitor/getAllVisitors?recordsPerPage=$_pageSize&next=$pageKey", {
+      "indent_number": "",
+      "vehicle_number": "",
+      "driver_name": "",
+      "warehouse_id": Get.find<SecurityGuardController>()
+          .currentlySelectedWarehouse!
+          .warehouse_id,
+      "start_date": "",
+      "end_date": ""
+    });
+    if (res.data["message"] == "Indent Details found") {
+      return (res.data["result"] as List)
+          .map((e) => IndentElement.fromJson(e))
+          .toList();
+    } else {
+      return null;
+    }
+  }
+
   @override
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
@@ -88,84 +132,36 @@ class _IndentListScreenState extends State<IndentListScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Container(
-                  width: 169,
-                  height: 39,
-                  padding: const EdgeInsets.only(
-                    top: 10,
-                    left: 30,
-                    right: 10,
-                    bottom: 10,
-                  ),
-                  decoration: ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      side:
-                          const BorderSide(width: 1, color: Color(0x195A57FF)),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Scan QR',
-                        style: TextStyle(
-                          color: Color(0xFFACACAC),
-                          fontSize: 16,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                          //height: 0,
-                        ),
-                      ),
-                      Icon(
-                        Icons.sort,
-                        color: Color(0xFFACACAC),
-                        size: 20,
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  width: 169,
-                  height: 39,
-                  padding: const EdgeInsets.only(
-                    top: 10,
-                    left: 30,
-                    right: 10,
-                    bottom: 10,
-                  ),
-                  decoration: ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      side:
-                          const BorderSide(width: 1, color: Color(0x195A57FF)),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Search',
-                        style: TextStyle(
-                          color: Color(0xFFACACAC),
-                          fontSize: 16,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                          //height: 0,
-                        ),
-                      ),
-                      Icon(
+                Expanded(
+                    child: DateRangeButtton(
+                        height: 49,
+                        startDate: start,
+                        endDate: end,
+                        onApplyClick: (start, end) {})),
+                const Gap(10),
+                const Expanded(
+                    child: TextField(
+                  decoration: InputDecoration(
+                      hintText: 'Search',
+                      suffixIcon: Icon(
                         Icons.search,
                         color: Color(0xFFACACAC),
                         size: 20,
                       ),
-                    ],
-                  ),
-                ),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 1, color: Color(0x195A57FF)),
+                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                      border: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 1, color: Color(0x195A57FF)),
+                          borderRadius: BorderRadius.all(Radius.circular(20)))),
+                )),
               ],
             ),
+         
+         
             const Gap(20),
             Row(children: [
               Expanded(

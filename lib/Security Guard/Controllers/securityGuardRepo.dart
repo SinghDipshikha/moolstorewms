@@ -5,6 +5,7 @@ import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardControlle
 import 'package:moolwmsstore/Security%20Guard/Model/Indent/indentElement.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addVisitor.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/employeeEntry.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/labour.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/person.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/secGuardDetail.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/singlePersonDetail.dart';
@@ -145,7 +146,7 @@ class SecurityGuardRepo {
     required int page,
   }) async {
     var res = await apiClient.postData(
-        "securityGuard/indentList?recordsPerPage=$recordsPerPage&next=$page", {
+        "labour/list?recordsPerPage=$recordsPerPage&next=$page", {
       "indent_number": "",
       "vehicle_number": "",
       "driver_name": "",
@@ -158,6 +159,29 @@ class SecurityGuardRepo {
     if (res.data["message"] == "Indent Details found") {
       return (res.data["result"] as List)
           .map((e) => IndentElement.fromJson(e))
+          .toList();
+    }
+    return null;
+  }
+   Future<List<LabourEntry>?> getAllLabours({
+    required int recordsPerPage,
+    required int page,
+  }) async {
+    var res = await apiClient.postData(
+        "securityGuard/indentList?recordsPerPage=$recordsPerPage&next=$page", {
+      {
+        "name": "",
+        "phone_no": "",
+        "start_date": "",
+        "end_date": "",
+        "warehouse_id":  g.Get.find<SecurityGuardController>()
+          .currentlySelectedWarehouse!
+          .warehouse_id
+      }
+    });
+    if (res.data["message"] == "Labour Data Retrieved Successfully!") {
+      return (res.data["result"] as List)
+          .map((e) => LabourEntry.fromJson(e))
           .toList();
     }
     return null;

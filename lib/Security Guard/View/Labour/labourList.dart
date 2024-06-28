@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/labour.dart';
+import 'package:moolwmsstore/Security%20Guard/View/widgets/dateRangeButtton.dart';
 
 //@RoutePage()
 class LabourListScreen extends StatefulWidget {
@@ -29,7 +31,11 @@ class _LabourListScreenState extends State<LabourListScreen> {
     {"title": "0000000000", "flex": 2},
     {"title": "icon", "flex": 1},
   ];
-
+  DateTime start = DateTime.now();
+  DateTime end = DateTime.now().subtract(const Duration(days: 1));
+  static const _pageSize = 20;
+  final PagingController<int, LabourEntry> _pagingController =
+      PagingController(firstPageKey: 1);
   TextStyle subHeaderStyle = const TextStyle(
     color: Color(0xFF5A57FF),
     fontSize: 12,
@@ -42,9 +48,70 @@ class _LabourListScreenState extends State<LabourListScreen> {
     fontFamily: 'SF Pro Text',
     fontWeight: FontWeight.w500,
   );
-  static const _pageSize = 20;
 
   bool isSelected = false;
+  Future<void> _fetchPage(int pageKey) async {
+    try {
+      await getAllindents(pageKey).then((v) {
+        if (v != null) {
+          final newItems = v;
+
+          final isLastPage = newItems.length < _pageSize;
+          if (isLastPage) {
+            _pagingController.appendLastPage(newItems);
+          } else {
+            final nextPageKey = pageKey + newItems.length;
+            _pagingController.appendPage(newItems, nextPageKey);
+          }
+        }
+      });
+    } catch (error) {
+      _pagingController.error = error;
+    }
+  }
+
+  Future<List<LabourEntry>?> getAllindents(int pageKey) async {
+    var res = await Get.find<SecurityGuardController>().apiClient.postData(
+        "visitor/getAllVisitors?recordsPerPage=$_pageSize&next=$pageKey", {
+      {
+        "name": "",
+        "phone_no": "",
+        "start_date": "",
+        "end_date": "",
+        "warehouse_id": Get.find<SecurityGuardController>()
+            .currentlySelectedWarehouse!
+            .warehouse_id
+      }
+    });
+    if (res.data["message"] == "Labour Data Retrieved Successfully!") {
+      return (res.data["result"] as List)
+          .map((e) => LabourEntry.fromJson(e))
+          .toList();
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  void initState() {
+    _pagingController.addPageRequestListener((pageKey) {
+      Get.find<SecurityGuardController>()
+          .secGaurdRepo
+          .getAllLabours(recordsPerPage: 20, page: pageKey)
+          .then((v) {
+        if (v != pageKey) {
+          if (v!.length < 2) {
+            _pagingController.appendLastPage(v);
+          } else {
+            final nextPageKey = pageKey + 1;
+            _pagingController.appendPage(v, nextPageKey);
+          }
+        }
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,88 +132,37 @@ class _LabourListScreenState extends State<LabourListScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Gap(20),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //   children: [
-            //     Container(
-            //       width: 169,
-            //       height: 39,
-            //       padding: const EdgeInsets.only(
-            //         top: 10,
-            //         left: 30,
-            //         right: 10,
-            //         bottom: 10,
-            //       ),
-            //       decoration: ShapeDecoration(
-            //         shape: RoundedRectangleBorder(
-            //           side:
-            //               const BorderSide(width: 1, color: Color(0x195A57FF)),
-            //           borderRadius: BorderRadius.circular(30),
-            //         ),
-            //       ),
-            //       child: const Row(
-            //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //         crossAxisAlignment: CrossAxisAlignment.center,
-            //         children: [
-            //           Text(
-            //             'Scan QR',
-            //             style: TextStyle(
-            //               color: Color(0xFFACACAC),
-            //               fontSize: 16,
-            //               fontFamily: 'SF Pro Display',
-            //               fontWeight: FontWeight.w400,
-            //               //height: 0,
-            //             ),
-            //           ),
-            //           Icon(
-            //             Icons.sort,
-            //             color: Color(0xFFACACAC),
-            //             size: 20,
-            //           ),
-            //         ],
-            //       ),
-            //     ),
-            //     Container(
-            //       width: 169,
-            //       height: 39,
-            //       padding: const EdgeInsets.only(
-            //         top: 10,
-            //         left: 30,
-            //         right: 10,
-            //         bottom: 10,
-            //       ),
-            //       decoration: ShapeDecoration(
-            //         shape: RoundedRectangleBorder(
-            //           side:
-            //               const BorderSide(width: 1, color: Color(0x195A57FF)),
-            //           borderRadius: BorderRadius.circular(30),
-            //         ),
-            //       ),
-            //       child: const Row(
-            //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //         crossAxisAlignment: CrossAxisAlignment.center,
-            //         children: [
-            //           Text(
-            //             'Search',
-            //             style: TextStyle(
-            //               color: Color(0xFFACACAC),
-            //               fontSize: 16,
-            //               fontFamily: 'SF Pro Display',
-            //               fontWeight: FontWeight.w400,
-            //               //height: 0,
-            //             ),
-            //           ),
-            //           Icon(
-            //             Icons.search,
-            //             color: Color(0xFFACACAC),
-            //             size: 20,
-            //           ),
-            //         ],
-            //       ),
-            //     ),
-            //   ],
-            // ),
-
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Expanded(
+                    child: DateRangeButtton(
+                        height: 49,
+                        startDate: start,
+                        endDate: end,
+                        onApplyClick: (start, end) {})),
+                const Gap(10),
+                const Expanded(
+                    child: TextField(
+                  decoration: InputDecoration(
+                      hintText: 'Search',
+                      suffixIcon: Icon(
+                        Icons.search,
+                        color: Color(0xFFACACAC),
+                        size: 20,
+                      ),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 1, color: Color(0x195A57FF)),
+                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                      border: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 1, color: Color(0x195A57FF)),
+                          borderRadius: BorderRadius.all(Radius.circular(20)))),
+                )),
+              ],
+            ),
             const Gap(10),
             Row(children: [
               Expanded(
