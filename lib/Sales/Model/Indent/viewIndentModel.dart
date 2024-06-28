@@ -22,9 +22,9 @@ class IndentViewModel with _$IndentViewModel {
     String? personType,
     String? name,
     List<String>? designation,
-    List<CustomerListElement>? customer_details,
+    CustomerListElement? customer_details,
     List<EnterProduct>? product_details,
-    List<VehicleDetails>? vehicle_details,
+    VehicleDetails? vehicle_details,
   }) = _IndentViewModel;
 
   factory IndentViewModel.fromJson(Map<String, Object?> json) =>

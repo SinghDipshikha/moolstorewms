@@ -33,11 +33,10 @@ mixin _$IndentViewModel {
   String? get personType => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   List<String>? get designation => throw _privateConstructorUsedError;
-  List<CustomerListElement>? get customer_details =>
+  CustomerListElement? get customer_details =>
       throw _privateConstructorUsedError;
   List<EnterProduct>? get product_details => throw _privateConstructorUsedError;
-  List<VehicleDetails>? get vehicle_details =>
-      throw _privateConstructorUsedError;
+  VehicleDetails? get vehicle_details => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -65,9 +64,12 @@ abstract class $IndentViewModelCopyWith<$Res> {
       String? personType,
       String? name,
       List<String>? designation,
-      List<CustomerListElement>? customer_details,
+      CustomerListElement? customer_details,
       List<EnterProduct>? product_details,
-      List<VehicleDetails>? vehicle_details});
+      VehicleDetails? vehicle_details});
+
+  $CustomerListElementCopyWith<$Res>? get customer_details;
+  $VehicleDetailsCopyWith<$Res>? get vehicle_details;
 }
 
 /// @nodoc
@@ -156,7 +158,7 @@ class _$IndentViewModelCopyWithImpl<$Res, $Val extends IndentViewModel>
       customer_details: freezed == customer_details
           ? _value.customer_details
           : customer_details // ignore: cast_nullable_to_non_nullable
-              as List<CustomerListElement>?,
+              as CustomerListElement?,
       product_details: freezed == product_details
           ? _value.product_details
           : product_details // ignore: cast_nullable_to_non_nullable
@@ -164,8 +166,33 @@ class _$IndentViewModelCopyWithImpl<$Res, $Val extends IndentViewModel>
       vehicle_details: freezed == vehicle_details
           ? _value.vehicle_details
           : vehicle_details // ignore: cast_nullable_to_non_nullable
-              as List<VehicleDetails>?,
+              as VehicleDetails?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CustomerListElementCopyWith<$Res>? get customer_details {
+    if (_value.customer_details == null) {
+      return null;
+    }
+
+    return $CustomerListElementCopyWith<$Res>(_value.customer_details!,
+        (value) {
+      return _then(_value.copyWith(customer_details: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $VehicleDetailsCopyWith<$Res>? get vehicle_details {
+    if (_value.vehicle_details == null) {
+      return null;
+    }
+
+    return $VehicleDetailsCopyWith<$Res>(_value.vehicle_details!, (value) {
+      return _then(_value.copyWith(vehicle_details: value) as $Val);
+    });
   }
 }
 
@@ -191,9 +218,14 @@ abstract class _$$IndentViewModelImplCopyWith<$Res>
       String? personType,
       String? name,
       List<String>? designation,
-      List<CustomerListElement>? customer_details,
+      CustomerListElement? customer_details,
       List<EnterProduct>? product_details,
-      List<VehicleDetails>? vehicle_details});
+      VehicleDetails? vehicle_details});
+
+  @override
+  $CustomerListElementCopyWith<$Res>? get customer_details;
+  @override
+  $VehicleDetailsCopyWith<$Res>? get vehicle_details;
 }
 
 /// @nodoc
@@ -278,17 +310,17 @@ class __$$IndentViewModelImplCopyWithImpl<$Res>
           : designation // ignore: cast_nullable_to_non_nullable
               as List<String>?,
       customer_details: freezed == customer_details
-          ? _value._customer_details
+          ? _value.customer_details
           : customer_details // ignore: cast_nullable_to_non_nullable
-              as List<CustomerListElement>?,
+              as CustomerListElement?,
       product_details: freezed == product_details
           ? _value._product_details
           : product_details // ignore: cast_nullable_to_non_nullable
               as List<EnterProduct>?,
       vehicle_details: freezed == vehicle_details
-          ? _value._vehicle_details
+          ? _value.vehicle_details
           : vehicle_details // ignore: cast_nullable_to_non_nullable
-              as List<VehicleDetails>?,
+              as VehicleDetails?,
     ));
   }
 }
@@ -310,13 +342,11 @@ class _$IndentViewModelImpl implements _IndentViewModel {
       this.personType,
       this.name,
       final List<String>? designation,
-      final List<CustomerListElement>? customer_details,
+      this.customer_details,
       final List<EnterProduct>? product_details,
-      final List<VehicleDetails>? vehicle_details})
+      this.vehicle_details})
       : _designation = designation,
-        _customer_details = customer_details,
-        _product_details = product_details,
-        _vehicle_details = vehicle_details;
+        _product_details = product_details;
 
   factory _$IndentViewModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$IndentViewModelImplFromJson(json);
@@ -355,17 +385,8 @@ class _$IndentViewModelImpl implements _IndentViewModel {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<CustomerListElement>? _customer_details;
   @override
-  List<CustomerListElement>? get customer_details {
-    final value = _customer_details;
-    if (value == null) return null;
-    if (_customer_details is EqualUnmodifiableListView)
-      return _customer_details;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  final CustomerListElement? customer_details;
   final List<EnterProduct>? _product_details;
   @override
   List<EnterProduct>? get product_details {
@@ -376,15 +397,8 @@ class _$IndentViewModelImpl implements _IndentViewModel {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<VehicleDetails>? _vehicle_details;
   @override
-  List<VehicleDetails>? get vehicle_details {
-    final value = _vehicle_details;
-    if (value == null) return null;
-    if (_vehicle_details is EqualUnmodifiableListView) return _vehicle_details;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  final VehicleDetails? vehicle_details;
 
   @override
   String toString() {
@@ -419,12 +433,12 @@ class _$IndentViewModelImpl implements _IndentViewModel {
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
                 .equals(other._designation, _designation) &&
-            const DeepCollectionEquality()
-                .equals(other._customer_details, _customer_details) &&
+            (identical(other.customer_details, customer_details) ||
+                other.customer_details == customer_details) &&
             const DeepCollectionEquality()
                 .equals(other._product_details, _product_details) &&
-            const DeepCollectionEquality()
-                .equals(other._vehicle_details, _vehicle_details));
+            (identical(other.vehicle_details, vehicle_details) ||
+                other.vehicle_details == vehicle_details));
   }
 
   @JsonKey(ignore: true)
@@ -444,9 +458,9 @@ class _$IndentViewModelImpl implements _IndentViewModel {
       personType,
       name,
       const DeepCollectionEquality().hash(_designation),
-      const DeepCollectionEquality().hash(_customer_details),
+      customer_details,
       const DeepCollectionEquality().hash(_product_details),
-      const DeepCollectionEquality().hash(_vehicle_details));
+      vehicle_details);
 
   @JsonKey(ignore: true)
   @override
@@ -478,9 +492,9 @@ abstract class _IndentViewModel implements IndentViewModel {
       final String? personType,
       final String? name,
       final List<String>? designation,
-      final List<CustomerListElement>? customer_details,
+      final CustomerListElement? customer_details,
       final List<EnterProduct>? product_details,
-      final List<VehicleDetails>? vehicle_details}) = _$IndentViewModelImpl;
+      final VehicleDetails? vehicle_details}) = _$IndentViewModelImpl;
 
   factory _IndentViewModel.fromJson(Map<String, dynamic> json) =
       _$IndentViewModelImpl.fromJson;
@@ -512,11 +526,11 @@ abstract class _IndentViewModel implements IndentViewModel {
   @override
   List<String>? get designation;
   @override
-  List<CustomerListElement>? get customer_details;
+  CustomerListElement? get customer_details;
   @override
   List<EnterProduct>? get product_details;
   @override
-  List<VehicleDetails>? get vehicle_details;
+  VehicleDetails? get vehicle_details;
   @override
   @JsonKey(ignore: true)
   _$$IndentViewModelImplCopyWith<_$IndentViewModelImpl> get copyWith =>
