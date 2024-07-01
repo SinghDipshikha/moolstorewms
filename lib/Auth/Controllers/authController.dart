@@ -41,7 +41,6 @@ class AuthController extends GetxController {
   final SharedPreferences sharedPreferences;
   AuthController({required this.authRepo, required this.sharedPreferences});
 
-
   late Box box;
   User? user;
 
@@ -203,8 +202,6 @@ class AuthController extends GetxController {
     } else {
       Future.delayed(const Duration(seconds: 2)).whenComplete(() {
         Get.to(const SignInUp(), id: authNavigationKey);
-
-        // Get.clearRouteTree()
       });
     }
   }
@@ -339,17 +336,6 @@ class AuthController extends GetxController {
         update();
       }
     });
-    /* 
-    {
-    "pan_card":"ASQPJ1216L",
-    "email":"jainakshay058@gmail.com",
-    "phone_number":8178393493,
-    "company_address" : "",
-    "company_name":"Indicold Pvt Ltd",
-    "name": "akshay jain"
-}
-    
-    */
   }
 
   sendSignInOtp(String num) {
@@ -372,7 +358,7 @@ class AuthController extends GetxController {
         loading = false;
         update();
       }
-      // Logger().i(value.data);
+
     });
   }
 

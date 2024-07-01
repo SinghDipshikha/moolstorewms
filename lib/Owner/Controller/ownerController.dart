@@ -380,20 +380,16 @@ class OwnerController extends GetxController {
     });
   }
 
+  String getCategotryname(int id) {
+    return assetCatoegories!.firstWhere((e) {
+      if (e.id == id) {
+        return true;
+      } else {
+        return false;
+      }
+    }).name;
+  }
 
- String getCategotryname(int id){
-return  assetCatoegories!.firstWhere((e){
-    if(e.id == id){
-      return true;
-    }
-    else{
-      return false;
-    }
-
-  }).name;
- 
- 
- }
   List<AssetType>? assetTypes;
   getAssetTypes() {
     ownerRepo.getAssetsTypes().then((v) {

@@ -38,19 +38,11 @@ Future<Map<String, Map<String, String>>> init() async {
       ApiClient(
           appBaseUrl: AppConstants.baseUrl, sharedPreferences: Get.find()),
       permanent: true);
-  // Get.put(CommonRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
+
 
   Get.lazyPut(
       () => AuthRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
-  // Get.lazyPut(() =>
-  //     WarehouseRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
-  // Get.lazyPut(
-  //     () => SalesRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
-  // Get.lazyPut(
-  //     () => HrRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
 
-  // Get.lazyPut(() =>
-  //     SecurityGuardRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
 
   Get.lazyPut(
     () => LanguageController(sharedPreferences: Get.find()),
@@ -61,28 +53,7 @@ Future<Map<String, Map<String, String>>> init() async {
   Get.put(
     AuthController(authRepo: Get.find(), sharedPreferences: Get.find()),
   );
-
-  // Get.put(WarehouseController(warehouseRepo: Get.find(), apiClient: Get.find()),
-  //     permanent: true);
-  // Get.put(
-  //     SalesController(salesRepo: Get.find<SalesRepo>(), apiClient: Get.find()),
-  //     permanent: true);
-  // Get.put(
-  //     HRController(
-  //         user: const User(),
-  //         hrRepo: Get.find<HrRepo>(),
-  //         apiClient: Get.find()),
-  //     permanent: true);
-  // Get.put(
-  //     SecurityGuardController(
-  //         secGaurdRepo: Get.find<SecurityGuardRepo>(), apiClient: Get.find()),
-  //     permanent: true);
-  // Get.lazyPut(
-  //     () => SplashController(splashRepo: Get.find(), apiClient: Get.find()));
-
   Get.lazyPut(() => LanguageRepo());
-
-  // Retrieving localized data
   Map<String, Map<String, String>> languages = {};
   for (LanguageModel languageModel in AppConstants.LANGUAGE_LIST) {
     String jsonStringValues = await rootBundle
