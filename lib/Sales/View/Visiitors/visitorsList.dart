@@ -7,6 +7,7 @@ import 'package:moolwmsstore/Sales/View/Visiitors/viewVisitor.dart';
 import 'package:moolwmsstore/Sales/controller/salesController.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 class VisitorsList extends StatefulWidget {
   const VisitorsList({super.key});
@@ -171,9 +172,11 @@ class _VisitorsListState extends State<VisitorsList> {
                               style: headingstyle)),
                       InkWell(
                         onTap: () {
-                          Get.to(ViewVisitor(
-                            visitor: item,
-                          ));
+                          Get.to(
+                              ViewVisitor(
+                                visitor: item,
+                              ),
+                              id: salesNavigationKey);
                         },
                         child: Image.asset(
                           "assets/icons/eyeNew.png",

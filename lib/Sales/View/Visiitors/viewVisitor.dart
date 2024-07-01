@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:moolwmsstore/Sales/Model/Visitor/visitorElement.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
+import 'package:pinch_zoom/pinch_zoom.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
 
@@ -108,13 +109,13 @@ class _ViewVisitorState extends State<ViewVisitor> {
               ],
             ).paddingSymmetric(vertical: 12, horizontal: 10),
           ).paddingSymmetric(vertical: 12),
-          const Row(
+          Row(
             children: [
               Expanded(
                   child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Visitor Name',
                     style: TextStyle(
                       color: Color(0xFFACACAC),
@@ -123,10 +124,10 @@ class _ViewVisitorState extends State<ViewVisitor> {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  Gap(4),
+                  const Gap(4),
                   Text(
-                    'Chintan Kadiya',
-                    style: TextStyle(
+                    widget.visitor.visitor_name ?? "--",
+                    style: const TextStyle(
                       color: Color(0xFF353535),
                       fontSize: 18,
                       fontFamily: 'SF Pro Display',
@@ -140,7 +141,7 @@ class _ViewVisitorState extends State<ViewVisitor> {
                   child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Mobile Number',
                     style: TextStyle(
                       color: Color(0xFFACACAC),
@@ -149,10 +150,10 @@ class _ViewVisitorState extends State<ViewVisitor> {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  Gap(4),
+                  const Gap(4),
                   Text(
-                    '555 123 6789',
-                    style: TextStyle(
+                    widget.visitor.visitor_ph_number ?? "--",
+                    style: const TextStyle(
                       color: Color(0xFF353535),
                       fontSize: 18,
                       fontFamily: 'SF Pro Display',
@@ -182,9 +183,9 @@ class _ViewVisitorState extends State<ViewVisitor> {
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-            child: const Text(
-              'For safety reasons, we kindly ask that you wear the provided safety gear, including a hard hat and\nreflective vest, while in the warehouse. If you have any questions or need assistance,\nour staff is here to help.',
-              style: TextStyle(
+            child: Text(
+              widget.visitor.purpose_of_visit ?? "--",
+              style: const TextStyle(
                 color: Color(0xFF333333),
                 fontSize: 8,
                 fontFamily: 'SF Pro Display',
@@ -202,27 +203,27 @@ class _ViewVisitorState extends State<ViewVisitor> {
               fontWeight: FontWeight.w400,
             ),
           ).paddingSymmetric(vertical: 12),
-          // PinchZoom(
-          //   child: Container(
-          //     width: double.infinity,
-          //     height: 124,
-          //     decoration: ShapeDecoration(
-          //       image: const DecorationImage(
-          //         image: NetworkImage("https://via.placeholder.com/358x124"),
-          //         fit: BoxFit.contain,
-          //       ),
-          //       shape: RoundedRectangleBorder(
-          //         side: const BorderSide(
-          //           width: 1.50,
-          //           strokeAlign: BorderSide.strokeAlignCenter,
-          //           color: Color(0xBF5A57FF),
-          //         ),
-          //         borderRadius: BorderRadius.circular(5),
-          //       ),
-          //     ),
-          //   ),
-          // ),
-
+          if (widget.visitor.id_proof != null)
+            PinchZoom(
+              child: Container(
+                width: double.infinity,
+                height: 124,
+                decoration: ShapeDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(widget.visitor.id_proof.toString()),
+                    fit: BoxFit.contain,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(
+                      width: 1.50,
+                      strokeAlign: BorderSide.strokeAlignCenter,
+                      color: Color(0xBF5A57FF),
+                    ),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+              ),
+            ),
           Center(
             child: WidgetsToImage(
               controller: controller,
