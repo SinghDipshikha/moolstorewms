@@ -26,15 +26,17 @@ _$IndentViewModelImpl _$$IndentViewModelImplFromJson(
       designation: (json['designation'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      customer_details: (json['customer_details'] as List<dynamic>?)
-          ?.map((e) => CustomerListElement.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      customer_details: json['customer_details'] == null
+          ? null
+          : CustomerListElement.fromJson(
+              json['customer_details'] as Map<String, dynamic>),
       product_details: (json['product_details'] as List<dynamic>?)
           ?.map((e) => EnterProduct.fromJson(e as Map<String, dynamic>))
           .toList(),
-      vehicle_details: (json['vehicle_details'] as List<dynamic>?)
-          ?.map((e) => VehicleDetails.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      vehicle_details: json['vehicle_details'] == null
+          ? null
+          : VehicleDetails.fromJson(
+              json['vehicle_details'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$IndentViewModelImplToJson(
@@ -53,10 +55,8 @@ Map<String, dynamic> _$$IndentViewModelImplToJson(
       'personType': instance.personType,
       'name': instance.name,
       'designation': instance.designation,
-      'customer_details':
-          instance.customer_details?.map((e) => e.toJson()).toList(),
+      'customer_details': instance.customer_details?.toJson(),
       'product_details':
           instance.product_details?.map((e) => e.toJson()).toList(),
-      'vehicle_details':
-          instance.vehicle_details?.map((e) => e.toJson()).toList(),
+      'vehicle_details': instance.vehicle_details?.toJson(),
     };

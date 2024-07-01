@@ -164,7 +164,7 @@ class SalesController extends GetxController {
       if (value.data["message"]
           .toString()
           .contains("Indent details found Successfully")) {
-        indent = IndentViewModel.fromJson(value.data["result"][0]);
+        indent = IndentViewModel.fromJson(value.data["result"]);
         Logger().i(indent);
         loading = false;
         update();
@@ -217,8 +217,6 @@ class SalesController extends GetxController {
       }
     });
   }
-
-
 
   bool imageUploading = false;
 

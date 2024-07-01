@@ -23,9 +23,7 @@ class Viewindent extends StatelessWidget {
         centerTitle: false,
         title: const Text('View Indent', style: TextStyles.appBarTextStyle),
       ),
-      body: GetBuilder<SalesController>(
-        
-        initState: (state) {
+      body: GetBuilder<SalesController>(initState: (state) {
         Get.find<SalesController>()
             .viewindent(indentId: indentElement.indent_number ?? "");
       }, builder: (salesController) {
@@ -274,25 +272,25 @@ class Viewindent extends StatelessWidget {
                         radius: 22.0,
                         backgroundColor:
                             const Color.fromARGB(255, 238, 237, 237),
-                        backgroundImage: salesController
-                                    .indent!.customer_details![0].avatar !=
-                                null
-                            ? null
-                            : const AssetImage(
-                                "assets/icons/customerAvatar.png"),
-                        child: salesController
-                                    .indent!.customer_details![0].avatar !=
-                                null
-                            ? ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Image.network(
-                                  salesController
-                                      .indent!.customer_details![0].avatar
-                                      .toString(),
-                                  fit: BoxFit.cover,
-                                ),
-                              )
-                            : null,
+                        backgroundImage:
+                            salesController.indent!.customer_details!.avatar !=
+                                    null
+                                ? null
+                                : const AssetImage(
+                                    "assets/icons/customerAvatar.png"),
+                        child:
+                            salesController.indent!.customer_details!.avatar !=
+                                    null
+                                ? ClipRRect(
+                                    borderRadius: BorderRadius.circular(50),
+                                    child: Image.network(
+                                      salesController
+                                          .indent!.customer_details!.avatar
+                                          .toString(),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )
+                                : null,
                       ),
                       const Gap(12),
                       Expanded(
@@ -300,10 +298,10 @@ class Viewindent extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              salesController.indent!.customer_details![0]
-                                      .first_name ??
+                              salesController
+                                      .indent!.customer_details!.first_name ??
                                   salesController
-                                      .indent!.customer_details![0].last_name ??
+                                      .indent!.customer_details!.last_name ??
                                   "",
                               style: const TextStyle(
                                 color: Color(0xFF353535),
@@ -315,7 +313,7 @@ class Viewindent extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  salesController.indent!.customer_details![0]
+                                  salesController.indent!.customer_details!
                                           .company_name ??
                                       "--",
                                   style: const TextStyle(
@@ -328,7 +326,7 @@ class Viewindent extends StatelessWidget {
                                 const Spacer(),
                                 Text(
                                   salesController
-                                          .indent!.customer_details![0].phone ??
+                                          .indent!.customer_details!.phone ??
                                       "--",
                                   style: const TextStyle(
                                     color: Color(0xFF5A57FF),
@@ -342,7 +340,7 @@ class Viewindent extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  salesController.indent!.customer_details![0]
+                                  salesController.indent!.customer_details!
                                           .company_name ??
                                       "--",
                                   style: const TextStyle(
@@ -355,7 +353,7 @@ class Viewindent extends StatelessWidget {
                                 const Spacer(),
                                 Text(
                                   salesController
-                                          .indent!.customer_details![0].email ??
+                                          .indent!.customer_details!.email ??
                                       "",
                                   style: const TextStyle(
                                     color: Color(0xFF5A57FF),
@@ -481,7 +479,7 @@ class Viewindent extends StatelessWidget {
                                       child: Text(
                                               salesController
                                                       .indent!
-                                                      .vehicle_details![0]
+                                                      .vehicle_details!
                                                       .driver_name ??
                                                   "--",
                                               style: titleStyle)
@@ -501,7 +499,7 @@ class Viewindent extends StatelessWidget {
                                       child: Text(
                                               salesController
                                                       .indent!
-                                                      .vehicle_details![0]
+                                                      .vehicle_details!
                                                       .vehicle_number ??
                                                   "--",
                                               style: titleStyle)
@@ -521,7 +519,7 @@ class Viewindent extends StatelessWidget {
                                       child: Text(
                                               salesController
                                                       .indent!
-                                                      .vehicle_details![0]
+                                                      .vehicle_details!
                                                       .vehicle_type ??
                                                   "--",
                                               style: titleStyle)
@@ -545,7 +543,7 @@ class Viewindent extends StatelessWidget {
                                       child: Text(
                                               salesController
                                                       .indent!
-                                                      .vehicle_details![0]
+                                                      .vehicle_details!
                                                       .driver_ph_number ??
                                                   "--",
                                               style: titleStyle)
@@ -564,14 +562,14 @@ class Viewindent extends StatelessWidget {
                                       child: Text(
                                               salesController
                                                           .indent!
-                                                          .vehicle_details![0]
+                                                          .vehicle_details!
                                                           .expected_date ==
                                                       null
                                                   ? "--"
                                                   : AppConstants.timeformatter
                                                       .format(salesController
                                                               .indent!
-                                                              .vehicle_details![0]
+                                                              .vehicle_details!
                                                               .expected_date
                                                           as DateTime),
                                               style: titleStyle)
