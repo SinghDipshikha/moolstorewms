@@ -45,7 +45,7 @@ class _VisitorListScreenState extends State<VisitorListScreen> {
       PagingController(firstPageKey: 1);
   Future<void> _fetchPage(int pageKey) async {
     try {
-      await getAllVisitorList(pageKey).then((v) {
+      await getAllVisitor(pageKey).then((v) {
         if (v != null) {
           final newItems = v;
 
@@ -63,17 +63,19 @@ class _VisitorListScreenState extends State<VisitorListScreen> {
     }
   }
 
-  Future<List<Visitor>?> getAllVisitorList(int pageKey) async {
+  Future<List<Visitor>?> getAllVisitor(int pageKey) async {
     var value = await Get.find<SecurityGuardController>().apiClient.postData(
-        "visitor/getAllVisitors?recordsPerPage=$_pageSize&next=$pageKey", {
+        "securityGuard/visitorList?recordsPerPage=$_pageSize&next=$pageKey", {
       "name": "",
       "phone_no": "",
-      "start_date": "2024-05-28",
-      "end_date": "2024-05-28",
+      "start_date": "",
+      "end_date": "",
       "visit_ticket_number": "",
-      "warehouse_id": 2
+      "warehouse_id": Get.find<SecurityGuardController>()
+          .currentlySelectedWarehouse!
+          .warehouse_id,
     });
-    if (value.data["message"] == "Visitor details fetched Successfully!") {
+    if (value.data["message"] == "Data Retrieved Successfully!") {
       return (value.data["result"] as List)
           .map((e) => Visitor.fromJson(e))
           .toList();
@@ -97,7 +99,21 @@ class _VisitorListScreenState extends State<VisitorListScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
+    _pagingController.addPageRequestListener((pageKey) {
+      Get.find<SecurityGuardController>()
+          .secGaurdRepo
+          .getAllVisitor(recordsPerPage: 20, page: pageKey)
+          .then((v) {
+        if (v != pageKey) {
+          if (v!.length < 2) {
+            _pagingController.appendLastPage(v);
+          } else {
+            final nextPageKey = pageKey + 1;
+            _pagingController.appendPage(v, nextPageKey);
+          }
+        }
+      });
+    });
     super.initState();
   }
 
@@ -128,243 +144,223 @@ class _VisitorListScreenState extends State<VisitorListScreen> {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Expanded(
-                  child: DateRangeButtton(
-                      height: 49,
-                      startDate: start,
-                      endDate: end,
-                      onApplyClick: (start, end) {})),
-              const Gap(10),
-              const Expanded(
-                  child: TextField(
-                decoration: InputDecoration(
-                    hintText: 'Search',
-                    suffixIcon: Icon(
-                      Icons.search,
-                      color: Color(0xFFACACAC),
-                      size: 20,
-                    ),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(width: 1, color: Color(0x195A57FF)),
-                        borderRadius: BorderRadius.all(Radius.circular(20))),
-                    border: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(width: 1, color: Color(0x195A57FF)),
-                        borderRadius: BorderRadius.all(Radius.circular(20)))),
-              )),
-            ],
-          ),
-       
-          const Gap(12),
-          Row(children: [
+      body: Column(children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
             Expanded(
-                flex: 1,
-                child: Container(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    tags[0]["title"],
-                    style: subHeaderStyle,
+                child: DateRangeButtton(
+                    height: 49,
+                    startDate: start,
+                    endDate: end,
+                    onApplyClick: (start, end) {})),
+            const Gap(10),
+            const Expanded(
+                child: TextField(
+              decoration: InputDecoration(
+                  hintText: 'Search',
+                  suffixIcon: Icon(
+                    Icons.search,
+                    color: Color(0xFFACACAC),
+                    size: 20,
                   ),
-                )),
-            const Gap(3),
-            Expanded(
-                flex: 1,
-                child: Container(
-                  child: Text(
-                    tags[1]["title"],
-                    style: subHeaderStyle,
-                  ),
-                )),
-            const Gap(3),
-            Expanded(
-                flex: 1,
-                child: Container(
-                  child: Text(
-                    tags[2]["title"],
-                    style: subHeaderStyle,
-                  ),
-                )),
-            const Gap(3),
-            Expanded(
-                flex: 1,
-                child: Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    tags[3]["title"],
-                    style: subHeaderStyle,
-                  ),
-                )),
-            const Gap(3),
-          ]).paddingSymmetric(horizontal: 8),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(width: 1, color: Color(0x195A57FF)),
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  border: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(width: 1, color: Color(0x195A57FF)),
+                      borderRadius: BorderRadius.all(Radius.circular(20)))),
+            )),
+          ],
+        ),
+     
+     
+        const Gap(12),
+        Row(children: [
           Expanded(
-            child: GetBuilder<SecurityGuardController>(
-                builder: (securityGuardController) {
-              return securityGuardController.allVisitorList.isEmpty
-                  ? const Center(
-                      child: Text(
-                        'No data found',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    )
-                  : ListView.builder(
-                      // shrinkWrap: true,
-                      itemCount: securityGuardController.allVisitorList.length,
-                      itemBuilder: (context, i) {
-                        Visitor entry =
-                            securityGuardController.allVisitorList[i];
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            width: 382,
-                            height: 50,
-                            decoration: ShapeDecoration(
-                              color: const Color(0xFFFAF9FF),
-                              shape: RoundedRectangleBorder(
-                                side: const BorderSide(
-                                    width: 1, color: Color(0x195A57FF)),
-                                borderRadius: BorderRadius.circular(10),
+              flex: 1,
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  tags[0]["title"],
+                  style: subHeaderStyle,
+                ),
+              )),
+          const Gap(3),
+          Expanded(
+              flex: 1,
+              child: Container(
+                child: Text(
+                  tags[1]["title"],
+                  style: subHeaderStyle,
+                ),
+              )),
+          const Gap(3),
+          Expanded(
+              flex: 1,
+              child: Container(
+                child: Text(
+                  tags[2]["title"],
+                  style: subHeaderStyle,
+                ),
+              )),
+          const Gap(3),
+          Expanded(
+              flex: 1,
+              child: Container(
+                alignment: Alignment.center,
+                child: Text(
+                  tags[3]["title"],
+                  style: subHeaderStyle,
+                ),
+              )),
+          const Gap(3),
+        ]).paddingSymmetric(horizontal: 8),
+        Expanded(
+          child: PagedListView<int, Visitor>(
+            pagingController: _pagingController,
+            builderDelegate: PagedChildBuilderDelegate<Visitor>(
+                itemBuilder: (context, entry, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: 382,
+                  height: 50,
+                  decoration: ShapeDecoration(
+                    color: const Color(0xFFFAF9FF),
+                    shape: RoundedRectangleBorder(
+                      side:
+                          const BorderSide(width: 1, color: Color(0x195A57FF)),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 12),
+                    child: Row(
+                      children: List.generate(dataList.length, (index) {
+                        if (dataList[index]["title"] == "#TC-130") {
+                          return Expanded(
+                              flex: dataList[index]["flex"],
+                              child: Text(
+                                entry.visit_ticket_number ?? "",
+                                style: const TextStyle(
+                                  color: Color(0xFF353535),
+                                  fontSize: 12,
+                                  fontFamily: 'SF Pro Text',
+                                  fontWeight: FontWeight.w500,
+                                  //height: 0,
+                                  letterSpacing: -0.48,
+                                ),
+                              ));
+                        }
+                        if (dataList[index]["title"] == "Johnson Charles") {
+                          return Expanded(
+                              flex: dataList[index]["flex"],
+                              child: Text(
+                                entry.visitor_name ?? "",
+                                style: const TextStyle(
+                                  color: Color(0xFF353535),
+                                  fontSize: 12,
+                                  fontFamily: 'SF Pro Text',
+                                  fontWeight: FontWeight.w500,
+                                  //height: 0,
+                                  letterSpacing: -0.48,
+                                ),
+                              ));
+                        }
+                        if (dataList[index]["title"] == "123456789") {
+                          return Expanded(
+                              flex: dataList[index]["flex"],
+                              child: Text(
+                                entry.visitor_ph_number ?? "",
+                                style: const TextStyle(
+                                  color: Color(0xFF353535),
+                                  fontSize: 12,
+                                  fontFamily: 'SF Pro Text',
+                                  fontWeight: FontWeight.w500,
+                                  //height: 0,
+                                  letterSpacing: -0.48,
+                                ),
+                              ));
+                        }
+                        if (dataList[index]["title"] == "icon" &&
+                            entry.status == "IN") {
+                          return Expanded(
+                            flex: dataList[index]["flex"],
+                            child: Container(
+                              // width: 20,
+                              // height: 30,
+                              decoration: ShapeDecoration(
+                                color: const Color(0xFFFAF9FF),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5)),
+                                image: const DecorationImage(
+                                  image:
+                                      AssetImage("assets/images/check_in.png"),
+                                  fit: BoxFit.contain,
+                                ),
                               ),
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 12),
-                              child: Row(
-                                children:
-                                    List.generate(dataList.length, (index) {
-                                  if (dataList[index]["title"] == "#TC-130") {
-                                    return Expanded(
-                                        flex: dataList[index]["flex"],
-                                        child: Text(
-                                          entry.visit_ticket_number ?? "",
-                                          style: const TextStyle(
-                                            color: Color(0xFF353535),
-                                            fontSize: 12,
-                                            fontFamily: 'SF Pro Text',
-                                            fontWeight: FontWeight.w500,
-                                            //height: 0,
-                                            letterSpacing: -0.48,
-                                          ),
-                                        ));
-                                  }
-                                  if (dataList[index]["title"] ==
-                                      "Johnson Charles") {
-                                    return Expanded(
-                                        flex: dataList[index]["flex"],
-                                        child: Text(
-                                          entry.visitor_name ?? "",
-                                          style: const TextStyle(
-                                            color: Color(0xFF353535),
-                                            fontSize: 12,
-                                            fontFamily: 'SF Pro Text',
-                                            fontWeight: FontWeight.w500,
-                                            //height: 0,
-                                            letterSpacing: -0.48,
-                                          ),
-                                        ));
-                                  }
-                                  if (dataList[index]["title"] == "123456789") {
-                                    return Expanded(
-                                        flex: dataList[index]["flex"],
-                                        child: Text(
-                                          entry.visitor_ph_number ?? "",
-                                          style: const TextStyle(
-                                            color: Color(0xFF353535),
-                                            fontSize: 12,
-                                            fontFamily: 'SF Pro Text',
-                                            fontWeight: FontWeight.w500,
-                                            //height: 0,
-                                            letterSpacing: -0.48,
-                                          ),
-                                        ));
-                                  }
-                                  if (dataList[index]["title"] == "icon" &&
-                                      entry.status == "IN") {
-                                    return Expanded(
-                                      flex: dataList[index]["flex"],
-                                      child: Container(
-                                        // width: 20,
-                                        // height: 30,
-                                        decoration: ShapeDecoration(
-                                          color: const Color(0xFFFAF9FF),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(5)),
-                                          image: const DecorationImage(
-                                            image: AssetImage(
-                                                "assets/images/check_in.png"),
-                                            fit: BoxFit.contain,
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                  if (dataList[index]["title"] == "icon" &&
-                                      entry.status == "OUT") {
-                                    return Expanded(
-                                      flex: dataList[index]["flex"],
-                                      child: Container(
-                                        // width: 20,
-                                        // height: 30,
-                                        decoration: ShapeDecoration(
-                                          color: const Color(0xFFFAF9FF),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(5)),
-                                          image: const DecorationImage(
-                                            image: AssetImage(
-                                                "assets/images/check_out.png"),
-                                            fit: BoxFit.contain,
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                  if (dataList[index]["title"] == "icon2") {
-                                    return Expanded(
-                                      flex: dataList[index]["flex"],
-                                      child: const SizedBox(
-                                        height: 10,
-                                        width: 10,
-                                        child: Icon(
-                                          Icons.more_vert,
-                                          color: Colors.black,
-                                          size: 20,
-                                        ),
-                                      ),
-                                    );
-                                  }
-
-                                  return Expanded(
-                                    flex: tags[index]["flex"],
-                                    child: Text(
-                                      tags[index]["title"],
-                                      style: const TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
-                                  );
-                                }),
+                          );
+                        }
+                        if (dataList[index]["title"] == "icon" &&
+                            entry.status == "OUT") {
+                          return Expanded(
+                            flex: dataList[index]["flex"],
+                            child: Container(
+                              // width: 20,
+                              // height: 30,
+                              decoration: ShapeDecoration(
+                                color: const Color(0xFFFAF9FF),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5)),
+                                image: const DecorationImage(
+                                  image:
+                                      AssetImage("assets/images/check_out.png"),
+                                  fit: BoxFit.contain,
+                                ),
                               ),
+                            ),
+                          );
+                        }
+                        if (dataList[index]["title"] == "icon2") {
+                          return Expanded(
+                            flex: dataList[index]["flex"],
+                            child: const SizedBox(
+                              height: 10,
+                              width: 10,
+                              child: Icon(
+                                Icons.more_vert,
+                                color: Colors.black,
+                                size: 20,
+                              ),
+                            ),
+                          );
+                        }
+
+                        return Expanded(
+                          flex: tags[index]["flex"],
+                          child: Text(
+                            tags[index]["title"],
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
                         );
-                      });
+                      }),
+                    ),
+                  ),
+                ),
+              );
             }),
           ),
-        ],
-      ).paddingSymmetric(
+        ),
+      ]).paddingSymmetric(
           horizontal: Dimensions.horizontalBodyPad,
           vertical: Dimensions.vericalBodyPad),
     );

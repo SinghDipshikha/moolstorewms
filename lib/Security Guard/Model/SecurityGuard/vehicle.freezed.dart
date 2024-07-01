@@ -22,12 +22,9 @@ VehicleEntry _$VehicleEntryFromJson(Map<String, dynamic> json) {
 mixin _$VehicleEntry {
   int? get id => throw _privateConstructorUsedError;
   String? get driver_name => throw _privateConstructorUsedError;
-  String? get owner_name => throw _privateConstructorUsedError;
   String? get driver_phone => throw _privateConstructorUsedError;
   String? get vehicle_number => throw _privateConstructorUsedError;
   String? get vehicle_types => throw _privateConstructorUsedError;
-  String? get product_name => throw _privateConstructorUsedError;
-  int? get qty => throw _privateConstructorUsedError;
   dynamic get status => throw _privateConstructorUsedError;
   DateTime? get created_at => throw _privateConstructorUsedError;
 
@@ -46,12 +43,9 @@ abstract class $VehicleEntryCopyWith<$Res> {
   $Res call(
       {int? id,
       String? driver_name,
-      String? owner_name,
       String? driver_phone,
       String? vehicle_number,
       String? vehicle_types,
-      String? product_name,
-      int? qty,
       dynamic status,
       DateTime? created_at});
 }
@@ -71,12 +65,9 @@ class _$VehicleEntryCopyWithImpl<$Res, $Val extends VehicleEntry>
   $Res call({
     Object? id = freezed,
     Object? driver_name = freezed,
-    Object? owner_name = freezed,
     Object? driver_phone = freezed,
     Object? vehicle_number = freezed,
     Object? vehicle_types = freezed,
-    Object? product_name = freezed,
-    Object? qty = freezed,
     Object? status = freezed,
     Object? created_at = freezed,
   }) {
@@ -88,10 +79,6 @@ class _$VehicleEntryCopyWithImpl<$Res, $Val extends VehicleEntry>
       driver_name: freezed == driver_name
           ? _value.driver_name
           : driver_name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      owner_name: freezed == owner_name
-          ? _value.owner_name
-          : owner_name // ignore: cast_nullable_to_non_nullable
               as String?,
       driver_phone: freezed == driver_phone
           ? _value.driver_phone
@@ -105,14 +92,6 @@ class _$VehicleEntryCopyWithImpl<$Res, $Val extends VehicleEntry>
           ? _value.vehicle_types
           : vehicle_types // ignore: cast_nullable_to_non_nullable
               as String?,
-      product_name: freezed == product_name
-          ? _value.product_name
-          : product_name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      qty: freezed == qty
-          ? _value.qty
-          : qty // ignore: cast_nullable_to_non_nullable
-              as int?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -137,12 +116,9 @@ abstract class _$$GetAllVehicleEntryBySecurityGaurdImplCopyWith<$Res>
   $Res call(
       {int? id,
       String? driver_name,
-      String? owner_name,
       String? driver_phone,
       String? vehicle_number,
       String? vehicle_types,
-      String? product_name,
-      int? qty,
       dynamic status,
       DateTime? created_at});
 }
@@ -162,12 +138,9 @@ class __$$GetAllVehicleEntryBySecurityGaurdImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? driver_name = freezed,
-    Object? owner_name = freezed,
     Object? driver_phone = freezed,
     Object? vehicle_number = freezed,
     Object? vehicle_types = freezed,
-    Object? product_name = freezed,
-    Object? qty = freezed,
     Object? status = freezed,
     Object? created_at = freezed,
   }) {
@@ -179,10 +152,6 @@ class __$$GetAllVehicleEntryBySecurityGaurdImplCopyWithImpl<$Res>
       driver_name: freezed == driver_name
           ? _value.driver_name
           : driver_name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      owner_name: freezed == owner_name
-          ? _value.owner_name
-          : owner_name // ignore: cast_nullable_to_non_nullable
               as String?,
       driver_phone: freezed == driver_phone
           ? _value.driver_phone
@@ -196,14 +165,6 @@ class __$$GetAllVehicleEntryBySecurityGaurdImplCopyWithImpl<$Res>
           ? _value.vehicle_types
           : vehicle_types // ignore: cast_nullable_to_non_nullable
               as String?,
-      product_name: freezed == product_name
-          ? _value.product_name
-          : product_name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      qty: freezed == qty
-          ? _value.qty
-          : qty // ignore: cast_nullable_to_non_nullable
-              as int?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -223,12 +184,9 @@ class _$GetAllVehicleEntryBySecurityGaurdImpl
   const _$GetAllVehicleEntryBySecurityGaurdImpl(
       {this.id,
       this.driver_name,
-      this.owner_name,
       this.driver_phone,
       this.vehicle_number,
       this.vehicle_types,
-      this.product_name,
-      this.qty,
       this.status,
       this.created_at});
 
@@ -241,17 +199,11 @@ class _$GetAllVehicleEntryBySecurityGaurdImpl
   @override
   final String? driver_name;
   @override
-  final String? owner_name;
-  @override
   final String? driver_phone;
   @override
   final String? vehicle_number;
   @override
   final String? vehicle_types;
-  @override
-  final String? product_name;
-  @override
-  final int? qty;
   @override
   final dynamic status;
   @override
@@ -259,7 +211,7 @@ class _$GetAllVehicleEntryBySecurityGaurdImpl
 
   @override
   String toString() {
-    return 'VehicleEntry(id: $id, driver_name: $driver_name, owner_name: $owner_name, driver_phone: $driver_phone, vehicle_number: $vehicle_number, vehicle_types: $vehicle_types, product_name: $product_name, qty: $qty, status: $status, created_at: $created_at)';
+    return 'VehicleEntry(id: $id, driver_name: $driver_name, driver_phone: $driver_phone, vehicle_number: $vehicle_number, vehicle_types: $vehicle_types, status: $status, created_at: $created_at)';
   }
 
   @override
@@ -270,17 +222,12 @@ class _$GetAllVehicleEntryBySecurityGaurdImpl
             (identical(other.id, id) || other.id == id) &&
             (identical(other.driver_name, driver_name) ||
                 other.driver_name == driver_name) &&
-            (identical(other.owner_name, owner_name) ||
-                other.owner_name == owner_name) &&
             (identical(other.driver_phone, driver_phone) ||
                 other.driver_phone == driver_phone) &&
             (identical(other.vehicle_number, vehicle_number) ||
                 other.vehicle_number == vehicle_number) &&
             (identical(other.vehicle_types, vehicle_types) ||
                 other.vehicle_types == vehicle_types) &&
-            (identical(other.product_name, product_name) ||
-                other.product_name == product_name) &&
-            (identical(other.qty, qty) || other.qty == qty) &&
             const DeepCollectionEquality().equals(other.status, status) &&
             (identical(other.created_at, created_at) ||
                 other.created_at == created_at));
@@ -292,12 +239,9 @@ class _$GetAllVehicleEntryBySecurityGaurdImpl
       runtimeType,
       id,
       driver_name,
-      owner_name,
       driver_phone,
       vehicle_number,
       vehicle_types,
-      product_name,
-      qty,
       const DeepCollectionEquality().hash(status),
       created_at);
 
@@ -321,12 +265,9 @@ abstract class _GetAllVehicleEntryBySecurityGaurd implements VehicleEntry {
   const factory _GetAllVehicleEntryBySecurityGaurd(
       {final int? id,
       final String? driver_name,
-      final String? owner_name,
       final String? driver_phone,
       final String? vehicle_number,
       final String? vehicle_types,
-      final String? product_name,
-      final int? qty,
       final dynamic status,
       final DateTime? created_at}) = _$GetAllVehicleEntryBySecurityGaurdImpl;
 
@@ -339,17 +280,11 @@ abstract class _GetAllVehicleEntryBySecurityGaurd implements VehicleEntry {
   @override
   String? get driver_name;
   @override
-  String? get owner_name;
-  @override
   String? get driver_phone;
   @override
   String? get vehicle_number;
   @override
   String? get vehicle_types;
-  @override
-  String? get product_name;
-  @override
-  int? get qty;
   @override
   dynamic get status;
   @override

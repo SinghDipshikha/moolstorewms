@@ -4,21 +4,21 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/vehicle.dart';
 
-class VehicleInfoScreen extends StatefulWidget {
+class PersonInfoScreen extends StatefulWidget {
   VehicleEntry? vehicleDetails;
-  VehicleInfoScreen({super.key, required VehicleEntry vehicleDetails});
+  PersonInfoScreen({super.key, required VehicleEntry vehicleDetails});
 
   @override
-  State<VehicleInfoScreen> createState() => _VehicleInfoScreenState();
+  State<PersonInfoScreen> createState() => _PersonInfoScreenState();
 }
 
-class _VehicleInfoScreenState extends State<VehicleInfoScreen> {
+class _PersonInfoScreenState extends State<PersonInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Vehicle Info',
+          'Person Info',
           style: TextStyle(
             color: Colors.white,
             fontSize: 18,
@@ -52,7 +52,7 @@ class _VehicleInfoScreenState extends State<VehicleInfoScreen> {
                       height: 27.50,
                       child: Center(
                         child: Text(
-                          'Vehicle In',
+                          'Person In',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
@@ -84,32 +84,15 @@ class _VehicleInfoScreenState extends State<VehicleInfoScreen> {
                           children: [
                             const Gap(10),
                             DetailsTile(
-                              labelText: 'Vehicle Number',
-                              inputValue:
-                                  '${widget.vehicleDetails!.vehicle_number}' ??
-                                      "",
+                              labelText: "Person Name ",
+                              inputValue: "",
                             ),
                             const Gap(10),
                             DetailsTile(
-                              labelText: 'Vehicle Type',
-                              inputValue:
-                                  '${widget.vehicleDetails!.vehicle_types}' ??
-                                      "",
+                              labelText: 'Mobile Number',
+                              inputValue: "",
                             ),
                             const Gap(10),
-                            DetailsTile(
-                              labelText: 'Driver Mobile No',
-                              inputValue:
-                                  '${widget.vehicleDetails!.driver_phone}' ??
-                                      "",
-                            ),
-                            const Gap(10),
-                            // DetailsTile(
-                            //   labelText: 'Owner Name',
-                            //   inputValue:
-                            //       '${widget.vehicleDetails!.owner_name}',
-                            // ),
-                            // const Gap(10),
                             DetailsTile(
                               labelText: 'Date & Time',
                               inputValue:
@@ -131,8 +114,9 @@ class _VehicleInfoScreenState extends State<VehicleInfoScreen> {
 
 class DetailsTile extends StatefulWidget {
   String? labelText;
-  var inputValue;
-  DetailsTile({super.key, required String labelText, required var inputValue});
+  String? inputValue;
+  DetailsTile(
+      {super.key, required String labelText, required String inputValue});
 
   @override
   State<DetailsTile> createState() => _DetailsTileState();
