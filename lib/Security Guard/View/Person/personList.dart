@@ -1,41 +1,38 @@
+//import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
-import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/labour.dart';
-import 'package:moolwmsstore/Security%20Guard/View/widgets/dateRangeButtton.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/person.dart';
 
 //@RoutePage()
-class LabourListScreen extends StatefulWidget {
-  const LabourListScreen({super.key});
+class PersonsListScreen extends StatefulWidget {
+  const PersonsListScreen({super.key});
 
   @override
-  State<LabourListScreen> createState() => _LabourListScreenState();
+  State<PersonsListScreen> createState() => _PersonsListScreenState();
 }
 
-class _LabourListScreenState extends State<LabourListScreen> {
+class _PersonsListScreenState extends State<PersonsListScreen> {
   @override
   final List tags = [
-    {"title": "Labour Name", "flex": 1},
+    {"title": "Name", "flex": 1},
+    {"title": "Mobile", "flex": 2},
     {"title": "Date & Time", "flex": 2},
-    {"title": "Mobile No.", "flex": 2},
     {
       "title": "Status",
       "flex": 1,
     },
   ];
   final List dataList = [
-    {"title": "K. Printer", "flex": 1},
-    {"title": "24-06-2023 10:35 AM", "flex": 2},
-    {"title": "0000000000", "flex": 2},
+    {"title": "Johnson Charles", "flex": 1},
+    {"title": "123456789", "flex": 2},
+    {"title": "25-06-2024 10:35 AM", "flex": 2},
     {"title": "icon", "flex": 1},
+    {"title": "icon2", "flex": 1},
   ];
-  DateTime start = DateTime.now();
-  DateTime end = DateTime.now().subtract(const Duration(days: 1));
-  static const _pageSize = 20;
-  final PagingController<int, LabourEntry> _pagingController =
-      PagingController(firstPageKey: 1);
+
   TextStyle subHeaderStyle = const TextStyle(
     color: Color(0xFF5A57FF),
     fontSize: 12,
@@ -49,10 +46,15 @@ class _LabourListScreenState extends State<LabourListScreen> {
     fontWeight: FontWeight.w500,
   );
 
-  bool isSelected = false;
+  DateTime start = DateTime.now();
+  DateTime end = DateTime.now().subtract(const Duration(days: 1));
+  static const _pageSize = 20;
+  final PagingController<int, Person> _pagingController =
+      PagingController(firstPageKey: 1);
+
   Future<void> _fetchPage(int pageKey) async {
     try {
-      await getAllLabour(pageKey).then((v) {
+      await getAllPerson(pageKey).then((v) {
         if (v != null) {
           final newItems = v;
 
@@ -70,21 +72,21 @@ class _LabourListScreenState extends State<LabourListScreen> {
     }
   }
 
-  Future<List<LabourEntry>?> getAllLabour(int pageKey) async {
+  Future<List<Person>?> getAllPerson(int pageKey) async {
     var res = await Get.find<SecurityGuardController>()
         .apiClient
-        .postData("labour/list?recordsPerPage=$_pageSize&next=$pageKey", {
-      "name": "",
-      "phone_no": "",
+        .postData("person/list?recordsPerPage=$_pageSize&next=$pageKey", {
+      "person_name": "",
+      "mobile_number": "",
       "start_date": "",
       "end_date": "",
       "warehouse_id": Get.find<SecurityGuardController>()
           .currentlySelectedWarehouse!
           .warehouse_id
     });
-    if (res.data["message"] == "Labour Data Retrieved Successfully!") {
+    if (res.data["message"] == "Data Retrieved Successfully!") {
       return (res.data["result"] as List)
-          .map((e) => LabourEntry.fromJson(e))
+          .map((e) => Person.fromJson(e))
           .toList();
     } else {
       return null;
@@ -96,7 +98,7 @@ class _LabourListScreenState extends State<LabourListScreen> {
     _pagingController.addPageRequestListener((pageKey) {
       Get.find<SecurityGuardController>()
           .secGaurdRepo
-          .getAllLabours(recordsPerPage: 20, page: pageKey)
+          .getAllPerson(recordsPerPage: 20, page: pageKey)
           .then((v) {
         if (v != pageKey) {
           if (v!.length < 2) {
@@ -111,12 +113,13 @@ class _LabourListScreenState extends State<LabourListScreen> {
     super.initState();
   }
 
+  bool isSelected = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Labour List',
+          'Persons List',
           style: TextStyle(
             color: Colors.white,
             fontSize: 18,
@@ -127,89 +130,126 @@ class _LabourListScreenState extends State<LabourListScreen> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Gap(20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Expanded(
-                    child: DateRangeButtton(
-                        height: 49,
-                        startDate: start,
-                        endDate: end,
-                        onApplyClick: (start, end) {})),
-                const Gap(10),
-                const Expanded(
-                    child: TextField(
-                  decoration: InputDecoration(
-                      hintText: 'Search',
-                      suffixIcon: Icon(
-                        Icons.search,
-                        color: Color(0xFFACACAC),
-                        size: 20,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Gap(20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                    width: 169,
+                    height: 39,
+                    padding: const EdgeInsets.only(
+                      top: 10,
+                      left: 30,
+                      right: 10,
+                      bottom: 10,
+                    ),
+                    decoration: ShapeDecoration(
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(
+                            width: 1, color: Color(0x195A57FF)),
+                        borderRadius: BorderRadius.circular(30),
                       ),
-                      contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 1, color: Color(0x195A57FF)),
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      border: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 1, color: Color(0x195A57FF)),
-                          borderRadius: BorderRadius.all(Radius.circular(20)))),
-                )),
-              ],
-            ),
-            const Gap(10),
-            Row(children: [
-              Expanded(
-                  flex: 1,
-                  child: Container(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      tags[0]["title"],
-                      style: subHeaderStyle,
                     ),
-                  )),
-              const Gap(3),
-              Expanded(
-                  flex: 1,
-                  child: Container(
-                    child: Text(
-                      tags[1]["title"],
-                      style: subHeaderStyle,
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Sort By',
+                          style: TextStyle(
+                            color: Color(0xFFACACAC),
+                            fontSize: 16,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w400,
+                            height: 0,
+                          ),
+                        ),
+                        Icon(
+                          Icons.filter,
+                          color: Color(0xFFACACAC),
+                          size: 20,
+                        ),
+                      ],
                     ),
-                  )),
-              const Gap(3),
-              Expanded(
-                  flex: 1,
-                  child: Container(
-                    child: Text(
-                      tags[2]["title"],
-                      style: subHeaderStyle,
+                  ),
+                  Container(
+                    width: 169,
+                    height: 39,
+                    padding: const EdgeInsets.only(
+                      top: 10,
+                      left: 30,
+                      right: 10,
+                      bottom: 10,
                     ),
-                  )),
-              const Gap(3),
-              Expanded(
-                  flex: 1,
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      tags[3]["title"],
-                      style: subHeaderStyle,
+                    decoration: ShapeDecoration(
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(
+                            width: 1, color: Color(0x195A57FF)),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
                     ),
-                  )),
-              const Gap(3),
-            ]).paddingSymmetric(horizontal: 8),
-            Expanded(
-              child: PagedListView<int, LabourEntry>(
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Search',
+                          style: TextStyle(
+                            color: Color(0xFFACACAC),
+                            fontSize: 16,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w400,
+                            height: 0,
+                          ),
+                        ),
+                        Icon(
+                          Icons.search,
+                          color: Color(0xFFACACAC),
+                          size: 20,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              const Gap(20),
+              Row(
+                children: List.generate(tags.length, (index) {
+                  if (tags[index]["title"] == "icon") {
+                    return Expanded(
+                      flex: tags[index]["flex"],
+                      child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.more_horiz,
+                            color: Colors.white,
+                          )),
+                    );
+                  }
+                  return Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Expanded(
+                        flex: tags[index]["flex"],
+                        child: Text(
+                          tags[index]["title"],
+                          style: const TextStyle(
+                            color: Color(0xFF5A57FF),
+                            fontWeight: FontWeight.w700,
+                          ),
+                        )),
+                  );
+                }),
+              ),
+              Expanded(
+                child: PagedListView<int, Person>(
                   pagingController: _pagingController,
-                  builderDelegate: PagedChildBuilderDelegate<LabourEntry>(
+                  builderDelegate: PagedChildBuilderDelegate<Person>(
                       itemBuilder: (context, entry, index) {
                     return Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Container(
                         width: 382,
                         height: 50,
@@ -226,23 +266,39 @@ class _LabourListScreenState extends State<LabourListScreen> {
                               horizontal: 12, vertical: 12),
                           child: Row(
                             children: List.generate(dataList.length, (index) {
-                              if (dataList[index]["title"] == "K. Printer") {
+                              if (dataList[index]["title"] ==
+                                  "Johnson Charles") {
                                 return Expanded(
                                     flex: dataList[index]["flex"],
                                     child: Text(
-                                      entry.full_name ?? "",
+                                      entry.person_name ?? "",
                                       style: const TextStyle(
                                         color: Color(0xFF353535),
                                         fontSize: 12,
                                         fontFamily: 'SF Pro Text',
                                         fontWeight: FontWeight.w500,
-                                        //height: 0,
+                                        height: 0,
+                                        letterSpacing: -0.48,
+                                      ),
+                                    ));
+                              }
+                              if (dataList[index]["title"] == "123456789") {
+                                return Expanded(
+                                    flex: dataList[index]["flex"],
+                                    child: Text(
+                                      entry.person_phone ?? "",
+                                      style: const TextStyle(
+                                        color: Color(0xFF353535),
+                                        fontSize: 12,
+                                        fontFamily: 'SF Pro Text',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0,
                                         letterSpacing: -0.48,
                                       ),
                                     ));
                               }
                               if (dataList[index]["title"] ==
-                                  "24-06-2023 10:35 AM") {
+                                  "25-06-2024 10:35 AM") {
                                 return Expanded(
                                     flex: dataList[index]["flex"],
                                     child: Text(
@@ -253,27 +309,11 @@ class _LabourListScreenState extends State<LabourListScreen> {
                                         fontSize: 10,
                                         fontFamily: 'SF Pro Text',
                                         fontWeight: FontWeight.w400,
-                                        //height: 0,
+                                        height: 0,
                                         letterSpacing: -0.40,
                                       ),
                                     ));
                               }
-                              if (dataList[index]["title"] == "0000000000") {
-                                return Expanded(
-                                    flex: dataList[index]["flex"],
-                                    child: Text(
-                                      entry.mobile_number.toString() ?? "",
-                                      style: const TextStyle(
-                                        color: Color(0xFF353535),
-                                        fontSize: 12,
-                                        fontFamily: 'SF Pro Text',
-                                        fontWeight: FontWeight.w500,
-                                        //height: 0,
-                                        letterSpacing: -0.48,
-                                      ),
-                                    ));
-                              }
-
                               if (dataList[index]["title"] == "icon" &&
                                   entry.status == "IN") {
                                 return Expanded(
@@ -346,10 +386,10 @@ class _LabourListScreenState extends State<LabourListScreen> {
                         ),
                       ),
                     );
-                  })),
-            ),
-          ],
-        ),
+                  }),
+                ),
+              ),
+            ]),
       ),
     );
   }

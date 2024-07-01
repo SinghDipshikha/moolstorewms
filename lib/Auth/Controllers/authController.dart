@@ -36,21 +36,12 @@ import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// enum OTP {
-//   init,
-//   sent,
-//   resend,
-//   sendingFailed,
-//   verifcationFailed,
-//   verifcationSuccess
-// }
-
 class AuthController extends GetxController {
   final AuthRepo authRepo;
   final SharedPreferences sharedPreferences;
   AuthController({required this.authRepo, required this.sharedPreferences});
 
-  // var otpstate = OTP.init;
+
   late Box box;
   User? user;
 
@@ -402,81 +393,4 @@ class AuthController extends GetxController {
       }
     });
   }
-
-  // sendOtp(String? number) async {
-  //   // phoneNum = number ?? phoneNum;
-  //   // authRepo.sendotp(phoneNum).then((value) {
-  //   //   if (value.data["result"] == "Otp Sent") {
-  //   //     // getIt<AppRouter>().replace(
-  //   //     //   const OtpScreenRoute(),
-  //   //     // );
-  //   //   } else {
-  //   //     Snacks.redSnack(value.data["message"]);
-  //   //   }
-  //   // });
-  // }
-
-  // resendOtp() {
-  //   authRepo.sendotp(phoneNum).then((value) {
-  //     if (value.data["result"] == "Otp Sent") {
-  //       // getIt<AppRouter>().replace(
-  //       //   const OtpScreenRoute(),
-  //       // );
-  //     } else {
-  //       Snacks.redSnack(value.data["message"]);
-  //     }
-  //   });
-  // }
-
-  // verifyOtp(String otp) {
-  //   authRepo.verifyotp(number: phoneNum, otp: otp).then((value) {
-  //     if (value.data["message"] == "Sign up first") {
-  //       // getIt<AppRouter>().replace(
-  //       //   const SignupRoute(),
-  //       // );
-  //     } else {}
-  //   });
-  // }
-
-  // signup(res) {
-  //   //  getIt<AppRouter>().replace(
-  //   //         const WelcomeRoute(),
-  //   //       );
-  //   authRepo.signUp(res: res).then((value) {
-  //     if (value.data["message"] == "User Signup Successful") {
-  //       // getIt<AppRouter>().replace(
-  //       //   const WelcomeRoute(),
-  //       // );
-  //     }
-  //   });
-  // }
-
-  // getSignupFields() async {
-  //   await authRepo.getSignupParams().then((value) {
-  //     if (value != null) {
-  //       fields = value;
-
-  //       update();
-  //     }
-  //   });
-  // }
-
-  // getAddWarehouseFields() async {
-  //   await authRepo.getAddWarehouseFields().then((value) {
-  //     if (value != null) {
-  //       addWarehouseFields = value;
-
-  //       update();
-  //     }
-  //   });
-  // }
-  // register() async {
-  //   await authRepo.register().then((value) {
-  //     if (value != null) {
-  //       addWarehouseFields = value;
-
-  //       update();
-  //     }
-  //   });
-  // }
 }

@@ -6,9 +6,11 @@ import 'package:moolwmsstore/Security%20Guard/Model/Indent/indentElement.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/addVisitor.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/employeeEntry.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/labour.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/material.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/person.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/secGuardDetail.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/singlePersonDetail.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/vehicle.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/visitor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -89,14 +91,25 @@ class SecurityGuardRepo {
     return null;
   }
 
-  Future<Visitor?> getAllVisitorsData({
-    required var recordsPerPage,
-    required var next,
+  Future<List<Visitor>?> getAllVisitor({
+    required int recordsPerPage,
+    required int page,
   }) async {
-    Response res = await apiClient.getData(
-        "visitor/getAllVisitors?recordsPerPage=$recordsPerPage&$next=$next");
-    if (res.data["message"] == "Visitor details fetched Successfully!") {
-      return Visitor.fromJson(res.data["result"]);
+    var res = await apiClient.postData(
+        "securityGuard/visitorList?recordsPerPage=$recordsPerPage&next=$page", {
+      "name": "",
+      "phone_no": "",
+      "start_date": "",
+      "end_date": "",
+      "visit_ticket_number": "",
+      "warehouse_id": g.Get.find<SecurityGuardController>()
+          .currentlySelectedWarehouse!
+          .warehouse_id,
+    });
+    if (res.data["message"] == "Data Retrieved Successfully!") {
+      return (res.data["result"] as List)
+          .map((e) => Visitor.fromJson(e))
+          .toList();
     }
     return null;
   }
@@ -146,7 +159,7 @@ class SecurityGuardRepo {
     required int page,
   }) async {
     var res = await apiClient.postData(
-        "labour/list?recordsPerPage=$recordsPerPage&next=$page", {
+        "securityGuard/indentList?recordsPerPage=$recordsPerPage&next=$page", {
       "indent_number": "",
       "vehicle_number": "",
       "driver_name": "",
@@ -163,25 +176,90 @@ class SecurityGuardRepo {
     }
     return null;
   }
-   Future<List<LabourEntry>?> getAllLabours({
+
+  Future<List<LabourEntry>?> getAllLabours({
     required int recordsPerPage,
     required int page,
   }) async {
-    var res = await apiClient.postData(
-        "securityGuard/indentList?recordsPerPage=$recordsPerPage&next=$page", {
-      {
-        "name": "",
-        "phone_no": "",
-        "start_date": "",
-        "end_date": "",
-        "warehouse_id":  g.Get.find<SecurityGuardController>()
+    var res = await apiClient
+        .postData("labour/list?recordsPerPage=$recordsPerPage&next=$page", {
+      "name": "",
+      "phone_no": "",
+      "start_date": "",
+      "end_date": "",
+      "warehouse_id": g.Get.find<SecurityGuardController>()
           .currentlySelectedWarehouse!
           .warehouse_id
-      }
     });
     if (res.data["message"] == "Labour Data Retrieved Successfully!") {
       return (res.data["result"] as List)
           .map((e) => LabourEntry.fromJson(e))
+          .toList();
+    }
+    return null;
+  }
+
+  Future<List<VehicleEntry>?> getAllVehicle({
+    required int recordsPerPage,
+    required int page,
+  }) async {
+    var res = await apiClient
+        .postData("vehicle/list?recordsPerPage=$recordsPerPage&next=$page", {
+      "driver_name": "",
+      "vehicle_number": "",
+      "start_date": "",
+      "end_date": "",
+      "warehouse_id": g.Get.find<SecurityGuardController>()
+          .currentlySelectedWarehouse!
+          .warehouse_id
+    });
+    if (res.data["message"] == "Data Retrieved Successfully!") {
+      return (res.data["result"] as List)
+          .map((e) => VehicleEntry.fromJson(e))
+          .toList();
+    }
+    return null;
+  }
+
+  Future<List<MaterialEntry>?> getAllMaterial({
+    required int recordsPerPage,
+    required int page,
+  }) async {
+    var res = await apiClient
+        .postData("material/list?recordsPerPage=$recordsPerPage&next=$page", {
+      "driver_name": "",
+      "vehicle_number": "",
+      "start_date": "",
+      "end_date": "",
+      "warehouse_id": g.Get.find<SecurityGuardController>()
+          .currentlySelectedWarehouse!
+          .warehouse_id
+    });
+    if (res.data["message"] == "Data Retrieved Successfully!") {
+      return (res.data["result"] as List)
+          .map((e) => MaterialEntry.fromJson(e))
+          .toList();
+    }
+    return null;
+  }
+
+  Future<List<Person>?> getAllPerson({
+    required int recordsPerPage,
+    required int page,
+  }) async {
+    var res = await apiClient
+        .postData("person/list?recordsPerPage=$recordsPerPage&next=$page", {
+      "person_name": "",
+      "mobile_number": "",
+      "start_date": "",
+      "end_date": "",
+      "warehouse_id": g.Get.find<SecurityGuardController>()
+          .currentlySelectedWarehouse!
+          .warehouse_id
+    });
+    if (res.data["message"] == "Data Retrieved Successfully!") {
+      return (res.data["result"] as List)
+          .map((e) => Person.fromJson(e))
           .toList();
     }
     return null;

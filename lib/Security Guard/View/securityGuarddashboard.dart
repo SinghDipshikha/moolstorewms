@@ -10,10 +10,10 @@ import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Indent/createIndent.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Indent/indentList.dart';
-import 'package:moolwmsstore/Security%20Guard/View/Indent/personList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Labour/addLabour.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Labour/labourList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Material/materialList.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Person/personList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/isUserCheckedIn.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/registrationList.dart';
 import 'package:moolwmsstore/Security%20Guard/View/Register/verifyEmployeeByIdAndQrScan.dart';
@@ -1696,6 +1696,7 @@ class _CreateTicketPopUpState extends State<CreateTicketPopUp> {
                       const Gap(5),
                       Checkbox(
                         value: isCheckedVehicle,
+                        checkColor: Colors.white,
                         activeColor: const Color(0xFF5A57FF),
                         onChanged: (value) {
                           setState(() {
@@ -1747,6 +1748,7 @@ class _CreateTicketPopUpState extends State<CreateTicketPopUp> {
                       const Gap(5),
                       Checkbox(
                         value: isCheckedMaterial,
+                        checkColor: Colors.white,
                         activeColor: const Color(0xFF5A57FF),
                         onChanged: (value) {
                           setState(() {

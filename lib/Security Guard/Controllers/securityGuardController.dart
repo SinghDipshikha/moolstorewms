@@ -180,21 +180,21 @@ class SecurityGuardController extends GetxController {
     });
   }
 
-  void getAllPersonssInfo() {
-    apiClient.getData("person/list").then((value) {
-      if (value.data["message"] == "Data Retrieved Successfully!") {
-        Snacks.greenSnack("Data Retrieved Successfully!");
-        List x = value.data["result"];
-        allPersonList = x.map((e) => Person.fromJson(e)).toList();
+  // void getAllPersonssInfo() {
+  //   apiClient.getData("person/list").then((value) {
+  //     if (value.data["message"] == "Data Retrieved Successfully!") {
+  //       Snacks.greenSnack("Data Retrieved Successfully!");
+  //       List x = value.data["result"];
+  //       allPersonList = x.map((e) => Person.fromJson(e)).toList();
 
-        isloading = false;
-        update();
-      } else {
-        isloading = false;
-        update();
-      }
-    });
-  }
+  //       isloading = false;
+  //       update();
+  //     } else {
+  //       isloading = false;
+  //       update();
+  //     }
+  //   });
+  // }
 
   void getSinglePersonDetails() {
     secGaurdRepo.getSinglePersonDetails(personId: "#PTC002").then((value) {
@@ -275,23 +275,6 @@ class SecurityGuardController extends GetxController {
     update();
     return x;
   }
-
-  // void getAllVisitorList() {
-  //   apiClient.postData(
-  //       "visitor/getAllVisitors?recordsPerPage=8&next=1", {}).then((value) {
-  //     if (value.data["message"] == "Visitor details fetched Successfully!") {
-  //       Snacks.greenSnack("Visitor details fetched Successfully!");
-  //       List x = value.data["result"];
-  //       allVisitorList = x.map((e) => Visitor.fromJson(e)).toList();
-  //       print(allVisitorList);
-  //       isloading = false;
-  //       update();
-  //     } else {
-  //       isloading = false;
-  //       update();
-  //     }
-  //   });
-  // }
 
   bool isLoading = true;
 
@@ -474,50 +457,6 @@ class SecurityGuardController extends GetxController {
         Snacks.greenSnack("Data Retrieved Successfully!");
         List x = value.data["result"];
         allMaterialList = x.map((e) => MaterialEntry.fromJson(e)).toList();
-        print(allMaterialList);
-        isloading = false;
-        update();
-      } else {
-        isloading = false;
-        update();
-      }
-    });
-  }
-
-  void getAllLabourList() {
-    apiClient.postData("labour/list?recordsPerPage=3&next=1", {
-      {
-        "name": "",
-        "phone_no": "",
-        "start_date": "",
-        "end_date": "",
-        "warehouse_id": currentlySelectedWarehouse!.warehouse_id,
-      }
-    }).then((value) {
-      if (value.data["message"] == "Labour Data Retrieved Successfully!") {
-        Snacks.greenSnack("Labour Data Retrieved Successfully!");
-        List x = value.data["result"];
-        allLabourList = x.map((e) => LabourEntry.fromJson(e)).toList();
-        print(allMaterialList);
-        isloading = false;
-        update();
-      } else {
-        isloading = false;
-        update();
-      }
-    });
-  }
-
-  void getAllVehicleList() {
-    apiClient
-        .getData(
-      "vehicle/list",
-    )
-        .then((value) {
-      if (value.data["message"] == "Data Retrieved Successfully!") {
-        Snacks.greenSnack("Data Retrieved Successfully!");
-        List x = value.data["result"];
-        allVehicleList = x.map((e) => VehicleEntry.fromJson(e)).toList();
         print(allMaterialList);
         isloading = false;
         update();
