@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
-import 'package:moolwmsstore/Auth/Repository/authRepo.dart';
+
 import 'package:moolwmsstore/Auth/View/Blocked.dart';
 import 'package:moolwmsstore/Auth/View/OtpScreen.dart';
 import 'package:moolwmsstore/Auth/View/organisationCode.dart';
@@ -36,21 +36,11 @@ import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// enum OTP {
-//   init,
-//   sent,
-//   resend,
-//   sendingFailed,
-//   verifcationFailed,
-//   verifcationSuccess
-// }
-
 class AuthController extends GetxController {
-  final AuthRepo authRepo;
-  final SharedPreferences sharedPreferences;
-  AuthController({required this.authRepo, required this.sharedPreferences});
 
-  // var otpstate = OTP.init;
+  final SharedPreferences sharedPreferences;
+  AuthController({ required this.sharedPreferences});
+
   late Box box;
   User? user;
 
@@ -212,8 +202,6 @@ class AuthController extends GetxController {
     } else {
       Future.delayed(const Duration(seconds: 2)).whenComplete(() {
         Get.to(const SignInUp(), id: authNavigationKey);
-
-        // Get.clearRouteTree()
       });
     }
   }
@@ -348,17 +336,6 @@ class AuthController extends GetxController {
         update();
       }
     });
-    /* 
-    {
-    "pan_card":"ASQPJ1216L",
-    "email":"jainakshay058@gmail.com",
-    "phone_number":8178393493,
-    "company_address" : "",
-    "company_name":"Indicold Pvt Ltd",
-    "name": "akshay jain"
-}
-    
-    */
   }
 
   sendSignInOtp(String num) {
@@ -381,7 +358,7 @@ class AuthController extends GetxController {
         loading = false;
         update();
       }
-      // Logger().i(value.data);
+
     });
   }
 
@@ -402,81 +379,4 @@ class AuthController extends GetxController {
       }
     });
   }
-
-  // sendOtp(String? number) async {
-  //   // phoneNum = number ?? phoneNum;
-  //   // authRepo.sendotp(phoneNum).then((value) {
-  //   //   if (value.data["result"] == "Otp Sent") {
-  //   //     // getIt<AppRouter>().replace(
-  //   //     //   const OtpScreenRoute(),
-  //   //     // );
-  //   //   } else {
-  //   //     Snacks.redSnack(value.data["message"]);
-  //   //   }
-  //   // });
-  // }
-
-  // resendOtp() {
-  //   authRepo.sendotp(phoneNum).then((value) {
-  //     if (value.data["result"] == "Otp Sent") {
-  //       // getIt<AppRouter>().replace(
-  //       //   const OtpScreenRoute(),
-  //       // );
-  //     } else {
-  //       Snacks.redSnack(value.data["message"]);
-  //     }
-  //   });
-  // }
-
-  // verifyOtp(String otp) {
-  //   authRepo.verifyotp(number: phoneNum, otp: otp).then((value) {
-  //     if (value.data["message"] == "Sign up first") {
-  //       // getIt<AppRouter>().replace(
-  //       //   const SignupRoute(),
-  //       // );
-  //     } else {}
-  //   });
-  // }
-
-  // signup(res) {
-  //   //  getIt<AppRouter>().replace(
-  //   //         const WelcomeRoute(),
-  //   //       );
-  //   authRepo.signUp(res: res).then((value) {
-  //     if (value.data["message"] == "User Signup Successful") {
-  //       // getIt<AppRouter>().replace(
-  //       //   const WelcomeRoute(),
-  //       // );
-  //     }
-  //   });
-  // }
-
-  // getSignupFields() async {
-  //   await authRepo.getSignupParams().then((value) {
-  //     if (value != null) {
-  //       fields = value;
-
-  //       update();
-  //     }
-  //   });
-  // }
-
-  // getAddWarehouseFields() async {
-  //   await authRepo.getAddWarehouseFields().then((value) {
-  //     if (value != null) {
-  //       addWarehouseFields = value;
-
-  //       update();
-  //     }
-  //   });
-  // }
-  // register() async {
-  //   await authRepo.register().then((value) {
-  //     if (value != null) {
-  //       addWarehouseFields = value;
-
-  //       update();
-  //     }
-  //   });
-  // }
 }
