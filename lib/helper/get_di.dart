@@ -39,11 +39,6 @@ Future<Map<String, Map<String, String>>> init() async {
           appBaseUrl: AppConstants.baseUrl, sharedPreferences: Get.find()),
       permanent: true);
 
-
-  Get.lazyPut(
-      () => AuthRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
-
-
   Get.lazyPut(
     () => LanguageController(sharedPreferences: Get.find()),
   );
@@ -51,7 +46,7 @@ Future<Map<String, Map<String, String>>> init() async {
     () => LocalizationController(sharedPreferences: Get.find()),
   );
   Get.put(
-    AuthController(authRepo: Get.find(), sharedPreferences: Get.find()),
+    AuthController(sharedPreferences: Get.find()),
   );
   Get.lazyPut(() => LanguageRepo());
   Map<String, Map<String, String>> languages = {};

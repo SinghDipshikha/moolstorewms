@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
-import 'package:moolwmsstore/Auth/Repository/authRepo.dart';
+
 import 'package:moolwmsstore/Auth/View/Blocked.dart';
 import 'package:moolwmsstore/Auth/View/OtpScreen.dart';
 import 'package:moolwmsstore/Auth/View/organisationCode.dart';
@@ -37,9 +37,9 @@ import 'package:moolwmsstore/utils/globals.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthController extends GetxController {
-  final AuthRepo authRepo;
+
   final SharedPreferences sharedPreferences;
-  AuthController({required this.authRepo, required this.sharedPreferences});
+  AuthController({ required this.sharedPreferences});
 
   late Box box;
   User? user;
