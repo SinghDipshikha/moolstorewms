@@ -69,12 +69,13 @@ class HRController extends GetxController {
   List<AddShiftDetails> getShiftData = [];
   Map? selectedWarehouse;
   int? currentUserId;
-  TotalCount? totalCount;
+
   ArrivalCount? arrivalCount;
   List<StaffEntry> employees = [];
   StaffEntry? currentlySeletedEmployee;
   List<Widget> navigationAccordingStatus = [];
-  bool isTotalEmployees = false;
+  bool dashboardCountStaus = false;
+  DashboardCount? dashboardCount;
   DateTime dashBoardStartDate =
       DateTime.now().subtract(const Duration(days: 1));
   DateTime dashBoardEndDate = DateTime.now();
@@ -559,52 +560,20 @@ class HRController extends GetxController {
     Restart.restartApp();
   }
 
-  // Future<bool> getDashboardCounts({
-  //   int? shiftId,
-  //   String? startDate,
-  //   String? endDate,
-  //   int? warehouseId,
-  // }) async {
-  //   isLoading = true;
-  //   update();
-
-  //   final Map<String, dynamic> requestBody = {
-  //     "shift_id": shiftId,
-  //     "start_date": startDate,
-  //     "end_date": endDate,
-  //     "warehouse_id": selectedWarehouse
-  //   };
-
-  //   final response = await apiClient.postData("/hr/dashboard", requestBody);
-  //   if (response.data["message"] ==
-  //       "Employee attendance status fetched successfully") {
-  //     totalCount = response.data['result']['totalEmployeesData'];
-  //     arrivalCount = response.data['result']['arrival'];
-
-  //     Snacks.greenSnack("Employee attendance status fetched successfully");
-
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
   getDashboardCount() async {
-    isTotalEmployees = true;
+    dashboardCountStaus = true;
 
     await apiClient.postData("hr/dashboard", {
       {
         "shift_id": "",
         "start_date": "",
         "end_date": "",
-        "warehouse_id": currentlySelectedWarehouseId,
+        "warehouse_id": currentlySelectedWarehouse!.warehouse_id,
       }
     }).then((value) {
       if (value.data["message"] ==
           "Employee attendance status fetched successfully") {
-        totalCount = value.data['result']['totalEmployeesData']['totalEmp'];
-        arrivalCount = value.data['result']['arrival'];
-        isTotalEmployees = false;
+        dashboardCount = value.data['result'];
         update();
       }
     });

@@ -521,7 +521,6 @@ class _HrDashboardState extends State<HrDashboard> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       const Gap(10),
-                                    
                                       Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
@@ -537,14 +536,14 @@ class _HrDashboardState extends State<HrDashboard> {
                                               fontWeight: FontWeight.w500,
                                             ),
                                           ),
-                                          hrController.isTotalEmployees
+                                          hrController.dashboardCountStaus
                                               ? LoadingAnimationWidget
                                                   .staggeredDotsWave(
                                                   color: Colors.white,
                                                   size: 20,
                                                 )
                                               : Text(
-                                                  '${hrController.totalCount!.totalEmp}',
+                                                  '${hrController.dashboardCount!.totalEmp}',
                                                   style: const TextStyle(
                                                     color: Color(0xFF918FFA),
                                                     fontSize: 24,
