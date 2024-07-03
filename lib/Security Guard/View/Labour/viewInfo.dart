@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/labour.dart';
 
 class LabourInfoScreen extends StatefulWidget {
-  const LabourInfoScreen({
-    super.key,
-  });
+  LabourEntry labourDetails;
+  LabourInfoScreen({super.key, required this.labourDetails});
 
   @override
   State<LabourInfoScreen> createState() => _LabourInfoScreenState();
@@ -30,35 +30,32 @@ class _LabourInfoScreenState extends State<LabourInfoScreen> {
           child: Column(
             children: [
               const Gap(20),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Container(
-                  width: double.infinity,
-                  height: 90,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xCC5A57FF),
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                        width: 2,
-                        color: Colors.white.withOpacity(0.5),
-                      ),
-                      borderRadius: BorderRadius.circular(10),
+              Container(
+                width: 358,
+                height: 90,
+                decoration: ShapeDecoration(
+                  color: const Color(0xCC5A57FF),
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      width: 2,
+                      color: Colors.white.withOpacity(0.5),
                     ),
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const SizedBox(
-                    width: 119,
-                    height: 27.50,
-                    child: Center(
-                      child: Text(
-                        'Labour In',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w600,
-                          height: 0,
-                        ),
+                ),
+                child: const SizedBox(
+                  width: 119,
+                  height: 27.50,
+                  child: Center(
+                    child: Text(
+                      'Labour In',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 28,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w600,
+                        height: 0,
                       ),
                     ),
                   ),
@@ -84,74 +81,31 @@ class _LabourInfoScreenState extends State<LabourInfoScreen> {
                         const Gap(10),
                         DetailsTile(
                           labelText: 'Full Name',
-                          inputValue: "2222",
-                        ),
-                        DetailsTile(
-                          labelText: 'Mobile Number',
-                          inputValue: "22",
+                          inputValue: '${widget.labourDetails.full_name}' ?? "",
                         ),
                         const Gap(10),
                         DetailsTile(
-                          labelText: 'Labour Type',
-                          inputValue: "222",
-                        ),
-                        const Gap(10),
-                        DetailsTile(
-                          labelText: 'Gender',
-                          inputValue: "2222",
+                          labelText: 'Visitor Mobile Number',
+                          inputValue:
+                              '${widget.labourDetails.mobile_number}' ?? "",
                         ),
                         const Gap(10),
                         DetailsTile(
                           labelText: 'Date & Time',
-                          inputValue: "222",
+                          inputValue:
+                              '${widget.labourDetails.created_at}' ?? "",
                         ),
                         const Gap(10),
                         DetailsTile(
-                          labelText: 'Address',
-                          inputValue: "222",
+                          labelText: 'Status',
+                          inputValue: '${widget.labourDetails.status}' ?? "",
                         ),
                         const Gap(10),
-                        DetailsTile(
-                          labelText: 'Purpose of Visit',
-                          inputValue: "222",
-                        ),
                       ],
                     ),
                   ),
                 ),
               ),
-              const Gap(10),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Container(
-                  width: double.infinity,
-                  height: 138,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFF5A57FF),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: Container(
-                    width: 80,
-                    height: 40,
-                    decoration: ShapeDecoration(
-                      image: const DecorationImage(
-                        image: AssetImage("assets/images/aadharCard.png"),
-                        fit: BoxFit.fill,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(
-                          width: 1,
-                          strokeAlign: BorderSide.strokeAlignOutside,
-                          color: Colors.white.withOpacity(0.5),
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                ),
-              )
             ],
           ),
         ),
@@ -161,10 +115,9 @@ class _LabourInfoScreenState extends State<LabourInfoScreen> {
 }
 
 class DetailsTile extends StatefulWidget {
-  String? labelText = '';
-  String? inputValue = '';
-  DetailsTile(
-      {super.key, required String labelText, required String inputValue});
+  String? labelText;
+  var inputValue;
+  DetailsTile({super.key, required this.labelText, required this.inputValue});
 
   @override
   State<DetailsTile> createState() => _DetailsTileState();
@@ -180,7 +133,7 @@ class _DetailsTileState extends State<DetailsTile> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              constraints: const BoxConstraints(maxWidth: 100),
+              constraints: const BoxConstraints(maxWidth: 200),
               child: Padding(
                 padding: const EdgeInsets.only(left: 8.0),
                 child: Text(
@@ -197,11 +150,15 @@ class _DetailsTileState extends State<DetailsTile> {
               width: 40,
             ),
             Container(
+                width: double.infinity,
                 height: 40.0,
                 decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(25.7))),
-                child: Text(widget.inputValue!)),
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Text(widget.inputValue!),
+                )),
           ],
         ));
   }

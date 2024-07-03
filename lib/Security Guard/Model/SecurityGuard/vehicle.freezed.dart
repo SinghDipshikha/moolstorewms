@@ -22,11 +22,14 @@ VehicleEntry _$VehicleEntryFromJson(Map<String, dynamic> json) {
 mixin _$VehicleEntry {
   int? get id => throw _privateConstructorUsedError;
   String? get driver_name => throw _privateConstructorUsedError;
+  dynamic get owner_name => throw _privateConstructorUsedError;
   String? get driver_phone => throw _privateConstructorUsedError;
   String? get vehicle_number => throw _privateConstructorUsedError;
   String? get vehicle_types => throw _privateConstructorUsedError;
-  dynamic get status => throw _privateConstructorUsedError;
+  int? get warehouse_id => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
   DateTime? get created_at => throw _privateConstructorUsedError;
+  String? get products => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,11 +46,14 @@ abstract class $VehicleEntryCopyWith<$Res> {
   $Res call(
       {int? id,
       String? driver_name,
+      dynamic owner_name,
       String? driver_phone,
       String? vehicle_number,
       String? vehicle_types,
-      dynamic status,
-      DateTime? created_at});
+      int? warehouse_id,
+      String? status,
+      DateTime? created_at,
+      String? products});
 }
 
 /// @nodoc
@@ -65,11 +71,14 @@ class _$VehicleEntryCopyWithImpl<$Res, $Val extends VehicleEntry>
   $Res call({
     Object? id = freezed,
     Object? driver_name = freezed,
+    Object? owner_name = freezed,
     Object? driver_phone = freezed,
     Object? vehicle_number = freezed,
     Object? vehicle_types = freezed,
+    Object? warehouse_id = freezed,
     Object? status = freezed,
     Object? created_at = freezed,
+    Object? products = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -80,6 +89,10 @@ class _$VehicleEntryCopyWithImpl<$Res, $Val extends VehicleEntry>
           ? _value.driver_name
           : driver_name // ignore: cast_nullable_to_non_nullable
               as String?,
+      owner_name: freezed == owner_name
+          ? _value.owner_name
+          : owner_name // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       driver_phone: freezed == driver_phone
           ? _value.driver_phone
           : driver_phone // ignore: cast_nullable_to_non_nullable
@@ -92,14 +105,22 @@ class _$VehicleEntryCopyWithImpl<$Res, $Val extends VehicleEntry>
           ? _value.vehicle_types
           : vehicle_types // ignore: cast_nullable_to_non_nullable
               as String?,
+      warehouse_id: freezed == warehouse_id
+          ? _value.warehouse_id
+          : warehouse_id // ignore: cast_nullable_to_non_nullable
+              as int?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       created_at: freezed == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      products: freezed == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -116,11 +137,14 @@ abstract class _$$GetAllVehicleEntryBySecurityGaurdImplCopyWith<$Res>
   $Res call(
       {int? id,
       String? driver_name,
+      dynamic owner_name,
       String? driver_phone,
       String? vehicle_number,
       String? vehicle_types,
-      dynamic status,
-      DateTime? created_at});
+      int? warehouse_id,
+      String? status,
+      DateTime? created_at,
+      String? products});
 }
 
 /// @nodoc
@@ -138,11 +162,14 @@ class __$$GetAllVehicleEntryBySecurityGaurdImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? driver_name = freezed,
+    Object? owner_name = freezed,
     Object? driver_phone = freezed,
     Object? vehicle_number = freezed,
     Object? vehicle_types = freezed,
+    Object? warehouse_id = freezed,
     Object? status = freezed,
     Object? created_at = freezed,
+    Object? products = freezed,
   }) {
     return _then(_$GetAllVehicleEntryBySecurityGaurdImpl(
       id: freezed == id
@@ -153,6 +180,10 @@ class __$$GetAllVehicleEntryBySecurityGaurdImplCopyWithImpl<$Res>
           ? _value.driver_name
           : driver_name // ignore: cast_nullable_to_non_nullable
               as String?,
+      owner_name: freezed == owner_name
+          ? _value.owner_name
+          : owner_name // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       driver_phone: freezed == driver_phone
           ? _value.driver_phone
           : driver_phone // ignore: cast_nullable_to_non_nullable
@@ -165,14 +196,22 @@ class __$$GetAllVehicleEntryBySecurityGaurdImplCopyWithImpl<$Res>
           ? _value.vehicle_types
           : vehicle_types // ignore: cast_nullable_to_non_nullable
               as String?,
+      warehouse_id: freezed == warehouse_id
+          ? _value.warehouse_id
+          : warehouse_id // ignore: cast_nullable_to_non_nullable
+              as int?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       created_at: freezed == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      products: freezed == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -184,11 +223,14 @@ class _$GetAllVehicleEntryBySecurityGaurdImpl
   const _$GetAllVehicleEntryBySecurityGaurdImpl(
       {this.id,
       this.driver_name,
+      this.owner_name,
       this.driver_phone,
       this.vehicle_number,
       this.vehicle_types,
+      this.warehouse_id,
       this.status,
-      this.created_at});
+      this.created_at,
+      this.products});
 
   factory _$GetAllVehicleEntryBySecurityGaurdImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -199,19 +241,25 @@ class _$GetAllVehicleEntryBySecurityGaurdImpl
   @override
   final String? driver_name;
   @override
+  final dynamic owner_name;
+  @override
   final String? driver_phone;
   @override
   final String? vehicle_number;
   @override
   final String? vehicle_types;
   @override
-  final dynamic status;
+  final int? warehouse_id;
+  @override
+  final String? status;
   @override
   final DateTime? created_at;
+  @override
+  final String? products;
 
   @override
   String toString() {
-    return 'VehicleEntry(id: $id, driver_name: $driver_name, driver_phone: $driver_phone, vehicle_number: $vehicle_number, vehicle_types: $vehicle_types, status: $status, created_at: $created_at)';
+    return 'VehicleEntry(id: $id, driver_name: $driver_name, owner_name: $owner_name, driver_phone: $driver_phone, vehicle_number: $vehicle_number, vehicle_types: $vehicle_types, warehouse_id: $warehouse_id, status: $status, created_at: $created_at, products: $products)';
   }
 
   @override
@@ -222,15 +270,21 @@ class _$GetAllVehicleEntryBySecurityGaurdImpl
             (identical(other.id, id) || other.id == id) &&
             (identical(other.driver_name, driver_name) ||
                 other.driver_name == driver_name) &&
+            const DeepCollectionEquality()
+                .equals(other.owner_name, owner_name) &&
             (identical(other.driver_phone, driver_phone) ||
                 other.driver_phone == driver_phone) &&
             (identical(other.vehicle_number, vehicle_number) ||
                 other.vehicle_number == vehicle_number) &&
             (identical(other.vehicle_types, vehicle_types) ||
                 other.vehicle_types == vehicle_types) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
+            (identical(other.warehouse_id, warehouse_id) ||
+                other.warehouse_id == warehouse_id) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.created_at, created_at) ||
-                other.created_at == created_at));
+                other.created_at == created_at) &&
+            (identical(other.products, products) ||
+                other.products == products));
   }
 
   @JsonKey(ignore: true)
@@ -239,11 +293,14 @@ class _$GetAllVehicleEntryBySecurityGaurdImpl
       runtimeType,
       id,
       driver_name,
+      const DeepCollectionEquality().hash(owner_name),
       driver_phone,
       vehicle_number,
       vehicle_types,
-      const DeepCollectionEquality().hash(status),
-      created_at);
+      warehouse_id,
+      status,
+      created_at,
+      products);
 
   @JsonKey(ignore: true)
   @override
@@ -265,11 +322,14 @@ abstract class _GetAllVehicleEntryBySecurityGaurd implements VehicleEntry {
   const factory _GetAllVehicleEntryBySecurityGaurd(
       {final int? id,
       final String? driver_name,
+      final dynamic owner_name,
       final String? driver_phone,
       final String? vehicle_number,
       final String? vehicle_types,
-      final dynamic status,
-      final DateTime? created_at}) = _$GetAllVehicleEntryBySecurityGaurdImpl;
+      final int? warehouse_id,
+      final String? status,
+      final DateTime? created_at,
+      final String? products}) = _$GetAllVehicleEntryBySecurityGaurdImpl;
 
   factory _GetAllVehicleEntryBySecurityGaurd.fromJson(
           Map<String, dynamic> json) =
@@ -280,15 +340,21 @@ abstract class _GetAllVehicleEntryBySecurityGaurd implements VehicleEntry {
   @override
   String? get driver_name;
   @override
+  dynamic get owner_name;
+  @override
   String? get driver_phone;
   @override
   String? get vehicle_number;
   @override
   String? get vehicle_types;
   @override
-  dynamic get status;
+  int? get warehouse_id;
+  @override
+  String? get status;
   @override
   DateTime? get created_at;
+  @override
+  String? get products;
   @override
   @JsonKey(ignore: true)
   _$$GetAllVehicleEntryBySecurityGaurdImplCopyWith<

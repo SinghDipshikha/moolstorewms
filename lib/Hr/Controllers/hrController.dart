@@ -47,7 +47,6 @@ class HRController extends GetxController {
       required this.user,
       this.isOwner = false});
   List<AddCareerDetail> carrierDetails = [const AddCareerDetail()];
-  var myHrID;
 
   ReferralDetailsRequest addReferralDetailRequestModel =
       const ReferralDetailsRequest();
@@ -67,19 +66,17 @@ class HRController extends GetxController {
   AddWarehouse? warehouse;
   List createShiftWarehouses = [];
   List<AddShiftDetails> getShiftData = [];
-  Map? selectedWarehouse;
-  int? currentUserId;
-  TotalCount? totalCount;
+
   ArrivalCount? arrivalCount;
   List<StaffEntry> employees = [];
   StaffEntry? currentlySeletedEmployee;
   List<Widget> navigationAccordingStatus = [];
-  bool isTotalEmployees = false;
+  bool dashboardCountStatus = false;
+  DashboardCount? dashboardCount;
   DateTime dashBoardStartDate =
       DateTime.now().subtract(const Duration(days: 1));
   DateTime dashBoardEndDate = DateTime.now();
-  hrDashboardCounts() {}
-  int? currentlySelectedWarehouseId;
+
   // List<Widget> employSumbitScreen = [
   //   const AddedStaffScreen(),
   //   const AddEmployeeBankDetails(),
@@ -89,8 +86,14 @@ class HRController extends GetxController {
   //   const AddEmployeeDocumentsDetails(),
   //   const AddEmployeeDocumentsDetails(),
   // ];
-  oninit() {
+
+  WarehousesAcess? currentlySelectedWarehouse;
+
+  @override
+  void onInit() {
     currentlySelectedWarehouse = user.warehouse![0];
+    // TODO: implement onInit
+    super.onInit();
   }
 
   selectEmployee(StaffEntry emp) {
@@ -141,11 +144,9 @@ class HRController extends GetxController {
     }
   }
 
-  WarehousesAcess? currentlySelectedWarehouse;
   // currentlySelectedWarehouse!["id"]  access warehopuse like this
   changeDashBoardWarehouse({required WarehousesAcess warehouse}) {
     currentlySelectedWarehouse = warehouse;
-    currentlySelectedWarehouseId = currentlySelectedWarehouse!.warehouse_id;
 
     update();
   }
@@ -158,12 +159,6 @@ class HRController extends GetxController {
     imageUploading = false;
     update();
     return x;
-  }
-
-  changeCreateShiftWarehouse({required Map warehouse}) {
-    selectedWarehouse = warehouse;
-
-    Logger().i(selectedWarehouse);
   }
 
   getAllStaffList() {
@@ -559,52 +554,19 @@ class HRController extends GetxController {
     Restart.restartApp();
   }
 
-  // Future<bool> getDashboardCounts({
-  //   int? shiftId,
-  //   String? startDate,
-  //   String? endDate,
-  //   int? warehouseId,
-  // }) async {
-  //   isLoading = true;
-  //   update();
-
-  //   final Map<String, dynamic> requestBody = {
-  //     "shift_id": shiftId,
-  //     "start_date": startDate,
-  //     "end_date": endDate,
-  //     "warehouse_id": selectedWarehouse
-  //   };
-
-  //   final response = await apiClient.postData("/hr/dashboard", requestBody);
-  //   if (response.data["message"] ==
-  //       "Employee attendance status fetched successfully") {
-  //     totalCount = response.data['result']['totalEmployeesData'];
-  //     arrivalCount = response.data['result']['arrival'];
-
-  //     Snacks.greenSnack("Employee attendance status fetched successfully");
-
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
-  getDashboardCount() async {
-    isTotalEmployees = true;
+  getAllDashboardCount() async {
+    dashboardCountStatus = true;
 
     await apiClient.postData("hr/dashboard", {
-      {
-        "shift_id": "",
-        "start_date": "",
-        "end_date": "",
-        "warehouse_id": currentlySelectedWarehouseId,
-      }
+      "shift_id": "",
+      "start_date": "",
+      "end_date": "",
+      "warehouse_id": currentlySelectedWarehouse!.warehouse_id,
     }).then((value) {
       if (value.data["message"] ==
           "Employee attendance status fetched successfully") {
-        totalCount = value.data['result']['totalEmployeesData']['totalEmp'];
-        arrivalCount = value.data['result']['arrival'];
-        isTotalEmployees = false;
+        dashboardCount = DashboardCount.fromJson(value.data["result"]);
+        dashboardCountStatus = false;
         update();
       }
     });

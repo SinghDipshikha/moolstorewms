@@ -31,10 +31,6 @@ class _HrDashboardState extends State<HrDashboard> {
   @override
   final String _currentTime = '';
 
-  oninit() {
-    Get.find<HRController>().hrDashboardCounts();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -379,7 +375,9 @@ class _HrDashboardState extends State<HrDashboard> {
         ),
       ),
       body: SingleChildScrollView(
-        child: GetBuilder<HRController>(builder: (hrController) {
+        child: GetBuilder<HRController>(initState: (d) {
+          Get.find<HRController>().getAllDashboardCount();
+        }, builder: (hrController) {
           return Center(
             child: Column(
               children: [
@@ -500,7 +498,7 @@ class _HrDashboardState extends State<HrDashboard> {
                     ),
                   ),
                   child: GetBuilder<HRController>(initState: (state) {
-                    Get.find<HRController>().getDashboardCount();
+                    Get.find<HRController>().getAllDashboardCount();
                   }, builder: (hrController) {
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -521,7 +519,6 @@ class _HrDashboardState extends State<HrDashboard> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       const Gap(10),
-                                    
                                       Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
@@ -537,14 +534,14 @@ class _HrDashboardState extends State<HrDashboard> {
                                               fontWeight: FontWeight.w500,
                                             ),
                                           ),
-                                          hrController.isTotalEmployees
+                                          hrController.dashboardCountStatus
                                               ? LoadingAnimationWidget
                                                   .staggeredDotsWave(
                                                   color: Colors.white,
                                                   size: 20,
                                                 )
                                               : Text(
-                                                  '${hrController.totalCount!.totalEmp}',
+                                                  '${hrController.dashboardCount!.totalEmp}',
                                                   style: const TextStyle(
                                                     color: Color(0xFF918FFA),
                                                     fontSize: 24,
