@@ -358,46 +358,7 @@ class SecurityGuardController extends GetxController {
     update();
   }
 
-  // addTicketBySecurityGuard({
-  //   required int? ticketGeneratedBy,
-  //   required String personName,
-  //   required String mobileNumber,
-  //   required String vehicleNumber,
-  //   required String vehicleType,
-  //   required String doesHaveVehicle,
-  //   required String doesHaveMaterial,
-  //   required String status,
-  //   required List<Map<String, String>> products,
-  // }) {
-  //   isloading = true;
-  //   update();
-  //   Get.find<ApiClient>().postData("securityGuard/verifyPoIndent", {
-  //     {
-  //       "ticket_generate_by": ticketGeneratedBy,
-  //       "visitor_name": personName,
-  //       "visitor_ph_number": mobileNumber,
-  //       "does_have_vehicle": doesHaveVehicle,
-  //       "vehicle_number": vehicleNumber,
-  //       "material_inside": doesHaveMaterial,
-  //       "products": products,
-  //       "in_out_status": status,
-  //     }
-  //   }).then((value) async {
-  //     if (value.data["message"] == "Information Added") {
-  //       value.data["result"][0]["id"];
-
-  //       Snacks.greenSnack("Ticket Added Successfully");
-  //       isloading = false;
-  //       // Get.offAll(
-  //       //   const TicketEntryReviewScreen(),
-  //       // );
-  //     } else if (value.data["message"] == "Failed to add") {
-  //       isloading = false;
-  //       update();
-  //       Snacks.redSnack("Failed to add");
-  //     }
-  //   });
-  // }
+ 
 
   void addTicketBySecurityGuard({
     required int ticketGeneratedBy,

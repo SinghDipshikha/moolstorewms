@@ -51,9 +51,6 @@ class _DipshikaAppState extends State<DipshikaApp> {
             dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch},
           ),
           theme: ThemeData(
-            // dialogTheme: const DialogTheme(
-            //     backgroundColor: Colors.white,
-            //     contentTextStyle: TextStyle(color: Colors.white)),
             scaffoldBackgroundColor: Colors.white,
             hintColor: const Color.fromARGB(255, 202, 204, 206),
             colorScheme: const ColorScheme(
@@ -83,8 +80,6 @@ class _DipshikaAppState extends State<DipshikaApp> {
               inversePrimary: Color(0xff69F0AE),
               surfaceTint: Colors.green,
             ),
-            // primaryColor: Colors.black,
-            // switchTheme: ,
             useMaterial3: true,
             actionIconTheme: ActionIconThemeData(
               backButtonIconBuilder: (context) => Image.asset(
@@ -99,8 +94,6 @@ class _DipshikaAppState extends State<DipshikaApp> {
                 iconTheme: IconThemeData()
                 // color: Colors.white,
                 ),
-            //  useMaterial3: true,
-            //    scaffoldBackgroundColor: const Color(0xFFF7F7F7),
           ),
         ),
       );

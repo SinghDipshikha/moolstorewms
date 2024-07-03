@@ -7,10 +7,13 @@ part 'vehicle.g.dart';
 class Vehicle with _$Vehicle {
   const factory Vehicle({
     int? id,
+    required int type_id,
+    required int verified_by_dock_manager,
     String? vehicle_number,
     String? vehicle_status,
     String? indent_number,
     String? movement,
+    String? type,
     int? isShow,
     DateTime? created_at,
     dynamic updated_at,
@@ -21,3 +24,5 @@ class Vehicle with _$Vehicle {
   factory Vehicle.fromJson(Map<String, Object?> json) =>
       _$VehicleFromJson(json);
 }
+
+//             "type_id": 8,

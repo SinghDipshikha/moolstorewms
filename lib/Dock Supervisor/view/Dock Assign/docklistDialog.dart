@@ -40,8 +40,8 @@ class _DocklistDialogState extends State<DocklistDialog> {
               dockNumber: selectedDock!.dock_id as int)
           .then((v) {
         if (v) {
-          Get.back(id: salesNavigationKey);
-      Get.find<DmsController>().getAllVehicleListByWarehouseId();
+          Get.back(id: dmsNavigationKey);
+          Get.find<DmsController>().getAllVehicleListByWarehouseId();
           Snacks.greenSnack(
               "Dock Assigned to vehicle ${widget.entry.vehicle_number}");
         }
@@ -195,7 +195,7 @@ class _DocklistDialogState extends State<DocklistDialog> {
                       Expanded(
                         child: InkWell(
                           onTap: () {
-                            Get.back(id: salesNavigationKey);
+                            Get.back(id: dmsNavigationKey);
                           },
                           child: Container(
                             height: 50,

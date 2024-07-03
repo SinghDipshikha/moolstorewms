@@ -47,7 +47,6 @@ class HRController extends GetxController {
       required this.user,
       this.isOwner = false});
   List<AddCareerDetail> carrierDetails = [const AddCareerDetail()];
-  var myHrID;
 
   ReferralDetailsRequest addReferralDetailRequestModel =
       const ReferralDetailsRequest();
@@ -67,8 +66,6 @@ class HRController extends GetxController {
   AddWarehouse? warehouse;
   List createShiftWarehouses = [];
   List<AddShiftDetails> getShiftData = [];
-  Map? selectedWarehouse;
-  int? currentUserId;
 
   ArrivalCount? arrivalCount;
   List<StaffEntry> employees = [];
@@ -79,8 +76,7 @@ class HRController extends GetxController {
   DateTime dashBoardStartDate =
       DateTime.now().subtract(const Duration(days: 1));
   DateTime dashBoardEndDate = DateTime.now();
-  hrDashboardCounts() {}
-  int? currentlySelectedWarehouseId;
+
   // List<Widget> employSumbitScreen = [
   //   const AddedStaffScreen(),
   //   const AddEmployeeBankDetails(),
@@ -90,11 +86,14 @@ class HRController extends GetxController {
   //   const AddEmployeeDocumentsDetails(),
   //   const AddEmployeeDocumentsDetails(),
   // ];
-  oninit() {
-    Logger().d(user.warehouse);
+
+  WarehousesAcess? currentlySelectedWarehouse;
+
+  @override
+  void onInit() {
     currentlySelectedWarehouse = user.warehouse![0];
-    Logger().d(currentlySelectedWarehouse);
-    getAllDashboardCount();
+    // TODO: implement onInit
+    super.onInit();
   }
 
   selectEmployee(StaffEntry emp) {
@@ -145,11 +144,9 @@ class HRController extends GetxController {
     }
   }
 
-  WarehousesAcess? currentlySelectedWarehouse;
   // currentlySelectedWarehouse!["id"]  access warehopuse like this
   changeDashBoardWarehouse({required WarehousesAcess warehouse}) {
     currentlySelectedWarehouse = warehouse;
-    currentlySelectedWarehouseId = currentlySelectedWarehouse!.warehouse_id;
 
     update();
   }
@@ -162,12 +159,6 @@ class HRController extends GetxController {
     imageUploading = false;
     update();
     return x;
-  }
-
-  changeCreateShiftWarehouse({required Map warehouse}) {
-    selectedWarehouse = warehouse;
-
-    Logger().i(selectedWarehouse);
   }
 
   getAllStaffList() {
@@ -566,9 +557,6 @@ class HRController extends GetxController {
   getAllDashboardCount() async {
     dashboardCountStatus = true;
 
-    Logger().f(currentlySelectedWarehouse);
-    Logger().i("shxushxushxsuhxsx");
-
     await apiClient.postData("hr/dashboard", {
       "shift_id": "",
       "start_date": "",
@@ -577,7 +565,7 @@ class HRController extends GetxController {
     }).then((value) {
       if (value.data["message"] ==
           "Employee attendance status fetched successfully") {
-        dashboardCount = DashboardCount.fromJson(value.data["result"][0]);
+        dashboardCount = DashboardCount.fromJson(value.data["result"]);
         dashboardCountStatus = false;
         update();
       }

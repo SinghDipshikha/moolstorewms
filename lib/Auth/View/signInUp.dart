@@ -34,7 +34,6 @@ class SignInUp extends StatelessWidget {
                 fontSize: 16,
                 fontFamily: 'SF Pro Display',
                 fontWeight: FontWeight.w600,
-   
               ),
             ),
             const Text(
@@ -45,7 +44,6 @@ class SignInUp extends StatelessWidget {
                 fontSize: 12,
                 fontFamily: 'SF Pro Display',
                 fontWeight: FontWeight.w400,
- 
               ),
             ),
             Image.asset(

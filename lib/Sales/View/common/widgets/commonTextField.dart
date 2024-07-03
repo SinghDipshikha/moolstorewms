@@ -19,6 +19,7 @@ class CommonTextField extends StatelessWidget {
   double? borderRadius;
   int? maxLines;
   Color? containerColor;
+  String? initialValue;
 
   CommonTextField({
     this.containerColor,
@@ -38,6 +39,7 @@ class CommonTextField extends StatelessWidget {
     this.keyboardType,
     this.padding,
     this.validator,
+    this.initialValue
   });
 
   @override
@@ -66,6 +68,7 @@ class CommonTextField extends StatelessWidget {
           8,
         ),
         TextFormField(
+          initialValue: initialValue,
           textAlignVertical: TextAlignVertical.center,
           maxLength: maxLength,
           maxLines: maxLines,

@@ -31,10 +31,6 @@ class _HrDashboardState extends State<HrDashboard> {
   @override
   final String _currentTime = '';
 
-  oninit() {
-    Get.find<HRController>().hrDashboardCounts();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,13 +1,34 @@
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/Model/Loadingunloadking/indentDetails.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/Model/Loadingunloadking/unloadingMaterial.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/dock.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
+import 'package:moolwmsstore/Owner/Model/Chamber/chamber.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Dmsrepo {
   ApiClient apiClient;
   final SharedPreferences sharedPreferences;
   Dmsrepo({required this.sharedPreferences, required this.apiClient});
+
+
+
+  Future<List<Chamber>?> getAllChamberByWareHouseId(int warehoueId) async {
+    var value = await apiClient.postData("owner/getAllChamberByWareHouseId", {
+      "warehouse_id": warehoueId,
+      "temp_min_range": "",
+      "temp_max_range": ""
+    });
+    if (value.data["message"] == "Chamber Detail for this warehouse") {
+      List result = value.data["result"];
+      return result.map((e) => Chamber.fromJson(e)).toList();
+    } else {
+      return null;
+    }
+  }
+
+
 
   Future<List<Dock>?> getUnassignedDocks() async {
     var res = await apiClient.getData(
@@ -45,6 +66,50 @@ class Dmsrepo {
       return null;
     }
   }
+
+  Future<IndentDetails?> getindentDetails({required String indentId}) async {
+    var res = await apiClient.getData("dock/getIndentDetails/$indentId");
+
+    if ((res.data["message"].toString())
+        .contains("Indent details found Successfully")) {
+      return IndentDetails.fromJson(res.data["result"]);
+    } else {
+      return null;
+    }
+  }
+
+  Future<bool> unloadingMaterial(UnloadingMaterial unloadingMaterial) async {
+    var res = await apiClient.postData(
+        "dock/unloadingMaterial", unloadingMaterial.toJson());
+    if (res.data["message"] == "Material Added") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  /*
+  {
+        "indent_number": "IND-SG047",
+        "warehouse_id": 2,
+        "in_out_status": "IN",
+        "product_details": [
+            {
+                "product_id": 59,
+                "product_name": "peas",
+                "qty": 5,
+                "unit": 10
+            },
+            {
+                "product_id": 60,
+                "product_name": "tomato ",
+                "qty": 10,
+                "unit": 20
+            }
+        ]
+    }
+  
+   */
 
 // Future<bool> addContactDetails(
 //       {var hrID,
