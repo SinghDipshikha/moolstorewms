@@ -9,7 +9,7 @@ class DashboardCount with _$DashboardCount {
     int? totalEmp,
     int? presentEmp,
     int? absentEmp,
-    List<ArrivalCount>? arrivals,
+    Map<String, Object?>? arrivals,
   }) = _DashboardCount;
 
   factory DashboardCount.fromJson(Map<String, Object?> json) =>

@@ -379,7 +379,9 @@ class _HrDashboardState extends State<HrDashboard> {
         ),
       ),
       body: SingleChildScrollView(
-        child: GetBuilder<HRController>(builder: (hrController) {
+        child: GetBuilder<HRController>(initState: (d) {
+          Get.find<HRController>().getAllDashboardCount();
+        }, builder: (hrController) {
           return Center(
             child: Column(
               children: [
@@ -500,7 +502,7 @@ class _HrDashboardState extends State<HrDashboard> {
                     ),
                   ),
                   child: GetBuilder<HRController>(initState: (state) {
-                    Get.find<HRController>().getDashboardCount();
+                    Get.find<HRController>().getAllDashboardCount();
                   }, builder: (hrController) {
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -536,7 +538,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                               fontWeight: FontWeight.w500,
                                             ),
                                           ),
-                                          hrController.dashboardCountStaus
+                                          hrController.dashboardCountStatus
                                               ? LoadingAnimationWidget
                                                   .staggeredDotsWave(
                                                   color: Colors.white,

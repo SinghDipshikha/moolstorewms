@@ -74,7 +74,7 @@ class HRController extends GetxController {
   List<StaffEntry> employees = [];
   StaffEntry? currentlySeletedEmployee;
   List<Widget> navigationAccordingStatus = [];
-  bool dashboardCountStaus = false;
+  bool dashboardCountStatus = false;
   DashboardCount? dashboardCount;
   DateTime dashBoardStartDate =
       DateTime.now().subtract(const Duration(days: 1));
@@ -91,7 +91,10 @@ class HRController extends GetxController {
   //   const AddEmployeeDocumentsDetails(),
   // ];
   oninit() {
+    Logger().d(user.warehouse);
     currentlySelectedWarehouse = user.warehouse![0];
+    Logger().d(currentlySelectedWarehouse);
+    getAllDashboardCount();
   }
 
   selectEmployee(StaffEntry emp) {
@@ -560,20 +563,22 @@ class HRController extends GetxController {
     Restart.restartApp();
   }
 
-  getDashboardCount() async {
-    dashboardCountStaus = true;
+  getAllDashboardCount() async {
+    dashboardCountStatus = true;
+
+    Logger().f(currentlySelectedWarehouse);
+    Logger().i("shxushxushxsuhxsx");
 
     await apiClient.postData("hr/dashboard", {
-      {
-        "shift_id": "",
-        "start_date": "",
-        "end_date": "",
-        "warehouse_id": currentlySelectedWarehouse!.warehouse_id,
-      }
+      "shift_id": "",
+      "start_date": "",
+      "end_date": "",
+      "warehouse_id": currentlySelectedWarehouse!.warehouse_id,
     }).then((value) {
       if (value.data["message"] ==
           "Employee attendance status fetched successfully") {
-        dashboardCount = value.data['result'];
+        dashboardCount = DashboardCount.fromJson(value.data["result"][0]);
+        dashboardCountStatus = false;
         update();
       }
     });

@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Auth/widgets/commonTextField.dart';
+import 'package:moolwmsstore/Hr/constants/validations.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/commonButtons.dart';
 import 'package:moolwmsstore/View/common/tagContainer.dart';
@@ -161,10 +162,16 @@ class _CreateIndentScreenState extends State<CreateIndentScreen> {
                         textCapitalization: TextCapitalization.words,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'Please enter Product name.';
+                            return 'Please enter your contact number.';
                           }
+
+                          if (!GlobalValidator.isValidMobileNumber(value)) {
+                            return 'Please enter a valid contact number.';
+                          }
+
                           return null;
                         },
+                        onChanged: (value) {},
                         labelText: 'Person Name',
                         hintText: 'Enter your person’s name',
                       ),

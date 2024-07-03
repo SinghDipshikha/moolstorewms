@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/labour.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Labour/viewInfo.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/dateRangeButtton.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 //@RoutePage()
 class LabourListScreen extends StatefulWidget {
@@ -319,13 +321,29 @@ class _LabourListScreenState extends State<LabourListScreen> {
                               if (dataList[index]["title"] == "icon2") {
                                 return Expanded(
                                   flex: dataList[index]["flex"],
-                                  child: const SizedBox(
-                                    height: 10,
-                                    width: 10,
-                                    child: Icon(
-                                      Icons.more_vert,
-                                      color: Colors.black,
-                                      size: 20,
+                                  child: InkWell(
+                                    onTap: () {
+                                      print(entry);
+                                      Get.to(
+                                          LabourInfoScreen(
+                                            labourDetails: entry,
+                                          ),
+                                          id: securityGuardNavigation);
+                                    },
+                                    child: Container(
+                                      height: 15,
+                                      width: 15,
+                                      decoration: ShapeDecoration(
+                                        color: const Color(0xFFFAF9FF),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        image: const DecorationImage(
+                                          image: AssetImage(
+                                              "assets/icons/eyeNew.png"),
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 );
