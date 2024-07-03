@@ -153,9 +153,13 @@ class _DetailsTileState extends State<DetailsTile> {
             Container(
                 width: double.infinity,
                 height: 40.0,
-                decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(25.7))),
+                decoration: ShapeDecoration(
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(width: 1, color: Color(0x195A57FF)),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Text(widget.inputValue!),
