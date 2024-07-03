@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
-
 import 'package:moolwmsstore/Auth/View/Blocked.dart';
 import 'package:moolwmsstore/Auth/View/OtpScreen.dart';
 import 'package:moolwmsstore/Auth/View/organisationCode.dart';
@@ -37,9 +36,8 @@ import 'package:moolwmsstore/utils/globals.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthController extends GetxController {
-
   final SharedPreferences sharedPreferences;
-  AuthController({ required this.sharedPreferences});
+  AuthController({required this.sharedPreferences});
 
   late Box box;
   User? user;
@@ -62,11 +60,8 @@ class AuthController extends GetxController {
   String? number;
   bool loading = false;
 
-  afterSpalsh() async {
-    await Get.find<ApiClient>()
-        .getData("user/userInfo/${user!.id}")
-        .whenComplete(() {})
-        .then((v) {
+  afterSpalsh() {
+    Get.find<ApiClient>().getData("user/userInfo/${user!.id}").then((v) {
       if (v.data["status"] == false) {
         box.clear();
         sharedPreferences.clear();
@@ -358,7 +353,6 @@ class AuthController extends GetxController {
         loading = false;
         update();
       }
-
     });
   }
 

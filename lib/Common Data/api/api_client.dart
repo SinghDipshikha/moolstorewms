@@ -75,8 +75,8 @@ class ApiClient extends g.GetxService {
 
   void updateHeader() {
     _mainHeaders = {
-      'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': '${sharedPreferences.getString(AppConstants.token)}',
+      // 'Content-Type': 'application/json; charset=UTF-8',
+      // 'Authorization': '${sharedPreferences.getString(AppConstants.token)}',
       'org-code': '${sharedPreferences.getString(AppConstants.orgCode)}'
     };
   }
@@ -90,12 +90,12 @@ class ApiClient extends g.GetxService {
                 headers: headers ?? _mainHeaders,
               ))
           .timeout(Duration(seconds: timeoutInSeconds));
-      Response response = handleResponse(response0);
-
-      return response;
+      return handleResponse(response0);
     } catch (e) {
+
       Snacks.redSnack("Something went wrong, Check Internet connection");
       return Response(
+          data: {"message": "error hardcoded by jass"},
           statusCode: 1,
           statusMessage: noInternetMessage,
           requestOptions: RequestOptions());
@@ -223,6 +223,7 @@ class ApiClient extends g.GetxService {
   }
 
   Response handleResponse(Response response) {
+
     dynamic body;
     Response response0 = Response(
         data: body ?? response.data,
@@ -254,8 +255,6 @@ class ApiClient extends g.GetxService {
     }
     return response0;
   }
-
-  final Logger _logger = Logger();
 
   Future<void> uploadFile() async {
     var file = await FilePicker.platform.pickFiles();

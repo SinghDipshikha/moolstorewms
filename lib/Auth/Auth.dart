@@ -11,7 +11,6 @@ class Auth extends StatelessWidget {
   Widget build(BuildContext context) {
     return context.isPhone
         ? GetNavigator(
-          
             key: Get.nestedKey(authNavigationKey),
             pages: const [
               MaterialPage(
@@ -19,7 +18,6 @@ class Auth extends StatelessWidget {
                 child: Splash(),
               )
             ],
-            // onGenerateInitialRoutes: (navigator, initialRoute) =>,
 
             onPopPage: (route, result) => route.didPop(result),
             // key: const Key("1"),
@@ -37,7 +35,6 @@ class Auth extends StatelessWidget {
                     child: Splash(),
                   )
                 ],
-                // onGenerateInitialRoutes: (navigator, initialRoute) =>,
 
                 onPopPage: (route, result) => route.didPop(result),
                 // key: const Key("1"),

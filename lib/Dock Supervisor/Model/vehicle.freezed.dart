@@ -21,10 +21,13 @@ Vehicle _$VehicleFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Vehicle {
   int? get id => throw _privateConstructorUsedError;
+  int get type_id => throw _privateConstructorUsedError;
+  int get verified_by_dock_manager => throw _privateConstructorUsedError;
   String? get vehicle_number => throw _privateConstructorUsedError;
   String? get vehicle_status => throw _privateConstructorUsedError;
   String? get indent_number => throw _privateConstructorUsedError;
   String? get movement => throw _privateConstructorUsedError;
+  String? get type => throw _privateConstructorUsedError;
   int? get isShow => throw _privateConstructorUsedError;
   DateTime? get created_at => throw _privateConstructorUsedError;
   dynamic get updated_at => throw _privateConstructorUsedError;
@@ -43,10 +46,13 @@ abstract class $VehicleCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
+      int type_id,
+      int verified_by_dock_manager,
       String? vehicle_number,
       String? vehicle_status,
       String? indent_number,
       String? movement,
+      String? type,
       int? isShow,
       DateTime? created_at,
       dynamic updated_at,
@@ -68,10 +74,13 @@ class _$VehicleCopyWithImpl<$Res, $Val extends Vehicle>
   @override
   $Res call({
     Object? id = freezed,
+    Object? type_id = null,
+    Object? verified_by_dock_manager = null,
     Object? vehicle_number = freezed,
     Object? vehicle_status = freezed,
     Object? indent_number = freezed,
     Object? movement = freezed,
+    Object? type = freezed,
     Object? isShow = freezed,
     Object? created_at = freezed,
     Object? updated_at = freezed,
@@ -83,6 +92,14 @@ class _$VehicleCopyWithImpl<$Res, $Val extends Vehicle>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
+      type_id: null == type_id
+          ? _value.type_id
+          : type_id // ignore: cast_nullable_to_non_nullable
+              as int,
+      verified_by_dock_manager: null == verified_by_dock_manager
+          ? _value.verified_by_dock_manager
+          : verified_by_dock_manager // ignore: cast_nullable_to_non_nullable
+              as int,
       vehicle_number: freezed == vehicle_number
           ? _value.vehicle_number
           : vehicle_number // ignore: cast_nullable_to_non_nullable
@@ -98,6 +115,10 @@ class _$VehicleCopyWithImpl<$Res, $Val extends Vehicle>
       movement: freezed == movement
           ? _value.movement
           : movement // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String?,
       isShow: freezed == isShow
           ? _value.isShow
@@ -132,10 +153,13 @@ abstract class _$$VehicleImplCopyWith<$Res> implements $VehicleCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
+      int type_id,
+      int verified_by_dock_manager,
       String? vehicle_number,
       String? vehicle_status,
       String? indent_number,
       String? movement,
+      String? type,
       int? isShow,
       DateTime? created_at,
       dynamic updated_at,
@@ -155,10 +179,13 @@ class __$$VehicleImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? type_id = null,
+    Object? verified_by_dock_manager = null,
     Object? vehicle_number = freezed,
     Object? vehicle_status = freezed,
     Object? indent_number = freezed,
     Object? movement = freezed,
+    Object? type = freezed,
     Object? isShow = freezed,
     Object? created_at = freezed,
     Object? updated_at = freezed,
@@ -170,6 +197,14 @@ class __$$VehicleImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
+      type_id: null == type_id
+          ? _value.type_id
+          : type_id // ignore: cast_nullable_to_non_nullable
+              as int,
+      verified_by_dock_manager: null == verified_by_dock_manager
+          ? _value.verified_by_dock_manager
+          : verified_by_dock_manager // ignore: cast_nullable_to_non_nullable
+              as int,
       vehicle_number: freezed == vehicle_number
           ? _value.vehicle_number
           : vehicle_number // ignore: cast_nullable_to_non_nullable
@@ -185,6 +220,10 @@ class __$$VehicleImplCopyWithImpl<$Res>
       movement: freezed == movement
           ? _value.movement
           : movement // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String?,
       isShow: freezed == isShow
           ? _value.isShow
@@ -215,10 +254,13 @@ class __$$VehicleImplCopyWithImpl<$Res>
 class _$VehicleImpl implements _Vehicle {
   const _$VehicleImpl(
       {this.id,
+      required this.type_id,
+      required this.verified_by_dock_manager,
       this.vehicle_number,
       this.vehicle_status,
       this.indent_number,
       this.movement,
+      this.type,
       this.isShow,
       this.created_at,
       this.updated_at,
@@ -231,6 +273,10 @@ class _$VehicleImpl implements _Vehicle {
   @override
   final int? id;
   @override
+  final int type_id;
+  @override
+  final int verified_by_dock_manager;
+  @override
   final String? vehicle_number;
   @override
   final String? vehicle_status;
@@ -238,6 +284,8 @@ class _$VehicleImpl implements _Vehicle {
   final String? indent_number;
   @override
   final String? movement;
+  @override
+  final String? type;
   @override
   final int? isShow;
   @override
@@ -251,7 +299,7 @@ class _$VehicleImpl implements _Vehicle {
 
   @override
   String toString() {
-    return 'Vehicle(id: $id, vehicle_number: $vehicle_number, vehicle_status: $vehicle_status, indent_number: $indent_number, movement: $movement, isShow: $isShow, created_at: $created_at, updated_at: $updated_at, dock_id: $dock_id, dock_name: $dock_name)';
+    return 'Vehicle(id: $id, type_id: $type_id, verified_by_dock_manager: $verified_by_dock_manager, vehicle_number: $vehicle_number, vehicle_status: $vehicle_status, indent_number: $indent_number, movement: $movement, type: $type, isShow: $isShow, created_at: $created_at, updated_at: $updated_at, dock_id: $dock_id, dock_name: $dock_name)';
   }
 
   @override
@@ -260,6 +308,10 @@ class _$VehicleImpl implements _Vehicle {
         (other.runtimeType == runtimeType &&
             other is _$VehicleImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.type_id, type_id) || other.type_id == type_id) &&
+            (identical(
+                    other.verified_by_dock_manager, verified_by_dock_manager) ||
+                other.verified_by_dock_manager == verified_by_dock_manager) &&
             (identical(other.vehicle_number, vehicle_number) ||
                 other.vehicle_number == vehicle_number) &&
             (identical(other.vehicle_status, vehicle_status) ||
@@ -268,6 +320,7 @@ class _$VehicleImpl implements _Vehicle {
                 other.indent_number == indent_number) &&
             (identical(other.movement, movement) ||
                 other.movement == movement) &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.isShow, isShow) || other.isShow == isShow) &&
             (identical(other.created_at, created_at) ||
                 other.created_at == created_at) &&
@@ -282,10 +335,13 @@ class _$VehicleImpl implements _Vehicle {
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      type_id,
+      verified_by_dock_manager,
       vehicle_number,
       vehicle_status,
       indent_number,
       movement,
+      type,
       isShow,
       created_at,
       const DeepCollectionEquality().hash(updated_at),
@@ -309,10 +365,13 @@ class _$VehicleImpl implements _Vehicle {
 abstract class _Vehicle implements Vehicle {
   const factory _Vehicle(
       {final int? id,
+      required final int type_id,
+      required final int verified_by_dock_manager,
       final String? vehicle_number,
       final String? vehicle_status,
       final String? indent_number,
       final String? movement,
+      final String? type,
       final int? isShow,
       final DateTime? created_at,
       final dynamic updated_at,
@@ -324,6 +383,10 @@ abstract class _Vehicle implements Vehicle {
   @override
   int? get id;
   @override
+  int get type_id;
+  @override
+  int get verified_by_dock_manager;
+  @override
   String? get vehicle_number;
   @override
   String? get vehicle_status;
@@ -331,6 +394,8 @@ abstract class _Vehicle implements Vehicle {
   String? get indent_number;
   @override
   String? get movement;
+  @override
+  String? get type;
   @override
   int? get isShow;
   @override

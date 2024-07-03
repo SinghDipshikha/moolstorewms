@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:moolwmsstore/Auth/Controllers/authController.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
-import 'package:moolwmsstore/Auth/Repository/authRepo.dart';
+
 import 'package:moolwmsstore/Common%20Data/Model/LanaguageModel.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Controller/language_controller.dart';

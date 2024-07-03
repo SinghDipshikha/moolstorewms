@@ -6,6 +6,7 @@ import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/vehicle.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsRepo.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
+import 'package:moolwmsstore/Owner/Model/Chamber/chamber.dart';
 import 'package:moolwmsstore/Sales/Sales.dart';
 import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
@@ -32,6 +33,19 @@ class DmsController extends GetxController {
     super.onInit();
   }
 
+  List<Chamber>? chambers;
+  Chamber? selectedChamber;
+
+  getChambers() async {
+    dmsRepo
+        .getAllChamberByWareHouseId(
+            currentlySelectedWarehouse!.warehouse_id as int)
+        .then((v) {
+      chambers = v;
+      update();
+    });
+  }
+
   dmsLogout() async {
     var box = await Hive.openBox('authbox');
     Get.find<DmsController>().dispose();
@@ -56,6 +70,7 @@ class DmsController extends GetxController {
   // currentlySelectedWarehouse!["id"]  access warehopuse like this
   changeDashBoardWarehouse({required WarehousesAcess warehouse}) {
     currentlySelectedWarehouse = warehouse;
+    getChambers();
 
     update();
   }

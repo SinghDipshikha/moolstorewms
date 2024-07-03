@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/vehicle.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/view/Chamber%20Assign/assignChamber.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/view/Dock%20Assign/docklistDialog.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/view/Unloading%20material/unloadIngMaterial.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
@@ -223,8 +224,9 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                                                       DocklistDialog(
                                                         entry: entry,
                                                       ),
-                                                      navigatorKey: Get.nestedKey(
-                                                          salesNavigationKey),
+                                                      navigatorKey:
+                                                          Get.nestedKey(
+                                                              dmsNavigationKey),
                                                       barrierColor:
                                                           Colors.transparent,
                                                       barrierDismissible:
@@ -254,8 +256,19 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                                               )
                                             : InkWell(
                                                 onTap: () {
-                                                  Get.to(
-                                                      const UnloadIngMaterial());
+                                                  if (entry
+                                                          .verified_by_dock_manager ==
+                                                      1) {
+                                                    Get.to(
+                                                         AssignChamber(entry: entry,),
+                                                        id: dmsNavigationKey);
+                                                  } else {
+                                                    Get.to(
+                                                        UnloadIngMaterial(
+                                                          entry: entry,
+                                                        ),
+                                                        id: dmsNavigationKey);
+                                                  }
                                                 },
                                                 child: Container(
                                                   alignment: Alignment.center,
