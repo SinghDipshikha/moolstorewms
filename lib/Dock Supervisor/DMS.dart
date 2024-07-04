@@ -12,9 +12,9 @@ class DMS extends StatelessWidget {
     return context.isPhone
         ? GetNavigator(
             key: Get.nestedKey(dmsNavigationKey),
-            pages: const [
+            pages: [
               MaterialPage(
-                key: ValueKey('DMSDashBoard'),
+                key: const ValueKey('DMSDashBoard'),
                 child: DMSDashboard(),
               )
             ],
@@ -34,9 +34,9 @@ class DMS extends StatelessWidget {
                   constraints: const BoxConstraints(maxWidth: 800),
                   child: GetNavigator(
                     key: Get.nestedKey(dmsNavigationKey),
-                    pages: const [
+                    pages: [
                       MaterialPage(
-                        key: ValueKey('DMSDashBoard'),
+                        key: const ValueKey('DMSDashBoard'),
                         child: DMSDashboard(),
                       )
                     ],

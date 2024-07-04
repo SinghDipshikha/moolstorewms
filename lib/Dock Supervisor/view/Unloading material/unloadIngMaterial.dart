@@ -42,6 +42,7 @@ class _UnloadIngMaterialState extends State<UnloadIngMaterial> {
         .then((v) {
       setState(() {
         unloadingMaterial = unloadingMaterial.copyWith(
+            indent_number: indentDetails!.indent_number,
             dock_id: widget.entry.dock_id,
             type: widget.entry.type,
             type_id: widget.entry.type_id,
