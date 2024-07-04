@@ -6,6 +6,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/View/Employee%20Details/updateEmployeeDetails.dart';
 import 'package:moolwmsstore/Hr/View/Shfits/createShift.dart';
+import 'package:moolwmsstore/Hr/View/Staff/staffAttendance.dart';
 import 'package:moolwmsstore/Hr/View/Staff/staffList.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonDropDown.dart';
@@ -466,10 +467,10 @@ class _HrDashboardState extends State<HrDashboard> {
                         Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: CommonButton(
-                            // onTap: () {
-                            //   Get.to(const ViewAttendanceList(),
-                            //       id: hrNavigationKey);
-                            // },
+                            onTap: () {
+                              Get.to(const StaffAttendanceListScreen(),
+                                  id: hrNavigationKey);
+                            },
                             color: const Color(0xFF5A57FF),
                             textColor: Colors.white,
                             title: 'View Attendance',
@@ -541,7 +542,8 @@ class _HrDashboardState extends State<HrDashboard> {
                                                   size: 20,
                                                 )
                                               : Text(
-                                                  '${hrController.dashboardCount!.totalEmp}',
+                                                  '${hrController.dashboardCount!.totalEmp}' ??
+                                                      '0',
                                                   style: const TextStyle(
                                                     color: Color(0xFF918FFA),
                                                     fontSize: 24,
@@ -568,13 +570,13 @@ class _HrDashboardState extends State<HrDashboard> {
                                               BorderRadius.circular(5),
                                         ),
                                       ),
-                                      child: const Row(
+                                      child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceAround,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                          Text(
+                                          const Text(
                                             'Present\nWorkforce',
                                             style: TextStyle(
                                               color: Colors.white,
@@ -583,15 +585,23 @@ class _HrDashboardState extends State<HrDashboard> {
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                          Text(
-                                            '--',
-                                            style: TextStyle(
-                                              color: Color(0xFF918FFA),
-                                              fontSize: 24,
-                                              fontFamily: 'SF Pro Display',
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
+                                          hrController.dashboardCountStatus
+                                              ? LoadingAnimationWidget
+                                                  .staggeredDotsWave(
+                                                  color: Colors.white,
+                                                  size: 20,
+                                                )
+                                              : Text(
+                                                  '${hrController.dashboardCount!.presentEmp}' ??
+                                                      '0',
+                                                  style: const TextStyle(
+                                                    color: Color(0xFF918FFA),
+                                                    fontSize: 24,
+                                                    fontFamily:
+                                                        'SF Pro Display',
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
                                         ],
                                       ),
                                     ),
@@ -610,13 +620,13 @@ class _HrDashboardState extends State<HrDashboard> {
                                               BorderRadius.circular(5),
                                         ),
                                       ),
-                                      child: const Row(
+                                      child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceAround,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                          Text(
+                                          const Text(
                                             'Absent\nWorkforce',
                                             style: TextStyle(
                                               color: Colors.white,
@@ -625,15 +635,23 @@ class _HrDashboardState extends State<HrDashboard> {
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                          Text(
-                                            '--',
-                                            style: TextStyle(
-                                              color: Color(0xFF918FFA),
-                                              fontSize: 24,
-                                              fontFamily: 'SF Pro Display',
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
+                                          hrController.dashboardCountStatus
+                                              ? LoadingAnimationWidget
+                                                  .staggeredDotsWave(
+                                                  color: Colors.white,
+                                                  size: 20,
+                                                )
+                                              : Text(
+                                                  '${hrController.dashboardCount!.absentEmp}' ??
+                                                      '0',
+                                                  style: const TextStyle(
+                                                    color: Color(0xFF918FFA),
+                                                    fontSize: 24,
+                                                    fontFamily:
+                                                        'SF Pro Display',
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
                                         ],
                                       ),
                                     ),
@@ -759,13 +777,13 @@ class _HrDashboardState extends State<HrDashboard> {
                                         borderRadius: BorderRadius.circular(5),
                                       ),
                                     ),
-                                    child: const Row(
+                                    child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        Text(
+                                        const Text(
                                           'On Time',
                                           style: TextStyle(
                                             color: Colors.white,
@@ -774,15 +792,24 @@ class _HrDashboardState extends State<HrDashboard> {
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                        Text(
-                                          '--',
-                                          style: TextStyle(
-                                            color: Color(0xFF918FFA),
-                                            fontSize: 24,
-                                            fontFamily: 'SF Pro Display',
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
+                                        hrController.dashboardCountStatus
+                                            ? LoadingAnimationWidget
+                                                .staggeredDotsWave(
+                                                color: Colors.white,
+                                                size: 20,
+                                              )
+                                            : Text(
+                                                hrController
+                                                        .arrivalCount.isEmpty
+                                                    ? '0'
+                                                    : '${hrController.arrivalCount[1].arvlStatusCount}',
+                                                style: const TextStyle(
+                                                  color: Color(0xFF918FFA),
+                                                  fontSize: 24,
+                                                  fontFamily: 'SF Pro Display',
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
                                       ],
                                     ),
                                   ),
@@ -800,13 +827,13 @@ class _HrDashboardState extends State<HrDashboard> {
                                         borderRadius: BorderRadius.circular(5),
                                       ),
                                     ),
-                                    child: const Row(
+                                    child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        Text(
+                                        const Text(
                                           'Late',
                                           style: TextStyle(
                                             color: Colors.white,
@@ -815,15 +842,24 @@ class _HrDashboardState extends State<HrDashboard> {
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                        Text(
-                                          '--',
-                                          style: TextStyle(
-                                            color: Color(0xFF918FFA),
-                                            fontSize: 24,
-                                            fontFamily: 'SF Pro Display',
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
+                                        hrController.dashboardCountStatus
+                                            ? LoadingAnimationWidget
+                                                .staggeredDotsWave(
+                                                color: Colors.white,
+                                                size: 20,
+                                              )
+                                            : Text(
+                                                hrController
+                                                        .arrivalCount.isEmpty
+                                                    ? '0'
+                                                    : '${hrController.arrivalCount[0].arvlStatusCount}',
+                                                style: const TextStyle(
+                                                  color: Color(0xFF918FFA),
+                                                  fontSize: 24,
+                                                  fontFamily: 'SF Pro Display',
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
                                       ],
                                     ),
                                   ),
@@ -848,222 +884,222 @@ class _HrDashboardState extends State<HrDashboard> {
                   ),
                 ),
                 const Gap(20),
-                Container(
-                  width: 370,
-                  height: 201,
-                  decoration: ShapeDecoration(
-                    gradient: LinearGradient(
-                      begin: const Alignment(1.00, 0.00),
-                      end: const Alignment(-1, 0),
-                      colors: [
-                        Colors.white.withOpacity(0.10000000149011612),
-                        Colors.white.withOpacity(0.10000000149011612)
-                      ],
-                    ),
-                    shape: RoundedRectangleBorder(
-                      side: const BorderSide(width: 1, color: Colors.white),
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Gap(10),
-                                const Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Gap(20),
-                                    // Container(
-                                    //   width: 60,
-                                    //   height: 60,
-                                    //   decoration: const BoxDecoration(
-                                    //     image: DecorationImage(
-                                    //       image: AssetImage(
-                                    //           "assets/images/shifts.png"),
-                                    //       fit: BoxFit.fill,
-                                    //     ),
-                                    //   ),
-                                    // ),
-                                    // const Gap(5),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Shifts',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 18,
-                                            fontFamily: 'SF Pro Display',
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        // Text(
-                                        //   '--',
-                                        //   style: TextStyle(
-                                        //     color: Colors.white,
-                                        //     fontSize: 24,
-                                        //     fontFamily: 'SF Pro Display',
-                                        //     fontWeight: FontWeight.w500,
-                                        //   ),
-                                        // ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                const Gap(5),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: Container(
-                                    width: 120,
-                                    decoration: ShapeDecoration(
-                                      shape: RoundedRectangleBorder(
-                                        side: const BorderSide(
-                                            width: 1, color: Colors.white),
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                    ),
-                                    child: const Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'On-Site',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 12,
-                                            fontFamily: 'SF Pro Display',
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        Text(
-                                          '--',
-                                          style: TextStyle(
-                                            color: Color(0xFF918FFA),
-                                            fontSize: 24,
-                                            fontFamily: 'SF Pro Display',
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                const Gap(5),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: Container(
-                                    width: 120,
-                                    decoration: ShapeDecoration(
-                                      shape: RoundedRectangleBorder(
-                                        side: const BorderSide(
-                                            width: 1, color: Colors.white),
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                    ),
-                                    child: const Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Hybrid',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 12,
-                                            fontFamily: 'SF Pro Display',
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        Text(
-                                          '--',
-                                          style: TextStyle(
-                                            color: Color(0xFF918FFA),
-                                            fontSize: 24,
-                                            fontFamily: 'SF Pro Display',
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                const Gap(5),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: Container(
-                                    width: 120,
-                                    decoration: ShapeDecoration(
-                                      shape: RoundedRectangleBorder(
-                                        side: const BorderSide(
-                                            width: 1, color: Colors.white),
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                    ),
-                                    child: const Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Remote',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 12,
-                                            fontFamily: 'SF Pro Display',
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        Text(
-                                          '--',
-                                          style: TextStyle(
-                                            color: Color(0xFF918FFA),
-                                            fontSize: 24,
-                                            fontFamily: 'SF Pro Display',
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            width: 134.48,
-                            height: 106.82,
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                image:
-                                    AssetImage("assets/images/shiftsCount.png"),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ).paddingOnly(right: 10),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                const Gap(20),
+                // Container(
+                //   width: 370,
+                //   height: 201,
+                //   decoration: ShapeDecoration(
+                //     gradient: LinearGradient(
+                //       begin: const Alignment(1.00, 0.00),
+                //       end: const Alignment(-1, 0),
+                //       colors: [
+                //         Colors.white.withOpacity(0.10000000149011612),
+                //         Colors.white.withOpacity(0.10000000149011612)
+                //       ],
+                //     ),
+                //     shape: RoundedRectangleBorder(
+                //       side: const BorderSide(width: 1, color: Colors.white),
+                //       borderRadius: BorderRadius.circular(25),
+                //     ),
+                //   ),
+                //   child: Column(
+                //     mainAxisAlignment: MainAxisAlignment.start,
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Row(
+                //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+                //         children: [
+                //           Padding(
+                //             padding: const EdgeInsets.all(8.0),
+                //             child: Column(
+                //               mainAxisAlignment: MainAxisAlignment.start,
+                //               crossAxisAlignment: CrossAxisAlignment.start,
+                //               children: [
+                //                 const Gap(10),
+                //                 const Row(
+                //                   mainAxisAlignment: MainAxisAlignment.start,
+                //                   crossAxisAlignment: CrossAxisAlignment.start,
+                //                   children: [
+                //                     Gap(20),
+                //                     // Container(
+                //                     //   width: 60,
+                //                     //   height: 60,
+                //                     //   decoration: const BoxDecoration(
+                //                     //     image: DecorationImage(
+                //                     //       image: AssetImage(
+                //                     //           "assets/images/shifts.png"),
+                //                     //       fit: BoxFit.fill,
+                //                     //     ),
+                //                     //   ),
+                //                     // ),
+                //                     // const Gap(5),
+                //                     Column(
+                //                       mainAxisAlignment:
+                //                           MainAxisAlignment.start,
+                //                       crossAxisAlignment:
+                //                           CrossAxisAlignment.start,
+                //                       children: [
+                //                         Text(
+                //                           'Shifts',
+                //                           style: TextStyle(
+                //                             color: Colors.white,
+                //                             fontSize: 18,
+                //                             fontFamily: 'SF Pro Display',
+                //                             fontWeight: FontWeight.bold,
+                //                           ),
+                //                         ),
+                //                         // Text(
+                //                         //   '--',
+                //                         //   style: TextStyle(
+                //                         //     color: Colors.white,
+                //                         //     fontSize: 24,
+                //                         //     fontFamily: 'SF Pro Display',
+                //                         //     fontWeight: FontWeight.w500,
+                //                         //   ),
+                //                         // ),
+                //                       ],
+                //                     ),
+                //                   ],
+                //                 ),
+                //                 const Gap(5),
+                //                 Padding(
+                //                   padding: const EdgeInsets.only(left: 8.0),
+                //                   child: Container(
+                //                     width: 120,
+                //                     decoration: ShapeDecoration(
+                //                       shape: RoundedRectangleBorder(
+                //                         side: const BorderSide(
+                //                             width: 1, color: Colors.white),
+                //                         borderRadius: BorderRadius.circular(5),
+                //                       ),
+                //                     ),
+                //                     child: const Row(
+                //                       mainAxisAlignment:
+                //                           MainAxisAlignment.spaceAround,
+                //                       crossAxisAlignment:
+                //                           CrossAxisAlignment.center,
+                //                       children: [
+                //                         Text(
+                //                           'On-Site',
+                //                           style: TextStyle(
+                //                             color: Colors.white,
+                //                             fontSize: 12,
+                //                             fontFamily: 'SF Pro Display',
+                //                             fontWeight: FontWeight.bold,
+                //                           ),
+                //                         ),
+                //                         Text(
+                //                           '--',
+                //                           style: TextStyle(
+                //                             color: Color(0xFF918FFA),
+                //                             fontSize: 24,
+                //                             fontFamily: 'SF Pro Display',
+                //                             fontWeight: FontWeight.w500,
+                //                           ),
+                //                         ),
+                //                       ],
+                //                     ),
+                //                   ),
+                //                 ),
+                //                 const Gap(5),
+                //                 Padding(
+                //                   padding: const EdgeInsets.only(left: 8.0),
+                //                   child: Container(
+                //                     width: 120,
+                //                     decoration: ShapeDecoration(
+                //                       shape: RoundedRectangleBorder(
+                //                         side: const BorderSide(
+                //                             width: 1, color: Colors.white),
+                //                         borderRadius: BorderRadius.circular(5),
+                //                       ),
+                //                     ),
+                //                     child: const Row(
+                //                       mainAxisAlignment:
+                //                           MainAxisAlignment.spaceAround,
+                //                       crossAxisAlignment:
+                //                           CrossAxisAlignment.center,
+                //                       children: [
+                //                         Text(
+                //                           'Hybrid',
+                //                           style: TextStyle(
+                //                             color: Colors.white,
+                //                             fontSize: 12,
+                //                             fontFamily: 'SF Pro Display',
+                //                             fontWeight: FontWeight.bold,
+                //                           ),
+                //                         ),
+                //                         Text(
+                //                           '--',
+                //                           style: TextStyle(
+                //                             color: Color(0xFF918FFA),
+                //                             fontSize: 24,
+                //                             fontFamily: 'SF Pro Display',
+                //                             fontWeight: FontWeight.w500,
+                //                           ),
+                //                         ),
+                //                       ],
+                //                     ),
+                //                   ),
+                //                 ),
+                //                 const Gap(5),
+                //                 Padding(
+                //                   padding: const EdgeInsets.only(left: 8.0),
+                //                   child: Container(
+                //                     width: 120,
+                //                     decoration: ShapeDecoration(
+                //                       shape: RoundedRectangleBorder(
+                //                         side: const BorderSide(
+                //                             width: 1, color: Colors.white),
+                //                         borderRadius: BorderRadius.circular(5),
+                //                       ),
+                //                     ),
+                //                     child: const Row(
+                //                       mainAxisAlignment:
+                //                           MainAxisAlignment.spaceAround,
+                //                       crossAxisAlignment:
+                //                           CrossAxisAlignment.center,
+                //                       children: [
+                //                         Text(
+                //                           'Remote',
+                //                           style: TextStyle(
+                //                             color: Colors.white,
+                //                             fontSize: 12,
+                //                             fontFamily: 'SF Pro Display',
+                //                             fontWeight: FontWeight.bold,
+                //                           ),
+                //                         ),
+                //                         Text(
+                //                           '--',
+                //                           style: TextStyle(
+                //                             color: Color(0xFF918FFA),
+                //                             fontSize: 24,
+                //                             fontFamily: 'SF Pro Display',
+                //                             fontWeight: FontWeight.w500,
+                //                           ),
+                //                         ),
+                //                       ],
+                //                     ),
+                //                   ),
+                //                 ),
+                //               ],
+                //             ),
+                //           ),
+                //           Container(
+                //             width: 134.48,
+                //             height: 106.82,
+                //             decoration: const BoxDecoration(
+                //               image: DecorationImage(
+                //                 image:
+                //                     AssetImage("assets/images/shiftsCount.png"),
+                //                 fit: BoxFit.fill,
+                //               ),
+                //             ),
+                //           ).paddingOnly(right: 10),
+                //         ],
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // const Gap(20),
               ],
             ),
           );

@@ -11,7 +11,7 @@ _$DashboardCountImpl _$$DashboardCountImplFromJson(Map<String, dynamic> json) =>
       totalEmp: (json['totalEmp'] as num?)?.toInt(),
       presentEmp: (json['presentEmp'] as num?)?.toInt(),
       absentEmp: (json['absentEmp'] as num?)?.toInt(),
-      arrivals: json['arrivals'] as Map<String, dynamic>?,
+      arrivals: json['arrivals'] as List<dynamic>?,
     );
 
 Map<String, dynamic> _$$DashboardCountImplToJson(

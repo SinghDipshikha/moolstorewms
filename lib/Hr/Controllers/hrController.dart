@@ -67,7 +67,7 @@ class HRController extends GetxController {
   List createShiftWarehouses = [];
   List<AddShiftDetails> getShiftData = [];
 
-  ArrivalCount? arrivalCount;
+  List<ArrivalCount> arrivalCount = [];
   List<StaffEntry> employees = [];
   StaffEntry? currentlySeletedEmployee;
   List<Widget> navigationAccordingStatus = [];
@@ -76,6 +76,8 @@ class HRController extends GetxController {
   DateTime dashBoardStartDate =
       DateTime.now().subtract(const Duration(days: 1));
   DateTime dashBoardEndDate = DateTime.now();
+  String? onTimeEmployees;
+  String? lateEmployees;
 
   // List<Widget> employSumbitScreen = [
   //   const AddedStaffScreen(),
@@ -566,6 +568,10 @@ class HRController extends GetxController {
       if (value.data["message"] ==
           "Employee attendance status fetched successfully") {
         dashboardCount = DashboardCount.fromJson(value.data["result"]);
+        arrivalCount = (value.data["result"]["arrivals"] as List)
+            .map((e) => ArrivalCount.fromJson(e))
+            .toList();
+        print(dashboardCount);
         dashboardCountStatus = false;
         update();
       }
