@@ -7,7 +7,9 @@ class DMSDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF232323),
       appBar: AppBar(
+        centerTitle: false,
         title: const Text(
           'Dashboard',
           style: TextStyle(
@@ -19,6 +21,9 @@ class DMSDashboard extends StatelessWidget {
         ),
       ),
       drawer: const DmsDrawer(),
+      body: Column(
+        children: [],
+      ),
     );
   }
 }
