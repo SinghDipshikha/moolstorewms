@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:moolwmsstore/Security%20Guard/Controllers/securityGuardController.dart';
-import 'package:moolwmsstore/Security%20Guard/Model/Indent/indentElement.dart';
+import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
+import 'package:moolwmsstore/Hr/Model/attendance.dart';
 import 'package:moolwmsstore/Security%20Guard/View/widgets/dateRangeButtton.dart';
 import 'package:moolwmsstore/utils/dimensions.dart';
 
@@ -44,11 +44,11 @@ class _StaffAttendanceListScreenState extends State<StaffAttendanceListScreen> {
   DateTime start = DateTime.now();
   DateTime end = DateTime.now().subtract(const Duration(days: 1));
   static const _pageSize = 20;
-  final PagingController<int, IndentElement> _pagingController =
+  final PagingController<int, AttendanceEntry> _pagingController =
       PagingController(firstPageKey: 1);
   Future<void> _fetchPage(int pageKey) async {
     try {
-      await getAllindents(pageKey).then((v) {
+      await getAllAttendance(pageKey).then((v) {
         if (v != null) {
           final newItems = v;
 
@@ -66,21 +66,18 @@ class _StaffAttendanceListScreenState extends State<StaffAttendanceListScreen> {
     }
   }
 
-  Future<List<IndentElement>?> getAllindents(int pageKey) async {
-    var res = await Get.find<SecurityGuardController>().apiClient.postData(
-        "visitor/getAllVisitors?recordsPerPage=$_pageSize&next=$pageKey", {
-      "indent_number": "",
-      "vehicle_number": "",
-      "driver_name": "",
-      "warehouse_id": Get.find<SecurityGuardController>()
-          .currentlySelectedWarehouse!
-          .warehouse_id,
+  Future<List<AttendanceEntry>?> getAllAttendance(int pageKey) async {
+    var res = await Get.find<HRController>().apiClient.postData(
+        "hr/viewAttendanceList?recordsPerPage=$_pageSize&next=$pageKey", {
+      "name": "",
       "start_date": "",
-      "end_date": ""
+      "end_date": "",
+      "warehouse_id":
+          Get.find<HRController>().currentlySelectedWarehouse!.warehouse_id,
     });
-    if (res.data["message"] == "Indent Details found") {
+    if (res.data["message"] == "All Attendance fetched Successfully") {
       return (res.data["result"] as List)
-          .map((e) => IndentElement.fromJson(e))
+          .map((e) => AttendanceEntry.fromJson(e))
           .toList();
     } else {
       return null;
@@ -90,9 +87,9 @@ class _StaffAttendanceListScreenState extends State<StaffAttendanceListScreen> {
   @override
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
-      Get.find<SecurityGuardController>()
-          .secGaurdRepo
-          .getAllindents(recordsPerPage: 20, page: pageKey)
+      Get.find<HRController>()
+          .hrRepo
+          .getAllAttendance(recordsPerPage: 20, page: pageKey)
           .then((v) {
         if (v != pageKey) {
           if (v!.length < 2) {
@@ -195,11 +192,21 @@ class _StaffAttendanceListScreenState extends State<StaffAttendanceListScreen> {
                     ),
                   )),
               const Gap(3),
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      tags[4]["title"],
+                      style: subHeaderStyle,
+                    ),
+                  )),
+              const Gap(3),
             ]).paddingSymmetric(horizontal: 8),
             Expanded(
-                child: PagedListView<int, IndentElement>(
+                child: PagedListView<int, AttendanceEntry>(
               pagingController: _pagingController,
-              builderDelegate: PagedChildBuilderDelegate<IndentElement>(
+              builderDelegate: PagedChildBuilderDelegate<AttendanceEntry>(
                   itemBuilder: (context, entry, index) {
                 return Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -223,7 +230,7 @@ class _StaffAttendanceListScreenState extends State<StaffAttendanceListScreen> {
                               Expanded(
                                 flex: 1,
                                 child: Text(
-                                  entry.indent_number.toString() ?? "",
+                                  entry.name ?? "",
                                   style: const TextStyle(
                                     color: Color(0xFF353535),
                                     fontSize: 12,
@@ -232,11 +239,11 @@ class _StaffAttendanceListScreenState extends State<StaffAttendanceListScreen> {
                                   ),
                                 ),
                               ),
-                              Expanded(
+                              const Expanded(
                                 flex: 1,
                                 child: Text(
-                                  entry.vehicle_number ?? "",
-                                  style: const TextStyle(
+                                  "Designation",
+                                  style: TextStyle(
                                     color: Color(0xFF353535),
                                     fontSize: 12,
                                     fontFamily: 'SF Pro Text',
@@ -246,10 +253,12 @@ class _StaffAttendanceListScreenState extends State<StaffAttendanceListScreen> {
                                   ),
                                 ),
                               ),
+                              const Gap(10),
                               Expanded(
                                 flex: 1,
                                 child: Container(
                                   height: 20,
+                                  width: 50,
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 8, vertical: 4),
                                   decoration: ShapeDecoration(
@@ -277,32 +286,61 @@ class _StaffAttendanceListScreenState extends State<StaffAttendanceListScreen> {
                                 ),
                               ),
                               const Gap(20),
-                              InkWell(
-                                onTap: () {},
-                                child: Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                    width: 56,
-                                    height: 20,
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 4),
-                                    decoration: ShapeDecoration(
-                                      color: const Color(0xFFD2FFF1),
-                                      shape: RoundedRectangleBorder(
-                                        side: const BorderSide(
-                                            width: 1, color: Color(0x1902A676)),
-                                        borderRadius: BorderRadius.circular(5),
+                              entry.status == "Within Shift"
+                                  ? InkWell(
+                                      onTap: () {},
+                                      child: Expanded(
+                                        flex: 1,
+                                        child: Container(
+                                          width: 60,
+                                          height: 20,
+                                          decoration: ShapeDecoration(
+                                            color: const Color(0xFFD2FFF1),
+                                            shape: RoundedRectangleBorder(
+                                              side: const BorderSide(
+                                                  width: 1,
+                                                  color: Color(0x1902A676)),
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                            ),
+                                          ),
+                                          child: const Center(
+                                            child: Text(
+                                              'On Time',
+                                              style: TextStyle(
+                                                  color: Colors.black),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  : InkWell(
+                                      onTap: () {},
+                                      child: Expanded(
+                                        flex: 1,
+                                        child: Container(
+                                          width: 40,
+                                          height: 30,
+                                          decoration: ShapeDecoration(
+                                            color: const Color(0xFFFFC8CC),
+                                            shape: RoundedRectangleBorder(
+                                              side: const BorderSide(
+                                                  width: 1,
+                                                  color: Color(0x33E23744)),
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                            ),
+                                          ),
+                                          child: const Center(
+                                            child: Text(
+                                              'Late',
+                                              style: TextStyle(
+                                                  color: Colors.black),
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                    child: const Center(
-                                      child: Text(
-                                        'Verify',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
                               Expanded(
                                 flex: 1,
                                 child: InkWell(

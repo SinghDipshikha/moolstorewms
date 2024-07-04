@@ -23,7 +23,7 @@ mixin _$DashboardCount {
   int? get totalEmp => throw _privateConstructorUsedError;
   int? get presentEmp => throw _privateConstructorUsedError;
   int? get absentEmp => throw _privateConstructorUsedError;
-  List<dynamic>? get arrivals => throw _privateConstructorUsedError;
+  List<ArrivalCount>? get arrivals => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +41,7 @@ abstract class $DashboardCountCopyWith<$Res> {
       {int? totalEmp,
       int? presentEmp,
       int? absentEmp,
-      List<dynamic>? arrivals});
+      List<ArrivalCount>? arrivals});
 }
 
 /// @nodoc
@@ -78,7 +78,7 @@ class _$DashboardCountCopyWithImpl<$Res, $Val extends DashboardCount>
       arrivals: freezed == arrivals
           ? _value.arrivals
           : arrivals // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<ArrivalCount>?,
     ) as $Val);
   }
 }
@@ -95,7 +95,7 @@ abstract class _$$DashboardCountImplCopyWith<$Res>
       {int? totalEmp,
       int? presentEmp,
       int? absentEmp,
-      List<dynamic>? arrivals});
+      List<ArrivalCount>? arrivals});
 }
 
 /// @nodoc
@@ -130,7 +130,7 @@ class __$$DashboardCountImplCopyWithImpl<$Res>
       arrivals: freezed == arrivals
           ? _value._arrivals
           : arrivals // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<ArrivalCount>?,
     ));
   }
 }
@@ -142,7 +142,7 @@ class _$DashboardCountImpl implements _DashboardCount {
       {this.totalEmp,
       this.presentEmp,
       this.absentEmp,
-      final List<dynamic>? arrivals})
+      final List<ArrivalCount>? arrivals})
       : _arrivals = arrivals;
 
   factory _$DashboardCountImpl.fromJson(Map<String, dynamic> json) =>
@@ -154,9 +154,9 @@ class _$DashboardCountImpl implements _DashboardCount {
   final int? presentEmp;
   @override
   final int? absentEmp;
-  final List<dynamic>? _arrivals;
+  final List<ArrivalCount>? _arrivals;
   @override
-  List<dynamic>? get arrivals {
+  List<ArrivalCount>? get arrivals {
     final value = _arrivals;
     if (value == null) return null;
     if (_arrivals is EqualUnmodifiableListView) return _arrivals;
@@ -208,7 +208,7 @@ abstract class _DashboardCount implements DashboardCount {
       {final int? totalEmp,
       final int? presentEmp,
       final int? absentEmp,
-      final List<dynamic>? arrivals}) = _$DashboardCountImpl;
+      final List<ArrivalCount>? arrivals}) = _$DashboardCountImpl;
 
   factory _DashboardCount.fromJson(Map<String, dynamic> json) =
       _$DashboardCountImpl.fromJson;
@@ -220,7 +220,7 @@ abstract class _DashboardCount implements DashboardCount {
   @override
   int? get absentEmp;
   @override
-  List<dynamic>? get arrivals;
+  List<ArrivalCount>? get arrivals;
   @override
   @JsonKey(ignore: true)
   _$$DashboardCountImplCopyWith<_$DashboardCountImpl> get copyWith =>

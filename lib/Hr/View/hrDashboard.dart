@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/View/Employee%20Details/updateEmployeeDetails.dart';
 import 'package:moolwmsstore/Hr/View/Shfits/createShift.dart';
@@ -146,6 +147,92 @@ class _HrDashboardState extends State<HrDashboard> {
                     )),
               );
             }),
+            SizedBox(
+              height: 50,
+              child:
+                  GetBuilder<HRController>(builder: (securityGuardController) {
+                return DropdownButtonFormField2<WarehousesAcess>(
+                  value: securityGuardController.currentlySelectedWarehouse,
+                  decoration: InputDecoration(
+                    focusedBorder: const OutlineInputBorder(
+                        gapPadding: 0,
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 27, 23, 251),
+                            width: 0.4),
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    enabledBorder: OutlineInputBorder(
+                        gapPadding: 0,
+                        borderSide: BorderSide(
+                            color:
+                                Colors.white.withOpacity(0.30000001192092896),
+                            width: 1),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10))),
+                    contentPadding:
+                        const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                    border: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.transparent),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  items: securityGuardController.user.warehouse!.map((item) {
+                    return DropdownMenuItem<WarehousesAcess>(
+                      value: item,
+                      child: Row(
+                        children: [
+                          Text(
+                            item.warehouse_name ?? "--",
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontFamily: 'SF Pro Display',
+                              fontWeight: FontWeight.w400,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    );
+                  }).toList(),
+                  validator: (value) {
+                    if (value == null) {
+                      return 'Required';
+                    }
+                    return null;
+                  },
+                  onChanged: (value) {
+                    if (value != null) {
+                      securityGuardController.changeDashBoardWarehouse(
+                          warehouse: value);
+                      if (context.isPhone) {
+                        Navigator.of(context).pop();
+                      }
+                    }
+                  },
+                  onSaved: (value) {},
+                  buttonStyleData: const ButtonStyleData(
+                    padding: EdgeInsets.zero,
+                    overlayColor: WidgetStatePropertyAll(Colors.white),
+                  ),
+                  iconStyleData: IconStyleData(
+                    icon: const Icon(
+                      Icons.arrow_drop_down,
+                      color: Colors.white,
+                    ).paddingOnly(right: 10),
+                    iconSize: 24,
+                  ),
+                  dropdownStyleData: DropdownStyleData(
+                    padding: EdgeInsets.zero,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                  menuItemStyleData: const MenuItemStyleData(
+                      padding: EdgeInsets.symmetric(horizontal: 8)),
+                );
+              }),
+            ).paddingSymmetric(horizontal: 8),
             Expanded(
                 child: ListView(
               padding: EdgeInsets.zero,

@@ -12,6 +12,7 @@ import 'package:moolwmsstore/Hr/Model/addEducationDetails.dart';
 import 'package:moolwmsstore/Hr/Model/addReferralDetails.dart';
 import 'package:moolwmsstore/Hr/Model/addShift.dart';
 import 'package:moolwmsstore/Hr/Model/addShiftDetails.dart';
+import 'package:moolwmsstore/Hr/Model/attendance.dart';
 import 'package:moolwmsstore/Hr/Model/bankDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/careerDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/dashboardCount.dart';
@@ -57,7 +58,7 @@ class HRController extends GetxController {
       const ReferralDetailsRequest();
   ShiftDetailsRequest addShiftDetailsRequestModel = const ShiftDetailsRequest();
   List<AddShift> allShifts = [];
-
+  List<AttendanceEntry> allAttendanceList = [];
   List<PersonalDetailsResponseUpdate> getPersonalDetailsList = [];
   List<AddCareerDetail> getCareerDetailsList = [];
   List<AddEducationDetail> getEducationDetailsList = [];
@@ -572,6 +573,27 @@ class HRController extends GetxController {
             .map((e) => ArrivalCount.fromJson(e))
             .toList();
         print(dashboardCount);
+        dashboardCountStatus = false;
+        update();
+      }
+    });
+  }
+
+  getAllAttendance() async {
+    dashboardCountStatus = true;
+
+    await apiClient.postData("hr/viewAttendanceList", {
+      
+        "name": "",
+        "start_date": "",
+        "end_date": "",
+        "warehouse_id": currentlySelectedWarehouse!.warehouse_id
+      
+    }).then((value) {
+      if (value.data["message"] == "All Attendance fetched Successfully") {
+        List x = value.data["result"];
+        allAttendanceList = x.map((e) => AttendanceEntry.fromJson(e)).toList();
+        Logger().i(employees);
         dashboardCountStatus = false;
         update();
       }

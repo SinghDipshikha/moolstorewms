@@ -12,8 +12,8 @@ class CommanTextField extends StatelessWidget {
   String? hintText;
   int? maxLength;
   String? initialValue;
-  String? Function(String?)? validator;
-  TextInputType? keyboardType;
+  String? 
+  Function(String?)? validator;TextInputType? keyboardType;
   List<TextInputFormatter>? inputFormatters;
   EdgeInsetsGeometry? padding;
   TextEditingController? controller;
@@ -126,6 +126,8 @@ class CommanTextField extends StatelessWidget {
             ),
           ],
         ));
+ 
+ 
   }
 }
 
