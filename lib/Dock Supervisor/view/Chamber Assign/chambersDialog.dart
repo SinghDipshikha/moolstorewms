@@ -3,6 +3,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/view/Chamber%20Assign/chamberView.dart';
 import 'package:moolwmsstore/utils/globals.dart';
 
 class ChambersDialog extends StatelessWidget {
@@ -58,6 +59,7 @@ class ChambersDialog extends StatelessWidget {
                             onTap: () {
                               dmsController.selectedChamber =
                                   dmsController.chambers![i];
+
                               dmsController.update();
                             },
                             child: Container(
@@ -164,7 +166,15 @@ class ChambersDialog extends StatelessWidget {
                     if (dmsController.selectedChamber != null)
                       Expanded(
                           child: InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          var v = await dmsController.dmsRepo.getChamberData(
+                              dmsController.selectedChamber!.id as int);
+                          if (v != null) {
+                            Get.back(id: dmsNavigationKey);
+
+                            Get.to(ChamberView(gridChamber: v));
+                          }
+                        },
                         child: Container(
                           height: 50,
                           alignment: Alignment.center,

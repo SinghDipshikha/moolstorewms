@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/Model/Chamber/gridChamber.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/Loadingunloadking/indentDetails.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/Loadingunloadking/unloadingMaterial.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/dock.dart';
@@ -12,7 +13,16 @@ class Dmsrepo {
   final SharedPreferences sharedPreferences;
   Dmsrepo({required this.sharedPreferences, required this.apiClient});
 
+  Future<GridChamber?> getChamberData(int chamberId) async {
+    var value =
+        await apiClient.getData("owner/getChamberPalletByChamberId/$chamberId");
 
+    if (value.data["message"] == "chamber found successfully") {
+      return GridChamber.fromJson(value.data["result"]);
+    } else {
+      return null;
+    }
+  }
 
   Future<List<Chamber>?> getAllChamberByWareHouseId(int warehoueId) async {
     var value = await apiClient.postData("owner/getAllChamberByWareHouseId", {
@@ -27,8 +37,6 @@ class Dmsrepo {
       return null;
     }
   }
-
-
 
   Future<List<Dock>?> getUnassignedDocks() async {
     var res = await apiClient.getData(

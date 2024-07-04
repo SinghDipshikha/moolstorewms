@@ -381,7 +381,7 @@ class ZoomWidget extends StatelessWidget {
                     return SizedBox(
                       height: 100,
                       width: 100,
-                      child: Center(child: Text("R$c")),
+                      child: Center(child: Text("C$c")),
                       // color: Colors.red,
                     ).paddingSymmetric(horizontal: 2);
                   }
@@ -390,7 +390,7 @@ class ZoomWidget extends StatelessWidget {
                     return SizedBox(
                       height: 100,
                       width: 100,
-                      child: Center(child: Text("C$r")),
+                      child: Center(child: Text("R$r")),
                       // color: Colors.red,
                     ).paddingSymmetric(horizontal: 2);
                   }
