@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/Chamber/gridChamber.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/Model/Chamber/palletAssignBody.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/Loadingunloadking/indentDetails.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/Loadingunloadking/unloadingMaterial.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/dock.dart';
@@ -36,6 +38,18 @@ class Dmsrepo {
     } else {
       return null;
     }
+  }
+
+  getUnloadedMaterialByIndent({required String indent_number}) async {
+    var res = await apiClient
+        .getData("dock/viewUnloadedMaterialByIndent/$indent_number");
+    Logger().i(res.data);
+  }
+
+  assignProductsToPallets(PalletAssignBody palletAssignBody) async {
+    var res = await apiClient.postData(
+        "dock/palletAssign", palletAssignBody.toJson());
+    Logger().i(res.data);
   }
 
   Future<List<Dock>?> getUnassignedDocks() async {

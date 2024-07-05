@@ -21,6 +21,7 @@ UnloadingMaterial _$UnloadingMaterialFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UnloadingMaterial {
   String? get type => throw _privateConstructorUsedError;
+  String? get indent_number => throw _privateConstructorUsedError;
   int? get type_id => throw _privateConstructorUsedError;
   int? get dock_id => throw _privateConstructorUsedError;
   int? get user_id => throw _privateConstructorUsedError;
@@ -41,6 +42,7 @@ abstract class $UnloadingMaterialCopyWith<$Res> {
   @useResult
   $Res call(
       {String? type,
+      String? indent_number,
       int? type_id,
       int? dock_id,
       int? user_id,
@@ -61,6 +63,7 @@ class _$UnloadingMaterialCopyWithImpl<$Res, $Val extends UnloadingMaterial>
   @override
   $Res call({
     Object? type = freezed,
+    Object? indent_number = freezed,
     Object? type_id = freezed,
     Object? dock_id = freezed,
     Object? user_id = freezed,
@@ -70,6 +73,10 @@ class _$UnloadingMaterialCopyWithImpl<$Res, $Val extends UnloadingMaterial>
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      indent_number: freezed == indent_number
+          ? _value.indent_number
+          : indent_number // ignore: cast_nullable_to_non_nullable
               as String?,
       type_id: freezed == type_id
           ? _value.type_id
@@ -101,6 +108,7 @@ abstract class _$$UnloadingMaterialImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? type,
+      String? indent_number,
       int? type_id,
       int? dock_id,
       int? user_id,
@@ -119,6 +127,7 @@ class __$$UnloadingMaterialImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? type = freezed,
+    Object? indent_number = freezed,
     Object? type_id = freezed,
     Object? dock_id = freezed,
     Object? user_id = freezed,
@@ -128,6 +137,10 @@ class __$$UnloadingMaterialImplCopyWithImpl<$Res>
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      indent_number: freezed == indent_number
+          ? _value.indent_number
+          : indent_number // ignore: cast_nullable_to_non_nullable
               as String?,
       type_id: freezed == type_id
           ? _value.type_id
@@ -154,6 +167,7 @@ class __$$UnloadingMaterialImplCopyWithImpl<$Res>
 class _$UnloadingMaterialImpl implements _UnloadingMaterial {
   const _$UnloadingMaterialImpl(
       {this.type,
+      this.indent_number,
       this.type_id,
       this.dock_id,
       this.user_id,
@@ -165,6 +179,8 @@ class _$UnloadingMaterialImpl implements _UnloadingMaterial {
 
   @override
   final String? type;
+  @override
+  final String? indent_number;
   @override
   final int? type_id;
   @override
@@ -183,7 +199,7 @@ class _$UnloadingMaterialImpl implements _UnloadingMaterial {
 
   @override
   String toString() {
-    return 'UnloadingMaterial(type: $type, type_id: $type_id, dock_id: $dock_id, user_id: $user_id, product_details: $product_details)';
+    return 'UnloadingMaterial(type: $type, indent_number: $indent_number, type_id: $type_id, dock_id: $dock_id, user_id: $user_id, product_details: $product_details)';
   }
 
   @override
@@ -192,6 +208,8 @@ class _$UnloadingMaterialImpl implements _UnloadingMaterial {
         (other.runtimeType == runtimeType &&
             other is _$UnloadingMaterialImpl &&
             (identical(other.type, type) || other.type == type) &&
+            (identical(other.indent_number, indent_number) ||
+                other.indent_number == indent_number) &&
             (identical(other.type_id, type_id) || other.type_id == type_id) &&
             (identical(other.dock_id, dock_id) || other.dock_id == dock_id) &&
             (identical(other.user_id, user_id) || other.user_id == user_id) &&
@@ -201,8 +219,8 @@ class _$UnloadingMaterialImpl implements _UnloadingMaterial {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, type, type_id, dock_id, user_id,
-      const DeepCollectionEquality().hash(_product_details));
+  int get hashCode => Object.hash(runtimeType, type, indent_number, type_id,
+      dock_id, user_id, const DeepCollectionEquality().hash(_product_details));
 
   @JsonKey(ignore: true)
   @override
@@ -222,6 +240,7 @@ class _$UnloadingMaterialImpl implements _UnloadingMaterial {
 abstract class _UnloadingMaterial implements UnloadingMaterial {
   const factory _UnloadingMaterial(
           {final String? type,
+          final String? indent_number,
           final int? type_id,
           final int? dock_id,
           final int? user_id,
@@ -233,6 +252,8 @@ abstract class _UnloadingMaterial implements UnloadingMaterial {
 
   @override
   String? get type;
+  @override
+  String? get indent_number;
   @override
   int? get type_id;
   @override

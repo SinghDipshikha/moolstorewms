@@ -9,6 +9,7 @@ part 'unloadingMaterial.g.dart';
 class UnloadingMaterial with _$UnloadingMaterial {
   const factory UnloadingMaterial({
     String? type,
+    String? indent_number,
     int? type_id,
     int? dock_id,
     int? user_id,

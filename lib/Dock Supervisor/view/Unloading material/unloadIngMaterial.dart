@@ -42,12 +42,14 @@ class _UnloadIngMaterialState extends State<UnloadIngMaterial> {
         .then((v) {
       setState(() {
         unloadingMaterial = unloadingMaterial.copyWith(
+            indent_number: widget.entry.indent_number,
             dock_id: widget.entry.dock_id,
             type: widget.entry.type,
             type_id: widget.entry.type_id,
             user_id: Get.find<DmsController>().user.id,
             product_details: v!.product_details!
-                .map((e) => MaterialProductDetail.fromJson(e.toJson()))
+                .map((e) => MaterialProductDetail.fromJson(e.toJson())
+                    .copyWith(damage_images: [], sample_images: []))
                 .toList());
         indentDetails = v;
       });
@@ -58,6 +60,7 @@ class _UnloadIngMaterialState extends State<UnloadIngMaterial> {
     setState(() {
       isLoading = true;
     });
+    Logger().i(unloadingMaterial);
     Get.find<DmsController>()
         .dmsRepo
         .unloadingMaterial(unloadingMaterial)

@@ -259,8 +259,16 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                                                   if (entry
                                                           .verified_by_dock_manager ==
                                                       1) {
+                                                    Get.find<DmsController>()
+                                                        .dmsRepo
+                                                        .getUnloadedMaterialByIndent(
+                                                            indent_number: entry
+                                                                    .indent_number ??
+                                                                "");
                                                     Get.to(
-                                                         AssignChamber(entry: entry,),
+                                                        AssignChamber(
+                                                          entry: entry,
+                                                        ),
                                                         id: dmsNavigationKey);
                                                   } else {
                                                     Get.to(
@@ -274,7 +282,11 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                                                   alignment: Alignment.center,
                                                   height: 30,
                                                   decoration: ShapeDecoration(
-                                                    color: Colors.green,
+                                                    color:
+                                                        entry.verified_by_dock_manager ==
+                                                                1
+                                                            ? Colors.blue
+                                                            : Colors.green,
                                                     shape:
                                                         RoundedRectangleBorder(
                                                             borderRadius:
@@ -283,7 +295,10 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                                                                         6)),
                                                   ),
                                                   child: Text(
-                                                    'Dock Assigned',
+                                                    entry.verified_by_dock_manager ==
+                                                            1
+                                                        ? "Assign Chamber"
+                                                        : 'Dock Assigned',
                                                     style: headerStyle.copyWith(
                                                         color: Colors.white),
                                                   ),

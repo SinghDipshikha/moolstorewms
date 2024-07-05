@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerController.dart';
 import 'package:moolwmsstore/Owner/Model/Chamber/chamber.dart';
 import 'package:moolwmsstore/Owner/View/Chamber/addChamber.dart';
+import 'package:moolwmsstore/Owner/View/Chamber/viewChamber.dart';
 import 'package:moolwmsstore/Owner/View/Common/customButton.dart';
 import 'package:moolwmsstore/common/controller/chamberController.dart';
 
@@ -205,91 +206,106 @@ class _ChamberListState extends State<ChamberList> {
                                             ),
                                           ).paddingSymmetric(vertical: 10),
                                         )
-                                      : const Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Row(
-                                              // crossAxisAlignment: ,
-                                              // mainAxisAlignment: MainAxisAlignment.end,
-                                              children: [
-                                                Text(
-                                                  'Total Capacity',
-                                                  style: TextStyle(
-                                                    color: Color(0xFF5A57FF),
-                                                    fontSize: 12,
-                                                    fontFamily:
-                                                        'SF Pro Display',
-                                                    fontWeight: FontWeight.w300,
-                                                  ),
-                                                ),
-                                                Spacer(),
-                                                Text(
-                                                  '70',
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 4),
-                                                  child: Text(
-                                                    'MT',
+                                      : InkWell(
+                                          onTap: () {
+                                            Get.to(ViewChamber(
+                                              chaberId: chambers![i].id as int,
+                                            ));
+                                          },
+                                          child: const Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Row(
+                                                // crossAxisAlignment: ,
+                                                // mainAxisAlignment: MainAxisAlignment.end,
+                                                children: [
+                                                  Text(
+                                                    'Total Capacity',
                                                     style: TextStyle(
-                                                      color: Color(0xFF8A8A8A),
-                                                      fontSize: 8.46,
+                                                      color: Color(0xFF5A57FF),
+                                                      fontSize: 12,
+                                                      fontFamily:
+                                                          'SF Pro Display',
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                    ),
+                                                  ),
+                                                  Spacer(),
+                                                  Text(
+                                                    '70',
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 20,
                                                       fontWeight:
                                                           FontWeight.w500,
                                                     ),
                                                   ),
-                                                )
-                                              ],
-                                            ),
-                                            Divider(
-                                              color: Color(0xFFC2C0FF),
-                                            ),
-                                            Row(
-                                              // crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Total Capacity',
-                                                  style: TextStyle(
-                                                    color: Color(0xFF5A57FF),
-                                                    fontSize: 12,
-                                                    fontFamily:
-                                                        'SF Pro Display',
-                                                    fontWeight: FontWeight.w300,
-                                                  ),
-                                                ),
-                                                Spacer(),
-                                                Text(
-                                                  '70',
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 4),
-                                                  child: Text(
-                                                    'MT',
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 4),
+                                                    child: Text(
+                                                      'MT',
+                                                      style: TextStyle(
+                                                        color:
+                                                            Color(0xFF8A8A8A),
+                                                        fontSize: 8.46,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                              Divider(
+                                                color: Color(0xFFC2C0FF),
+                                              ),
+                                              Row(
+                                                // crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'Total Capacity',
                                                     style: TextStyle(
-                                                      color: Color(0xFF8A8A8A),
-                                                      fontSize: 8.46,
+                                                      color: Color(0xFF5A57FF),
+                                                      fontSize: 12,
+                                                      fontFamily:
+                                                          'SF Pro Display',
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                    ),
+                                                  ),
+                                                  Spacer(),
+                                                  Text(
+                                                    '70',
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 20,
                                                       fontWeight:
                                                           FontWeight.w500,
                                                     ),
                                                   ),
-                                                )
-                                              ],
-                                            ),
-                                          ],
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 4),
+                                                    child: Text(
+                                                      'MT',
+                                                      style: TextStyle(
+                                                        color:
+                                                            Color(0xFF8A8A8A),
+                                                        fontSize: 8.46,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                 ),
                               ],

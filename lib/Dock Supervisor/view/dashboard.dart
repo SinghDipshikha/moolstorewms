@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/View/dmsDrawer.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/view/dockDayTimeline.dart';
+import 'package:moolwmsstore/utils/dimensions.dart';
 
 class DMSDashboard extends StatelessWidget {
   const DMSDashboard({super.key});
@@ -21,8 +24,14 @@ class DMSDashboard extends StatelessWidget {
         ),
       ),
       drawer: const DmsDrawer(),
-      body: Column(
-        children: [],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            DockDayTimeline(),
+          ],
+        ).paddingSymmetric(
+            vertical: Dimensions.vericalBodyPad,
+            horizontal: Dimensions.horizontalBodyPad),
       ),
     );
   }

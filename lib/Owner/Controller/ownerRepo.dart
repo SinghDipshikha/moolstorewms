@@ -1,4 +1,5 @@
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/Model/Chamber/gridChamber.dart';
 import 'package:moolwmsstore/Owner/Model/Asset/assetCatoegories.dart';
 import 'package:moolwmsstore/Owner/Model/Asset/assetElement.dart';
 import 'package:moolwmsstore/Owner/Model/Asset/assetType.dart';
@@ -10,6 +11,19 @@ class OwnerRepo {
   OwnerRepo({required this.sharedPreferences, required this.apiClient});
 
   //owner/addEmployeeByOwner
+
+
+
+    Future<GridChamber?> getChamberData(int chamberId) async {
+    var value =
+        await apiClient.getData("owner/getChamberPalletByChamberId/$chamberId");
+
+    if (value.data["message"] == "chamber found successfully") {
+      return GridChamber.fromJson(value.data["result"]);
+    } else {
+      return null;
+    }
+  }
 
  Future<List<AssetCatoegory>?> getAssetsCategories() async {
     var res = await apiClient.getData("asset/getAssetCategories");

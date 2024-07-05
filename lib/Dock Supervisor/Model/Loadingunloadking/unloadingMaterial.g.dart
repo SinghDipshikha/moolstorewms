@@ -10,6 +10,7 @@ _$UnloadingMaterialImpl _$$UnloadingMaterialImplFromJson(
         Map<String, dynamic> json) =>
     _$UnloadingMaterialImpl(
       type: json['type'] as String?,
+      indent_number: json['indent_number'] as String?,
       type_id: (json['type_id'] as num?)?.toInt(),
       dock_id: (json['dock_id'] as num?)?.toInt(),
       user_id: (json['user_id'] as num?)?.toInt(),
@@ -23,6 +24,7 @@ Map<String, dynamic> _$$UnloadingMaterialImplToJson(
         _$UnloadingMaterialImpl instance) =>
     <String, dynamic>{
       'type': instance.type,
+      'indent_number': instance.indent_number,
       'type_id': instance.type_id,
       'dock_id': instance.dock_id,
       'user_id': instance.user_id,
