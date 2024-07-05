@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 
 class UpdateEmployeeDetailsScreen extends StatefulWidget {
   const UpdateEmployeeDetailsScreen({super.key});
@@ -209,7 +211,7 @@ class _UpdateEmployeeDetailsScreenState
                     ),
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Row(
                         children: [
@@ -230,42 +232,16 @@ class _UpdateEmployeeDetailsScreenState
                               color: Colors.white,
                               fontSize: 18,
                               fontFamily: 'SF Pro Display',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
-                      ),
-                      Container(
-                        width: 27,
-                        height: 27,
-                        padding: const EdgeInsets.all(3.68),
-                        clipBehavior: Clip.antiAlias,
-                        decoration: ShapeDecoration(
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(6)),
-                          shadows: const [
-                            BoxShadow(
-                              color: Color(0x19000000),
-                              blurRadius: 0.98,
-                              offset: Offset(0, 0.49),
-                              spreadRadius: 0,
-                            )
-                          ],
-                        ),
-                        child: const Center(
-                          child: Icon(
-                            Icons.edit,
-                            color: Color(0xFF5A57FF),
-                          ),
-                        ),
                       ),
                     ],
                   ),
                 ),
                 Container(
                   width: 358,
-                  height: 182,
                   decoration: const ShapeDecoration(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
@@ -274,6 +250,85 @@ class _UpdateEmployeeDetailsScreenState
                         bottomLeft: Radius.circular(10),
                         bottomRight: Radius.circular(10),
                       ),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Gap(5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            CommonTileForUpdate(
+                              labelText: 'Full Name',
+                              inputText: '',
+                            ),
+                            CommonTileForUpdate(
+                              labelText: 'Mobile Number',
+                              inputText: '',
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            CommonTileForUpdate(
+                              labelText: 'Date of Birth',
+                              inputText: '',
+                            ),
+                            CommonTileForUpdate(
+                              labelText: 'Email ID',
+                              inputText: '',
+                            ),
+                          ],
+                        ),
+                        const Gap(5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            CommonTileForUpdate(
+                              labelText: 'Gender',
+                              inputText: '',
+                            ),
+                            CommonTileForUpdate(
+                              labelText: 'Blood Group',
+                              inputText: '',
+                            )
+                          ],
+                        ),
+                        const Gap(5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            CommonTileForUpdate(
+                              labelText: 'PF Number',
+                              inputText: '',
+                            ),
+                            CommonTileForUpdate(
+                              labelText: 'PAN Number',
+                              inputText: '',
+                            ),
+                          ],
+                        ),
+                        const Gap(5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            CommonTileForUpdate(
+                              labelText: 'Passport Number',
+                              inputText: '',
+                            ),
+                            CommonTileForUpdate(
+                              labelText: 'Disability',
+                              inputText: '',
+                            ),
+                          ],
+                        ),
+                        const Gap(5),
+                      ],
                     ),
                   ),
                 ),
@@ -295,10 +350,11 @@ class _UpdateEmployeeDetailsScreenState
                     ),
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Row(
                         children: [
+                          const Gap(15),
                           Container(
                             width: 44,
                             height: 44,
@@ -316,7 +372,7 @@ class _UpdateEmployeeDetailsScreenState
                               color: Colors.white,
                               fontSize: 18,
                               fontFamily: 'SF Pro Display',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
@@ -327,7 +383,6 @@ class _UpdateEmployeeDetailsScreenState
                 ),
                 Container(
                   width: 358,
-                  height: 182,
                   decoration: const ShapeDecoration(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
@@ -336,6 +391,68 @@ class _UpdateEmployeeDetailsScreenState
                         bottomLeft: Radius.circular(10),
                         bottomRight: Radius.circular(10),
                       ),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Gap(5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            CommonTileForUpdate(
+                              labelText: 'Full Address',
+                              inputText: '',
+                            ),
+                            CommonTileForUpdate(
+                              labelText: 'State',
+                              inputText: '',
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            CommonTileForUpdate(
+                              labelText: 'City',
+                              inputText: '',
+                            ),
+                            CommonTileForUpdate(
+                              labelText: 'Email ID',
+                              inputText: '',
+                            ),
+                          ],
+                        ),
+                        const Gap(5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            CommonTileForUpdate(
+                              labelText: 'Pincode',
+                              inputText: '',
+                            ),
+                            CommonTileForUpdate(
+                              labelText: 'Emergency Contact',
+                              inputText: '',
+                            )
+                          ],
+                        ),
+                        const Gap(5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const Gap(10),
+                            CommonTileForUpdate(
+                              labelText: 'Mailing Address',
+                              inputText: '',
+                            ),
+                          ],
+                        ),
+                        const Gap(5),
+                      ],
                     ),
                   ),
                 ),
@@ -357,8 +474,9 @@ class _UpdateEmployeeDetailsScreenState
                     ),
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      const Gap(15),
                       Row(
                         children: [
                           Container(
@@ -378,7 +496,7 @@ class _UpdateEmployeeDetailsScreenState
                               color: Colors.white,
                               fontSize: 18,
                               fontFamily: 'SF Pro Display',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
@@ -389,7 +507,6 @@ class _UpdateEmployeeDetailsScreenState
                 ),
                 Container(
                   width: 358,
-                  height: 182,
                   decoration: const ShapeDecoration(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
@@ -398,6 +515,106 @@ class _UpdateEmployeeDetailsScreenState
                         bottomLeft: Radius.circular(10),
                         bottomRight: Radius.circular(10),
                       ),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Gap(5),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                CommonTileForUpdate(
+                                  labelText: 'Employer',
+                                  inputText: '',
+                                ),
+                                CommonTileForUpdate(
+                                  labelText: 'Designation',
+                                  inputText: '',
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                CommonTileForUpdate(
+                                  labelText: 'Reporting TO.',
+                                  inputText: '',
+                                ),
+                                CommonTileForUpdate(
+                                  labelText: 'Employement Duration',
+                                  inputText: '',
+                                ),
+                              ],
+                            ),
+                            const Gap(5),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Gap(10),
+                                CommonTileForUpdate(
+                                  labelText: 'Current Salary',
+                                  inputText: '',
+                                ),
+                              ],
+                            ),
+                            const Gap(5),
+                          ],
+                        ),
+                        const Divider(
+                          thickness: 0.5,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Gap(5),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                CommonTileForUpdate(
+                                  labelText: 'Employer',
+                                  inputText: '',
+                                ),
+                                CommonTileForUpdate(
+                                  labelText: 'Designation',
+                                  inputText: '',
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                CommonTileForUpdate(
+                                  labelText: 'Reporting TO.',
+                                  inputText: '',
+                                ),
+                                CommonTileForUpdate(
+                                  labelText: 'Employement Duration',
+                                  inputText: '',
+                                ),
+                              ],
+                            ),
+                            const Gap(5),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Gap(10),
+                                CommonTileForUpdate(
+                                  labelText: 'Current Salary',
+                                  inputText: '',
+                                ),
+                              ],
+                            ),
+                            const Gap(5),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -419,10 +636,11 @@ class _UpdateEmployeeDetailsScreenState
                     ),
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Row(
                         children: [
+                          const Gap(15),
                           Container(
                             width: 44,
                             height: 44,
@@ -441,7 +659,7 @@ class _UpdateEmployeeDetailsScreenState
                               color: Colors.white,
                               fontSize: 18,
                               fontFamily: 'SF Pro Display',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
@@ -452,7 +670,6 @@ class _UpdateEmployeeDetailsScreenState
                 ),
                 Container(
                   width: 358,
-                  height: 182,
                   decoration: const ShapeDecoration(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
@@ -461,6 +678,106 @@ class _UpdateEmployeeDetailsScreenState
                         bottomLeft: Radius.circular(10),
                         bottomRight: Radius.circular(10),
                       ),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Gap(5),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                CommonTileForUpdate(
+                                  labelText: 'Qualification',
+                                  inputText: '',
+                                ),
+                                CommonTileForUpdate(
+                                  labelText: 'Year of Passing',
+                                  inputText: '',
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                CommonTileForUpdate(
+                                  labelText: 'School',
+                                  inputText: '',
+                                ),
+                                CommonTileForUpdate(
+                                  labelText: 'University',
+                                  inputText: '',
+                                ),
+                              ],
+                            ),
+                            const Gap(5),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Gap(10),
+                                CommonTileForUpdate(
+                                  labelText: 'Percentage & Grade',
+                                  inputText: '',
+                                ),
+                              ],
+                            ),
+                            const Gap(5),
+                          ],
+                        ),
+                        const Divider(
+                          thickness: 0.5,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Gap(5),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                CommonTileForUpdate(
+                                  labelText: 'Qualification',
+                                  inputText: '',
+                                ),
+                                CommonTileForUpdate(
+                                  labelText: 'Year of Passing',
+                                  inputText: '',
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                CommonTileForUpdate(
+                                  labelText: 'School',
+                                  inputText: '',
+                                ),
+                                CommonTileForUpdate(
+                                  labelText: 'University',
+                                  inputText: '',
+                                ),
+                              ],
+                            ),
+                            const Gap(5),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Gap(10),
+                                CommonTileForUpdate(
+                                  labelText: 'Percentage & Grade',
+                                  inputText: '',
+                                ),
+                              ],
+                            ),
+                            const Gap(5),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -482,10 +799,11 @@ class _UpdateEmployeeDetailsScreenState
                     ),
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Row(
                         children: [
+                          const Gap(15),
                           Container(
                             width: 44,
                             height: 44,
@@ -503,7 +821,7 @@ class _UpdateEmployeeDetailsScreenState
                               color: Colors.white,
                               fontSize: 18,
                               fontFamily: 'SF Pro Display',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
@@ -514,7 +832,6 @@ class _UpdateEmployeeDetailsScreenState
                 ),
                 Container(
                   width: 358,
-                  height: 182,
                   decoration: const ShapeDecoration(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
@@ -523,6 +840,57 @@ class _UpdateEmployeeDetailsScreenState
                         bottomLeft: Radius.circular(10),
                         bottomRight: Radius.circular(10),
                       ),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Gap(5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            CommonTileForUpdate(
+                              labelText: 'Name of Referee',
+                              inputText: '',
+                            ),
+                            CommonTileForUpdate(
+                              labelText: 'Company Name',
+                              inputText: '',
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            CommonTileForUpdate(
+                              labelText: 'Referee Designation',
+                              inputText: '',
+                            ),
+                            CommonTileForUpdate(
+                              labelText: 'Address',
+                              inputText: '',
+                            ),
+                          ],
+                        ),
+                        const Gap(5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            CommonTileForUpdate(
+                              labelText: 'Referee Email-Id',
+                              inputText: '',
+                            ),
+                            CommonTileForUpdate(
+                              labelText: 'Referee Mobile No.',
+                              inputText: '',
+                            )
+                          ],
+                        ),
+                        const Gap(5),
+                      ],
                     ),
                   ),
                 ),
@@ -544,10 +912,10 @@ class _UpdateEmployeeDetailsScreenState
                     ),
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Row(
                         children: [
+                          const Gap(15),
                           Container(
                             width: 44,
                             height: 44,
@@ -565,7 +933,7 @@ class _UpdateEmployeeDetailsScreenState
                               color: Colors.white,
                               fontSize: 18,
                               fontFamily: 'SF Pro Display',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
@@ -576,7 +944,6 @@ class _UpdateEmployeeDetailsScreenState
                 ),
                 Container(
                   width: 358,
-                  height: 182,
                   decoration: const ShapeDecoration(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
@@ -587,6 +954,57 @@ class _UpdateEmployeeDetailsScreenState
                       ),
                     ),
                   ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Gap(5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            CommonTileForUpdate(
+                              labelText: 'Account Holder',
+                              inputText: '',
+                            ),
+                            CommonTileForUpdate(
+                              labelText: 'Account Number',
+                              inputText: '',
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            CommonTileForUpdate(
+                              labelText: 'Bank Name',
+                              inputText: '',
+                            ),
+                            CommonTileForUpdate(
+                              labelText: 'IFSC Code',
+                              inputText: '',
+                            ),
+                          ],
+                        ),
+                        const Gap(5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            CommonTileForUpdate(
+                              labelText: 'Branch Name',
+                              inputText: '',
+                            ),
+                            CommonTileForUpdate(
+                              labelText: 'Account Type',
+                              inputText: '',
+                            )
+                          ],
+                        ),
+                        const Gap(5),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -595,5 +1013,101 @@ class _UpdateEmployeeDetailsScreenState
         ),
       ),
     );
+  }
+}
+
+class CommonTileForUpdate extends StatelessWidget {
+  void Function(String)? onChanged;
+  String? labelText;
+  String? inputText;
+  bool? obscureText;
+
+  Widget? suffixIcon;
+  Widget? prefixIcon;
+  String? hintText;
+  int? maxLength;
+  String? initialValue;
+  String? Function(String?)? validator;
+  TextInputType? keyboardType;
+  List<TextInputFormatter>? inputFormatters;
+  EdgeInsetsGeometry? padding;
+  TextEditingController? controller;
+
+  TextCapitalization? textCapitalization;
+  double? borderRadius;
+  int? maxLines;
+  bool? isNumber;
+  CommonTileForUpdate({
+    super.key,
+    required this.labelText,
+    required this.inputText,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        constraints: const BoxConstraints(maxWidth: 500),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              constraints:
+                  context.isPhone ? null : const BoxConstraints(maxWidth: 100),
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: "$labelText",
+                      style: const TextStyle(
+                        color: Color(0xFF595959),
+                        fontSize: 14,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w400,
+                        //height: 1,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const Gap(2),
+            SizedBox(
+                width: 150,
+                height: 30,
+                child: TextFormField(
+                  initialValue: initialValue,
+                  maxLines: maxLines,
+                  textCapitalization:
+                      textCapitalization ?? TextCapitalization.none,
+                  onTapOutside: (event) {
+                    FocusManager.instance.primaryFocus?.unfocus();
+                  },
+                  onChanged: onChanged,
+                  onFieldSubmitted: (value) {
+                    FocusManager.instance.primaryFocus?.unfocus();
+                  },
+                  keyboardType: keyboardType,
+                  controller: controller,
+                  validator: validator,
+                  obscureText: obscureText ?? false,
+                  decoration: const InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                      borderSide:
+                          BorderSide(width: 0.50, color: Color(0x195E57FC)),
+                    ),
+                    suffix: Icon(
+                      Icons.edit,
+                      color: Color(0xFF5A57FF),
+                      size: 12,
+                    ),
+                    filled: true,
+                    fillColor: Color(0xFFFAF9FF),
+                  ),
+                )),
+          ],
+        ));
   }
 }

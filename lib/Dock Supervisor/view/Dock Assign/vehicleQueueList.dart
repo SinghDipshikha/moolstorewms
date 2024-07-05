@@ -273,7 +273,7 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                                                   } else {
                                                     Get.to(
                                                         UnloadIngMaterial(
-                                                          entry: entry,
+                                                           entry: entry,
                                                         ),
                                                         id: dmsNavigationKey);
                                                   }
