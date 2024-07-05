@@ -827,6 +827,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                             fontWeight: FontWeight.w500,
                                           ),
                                         ),
+
                                         CommomDropDownBlackTheme(
                                           labelText: "Select Gate",
                                           list: shiftsDataList,
