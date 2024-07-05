@@ -403,24 +403,4 @@ class _ChamberViewState extends State<ChamberView> {
   }
 }
 
-class WoodTexturePainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.brown[200]!
-      ..style = PaintingStyle.fill;
 
-    Path path = Path();
-    path.moveTo(0, 0);
-    path.lineTo(size.width, 0);
-    path.lineTo(size.width, size.height);
-    path.lineTo(0, size.height * 0.8);
-    path.close();
-    canvas.drawPath(path, paint);
-
-    // Add additional lines and variations for wood grain effect
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => true;
-}
