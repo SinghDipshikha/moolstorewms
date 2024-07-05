@@ -97,7 +97,7 @@ class AddEmployee extends StatelessWidget {
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: 'Designation',
+                        text: 'Role Access',
                         style: TextStyle(
                           color: Color(0xFF595959),
                           fontSize: 16,

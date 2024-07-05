@@ -37,6 +37,7 @@ class _DipshikaAppState extends State<DipshikaApp> {
         data: MediaQuery.of(context)
             .copyWith(textScaler: const TextScaler.linear(0.9)),
         child: GetMaterialApp(
+          
           //  home: ViewVisitor(visitor: null),
           home: const Auth(),
           debugShowCheckedModeBanner: false,
@@ -100,3 +101,5 @@ class _DipshikaAppState extends State<DipshikaApp> {
     });
   }
 }
+
+

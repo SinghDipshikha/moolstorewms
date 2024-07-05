@@ -52,7 +52,7 @@ Map<String, dynamic> _$$GridItemImplToJson(_$GridItemImpl instance) =>
 
 _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
     _$ProductImpl(
-      id: (json['id'] as num).toInt(),
+      product_id: (json['product_id'] as num).toInt(),
       qty: (json['qty'] as num).toInt(),
       unit: (json['unit'] as num).toInt(),
       expiry_date: json['expiry_date'] == null
@@ -64,7 +64,7 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'product_id': instance.product_id,
       'qty': instance.qty,
       'unit': instance.unit,
       'expiry_date': instance.expiry_date?.toIso8601String(),

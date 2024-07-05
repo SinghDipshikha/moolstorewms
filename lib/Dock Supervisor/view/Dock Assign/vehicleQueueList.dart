@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/vehicle.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
-import 'package:moolwmsstore/Dock%20Supervisor/view/Chamber%20Assign/assignChamber.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/view/Dock%20Assign/docklistDialog.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/view/Unloading%20material/unloadIngMaterial.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
@@ -264,16 +264,19 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                                                         .getUnloadedMaterialByIndent(
                                                             indent_number: entry
                                                                     .indent_number ??
-                                                                "");
-                                                    Get.to(
-                                                        AssignChamber(
-                                                          entry: entry,
-                                                        ),
-                                                        id: dmsNavigationKey);
+                                                                "")
+                                                        .then((v) {
+                                                      Logger().i(v);
+                                                    });
+                                                    // Get.to(
+                                                    //     AssignChamber(
+                                                    //       entry: entry,
+                                                    //     ),
+                                                    //     id: dmsNavigationKey);
                                                   } else {
                                                     Get.to(
                                                         UnloadIngMaterial(
-                                                           entry: entry,
+                                                          entry: entry,
                                                         ),
                                                         id: dmsNavigationKey);
                                                   }

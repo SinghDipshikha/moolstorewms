@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/Chamber/gridChamber.dart';
-import 'package:moolwmsstore/Dock%20Supervisor/Model/Chamber/palletAssignBody.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/Model/Chamber/palletAssignBody.dart'
+    as p;
 import 'package:moolwmsstore/Dock%20Supervisor/Model/Loadingunloadking/indentDetails.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/Loadingunloadking/unloadingMaterial.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/dock.dart';
@@ -40,13 +43,20 @@ class Dmsrepo {
     }
   }
 
-  getUnloadedMaterialByIndent({required String indent_number}) async {
+  Future<List<Product>?> getUnloadedMaterialByIndent(
+      {required String indent_number}) async {
     var res = await apiClient
         .getData("dock/viewUnloadedMaterialByIndent/$indent_number");
-    Logger().i(res.data);
+    if (res.data["message"] == "Unloaded Materials") {
+      return List<Product>.from(
+          (jsonDecode(res.data["result"][0]["product_data"]))
+              .map((item) => Product.fromJson(item)));
+    } else {
+      return null;
+    }
   }
 
-  assignProductsToPallets(PalletAssignBody palletAssignBody) async {
+  assignProductsToPallets(p.PalletAssignBody palletAssignBody) async {
     var res = await apiClient.postData(
         "dock/palletAssign", palletAssignBody.toJson());
     Logger().i(res.data);

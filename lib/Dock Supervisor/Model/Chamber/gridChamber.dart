@@ -49,7 +49,7 @@ String? _productsToJson(List<Product>? products) => products == null
 @freezed
 class Product with _$Product {
   const factory Product({
-    required int id,
+    required int product_id,
     required int qty,
     required int unit,
     DateTime? expiry_date,

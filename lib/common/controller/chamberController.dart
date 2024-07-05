@@ -11,58 +11,18 @@ import 'package:moolwmsstore/utils/globals.dart';
 
 class ChamberController extends GetxController {
   bool isSubmiting = false;
-  submitChamberDesign(Map body) {
-    isSubmiting = true;
-    update();
-    // clear();
-    Get.find<OwnerController>()
-        .apiClient
-        .postData("owner/addChamberGridByOwner", body)
-        .then((v) {
-      if (v.data["message"] == "Pallets added successfully") {
-        clear();
-        Snacks.greenSnack("Pallets added successfully");
-      } else {
-        Snacks.redSnack("Something went wrong");
-        isSubmiting = false;
-        update();
-      }
-    });
-  }
+ Map? currentlySelecting;
+  bool showFinalView = false;
+  int maxRow = 0;
+  int maxColumn = 0;
+  int minRow = 0;
+  int minColumn = 0;
+  List<String> designCodintates = [];
+  Map designCodintatesMap = {};
 
   Chamber? chamberr;
 
-  designChamber(Chamber chamber) {
-    chamberr = chamber;
-    int a = sqrt((chamber.pallate_count! /
-            int.parse(chamber.stacking_level.toString())))
-        .ceil();
-    row = a + 2;
-    column = a + 2;
-    minColumn = column;
-    minRow = row;
-    currentlySelecting = gridTypes[0];
-    update();
-    Get.off(
-        ChamberDesigning(
-          chamber: chamber,
-          stacklevel: int.parse(chamber.stacking_level.toString()),
-          //palletCount: chamber.pallate_count ?? 0,
-        ),
-        id: ownerNavigationKey);
-  }
-
-  bool loading = false;
-  addX() {
-    loading = true;
-    update();
-    Future.delayed(const Duration(milliseconds: 200)).whenComplete(() {
-      loading = false;
-      update();
-    });
-  }
-
-  List gridTypes = [
+ List gridTypes = [
     {
       "title": "Pallet Location",
       "centerTitle": "P",
@@ -95,6 +55,60 @@ class ChamberController extends GetxController {
     },
   ];
 
+
+  submitChamberDesign(Map body) {
+    isSubmiting = true;
+    update();
+    // clear();
+    Get.find<OwnerController>()
+        .apiClient
+        .postData("owner/addChamberGridByOwner", body)
+        .then((v) {
+      if (v.data["message"] == "Pallets added successfully") {
+        clear();
+        Snacks.greenSnack("Pallets added successfully");
+      } else {
+        Snacks.redSnack("Something went wrong");
+        isSubmiting = false;
+        update();
+      }
+    });
+  }
+
+
+
+  designChamber(Chamber chamber) {
+    chamberr = chamber;
+    int a = sqrt((chamber.pallate_count! /
+            int.parse(chamber.stacking_level.toString())))
+        .ceil();
+    row = a + 2;
+    column = a + 2;
+    minColumn = column;
+    minRow = row;
+    currentlySelecting = gridTypes[0];
+    update();
+    Get.off(
+        ChamberDesigning(
+          chamber: chamber,
+          stacklevel: int.parse(chamber.stacking_level.toString()),
+          //palletCount: chamber.pallate_count ?? 0,
+        ),
+        id: ownerNavigationKey);
+  }
+
+  bool loading = false;
+  addX() {
+    loading = true;
+    update();
+    Future.delayed(const Duration(milliseconds: 200)).whenComplete(() {
+      loading = false;
+      update();
+    });
+  }
+
+ 
+
   int palletCount = 0;
 
   getPalletCount() {
@@ -106,14 +120,7 @@ class ChamberController extends GetxController {
     });
   }
 
-  Map? currentlySelecting;
-  bool showFinalView = false;
-  int maxRow = 0;
-  int maxColumn = 0;
-  int minRow = 0;
-  int minColumn = 0;
-  List<String> designCodintates = [];
-  Map designCodintatesMap = {};
+ 
 
   void extractRowColumnLenght() {
     String input = "R444C744L14444";

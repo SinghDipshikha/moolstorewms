@@ -559,7 +559,7 @@ Product _$ProductFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Product {
-  int get id => throw _privateConstructorUsedError;
+  int get product_id => throw _privateConstructorUsedError;
   int get qty => throw _privateConstructorUsedError;
   int get unit => throw _privateConstructorUsedError;
   DateTime? get expiry_date => throw _privateConstructorUsedError;
@@ -577,7 +577,7 @@ abstract class $ProductCopyWith<$Res> {
       _$ProductCopyWithImpl<$Res, Product>;
   @useResult
   $Res call(
-      {int id,
+      {int product_id,
       int qty,
       int unit,
       DateTime? expiry_date,
@@ -598,7 +598,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? product_id = null,
     Object? qty = null,
     Object? unit = null,
     Object? expiry_date = freezed,
@@ -606,9 +606,9 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? indent_number = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      product_id: null == product_id
+          ? _value.product_id
+          : product_id // ignore: cast_nullable_to_non_nullable
               as int,
       qty: null == qty
           ? _value.qty
@@ -642,7 +642,7 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
+      {int product_id,
       int qty,
       int unit,
       DateTime? expiry_date,
@@ -661,7 +661,7 @@ class __$$ProductImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? product_id = null,
     Object? qty = null,
     Object? unit = null,
     Object? expiry_date = freezed,
@@ -669,9 +669,9 @@ class __$$ProductImplCopyWithImpl<$Res>
     Object? indent_number = null,
   }) {
     return _then(_$ProductImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      product_id: null == product_id
+          ? _value.product_id
+          : product_id // ignore: cast_nullable_to_non_nullable
               as int,
       qty: null == qty
           ? _value.qty
@@ -701,7 +701,7 @@ class __$$ProductImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProductImpl implements _Product {
   const _$ProductImpl(
-      {required this.id,
+      {required this.product_id,
       required this.qty,
       required this.unit,
       this.expiry_date,
@@ -712,7 +712,7 @@ class _$ProductImpl implements _Product {
       _$$ProductImplFromJson(json);
 
   @override
-  final int id;
+  final int product_id;
   @override
   final int qty;
   @override
@@ -726,7 +726,7 @@ class _$ProductImpl implements _Product {
 
   @override
   String toString() {
-    return 'Product(id: $id, qty: $qty, unit: $unit, expiry_date: $expiry_date, product_name: $product_name, indent_number: $indent_number)';
+    return 'Product(product_id: $product_id, qty: $qty, unit: $unit, expiry_date: $expiry_date, product_name: $product_name, indent_number: $indent_number)';
   }
 
   @override
@@ -734,7 +734,8 @@ class _$ProductImpl implements _Product {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.product_id, product_id) ||
+                other.product_id == product_id) &&
             (identical(other.qty, qty) || other.qty == qty) &&
             (identical(other.unit, unit) || other.unit == unit) &&
             (identical(other.expiry_date, expiry_date) ||
@@ -747,8 +748,8 @@ class _$ProductImpl implements _Product {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, qty, unit, expiry_date, product_name, indent_number);
+  int get hashCode => Object.hash(runtimeType, product_id, qty, unit,
+      expiry_date, product_name, indent_number);
 
   @JsonKey(ignore: true)
   @override
@@ -766,7 +767,7 @@ class _$ProductImpl implements _Product {
 
 abstract class _Product implements Product {
   const factory _Product(
-      {required final int id,
+      {required final int product_id,
       required final int qty,
       required final int unit,
       final DateTime? expiry_date,
@@ -776,7 +777,7 @@ abstract class _Product implements Product {
   factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
 
   @override
-  int get id;
+  int get product_id;
   @override
   int get qty;
   @override
