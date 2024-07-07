@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/Model/vehicle.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/view/Dock%20Assign/docklistDialog.dart';
@@ -260,19 +259,11 @@ class _VehicleQueueListScreenState extends State<VehicleQueueListScreen> {
                                                           .verified_by_dock_manager ==
                                                       1) {
                                                     Get.find<DmsController>()
-                                                        .dmsRepo
-                                                        .getUnloadedMaterialByIndent(
+                                                        .startAssigningPallets(
                                                             indent_number: entry
                                                                     .indent_number ??
-                                                                "")
-                                                        .then((v) {
-                                                      Logger().i(v);
-                                                    });
-                                                    // Get.to(
-                                                    //     AssignChamber(
-                                                    //       entry: entry,
-                                                    //     ),
-                                                    //     id: dmsNavigationKey);
+                                                                "",
+                                                            entry: entry);
                                                   } else {
                                                     Get.to(
                                                         UnloadIngMaterial(

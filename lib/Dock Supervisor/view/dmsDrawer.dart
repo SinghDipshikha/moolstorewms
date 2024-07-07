@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/View/Dock%20Assign/dockAssign.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/view/Chanber/indentList.dart';
 import 'package:moolwmsstore/common/widgets/ownerSwitchRoleButton.dart';
 import 'package:moolwmsstore/common/widgets/profileAvatar.dart';
 import 'package:moolwmsstore/utils/globals.dart';
@@ -260,7 +261,7 @@ class DmsDrawer extends StatelessWidget {
                   height: 28,
                 ),
                 title: const Text(
-                  'Chamber Variable Phase',
+                  'Chamber',
                   style: TextStyle(
                     color: Color(0xFFACACAC),
                     fontSize: 16,
@@ -270,6 +271,18 @@ class DmsDrawer extends StatelessWidget {
                   ),
                 ),
                 children: [
+                  CurvedLineConatainer(
+                    title: "Indents List",
+                    isShowextendedLine: true,
+                    onTap: () {
+                      if (context.isPhone) {
+                        Navigator.of(context).pop();
+                        Get.to(const IndentList(), id: dmsNavigationKey);
+                      } else {
+                        Get.to(const IndentList(), id: dmsNavigationKey);
+                      }
+                    },
+                  ),
                   CurvedLineConatainer(
                     title: "Chamber List",
                     isShowextendedLine: false,

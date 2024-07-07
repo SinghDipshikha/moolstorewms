@@ -28,6 +28,7 @@ class _ViewChamberState extends State<ViewChamber> {
 
   late int columnLenghth;
   late int rowLength;
+  int additionalSidesEach = 2;
   @override
   void initState() {
     Get.find<OwnerController>()
@@ -37,8 +38,10 @@ class _ViewChamberState extends State<ViewChamber> {
       if (v != null) {
         setState(() {
           gridChamber = v;
-          columnLenghth = 2 + gridChamber.maxColumn - gridChamber.minColumn + 1;
-          rowLength = 2 + gridChamber.maxRow - gridChamber.minRow + 1;
+          columnLenghth = additionalSidesEach +
+              (gridChamber.maxColumn - gridChamber.minColumn + 1);
+          rowLength = additionalSidesEach +
+              (gridChamber.maxRow - gridChamber.minRow + 1);
           loading = false;
         });
       }
@@ -265,16 +268,15 @@ class _ViewChamberState extends State<ViewChamber> {
                   backgroundColor: Colors.white,
                   child: Column(
                     children: List.generate(columnLenghth, (c) {
-                      int columnAdress = c + gridChamber.minColumn - 1;
+                      int columnAdress = gridChamber.minColumn + c - 1;
                       return Row(
                         children: List.generate(rowLength, (r) {
-                          if (c == gridChamber.maxColumn &&
-                              r == gridChamber.maxRow) {
+                          if (r == 0 && c == 0) {
                             return Container(
                               height: 100,
                               width: 100,
                               decoration: ShapeDecoration(
-                                color: const Color(0xFFEAEAEA),
+                                color: Colors.red,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(22)),
                               ),
@@ -283,12 +285,12 @@ class _ViewChamberState extends State<ViewChamber> {
                               ),
                             ).paddingAll(4);
                           }
-                          if (c == 0 && r == gridChamber.maxRow) {
+                          if (c == columnLenghth - 1 && r == rowLength - 1) {
                             return Container(
                               height: 100,
                               width: 100,
                               decoration: ShapeDecoration(
-                                color: const Color(0xFFEAEAEA),
+                                color: Colors.red,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(22)),
                               ),
@@ -297,12 +299,12 @@ class _ViewChamberState extends State<ViewChamber> {
                               ),
                             ).paddingAll(4);
                           }
-                          if (c == gridChamber.maxColumn && r == 0) {
+                          if (c == 0 && r == rowLength - 1) {
                             return Container(
                               height: 100,
                               width: 100,
                               decoration: ShapeDecoration(
-                                color: const Color(0xFFEAEAEA),
+                                color: Colors.red,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(22)),
                               ),
@@ -311,7 +313,21 @@ class _ViewChamberState extends State<ViewChamber> {
                               ),
                             ).paddingAll(4);
                           }
-                          int rowAdress = r + gridChamber.minRow - 1;
+                          if (c == columnLenghth - 1 && r == 0) {
+                            return Container(
+                              height: 100,
+                              width: 100,
+                              decoration: ShapeDecoration(
+                                color: Colors.red,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(22)),
+                              ),
+                              child: const Center(
+                                child: Text("X"),
+                              ),
+                            ).paddingAll(4);
+                          }
+                          int rowAdress = gridChamber.minRow + r - 1;
                           String address =
                               "R${rowAdress}C${columnAdress}L$currentlySelectedStackinglevel";
 
@@ -343,19 +359,19 @@ class _ViewChamberState extends State<ViewChamber> {
                             }
                           }
 
-                          if (r == gridChamber.maxRow && c != 0) {
+                          if (r == rowLength - 1 && c != 0) {
                             return SizedBox(
                               height: 100,
                               width: 100,
-                              child: Center(child: Text("C${c + 1}")),
+                              child: Center(child: Text("C$columnAdress")),
                               // color: Colors.red,
                             ).paddingAll(4);
                           }
-                          if (c == gridChamber.maxColumn && r != 0) {
+                          if (c == columnLenghth - 1 && r != 0) {
                             return SizedBox(
                               height: 100,
                               width: 100,
-                              child: Center(child: Text("R${r + 1}")),
+                              child: Center(child: Text("R$rowAdress ")),
                               // color: Colors.red,
                             ).paddingAll(4);
                           }
@@ -363,7 +379,7 @@ class _ViewChamberState extends State<ViewChamber> {
                             return SizedBox(
                               height: 100,
                               width: 100,
-                              child: Center(child: Text("C${c + 1}")),
+                              child: Center(child: Text("C$columnAdress")),
                               // color: Colors.red,
                             ).paddingAll(4);
                           }
@@ -372,23 +388,8 @@ class _ViewChamberState extends State<ViewChamber> {
                             return SizedBox(
                               height: 100,
                               width: 100,
-                              child: Center(child: Text("R${r + 1}")),
+                              child: Center(child: Text("R$rowAdress ")),
                               // color: Colors.red,
-                            ).paddingAll(4);
-                          }
-
-                          if (r == 0 && c == 0) {
-                            return Container(
-                              height: 100,
-                              width: 100,
-                              decoration: ShapeDecoration(
-                                color: const Color(0xFFEAEAEA),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(22)),
-                              ),
-                              child: const Center(
-                                child: Text("X"),
-                              ),
                             ).paddingAll(4);
                           }
 

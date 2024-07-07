@@ -42,7 +42,7 @@ class ChambersDialog extends StatelessWidget {
               }, builder: (dmsController) {
                 return dmsController.chambers == null
                     ? const Center(
-                        child: SpinKitDoubleBounce(
+                        child: SpinKitDoubleBounce( 
                           color: Color(0xFF5A57FF),
                         ),
                       )
@@ -59,7 +59,7 @@ class ChambersDialog extends StatelessWidget {
                             onTap: () {
                               dmsController.selectedChamber =
                                   dmsController.chambers![i];
-
+ 
                               dmsController.update();
                             },
                             child: Container(
@@ -167,13 +167,8 @@ class ChambersDialog extends StatelessWidget {
                       Expanded(
                           child: InkWell(
                         onTap: () async {
-                          var v = await dmsController.dmsRepo.getChamberData(
-                              dmsController.selectedChamber!.id as int);
-                          if (v != null) {
-                            Get.back(id: dmsNavigationKey);
-
-                            Get.to(ChamberView(gridChamber: v));
-                          }
+                          dmsController.getSelectedChamberData();
+                         
                         },
                         child: Container(
                           height: 50,

@@ -69,104 +69,107 @@ class AssignChamber extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                   ),
                 ),
-                child: Column(
-                  children: [
-                    const Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Text(
-                            'Product Name',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Color(0xFF5A57FF),
-                              fontSize: 12,
-                              fontFamily: 'SF Pro Display',
-                              fontWeight: FontWeight.w500,
+                child: GetBuilder<DmsController>(builder: (dmsController) {
+                  return Column(
+                    children: [
+                      const Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              'Product Name',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFF5A57FF),
+                                fontSize: 12,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
-                        ),
-                        Gap(8),
-                        Expanded(
-                          flex: 1,
-                          child: Text(
-                            'Unit',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Color(0xFF5A57FF),
-                              fontSize: 12,
-                              fontFamily: 'SF Pro Display',
-                              fontWeight: FontWeight.w500,
+                          Gap(8),
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              'Unit',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFF5A57FF),
+                                fontSize: 12,
+                                fontFamily: 'SF Pro Display',
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    ...List.generate(
-                        10,
-                        (i) => Row(
-                              children: [
-                                const Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    "• " 'Kanon Scanner',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Color(0xFF353535),
-                                      fontSize: 14,
-                                      fontFamily: 'SF Pro Display',
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                                const Gap(8),
-                                Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    '$i',
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      color: Color(0xFF353535),
-                                      fontSize: 14,
-                                      fontFamily: 'SF Pro Display',
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ).paddingSymmetric(vertical: 4)),
-                    const Gap(8),
-                    InkWell(
-                      onTap: () {
-                        Get.dialog(const ChambersDialog(),
-                            navigatorKey: Get.nestedKey(dmsNavigationKey),
-                            barrierColor: Colors.transparent,
-                            barrierDismissible: false);
-                      },
-                      child: Container(
-                        width: 158,
-                        height: 40,
-                        alignment: Alignment.center,
-                        decoration: ShapeDecoration(
-                          color: const Color(0xFF5A57FF),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                        ),
-                        child: const Text(
-                          'Assign Chamber ',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontFamily: 'SF Pro Display',
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
+                        ],
                       ),
-                    )
-                  ],
-                ).paddingAll(16),
+                      ...List.generate(
+                          dmsController.toBeAssigned!.length,
+                          (i) => Row(
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: Text(
+                                      "• ${dmsController.toBeAssigned![i].product_name}",
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        color: Color(0xFF353535),
+                                        fontSize: 14,
+                                        fontFamily: 'SF Pro Display',
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                  const Gap(8),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Text(
+                                      "• "
+                                      '${dmsController.toBeAssigned![i].unit}',
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        color: Color(0xFF353535),
+                                        fontSize: 14,
+                                        fontFamily: 'SF Pro Display',
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ).paddingSymmetric(vertical: 4)),
+                      const Gap(8),
+                      InkWell(
+                        onTap: () {
+                          Get.dialog(const ChambersDialog(),
+                              navigatorKey: Get.nestedKey(dmsNavigationKey),
+                              barrierColor: Colors.transparent,
+                              barrierDismissible: false);
+                        },
+                        child: Container(
+                          width: 158,
+                          height: 40,
+                          alignment: Alignment.center,
+                          decoration: ShapeDecoration(
+                            color: const Color(0xFF5A57FF),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                          child: const Text(
+                            'Assign Chamber ',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontFamily: 'SF Pro Display',
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ).paddingAll(16);
+                }),
               )
             ],
           ),
