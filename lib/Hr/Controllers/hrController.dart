@@ -72,6 +72,7 @@ class HRController extends GetxController {
   List<StaffEntry> employees = [];
   StaffEntry? currentlySeletedEmployee;
   List<Widget> navigationAccordingStatus = [];
+  List<WarehousesAcess> dashboardWarehouses = [];
   bool dashboardCountStatus = false;
   DashboardCount? dashboardCount;
   DateTime dashBoardStartDate =
@@ -91,10 +92,22 @@ class HRController extends GetxController {
   // ];
 
   WarehousesAcess? currentlySelectedWarehouse;
-
+  bool isWarehouseAdded = false;
+  AddShift? currentlySelectedShift;
   @override
   void onInit() {
-    currentlySelectedWarehouse = user.warehouse![0];
+    if (user.warehouse == null) {
+      isWarehouseAdded = false;
+    } else {
+      isWarehouseAdded = true;
+      dashboardWarehouses.addAll(user.warehouse!.toList());
+      dashboardWarehouses.add(WarehousesAcess.fromJson({
+        "id": null,
+        "warehouse_name": "All Warehouses",
+      }));
+    }
+
+    // currentlySelectedWarehouse = user.warehouse![0];
     // TODO: implement onInit
     super.onInit();
   }
@@ -151,6 +164,13 @@ class HRController extends GetxController {
   changeDashBoardWarehouse({required WarehousesAcess warehouse}) {
     currentlySelectedWarehouse = warehouse;
 
+    getAllDashboardCount();
+    update();
+  }
+
+  changeDashboardShift({required AddShift shift}) {
+    currentlySelectedShift = shift;
+    getAllDashboardCount();
     update();
   }
 
@@ -583,12 +603,10 @@ class HRController extends GetxController {
     dashboardCountStatus = true;
 
     await apiClient.postData("hr/viewAttendanceList", {
-      
-        "name": "",
-        "start_date": "",
-        "end_date": "",
-        "warehouse_id": currentlySelectedWarehouse!.warehouse_id
-      
+      "name": "",
+      "start_date": "",
+      "end_date": "",
+      "warehouse_id": currentlySelectedWarehouse!.warehouse_id
     }).then((value) {
       if (value.data["message"] == "All Attendance fetched Successfully") {
         List x = value.data["result"];

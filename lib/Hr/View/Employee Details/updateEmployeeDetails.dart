@@ -258,7 +258,12 @@ class _UpdateEmployeeDetailsScreenState
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Gap(5),
+                        const Gap(10),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 8.0),
+                          child: Text('Please click the below field to edit.'),
+                        ),
+                        const Gap(10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -399,7 +404,12 @@ class _UpdateEmployeeDetailsScreenState
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Gap(5),
+                        const Gap(10),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 8.0),
+                          child: Text('Please click the below field to edit.'),
+                        ),
+                        const Gap(10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -521,6 +531,12 @@ class _UpdateEmployeeDetailsScreenState
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
+                        const Gap(10),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 8.0),
+                          child: Text('Please click the below field to edit.'),
+                        ),
+                        const Gap(10),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -683,7 +699,15 @@ class _UpdateEmployeeDetailsScreenState
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        const Gap(10),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 8.0),
+                          child: Text('Please click the below field to edit.'),
+                        ),
+                        const Gap(10),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -848,7 +872,12 @@ class _UpdateEmployeeDetailsScreenState
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Gap(5),
+                        const Gap(10),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 8.0),
+                          child: Text('Please click the below field to edit.'),
+                        ),
+                        const Gap(10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -960,7 +989,12 @@ class _UpdateEmployeeDetailsScreenState
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Gap(5),
+                        const Gap(10),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 8.0),
+                          child: Text('Please click the below field to edit.'),
+                        ),
+                        const Gap(10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -1097,11 +1131,6 @@ class CommonTileForUpdate extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(4)),
                       borderSide:
                           BorderSide(width: 0.50, color: Color(0x195E57FC)),
-                    ),
-                    suffix: Icon(
-                      Icons.edit,
-                      color: Color(0xFF5A57FF),
-                      size: 12,
                     ),
                     filled: true,
                     fillColor: Color(0xFFFAF9FF),
