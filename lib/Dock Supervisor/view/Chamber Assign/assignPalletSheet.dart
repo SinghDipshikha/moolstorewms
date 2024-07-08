@@ -35,7 +35,11 @@ class AssignPalletSheet extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset("assets/icons/Vector 644.png"),
+              InkWell(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Image.asset("assets/icons/Vector 644.png")),
             ],
           ).paddingAll(12),
           Text(
@@ -46,6 +50,30 @@ class AssignPalletSheet extends StatelessWidget {
               fontFamily: 'SF Pro Display',
               fontWeight: FontWeight.w500,
             ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'Is Pallet Full',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontFamily: 'SF Pro Display',
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              GetBuilder<DmsController>(builder: (dmsController) {
+                return Checkbox(
+                    value: dmsController.isPalletFull,
+                    onChanged: (v) {
+                      if (v != null) {
+                        dmsController.isPalletFull = v;
+                        dmsController.update();
+                      }
+                    });
+              })
+            ],
           ),
           const Divider().paddingSymmetric(vertical: 12),
           Row(

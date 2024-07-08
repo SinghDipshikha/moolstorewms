@@ -8,6 +8,7 @@ import 'package:moolwmsstore/Owner/View/Chamber/addChamber.dart';
 import 'package:moolwmsstore/Owner/View/Chamber/viewChamber.dart';
 import 'package:moolwmsstore/Owner/View/Common/customButton.dart';
 import 'package:moolwmsstore/common/controller/chamberController.dart';
+import 'package:moolwmsstore/utils/globals.dart';
 
 ////@RoutePage()
 class ChamberList extends StatefulWidget {
@@ -42,9 +43,11 @@ class _ChamberListState extends State<ChamberList> {
         floatingActionButton: CustomButton(
           title: "Add Chamber",
           onTap: () {
-            Get.to(AddChamberView(
-              warehouse_id: widget.warehouse_id,
-            ));
+            Get.to(
+                AddChamberView(
+                  warehouse_id: widget.warehouse_id,
+                ),
+                id: ownerNavigationKey);
           },
         ).paddingSymmetric(horizontal: 12),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -77,7 +80,6 @@ class _ChamberListState extends State<ChamberList> {
                   )
                 : ListView.builder(
                     padding: EdgeInsets.zero,
-                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: chambers!.length,
                     itemBuilder: (context, i) {
                       return Padding(
@@ -208,9 +210,12 @@ class _ChamberListState extends State<ChamberList> {
                                         )
                                       : InkWell(
                                           onTap: () {
-                                            Get.to(ViewChamber(
-                                              chaberId: chambers![i].id as int,
-                                            ));
+                                            Get.to(
+                                                ViewChamber(
+                                                  chaberId:
+                                                      chambers![i].id as int,
+                                                ),
+                                                id: ownerNavigationKey);
                                           },
                                           child: const Column(
                                             mainAxisAlignment:

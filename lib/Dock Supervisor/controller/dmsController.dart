@@ -26,18 +26,13 @@ class DmsController extends GetxController {
   bool isOwner;
   User user;
 
-
   DmsController(
       {required this.dmsRepo,
       required this.apiClient,
       required this.user,
       this.isOwner = false});
 
-
-
-
-
-       List gridTypes = [
+  List gridTypes = [
     {
       "title": "Pallet Location",
       "centerTitle": "P",
@@ -133,6 +128,7 @@ class DmsController extends GetxController {
   }
 
   PalletAssignBody? palletAssignBody;
+  bool isPalletFull = false;
   assignPalletToProduct({required GridItem pallet}) {
     List<DockProduct> listToUpload = toBeAssigned!.toList();
     List<DockProduct> listToReplace = toBeAssigned!.toList();
@@ -162,10 +158,10 @@ class DmsController extends GetxController {
         id: pallet.id,
         status: "IN",
         products: listToUpload,
-        is_full: 0,
+        is_full: isPalletFull ? 1 : 0,
         chamber_id: selectedChamber!.id as int,
         warehouse_id: currentlySelectedWarehouse!.warehouse_id as int);
-    Logger().i(palletAssignBody!.toJson());
+    isPalletFull = false;
 
     dmsRepo.assignProductsToPallets(palletAssignBody!).then((v) async {
       if (v) {
