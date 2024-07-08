@@ -66,11 +66,7 @@ class _UnloadIngMaterialState extends State<UnloadIngMaterial> {
         .unloadingMaterial(unloadingMaterial)
         .then((v) {
       if (v) {
-        Get.off(
-            AssignChamber(
-              entry: widget.entry,
-            ),
-            id: dmsNavigationKey);
+         Get.find<DmsController>().startAssigningPallets(indent_number: widget.entry.indent_number ??"--", entry: widget.entry);
       } else {
         setState(() {
           isLoading = false;

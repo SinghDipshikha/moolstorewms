@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:logger/logger.dart';
@@ -24,11 +25,50 @@ class DmsController extends GetxController {
   bool isLoading = false;
   bool isOwner;
   User user;
+
+
   DmsController(
       {required this.dmsRepo,
       required this.apiClient,
       required this.user,
       this.isOwner = false});
+
+
+
+
+
+       List gridTypes = [
+    {
+      "title": "Pallet Location",
+      "centerTitle": "P",
+      "color": const Color.fromARGB(255, 62, 155, 66),
+      "textColor": null
+    },
+    {
+      "title": "Aisle",
+      "centerTitle": "O",
+      "color": const Color.fromARGB(255, 214, 212, 212),
+      "textColor": Colors.black
+    },
+    {
+      "title": "Air but can be used for high stacking of material",
+      "centerTitle": "XS",
+      "color": const Color(0xFF902CFC),
+      "textColor": null
+    },
+    {
+      "title": "Air No sapce to store",
+      "centerTitle": "X",
+      "color": const Color.fromARGB(255, 190, 189, 189),
+      "textColor": Colors.black
+    },
+    {
+      "title": "Aisle but can be used for long term storage",
+      "centerTitle": "AS",
+      "color": const Color(0xFFF26803),
+      "textColor": null
+    },
+  ];
 
   List<Vehicle> vehicleList = [];
   // List<Dock> dockList = [];

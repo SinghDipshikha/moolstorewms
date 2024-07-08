@@ -42,50 +42,69 @@ class _IndentListState extends State<IndentList> {
           : ListView.builder(
               itemCount: chambers!.length,
               itemBuilder: (context, index) {
-                return Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text("Chamber No. ${chambers![index].chamber_id}"),
-                    if (chambers![index].pallets != null)
-                      Column(
-                        children: List.generate(
-                            chambers![index].pallets!.length, (palletIndex) {
-                          chambers![index].pallets![palletIndex].indentNumbers;
-                          if (chambers![index]
-                                  .pallets![palletIndex]
-                                  .indentNumbers ==
-                              null) {
-                            return Container();
-                          }
-
-                          return Column(
-                            children: List.generate(
-                                chambers![index]
+                return Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.amber),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text("Chamber No. ${chambers![index].chamber_id}"),
+                      if (chambers![index].pallets != null)
+                        Column(
+                          children: List.generate(
+                              chambers![index].pallets!.length, (palletIndex) {
+                            chambers![index]
+                                .pallets![palletIndex]
+                                .indentNumbers;
+                            if (chambers![index]
                                     .pallets![palletIndex]
-                                    .indentNumbers!
-                                    .length, (indentIndex) {
-                              return Column(
-                                children: List.generate(
-                                    chambers![index]
-                                        .pallets![palletIndex]
-                                        .indentNumbers![indentIndex]
-                                        .products
-                                        .length, (productIndex) {
-                                  return Text(chambers![index]
-                                          .pallets![palletIndex]
-                                          .indentNumbers![indentIndex]
-                                          .products[productIndex]
-                                          .toJson()
-                                          .toString())
-                                      .paddingSymmetric(vertical: 12);
-                                }),
-                              );
-                            }),
-                          );
-                        }),
-                      )
-                  ],
-                );
+                                    .indentNumbers ==
+                                null) {
+                              return Container();
+                            }
+
+                            return Column(
+                              children: List.generate(
+                                  chambers![index]
+                                      .pallets![palletIndex]
+                                      .indentNumbers!
+                                      .length, (indentIndex) {
+                                return Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "Pallet : ${chambers![index].pallets![palletIndex].pallet}",
+                                          style: const TextStyle(
+                                              color: Colors.red),
+                                        ),
+                                      ],
+                                    ),
+                                    ...List.generate(
+                                        chambers![index]
+                                            .pallets![palletIndex]
+                                            .indentNumbers![indentIndex]
+                                            .products
+                                            .length, (productIndex) {
+                                      return Text(chambers![index]
+                                              .pallets![palletIndex]
+                                              .indentNumbers![indentIndex]
+                                              .products[productIndex]
+                                              .toJson()
+                                              .toString())
+                                          .paddingSymmetric(
+                                              vertical: 4, horizontal: 6);
+                                    })
+                                  ],
+                                );
+                              }),
+                            );
+                          }),
+                        )
+                    ],
+                  ),
+                ).paddingSymmetric(vertical: 12);
               },
             ).paddingSymmetric(
               vertical: Dimensions.vericalBodyPad,
