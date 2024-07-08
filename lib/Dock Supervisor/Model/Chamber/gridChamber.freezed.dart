@@ -323,12 +323,13 @@ GridItem _$GridItemFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GridItem {
+  int? get id => throw _privateConstructorUsedError;
   String get pallet => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   int get stacking_level => throw _privateConstructorUsedError;
   int get is_full => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _productsFromJson, toJson: _productsToJson)
-  List<Product>? get products => throw _privateConstructorUsedError;
+  List<DockProduct>? get products => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -342,12 +343,13 @@ abstract class $GridItemCopyWith<$Res> {
       _$GridItemCopyWithImpl<$Res, GridItem>;
   @useResult
   $Res call(
-      {String pallet,
+      {int? id,
+      String pallet,
       String status,
       int stacking_level,
       int is_full,
       @JsonKey(fromJson: _productsFromJson, toJson: _productsToJson)
-      List<Product>? products});
+      List<DockProduct>? products});
 }
 
 /// @nodoc
@@ -363,6 +365,7 @@ class _$GridItemCopyWithImpl<$Res, $Val extends GridItem>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? pallet = null,
     Object? status = null,
     Object? stacking_level = null,
@@ -370,6 +373,10 @@ class _$GridItemCopyWithImpl<$Res, $Val extends GridItem>
     Object? products = freezed,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       pallet: null == pallet
           ? _value.pallet
           : pallet // ignore: cast_nullable_to_non_nullable
@@ -389,7 +396,7 @@ class _$GridItemCopyWithImpl<$Res, $Val extends GridItem>
       products: freezed == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<Product>?,
+              as List<DockProduct>?,
     ) as $Val);
   }
 }
@@ -403,12 +410,13 @@ abstract class _$$GridItemImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String pallet,
+      {int? id,
+      String pallet,
       String status,
       int stacking_level,
       int is_full,
       @JsonKey(fromJson: _productsFromJson, toJson: _productsToJson)
-      List<Product>? products});
+      List<DockProduct>? products});
 }
 
 /// @nodoc
@@ -422,6 +430,7 @@ class __$$GridItemImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? pallet = null,
     Object? status = null,
     Object? stacking_level = null,
@@ -429,6 +438,10 @@ class __$$GridItemImplCopyWithImpl<$Res>
     Object? products = freezed,
   }) {
     return _then(_$GridItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       pallet: null == pallet
           ? _value.pallet
           : pallet // ignore: cast_nullable_to_non_nullable
@@ -448,7 +461,7 @@ class __$$GridItemImplCopyWithImpl<$Res>
       products: freezed == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<Product>?,
+              as List<DockProduct>?,
     ));
   }
 }
@@ -457,17 +470,20 @@ class __$$GridItemImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GridItemImpl implements _GridItem {
   const _$GridItemImpl(
-      {required this.pallet,
+      {this.id,
+      required this.pallet,
       required this.status,
       required this.stacking_level,
       required this.is_full,
       @JsonKey(fromJson: _productsFromJson, toJson: _productsToJson)
-      final List<Product>? products})
+      final List<DockProduct>? products})
       : _products = products;
 
   factory _$GridItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$GridItemImplFromJson(json);
 
+  @override
+  final int? id;
   @override
   final String pallet;
   @override
@@ -476,10 +492,10 @@ class _$GridItemImpl implements _GridItem {
   final int stacking_level;
   @override
   final int is_full;
-  final List<Product>? _products;
+  final List<DockProduct>? _products;
   @override
   @JsonKey(fromJson: _productsFromJson, toJson: _productsToJson)
-  List<Product>? get products {
+  List<DockProduct>? get products {
     final value = _products;
     if (value == null) return null;
     if (_products is EqualUnmodifiableListView) return _products;
@@ -489,7 +505,7 @@ class _$GridItemImpl implements _GridItem {
 
   @override
   String toString() {
-    return 'GridItem(pallet: $pallet, status: $status, stacking_level: $stacking_level, is_full: $is_full, products: $products)';
+    return 'GridItem(id: $id, pallet: $pallet, status: $status, stacking_level: $stacking_level, is_full: $is_full, products: $products)';
   }
 
   @override
@@ -497,6 +513,7 @@ class _$GridItemImpl implements _GridItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GridItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.pallet, pallet) || other.pallet == pallet) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.stacking_level, stacking_level) ||
@@ -507,8 +524,8 @@ class _$GridItemImpl implements _GridItem {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, pallet, status, stacking_level,
-      is_full, const DeepCollectionEquality().hash(_products));
+  int get hashCode => Object.hash(runtimeType, id, pallet, status,
+      stacking_level, is_full, const DeepCollectionEquality().hash(_products));
 
   @JsonKey(ignore: true)
   @override
@@ -526,16 +543,19 @@ class _$GridItemImpl implements _GridItem {
 
 abstract class _GridItem implements GridItem {
   const factory _GridItem(
-      {required final String pallet,
+      {final int? id,
+      required final String pallet,
       required final String status,
       required final int stacking_level,
       required final int is_full,
       @JsonKey(fromJson: _productsFromJson, toJson: _productsToJson)
-      final List<Product>? products}) = _$GridItemImpl;
+      final List<DockProduct>? products}) = _$GridItemImpl;
 
   factory _GridItem.fromJson(Map<String, dynamic> json) =
       _$GridItemImpl.fromJson;
 
+  @override
+  int? get id;
   @override
   String get pallet;
   @override
@@ -546,249 +566,9 @@ abstract class _GridItem implements GridItem {
   int get is_full;
   @override
   @JsonKey(fromJson: _productsFromJson, toJson: _productsToJson)
-  List<Product>? get products;
+  List<DockProduct>? get products;
   @override
   @JsonKey(ignore: true)
   _$$GridItemImplCopyWith<_$GridItemImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-Product _$ProductFromJson(Map<String, dynamic> json) {
-  return _Product.fromJson(json);
-}
-
-/// @nodoc
-mixin _$Product {
-  int get id => throw _privateConstructorUsedError;
-  int get qty => throw _privateConstructorUsedError;
-  int get unit => throw _privateConstructorUsedError;
-  DateTime? get expiry_date => throw _privateConstructorUsedError;
-  String get product_name => throw _privateConstructorUsedError;
-  String get indent_number => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ProductCopyWith<Product> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ProductCopyWith<$Res> {
-  factory $ProductCopyWith(Product value, $Res Function(Product) then) =
-      _$ProductCopyWithImpl<$Res, Product>;
-  @useResult
-  $Res call(
-      {int id,
-      int qty,
-      int unit,
-      DateTime? expiry_date,
-      String product_name,
-      String indent_number});
-}
-
-/// @nodoc
-class _$ProductCopyWithImpl<$Res, $Val extends Product>
-    implements $ProductCopyWith<$Res> {
-  _$ProductCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? qty = null,
-    Object? unit = null,
-    Object? expiry_date = freezed,
-    Object? product_name = null,
-    Object? indent_number = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      qty: null == qty
-          ? _value.qty
-          : qty // ignore: cast_nullable_to_non_nullable
-              as int,
-      unit: null == unit
-          ? _value.unit
-          : unit // ignore: cast_nullable_to_non_nullable
-              as int,
-      expiry_date: freezed == expiry_date
-          ? _value.expiry_date
-          : expiry_date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      product_name: null == product_name
-          ? _value.product_name
-          : product_name // ignore: cast_nullable_to_non_nullable
-              as String,
-      indent_number: null == indent_number
-          ? _value.indent_number
-          : indent_number // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
-  factory _$$ProductImplCopyWith(
-          _$ProductImpl value, $Res Function(_$ProductImpl) then) =
-      __$$ProductImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {int id,
-      int qty,
-      int unit,
-      DateTime? expiry_date,
-      String product_name,
-      String indent_number});
-}
-
-/// @nodoc
-class __$$ProductImplCopyWithImpl<$Res>
-    extends _$ProductCopyWithImpl<$Res, _$ProductImpl>
-    implements _$$ProductImplCopyWith<$Res> {
-  __$$ProductImplCopyWithImpl(
-      _$ProductImpl _value, $Res Function(_$ProductImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? qty = null,
-    Object? unit = null,
-    Object? expiry_date = freezed,
-    Object? product_name = null,
-    Object? indent_number = null,
-  }) {
-    return _then(_$ProductImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      qty: null == qty
-          ? _value.qty
-          : qty // ignore: cast_nullable_to_non_nullable
-              as int,
-      unit: null == unit
-          ? _value.unit
-          : unit // ignore: cast_nullable_to_non_nullable
-              as int,
-      expiry_date: freezed == expiry_date
-          ? _value.expiry_date
-          : expiry_date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      product_name: null == product_name
-          ? _value.product_name
-          : product_name // ignore: cast_nullable_to_non_nullable
-              as String,
-      indent_number: null == indent_number
-          ? _value.indent_number
-          : indent_number // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$ProductImpl implements _Product {
-  const _$ProductImpl(
-      {required this.id,
-      required this.qty,
-      required this.unit,
-      this.expiry_date,
-      required this.product_name,
-      required this.indent_number});
-
-  factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ProductImplFromJson(json);
-
-  @override
-  final int id;
-  @override
-  final int qty;
-  @override
-  final int unit;
-  @override
-  final DateTime? expiry_date;
-  @override
-  final String product_name;
-  @override
-  final String indent_number;
-
-  @override
-  String toString() {
-    return 'Product(id: $id, qty: $qty, unit: $unit, expiry_date: $expiry_date, product_name: $product_name, indent_number: $indent_number)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ProductImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.qty, qty) || other.qty == qty) &&
-            (identical(other.unit, unit) || other.unit == unit) &&
-            (identical(other.expiry_date, expiry_date) ||
-                other.expiry_date == expiry_date) &&
-            (identical(other.product_name, product_name) ||
-                other.product_name == product_name) &&
-            (identical(other.indent_number, indent_number) ||
-                other.indent_number == indent_number));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, id, qty, unit, expiry_date, product_name, indent_number);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ProductImplCopyWith<_$ProductImpl> get copyWith =>
-      __$$ProductImplCopyWithImpl<_$ProductImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ProductImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _Product implements Product {
-  const factory _Product(
-      {required final int id,
-      required final int qty,
-      required final int unit,
-      final DateTime? expiry_date,
-      required final String product_name,
-      required final String indent_number}) = _$ProductImpl;
-
-  factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
-
-  @override
-  int get id;
-  @override
-  int get qty;
-  @override
-  int get unit;
-  @override
-  DateTime? get expiry_date;
-  @override
-  String get product_name;
-  @override
-  String get indent_number;
-  @override
-  @JsonKey(ignore: true)
-  _$$ProductImplCopyWith<_$ProductImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

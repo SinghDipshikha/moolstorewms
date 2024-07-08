@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/Model/Chamber/dockProduct.dart';
 
 part 'gridChamber.freezed.dart';
 part 'gridChamber.g.dart';
@@ -25,41 +26,29 @@ class GridChamber with _$GridChamber {
 @freezed
 class GridItem with _$GridItem {
   const factory GridItem({
+    int? id,
     required String pallet,
     required String status,
     required int stacking_level,
     required int is_full,
     @JsonKey(fromJson: _productsFromJson, toJson: _productsToJson)
-    List<Product>? products,
+    List<DockProduct>? products,
   }) = _GridItem;
 
   factory GridItem.fromJson(Map<String, dynamic> json) =>
       _$GridItemFromJson(json);
 }
 
-List<Product>? _productsFromJson(String? json) => json == null
+List<DockProduct>? _productsFromJson(String? json) => json == null
     ? null
-    : List<Product>.from(
-        (jsonDecode(json) as List).map((item) => Product.fromJson(item)));
+    : List<DockProduct>.from(
+        (jsonDecode(json) as List).map((item) => DockProduct.fromJson(item)));
 
-String? _productsToJson(List<Product>? products) => products == null
+String? _productsToJson(List<DockProduct>? products) => products == null
     ? null
     : jsonEncode(products.map((product) => product.toJson()).toList());
 
-@freezed
-class Product with _$Product {
-  const factory Product({
-    required int id,
-    required int qty,
-    required int unit,
-    DateTime? expiry_date,
-    required String product_name,
-    required String indent_number,
-  }) = _Product;
 
-  factory Product.fromJson(Map<String, dynamic> json) =>
-      _$ProductFromJson(json);
-}
 
   
     //  {

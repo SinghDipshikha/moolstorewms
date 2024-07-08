@@ -7,11 +7,11 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:moolwmsstore/Auth/Controllers/authController.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
-
 import 'package:moolwmsstore/Common%20Data/Model/LanaguageModel.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Controller/language_controller.dart';
 import 'package:moolwmsstore/Controller/localization_controller.dart';
+import 'package:moolwmsstore/Dock%20Supervisor/Model/Chamber/dockProduct.dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -30,6 +30,7 @@ Future<Map<String, Map<String, String>>> init() async {
 
   Hive.registerAdapter(UserAdapter());
   Hive.registerAdapter(WarehousesAcessAdapter());
+  Hive.registerAdapter(DockProductAdapter());
 
   await Hive.openBox('authbox');
 

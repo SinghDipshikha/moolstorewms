@@ -71,6 +71,7 @@ class AddChamberView extends StatelessWidget {
                                 return null;
                               }
                             },
+
                             onChanged: (p0) {
                               ownerController.addChamberModel = ownerController
                                   .addChamberModel

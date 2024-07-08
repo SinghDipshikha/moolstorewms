@@ -133,102 +133,109 @@ class EmployeeList extends StatelessWidget {
               ],
             ).paddingSymmetric(horizontal: 12),
             Expanded(
-                child: ListView.builder(
-                    itemCount: ownerController.employees.length,
-                    itemBuilder: (context, i) {
-                      return Container(
-                        //height: 40,
-                        decoration: ShapeDecoration(
-                          color: const Color(0xFFFAF9FF),
-                          shape: RoundedRectangleBorder(
-                            side: const BorderSide(
-                                width: 1, color: Color(0x195A57FF)),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        child: Row(
-                          children: [
-                            Expanded(
-                                flex: 1,
-                                child: Text(
-                                  ownerController.employees[i].name ?? "",
-                                  style: const TextStyle(
-                                    color: Color(0xFF353535),
-                                    fontSize: 10,
-                                    fontFamily: 'SF Pro Text',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                )),
-                            Expanded(
-                                flex: 1,
-                                child: Text(
-                                  ownerController.employees[i].mobile ?? "",
-                                  style: const TextStyle(
-                                    color: Color(0xFF353535),
-                                    fontSize: 10,
-                                    fontFamily: 'SF Pro Text',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                )),
-                            // const Gap(4),
-                            Expanded(
-                                flex: 1,
-                                child: Text(
-                                  ownerController.employees[i].personType![0]
-                                          .toString()
-                                          .replaceAll("[", "")
-                                          .replaceAll("]", "") ??
-                                      "",
-                                  style: const TextStyle(
-                                    color: Color(0xFF353535),
-                                    fontSize: 10,
-                                    fontFamily: 'SF Pro Text',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                )),
-                            IconButton(
-                                padding: EdgeInsets.zero,
-                                onPressed: () {
-                                  if (ownerController.employees[i].personType
-                                          ?.contains("owner") ??
-                                      false) {
-                                    Get.to(
-                                        ViewEmployee(
-                                          warehouseId: warehouseId,
-                                          owner: ownerController.employees[i],
-                                        ),
-                                        id: ownerNavigationKey);
-                                  } else {
-                                    Get.off(
-                                        ViewEmployee(
-                                          warehouseId: warehouseId,
-                                          employeeId: ownerController
-                                              .employees[i].employeeID,
-                                        ),
-                                        id: ownerNavigationKey);
-                                  }
-                                },
-                                icon: Image.asset(
-                                  "assets/icons/Eye.png",
-                                  height: 20,
-                                )),
-                            IconButton(
-                                padding: EdgeInsets.zero,
-                                onPressed: () {},
-                                icon: Image.asset(
-                                  ownerController.employees[i].status == 1
-                                      ? "assets/icons/active.png"
-                                      : "assets/icons/inActive.png",
-                                  height: 22,
-                                ))
-                          ],
-                        ),
-                      ).paddingSymmetric(vertical: 4);
-                    })),
+                child: ownerController.employees.isEmpty
+                    ? const Center(
+                        child: Text("No Employees Found"),
+                      )
+                    : ListView.builder(
+                        itemCount: ownerController.employees.length,
+                        itemBuilder: (context, i) {
+                          return Container(
+                            //height: 40,
+                            decoration: ShapeDecoration(
+                              color: const Color(0xFFFAF9FF),
+                              shape: RoundedRectangleBorder(
+                                side: const BorderSide(
+                                    width: 1, color: Color(0x195A57FF)),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    flex: 1,
+                                    child: Text(
+                                      ownerController.employees[i].name ?? "",
+                                      style: const TextStyle(
+                                        color: Color(0xFF353535),
+                                        fontSize: 10,
+                                        fontFamily: 'SF Pro Text',
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    )),
+                                Expanded(
+                                    flex: 1,
+                                    child: Text(
+                                      ownerController.employees[i].mobile ?? "",
+                                      style: const TextStyle(
+                                        color: Color(0xFF353535),
+                                        fontSize: 10,
+                                        fontFamily: 'SF Pro Text',
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    )),
+                                // const Gap(4),
+                                Expanded(
+                                    flex: 1,
+                                    child: Text(
+                                      ownerController
+                                              .employees[i].personType![0]
+                                              .toString()
+                                              .replaceAll("[", "")
+                                              .replaceAll("]", "") ??
+                                          "",
+                                      style: const TextStyle(
+                                        color: Color(0xFF353535),
+                                        fontSize: 10,
+                                        fontFamily: 'SF Pro Text',
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    )),
+                                IconButton(
+                                    padding: EdgeInsets.zero,
+                                    onPressed: () {
+                                      if (ownerController
+                                              .employees[i].personType
+                                              ?.contains("owner") ??
+                                          false) {
+                                        Get.to(
+                                            ViewEmployee(
+                                              warehouseId: warehouseId,
+                                              owner:
+                                                  ownerController.employees[i],
+                                            ),
+                                            id: ownerNavigationKey);
+                                      } else {
+                                        Get.off(
+                                            ViewEmployee(
+                                              warehouseId: warehouseId,
+                                              employeeId: ownerController
+                                                  .employees[i].employeeID,
+                                            ),
+                                            id: ownerNavigationKey);
+                                      }
+                                    },
+                                    icon: Image.asset(
+                                      "assets/icons/Eye.png",
+                                      height: 20,
+                                    )),
+                                IconButton(
+                                    padding: EdgeInsets.zero,
+                                    onPressed: () {},
+                                    icon: Image.asset(
+                                      ownerController.employees[i].status == 1
+                                          ? "assets/icons/active.png"
+                                          : "assets/icons/inActive.png",
+                                      height: 22,
+                                    ))
+                              ],
+                            ),
+                          ).paddingSymmetric(vertical: 4);
+                        })),
             CustomButton(
               onTap: () {
-                  Get.off(AddEmployee(), id: ownerNavigationKey);
+                Get.off(AddEmployee(), id: ownerNavigationKey);
               },
               title: 'Add New Staff',
             ).paddingSymmetric(vertical: 12)

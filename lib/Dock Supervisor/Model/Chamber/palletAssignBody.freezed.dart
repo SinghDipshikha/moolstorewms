@@ -20,13 +20,13 @@ PalletAssignBody _$PalletAssignBodyFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PalletAssignBody {
-  int get id => throw _privateConstructorUsedError;
-  String get pallet_coordinate => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String? get pallet_coordinate => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   int get warehouse_id => throw _privateConstructorUsedError;
   int get chamber_id => throw _privateConstructorUsedError;
   int get is_full => throw _privateConstructorUsedError;
-  List<Product>? get products => throw _privateConstructorUsedError;
+  List<DockProduct>? get products => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,13 +41,13 @@ abstract class $PalletAssignBodyCopyWith<$Res> {
       _$PalletAssignBodyCopyWithImpl<$Res, PalletAssignBody>;
   @useResult
   $Res call(
-      {int id,
-      String pallet_coordinate,
+      {int? id,
+      String? pallet_coordinate,
       String status,
       int warehouse_id,
       int chamber_id,
       int is_full,
-      List<Product>? products});
+      List<DockProduct>? products});
 }
 
 /// @nodoc
@@ -63,8 +63,8 @@ class _$PalletAssignBodyCopyWithImpl<$Res, $Val extends PalletAssignBody>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? pallet_coordinate = null,
+    Object? id = freezed,
+    Object? pallet_coordinate = freezed,
     Object? status = null,
     Object? warehouse_id = null,
     Object? chamber_id = null,
@@ -72,14 +72,14 @@ class _$PalletAssignBodyCopyWithImpl<$Res, $Val extends PalletAssignBody>
     Object? products = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      pallet_coordinate: null == pallet_coordinate
+              as int?,
+      pallet_coordinate: freezed == pallet_coordinate
           ? _value.pallet_coordinate
           : pallet_coordinate // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -99,7 +99,7 @@ class _$PalletAssignBodyCopyWithImpl<$Res, $Val extends PalletAssignBody>
       products: freezed == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<Product>?,
+              as List<DockProduct>?,
     ) as $Val);
   }
 }
@@ -113,13 +113,13 @@ abstract class _$$PalletAssignBodyImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      String pallet_coordinate,
+      {int? id,
+      String? pallet_coordinate,
       String status,
       int warehouse_id,
       int chamber_id,
       int is_full,
-      List<Product>? products});
+      List<DockProduct>? products});
 }
 
 /// @nodoc
@@ -133,8 +133,8 @@ class __$$PalletAssignBodyImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? pallet_coordinate = null,
+    Object? id = freezed,
+    Object? pallet_coordinate = freezed,
     Object? status = null,
     Object? warehouse_id = null,
     Object? chamber_id = null,
@@ -142,14 +142,14 @@ class __$$PalletAssignBodyImplCopyWithImpl<$Res>
     Object? products = freezed,
   }) {
     return _then(_$PalletAssignBodyImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      pallet_coordinate: null == pallet_coordinate
+              as int?,
+      pallet_coordinate: freezed == pallet_coordinate
           ? _value.pallet_coordinate
           : pallet_coordinate // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -169,7 +169,7 @@ class __$$PalletAssignBodyImplCopyWithImpl<$Res>
       products: freezed == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<Product>?,
+              as List<DockProduct>?,
     ));
   }
 }
@@ -178,23 +178,24 @@ class __$$PalletAssignBodyImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PalletAssignBodyImpl implements _PalletAssignBody {
   const _$PalletAssignBodyImpl(
-      {required this.id,
-      required this.pallet_coordinate,
-      required this.status,
+      {this.id,
+      this.pallet_coordinate,
+      this.status = "IN",
       required this.warehouse_id,
       required this.chamber_id,
       this.is_full = 0,
-      final List<Product>? products})
+      final List<DockProduct>? products})
       : _products = products;
 
   factory _$PalletAssignBodyImpl.fromJson(Map<String, dynamic> json) =>
       _$$PalletAssignBodyImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
-  final String pallet_coordinate;
+  final String? pallet_coordinate;
   @override
+  @JsonKey()
   final String status;
   @override
   final int warehouse_id;
@@ -203,9 +204,9 @@ class _$PalletAssignBodyImpl implements _PalletAssignBody {
   @override
   @JsonKey()
   final int is_full;
-  final List<Product>? _products;
+  final List<DockProduct>? _products;
   @override
-  List<Product>? get products {
+  List<DockProduct>? get products {
     final value = _products;
     if (value == null) return null;
     if (_products is EqualUnmodifiableListView) return _products;
@@ -264,21 +265,21 @@ class _$PalletAssignBodyImpl implements _PalletAssignBody {
 
 abstract class _PalletAssignBody implements PalletAssignBody {
   const factory _PalletAssignBody(
-      {required final int id,
-      required final String pallet_coordinate,
-      required final String status,
+      {final int? id,
+      final String? pallet_coordinate,
+      final String status,
       required final int warehouse_id,
       required final int chamber_id,
       final int is_full,
-      final List<Product>? products}) = _$PalletAssignBodyImpl;
+      final List<DockProduct>? products}) = _$PalletAssignBodyImpl;
 
   factory _PalletAssignBody.fromJson(Map<String, dynamic> json) =
       _$PalletAssignBodyImpl.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
-  String get pallet_coordinate;
+  String? get pallet_coordinate;
   @override
   String get status;
   @override
@@ -288,249 +289,9 @@ abstract class _PalletAssignBody implements PalletAssignBody {
   @override
   int get is_full;
   @override
-  List<Product>? get products;
+  List<DockProduct>? get products;
   @override
   @JsonKey(ignore: true)
   _$$PalletAssignBodyImplCopyWith<_$PalletAssignBodyImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-Product _$ProductFromJson(Map<String, dynamic> json) {
-  return _Product.fromJson(json);
-}
-
-/// @nodoc
-mixin _$Product {
-  int get id => throw _privateConstructorUsedError;
-  int get qty => throw _privateConstructorUsedError;
-  int get unit => throw _privateConstructorUsedError;
-  DateTime? get expiry_date => throw _privateConstructorUsedError;
-  String get product_name => throw _privateConstructorUsedError;
-  String get indent_number => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ProductCopyWith<Product> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ProductCopyWith<$Res> {
-  factory $ProductCopyWith(Product value, $Res Function(Product) then) =
-      _$ProductCopyWithImpl<$Res, Product>;
-  @useResult
-  $Res call(
-      {int id,
-      int qty,
-      int unit,
-      DateTime? expiry_date,
-      String product_name,
-      String indent_number});
-}
-
-/// @nodoc
-class _$ProductCopyWithImpl<$Res, $Val extends Product>
-    implements $ProductCopyWith<$Res> {
-  _$ProductCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? qty = null,
-    Object? unit = null,
-    Object? expiry_date = freezed,
-    Object? product_name = null,
-    Object? indent_number = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      qty: null == qty
-          ? _value.qty
-          : qty // ignore: cast_nullable_to_non_nullable
-              as int,
-      unit: null == unit
-          ? _value.unit
-          : unit // ignore: cast_nullable_to_non_nullable
-              as int,
-      expiry_date: freezed == expiry_date
-          ? _value.expiry_date
-          : expiry_date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      product_name: null == product_name
-          ? _value.product_name
-          : product_name // ignore: cast_nullable_to_non_nullable
-              as String,
-      indent_number: null == indent_number
-          ? _value.indent_number
-          : indent_number // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
-  factory _$$ProductImplCopyWith(
-          _$ProductImpl value, $Res Function(_$ProductImpl) then) =
-      __$$ProductImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {int id,
-      int qty,
-      int unit,
-      DateTime? expiry_date,
-      String product_name,
-      String indent_number});
-}
-
-/// @nodoc
-class __$$ProductImplCopyWithImpl<$Res>
-    extends _$ProductCopyWithImpl<$Res, _$ProductImpl>
-    implements _$$ProductImplCopyWith<$Res> {
-  __$$ProductImplCopyWithImpl(
-      _$ProductImpl _value, $Res Function(_$ProductImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? qty = null,
-    Object? unit = null,
-    Object? expiry_date = freezed,
-    Object? product_name = null,
-    Object? indent_number = null,
-  }) {
-    return _then(_$ProductImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      qty: null == qty
-          ? _value.qty
-          : qty // ignore: cast_nullable_to_non_nullable
-              as int,
-      unit: null == unit
-          ? _value.unit
-          : unit // ignore: cast_nullable_to_non_nullable
-              as int,
-      expiry_date: freezed == expiry_date
-          ? _value.expiry_date
-          : expiry_date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      product_name: null == product_name
-          ? _value.product_name
-          : product_name // ignore: cast_nullable_to_non_nullable
-              as String,
-      indent_number: null == indent_number
-          ? _value.indent_number
-          : indent_number // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$ProductImpl implements _Product {
-  const _$ProductImpl(
-      {required this.id,
-      required this.qty,
-      required this.unit,
-      this.expiry_date,
-      required this.product_name,
-      required this.indent_number});
-
-  factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ProductImplFromJson(json);
-
-  @override
-  final int id;
-  @override
-  final int qty;
-  @override
-  final int unit;
-  @override
-  final DateTime? expiry_date;
-  @override
-  final String product_name;
-  @override
-  final String indent_number;
-
-  @override
-  String toString() {
-    return 'Product(id: $id, qty: $qty, unit: $unit, expiry_date: $expiry_date, product_name: $product_name, indent_number: $indent_number)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ProductImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.qty, qty) || other.qty == qty) &&
-            (identical(other.unit, unit) || other.unit == unit) &&
-            (identical(other.expiry_date, expiry_date) ||
-                other.expiry_date == expiry_date) &&
-            (identical(other.product_name, product_name) ||
-                other.product_name == product_name) &&
-            (identical(other.indent_number, indent_number) ||
-                other.indent_number == indent_number));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, id, qty, unit, expiry_date, product_name, indent_number);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ProductImplCopyWith<_$ProductImpl> get copyWith =>
-      __$$ProductImplCopyWithImpl<_$ProductImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ProductImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _Product implements Product {
-  const factory _Product(
-      {required final int id,
-      required final int qty,
-      required final int unit,
-      final DateTime? expiry_date,
-      required final String product_name,
-      required final String indent_number}) = _$ProductImpl;
-
-  factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
-
-  @override
-  int get id;
-  @override
-  int get qty;
-  @override
-  int get unit;
-  @override
-  DateTime? get expiry_date;
-  @override
-  String get product_name;
-  @override
-  String get indent_number;
-  @override
-  @JsonKey(ignore: true)
-  _$$ProductImplCopyWith<_$ProductImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
