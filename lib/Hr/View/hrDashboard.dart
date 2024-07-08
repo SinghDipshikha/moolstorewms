@@ -780,7 +780,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                                 size: 20,
                                               )
                                             : Text(
-                                                '${hrController.dashboardCount!.presentEmp}' ??
+                                                '${hrController.dashboardCount?.presentEmp}' ??
                                                     '0',
                                                 style: const TextStyle(
                                                   color: Color(0xFF918FFA),
@@ -828,7 +828,7 @@ class _HrDashboardState extends State<HrDashboard> {
                                                 size: 20,
                                               )
                                             : Text(
-                                                '${hrController.dashboardCount!.absentEmp}' ??
+                                                '${hrController.dashboardCount?.absentEmp}' ??
                                                     '0',
                                                 style: const TextStyle(
                                                   color: Color(0xFF918FFA),

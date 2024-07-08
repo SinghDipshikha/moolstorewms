@@ -101,13 +101,9 @@ class HRController extends GetxController {
     } else {
       isWarehouseAdded = true;
       dashboardWarehouses.addAll(user.warehouse!.toList());
-      dashboardWarehouses.add(WarehousesAcess.fromJson({
-        "id": null,
-        "warehouse_name": "All Warehouses",
-      }));
     }
 
-    // currentlySelectedWarehouse = user.warehouse![0];
+    currentlySelectedWarehouse = user.warehouse![0];
     // TODO: implement onInit
     super.onInit();
   }
