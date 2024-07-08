@@ -142,7 +142,6 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                                     ),
                                     const SizedBox(width: 5),
                                     Container(
-                                      width: 67.30,
                                       height: 22,
                                       decoration: ShapeDecoration(
                                         color: const Color(0xFFFAF9FF),
@@ -157,7 +156,6 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                                       child: Row(
                                         children: [
                                           Container(
-                                            width: 29.91,
                                             height: 18.33,
                                             decoration: ShapeDecoration(
                                               color: const Color(0xFF5A57FF),
@@ -180,7 +178,6 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                                             ),
                                           ),
                                           Container(
-                                            width: 29.91,
                                             height: 18.33,
                                             decoration: ShapeDecoration(
                                               color: const Color(0xFFFAF9FF),
@@ -248,7 +245,6 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                                     ),
                                     const SizedBox(width: 5),
                                     Container(
-                                      width: 67.30,
                                       height: 22,
                                       decoration: ShapeDecoration(
                                         color: const Color(0xFFFAF9FF),
@@ -263,7 +259,6 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                                       child: Row(
                                         children: [
                                           Container(
-                                            width: 29.91,
                                             height: 18.33,
                                             decoration: ShapeDecoration(
                                               color: const Color(0xFF5A57FF),
@@ -286,7 +281,6 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                                             ),
                                           ),
                                           Container(
-                                            width: 29.91,
                                             height: 18.33,
                                             decoration: ShapeDecoration(
                                               color: const Color(0xFFFAF9FF),
@@ -321,8 +315,8 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  width: 129,
                                   height: 40,
+                                  width: 100,
                                   decoration: ShapeDecoration(
                                     color: const Color(0xFFCEFFF1),
                                     shape: RoundedRectangleBorder(
@@ -346,8 +340,8 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                                 ),
                                 const SizedBox(width: 20),
                                 Container(
-                                  width: 129,
                                   height: 40,
+                                  width: 100,
                                   decoration: ShapeDecoration(
                                     color: const Color(0xFFFFE7E9),
                                     shape: RoundedRectangleBorder(
@@ -396,8 +390,8 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                                     Navigator.pop(context);
                                   },
                                   child: Container(
-                                    width: 128,
                                     height: 45,
+                                    width: 100,
                                     decoration: ShapeDecoration(
                                       color: const Color(0xFFE23744),
                                       shape: RoundedRectangleBorder(
@@ -445,8 +439,8 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
                                         .addShiftDetailsRequestModel);
                                   },
                                   child: Container(
-                                    width: 128,
                                     height: 45,
+                                    width: 100,
                                     decoration: ShapeDecoration(
                                       color: const Color(0xFF019F8A),
                                       shape: RoundedRectangleBorder(
@@ -631,7 +625,7 @@ class _CreateShiftScreenState extends State<CreateShiftScreen> {
             Center(
               child: Container(
                 width: 358,
-                height: 138,
+                height: 180,
                 decoration: ShapeDecoration(
                   color: const Color(0xFFFAF9FF),
                   shape: RoundedRectangleBorder(

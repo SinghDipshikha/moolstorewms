@@ -23,7 +23,7 @@ import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/ticket.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/vehicle.dart';
 import 'package:moolwmsstore/Security%20Guard/Model/SecurityGuard/visitor.dart';
 import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
-import 'package:moolwmsstore/Security%20Guard/View/Visitor/visitorCheckedInSuccessfully.dart';
+import 'package:moolwmsstore/Security%20Guard/View/Visitor/addVisitorSuccess.dart';
 import 'package:moolwmsstore/Security%20Guard/View/securityGuardDashboard.dart';
 import 'package:moolwmsstore/View/Styles/Styles..dart';
 import 'package:moolwmsstore/utils/appConstants.dart';
@@ -233,13 +233,16 @@ class SecurityGuardController extends GetxController {
     isCheckIn = true;
     update();
     addVisitorModel = addVisitorModel.copyWith(
-        ticket_generate_by: user.id, in_out_status: "IN");
+        ticket_generate_by: user.id,
+        ticket_verify_by: user.id,
+        in_out_status: 'IN');
     await apiClient
         .postData("securityGuard/addVisitor", addVisitorModel.toJson())
         .then((v) {
       if (v.data["message"] == "Visitor Checked IN successfully") {
         isGetVisitorCountLoading = false;
-        Get.off(const VisitorAddedSuccessfully(), id: hrNavigationKey);
+        Get.off(const AddVisitorSuccessBySecurityGuard(),
+            id: securityGuardNavigation);
         addVisitorModel = const AddVisitorBySecurityGaurd();
       }
     });
@@ -357,8 +360,6 @@ class SecurityGuardController extends GetxController {
 
     update();
   }
-
- 
 
   void addTicketBySecurityGuard({
     required int ticketGeneratedBy,

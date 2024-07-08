@@ -14,12 +14,21 @@ import 'package:moolwmsstore/utils/dimensions.dart';
 import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
 
-class AddVistorBySecurityGuard extends StatelessWidget {
-  AddVistorBySecurityGuard({super.key});
+class AddVistorBySecurityGuard extends StatefulWidget {
+  const AddVistorBySecurityGuard({super.key});
 
+  @override
+  State<AddVistorBySecurityGuard> createState() =>
+      _AddVistorBySecurityGuardState();
+}
+
+class _AddVistorBySecurityGuardState extends State<AddVistorBySecurityGuard> {
   final ImagePicker picker = ImagePicker();
+
   final _formKey = GlobalKey<FormState>();
+
   DateFormat dateformatter = DateFormat('MMM d, yyyy');
+
   DateFormat timeformatter = DateFormat('h:mm a');
 
   @override
@@ -227,9 +236,9 @@ class AddVistorBySecurityGuard extends StatelessWidget {
                         'Upload ID Image',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 12,
+                          fontSize: 16,
                           fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.bold,
                           decoration: TextDecoration.underline,
                         ),
                       ),
@@ -248,8 +257,6 @@ class AddVistorBySecurityGuard extends StatelessWidget {
                     ),
                   ],
                 ).paddingSymmetric(vertical: 8),
-             
-             
                 GetBuilder<SecurityGuardController>(builder: (sgController) {
                   return InkWell(
                     onTap: () {
@@ -274,8 +281,9 @@ class AddVistorBySecurityGuard extends StatelessWidget {
                               labelSmall: TextStyle(color: Colors.black),
                             )),
                         context: context,
-                        // initialDate: sgController.addVisitorModel. ??
-                        //  DateTime.now(),
+                        initialDate:
+                            sgController.addVisitorModel.ticket_validity ??
+                                DateTime.now(),
                         firstDate:
                             DateTime(1600).subtract(const Duration(days: 3652)),
                         lastDate: DateTime.now().add(
@@ -313,8 +321,9 @@ class AddVistorBySecurityGuard extends StatelessWidget {
                           }
                         },
                       ).then((v) {
-                        sgController.addVisitorModel =
-                            sgController.addVisitorModel.copyWith();
+                        sgController.addVisitorModel = sgController
+                            .addVisitorModel
+                            .copyWith(ticket_validity: v);
                         sgController.update();
                       });
                     },
@@ -431,7 +440,6 @@ class AddVistorBySecurityGuard extends StatelessWidget {
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),
-                      
                           ],
                         ),
                       );
@@ -444,18 +452,14 @@ class AddVistorBySecurityGuard extends StatelessWidget {
                     },
                     onChanged: (value) {
                       if (value != null) {
-                        sgController.addVisitorModel = sgController
-                            .addVisitorModel
-                            .copyWith(warehouse_id: value.warehouse_id.toString());
+                        sgController.addVisitorModel =
+                            sgController.addVisitorModel.copyWith(
+                                warehouse_id: value.warehouse_id);
                         sgController.update();
                       }
                     },
-                    onSaved: (value) {
-                      // ownerController.selectedTempType = value;
-                      // ownerController.update();
-                    },
+                    onSaved: (value) {},
                     buttonStyleData: const ButtonStyleData(
-                      //decoration: BoxDecoration(color: Colors.white),
                       overlayColor: WidgetStatePropertyAll(Colors.white),
                     ),
                     iconStyleData: IconStyleData(

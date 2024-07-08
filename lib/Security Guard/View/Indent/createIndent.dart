@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -178,7 +179,9 @@ class _CreateIndentScreenState extends State<CreateIndentScreen> {
                       const Gap(16),
                       CommonTextField(
                         controller: mobileNumber,
-                        textCapitalization: TextCapitalization.characters,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                        ],
                         validator: (value) {
                           return null;
                         },
