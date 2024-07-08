@@ -281,8 +281,9 @@ class _AddVistorBySecurityGuardState extends State<AddVistorBySecurityGuard> {
                               labelSmall: TextStyle(color: Colors.black),
                             )),
                         context: context,
-                        // initialDate: sgController.addVisitorModel. ??
-                        //  DateTime.now(),
+                        initialDate:
+                            sgController.addVisitorModel.ticket_validity ??
+                                DateTime.now(),
                         firstDate:
                             DateTime(1600).subtract(const Duration(days: 3652)),
                         lastDate: DateTime.now().add(
@@ -320,8 +321,9 @@ class _AddVistorBySecurityGuardState extends State<AddVistorBySecurityGuard> {
                           }
                         },
                       ).then((v) {
-                        sgController.addVisitorModel =
-                            sgController.addVisitorModel.copyWith();
+                        sgController.addVisitorModel = sgController
+                            .addVisitorModel
+                            .copyWith(ticket_validity: v);
                         sgController.update();
                       });
                     },
@@ -452,16 +454,12 @@ class _AddVistorBySecurityGuardState extends State<AddVistorBySecurityGuard> {
                       if (value != null) {
                         sgController.addVisitorModel =
                             sgController.addVisitorModel.copyWith(
-                                warehouse_id: value.warehouse_id.toString());
+                                warehouse_id: value.warehouse_id);
                         sgController.update();
                       }
                     },
-                    onSaved: (value) {
-                      // ownerController.selectedTempType = value;
-                      // ownerController.update();
-                    },
+                    onSaved: (value) {},
                     buttonStyleData: const ButtonStyleData(
-                      //decoration: BoxDecoration(color: Colors.white),
                       overlayColor: WidgetStatePropertyAll(Colors.white),
                     ),
                     iconStyleData: IconStyleData(

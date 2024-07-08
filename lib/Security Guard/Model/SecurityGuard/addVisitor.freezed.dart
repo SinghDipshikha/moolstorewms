@@ -21,21 +21,19 @@ AddVisitorBySecurityGaurd _$AddVisitorBySecurityGaurdFromJson(
 
 /// @nodoc
 mixin _$AddVisitorBySecurityGaurd {
-  int? get id => throw _privateConstructorUsedError;
   int? get ticket_generate_by => throw _privateConstructorUsedError;
-  String? get ticket_verify_by => throw _privateConstructorUsedError;
+  dynamic get ticket_verify_by => throw _privateConstructorUsedError;
   String? get visit_ticket_number => throw _privateConstructorUsedError;
   String? get visitor_name => throw _privateConstructorUsedError;
   String? get visitor_ph_number => throw _privateConstructorUsedError;
   String? get purpose_of_visit => throw _privateConstructorUsedError;
   String? get id_proof => throw _privateConstructorUsedError;
+  int? get warehouse_id => throw _privateConstructorUsedError;
+  DateTime? get ticket_validity => throw _privateConstructorUsedError;
   String? get in_out_status => throw _privateConstructorUsedError;
-  String? get remarks => throw _privateConstructorUsedError;
-  dynamic get status => throw _privateConstructorUsedError;
-  String? get warehouse_id => throw _privateConstructorUsedError;
+  dynamic get remarks => throw _privateConstructorUsedError;
   DateTime? get created_at => throw _privateConstructorUsedError;
   dynamic get updated_at => throw _privateConstructorUsedError;
-  String? get ticket_validity => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,21 +48,19 @@ abstract class $AddVisitorBySecurityGaurdCopyWith<$Res> {
       _$AddVisitorBySecurityGaurdCopyWithImpl<$Res, AddVisitorBySecurityGaurd>;
   @useResult
   $Res call(
-      {int? id,
-      int? ticket_generate_by,
-      String? ticket_verify_by,
+      {int? ticket_generate_by,
+      dynamic ticket_verify_by,
       String? visit_ticket_number,
       String? visitor_name,
       String? visitor_ph_number,
       String? purpose_of_visit,
       String? id_proof,
+      int? warehouse_id,
+      DateTime? ticket_validity,
       String? in_out_status,
-      String? remarks,
-      dynamic status,
-      String? warehouse_id,
+      dynamic remarks,
       DateTime? created_at,
-      dynamic updated_at,
-      String? ticket_validity});
+      dynamic updated_at});
 }
 
 /// @nodoc
@@ -81,7 +77,6 @@ class _$AddVisitorBySecurityGaurdCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? ticket_generate_by = freezed,
     Object? ticket_verify_by = freezed,
     Object? visit_ticket_number = freezed,
@@ -89,19 +84,14 @@ class _$AddVisitorBySecurityGaurdCopyWithImpl<$Res,
     Object? visitor_ph_number = freezed,
     Object? purpose_of_visit = freezed,
     Object? id_proof = freezed,
+    Object? warehouse_id = freezed,
+    Object? ticket_validity = freezed,
     Object? in_out_status = freezed,
     Object? remarks = freezed,
-    Object? status = freezed,
-    Object? warehouse_id = freezed,
     Object? created_at = freezed,
     Object? updated_at = freezed,
-    Object? ticket_validity = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
       ticket_generate_by: freezed == ticket_generate_by
           ? _value.ticket_generate_by
           : ticket_generate_by // ignore: cast_nullable_to_non_nullable
@@ -109,7 +99,7 @@ class _$AddVisitorBySecurityGaurdCopyWithImpl<$Res,
       ticket_verify_by: freezed == ticket_verify_by
           ? _value.ticket_verify_by
           : ticket_verify_by // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
       visit_ticket_number: freezed == visit_ticket_number
           ? _value.visit_ticket_number
           : visit_ticket_number // ignore: cast_nullable_to_non_nullable
@@ -130,6 +120,14 @@ class _$AddVisitorBySecurityGaurdCopyWithImpl<$Res,
           ? _value.id_proof
           : id_proof // ignore: cast_nullable_to_non_nullable
               as String?,
+      warehouse_id: freezed == warehouse_id
+          ? _value.warehouse_id
+          : warehouse_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      ticket_validity: freezed == ticket_validity
+          ? _value.ticket_validity
+          : ticket_validity // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       in_out_status: freezed == in_out_status
           ? _value.in_out_status
           : in_out_status // ignore: cast_nullable_to_non_nullable
@@ -137,15 +135,7 @@ class _$AddVisitorBySecurityGaurdCopyWithImpl<$Res,
       remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      warehouse_id: freezed == warehouse_id
-          ? _value.warehouse_id
-          : warehouse_id // ignore: cast_nullable_to_non_nullable
-              as String?,
       created_at: freezed == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
@@ -154,10 +144,6 @@ class _$AddVisitorBySecurityGaurdCopyWithImpl<$Res,
           ? _value.updated_at
           : updated_at // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      ticket_validity: freezed == ticket_validity
-          ? _value.ticket_validity
-          : ticket_validity // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 }
@@ -172,21 +158,19 @@ abstract class _$$AddVisitorBySecurityGaurdImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
-      int? ticket_generate_by,
-      String? ticket_verify_by,
+      {int? ticket_generate_by,
+      dynamic ticket_verify_by,
       String? visit_ticket_number,
       String? visitor_name,
       String? visitor_ph_number,
       String? purpose_of_visit,
       String? id_proof,
+      int? warehouse_id,
+      DateTime? ticket_validity,
       String? in_out_status,
-      String? remarks,
-      dynamic status,
-      String? warehouse_id,
+      dynamic remarks,
       DateTime? created_at,
-      dynamic updated_at,
-      String? ticket_validity});
+      dynamic updated_at});
 }
 
 /// @nodoc
@@ -202,7 +186,6 @@ class __$$AddVisitorBySecurityGaurdImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? ticket_generate_by = freezed,
     Object? ticket_verify_by = freezed,
     Object? visit_ticket_number = freezed,
@@ -210,19 +193,14 @@ class __$$AddVisitorBySecurityGaurdImplCopyWithImpl<$Res>
     Object? visitor_ph_number = freezed,
     Object? purpose_of_visit = freezed,
     Object? id_proof = freezed,
+    Object? warehouse_id = freezed,
+    Object? ticket_validity = freezed,
     Object? in_out_status = freezed,
     Object? remarks = freezed,
-    Object? status = freezed,
-    Object? warehouse_id = freezed,
     Object? created_at = freezed,
     Object? updated_at = freezed,
-    Object? ticket_validity = freezed,
   }) {
     return _then(_$AddVisitorBySecurityGaurdImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
       ticket_generate_by: freezed == ticket_generate_by
           ? _value.ticket_generate_by
           : ticket_generate_by // ignore: cast_nullable_to_non_nullable
@@ -230,7 +208,7 @@ class __$$AddVisitorBySecurityGaurdImplCopyWithImpl<$Res>
       ticket_verify_by: freezed == ticket_verify_by
           ? _value.ticket_verify_by
           : ticket_verify_by // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
       visit_ticket_number: freezed == visit_ticket_number
           ? _value.visit_ticket_number
           : visit_ticket_number // ignore: cast_nullable_to_non_nullable
@@ -251,6 +229,14 @@ class __$$AddVisitorBySecurityGaurdImplCopyWithImpl<$Res>
           ? _value.id_proof
           : id_proof // ignore: cast_nullable_to_non_nullable
               as String?,
+      warehouse_id: freezed == warehouse_id
+          ? _value.warehouse_id
+          : warehouse_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      ticket_validity: freezed == ticket_validity
+          ? _value.ticket_validity
+          : ticket_validity // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       in_out_status: freezed == in_out_status
           ? _value.in_out_status
           : in_out_status // ignore: cast_nullable_to_non_nullable
@@ -258,15 +244,7 @@ class __$$AddVisitorBySecurityGaurdImplCopyWithImpl<$Res>
       remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      warehouse_id: freezed == warehouse_id
-          ? _value.warehouse_id
-          : warehouse_id // ignore: cast_nullable_to_non_nullable
-              as String?,
       created_at: freezed == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
@@ -275,10 +253,6 @@ class __$$AddVisitorBySecurityGaurdImplCopyWithImpl<$Res>
           ? _value.updated_at
           : updated_at // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      ticket_validity: freezed == ticket_validity
-          ? _value.ticket_validity
-          : ticket_validity // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -287,31 +261,27 @@ class __$$AddVisitorBySecurityGaurdImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AddVisitorBySecurityGaurdImpl implements _AddVisitorBySecurityGaurd {
   const _$AddVisitorBySecurityGaurdImpl(
-      {this.id,
-      this.ticket_generate_by,
+      {this.ticket_generate_by,
       this.ticket_verify_by,
       this.visit_ticket_number,
       this.visitor_name,
       this.visitor_ph_number,
       this.purpose_of_visit,
       this.id_proof,
+      this.warehouse_id,
+      this.ticket_validity,
       this.in_out_status,
       this.remarks,
-      this.status,
-      this.warehouse_id,
       this.created_at,
-      this.updated_at,
-      this.ticket_validity});
+      this.updated_at});
 
   factory _$AddVisitorBySecurityGaurdImpl.fromJson(Map<String, dynamic> json) =>
       _$$AddVisitorBySecurityGaurdImplFromJson(json);
 
   @override
-  final int? id;
-  @override
   final int? ticket_generate_by;
   @override
-  final String? ticket_verify_by;
+  final dynamic ticket_verify_by;
   @override
   final String? visit_ticket_number;
   @override
@@ -323,23 +293,21 @@ class _$AddVisitorBySecurityGaurdImpl implements _AddVisitorBySecurityGaurd {
   @override
   final String? id_proof;
   @override
+  final int? warehouse_id;
+  @override
+  final DateTime? ticket_validity;
+  @override
   final String? in_out_status;
   @override
-  final String? remarks;
-  @override
-  final dynamic status;
-  @override
-  final String? warehouse_id;
+  final dynamic remarks;
   @override
   final DateTime? created_at;
   @override
   final dynamic updated_at;
-  @override
-  final String? ticket_validity;
 
   @override
   String toString() {
-    return 'AddVisitorBySecurityGaurd(id: $id, ticket_generate_by: $ticket_generate_by, ticket_verify_by: $ticket_verify_by, visit_ticket_number: $visit_ticket_number, visitor_name: $visitor_name, visitor_ph_number: $visitor_ph_number, purpose_of_visit: $purpose_of_visit, id_proof: $id_proof, in_out_status: $in_out_status, remarks: $remarks, status: $status, warehouse_id: $warehouse_id, created_at: $created_at, updated_at: $updated_at, ticket_validity: $ticket_validity)';
+    return 'AddVisitorBySecurityGaurd(ticket_generate_by: $ticket_generate_by, ticket_verify_by: $ticket_verify_by, visit_ticket_number: $visit_ticket_number, visitor_name: $visitor_name, visitor_ph_number: $visitor_ph_number, purpose_of_visit: $purpose_of_visit, id_proof: $id_proof, warehouse_id: $warehouse_id, ticket_validity: $ticket_validity, in_out_status: $in_out_status, remarks: $remarks, created_at: $created_at, updated_at: $updated_at)';
   }
 
   @override
@@ -347,11 +315,10 @@ class _$AddVisitorBySecurityGaurdImpl implements _AddVisitorBySecurityGaurd {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AddVisitorBySecurityGaurdImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.ticket_generate_by, ticket_generate_by) ||
                 other.ticket_generate_by == ticket_generate_by) &&
-            (identical(other.ticket_verify_by, ticket_verify_by) ||
-                other.ticket_verify_by == ticket_verify_by) &&
+            const DeepCollectionEquality()
+                .equals(other.ticket_verify_by, ticket_verify_by) &&
             (identical(other.visit_ticket_number, visit_ticket_number) ||
                 other.visit_ticket_number == visit_ticket_number) &&
             (identical(other.visitor_name, visitor_name) ||
@@ -362,39 +329,36 @@ class _$AddVisitorBySecurityGaurdImpl implements _AddVisitorBySecurityGaurd {
                 other.purpose_of_visit == purpose_of_visit) &&
             (identical(other.id_proof, id_proof) ||
                 other.id_proof == id_proof) &&
-            (identical(other.in_out_status, in_out_status) ||
-                other.in_out_status == in_out_status) &&
-            (identical(other.remarks, remarks) || other.remarks == remarks) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
             (identical(other.warehouse_id, warehouse_id) ||
                 other.warehouse_id == warehouse_id) &&
+            (identical(other.ticket_validity, ticket_validity) ||
+                other.ticket_validity == ticket_validity) &&
+            (identical(other.in_out_status, in_out_status) ||
+                other.in_out_status == in_out_status) &&
+            const DeepCollectionEquality().equals(other.remarks, remarks) &&
             (identical(other.created_at, created_at) ||
                 other.created_at == created_at) &&
             const DeepCollectionEquality()
-                .equals(other.updated_at, updated_at) &&
-            (identical(other.ticket_validity, ticket_validity) ||
-                other.ticket_validity == ticket_validity));
+                .equals(other.updated_at, updated_at));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
       ticket_generate_by,
-      ticket_verify_by,
+      const DeepCollectionEquality().hash(ticket_verify_by),
       visit_ticket_number,
       visitor_name,
       visitor_ph_number,
       purpose_of_visit,
       id_proof,
-      in_out_status,
-      remarks,
-      const DeepCollectionEquality().hash(status),
       warehouse_id,
+      ticket_validity,
+      in_out_status,
+      const DeepCollectionEquality().hash(remarks),
       created_at,
-      const DeepCollectionEquality().hash(updated_at),
-      ticket_validity);
+      const DeepCollectionEquality().hash(updated_at));
 
   @JsonKey(ignore: true)
   @override
@@ -413,31 +377,27 @@ class _$AddVisitorBySecurityGaurdImpl implements _AddVisitorBySecurityGaurd {
 
 abstract class _AddVisitorBySecurityGaurd implements AddVisitorBySecurityGaurd {
   const factory _AddVisitorBySecurityGaurd(
-      {final int? id,
-      final int? ticket_generate_by,
-      final String? ticket_verify_by,
+      {final int? ticket_generate_by,
+      final dynamic ticket_verify_by,
       final String? visit_ticket_number,
       final String? visitor_name,
       final String? visitor_ph_number,
       final String? purpose_of_visit,
       final String? id_proof,
+      final int? warehouse_id,
+      final DateTime? ticket_validity,
       final String? in_out_status,
-      final String? remarks,
-      final dynamic status,
-      final String? warehouse_id,
+      final dynamic remarks,
       final DateTime? created_at,
-      final dynamic updated_at,
-      final String? ticket_validity}) = _$AddVisitorBySecurityGaurdImpl;
+      final dynamic updated_at}) = _$AddVisitorBySecurityGaurdImpl;
 
   factory _AddVisitorBySecurityGaurd.fromJson(Map<String, dynamic> json) =
       _$AddVisitorBySecurityGaurdImpl.fromJson;
 
   @override
-  int? get id;
-  @override
   int? get ticket_generate_by;
   @override
-  String? get ticket_verify_by;
+  dynamic get ticket_verify_by;
   @override
   String? get visit_ticket_number;
   @override
@@ -449,19 +409,17 @@ abstract class _AddVisitorBySecurityGaurd implements AddVisitorBySecurityGaurd {
   @override
   String? get id_proof;
   @override
+  int? get warehouse_id;
+  @override
+  DateTime? get ticket_validity;
+  @override
   String? get in_out_status;
   @override
-  String? get remarks;
-  @override
-  dynamic get status;
-  @override
-  String? get warehouse_id;
+  dynamic get remarks;
   @override
   DateTime? get created_at;
   @override
   dynamic get updated_at;
-  @override
-  String? get ticket_validity;
   @override
   @JsonKey(ignore: true)
   _$$AddVisitorBySecurityGaurdImplCopyWith<_$AddVisitorBySecurityGaurdImpl>
