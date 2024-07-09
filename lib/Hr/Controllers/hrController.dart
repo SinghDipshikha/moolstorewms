@@ -51,7 +51,7 @@ class HRController extends GetxController {
 
   ReferralDetailsRequest addReferralDetailRequestModel =
       const ReferralDetailsRequest();
-  BankDetailsRequest addBankDetailsRequestModel = const BankDetailsRequest();
+  AddBankDetails addBankDetails = const AddBankDetails();
   CareerDetailsRequest addCareerDetailsRequestModel =
       const CareerDetailsRequest();
   ReferralDetailsRequest addReferralDetailsRequestModel =
@@ -244,18 +244,15 @@ class HRController extends GetxController {
   }
 
 //////////////Add or Upddate Career Details/////////////
-  Future<bool> addCareerDetails({
-    required int? userID,
-    required List<CareerDetailsRequest> careerDetails,
-    required int? updatedBy,
-  }) async {
+  addCareerDetails() async {
     isLoading = true;
     update();
 
     final Map<String, dynamic> requestBody = {
-      "user_id": userID,
-      "updated_by": updatedBy,
-      "career_details": careerDetails.map((detail) => detail.toJson()).toList(),
+      "user_id": currentlySeletedEmployee!.id,
+      "updated_by": user.id,
+      "career_details":
+          carrierDetails.map((detail) => detail.toJson()).toList(),
     };
 
     final response =
@@ -266,9 +263,6 @@ class HRController extends GetxController {
       Snacks.greenSnack("Career Information Added Successfully");
 
       navigateNextSubmitEmployeeScreen();
-      return true;
-    } else {
-      return false;
     }
   }
 
@@ -404,26 +398,26 @@ class HRController extends GetxController {
   }
 
   //////////Add Update Bank Details/////////////////////
-  addBankDetails() async {
+  addUserBankDetails() async {
     isLoading = true;
     update();
 
     try {
       final response = await apiClient.postData(
         "hr/addBankDetails",
-        addBankDetailsRequestModel.toJson(),
+        addBankDetails.toJson(),
       );
 
       final message = response.data["message"];
 
       if (message == "Information Added") {
-        addBankDetailsRequestModel = const BankDetailsRequest();
+        addBankDetails = const AddBankDetails();
         List x = response.data["result"];
         getBankDetailsList = x.map((e) => AddBankDetails.fromJson(e)).toList();
         Snacks.greenSnack("Bank Information Added Successfully");
         navigateNextSubmitEmployeeScreen();
       } else if (message == "information updated") {
-        addBankDetailsRequestModel = const BankDetailsRequest();
+        addBankDetails = const AddBankDetails();
         List x = response.data["result"];
         getBankDetailsList = x.map((e) => AddBankDetails.fromJson(e)).toList();
         Snacks.greenSnack("Bank Information Updated Successfully");

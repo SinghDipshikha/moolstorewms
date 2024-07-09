@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/Model/addCareerDetail.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
@@ -23,8 +22,6 @@ class AddEmployeeCareerDetails extends StatefulWidget {
 class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
   DateTime? _selectedDate;
   DateTime? _selectedDate2;
-
-  final AddCareerDetail _careerDetails = const AddCareerDetail();
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -56,8 +53,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
 
   String? selectedLanguage = "Hindi";
   final _formKey = GlobalKey<FormState>();
-  AddCareerDetail careerDetail = const AddCareerDetail();
-  @override
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HRController>(builder: (hrController) {
@@ -82,7 +78,9 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
             return CustomFloatingActionButton(
               title: 'Next',
               onTap: () {
-                Logger().i(hrController.carrierDetails);
+                if (_formKey.currentState!.validate()) {
+                  hRController.addCareerDetails();
+                }
               },
             );
           }),
@@ -131,8 +129,9 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                       return null;
                                     },
                                     onChanged: (p0) {
-                                      careerDetail = careerDetail.copyWith(
-                                          name_of_employer: p0);
+                                      hrController.carrierDetails[i] =
+                                          hrController.carrierDetails[i]
+                                              .copyWith(name_of_employer: p0);
                                     },
                                   ).paddingAll(4),
                                   CommanTextField(
@@ -140,8 +139,9 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                     hintText: "Designation",
                                     obscureText: false,
                                     onChanged: (p0) {
-                                      careerDetail = careerDetail.copyWith(
-                                          designation: p0);
+                                      hrController.carrierDetails[i] =
+                                          hrController.carrierDetails[i]
+                                              .copyWith(designation: p0);
                                     },
                                   ).paddingAll(4),
                                   CommanTextField(
@@ -149,8 +149,9 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                     hintText: "Reporting To ",
                                     obscureText: false,
                                     onChanged: (p0) {
-                                      careerDetail = careerDetail.copyWith(
-                                          reporting_to: p0);
+                                      hrController.carrierDetails[i] =
+                                          hrController.carrierDetails[i]
+                                              .copyWith(reporting_to: p0);
                                     },
                                   ).paddingAll(4),
                                   Row(
@@ -175,7 +176,8 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                             ),
                                           ),
                                           const Gap(10),
-                                          careerDetail.employment_date_from !=
+                                          hrController.carrierDetails[i]
+                                                      .employment_date_from !=
                                                   null
                                               ? TextButton(
                                                   onPressed: () {
@@ -188,10 +190,14 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                                     ).then((v) {
                                                       if (v != null) {
                                                         setState(() {
-                                                          careerDetail =
-                                                              careerDetail.copyWith(
-                                                                  employment_date_from:
-                                                                      v);
+                                                          hrController
+                                                                  .carrierDetails[i] =
+                                                              hrController
+                                                                  .carrierDetails[
+                                                                      i]
+                                                                  .copyWith(
+                                                                      employment_date_from:
+                                                                          v);
                                                         });
                                                       }
                                                     });
@@ -209,10 +215,14 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                                     ).then((v) {
                                                       if (v != null) {
                                                         setState(() {
-                                                          careerDetail =
-                                                              careerDetail.copyWith(
-                                                                  employment_date_from:
-                                                                      v);
+                                                          hrController
+                                                                  .carrierDetails[i] =
+                                                              hrController
+                                                                  .carrierDetails[
+                                                                      i]
+                                                                  .copyWith(
+                                                                      employment_date_from:
+                                                                          v);
                                                         });
                                                       }
                                                     });
@@ -239,7 +249,8 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                             ),
                                           ),
                                           const Gap(10),
-                                          careerDetail.employment_date_to !=
+                                          hrController.carrierDetails[i]
+                                                      .employment_date_to !=
                                                   null
                                               ? TextButton(
                                                   onPressed: () {
@@ -252,10 +263,14 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                                     ).then((v) {
                                                       if (v != null) {
                                                         setState(() {
-                                                          careerDetail =
-                                                              careerDetail.copyWith(
-                                                                  employment_date_to:
-                                                                      v);
+                                                          hrController
+                                                                  .carrierDetails[i] =
+                                                              hrController
+                                                                  .carrierDetails[
+                                                                      i]
+                                                                  .copyWith(
+                                                                      employment_date_to:
+                                                                          v);
                                                         });
                                                       }
                                                     });
@@ -273,10 +288,14 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                                     ).then((v) {
                                                       if (v != null) {
                                                         setState(() {
-                                                          careerDetail =
-                                                              careerDetail.copyWith(
-                                                                  employment_date_to:
-                                                                      v);
+                                                          hrController
+                                                                  .carrierDetails[i] =
+                                                              hrController
+                                                                  .carrierDetails[
+                                                                      i]
+                                                                  .copyWith(
+                                                                      employment_date_to:
+                                                                          v);
                                                         });
                                                       }
                                                     });
@@ -307,8 +326,11 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                     hintText: "₹",
                                     obscureText: false,
                                     onChanged: (p0) {
-                                      careerDetail = careerDetail.copyWith(
-                                          monthly_salary_start: int.parse(p0));
+                                      hrController.carrierDetails[i] =
+                                          hrController.carrierDetails[i]
+                                              .copyWith(
+                                                  monthly_salary_start:
+                                                      int.parse(p0));
                                     },
                                     inputFormatters: GlobalValidator
                                         .monthlySalaryInputFormatter(),
@@ -330,8 +352,11 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                     hintText: "₹",
                                     obscureText: false,
                                     onChanged: (p0) {
-                                      careerDetail = careerDetail.copyWith(
-                                          monthly_salary_end: int.parse(p0));
+                                      hrController.carrierDetails[i] =
+                                          hrController.carrierDetails[i]
+                                              .copyWith(
+                                                  monthly_salary_end:
+                                                      int.parse(p0));
                                     },
                                     inputFormatters: GlobalValidator
                                         .monthlySalaryInputFormatter(),
