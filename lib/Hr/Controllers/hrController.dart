@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
+import 'package:moolwmsstore/Hr/Controllers/hrrepo.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
 import 'package:moolwmsstore/Hr/Model/Employee/addBankDetails.dart';
 import 'package:moolwmsstore/Hr/Model/Employee/addCareerDetail.dart';
@@ -28,7 +29,6 @@ import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeEducationQual
 import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeePersonalDetails.dart';
 import 'package:moolwmsstore/Hr/View/Shfits/createShift.dart';
 import 'package:moolwmsstore/Hr/View/Staff/addedStaffScreen.dart';
-import 'package:moolwmsstore/Hr/Controllers/hrrepo.dart';
 import 'package:moolwmsstore/Owner/Model/addWarehouse.dart';
 import 'package:moolwmsstore/Sales/Sales.dart';
 import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
@@ -143,19 +143,47 @@ class HRController extends GetxController {
     Get.off(navigationAccordingStatus[navigationAccordingStatus.length - 1],
         id: hrNavigationKey);
   }
-    AllDetail  empAllDetails = AllDetail();
-bool getUserDeatils = false;
-  getUserAllDetails(StaffEntry emp) {
-    currentlySeletedEmployee = emp ;
+
+  AllDetail empAllDetails = const AllDetail();
+  bool getUserDeatils = false;
+  getUserAllDetails(StaffEntry emp) async {
+    currentlySeletedEmployee = emp;
     getUserDeatils = true;
     update();
-  
-    hrRepo.getPersonalDetails().then((v){
+
+    await hrRepo.getPersonalDetails().then((v) {
       empAllDetails = empAllDetails.copyWith(personalDetailsResponse: v);
     });
-    hrRepo.getCareerDetails().then((v){
+    await hrRepo.getCareerDetails().then((v) {
       empAllDetails = empAllDetails.copyWith(careerDetail: v);
     });
+    await hrRepo.getEducationDetails().then((v) {
+      empAllDetails = empAllDetails.copyWith(educationDetail: v);
+    });
+    await hrRepo.getCareerDetails().then((v) {
+      empAllDetails = empAllDetails.copyWith(careerDetail: v);
+    });
+    await hrRepo.getbankDetails().then((v) {
+      empAllDetails = empAllDetails.copyWith(bankDetails: v);
+    });
+    await hrRepo.getReferDetails().then((v) {
+      empAllDetails = empAllDetails.copyWith(referralDetail: v);
+    });
+
+    Logger().i(empAllDetails.toJson());
+  }
+
+
+Map a=  {"gender" : "male"};
+  updatePersonalDetail(Map keyVal){
+apiClient.postData("hr/updateUserById", {
+    "user_id":4,
+    "updated_by":2,
+    ...a,
+    // "gate_id":1,
+
+
+});
   }
 
   switchRole(String role) {

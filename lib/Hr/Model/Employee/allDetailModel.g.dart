@@ -12,10 +12,9 @@ _$AllDetailImpl _$$AllDetailImplFromJson(Map<String, dynamic> json) =>
           ? null
           : AddBankDetails.fromJson(
               json['bankDetails'] as Map<String, dynamic>),
-      careerDetail: json['careerDetail'] == null
-          ? null
-          : AddCareerDetail.fromJson(
-              json['careerDetail'] as Map<String, dynamic>),
+      careerDetail: (json['careerDetail'] as List<dynamic>?)
+          ?.map((e) => AddCareerDetail.fromJson(e as Map<String, dynamic>))
+          .toList(),
       educationDetail: json['educationDetail'] == null
           ? null
           : AddEducationDetail.fromJson(
@@ -33,7 +32,7 @@ _$AllDetailImpl _$$AllDetailImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$AllDetailImplToJson(_$AllDetailImpl instance) =>
     <String, dynamic>{
       'bankDetails': instance.bankDetails?.toJson(),
-      'careerDetail': instance.careerDetail?.toJson(),
+      'careerDetail': instance.careerDetail?.map((e) => e.toJson()).toList(),
       'educationDetail': instance.educationDetail?.toJson(),
       'referralDetail': instance.referralDetail?.toJson(),
       'personalDetailsResponse': instance.personalDetailsResponse?.toJson(),

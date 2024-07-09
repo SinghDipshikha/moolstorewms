@@ -11,16 +11,16 @@ _$AddEducationDetailImpl _$$AddEducationDetailImplFromJson(
     _$AddEducationDetailImpl(
       user_id: (json['user_id'] as num?)?.toInt(),
       updated_by: (json['updated_by'] as num?)?.toInt(),
-      ssc_passing_year: json['ssc_passing_year'] as String?,
-      ssc_passing_percentage: json['ssc_passing_percentage'] as String?,
+      ssc_passing_year: (json['ssc_passing_year'] as num?)?.toInt(),
+      ssc_passing_percentage: json['ssc_passing_percentage'],
       ssc_passing_grade: json['ssc_passing_grade'] as String?,
       ssc_passing_school: json['ssc_passing_school'] as String?,
       ssc_passing_university: json['ssc_passing_university'] as String?,
       highest_qualification: json['highest_qualification'] as String?,
       specialization: json['specialization'] as String?,
-      hq_passing_year: json['hq_passing_year'] as String?,
+      hq_passing_year: (json['hq_passing_year'] as num?)?.toInt(),
       hq_college: json['hq_college'] as String?,
-      hq_percentage: json['hq_percentage'] as String?,
+      hq_percentage: json['hq_percentage'],
     );
 
 Map<String, dynamic> _$$AddEducationDetailImplToJson(

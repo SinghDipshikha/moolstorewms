@@ -53,7 +53,7 @@ class HrRepo {
   /////////////////Get Career Details///////////////
   Future<List<AddCareerDetail>?> getCareerDetails() async {
     var res = await apiClient.getData(
-      "hr/getBasicInformationById/${Get.find<HRController>().currentlySeletedEmployee!.id}",
+      "hr/getCareerDetailsByUserId/${Get.find<HRController>().currentlySeletedEmployee!.id}",
     );
     if (res.data["message"] == "Career details found") {
       return getCareerDetailsList = (res.data["result"] as List)
@@ -79,9 +79,8 @@ class HrRepo {
 
   /////////////////Get Bank Details///////////////
   Future<AddBankDetails?> getbankDetails() async {
-    var res = await apiClient.getData(
-      "hr/getBasicInformationById/${Get.find<HRController>().currentlySeletedEmployee!.id}",
-    );
+    var res = await apiClient.postData("hr/getBankDetailsById",
+        {"user_id": Get.find<HRController>().currentlySeletedEmployee!.id});
     if (res.data["message"] == "Bank details found") {
       //   return getCareerDetailsList = (res.data["result"] as List)
       //       .map((e) => AddCareerDetail.fromJson(e))

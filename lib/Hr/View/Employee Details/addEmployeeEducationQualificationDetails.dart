@@ -82,7 +82,7 @@ class AddEmployeeEducationQualificationDetails extends StatelessWidget {
                               },
                               onChanged: (p0) {
                                 educationDetail = educationDetail.copyWith(
-                                    ssc_passing_year: p0);
+                                    ssc_passing_year: int.parse(p0));
                               },
                             ).paddingAll(2),
                             CommanTextField(
@@ -105,7 +105,7 @@ class AddEmployeeEducationQualificationDetails extends StatelessWidget {
                               },
                               onChanged: (p0) {
                                 educationDetail = educationDetail.copyWith(
-                                    ssc_passing_percentage: p0);
+                                    ssc_passing_percentage: int.parse(p0));
                               },
                             ).paddingAll(2),
                             CommanTextField(
@@ -273,7 +273,7 @@ class AddEmployeeEducationQualificationDetails extends StatelessWidget {
                               },
                               onChanged: (p0) {
                                 educationDetail = educationDetail.copyWith(
-                                    hq_passing_year: p0);
+                                    hq_passing_year: int.parse(p0));
                               },
                             ).paddingAll(8),
                             CommanTextField(
@@ -318,8 +318,8 @@ class AddEmployeeEducationQualificationDetails extends StatelessWidget {
                                 return null;
                               },
                               onChanged: (p0) {
-                                educationDetail =
-                                    educationDetail.copyWith(hq_percentage: p0);
+                                educationDetail = educationDetail.copyWith(
+                                    hq_percentage: int.parse(p0));
                               },
                             ).paddingAll(2),
                           ],

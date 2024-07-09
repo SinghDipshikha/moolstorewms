@@ -22,16 +22,16 @@ AddEducationDetail _$AddEducationDetailFromJson(Map<String, dynamic> json) {
 mixin _$AddEducationDetail {
   int? get user_id => throw _privateConstructorUsedError;
   int? get updated_by => throw _privateConstructorUsedError;
-  String? get ssc_passing_year => throw _privateConstructorUsedError;
-  String? get ssc_passing_percentage => throw _privateConstructorUsedError;
+  int? get ssc_passing_year => throw _privateConstructorUsedError;
+  dynamic get ssc_passing_percentage => throw _privateConstructorUsedError;
   String? get ssc_passing_grade => throw _privateConstructorUsedError;
   String? get ssc_passing_school => throw _privateConstructorUsedError;
   String? get ssc_passing_university => throw _privateConstructorUsedError;
   String? get highest_qualification => throw _privateConstructorUsedError;
   String? get specialization => throw _privateConstructorUsedError;
-  String? get hq_passing_year => throw _privateConstructorUsedError;
+  int? get hq_passing_year => throw _privateConstructorUsedError;
   String? get hq_college => throw _privateConstructorUsedError;
-  String? get hq_percentage => throw _privateConstructorUsedError;
+  dynamic get hq_percentage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,16 +48,16 @@ abstract class $AddEducationDetailCopyWith<$Res> {
   $Res call(
       {int? user_id,
       int? updated_by,
-      String? ssc_passing_year,
-      String? ssc_passing_percentage,
+      int? ssc_passing_year,
+      dynamic ssc_passing_percentage,
       String? ssc_passing_grade,
       String? ssc_passing_school,
       String? ssc_passing_university,
       String? highest_qualification,
       String? specialization,
-      String? hq_passing_year,
+      int? hq_passing_year,
       String? hq_college,
-      String? hq_percentage});
+      dynamic hq_percentage});
 }
 
 /// @nodoc
@@ -98,11 +98,11 @@ class _$AddEducationDetailCopyWithImpl<$Res, $Val extends AddEducationDetail>
       ssc_passing_year: freezed == ssc_passing_year
           ? _value.ssc_passing_year
           : ssc_passing_year // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       ssc_passing_percentage: freezed == ssc_passing_percentage
           ? _value.ssc_passing_percentage
           : ssc_passing_percentage // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
       ssc_passing_grade: freezed == ssc_passing_grade
           ? _value.ssc_passing_grade
           : ssc_passing_grade // ignore: cast_nullable_to_non_nullable
@@ -126,7 +126,7 @@ class _$AddEducationDetailCopyWithImpl<$Res, $Val extends AddEducationDetail>
       hq_passing_year: freezed == hq_passing_year
           ? _value.hq_passing_year
           : hq_passing_year // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       hq_college: freezed == hq_college
           ? _value.hq_college
           : hq_college // ignore: cast_nullable_to_non_nullable
@@ -134,7 +134,7 @@ class _$AddEducationDetailCopyWithImpl<$Res, $Val extends AddEducationDetail>
       hq_percentage: freezed == hq_percentage
           ? _value.hq_percentage
           : hq_percentage // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
     ) as $Val);
   }
 }
@@ -150,16 +150,16 @@ abstract class _$$AddEducationDetailImplCopyWith<$Res>
   $Res call(
       {int? user_id,
       int? updated_by,
-      String? ssc_passing_year,
-      String? ssc_passing_percentage,
+      int? ssc_passing_year,
+      dynamic ssc_passing_percentage,
       String? ssc_passing_grade,
       String? ssc_passing_school,
       String? ssc_passing_university,
       String? highest_qualification,
       String? specialization,
-      String? hq_passing_year,
+      int? hq_passing_year,
       String? hq_college,
-      String? hq_percentage});
+      dynamic hq_percentage});
 }
 
 /// @nodoc
@@ -198,11 +198,11 @@ class __$$AddEducationDetailImplCopyWithImpl<$Res>
       ssc_passing_year: freezed == ssc_passing_year
           ? _value.ssc_passing_year
           : ssc_passing_year // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       ssc_passing_percentage: freezed == ssc_passing_percentage
           ? _value.ssc_passing_percentage
           : ssc_passing_percentage // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
       ssc_passing_grade: freezed == ssc_passing_grade
           ? _value.ssc_passing_grade
           : ssc_passing_grade // ignore: cast_nullable_to_non_nullable
@@ -226,7 +226,7 @@ class __$$AddEducationDetailImplCopyWithImpl<$Res>
       hq_passing_year: freezed == hq_passing_year
           ? _value.hq_passing_year
           : hq_passing_year // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       hq_college: freezed == hq_college
           ? _value.hq_college
           : hq_college // ignore: cast_nullable_to_non_nullable
@@ -234,7 +234,7 @@ class __$$AddEducationDetailImplCopyWithImpl<$Res>
       hq_percentage: freezed == hq_percentage
           ? _value.hq_percentage
           : hq_percentage // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
     ));
   }
 }
@@ -264,9 +264,9 @@ class _$AddEducationDetailImpl implements _AddEducationDetail {
   @override
   final int? updated_by;
   @override
-  final String? ssc_passing_year;
+  final int? ssc_passing_year;
   @override
-  final String? ssc_passing_percentage;
+  final dynamic ssc_passing_percentage;
   @override
   final String? ssc_passing_grade;
   @override
@@ -278,11 +278,11 @@ class _$AddEducationDetailImpl implements _AddEducationDetail {
   @override
   final String? specialization;
   @override
-  final String? hq_passing_year;
+  final int? hq_passing_year;
   @override
   final String? hq_college;
   @override
-  final String? hq_percentage;
+  final dynamic hq_percentage;
 
   @override
   String toString() {
@@ -299,8 +299,8 @@ class _$AddEducationDetailImpl implements _AddEducationDetail {
                 other.updated_by == updated_by) &&
             (identical(other.ssc_passing_year, ssc_passing_year) ||
                 other.ssc_passing_year == ssc_passing_year) &&
-            (identical(other.ssc_passing_percentage, ssc_passing_percentage) ||
-                other.ssc_passing_percentage == ssc_passing_percentage) &&
+            const DeepCollectionEquality()
+                .equals(other.ssc_passing_percentage, ssc_passing_percentage) &&
             (identical(other.ssc_passing_grade, ssc_passing_grade) ||
                 other.ssc_passing_grade == ssc_passing_grade) &&
             (identical(other.ssc_passing_school, ssc_passing_school) ||
@@ -315,8 +315,8 @@ class _$AddEducationDetailImpl implements _AddEducationDetail {
                 other.hq_passing_year == hq_passing_year) &&
             (identical(other.hq_college, hq_college) ||
                 other.hq_college == hq_college) &&
-            (identical(other.hq_percentage, hq_percentage) ||
-                other.hq_percentage == hq_percentage));
+            const DeepCollectionEquality()
+                .equals(other.hq_percentage, hq_percentage));
   }
 
   @JsonKey(ignore: true)
@@ -326,7 +326,7 @@ class _$AddEducationDetailImpl implements _AddEducationDetail {
       user_id,
       updated_by,
       ssc_passing_year,
-      ssc_passing_percentage,
+      const DeepCollectionEquality().hash(ssc_passing_percentage),
       ssc_passing_grade,
       ssc_passing_school,
       ssc_passing_university,
@@ -334,7 +334,7 @@ class _$AddEducationDetailImpl implements _AddEducationDetail {
       specialization,
       hq_passing_year,
       hq_college,
-      hq_percentage);
+      const DeepCollectionEquality().hash(hq_percentage));
 
   @JsonKey(ignore: true)
   @override
@@ -355,16 +355,16 @@ abstract class _AddEducationDetail implements AddEducationDetail {
   const factory _AddEducationDetail(
       {final int? user_id,
       final int? updated_by,
-      final String? ssc_passing_year,
-      final String? ssc_passing_percentage,
+      final int? ssc_passing_year,
+      final dynamic ssc_passing_percentage,
       final String? ssc_passing_grade,
       final String? ssc_passing_school,
       final String? ssc_passing_university,
       final String? highest_qualification,
       final String? specialization,
-      final String? hq_passing_year,
+      final int? hq_passing_year,
       final String? hq_college,
-      final String? hq_percentage}) = _$AddEducationDetailImpl;
+      final dynamic hq_percentage}) = _$AddEducationDetailImpl;
 
   factory _AddEducationDetail.fromJson(Map<String, dynamic> json) =
       _$AddEducationDetailImpl.fromJson;
@@ -374,9 +374,9 @@ abstract class _AddEducationDetail implements AddEducationDetail {
   @override
   int? get updated_by;
   @override
-  String? get ssc_passing_year;
+  int? get ssc_passing_year;
   @override
-  String? get ssc_passing_percentage;
+  dynamic get ssc_passing_percentage;
   @override
   String? get ssc_passing_grade;
   @override
@@ -388,11 +388,11 @@ abstract class _AddEducationDetail implements AddEducationDetail {
   @override
   String? get specialization;
   @override
-  String? get hq_passing_year;
+  int? get hq_passing_year;
   @override
   String? get hq_college;
   @override
-  String? get hq_percentage;
+  dynamic get hq_percentage;
   @override
   @JsonKey(ignore: true)
   _$$AddEducationDetailImplCopyWith<_$AddEducationDetailImpl> get copyWith =>

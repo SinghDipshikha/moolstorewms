@@ -21,7 +21,7 @@ AllDetail _$AllDetailFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AllDetail {
   AddBankDetails? get bankDetails => throw _privateConstructorUsedError;
-  AddCareerDetail? get careerDetail => throw _privateConstructorUsedError;
+  List<AddCareerDetail>? get careerDetail => throw _privateConstructorUsedError;
   AddEducationDetail? get educationDetail => throw _privateConstructorUsedError;
   AddReferralDetail? get referralDetail => throw _privateConstructorUsedError;
   PersonalDetailsResponse? get personalDetailsResponse =>
@@ -40,13 +40,12 @@ abstract class $AllDetailCopyWith<$Res> {
   @useResult
   $Res call(
       {AddBankDetails? bankDetails,
-      AddCareerDetail? careerDetail,
+      List<AddCareerDetail>? careerDetail,
       AddEducationDetail? educationDetail,
       AddReferralDetail? referralDetail,
       PersonalDetailsResponse? personalDetailsResponse});
 
   $AddBankDetailsCopyWith<$Res>? get bankDetails;
-  $AddCareerDetailCopyWith<$Res>? get careerDetail;
   $AddEducationDetailCopyWith<$Res>? get educationDetail;
   $AddReferralDetailCopyWith<$Res>? get referralDetail;
   $PersonalDetailsResponseCopyWith<$Res>? get personalDetailsResponse;
@@ -79,7 +78,7 @@ class _$AllDetailCopyWithImpl<$Res, $Val extends AllDetail>
       careerDetail: freezed == careerDetail
           ? _value.careerDetail
           : careerDetail // ignore: cast_nullable_to_non_nullable
-              as AddCareerDetail?,
+              as List<AddCareerDetail>?,
       educationDetail: freezed == educationDetail
           ? _value.educationDetail
           : educationDetail // ignore: cast_nullable_to_non_nullable
@@ -104,18 +103,6 @@ class _$AllDetailCopyWithImpl<$Res, $Val extends AllDetail>
 
     return $AddBankDetailsCopyWith<$Res>(_value.bankDetails!, (value) {
       return _then(_value.copyWith(bankDetails: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $AddCareerDetailCopyWith<$Res>? get careerDetail {
-    if (_value.careerDetail == null) {
-      return null;
-    }
-
-    return $AddCareerDetailCopyWith<$Res>(_value.careerDetail!, (value) {
-      return _then(_value.copyWith(careerDetail: value) as $Val);
     });
   }
 
@@ -167,15 +154,13 @@ abstract class _$$AllDetailImplCopyWith<$Res>
   @useResult
   $Res call(
       {AddBankDetails? bankDetails,
-      AddCareerDetail? careerDetail,
+      List<AddCareerDetail>? careerDetail,
       AddEducationDetail? educationDetail,
       AddReferralDetail? referralDetail,
       PersonalDetailsResponse? personalDetailsResponse});
 
   @override
   $AddBankDetailsCopyWith<$Res>? get bankDetails;
-  @override
-  $AddCareerDetailCopyWith<$Res>? get careerDetail;
   @override
   $AddEducationDetailCopyWith<$Res>? get educationDetail;
   @override
@@ -207,9 +192,9 @@ class __$$AllDetailImplCopyWithImpl<$Res>
           : bankDetails // ignore: cast_nullable_to_non_nullable
               as AddBankDetails?,
       careerDetail: freezed == careerDetail
-          ? _value.careerDetail
+          ? _value._careerDetail
           : careerDetail // ignore: cast_nullable_to_non_nullable
-              as AddCareerDetail?,
+              as List<AddCareerDetail>?,
       educationDetail: freezed == educationDetail
           ? _value.educationDetail
           : educationDetail // ignore: cast_nullable_to_non_nullable
@@ -231,18 +216,27 @@ class __$$AllDetailImplCopyWithImpl<$Res>
 class _$AllDetailImpl implements _AllDetail {
   const _$AllDetailImpl(
       {this.bankDetails,
-      this.careerDetail,
+      final List<AddCareerDetail>? careerDetail,
       this.educationDetail,
       this.referralDetail,
-      this.personalDetailsResponse});
+      this.personalDetailsResponse})
+      : _careerDetail = careerDetail;
 
   factory _$AllDetailImpl.fromJson(Map<String, dynamic> json) =>
       _$$AllDetailImplFromJson(json);
 
   @override
   final AddBankDetails? bankDetails;
+  final List<AddCareerDetail>? _careerDetail;
   @override
-  final AddCareerDetail? careerDetail;
+  List<AddCareerDetail>? get careerDetail {
+    final value = _careerDetail;
+    if (value == null) return null;
+    if (_careerDetail is EqualUnmodifiableListView) return _careerDetail;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final AddEducationDetail? educationDetail;
   @override
@@ -262,8 +256,8 @@ class _$AllDetailImpl implements _AllDetail {
             other is _$AllDetailImpl &&
             (identical(other.bankDetails, bankDetails) ||
                 other.bankDetails == bankDetails) &&
-            (identical(other.careerDetail, careerDetail) ||
-                other.careerDetail == careerDetail) &&
+            const DeepCollectionEquality()
+                .equals(other._careerDetail, _careerDetail) &&
             (identical(other.educationDetail, educationDetail) ||
                 other.educationDetail == educationDetail) &&
             (identical(other.referralDetail, referralDetail) ||
@@ -275,8 +269,13 @@ class _$AllDetailImpl implements _AllDetail {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, bankDetails, careerDetail,
-      educationDetail, referralDetail, personalDetailsResponse);
+  int get hashCode => Object.hash(
+      runtimeType,
+      bankDetails,
+      const DeepCollectionEquality().hash(_careerDetail),
+      educationDetail,
+      referralDetail,
+      personalDetailsResponse);
 
   @JsonKey(ignore: true)
   @override
@@ -295,7 +294,7 @@ class _$AllDetailImpl implements _AllDetail {
 abstract class _AllDetail implements AllDetail {
   const factory _AllDetail(
           {final AddBankDetails? bankDetails,
-          final AddCareerDetail? careerDetail,
+          final List<AddCareerDetail>? careerDetail,
           final AddEducationDetail? educationDetail,
           final AddReferralDetail? referralDetail,
           final PersonalDetailsResponse? personalDetailsResponse}) =
@@ -307,7 +306,7 @@ abstract class _AllDetail implements AllDetail {
   @override
   AddBankDetails? get bankDetails;
   @override
-  AddCareerDetail? get careerDetail;
+  List<AddCareerDetail>? get careerDetail;
   @override
   AddEducationDetail? get educationDetail;
   @override
