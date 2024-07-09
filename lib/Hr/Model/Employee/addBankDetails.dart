@@ -39,8 +39,8 @@ class AddBankDetailsUpdate with _$AddBankDetailsUpdate {
     @Default("updated_by") String updated_by,
     @Default("status") String status,
     @Default("created_at") String created_at,
-    @Default("updated_at") updated_at,
-  }) = AddBankDetailsUpdate;
+    @Default("updated_at")String updated_at,
+  }) = _AddBankDetailsUpdate;
 
   factory AddBankDetailsUpdate.fromJson(Map<String, Object?> json) =>
       _$AddBankDetailsUpdateFromJson(json);

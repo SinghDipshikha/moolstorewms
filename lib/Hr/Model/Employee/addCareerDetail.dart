@@ -41,9 +41,9 @@ class AddCareerDetailUpdate with _$AddCareerDetailUpdate {
     @Default("updated_by") String updated_by,
     @Default("sort_by") String sort_by,
     @Default("status") String status,
-    @Default("created_at") created_at,
-    @Default("updated_at") updated_at,
-  }) = AddCareerDetailUpdate;
+    @Default("created_at")String created_at,
+    @Default("updated_at")String updated_at,
+  }) = _AddCareerDetailUpdate;
 
   factory AddCareerDetailUpdate.fromJson(Map<String, Object?> json) =>
       _$AddCareerDetailUpdateFromJson(json);

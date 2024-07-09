@@ -401,7 +401,7 @@ abstract class _AddEducationDetail implements AddEducationDetail {
 
 AddEducationDetailUpdate _$AddEducationDetailUpdateFromJson(
     Map<String, dynamic> json) {
-  return AddEducationDetailUpdate.fromJson(json);
+  return _AddEducationDetailUpdate.fromJson(json);
 }
 
 /// @nodoc
@@ -418,7 +418,7 @@ mixin _$AddEducationDetailUpdate {
   String get specialization => throw _privateConstructorUsedError;
   String get hq_passing_year => throw _privateConstructorUsedError;
   String get hq_college => throw _privateConstructorUsedError;
-  dynamic get hq_percentage => throw _privateConstructorUsedError;
+  String get hq_percentage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -444,7 +444,7 @@ abstract class $AddEducationDetailUpdateCopyWith<$Res> {
       String specialization,
       String hq_passing_year,
       String hq_college,
-      dynamic hq_percentage});
+      String hq_percentage});
 }
 
 /// @nodoc
@@ -472,7 +472,7 @@ class _$AddEducationDetailUpdateCopyWithImpl<$Res,
     Object? specialization = null,
     Object? hq_passing_year = null,
     Object? hq_college = null,
-    Object? hq_percentage = freezed,
+    Object? hq_percentage = null,
   }) {
     return _then(_value.copyWith(
       user_id: null == user_id
@@ -519,10 +519,10 @@ class _$AddEducationDetailUpdateCopyWithImpl<$Res,
           ? _value.hq_college
           : hq_college // ignore: cast_nullable_to_non_nullable
               as String,
-      hq_percentage: freezed == hq_percentage
+      hq_percentage: null == hq_percentage
           ? _value.hq_percentage
           : hq_percentage // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
     ) as $Val);
   }
 }
@@ -548,7 +548,7 @@ abstract class _$$AddEducationDetailUpdateImplCopyWith<$Res>
       String specialization,
       String hq_passing_year,
       String hq_college,
-      dynamic hq_percentage});
+      String hq_percentage});
 }
 
 /// @nodoc
@@ -575,7 +575,7 @@ class __$$AddEducationDetailUpdateImplCopyWithImpl<$Res>
     Object? specialization = null,
     Object? hq_passing_year = null,
     Object? hq_college = null,
-    Object? hq_percentage = freezed,
+    Object? hq_percentage = null,
   }) {
     return _then(_$AddEducationDetailUpdateImpl(
       user_id: null == user_id
@@ -622,15 +622,17 @@ class __$$AddEducationDetailUpdateImplCopyWithImpl<$Res>
           ? _value.hq_college
           : hq_college // ignore: cast_nullable_to_non_nullable
               as String,
-      hq_percentage:
-          freezed == hq_percentage ? _value.hq_percentage! : hq_percentage,
+      hq_percentage: null == hq_percentage
+          ? _value.hq_percentage
+          : hq_percentage // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$AddEducationDetailUpdateImpl implements AddEducationDetailUpdate {
+class _$AddEducationDetailUpdateImpl implements _AddEducationDetailUpdate {
   const _$AddEducationDetailUpdateImpl(
       {this.user_id = "userId",
       this.updatedBy = "updatedBy",
@@ -684,7 +686,7 @@ class _$AddEducationDetailUpdateImpl implements AddEducationDetailUpdate {
   final String hq_college;
   @override
   @JsonKey()
-  final dynamic hq_percentage;
+  final String hq_percentage;
 
   @override
   String toString() {
@@ -717,8 +719,8 @@ class _$AddEducationDetailUpdateImpl implements AddEducationDetailUpdate {
                 other.hq_passing_year == hq_passing_year) &&
             (identical(other.hq_college, hq_college) ||
                 other.hq_college == hq_college) &&
-            const DeepCollectionEquality()
-                .equals(other.hq_percentage, hq_percentage));
+            (identical(other.hq_percentage, hq_percentage) ||
+                other.hq_percentage == hq_percentage));
   }
 
   @JsonKey(ignore: true)
@@ -736,7 +738,7 @@ class _$AddEducationDetailUpdateImpl implements AddEducationDetailUpdate {
       specialization,
       hq_passing_year,
       hq_college,
-      const DeepCollectionEquality().hash(hq_percentage));
+      hq_percentage);
 
   @JsonKey(ignore: true)
   @override
@@ -753,8 +755,8 @@ class _$AddEducationDetailUpdateImpl implements AddEducationDetailUpdate {
   }
 }
 
-abstract class AddEducationDetailUpdate implements AddEducationDetailUpdate {
-  const factory AddEducationDetailUpdate(
+abstract class _AddEducationDetailUpdate implements AddEducationDetailUpdate {
+  const factory _AddEducationDetailUpdate(
       {final String user_id,
       final String updatedBy,
       final String ssc_passing_year,
@@ -766,9 +768,9 @@ abstract class AddEducationDetailUpdate implements AddEducationDetailUpdate {
       final String specialization,
       final String hq_passing_year,
       final String hq_college,
-      final dynamic hq_percentage}) = _$AddEducationDetailUpdateImpl;
+      final String hq_percentage}) = _$AddEducationDetailUpdateImpl;
 
-  factory AddEducationDetailUpdate.fromJson(Map<String, dynamic> json) =
+  factory _AddEducationDetailUpdate.fromJson(Map<String, dynamic> json) =
       _$AddEducationDetailUpdateImpl.fromJson;
 
   @override // int? id,
@@ -794,7 +796,7 @@ abstract class AddEducationDetailUpdate implements AddEducationDetailUpdate {
   @override
   String get hq_college;
   @override
-  dynamic get hq_percentage;
+  String get hq_percentage;
   @override
   @JsonKey(ignore: true)
   _$$AddEducationDetailUpdateImplCopyWith<_$AddEducationDetailUpdateImpl>

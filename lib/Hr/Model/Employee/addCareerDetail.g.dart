@@ -70,8 +70,8 @@ _$AddCareerDetailUpdateImpl _$$AddCareerDetailUpdateImplFromJson(
       updated_by: json['updated_by'] as String? ?? "updated_by",
       sort_by: json['sort_by'] as String? ?? "sort_by",
       status: json['status'] as String? ?? "status",
-      created_at: json['created_at'] ?? "created_at",
-      updated_at: json['updated_at'] ?? "updated_at",
+      created_at: json['created_at'] as String? ?? "created_at",
+      updated_at: json['updated_at'] as String? ?? "updated_at",
     );
 
 Map<String, dynamic> _$$AddCareerDetailUpdateImplToJson(

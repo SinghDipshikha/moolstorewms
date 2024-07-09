@@ -60,7 +60,7 @@ _$AddEducationDetailUpdateImpl _$$AddEducationDetailUpdateImplFromJson(
       specialization: json['specialization'] as String? ?? "specialization",
       hq_passing_year: json['hq_passing_year'] as String? ?? "hq_passing_year",
       hq_college: json['hq_college'] as String? ?? "hq_college",
-      hq_percentage: json['hq_percentage'] ?? "hq_percentage",
+      hq_percentage: json['hq_percentage'] as String? ?? "hq_percentage",
     );
 
 Map<String, dynamic> _$$AddEducationDetailUpdateImplToJson(

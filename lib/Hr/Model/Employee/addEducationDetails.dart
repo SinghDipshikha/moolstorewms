@@ -6,8 +6,7 @@ part 'addEducationDetails.g.dart';
 @freezed
 class AddEducationDetail with _$AddEducationDetail {
   const factory AddEducationDetail({
-
-  int? user_id,
+    int? user_id,
     int? updated_by,
     String? ssc_passing_year,
     String? ssc_passing_percentage,
@@ -25,7 +24,7 @@ class AddEducationDetail with _$AddEducationDetail {
       _$AddEducationDetailFromJson(json);
 }
 
- @freezed
+@freezed
 class AddEducationDetailUpdate with _$AddEducationDetailUpdate {
   const factory AddEducationDetailUpdate({
     // int? id,
@@ -40,8 +39,8 @@ class AddEducationDetailUpdate with _$AddEducationDetailUpdate {
     @Default("specialization") String specialization,
     @Default("hq_passing_year") String hq_passing_year,
     @Default("hq_college") String hq_college,
-    @Default("hq_percentage") hq_percentage,
-  }) = AddEducationDetailUpdate;
+    @Default("hq_percentage") String hq_percentage,
+  }) = _AddEducationDetailUpdate;
 
   factory AddEducationDetailUpdate.fromJson(Map<String, Object?> json) =>
       _$AddEducationDetailUpdateFromJson(json);

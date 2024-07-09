@@ -442,7 +442,7 @@ abstract class _AddCareerDetail implements AddCareerDetail {
 
 AddCareerDetailUpdate _$AddCareerDetailUpdateFromJson(
     Map<String, dynamic> json) {
-  return AddCareerDetailUpdate.fromJson(json);
+  return _AddCareerDetailUpdate.fromJson(json);
 }
 
 /// @nodoc
@@ -459,8 +459,8 @@ mixin _$AddCareerDetailUpdate {
   String get updated_by => throw _privateConstructorUsedError;
   String get sort_by => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
-  dynamic get created_at => throw _privateConstructorUsedError;
-  dynamic get updated_at => throw _privateConstructorUsedError;
+  String get created_at => throw _privateConstructorUsedError;
+  String get updated_at => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -487,8 +487,8 @@ abstract class $AddCareerDetailUpdateCopyWith<$Res> {
       String updated_by,
       String sort_by,
       String status,
-      dynamic created_at,
-      dynamic updated_at});
+      String created_at,
+      String updated_at});
 }
 
 /// @nodoc
@@ -517,8 +517,8 @@ class _$AddCareerDetailUpdateCopyWithImpl<$Res,
     Object? updated_by = null,
     Object? sort_by = null,
     Object? status = null,
-    Object? created_at = freezed,
-    Object? updated_at = freezed,
+    Object? created_at = null,
+    Object? updated_at = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -569,14 +569,14 @@ class _$AddCareerDetailUpdateCopyWithImpl<$Res,
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      created_at: freezed == created_at
+      created_at: null == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      updated_at: freezed == updated_at
+              as String,
+      updated_at: null == updated_at
           ? _value.updated_at
           : updated_at // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
     ) as $Val);
   }
 }
@@ -603,8 +603,8 @@ abstract class _$$AddCareerDetailUpdateImplCopyWith<$Res>
       String updated_by,
       String sort_by,
       String status,
-      dynamic created_at,
-      dynamic updated_at});
+      String created_at,
+      String updated_at});
 }
 
 /// @nodoc
@@ -631,8 +631,8 @@ class __$$AddCareerDetailUpdateImplCopyWithImpl<$Res>
     Object? updated_by = null,
     Object? sort_by = null,
     Object? status = null,
-    Object? created_at = freezed,
-    Object? updated_at = freezed,
+    Object? created_at = null,
+    Object? updated_at = null,
   }) {
     return _then(_$AddCareerDetailUpdateImpl(
       id: null == id
@@ -683,15 +683,21 @@ class __$$AddCareerDetailUpdateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      created_at: freezed == created_at ? _value.created_at! : created_at,
-      updated_at: freezed == updated_at ? _value.updated_at! : updated_at,
+      created_at: null == created_at
+          ? _value.created_at
+          : created_at // ignore: cast_nullable_to_non_nullable
+              as String,
+      updated_at: null == updated_at
+          ? _value.updated_at
+          : updated_at // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$AddCareerDetailUpdateImpl implements AddCareerDetailUpdate {
+class _$AddCareerDetailUpdateImpl implements _AddCareerDetailUpdate {
   const _$AddCareerDetailUpdateImpl(
       {this.id = "id",
       this.user_id = "user_id",
@@ -749,10 +755,10 @@ class _$AddCareerDetailUpdateImpl implements AddCareerDetailUpdate {
   final String status;
   @override
   @JsonKey()
-  final dynamic created_at;
+  final String created_at;
   @override
   @JsonKey()
-  final dynamic updated_at;
+  final String updated_at;
 
   @override
   String toString() {
@@ -784,10 +790,10 @@ class _$AddCareerDetailUpdateImpl implements AddCareerDetailUpdate {
                 other.updated_by == updated_by) &&
             (identical(other.sort_by, sort_by) || other.sort_by == sort_by) &&
             (identical(other.status, status) || other.status == status) &&
-            const DeepCollectionEquality()
-                .equals(other.created_at, created_at) &&
-            const DeepCollectionEquality()
-                .equals(other.updated_at, updated_at));
+            (identical(other.created_at, created_at) ||
+                other.created_at == created_at) &&
+            (identical(other.updated_at, updated_at) ||
+                other.updated_at == updated_at));
   }
 
   @JsonKey(ignore: true)
@@ -806,8 +812,8 @@ class _$AddCareerDetailUpdateImpl implements AddCareerDetailUpdate {
       updated_by,
       sort_by,
       status,
-      const DeepCollectionEquality().hash(created_at),
-      const DeepCollectionEquality().hash(updated_at));
+      created_at,
+      updated_at);
 
   @JsonKey(ignore: true)
   @override
@@ -824,8 +830,8 @@ class _$AddCareerDetailUpdateImpl implements AddCareerDetailUpdate {
   }
 }
 
-abstract class AddCareerDetailUpdate implements AddCareerDetailUpdate {
-  const factory AddCareerDetailUpdate(
+abstract class _AddCareerDetailUpdate implements AddCareerDetailUpdate {
+  const factory _AddCareerDetailUpdate(
       {final String id,
       final String user_id,
       final String name_of_employer,
@@ -838,10 +844,10 @@ abstract class AddCareerDetailUpdate implements AddCareerDetailUpdate {
       final String updated_by,
       final String sort_by,
       final String status,
-      final dynamic created_at,
-      final dynamic updated_at}) = _$AddCareerDetailUpdateImpl;
+      final String created_at,
+      final String updated_at}) = _$AddCareerDetailUpdateImpl;
 
-  factory AddCareerDetailUpdate.fromJson(Map<String, dynamic> json) =
+  factory _AddCareerDetailUpdate.fromJson(Map<String, dynamic> json) =
       _$AddCareerDetailUpdateImpl.fromJson;
 
   @override
@@ -869,9 +875,9 @@ abstract class AddCareerDetailUpdate implements AddCareerDetailUpdate {
   @override
   String get status;
   @override
-  dynamic get created_at;
+  String get created_at;
   @override
-  dynamic get updated_at;
+  String get updated_at;
   @override
   @JsonKey(ignore: true)
   _$$AddCareerDetailUpdateImplCopyWith<_$AddCareerDetailUpdateImpl>

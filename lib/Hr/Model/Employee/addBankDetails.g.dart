@@ -58,7 +58,7 @@ _$AddBankDetailsUpdateImpl _$$AddBankDetailsUpdateImplFromJson(
       updated_by: json['updated_by'] as String? ?? "updated_by",
       status: json['status'] as String? ?? "status",
       created_at: json['created_at'] as String? ?? "created_at",
-      updated_at: json['updated_at'] ?? "updated_at",
+      updated_at: json['updated_at'] as String? ?? "updated_at",
     );
 
 Map<String, dynamic> _$$AddBankDetailsUpdateImplToJson(

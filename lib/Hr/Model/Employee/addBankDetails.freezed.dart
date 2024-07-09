@@ -397,7 +397,7 @@ abstract class _AddBankDetails implements AddBankDetails {
 }
 
 AddBankDetailsUpdate _$AddBankDetailsUpdateFromJson(Map<String, dynamic> json) {
-  return AddBankDetailsUpdate.fromJson(json);
+  return _AddBankDetailsUpdate.fromJson(json);
 }
 
 /// @nodoc
@@ -414,7 +414,7 @@ mixin _$AddBankDetailsUpdate {
   String get updated_by => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get created_at => throw _privateConstructorUsedError;
-  dynamic get updated_at => throw _privateConstructorUsedError;
+  String get updated_at => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -440,7 +440,7 @@ abstract class $AddBankDetailsUpdateCopyWith<$Res> {
       String updated_by,
       String status,
       String created_at,
-      dynamic updated_at});
+      String updated_at});
 }
 
 /// @nodoc
@@ -468,7 +468,7 @@ class _$AddBankDetailsUpdateCopyWithImpl<$Res,
     Object? updated_by = null,
     Object? status = null,
     Object? created_at = null,
-    Object? updated_at = freezed,
+    Object? updated_at = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -515,10 +515,10 @@ class _$AddBankDetailsUpdateCopyWithImpl<$Res,
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
               as String,
-      updated_at: freezed == updated_at
+      updated_at: null == updated_at
           ? _value.updated_at
           : updated_at // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
     ) as $Val);
   }
 }
@@ -543,7 +543,7 @@ abstract class _$$AddBankDetailsUpdateImplCopyWith<$Res>
       String updated_by,
       String status,
       String created_at,
-      dynamic updated_at});
+      String updated_at});
 }
 
 /// @nodoc
@@ -568,7 +568,7 @@ class __$$AddBankDetailsUpdateImplCopyWithImpl<$Res>
     Object? updated_by = null,
     Object? status = null,
     Object? created_at = null,
-    Object? updated_at = freezed,
+    Object? updated_at = null,
   }) {
     return _then(_$AddBankDetailsUpdateImpl(
       id: null == id
@@ -615,14 +615,17 @@ class __$$AddBankDetailsUpdateImplCopyWithImpl<$Res>
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
               as String,
-      updated_at: freezed == updated_at ? _value.updated_at! : updated_at,
+      updated_at: null == updated_at
+          ? _value.updated_at
+          : updated_at // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$AddBankDetailsUpdateImpl implements AddBankDetailsUpdate {
+class _$AddBankDetailsUpdateImpl implements _AddBankDetailsUpdate {
   const _$AddBankDetailsUpdateImpl(
       {this.id = "id",
       this.user_id = "user_id",
@@ -676,7 +679,7 @@ class _$AddBankDetailsUpdateImpl implements AddBankDetailsUpdate {
   final String created_at;
   @override
   @JsonKey()
-  final dynamic updated_at;
+  final String updated_at;
 
   @override
   String toString() {
@@ -706,8 +709,8 @@ class _$AddBankDetailsUpdateImpl implements AddBankDetailsUpdate {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.created_at, created_at) ||
                 other.created_at == created_at) &&
-            const DeepCollectionEquality()
-                .equals(other.updated_at, updated_at));
+            (identical(other.updated_at, updated_at) ||
+                other.updated_at == updated_at));
   }
 
   @JsonKey(ignore: true)
@@ -725,7 +728,7 @@ class _$AddBankDetailsUpdateImpl implements AddBankDetailsUpdate {
       updated_by,
       status,
       created_at,
-      const DeepCollectionEquality().hash(updated_at));
+      updated_at);
 
   @JsonKey(ignore: true)
   @override
@@ -743,8 +746,8 @@ class _$AddBankDetailsUpdateImpl implements AddBankDetailsUpdate {
   }
 }
 
-abstract class AddBankDetailsUpdate implements AddBankDetailsUpdate {
-  const factory AddBankDetailsUpdate(
+abstract class _AddBankDetailsUpdate implements AddBankDetailsUpdate {
+  const factory _AddBankDetailsUpdate(
       {final String id,
       final String user_id,
       final String account_name,
@@ -756,9 +759,9 @@ abstract class AddBankDetailsUpdate implements AddBankDetailsUpdate {
       final String updated_by,
       final String status,
       final String created_at,
-      final dynamic updated_at}) = _$AddBankDetailsUpdateImpl;
+      final String updated_at}) = _$AddBankDetailsUpdateImpl;
 
-  factory AddBankDetailsUpdate.fromJson(Map<String, dynamic> json) =
+  factory _AddBankDetailsUpdate.fromJson(Map<String, dynamic> json) =
       _$AddBankDetailsUpdateImpl.fromJson;
 
   @override // int? id,
@@ -784,7 +787,7 @@ abstract class AddBankDetailsUpdate implements AddBankDetailsUpdate {
   @override
   String get created_at;
   @override
-  dynamic get updated_at;
+  String get updated_at;
   @override
   @JsonKey(ignore: true)
   _$$AddBankDetailsUpdateImplCopyWith<_$AddBankDetailsUpdateImpl>
