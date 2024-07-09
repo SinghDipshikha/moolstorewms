@@ -25,3 +25,24 @@ class AddEducationDetail with _$AddEducationDetail {
       _$AddEducationDetailFromJson(json);
 }
 
+ @freezed
+class AddEducationDetailUpdate with _$AddEducationDetailUpdate {
+  const factory AddEducationDetailUpdate({
+    // int? id,
+    @Default("userId") String user_id,
+    @Default("updatedBy") String updatedBy,
+    @Default("ssc_passing_year") String ssc_passing_year,
+    @Default("ssc_passing_percentage") String ssc_passing_percentage,
+    @Default("ssc_passing_grade") String ssc_passing_grade,
+    @Default("ssc_passing_school") String ssc_passing_school,
+    @Default("ssc_passing_university") String ssc_passing_university,
+    @Default("highest_qualification") String highest_qualification,
+    @Default("specialization") String specialization,
+    @Default("hq_passing_year") String hq_passing_year,
+    @Default("hq_college") String hq_college,
+    @Default("hq_percentage") hq_percentage,
+  }) = AddEducationDetailUpdate;
+
+  factory AddEducationDetailUpdate.fromJson(Map<String, Object?> json) =>
+      _$AddEducationDetailUpdateFromJson(json);
+}
