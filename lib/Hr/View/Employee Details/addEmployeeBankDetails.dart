@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
-import 'package:moolwmsstore/Hr/Model/addBankDetails.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonTextField.dart';
 import 'package:moolwmsstore/Hr/constants/validations.dart';
@@ -19,9 +18,6 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
   @override
   final _formKey = GlobalKey<FormState>();
 
-  final AddBankDetails _addBankDetails = const AddBankDetails();
-
-  AddBankDetails bankDetails = const AddBankDetails();
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HRController>(builder: (hrController) {
@@ -81,8 +77,9 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
                               return null;
                             },
                             onChanged: (p0) {
-                              bankDetails =
-                                  bankDetails.copyWith(account_name: p0);
+                              hrController.addBankDetails = hrController
+                                  .addBankDetails
+                                  .copyWith(account_name: p0);
                             },
                           ).paddingAll(2),
                           CommanTextField(
@@ -104,8 +101,9 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
                               return null;
                             },
                             onChanged: (p0) {
-                              bankDetails =
-                                  bankDetails.copyWith(account_no: p0);
+                              hrController.addBankDetails = hrController
+                                  .addBankDetails
+                                  .copyWith(account_no: p0);
                             },
                           ).paddingAll(2),
                           CommanTextField(
@@ -126,8 +124,9 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
                               return null;
                             },
                             onChanged: (p0) {
-                              bankDetails =
-                                  bankDetails.copyWith(branch_name: p0);
+                              hrController.addBankDetails = hrController
+                                  .addBankDetails
+                                  .copyWith(branch_name: p0);
                             },
                           ).paddingAll(2),
                           CommanTextField(
@@ -148,7 +147,9 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
                               return null;
                             },
                             onChanged: (p0) {
-                              bankDetails = bankDetails.copyWith(ifsc_no: p0);
+                              hrController.addBankDetails = hrController
+                                  .addBankDetails
+                                  .copyWith(ifsc_no: p0);
                             },
                           ).paddingAll(2),
                           CommanTextField(
@@ -170,8 +171,9 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
                               return null;
                             },
                             onChanged: (p0) {
-                              bankDetails =
-                                  bankDetails.copyWith(account_type: p0);
+                              hrController.addBankDetails = hrController
+                                  .addBankDetails
+                                  .copyWith(account_type: p0);
                             },
                           ).paddingAll(2),
                         ],
@@ -198,14 +200,16 @@ class _AddEmployeeBankDetailsState extends State<AddEmployeeBankDetails> {
                           title: 'Previous',
                         ),
                         const Gap(20),
-                        CommonNextButton(
-                          title: 'Next',
-                          onTap: () {
-                            if (_formKey.currentState!.validate()) {
-                              _formKey.currentState!.save();
-                            }
-                          },
-                        ),
+                        GetBuilder<HRController>(builder: (context) {
+                          return CommonNextButton(
+                            title: 'Next',
+                            onTap: () {
+                              if (_formKey.currentState?.validate() ?? false) {
+                          hrController.addUserBankDetails();
+                        }
+                            },
+                          );
+                        }),
                       ],
                     ).paddingAll(20)
                 ],
