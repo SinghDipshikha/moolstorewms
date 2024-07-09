@@ -124,7 +124,7 @@ class HRController extends GetxController {
     if (currentlySeletedEmployee?.isCareerDetails == 0) {
       navigationAccordingStatus.add(const AddEmployeeCareerDetails());
     }
-    if (currentlySeletedEmployee?.isDocumentDetails == 0) {
+    if (currentlySeletedEmployee?.isEducationDetails == 0) {
       navigationAccordingStatus.add(AddEmployeeEducationQualificationDetails());
     }
 
@@ -193,7 +193,7 @@ class HRController extends GetxController {
   }
 
 ///////////////Add or Update Personal Details ////////////
-  addPersonalDetails(PersonalDetailsResponseUpdate yo) async {
+  addPersonalDetails(PersonalDetailsResponse yo) async {
     isLoading = true;
     update();
     await apiClient

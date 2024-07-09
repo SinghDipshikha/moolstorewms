@@ -515,22 +515,20 @@ class ChamberView extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              Column(
-                                children: List.generate(
-                                    dmsController
+                              ...List.generate(
+                                  dmsController
+                                      .currentlySelectedGridChamber!
+                                      .grid![palletIndex]
+                                      .products!
+                                      .length, (productIndex) {
+                                return Text(dmsController
                                         .currentlySelectedGridChamber!
                                         .grid![palletIndex]
-                                        .products!
-                                        .length, (productIndex) {
-                                  return Text(dmsController
-                                          .currentlySelectedGridChamber!
-                                          .grid![palletIndex]
-                                          .products![productIndex]
-                                          .toJson()
-                                          .toString())
-                                      .paddingSymmetric(vertical: 4);
-                                }),
-                              ),
+                                        .products![productIndex]
+                                        .toJson()
+                                        .toString())
+                                    .paddingSymmetric(vertical: 4);
+                              })
                             ],
                           );
                   }

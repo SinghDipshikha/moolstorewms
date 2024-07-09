@@ -26,8 +26,7 @@ class _AddEmployeePersonalDetailsState
     extends State<AddEmployeePersonalDetails> {
   final _formKey = GlobalKey<FormState>();
 
-  PersonalDetailsResponseUpdate personalDetails =
-      const PersonalDetailsResponseUpdate();
+  PersonalDetailsResponse personalDetails = const PersonalDetailsResponse();
 
   // @override
   @override

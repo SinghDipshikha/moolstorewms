@@ -26,10 +26,7 @@ class HrEmployeeList extends StatelessWidget {
       Get.find<HRController>().getAllStaffList();
     }, builder: (hrController) {
       return Scaffold(
-        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        // floatingActionButton: CustomButton(
-        //   title: 'Add New Staff',
-        // ).paddingSymmetric(horizontal: 12),
+   
         appBar: AppBar(
           title: const Text(
             'Staff List',
@@ -187,7 +184,9 @@ class HrEmployeeList extends StatelessWidget {
                                     ))
                                 : IconButton(
                                     padding: EdgeInsets.zero,
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      
+                                    },
                                     icon: Image.asset(
                                       "assets/images/hrIcon.png",
                                       height: 20,

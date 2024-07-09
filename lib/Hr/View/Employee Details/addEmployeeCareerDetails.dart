@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/Model/addCareerDetail.dart';
 import 'package:moolwmsstore/Hr/View/widget/commonButtons.dart';
@@ -76,10 +77,15 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: CustomFloatingActionButton(
-            title: 'Next',
-            onTap: () {},
-          ),
+          floatingActionButton:
+              GetBuilder<HRController>(builder: (hRController) {
+            return CustomFloatingActionButton(
+              title: 'Next',
+              onTap: () {
+                Logger().i(hrController.carrierDetails);
+              },
+            );
+          }),
           body: SingleChildScrollView(
             child: Center(
               child: GetBuilder<HRController>(builder: (hRController) {
@@ -236,7 +242,7 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                           careerDetail.employment_date_to !=
                                                   null
                                               ? TextButton(
-                                                  onPressed: () {   
+                                                  onPressed: () {
                                                     showDatePicker(
                                                       context: context,
                                                       initialDate:
@@ -384,20 +390,6 @@ class _AddEmployeeCareerDetailsState extends State<AddEmployeeCareerDetails> {
                                 ],
                               ),
                             ).paddingAll(20),
-                            context.isPhone
-                                ? Container()
-                                : Container(
-                                    color: const Color(0xFFF7F7F7),
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsets.all(10.0).copyWith(),
-                                      child: const Text(
-                                        'Career Details',
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    )).paddingOnly(left: 80),
                           ]);
                         }),
                   ],
