@@ -10,6 +10,7 @@ import 'package:moolwmsstore/Hr/Model/Employee/addBankDetails.dart';
 import 'package:moolwmsstore/Hr/Model/Employee/addCareerDetail.dart';
 import 'package:moolwmsstore/Hr/Model/Employee/addEducationDetails.dart';
 import 'package:moolwmsstore/Hr/Model/Employee/addReferralDetails.dart';
+import 'package:moolwmsstore/Hr/Model/Employee/allDetailModel.dart';
 import 'package:moolwmsstore/Hr/Model/Employee/personaldetails.dart';
 import 'package:moolwmsstore/Hr/Model/addShift.dart';
 import 'package:moolwmsstore/Hr/Model/addShiftDetails.dart';
@@ -142,8 +143,20 @@ class HRController extends GetxController {
     Get.off(navigationAccordingStatus[navigationAccordingStatus.length - 1],
         id: hrNavigationKey);
   }
-
-  getUserAllDetails(StaffEntry emp) {}
+    AllDetail  empAllDetails = AllDetail();
+bool getUserDeatils = false;
+  getUserAllDetails(StaffEntry emp) {
+    currentlySeletedEmployee = emp ;
+    getUserDeatils = true;
+    update();
+  
+    hrRepo.getPersonalDetails().then((v){
+      empAllDetails = empAllDetails.copyWith(personalDetailsResponse: v);
+    });
+    hrRepo.getCareerDetails().then((v){
+      empAllDetails = empAllDetails.copyWith(careerDetail: v);
+    });
+  }
 
   switchRole(String role) {
     if (role == "security-guard") {

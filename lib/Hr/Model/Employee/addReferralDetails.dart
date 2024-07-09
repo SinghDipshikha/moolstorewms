@@ -6,15 +6,15 @@ part 'addReferralDetails.g.dart';
 @freezed
 class AddReferralDetail with _$AddReferralDetail {
   const factory AddReferralDetail({
- int ?id,
-    int ?userId,
+    int? id,
+    int? userId,
     String? name,
     String? company,
-    String ?address,
+    String? address,
     String? designation,
-    String?mobileNumber,
-    String ?email,
-    int ?updatedBy,
+    String? mobileNumber,
+    String? email,
+    int? updatedBy,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) = _AddReferralDetail;
@@ -22,5 +22,3 @@ class AddReferralDetail with _$AddReferralDetail {
   factory AddReferralDetail.fromJson(Map<String, Object?> json) =>
       _$AddReferralDetailFromJson(json);
 }
-
- 

@@ -12,7 +12,7 @@ part 'allDetailModel.g.dart';
 class AllDetail with _$AllDetail {
   const factory AllDetail({
     AddBankDetails? bankDetails,
-    AddCareerDetail? careerDetail,
+    List<AddCareerDetail>? careerDetail,
     AddEducationDetail? educationDetail,
     AddReferralDetail? referralDetail,
     PersonalDetailsResponse? personalDetailsResponse,
