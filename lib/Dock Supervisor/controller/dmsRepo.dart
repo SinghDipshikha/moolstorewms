@@ -143,6 +143,18 @@ class Dmsrepo {
     }
   }
 
+  Future<bool> getIndentAssignedProducts(String indentNumber) async {
+    var res = await apiClient
+        .postData("dock/unloadingMaterial", {"indent_number": indentNumber});
+    if (res.data["message"] == "Chambers Found for Indent Number") {
+      res.data["message"]["result"]["chambers"];
+
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   /*
   {
         "indent_number": "IND-SG047",

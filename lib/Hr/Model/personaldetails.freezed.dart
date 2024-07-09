@@ -649,29 +649,29 @@ PersonalDetailsResponseUpdate _$PersonalDetailsResponseUpdateFromJson(
 /// @nodoc
 mixin _$PersonalDetailsResponseUpdate {
 // int? id,
-  int? get user_id => throw _privateConstructorUsedError;
-  int? get updated_by => throw _privateConstructorUsedError;
-  String? get gender => throw _privateConstructorUsedError;
-  DateTime? get dob => throw _privateConstructorUsedError;
-  String? get blood_group => throw _privateConstructorUsedError;
-  String? get email => throw _privateConstructorUsedError;
-  String? get aadhaar_number => throw _privateConstructorUsedError;
-  String? get pf_number => throw _privateConstructorUsedError;
-  String? get pan_card => throw _privateConstructorUsedError;
-  String? get esic_number => throw _privateConstructorUsedError;
-  int? get have_passport => throw _privateConstructorUsedError;
-  String? get passport_number => throw _privateConstructorUsedError;
-  DateTime? get passport_expiry_date => throw _privateConstructorUsedError;
-  int? get have_disability => throw _privateConstructorUsedError;
-  String? get disability_describe => throw _privateConstructorUsedError;
-  String? get address => throw _privateConstructorUsedError;
-  String? get state => throw _privateConstructorUsedError;
-  String? get city => throw _privateConstructorUsedError;
-  int? get pincode => throw _privateConstructorUsedError;
-  String? get emergency_contact_no => throw _privateConstructorUsedError;
-  String? get emergency_contact_person => throw _privateConstructorUsedError;
-  int? get mailing_address_diffrent => throw _privateConstructorUsedError;
-  String? get mailing_address => throw _privateConstructorUsedError;
+  String get user_id => throw _privateConstructorUsedError;
+  String get updated_by => throw _privateConstructorUsedError;
+  String get gender => throw _privateConstructorUsedError;
+  String get dob => throw _privateConstructorUsedError;
+  String get blood_group => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get aadhaar_number => throw _privateConstructorUsedError;
+  String get pf_number => throw _privateConstructorUsedError;
+  String get pan_card => throw _privateConstructorUsedError;
+  String get esic_number => throw _privateConstructorUsedError;
+  String get have_passport => throw _privateConstructorUsedError;
+  String get passport_number => throw _privateConstructorUsedError;
+  String get passport_expiry_date => throw _privateConstructorUsedError;
+  String get have_disability => throw _privateConstructorUsedError;
+  String get disability_describe => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
+  String get state => throw _privateConstructorUsedError;
+  String get city => throw _privateConstructorUsedError;
+  String get pincode => throw _privateConstructorUsedError;
+  String get emergency_contact_no => throw _privateConstructorUsedError;
+  String get emergency_contact_person => throw _privateConstructorUsedError;
+  String get mailing_address_diffrent => throw _privateConstructorUsedError;
+  String get mailing_address => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -688,29 +688,29 @@ abstract class $PersonalDetailsResponseUpdateCopyWith<$Res> {
           PersonalDetailsResponseUpdate>;
   @useResult
   $Res call(
-      {int? user_id,
-      int? updated_by,
-      String? gender,
-      DateTime? dob,
-      String? blood_group,
-      String? email,
-      String? aadhaar_number,
-      String? pf_number,
-      String? pan_card,
-      String? esic_number,
-      int? have_passport,
-      String? passport_number,
-      DateTime? passport_expiry_date,
-      int? have_disability,
-      String? disability_describe,
-      String? address,
-      String? state,
-      String? city,
-      int? pincode,
-      String? emergency_contact_no,
-      String? emergency_contact_person,
-      int? mailing_address_diffrent,
-      String? mailing_address});
+      {String user_id,
+      String updated_by,
+      String gender,
+      String dob,
+      String blood_group,
+      String email,
+      String aadhaar_number,
+      String pf_number,
+      String pan_card,
+      String esic_number,
+      String have_passport,
+      String passport_number,
+      String passport_expiry_date,
+      String have_disability,
+      String disability_describe,
+      String address,
+      String state,
+      String city,
+      String pincode,
+      String emergency_contact_no,
+      String emergency_contact_person,
+      String mailing_address_diffrent,
+      String mailing_address});
 }
 
 /// @nodoc
@@ -727,123 +727,123 @@ class _$PersonalDetailsResponseUpdateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user_id = freezed,
-    Object? updated_by = freezed,
-    Object? gender = freezed,
-    Object? dob = freezed,
-    Object? blood_group = freezed,
-    Object? email = freezed,
-    Object? aadhaar_number = freezed,
-    Object? pf_number = freezed,
-    Object? pan_card = freezed,
-    Object? esic_number = freezed,
-    Object? have_passport = freezed,
-    Object? passport_number = freezed,
-    Object? passport_expiry_date = freezed,
-    Object? have_disability = freezed,
-    Object? disability_describe = freezed,
-    Object? address = freezed,
-    Object? state = freezed,
-    Object? city = freezed,
-    Object? pincode = freezed,
-    Object? emergency_contact_no = freezed,
-    Object? emergency_contact_person = freezed,
-    Object? mailing_address_diffrent = freezed,
-    Object? mailing_address = freezed,
+    Object? user_id = null,
+    Object? updated_by = null,
+    Object? gender = null,
+    Object? dob = null,
+    Object? blood_group = null,
+    Object? email = null,
+    Object? aadhaar_number = null,
+    Object? pf_number = null,
+    Object? pan_card = null,
+    Object? esic_number = null,
+    Object? have_passport = null,
+    Object? passport_number = null,
+    Object? passport_expiry_date = null,
+    Object? have_disability = null,
+    Object? disability_describe = null,
+    Object? address = null,
+    Object? state = null,
+    Object? city = null,
+    Object? pincode = null,
+    Object? emergency_contact_no = null,
+    Object? emergency_contact_person = null,
+    Object? mailing_address_diffrent = null,
+    Object? mailing_address = null,
   }) {
     return _then(_value.copyWith(
-      user_id: freezed == user_id
+      user_id: null == user_id
           ? _value.user_id
           : user_id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      updated_by: freezed == updated_by
+              as String,
+      updated_by: null == updated_by
           ? _value.updated_by
           : updated_by // ignore: cast_nullable_to_non_nullable
-              as int?,
-      gender: freezed == gender
+              as String,
+      gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String?,
-      dob: freezed == dob
+              as String,
+      dob: null == dob
           ? _value.dob
           : dob // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      blood_group: freezed == blood_group
+              as String,
+      blood_group: null == blood_group
           ? _value.blood_group
           : blood_group // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
+              as String,
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      aadhaar_number: freezed == aadhaar_number
+              as String,
+      aadhaar_number: null == aadhaar_number
           ? _value.aadhaar_number
           : aadhaar_number // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pf_number: freezed == pf_number
+              as String,
+      pf_number: null == pf_number
           ? _value.pf_number
           : pf_number // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pan_card: freezed == pan_card
+              as String,
+      pan_card: null == pan_card
           ? _value.pan_card
           : pan_card // ignore: cast_nullable_to_non_nullable
-              as String?,
-      esic_number: freezed == esic_number
+              as String,
+      esic_number: null == esic_number
           ? _value.esic_number
           : esic_number // ignore: cast_nullable_to_non_nullable
-              as String?,
-      have_passport: freezed == have_passport
+              as String,
+      have_passport: null == have_passport
           ? _value.have_passport
           : have_passport // ignore: cast_nullable_to_non_nullable
-              as int?,
-      passport_number: freezed == passport_number
+              as String,
+      passport_number: null == passport_number
           ? _value.passport_number
           : passport_number // ignore: cast_nullable_to_non_nullable
-              as String?,
-      passport_expiry_date: freezed == passport_expiry_date
+              as String,
+      passport_expiry_date: null == passport_expiry_date
           ? _value.passport_expiry_date
           : passport_expiry_date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      have_disability: freezed == have_disability
+              as String,
+      have_disability: null == have_disability
           ? _value.have_disability
           : have_disability // ignore: cast_nullable_to_non_nullable
-              as int?,
-      disability_describe: freezed == disability_describe
+              as String,
+      disability_describe: null == disability_describe
           ? _value.disability_describe
           : disability_describe // ignore: cast_nullable_to_non_nullable
-              as String?,
-      address: freezed == address
+              as String,
+      address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String?,
-      state: freezed == state
+              as String,
+      state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
-              as String?,
-      city: freezed == city
+              as String,
+      city: null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pincode: freezed == pincode
+              as String,
+      pincode: null == pincode
           ? _value.pincode
           : pincode // ignore: cast_nullable_to_non_nullable
-              as int?,
-      emergency_contact_no: freezed == emergency_contact_no
+              as String,
+      emergency_contact_no: null == emergency_contact_no
           ? _value.emergency_contact_no
           : emergency_contact_no // ignore: cast_nullable_to_non_nullable
-              as String?,
-      emergency_contact_person: freezed == emergency_contact_person
+              as String,
+      emergency_contact_person: null == emergency_contact_person
           ? _value.emergency_contact_person
           : emergency_contact_person // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mailing_address_diffrent: freezed == mailing_address_diffrent
+              as String,
+      mailing_address_diffrent: null == mailing_address_diffrent
           ? _value.mailing_address_diffrent
           : mailing_address_diffrent // ignore: cast_nullable_to_non_nullable
-              as int?,
-      mailing_address: freezed == mailing_address
+              as String,
+      mailing_address: null == mailing_address
           ? _value.mailing_address
           : mailing_address // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -858,29 +858,29 @@ abstract class _$$PersonalDetailsResponseUpdateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? user_id,
-      int? updated_by,
-      String? gender,
-      DateTime? dob,
-      String? blood_group,
-      String? email,
-      String? aadhaar_number,
-      String? pf_number,
-      String? pan_card,
-      String? esic_number,
-      int? have_passport,
-      String? passport_number,
-      DateTime? passport_expiry_date,
-      int? have_disability,
-      String? disability_describe,
-      String? address,
-      String? state,
-      String? city,
-      int? pincode,
-      String? emergency_contact_no,
-      String? emergency_contact_person,
-      int? mailing_address_diffrent,
-      String? mailing_address});
+      {String user_id,
+      String updated_by,
+      String gender,
+      String dob,
+      String blood_group,
+      String email,
+      String aadhaar_number,
+      String pf_number,
+      String pan_card,
+      String esic_number,
+      String have_passport,
+      String passport_number,
+      String passport_expiry_date,
+      String have_disability,
+      String disability_describe,
+      String address,
+      String state,
+      String city,
+      String pincode,
+      String emergency_contact_no,
+      String emergency_contact_person,
+      String mailing_address_diffrent,
+      String mailing_address});
 }
 
 /// @nodoc
@@ -896,123 +896,123 @@ class __$$PersonalDetailsResponseUpdateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user_id = freezed,
-    Object? updated_by = freezed,
-    Object? gender = freezed,
-    Object? dob = freezed,
-    Object? blood_group = freezed,
-    Object? email = freezed,
-    Object? aadhaar_number = freezed,
-    Object? pf_number = freezed,
-    Object? pan_card = freezed,
-    Object? esic_number = freezed,
-    Object? have_passport = freezed,
-    Object? passport_number = freezed,
-    Object? passport_expiry_date = freezed,
-    Object? have_disability = freezed,
-    Object? disability_describe = freezed,
-    Object? address = freezed,
-    Object? state = freezed,
-    Object? city = freezed,
-    Object? pincode = freezed,
-    Object? emergency_contact_no = freezed,
-    Object? emergency_contact_person = freezed,
-    Object? mailing_address_diffrent = freezed,
-    Object? mailing_address = freezed,
+    Object? user_id = null,
+    Object? updated_by = null,
+    Object? gender = null,
+    Object? dob = null,
+    Object? blood_group = null,
+    Object? email = null,
+    Object? aadhaar_number = null,
+    Object? pf_number = null,
+    Object? pan_card = null,
+    Object? esic_number = null,
+    Object? have_passport = null,
+    Object? passport_number = null,
+    Object? passport_expiry_date = null,
+    Object? have_disability = null,
+    Object? disability_describe = null,
+    Object? address = null,
+    Object? state = null,
+    Object? city = null,
+    Object? pincode = null,
+    Object? emergency_contact_no = null,
+    Object? emergency_contact_person = null,
+    Object? mailing_address_diffrent = null,
+    Object? mailing_address = null,
   }) {
     return _then(_$PersonalDetailsResponseUpdateImpl(
-      user_id: freezed == user_id
+      user_id: null == user_id
           ? _value.user_id
           : user_id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      updated_by: freezed == updated_by
+              as String,
+      updated_by: null == updated_by
           ? _value.updated_by
           : updated_by // ignore: cast_nullable_to_non_nullable
-              as int?,
-      gender: freezed == gender
+              as String,
+      gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String?,
-      dob: freezed == dob
+              as String,
+      dob: null == dob
           ? _value.dob
           : dob // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      blood_group: freezed == blood_group
+              as String,
+      blood_group: null == blood_group
           ? _value.blood_group
           : blood_group // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
+              as String,
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      aadhaar_number: freezed == aadhaar_number
+              as String,
+      aadhaar_number: null == aadhaar_number
           ? _value.aadhaar_number
           : aadhaar_number // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pf_number: freezed == pf_number
+              as String,
+      pf_number: null == pf_number
           ? _value.pf_number
           : pf_number // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pan_card: freezed == pan_card
+              as String,
+      pan_card: null == pan_card
           ? _value.pan_card
           : pan_card // ignore: cast_nullable_to_non_nullable
-              as String?,
-      esic_number: freezed == esic_number
+              as String,
+      esic_number: null == esic_number
           ? _value.esic_number
           : esic_number // ignore: cast_nullable_to_non_nullable
-              as String?,
-      have_passport: freezed == have_passport
+              as String,
+      have_passport: null == have_passport
           ? _value.have_passport
           : have_passport // ignore: cast_nullable_to_non_nullable
-              as int?,
-      passport_number: freezed == passport_number
+              as String,
+      passport_number: null == passport_number
           ? _value.passport_number
           : passport_number // ignore: cast_nullable_to_non_nullable
-              as String?,
-      passport_expiry_date: freezed == passport_expiry_date
+              as String,
+      passport_expiry_date: null == passport_expiry_date
           ? _value.passport_expiry_date
           : passport_expiry_date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      have_disability: freezed == have_disability
+              as String,
+      have_disability: null == have_disability
           ? _value.have_disability
           : have_disability // ignore: cast_nullable_to_non_nullable
-              as int?,
-      disability_describe: freezed == disability_describe
+              as String,
+      disability_describe: null == disability_describe
           ? _value.disability_describe
           : disability_describe // ignore: cast_nullable_to_non_nullable
-              as String?,
-      address: freezed == address
+              as String,
+      address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String?,
-      state: freezed == state
+              as String,
+      state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
-              as String?,
-      city: freezed == city
+              as String,
+      city: null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pincode: freezed == pincode
+              as String,
+      pincode: null == pincode
           ? _value.pincode
           : pincode // ignore: cast_nullable_to_non_nullable
-              as int?,
-      emergency_contact_no: freezed == emergency_contact_no
+              as String,
+      emergency_contact_no: null == emergency_contact_no
           ? _value.emergency_contact_no
           : emergency_contact_no // ignore: cast_nullable_to_non_nullable
-              as String?,
-      emergency_contact_person: freezed == emergency_contact_person
+              as String,
+      emergency_contact_person: null == emergency_contact_person
           ? _value.emergency_contact_person
           : emergency_contact_person // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mailing_address_diffrent: freezed == mailing_address_diffrent
+              as String,
+      mailing_address_diffrent: null == mailing_address_diffrent
           ? _value.mailing_address_diffrent
           : mailing_address_diffrent // ignore: cast_nullable_to_non_nullable
-              as int?,
-      mailing_address: freezed == mailing_address
+              as String,
+      mailing_address: null == mailing_address
           ? _value.mailing_address
           : mailing_address // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -1022,29 +1022,29 @@ class __$$PersonalDetailsResponseUpdateImplCopyWithImpl<$Res>
 class _$PersonalDetailsResponseUpdateImpl
     implements _PersonalDetailsResponseUpdate {
   const _$PersonalDetailsResponseUpdateImpl(
-      {this.user_id,
-      this.updated_by,
-      this.gender,
-      this.dob,
-      this.blood_group,
-      this.email,
-      this.aadhaar_number,
-      this.pf_number,
-      this.pan_card,
-      this.esic_number,
-      this.have_passport,
-      this.passport_number,
-      this.passport_expiry_date,
-      this.have_disability,
-      this.disability_describe,
-      this.address,
-      this.state,
-      this.city,
-      this.pincode,
-      this.emergency_contact_no,
-      this.emergency_contact_person,
-      this.mailing_address_diffrent,
-      this.mailing_address});
+      {this.user_id = "user_id",
+      this.updated_by = "updated_by",
+      this.gender = "gender",
+      this.dob = "dob",
+      this.blood_group = "blood_group",
+      this.email = "email",
+      this.aadhaar_number = "aadhaar_number",
+      this.pf_number = "pf_number",
+      this.pan_card = "pan_card",
+      this.esic_number = "esic_number",
+      this.have_passport = "have_passport",
+      this.passport_number = "passport_number",
+      this.passport_expiry_date = "passport_expiry_date",
+      this.have_disability = "have_disability",
+      this.disability_describe = "disability_describe",
+      this.address = "address",
+      this.state = "state",
+      this.city = "city",
+      this.pincode = "pincode",
+      this.emergency_contact_no = "emergency_contact_no",
+      this.emergency_contact_person = "emergency_contact_person",
+      this.mailing_address_diffrent = "mailing_address_diffrent",
+      this.mailing_address = "mailing_address"});
 
   factory _$PersonalDetailsResponseUpdateImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -1052,51 +1052,74 @@ class _$PersonalDetailsResponseUpdateImpl
 
 // int? id,
   @override
-  final int? user_id;
+  @JsonKey()
+  final String user_id;
   @override
-  final int? updated_by;
+  @JsonKey()
+  final String updated_by;
   @override
-  final String? gender;
+  @JsonKey()
+  final String gender;
   @override
-  final DateTime? dob;
+  @JsonKey()
+  final String dob;
   @override
-  final String? blood_group;
+  @JsonKey()
+  final String blood_group;
   @override
-  final String? email;
+  @JsonKey()
+  final String email;
   @override
-  final String? aadhaar_number;
+  @JsonKey()
+  final String aadhaar_number;
   @override
-  final String? pf_number;
+  @JsonKey()
+  final String pf_number;
   @override
-  final String? pan_card;
+  @JsonKey()
+  final String pan_card;
   @override
-  final String? esic_number;
+  @JsonKey()
+  final String esic_number;
   @override
-  final int? have_passport;
+  @JsonKey()
+  final String have_passport;
   @override
-  final String? passport_number;
+  @JsonKey()
+  final String passport_number;
   @override
-  final DateTime? passport_expiry_date;
+  @JsonKey()
+  final String passport_expiry_date;
   @override
-  final int? have_disability;
+  @JsonKey()
+  final String have_disability;
   @override
-  final String? disability_describe;
+  @JsonKey()
+  final String disability_describe;
   @override
-  final String? address;
+  @JsonKey()
+  final String address;
   @override
-  final String? state;
+  @JsonKey()
+  final String state;
   @override
-  final String? city;
+  @JsonKey()
+  final String city;
   @override
-  final int? pincode;
+  @JsonKey()
+  final String pincode;
   @override
-  final String? emergency_contact_no;
+  @JsonKey()
+  final String emergency_contact_no;
   @override
-  final String? emergency_contact_person;
+  @JsonKey()
+  final String emergency_contact_person;
   @override
-  final int? mailing_address_diffrent;
+  @JsonKey()
+  final String mailing_address_diffrent;
   @override
-  final String? mailing_address;
+  @JsonKey()
+  final String mailing_address;
 
   @override
   String toString() {
@@ -1198,79 +1221,79 @@ class _$PersonalDetailsResponseUpdateImpl
 abstract class _PersonalDetailsResponseUpdate
     implements PersonalDetailsResponseUpdate {
   const factory _PersonalDetailsResponseUpdate(
-      {final int? user_id,
-      final int? updated_by,
-      final String? gender,
-      final DateTime? dob,
-      final String? blood_group,
-      final String? email,
-      final String? aadhaar_number,
-      final String? pf_number,
-      final String? pan_card,
-      final String? esic_number,
-      final int? have_passport,
-      final String? passport_number,
-      final DateTime? passport_expiry_date,
-      final int? have_disability,
-      final String? disability_describe,
-      final String? address,
-      final String? state,
-      final String? city,
-      final int? pincode,
-      final String? emergency_contact_no,
-      final String? emergency_contact_person,
-      final int? mailing_address_diffrent,
-      final String? mailing_address}) = _$PersonalDetailsResponseUpdateImpl;
+      {final String user_id,
+      final String updated_by,
+      final String gender,
+      final String dob,
+      final String blood_group,
+      final String email,
+      final String aadhaar_number,
+      final String pf_number,
+      final String pan_card,
+      final String esic_number,
+      final String have_passport,
+      final String passport_number,
+      final String passport_expiry_date,
+      final String have_disability,
+      final String disability_describe,
+      final String address,
+      final String state,
+      final String city,
+      final String pincode,
+      final String emergency_contact_no,
+      final String emergency_contact_person,
+      final String mailing_address_diffrent,
+      final String mailing_address}) = _$PersonalDetailsResponseUpdateImpl;
 
   factory _PersonalDetailsResponseUpdate.fromJson(Map<String, dynamic> json) =
       _$PersonalDetailsResponseUpdateImpl.fromJson;
 
   @override // int? id,
-  int? get user_id;
+  String get user_id;
   @override
-  int? get updated_by;
+  String get updated_by;
   @override
-  String? get gender;
+  String get gender;
   @override
-  DateTime? get dob;
+  String get dob;
   @override
-  String? get blood_group;
+  String get blood_group;
   @override
-  String? get email;
+  String get email;
   @override
-  String? get aadhaar_number;
+  String get aadhaar_number;
   @override
-  String? get pf_number;
+  String get pf_number;
   @override
-  String? get pan_card;
+  String get pan_card;
   @override
-  String? get esic_number;
+  String get esic_number;
   @override
-  int? get have_passport;
+  String get have_passport;
   @override
-  String? get passport_number;
+  String get passport_number;
   @override
-  DateTime? get passport_expiry_date;
+  String get passport_expiry_date;
   @override
-  int? get have_disability;
+  String get have_disability;
   @override
-  String? get disability_describe;
+  String get disability_describe;
   @override
-  String? get address;
+  String get address;
   @override
-  String? get state;
+  String get state;
   @override
-  String? get city;
+  String get city;
   @override
-  int? get pincode;
+  String get pincode;
   @override
-  String? get emergency_contact_no;
+  String get emergency_contact_no;
   @override
-  String? get emergency_contact_person;
+  String get emergency_contact_person;
   @override
-  int? get mailing_address_diffrent;
+  String get mailing_address_diffrent;
   @override
-  String? get mailing_address;
+  String get mailing_address;
   @override
   @JsonKey(ignore: true)
   _$$PersonalDetailsResponseUpdateImplCopyWith<
