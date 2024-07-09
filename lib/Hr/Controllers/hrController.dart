@@ -6,17 +6,16 @@ import 'package:logger/logger.dart';
 import 'package:moolwmsstore/Auth/Model/user.dart';
 import 'package:moolwmsstore/Common%20Data/api/api_client.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
-import 'package:moolwmsstore/Hr/Model/addBankDetails.dart';
-import 'package:moolwmsstore/Hr/Model/addCareerDetail.dart';
-import 'package:moolwmsstore/Hr/Model/addEducationDetails.dart';
-import 'package:moolwmsstore/Hr/Model/addReferralDetails.dart';
+import 'package:moolwmsstore/Hr/Model/Employee/addBankDetails.dart';
+import 'package:moolwmsstore/Hr/Model/Employee/addCareerDetail.dart';
+import 'package:moolwmsstore/Hr/Model/Employee/addEducationDetails.dart';
+import 'package:moolwmsstore/Hr/Model/Employee/addReferralDetails.dart';
+import 'package:moolwmsstore/Hr/Model/Employee/personaldetails.dart';
 import 'package:moolwmsstore/Hr/Model/addShift.dart';
 import 'package:moolwmsstore/Hr/Model/addShiftDetails.dart';
 import 'package:moolwmsstore/Hr/Model/attendance.dart';
-import 'package:moolwmsstore/Hr/Model/bankDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/careerDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/dashboardCount.dart';
-import 'package:moolwmsstore/Hr/Model/personaldetails.dart';
 import 'package:moolwmsstore/Hr/Model/referralDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/shiftDetailsRequest.dart';
 import 'package:moolwmsstore/Hr/Model/staff.dart';
@@ -28,7 +27,7 @@ import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeEducationQual
 import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeePersonalDetails.dart';
 import 'package:moolwmsstore/Hr/View/Shfits/createShift.dart';
 import 'package:moolwmsstore/Hr/View/Staff/addedStaffScreen.dart';
-import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
+import 'package:moolwmsstore/Hr/Controllers/hrrepo.dart';
 import 'package:moolwmsstore/Owner/Model/addWarehouse.dart';
 import 'package:moolwmsstore/Sales/Sales.dart';
 import 'package:moolwmsstore/Security%20Guard/SecurityGuard.dart';
@@ -59,7 +58,7 @@ class HRController extends GetxController {
   ShiftDetailsRequest addShiftDetailsRequestModel = const ShiftDetailsRequest();
   List<AddShift> allShifts = [];
   List<AttendanceEntry> allAttendanceList = [];
-  List<PersonalDetailsResponseUpdate> getPersonalDetailsList = [];
+  List<PersonalDetailsResponse> getPersonalDetailsList = [];
   List<AddCareerDetail> getCareerDetailsList = [];
   List<AddEducationDetail> getEducationDetailsList = [];
   List<AddReferralDetail> getReferralDetailsList = [];
@@ -143,6 +142,8 @@ class HRController extends GetxController {
     Get.off(navigationAccordingStatus[navigationAccordingStatus.length - 1],
         id: hrNavigationKey);
   }
+
+  getUserAllDetails(StaffEntry emp) {}
 
   switchRole(String role) {
     if (role == "security-guard") {
@@ -228,7 +229,7 @@ class HRController extends GetxController {
         Snacks.greenSnack("Personal Details");
         List<dynamic> x = value.data["result"];
         getPersonalDetailsList =
-            x.map((e) => PersonalDetailsResponseUpdate.fromJson(e)).toList();
+            x.map((e) => PersonalDetailsResponse.fromJson(e)).toList();
 
         isLoading = false;
         update();
@@ -405,7 +406,9 @@ class HRController extends GetxController {
     try {
       final response = await apiClient.postData(
         "hr/addBankDetails",
-        addBankDetails.toJson(),
+        addBankDetails
+            .copyWith(user_id: currentlySeletedEmployee!.id, id: user.id)
+            .toJson(),
       );
 
       final message = response.data["message"];
