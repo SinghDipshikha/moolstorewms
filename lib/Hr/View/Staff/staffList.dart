@@ -185,6 +185,8 @@ class HrEmployeeList extends StatelessWidget {
                                 : IconButton(
                                     padding: EdgeInsets.zero,
                                     onPressed: () {
+                                      Get.find<HRController>().getUserAllDetails(
+                                          hrController.employees[i]);
                                       
                                     },
                                     icon: Image.asset(

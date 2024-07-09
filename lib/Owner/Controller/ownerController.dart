@@ -10,7 +10,7 @@ import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsController.dart';
 import 'package:moolwmsstore/Dock%20Supervisor/controller/dmsRepo.dart';
 import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
 import 'package:moolwmsstore/Hr/HumanResource.dart';
-import 'package:moolwmsstore/Hr/repository/hrrepo.dart';
+import 'package:moolwmsstore/Hr/Controllers/hrrepo.dart';
 import 'package:moolwmsstore/Owner/Controller/ownerRepo.dart';
 import 'package:moolwmsstore/Owner/Model/Asset/assetCatoegories.dart';
 import 'package:moolwmsstore/Owner/Model/Asset/assetType.dart';

@@ -42,8 +42,7 @@ class _AddedStaffScreenState extends State<AddedStaffScreen> {
                           color: Colors.white,
                           textColor: Colors.black,
                           onTap: () {
-                            Get.to(const HrDashboard(),
-                                id: securityGuardNavigation);
+                            Get.to(const HrDashboard(), id: hrNavigationKey);
                           },
                         ),
                       ),
@@ -54,8 +53,7 @@ class _AddedStaffScreenState extends State<AddedStaffScreen> {
                           color: const Color(0xFF5A57FF),
                           textColor: Colors.white,
                           onTap: () {
-                            Get.to(const HrDashboard(),
-                                id: securityGuardNavigation);
+                            Get.to(const HrDashboard(), id: hrNavigationKey);
                           },
                         ),
                       )
