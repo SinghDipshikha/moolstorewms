@@ -395,3 +395,401 @@ abstract class _AddBankDetails implements AddBankDetails {
   _$$AddBankDetailsImplCopyWith<_$AddBankDetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+AddBankDetailsUpdate _$AddBankDetailsUpdateFromJson(Map<String, dynamic> json) {
+  return _AddBankDetailsUpdate.fromJson(json);
+}
+
+/// @nodoc
+mixin _$AddBankDetailsUpdate {
+// int? id,
+  String get id => throw _privateConstructorUsedError;
+  String get user_id => throw _privateConstructorUsedError;
+  String get account_name => throw _privateConstructorUsedError;
+  String get bankbank_nameName => throw _privateConstructorUsedError;
+  String get account_no => throw _privateConstructorUsedError;
+  String get ifsc_no => throw _privateConstructorUsedError;
+  String get branch_name => throw _privateConstructorUsedError;
+  String get account_type => throw _privateConstructorUsedError;
+  String get updated_by => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+  String get created_at => throw _privateConstructorUsedError;
+  String get updated_at => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AddBankDetailsUpdateCopyWith<AddBankDetailsUpdate> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AddBankDetailsUpdateCopyWith<$Res> {
+  factory $AddBankDetailsUpdateCopyWith(AddBankDetailsUpdate value,
+          $Res Function(AddBankDetailsUpdate) then) =
+      _$AddBankDetailsUpdateCopyWithImpl<$Res, AddBankDetailsUpdate>;
+  @useResult
+  $Res call(
+      {String id,
+      String user_id,
+      String account_name,
+      String bankbank_nameName,
+      String account_no,
+      String ifsc_no,
+      String branch_name,
+      String account_type,
+      String updated_by,
+      String status,
+      String created_at,
+      String updated_at});
+}
+
+/// @nodoc
+class _$AddBankDetailsUpdateCopyWithImpl<$Res,
+        $Val extends AddBankDetailsUpdate>
+    implements $AddBankDetailsUpdateCopyWith<$Res> {
+  _$AddBankDetailsUpdateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? user_id = null,
+    Object? account_name = null,
+    Object? bankbank_nameName = null,
+    Object? account_no = null,
+    Object? ifsc_no = null,
+    Object? branch_name = null,
+    Object? account_type = null,
+    Object? updated_by = null,
+    Object? status = null,
+    Object? created_at = null,
+    Object? updated_at = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      user_id: null == user_id
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
+              as String,
+      account_name: null == account_name
+          ? _value.account_name
+          : account_name // ignore: cast_nullable_to_non_nullable
+              as String,
+      bankbank_nameName: null == bankbank_nameName
+          ? _value.bankbank_nameName
+          : bankbank_nameName // ignore: cast_nullable_to_non_nullable
+              as String,
+      account_no: null == account_no
+          ? _value.account_no
+          : account_no // ignore: cast_nullable_to_non_nullable
+              as String,
+      ifsc_no: null == ifsc_no
+          ? _value.ifsc_no
+          : ifsc_no // ignore: cast_nullable_to_non_nullable
+              as String,
+      branch_name: null == branch_name
+          ? _value.branch_name
+          : branch_name // ignore: cast_nullable_to_non_nullable
+              as String,
+      account_type: null == account_type
+          ? _value.account_type
+          : account_type // ignore: cast_nullable_to_non_nullable
+              as String,
+      updated_by: null == updated_by
+          ? _value.updated_by
+          : updated_by // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      created_at: null == created_at
+          ? _value.created_at
+          : created_at // ignore: cast_nullable_to_non_nullable
+              as String,
+      updated_at: null == updated_at
+          ? _value.updated_at
+          : updated_at // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$AddBankDetailsUpdateImplCopyWith<$Res>
+    implements $AddBankDetailsUpdateCopyWith<$Res> {
+  factory _$$AddBankDetailsUpdateImplCopyWith(_$AddBankDetailsUpdateImpl value,
+          $Res Function(_$AddBankDetailsUpdateImpl) then) =
+      __$$AddBankDetailsUpdateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String user_id,
+      String account_name,
+      String bankbank_nameName,
+      String account_no,
+      String ifsc_no,
+      String branch_name,
+      String account_type,
+      String updated_by,
+      String status,
+      String created_at,
+      String updated_at});
+}
+
+/// @nodoc
+class __$$AddBankDetailsUpdateImplCopyWithImpl<$Res>
+    extends _$AddBankDetailsUpdateCopyWithImpl<$Res, _$AddBankDetailsUpdateImpl>
+    implements _$$AddBankDetailsUpdateImplCopyWith<$Res> {
+  __$$AddBankDetailsUpdateImplCopyWithImpl(_$AddBankDetailsUpdateImpl _value,
+      $Res Function(_$AddBankDetailsUpdateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? user_id = null,
+    Object? account_name = null,
+    Object? bankbank_nameName = null,
+    Object? account_no = null,
+    Object? ifsc_no = null,
+    Object? branch_name = null,
+    Object? account_type = null,
+    Object? updated_by = null,
+    Object? status = null,
+    Object? created_at = null,
+    Object? updated_at = null,
+  }) {
+    return _then(_$AddBankDetailsUpdateImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      user_id: null == user_id
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
+              as String,
+      account_name: null == account_name
+          ? _value.account_name
+          : account_name // ignore: cast_nullable_to_non_nullable
+              as String,
+      bankbank_nameName: null == bankbank_nameName
+          ? _value.bankbank_nameName
+          : bankbank_nameName // ignore: cast_nullable_to_non_nullable
+              as String,
+      account_no: null == account_no
+          ? _value.account_no
+          : account_no // ignore: cast_nullable_to_non_nullable
+              as String,
+      ifsc_no: null == ifsc_no
+          ? _value.ifsc_no
+          : ifsc_no // ignore: cast_nullable_to_non_nullable
+              as String,
+      branch_name: null == branch_name
+          ? _value.branch_name
+          : branch_name // ignore: cast_nullable_to_non_nullable
+              as String,
+      account_type: null == account_type
+          ? _value.account_type
+          : account_type // ignore: cast_nullable_to_non_nullable
+              as String,
+      updated_by: null == updated_by
+          ? _value.updated_by
+          : updated_by // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      created_at: null == created_at
+          ? _value.created_at
+          : created_at // ignore: cast_nullable_to_non_nullable
+              as String,
+      updated_at: null == updated_at
+          ? _value.updated_at
+          : updated_at // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$AddBankDetailsUpdateImpl implements _AddBankDetailsUpdate {
+  const _$AddBankDetailsUpdateImpl(
+      {this.id = "id",
+      this.user_id = "user_id",
+      this.account_name = "account_name",
+      this.bankbank_nameName = "bankbank_nameName",
+      this.account_no = "account_no",
+      this.ifsc_no = "ifsc_no",
+      this.branch_name = "branch_name",
+      this.account_type = "account_type",
+      this.updated_by = "updated_by",
+      this.status = "status",
+      this.created_at = "created_at",
+      this.updated_at = "updated_at"});
+
+  factory _$AddBankDetailsUpdateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AddBankDetailsUpdateImplFromJson(json);
+
+// int? id,
+  @override
+  @JsonKey()
+  final String id;
+  @override
+  @JsonKey()
+  final String user_id;
+  @override
+  @JsonKey()
+  final String account_name;
+  @override
+  @JsonKey()
+  final String bankbank_nameName;
+  @override
+  @JsonKey()
+  final String account_no;
+  @override
+  @JsonKey()
+  final String ifsc_no;
+  @override
+  @JsonKey()
+  final String branch_name;
+  @override
+  @JsonKey()
+  final String account_type;
+  @override
+  @JsonKey()
+  final String updated_by;
+  @override
+  @JsonKey()
+  final String status;
+  @override
+  @JsonKey()
+  final String created_at;
+  @override
+  @JsonKey()
+  final String updated_at;
+
+  @override
+  String toString() {
+    return 'AddBankDetailsUpdate(id: $id, user_id: $user_id, account_name: $account_name, bankbank_nameName: $bankbank_nameName, account_no: $account_no, ifsc_no: $ifsc_no, branch_name: $branch_name, account_type: $account_type, updated_by: $updated_by, status: $status, created_at: $created_at, updated_at: $updated_at)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddBankDetailsUpdateImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.user_id, user_id) || other.user_id == user_id) &&
+            (identical(other.account_name, account_name) ||
+                other.account_name == account_name) &&
+            (identical(other.bankbank_nameName, bankbank_nameName) ||
+                other.bankbank_nameName == bankbank_nameName) &&
+            (identical(other.account_no, account_no) ||
+                other.account_no == account_no) &&
+            (identical(other.ifsc_no, ifsc_no) || other.ifsc_no == ifsc_no) &&
+            (identical(other.branch_name, branch_name) ||
+                other.branch_name == branch_name) &&
+            (identical(other.account_type, account_type) ||
+                other.account_type == account_type) &&
+            (identical(other.updated_by, updated_by) ||
+                other.updated_by == updated_by) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.created_at, created_at) ||
+                other.created_at == created_at) &&
+            (identical(other.updated_at, updated_at) ||
+                other.updated_at == updated_at));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      user_id,
+      account_name,
+      bankbank_nameName,
+      account_no,
+      ifsc_no,
+      branch_name,
+      account_type,
+      updated_by,
+      status,
+      created_at,
+      updated_at);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddBankDetailsUpdateImplCopyWith<_$AddBankDetailsUpdateImpl>
+      get copyWith =>
+          __$$AddBankDetailsUpdateImplCopyWithImpl<_$AddBankDetailsUpdateImpl>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AddBankDetailsUpdateImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _AddBankDetailsUpdate implements AddBankDetailsUpdate {
+  const factory _AddBankDetailsUpdate(
+      {final String id,
+      final String user_id,
+      final String account_name,
+      final String bankbank_nameName,
+      final String account_no,
+      final String ifsc_no,
+      final String branch_name,
+      final String account_type,
+      final String updated_by,
+      final String status,
+      final String created_at,
+      final String updated_at}) = _$AddBankDetailsUpdateImpl;
+
+  factory _AddBankDetailsUpdate.fromJson(Map<String, dynamic> json) =
+      _$AddBankDetailsUpdateImpl.fromJson;
+
+  @override // int? id,
+  String get id;
+  @override
+  String get user_id;
+  @override
+  String get account_name;
+  @override
+  String get bankbank_nameName;
+  @override
+  String get account_no;
+  @override
+  String get ifsc_no;
+  @override
+  String get branch_name;
+  @override
+  String get account_type;
+  @override
+  String get updated_by;
+  @override
+  String get status;
+  @override
+  String get created_at;
+  @override
+  String get updated_at;
+  @override
+  @JsonKey(ignore: true)
+  _$$AddBankDetailsUpdateImplCopyWith<_$AddBankDetailsUpdateImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

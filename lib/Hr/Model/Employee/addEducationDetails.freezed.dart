@@ -398,3 +398,407 @@ abstract class _AddEducationDetail implements AddEducationDetail {
   _$$AddEducationDetailImplCopyWith<_$AddEducationDetailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+AddEducationDetailUpdate _$AddEducationDetailUpdateFromJson(
+    Map<String, dynamic> json) {
+  return _AddEducationDetailUpdate.fromJson(json);
+}
+
+/// @nodoc
+mixin _$AddEducationDetailUpdate {
+// int? id,
+  String get user_id => throw _privateConstructorUsedError;
+  String get updatedBy => throw _privateConstructorUsedError;
+  String get ssc_passing_year => throw _privateConstructorUsedError;
+  String get ssc_passing_percentage => throw _privateConstructorUsedError;
+  String get ssc_passing_grade => throw _privateConstructorUsedError;
+  String get ssc_passing_school => throw _privateConstructorUsedError;
+  String get ssc_passing_university => throw _privateConstructorUsedError;
+  String get highest_qualification => throw _privateConstructorUsedError;
+  String get specialization => throw _privateConstructorUsedError;
+  String get hq_passing_year => throw _privateConstructorUsedError;
+  String get hq_college => throw _privateConstructorUsedError;
+  String get hq_percentage => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AddEducationDetailUpdateCopyWith<AddEducationDetailUpdate> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AddEducationDetailUpdateCopyWith<$Res> {
+  factory $AddEducationDetailUpdateCopyWith(AddEducationDetailUpdate value,
+          $Res Function(AddEducationDetailUpdate) then) =
+      _$AddEducationDetailUpdateCopyWithImpl<$Res, AddEducationDetailUpdate>;
+  @useResult
+  $Res call(
+      {String user_id,
+      String updatedBy,
+      String ssc_passing_year,
+      String ssc_passing_percentage,
+      String ssc_passing_grade,
+      String ssc_passing_school,
+      String ssc_passing_university,
+      String highest_qualification,
+      String specialization,
+      String hq_passing_year,
+      String hq_college,
+      String hq_percentage});
+}
+
+/// @nodoc
+class _$AddEducationDetailUpdateCopyWithImpl<$Res,
+        $Val extends AddEducationDetailUpdate>
+    implements $AddEducationDetailUpdateCopyWith<$Res> {
+  _$AddEducationDetailUpdateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user_id = null,
+    Object? updatedBy = null,
+    Object? ssc_passing_year = null,
+    Object? ssc_passing_percentage = null,
+    Object? ssc_passing_grade = null,
+    Object? ssc_passing_school = null,
+    Object? ssc_passing_university = null,
+    Object? highest_qualification = null,
+    Object? specialization = null,
+    Object? hq_passing_year = null,
+    Object? hq_college = null,
+    Object? hq_percentage = null,
+  }) {
+    return _then(_value.copyWith(
+      user_id: null == user_id
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
+              as String,
+      updatedBy: null == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String,
+      ssc_passing_year: null == ssc_passing_year
+          ? _value.ssc_passing_year
+          : ssc_passing_year // ignore: cast_nullable_to_non_nullable
+              as String,
+      ssc_passing_percentage: null == ssc_passing_percentage
+          ? _value.ssc_passing_percentage
+          : ssc_passing_percentage // ignore: cast_nullable_to_non_nullable
+              as String,
+      ssc_passing_grade: null == ssc_passing_grade
+          ? _value.ssc_passing_grade
+          : ssc_passing_grade // ignore: cast_nullable_to_non_nullable
+              as String,
+      ssc_passing_school: null == ssc_passing_school
+          ? _value.ssc_passing_school
+          : ssc_passing_school // ignore: cast_nullable_to_non_nullable
+              as String,
+      ssc_passing_university: null == ssc_passing_university
+          ? _value.ssc_passing_university
+          : ssc_passing_university // ignore: cast_nullable_to_non_nullable
+              as String,
+      highest_qualification: null == highest_qualification
+          ? _value.highest_qualification
+          : highest_qualification // ignore: cast_nullable_to_non_nullable
+              as String,
+      specialization: null == specialization
+          ? _value.specialization
+          : specialization // ignore: cast_nullable_to_non_nullable
+              as String,
+      hq_passing_year: null == hq_passing_year
+          ? _value.hq_passing_year
+          : hq_passing_year // ignore: cast_nullable_to_non_nullable
+              as String,
+      hq_college: null == hq_college
+          ? _value.hq_college
+          : hq_college // ignore: cast_nullable_to_non_nullable
+              as String,
+      hq_percentage: null == hq_percentage
+          ? _value.hq_percentage
+          : hq_percentage // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$AddEducationDetailUpdateImplCopyWith<$Res>
+    implements $AddEducationDetailUpdateCopyWith<$Res> {
+  factory _$$AddEducationDetailUpdateImplCopyWith(
+          _$AddEducationDetailUpdateImpl value,
+          $Res Function(_$AddEducationDetailUpdateImpl) then) =
+      __$$AddEducationDetailUpdateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String user_id,
+      String updatedBy,
+      String ssc_passing_year,
+      String ssc_passing_percentage,
+      String ssc_passing_grade,
+      String ssc_passing_school,
+      String ssc_passing_university,
+      String highest_qualification,
+      String specialization,
+      String hq_passing_year,
+      String hq_college,
+      String hq_percentage});
+}
+
+/// @nodoc
+class __$$AddEducationDetailUpdateImplCopyWithImpl<$Res>
+    extends _$AddEducationDetailUpdateCopyWithImpl<$Res,
+        _$AddEducationDetailUpdateImpl>
+    implements _$$AddEducationDetailUpdateImplCopyWith<$Res> {
+  __$$AddEducationDetailUpdateImplCopyWithImpl(
+      _$AddEducationDetailUpdateImpl _value,
+      $Res Function(_$AddEducationDetailUpdateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user_id = null,
+    Object? updatedBy = null,
+    Object? ssc_passing_year = null,
+    Object? ssc_passing_percentage = null,
+    Object? ssc_passing_grade = null,
+    Object? ssc_passing_school = null,
+    Object? ssc_passing_university = null,
+    Object? highest_qualification = null,
+    Object? specialization = null,
+    Object? hq_passing_year = null,
+    Object? hq_college = null,
+    Object? hq_percentage = null,
+  }) {
+    return _then(_$AddEducationDetailUpdateImpl(
+      user_id: null == user_id
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
+              as String,
+      updatedBy: null == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String,
+      ssc_passing_year: null == ssc_passing_year
+          ? _value.ssc_passing_year
+          : ssc_passing_year // ignore: cast_nullable_to_non_nullable
+              as String,
+      ssc_passing_percentage: null == ssc_passing_percentage
+          ? _value.ssc_passing_percentage
+          : ssc_passing_percentage // ignore: cast_nullable_to_non_nullable
+              as String,
+      ssc_passing_grade: null == ssc_passing_grade
+          ? _value.ssc_passing_grade
+          : ssc_passing_grade // ignore: cast_nullable_to_non_nullable
+              as String,
+      ssc_passing_school: null == ssc_passing_school
+          ? _value.ssc_passing_school
+          : ssc_passing_school // ignore: cast_nullable_to_non_nullable
+              as String,
+      ssc_passing_university: null == ssc_passing_university
+          ? _value.ssc_passing_university
+          : ssc_passing_university // ignore: cast_nullable_to_non_nullable
+              as String,
+      highest_qualification: null == highest_qualification
+          ? _value.highest_qualification
+          : highest_qualification // ignore: cast_nullable_to_non_nullable
+              as String,
+      specialization: null == specialization
+          ? _value.specialization
+          : specialization // ignore: cast_nullable_to_non_nullable
+              as String,
+      hq_passing_year: null == hq_passing_year
+          ? _value.hq_passing_year
+          : hq_passing_year // ignore: cast_nullable_to_non_nullable
+              as String,
+      hq_college: null == hq_college
+          ? _value.hq_college
+          : hq_college // ignore: cast_nullable_to_non_nullable
+              as String,
+      hq_percentage: null == hq_percentage
+          ? _value.hq_percentage
+          : hq_percentage // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$AddEducationDetailUpdateImpl implements _AddEducationDetailUpdate {
+  const _$AddEducationDetailUpdateImpl(
+      {this.user_id = "userId",
+      this.updatedBy = "updatedBy",
+      this.ssc_passing_year = "ssc_passing_year",
+      this.ssc_passing_percentage = "ssc_passing_percentage",
+      this.ssc_passing_grade = "ssc_passing_grade",
+      this.ssc_passing_school = "ssc_passing_school",
+      this.ssc_passing_university = "ssc_passing_university",
+      this.highest_qualification = "highest_qualification",
+      this.specialization = "specialization",
+      this.hq_passing_year = "hq_passing_year",
+      this.hq_college = "hq_college",
+      this.hq_percentage = "hq_percentage"});
+
+  factory _$AddEducationDetailUpdateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AddEducationDetailUpdateImplFromJson(json);
+
+// int? id,
+  @override
+  @JsonKey()
+  final String user_id;
+  @override
+  @JsonKey()
+  final String updatedBy;
+  @override
+  @JsonKey()
+  final String ssc_passing_year;
+  @override
+  @JsonKey()
+  final String ssc_passing_percentage;
+  @override
+  @JsonKey()
+  final String ssc_passing_grade;
+  @override
+  @JsonKey()
+  final String ssc_passing_school;
+  @override
+  @JsonKey()
+  final String ssc_passing_university;
+  @override
+  @JsonKey()
+  final String highest_qualification;
+  @override
+  @JsonKey()
+  final String specialization;
+  @override
+  @JsonKey()
+  final String hq_passing_year;
+  @override
+  @JsonKey()
+  final String hq_college;
+  @override
+  @JsonKey()
+  final String hq_percentage;
+
+  @override
+  String toString() {
+    return 'AddEducationDetailUpdate(user_id: $user_id, updatedBy: $updatedBy, ssc_passing_year: $ssc_passing_year, ssc_passing_percentage: $ssc_passing_percentage, ssc_passing_grade: $ssc_passing_grade, ssc_passing_school: $ssc_passing_school, ssc_passing_university: $ssc_passing_university, highest_qualification: $highest_qualification, specialization: $specialization, hq_passing_year: $hq_passing_year, hq_college: $hq_college, hq_percentage: $hq_percentage)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddEducationDetailUpdateImpl &&
+            (identical(other.user_id, user_id) || other.user_id == user_id) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.ssc_passing_year, ssc_passing_year) ||
+                other.ssc_passing_year == ssc_passing_year) &&
+            (identical(other.ssc_passing_percentage, ssc_passing_percentage) ||
+                other.ssc_passing_percentage == ssc_passing_percentage) &&
+            (identical(other.ssc_passing_grade, ssc_passing_grade) ||
+                other.ssc_passing_grade == ssc_passing_grade) &&
+            (identical(other.ssc_passing_school, ssc_passing_school) ||
+                other.ssc_passing_school == ssc_passing_school) &&
+            (identical(other.ssc_passing_university, ssc_passing_university) ||
+                other.ssc_passing_university == ssc_passing_university) &&
+            (identical(other.highest_qualification, highest_qualification) ||
+                other.highest_qualification == highest_qualification) &&
+            (identical(other.specialization, specialization) ||
+                other.specialization == specialization) &&
+            (identical(other.hq_passing_year, hq_passing_year) ||
+                other.hq_passing_year == hq_passing_year) &&
+            (identical(other.hq_college, hq_college) ||
+                other.hq_college == hq_college) &&
+            (identical(other.hq_percentage, hq_percentage) ||
+                other.hq_percentage == hq_percentage));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      user_id,
+      updatedBy,
+      ssc_passing_year,
+      ssc_passing_percentage,
+      ssc_passing_grade,
+      ssc_passing_school,
+      ssc_passing_university,
+      highest_qualification,
+      specialization,
+      hq_passing_year,
+      hq_college,
+      hq_percentage);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddEducationDetailUpdateImplCopyWith<_$AddEducationDetailUpdateImpl>
+      get copyWith => __$$AddEducationDetailUpdateImplCopyWithImpl<
+          _$AddEducationDetailUpdateImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AddEducationDetailUpdateImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _AddEducationDetailUpdate implements AddEducationDetailUpdate {
+  const factory _AddEducationDetailUpdate(
+      {final String user_id,
+      final String updatedBy,
+      final String ssc_passing_year,
+      final String ssc_passing_percentage,
+      final String ssc_passing_grade,
+      final String ssc_passing_school,
+      final String ssc_passing_university,
+      final String highest_qualification,
+      final String specialization,
+      final String hq_passing_year,
+      final String hq_college,
+      final String hq_percentage}) = _$AddEducationDetailUpdateImpl;
+
+  factory _AddEducationDetailUpdate.fromJson(Map<String, dynamic> json) =
+      _$AddEducationDetailUpdateImpl.fromJson;
+
+  @override // int? id,
+  String get user_id;
+  @override
+  String get updatedBy;
+  @override
+  String get ssc_passing_year;
+  @override
+  String get ssc_passing_percentage;
+  @override
+  String get ssc_passing_grade;
+  @override
+  String get ssc_passing_school;
+  @override
+  String get ssc_passing_university;
+  @override
+  String get highest_qualification;
+  @override
+  String get specialization;
+  @override
+  String get hq_passing_year;
+  @override
+  String get hq_college;
+  @override
+  String get hq_percentage;
+  @override
+  @JsonKey(ignore: true)
+  _$$AddEducationDetailUpdateImplCopyWith<_$AddEducationDetailUpdateImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
