@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:moolwmsstore/Hr/Controllers/hrController.dart';
+import 'package:moolwmsstore/Hr/Model/Employee/allDetailModel.dart';
 
 class UpdateEmployeeDetailsScreen extends StatefulWidget {
-  const UpdateEmployeeDetailsScreen({super.key});
+  AllDetail empAllDetails;
+  UpdateEmployeeDetailsScreen({super.key, required this.empAllDetails});
 
   @override
   State<UpdateEmployeeDetailsScreen> createState() =>
@@ -55,10 +58,10 @@ class _UpdateEmployeeDetailsScreenState
               ),
             ),
             const Gap(10),
-            const Text(
-              'Johnson Charles',
+            Text(
+              Get.find<HRController>().currentlySeletedEmployee?.name ?? "--",
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color(0xFF353535),
                 fontSize: 32,
                 fontFamily: 'SF Pro Display',
@@ -66,21 +69,24 @@ class _UpdateEmployeeDetailsScreenState
               ),
             ),
             const Gap(10),
-            const Text(
-              '555 123 4567',
+            Text(
+              Get.find<HRController>().currentlySeletedEmployee?.mobile ?? "--",
               textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Color(0xFF595959),
+              style: const TextStyle(
+                color: Color.fromARGB(255, 205, 115, 115),
                 fontSize: 22,
                 fontFamily: 'SF Pro Display',
                 fontWeight: FontWeight.w500,
               ),
             ),
             const Gap(10),
-            const Text(
-              'Security Guard',
+            Text(
+              Get.find<HRController>()
+                      .currentlySeletedEmployee
+                      ?.personType![0] ??
+                  "--",
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color(0xFFFF5789),
                 fontSize: 20,
                 fontFamily: 'SF Pro Display',
@@ -269,11 +275,17 @@ class _UpdateEmployeeDetailsScreenState
                           children: [
                             CommonTileForUpdate(
                               labelText: 'Full Name',
-                              inputText: '',
+                              inputText: Get.find<HRController>()
+                                      .currentlySeletedEmployee
+                                      ?.name ??
+                                  "--",
                             ),
                             CommonTileForUpdate(
                               labelText: 'Mobile Number',
-                              inputText: '',
+                              inputText: Get.find<HRController>()
+                                      .currentlySeletedEmployee
+                                      ?.mobile ??
+                                  "--",
                             ),
                           ],
                         ),
@@ -282,11 +294,15 @@ class _UpdateEmployeeDetailsScreenState
                           children: [
                             CommonTileForUpdate(
                               labelText: 'Date of Birth',
-                              inputText: '',
+                              inputText: widget.empAllDetails
+                                      .personalDetailsResponse!.dob ??
+                                  "--",
                             ),
                             CommonTileForUpdate(
                               labelText: 'Email ID',
-                              inputText: '',
+                              inputText: widget.empAllDetails
+                                      .personalDetailsResponse!.email ??
+                                  "--",
                             ),
                           ],
                         ),
@@ -296,11 +312,15 @@ class _UpdateEmployeeDetailsScreenState
                           children: [
                             CommonTileForUpdate(
                               labelText: 'Gender',
-                              inputText: '',
+                              inputText: widget.empAllDetails
+                                      .personalDetailsResponse!.gender ??
+                                  "--",
                             ),
                             CommonTileForUpdate(
                               labelText: 'Blood Group',
-                              inputText: '',
+                              inputText: widget.empAllDetails
+                                      .personalDetailsResponse!.blood_group ??
+                                  "--",
                             )
                           ],
                         ),
@@ -310,11 +330,15 @@ class _UpdateEmployeeDetailsScreenState
                           children: [
                             CommonTileForUpdate(
                               labelText: 'PF Number',
-                              inputText: '',
+                              inputText: widget.empAllDetails
+                                      .personalDetailsResponse!.pf_number ??
+                                  "--",
                             ),
                             CommonTileForUpdate(
                               labelText: 'PAN Number',
-                              inputText: '',
+                              inputText: widget.empAllDetails
+                                      .personalDetailsResponse!.pan_card ??
+                                  "--",
                             ),
                           ],
                         ),
@@ -324,11 +348,19 @@ class _UpdateEmployeeDetailsScreenState
                           children: [
                             CommonTileForUpdate(
                               labelText: 'Passport Number',
-                              inputText: '',
+                              inputText: widget
+                                      .empAllDetails
+                                      .personalDetailsResponse!
+                                      .passport_number ??
+                                  "--",
                             ),
                             CommonTileForUpdate(
                               labelText: 'Disability',
-                              inputText: '',
+                              inputText: widget
+                                      .empAllDetails
+                                      .personalDetailsResponse!
+                                      .have_disability ??
+                                  "--",
                             ),
                           ],
                         ),
@@ -415,11 +447,15 @@ class _UpdateEmployeeDetailsScreenState
                           children: [
                             CommonTileForUpdate(
                               labelText: 'Full Address',
-                              inputText: '',
+                              inputText: widget.empAllDetails
+                                      .personalDetailsResponse!.address ??
+                                  "--",
                             ),
                             CommonTileForUpdate(
                               labelText: 'State',
-                              inputText: '',
+                              inputText: widget.empAllDetails
+                                      .personalDetailsResponse!.state ??
+                                  "--",
                             ),
                           ],
                         ),
@@ -428,11 +464,15 @@ class _UpdateEmployeeDetailsScreenState
                           children: [
                             CommonTileForUpdate(
                               labelText: 'City',
-                              inputText: '',
+                              inputText: widget.empAllDetails
+                                      .personalDetailsResponse!.city ??
+                                  "--",
                             ),
                             CommonTileForUpdate(
                               labelText: 'Email ID',
-                              inputText: '',
+                              inputText: widget.empAllDetails
+                                      .personalDetailsResponse!.email ??
+                                  "--",
                             ),
                           ],
                         ),
@@ -442,11 +482,17 @@ class _UpdateEmployeeDetailsScreenState
                           children: [
                             CommonTileForUpdate(
                               labelText: 'Pincode',
-                              inputText: '',
+                              inputText: widget.empAllDetails
+                                      .personalDetailsResponse!.pincode ??
+                                  "--",
                             ),
                             CommonTileForUpdate(
                               labelText: 'Emergency Contact',
-                              inputText: '',
+                              inputText: widget
+                                      .empAllDetails
+                                      .personalDetailsResponse!
+                                      .emergency_contact_no ??
+                                  "--",
                             )
                           ],
                         ),
@@ -457,7 +503,11 @@ class _UpdateEmployeeDetailsScreenState
                             const Gap(10),
                             CommonTileForUpdate(
                               labelText: 'Mailing Address',
-                              inputText: '',
+                              inputText: widget
+                                      .empAllDetails
+                                      .personalDetailsResponse!
+                                      .mailing_address ??
+                                  "--",
                             ),
                           ],
                         ),
@@ -537,99 +587,75 @@ class _UpdateEmployeeDetailsScreenState
                           child: Text('Please click the below field to edit.'),
                         ),
                         const Gap(10),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Gap(5),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                CommonTileForUpdate(
-                                  labelText: 'Employer',
-                                  inputText: '',
-                                ),
-                                CommonTileForUpdate(
-                                  labelText: 'Designation',
-                                  inputText: '',
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                CommonTileForUpdate(
-                                  labelText: 'Reporting TO.',
-                                  inputText: '',
-                                ),
-                                CommonTileForUpdate(
-                                  labelText: 'Employement Duration',
-                                  inputText: '',
-                                ),
-                              ],
-                            ),
-                            const Gap(5),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const Gap(10),
-                                CommonTileForUpdate(
-                                  labelText: 'Current Salary',
-                                  inputText: '',
-                                ),
-                              ],
-                            ),
-                            const Gap(5),
-                          ],
-                        ),
-                        const Divider(
-                          thickness: 0.5,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Gap(5),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                CommonTileForUpdate(
-                                  labelText: 'Employer',
-                                  inputText: '',
-                                ),
-                                CommonTileForUpdate(
-                                  labelText: 'Designation',
-                                  inputText: '',
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                CommonTileForUpdate(
-                                  labelText: 'Reporting TO.',
-                                  inputText: '',
-                                ),
-                                CommonTileForUpdate(
-                                  labelText: 'Employement Duration',
-                                  inputText: '',
-                                ),
-                              ],
-                            ),
-                            const Gap(5),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const Gap(10),
-                                CommonTileForUpdate(
-                                  labelText: 'Current Salary',
-                                  inputText: '',
-                                ),
-                              ],
-                            ),
-                            const Gap(5),
-                          ],
-                        ),
+                        ...List.generate(
+                            widget.empAllDetails.careerDetail!.length, (index) {
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Gap(5),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  CommonTileForUpdate(
+                                    labelText: 'Employer',
+                                    inputText: widget
+                                            .empAllDetails
+                                            .careerDetail![index]
+                                            .name_of_employer ??
+                                        "--",
+                                  ),
+                                  CommonTileForUpdate(
+                                    labelText: 'Designation',
+                                    inputText: widget.empAllDetails
+                                            .careerDetail![index].designation ??
+                                        "--",
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  CommonTileForUpdate(
+                                    labelText: 'Reporting TO.',
+                                    inputText: widget
+                                            .empAllDetails
+                                            .careerDetail![index]
+                                            .reporting_to ??
+                                        "--",
+                                  ),
+                                  CommonTileForUpdate(
+                                    labelText: 'Employement Duration',
+                                    inputText: widget
+                                            .empAllDetails
+                                            .careerDetail![index]
+                                            .employment_date_from ??
+                                        "--",
+                                  ),
+                                ],
+                              ),
+                              const Gap(5),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const Gap(10),
+                                  CommonTileForUpdate(
+                                    labelText: 'Current Salary',
+                                    inputText: widget
+                                            .empAllDetails
+                                            .careerDetail![index]
+                                            .monthly_salary_end ??
+                                        "--",
+                                  ),
+                                ],
+                              ),
+                              const Gap(5),
+                            ],
+                          );
+                        }),
+                        const Gap(5),
                       ],
                     ),
                   ),
@@ -718,11 +744,17 @@ class _UpdateEmployeeDetailsScreenState
                               children: [
                                 CommonTileForUpdate(
                                   labelText: 'Qualification',
-                                  inputText: '',
+                                  inputText: widget
+                                          .empAllDetails
+                                          .educationDetail!
+                                          .highest_qualification ??
+                                      "--",
                                 ),
                                 CommonTileForUpdate(
                                   labelText: 'Year of Passing',
-                                  inputText: '',
+                                  inputText: widget.empAllDetails
+                                          .educationDetail!.ssc_passing_year ??
+                                      "--",
                                 ),
                               ],
                             ),
@@ -731,11 +763,19 @@ class _UpdateEmployeeDetailsScreenState
                               children: [
                                 CommonTileForUpdate(
                                   labelText: 'School',
-                                  inputText: '',
+                                  inputText: widget
+                                          .empAllDetails
+                                          .educationDetail!
+                                          .ssc_passing_school ??
+                                      "--",
                                 ),
                                 CommonTileForUpdate(
                                   labelText: 'University',
-                                  inputText: '',
+                                  inputText: widget
+                                          .empAllDetails
+                                          .educationDetail!
+                                          .ssc_passing_university ??
+                                      "--",
                                 ),
                               ],
                             ),
@@ -746,55 +786,11 @@ class _UpdateEmployeeDetailsScreenState
                                 const Gap(10),
                                 CommonTileForUpdate(
                                   labelText: 'Percentage & Grade',
-                                  inputText: '',
-                                ),
-                              ],
-                            ),
-                            const Gap(5),
-                          ],
-                        ),
-                        const Divider(
-                          thickness: 0.5,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Gap(5),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                CommonTileForUpdate(
-                                  labelText: 'Qualification',
-                                  inputText: '',
-                                ),
-                                CommonTileForUpdate(
-                                  labelText: 'Year of Passing',
-                                  inputText: '',
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                CommonTileForUpdate(
-                                  labelText: 'School',
-                                  inputText: '',
-                                ),
-                                CommonTileForUpdate(
-                                  labelText: 'University',
-                                  inputText: '',
-                                ),
-                              ],
-                            ),
-                            const Gap(5),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const Gap(10),
-                                CommonTileForUpdate(
-                                  labelText: 'Percentage & Grade',
-                                  inputText: '',
+                                  inputText: widget
+                                          .empAllDetails
+                                          .educationDetail!
+                                          .ssc_passing_percentage ??
+                                      "--",
                                 ),
                               ],
                             ),
@@ -883,11 +879,19 @@ class _UpdateEmployeeDetailsScreenState
                           children: [
                             CommonTileForUpdate(
                               labelText: 'Name of Referee',
-                              inputText: '',
+                              inputText:  widget
+                                            .empAllDetails
+                                            .referralDetail!
+                                            .name ??
+                                        "--",
                             ),
                             CommonTileForUpdate(
                               labelText: 'Company Name',
-                              inputText: '',
+                              inputText:  widget
+                                            .empAllDetails
+                                            .referralDetail!
+                                            .company ??
+                                        "--",
                             ),
                           ],
                         ),
@@ -896,11 +900,19 @@ class _UpdateEmployeeDetailsScreenState
                           children: [
                             CommonTileForUpdate(
                               labelText: 'Referee Designation',
-                              inputText: '',
+                              inputText:  widget
+                                            .empAllDetails
+                                            .referralDetail!
+                                            .designation ??
+                                        "--",
                             ),
                             CommonTileForUpdate(
                               labelText: 'Address',
-                              inputText: '',
+                              inputText:  widget
+                                            .empAllDetails
+                                            .referralDetail!
+                                            .address ??
+                                        "--",
                             ),
                           ],
                         ),
@@ -1053,7 +1065,7 @@ class _UpdateEmployeeDetailsScreenState
 class CommonTileForUpdate extends StatelessWidget {
   void Function(String)? onChanged;
   String? labelText;
-  String? inputText;
+  dynamic inputText;
   bool? obscureText;
 
   Widget? suffixIcon;

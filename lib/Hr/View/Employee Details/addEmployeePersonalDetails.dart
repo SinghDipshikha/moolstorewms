@@ -34,7 +34,7 @@ class _AddEmployeePersonalDetailsState
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            'PersonalpersonalDetails',
+            'Personal Details',
             style: TextStyle(
               color: Colors.white,
               fontSize: 18,

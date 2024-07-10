@@ -293,8 +293,7 @@ class _HrDashboardState extends State<HrDashboard> {
                       title: "View Staff Details",
                       isShowextendedLine: false,
                       onTap: () {
-                        Get.to(const UpdateEmployeeDetailsScreen(),
-                            id: hrNavigationKey);
+                      
                       },
                     ),
                     // CurvedLineConatainer(title: "dcdc"),

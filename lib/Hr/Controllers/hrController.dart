@@ -27,6 +27,7 @@ import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeCareerDetails
 import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeDocuments.dart';
 import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeeEducationQualificationDetails.dart';
 import 'package:moolwmsstore/Hr/View/Employee%20Details/addEmployeePersonalDetails.dart';
+import 'package:moolwmsstore/Hr/View/Employee%20Details/updateEmployeeDetails.dart';
 import 'package:moolwmsstore/Hr/View/Shfits/createShift.dart';
 import 'package:moolwmsstore/Hr/View/Staff/addedStaffScreen.dart';
 import 'package:moolwmsstore/Owner/Model/addWarehouse.dart';
@@ -171,19 +172,21 @@ class HRController extends GetxController {
     });
 
     Logger().i(empAllDetails.toJson());
+    Get.to(
+        UpdateEmployeeDetailsScreen(
+          empAllDetails: empAllDetails,
+        ),
+        id: hrNavigationKey);
   }
 
-
-Map a=  {"gender" : "male"};
-  updatePersonalDetail(Map keyVal){
-apiClient.postData("hr/updateUserById", {
-    "user_id":4,
-    "updated_by":2,
-    ...a,
-    // "gate_id":1,
-
-
-});
+  Map a = {const PersonalDetailsResponseUpdate().gender: "male"};
+  updatePersonalDetail(Map keyVal) {
+    apiClient.postData("hr/updateUserById", {
+      "user_id": 4,
+      "updated_by": 2,
+      ...a,
+      // "gate_id":1,
+    });
   }
 
   switchRole(String role) {
